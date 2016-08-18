@@ -12,6 +12,7 @@
 
 <script>
 import {XHeader,XInput,Group} from 'vux'
+
 export default {
   components: {
     XHeader,XInput,Group

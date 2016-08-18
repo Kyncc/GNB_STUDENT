@@ -33,6 +33,9 @@ export default {
 
 <style lang="less">
 @import '~vux/dist/vux.css';
+body{
+  -webkit-touch-callout:none
+}
 .settings{
   .vux-header{
     color:#fff;

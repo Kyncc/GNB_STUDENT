@@ -26,7 +26,7 @@
         ├── assets      # 静态资源文件 
         ├── main        # 主页模块 
         ├── login       # 登陆模块
-            ├── users       # 个人中心
+        ├── users       # 个人中心
             ├── pages               # 页面文件 
             ├── modules             # 逻辑
             ├── action.js           # action
