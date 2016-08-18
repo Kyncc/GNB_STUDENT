@@ -13,7 +13,6 @@ import Index from './main/pages/index'
 //个人中心
 
 //通知
-
 Vue.use(Router)
 Vue.config.devtools = true
 

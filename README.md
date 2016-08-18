@@ -2,6 +2,8 @@
 
 > webApp
 
+入口main.js
+
 ## Build Setup
 
 ``` bash
