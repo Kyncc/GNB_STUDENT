@@ -19,7 +19,7 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
-	  'vux-components': 'vux/src/components/'
+	    'vux-components': 'vux/src/components/'
     }
   },
   resolveLoader: {
