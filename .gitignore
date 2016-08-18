@@ -1,6 +1,7 @@
 .DS_Store
 node_modules/
 dist/static/
+dist/unpackage/release/
 dist/index.html
 dist/.project
 npm-debug.log
