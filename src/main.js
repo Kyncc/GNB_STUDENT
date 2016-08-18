@@ -42,4 +42,20 @@ router.redirect({
   '/main/': '/main/index'
 });
 
+
+(function(){
+  function plusReady(){
+    plus.key.addEventListener("backbutton",function(){
+		  alert( "BackButton Key pressed!" );
+	  });
+  }
+  if(window.plus){
+    plusReady();
+  }else{
+    document.addEventListener("plusready",plusReady,false);
+  }
+}())
+
+
+
 router.start(App,'#app')
