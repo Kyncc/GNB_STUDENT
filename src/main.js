@@ -11,6 +11,8 @@ import User from './main/pages/user'
 import Message from './main/pages/message'
 import Index from './main/pages/index'
 //个人中心
+import resetPwd from './user/pages/resetPwd'
+import settings from './user/pages/settings'
 
 //通知
 Vue.use(Router)
@@ -35,7 +37,9 @@ router.map({
         component: Index
       }
     }
-  }
+  },
+  'user/resetPwd': {component: resetPwd},
+  'user/settings': {component: settings}
 })
 
 router.redirect({
@@ -46,7 +50,7 @@ router.redirect({
 (function(){
   function plusReady(){
     plus.key.addEventListener("backbutton",function(){
-		  alert( "BackButton Key pressed!" );
+		  window.history.back();
 	  });
   }
   if(window.plus){
