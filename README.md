@@ -5,12 +5,12 @@
 
 ## 使用技术简介
 
-[调用跨平台功能-H5+][1] 
-[Vue.js-MVVM框架][2]
-[Vue.js的路由-VueRouter][3]  
-[Vue.js推荐的打包编译环境-VueLoader][4] 
-[Vue.js手机组件库-Vux][5] 
-[Vue.js单项数据流-Vuex][6]
+ 1. [调用跨平台功能-H5+][1] 
+ 2. [Vue.js-MVVM框架][2]
+ 3. [Vue.js的路由-VueRouter][3]  
+ 4. [Vue.js推荐的打包编译环境-VueLoader][4] 
+ 5. [Vue.js手机组件库-Vux][5] 
+ 6. [Vue.js单项数据流-Vuex][6]
 
 ##文件夹结构
 
@@ -41,10 +41,7 @@
 
     npm run dev     //进入开发模式
     npm run build   //打包生成的目录在dist下
-    
-### 入口
 
-main.js
 
   [1]: http://www.dcloud.io/runtime.html
   [2]: http://cn.vuejs.org/guide/
