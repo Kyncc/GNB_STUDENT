@@ -18,11 +18,9 @@
         </div>
         <div class="link">
           <a v-link="{ path: 'main' }" class="resetPwd">登陆遇到问题?</a>
-          <a v-link="{ path: 'main' }"  class="register">快速注册</a>
+          <a v-link="{ path: 'main' }" class="register">快速注册</a>
         </div>
      </div>
-   
-    
   </div>
     
    
@@ -40,9 +38,7 @@ export default {
 </script>
 
 
-<style lang="less" >
-  @import '~vux/dist/vux.css';
- 
+<style lang="less">
   .login{
     .link{
       font-size:inherit;
@@ -80,7 +76,6 @@ export default {
         .btnWapper{
           padding:66/40em 0 0;
         }
-        
     }
   }
 

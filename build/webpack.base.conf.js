@@ -5,7 +5,7 @@ var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
   entry: {
-    app: './src/router.js'
+    app: './src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -19,7 +19,7 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
-      'vux-components': 'vux/src/components/'
+	  'vux-components': 'vux/src/components/'
     }
   },
   resolveLoader: {
@@ -30,10 +30,6 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue'
-      },
-      {
-        test: /vux.src.*?js$/,
-        loader: 'babel'
       },
       {
         test: /\.js$/,
