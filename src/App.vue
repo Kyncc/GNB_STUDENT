@@ -8,8 +8,7 @@
 <style>
   @import '~vux/dist/vux.css';
   html,body{
-    -moz-user-select: none;
-    -khtml-user-select: none;
+    -webkit-user-select: none;
     user-select: none;
   }
 </style>

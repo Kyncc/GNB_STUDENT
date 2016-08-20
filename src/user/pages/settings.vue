@@ -2,7 +2,7 @@
   <div class='settings'>
       <x-header :left-options="{showBack: true}">设置</x-header>
       <group>
-          <cell title="清除缓存" link="javascript:;">
+          <cell title="清除缓存" link="javascript:;" onclick="_clear()">
               <span class="demo-icon" slot="icon"></span>
           </cell>
           <cell title="检查更新" value="当前版本号:7.2.2" link="javascript:;">
@@ -18,16 +18,19 @@
               <span class="demo-icon" slot="icon"></span>
           </cell>
       </group>
+      <a href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode">打开qq聊天框</a>
+
   </div>
   
 </template>
 
 <script>
 import {XHeader,Cell,Group} from 'vux'
-export default {
+export default{
   components: {
     XHeader,Cell,Group
   }
+
 }
 </script>
 
