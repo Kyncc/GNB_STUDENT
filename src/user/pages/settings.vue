@@ -2,7 +2,7 @@
   <div class='settings'>
       <x-header :left-options="{showBack: true}">设置</x-header>
       <group>
-          <cell title="清除缓存" link="javascript:;" onclick="_clear()">
+          <cell title="清除缓存" link="javascript:;" v-touch:tap="_clear">
               <span class="demo-icon" slot="icon"></span>
           </cell>
           <cell title="检查更新" value="当前版本号:7.2.2" link="javascript:;">
@@ -11,26 +11,37 @@
            <cell title="关注我们" value="微信公众号:guina_book" link="javascript:;">
               <span class="demo-icon" slot="icon"></span>
           </cell>
-           <cell title="加入我们" value="qq群:458410557" link="javascript:;">
+           <cell title="加入我们" value="qq群:458410557" link="javascript:;" v-touch:tap="_openQQ"> 
               <span class="demo-icon" slot="icon"></span>
           </cell>
            <cell title="关于我们" link="./about" >
               <span class="demo-icon" slot="icon"></span>
           </cell>
       </group>
-      <a href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode">打开qq聊天框</a>
-
+       <alert :show.sync="show" title="清除缓存成功"></alert>
   </div>
   
 </template>
 
 <script>
-import {XHeader,Cell,Group} from 'vux'
+import {XHeader,Cell,Group,Alert} from 'vux'
 export default{
   components: {
-    XHeader,Cell,Group
+    XHeader,Cell,Group,Alert
+  },
+  data () {
+    return {
+      show: false
+    }
+  },
+  methods:{
+    _clear(){
+      this.show = true;
+    },
+    _openQQ(){
+      window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
+    }
   }
-
 }
 </script>
 

@@ -1,10 +1,10 @@
 <template>
   <div class='resetPwd'>
-      <x-header :left-options="{showBack: true}">修改密码<a slot="right"  v-touch:tap="_complete">完成</a></x-header>
+      <x-header :left-options="{showBack: true}">个人资料 <a slot="right" v-touch:tap="_complete">完成</a></x-header>
       <group>
-        <x-input type="password" name="oldPwd" placeholder="请输入旧密码" keyboard="password"></x-input>
-        <x-input type="password" name="newPwd" placeholder="请输入新密码" keyboard="password"></x-input>
-        <x-input type="password" name="repeatPwd" placeholder="请再次输入新密码" keyboard="password"></x-input>
+        <x-input title="姓名" name="username" placeholder="请输入姓名" is-type="china-name"></x-input>
+        <x-input title="姓名" name="username" placeholder="请输入姓名" is-type="china-name"></x-input>
+        <x-input title="学校" name="school" placeholder="请输入学校名称" ></x-input>
       </group>
   </div>
   
@@ -13,14 +13,17 @@
 <script>
 import {XHeader,XInput,Group} from 'vux'
 
+
 export default {
   components: {
     XHeader,XInput,Group
   },
   methods: {
     _complete(){
-      
+      alert(1);
     }
+    
+    
   }
 }
 </script>
