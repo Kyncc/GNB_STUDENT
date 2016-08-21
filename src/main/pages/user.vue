@@ -44,7 +44,6 @@ export default {
 
 
 <style lang="less">
-  @import '~vux/dist/vux.css';
   .user{
     .vux-header{
       background-color:#4bb7aa;
@@ -56,7 +55,10 @@ export default {
       height:365/40em;
       width:100%;
       text-align:center;
+      background:url('../../assets/user/userBg.jpg') repeat;
     }
+    .weui_cell{padding:12px 15px;}
+    .weui_cells{margin-top:0;}
     .icon{width:26px;height:24px;display: block;background-size: 100%;background-repeat:no-repeat;margin-right:17px;}
     .icon-info{background-image:url('../../assets/user/info.png');}
     .icon-textbook{background-image:url('../../assets/user/textbook.png');}
