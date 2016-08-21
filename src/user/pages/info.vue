@@ -1,5 +1,5 @@
 <template>
-  <div class='resetPwd'>
+  <div class='info'>
       <x-header :left-options="{showBack: true}">个人资料 <a slot="right" v-touch:tap="_complete">完成</a></x-header>
       <group>
         <x-input title="姓名" name="username" placeholder="请输入姓名" is-type="china-name"></x-input>
@@ -12,7 +12,6 @@
 
 <script>
 import {XHeader,XInput,Group} from 'vux'
-
 
 export default {
   components: {
@@ -29,8 +28,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '~vux/dist/vux.css';
-.resetPwd{
+.info{
   .vux-header{
     color:#fff;
     background-color:#4bb7aa;

@@ -14,7 +14,7 @@
            <cell title="加入我们" value="qq群:458410557" link="javascript:;" v-touch:tap="_openQQ"> 
               <span class="demo-icon" slot="icon"></span>
           </cell>
-           <cell title="关于我们" link="./about" >
+           <cell title="关于我们" link="../aboutUs" >
               <span class="demo-icon" slot="icon"></span>
           </cell>
       </group>
@@ -46,7 +46,6 @@ export default{
 </script>
 
 <style lang="less">
-@import '~vux/dist/vux.css';
 body{
   -webkit-touch-callout:none
 }

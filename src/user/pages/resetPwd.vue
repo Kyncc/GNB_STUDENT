@@ -26,7 +26,6 @@ export default {
 </script>
 
 <style lang="less">
-@import '~vux/dist/vux.css';
 .resetPwd{
   .vux-header{
     color:#fff;

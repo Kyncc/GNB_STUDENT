@@ -15,6 +15,8 @@ import Index from './main/pages/index'
 import userResetPwd from './user/pages/resetPwd'
 import userSettings from './user/pages/settings'
 import userInfo from './user/pages/info'
+import userAboutUs from './user/pages/aboutUs'
+
 
 //通知
 Vue.use(Router)
@@ -43,7 +45,8 @@ router.map({
   },
   'user/resetPwd': {component: userResetPwd},
   'user/settings': {component: userSettings},
-  'user/info': {component: userInfo}
+  'user/info': {component: userInfo},
+  'user/aboutUs': {component: userAboutUs}
 })
 
 router.redirect({
