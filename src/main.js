@@ -18,6 +18,7 @@ import userSettingsAboutUs from './user/pages/settings/aboutUs'
 //个人中心-邀请好友
 import userInviteIndex from './user/pages/invite/index'
 import userInviteFriend from './user/pages/invite/friend'
+import userCodeInput from './user/pages/invite/input'
 //通知
 Vue.use(Router)
 Vue.use(VueTouch)
@@ -45,12 +46,15 @@ router.map({
   },
   'user/resetPwd': {component: userResetPwd},
   'user/info': {component: userInfo},
+  
   //设置
   'user/settings': {component: userSettingsIndex},
   'user/settings/aboutUs': {component: userSettingsAboutUs},
   //邀请好友
   'user/invite': {component: userInviteIndex},
-  'user/invite/friend': {component: userInviteFriend}
+  'user/invite/friend': {component: userInviteFriend},
+  'user/invite/input': {component: userCodeInput}
+  
 })
 
 router.redirect({
