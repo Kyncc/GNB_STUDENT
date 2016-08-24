@@ -1,6 +1,6 @@
 <template>
-	<div class='aboutUs'>
-			<x-header :left-options="{showBack: true}">关于我们 </x-header>
+	<div class='inviteIndex'>
+		<x-header :left-options="{showBack: true}">邀请好友</x-header>
 	</div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="less">
-.aboutUs{
+.inviteIndex{
 	.vux-header{
 		color:#fff;
 		background-color:#4bb7aa;
