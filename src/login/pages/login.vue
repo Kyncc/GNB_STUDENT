@@ -20,6 +20,7 @@
           <a v-link="{ path: 'main' }" class="resetPwd">登陆遇到问题?</a>
           <a v-link="{ path: 'main' }" class="register">快速注册</a>
         </div>
+        <a v-link="{ path: 'agreement' }" c>用户协议</a>
      </div>
   </div>
     

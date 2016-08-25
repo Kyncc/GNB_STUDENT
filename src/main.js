@@ -4,6 +4,7 @@ import VueTouch from 'vue-touch'
 import App from './App'
 //登陆
 import Login from './login/pages/login'
+import agreement from './login/pages/agreement'
 //首页
 import Main from './main/common/main'
 import User from './main/pages/user'
@@ -44,9 +45,9 @@ router.map({
       }
     }
   },
+  'agreement':{component: agreement},
   'user/resetPwd': {component: userResetPwd},
   'user/info': {component: userInfo},
-  
   //设置
   'user/settings': {component: userSettingsIndex},
   'user/settings/aboutUs': {component: userSettingsAboutUs},

@@ -1,36 +1,34 @@
 <template>
-	<div class='codeInput '>
-		<x-header :left-options="{showBack: true}">输入邀请码<a slot="right" v-touch:tap="_complete">确定</a></x-header>
-		<group>
-        	<x-input type="text" name="code" placeholder="请输入4位邀请码" keyboard="number"></x-input>
-		</group>
+	<div class='agreement vux-scroller-header-box'>
+		<div style="height:46px;">
+			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">用户协议</x-header>
+		</div>
+		<article>
+
+
+		</article>
 	</div>
-	
 </template>
 
 <script>
-import {XHeader,XInput,Group} from 'vux'
+import {XHeader,XInput} from 'vux'
 
 export default {
 	components: {
-		XHeader,XInput,Group
+		XHeader,XInput
 	},
 	methods: {
-		_complete(){
-			alert(1);
-		}
+	
 	}
 }
 </script>
 
 <style lang="less">
-.codeInput{
+.agreement{
 	.vux-header{
 		color:#fff;
 		background-color:#4bb7aa;
 	}
-	.weui_cells{margin-top:0;}
-	.vux-no-group-title{margin-top:0;}
 	.vux-header .vux-header-right a{color:#fff;}
 	.vux-header .vux-header-left, .vux-header .vux-header-right{font-size:16px;}
 	.vux-header .vux-header-left .vux-header-back:before{border-color:#fff;}

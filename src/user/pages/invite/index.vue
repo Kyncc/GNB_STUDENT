@@ -1,6 +1,8 @@
 <template>
-	<div class='inviteIndex'>
-		<x-header :left-options="{showBack: true}">邀请好友<a slot="right" v-touch:tap="_friend">受邀好友</a></x-header>
+	<div class='inviteIndex  vux-scroller-header-box'>
+		<div style="height:46px;">
+			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">邀请好友<a slot="right" v-touch:tap="_friend">受邀好友</a></x-header>
+		</div>
 		<img src="../../../assets/user/friend_title.png" class="title"/>
 		<section class="step">
 			<article>
@@ -16,8 +18,10 @@
 			<h3>我的邀请码</h3>
 			<b>3418</b>
 		</section>
-		<x-button type="primary" class="button" v-touch:tap="_shareCode">分享给好友</x-button>
-		<x-button type="primary" class="button" v-touch:tap="_inputCode">输入邀请码</x-button>	
+		<div class="button">
+			<x-button type="primary" v-touch:tap="_shareCode">分享给好友</x-button>
+			<x-button type="primary" v-touch:tap="_inputCode">输入邀请码</x-button>	
+		</div>
 	</div>
 </template>
 
@@ -65,7 +69,10 @@ export default {
 		p{font-size:30/40em;color:#000;line-height:1.8em;}
 	}
 	.copyCode{width:590/40em;height:120/40em;background: #ffffff;border-radius:5px;margin:0 auto 65/40em;border:2px dashed #959595;text-align:center;padding:.75em 0 1em;}
-	.button{width:660/40em;background: #fd7e3f;}
+	.button{width:560/40em;margin:0 auto;}
+	.weui_btn_primary{
+		background: #fd7e3f;
+	}
 	.weui_btn_primary:not(.weui_btn_disabled):active {
 		color: hsla(0,0%,100%,.4);
 		background: #fd7e3f ;

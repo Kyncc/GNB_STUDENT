@@ -1,6 +1,6 @@
 <template>
   <div class='user'>
-      <x-header :left-options="{showBack: false}">个人中心<a slot="right">退出</a></x-header>
+      <x-header :left-options="{showBack: false}">个人中心<a slot="right" v-touch:tap="_quit">退出</a></x-header>
       <div class="info">
 
       </div>
@@ -27,6 +27,9 @@
               <span class="icon icon-resetPwd" slot="icon"></span>
           </cell>
       </group>
+      <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')">
+      </confirm>
+
   </div>
   
 
@@ -34,11 +37,24 @@
 </template>
 
 <script>
-import {XHeader,Cell,Group} from 'vux'
+import {XHeader,Cell,Group,Confirm} from 'vux'
 export default {
   components: {
-    XHeader,Cell,Group
-  }
+    XHeader,Cell,Group,Confirm
+  },
+  methods: {
+    onAction: function (type) {
+      alert(type)
+    },
+    _quit(){
+      this.show = true;
+    }
+  },
+  data(){
+    return {
+      show: false
+    }
+  },
 }
 </script>
 
