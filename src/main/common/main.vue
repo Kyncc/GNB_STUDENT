@@ -28,4 +28,5 @@ export default {
 .weui_tabbar_icon+.weui_tabbar_label{margin-top:0;}
 .weui_tabbar_label{color:#8a8a8a;}
 .weui_tabbar_item.weui_bar_item_on .weui_tabbar_label{color:#4bb7aa}
+
 </style>

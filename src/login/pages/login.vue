@@ -14,13 +14,12 @@
           <x-input title="" name="password" placeholder="请输入密码" type="password" :min="6" :max="18"></x-input>
         </group>
         <div class="btnWapper">
-          <x-button type="primary">登陆</x-button>
+          <x-button type="primary" @click='_login'>登陆</x-button>
         </div>
         <div class="link">
-          <a v-link="{ path: 'main' }" class="resetPwd">登陆遇到问题?</a>
-          <a v-link="{ path: 'main' }" class="register">快速注册</a>
+          <a v-link="{ path: 'forget' }" class="resetPwd">登陆遇到问题?</a>
+          <a v-link="{ path: 'register' }" class="register">快速注册</a>
         </div>
-        <a v-link="{ path: 'agreement' }" c>用户协议</a>
      </div>
   </div>
     
@@ -29,11 +28,21 @@
 
 <script>
 import {XInput,Group,XButton} from 'vux'
+import Vue from 'vue'
+import Router from 'vue-router'
+
+Vue.use(Router)
+const router = new Router();
 export default {
   components: {
      XInput,
      Group,
      XButton
+  },
+  methods:{
+    _login(){
+      router.go('main');
+    }
   }
 }
 </script>
@@ -57,7 +66,8 @@ export default {
         font-size:inherit;
     }
     .icon{
-      padding:60/40em 0 0;
+      margin-top:46px;
+      padding:1.5em 0 0;
       img{
          width:118/40em;
         height:116/40em;

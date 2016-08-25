@@ -26,7 +26,6 @@
 </template>
 
 <script>
-	
 import Vue from 'vue'
 import Router from 'vue-router'
 import {XHeader,XInput,Group,XButton} from 'vux'

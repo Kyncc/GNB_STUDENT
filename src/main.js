@@ -2,9 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import VueTouch from 'vue-touch'
 import App from './App'
-//登陆
+//登陆、注册
 import Login from './login/pages/login'
 import agreement from './login/pages/agreement'
+import register from './login/pages/register'
+import password from './login/pages/password'
+import forget from './login/pages/forget'
 //首页
 import Main from './main/common/main'
 import User from './main/pages/user'
@@ -28,10 +31,15 @@ Vue.config.devtools = true
 const router = new Router()
 
 router.map({
-  '/': {
-    component: Login
-  },
-  '/main/': {
+  '/': { component: Login},
+  'agreement':{component: agreement},
+  //注册账户
+  'register':{component: register},
+  'register/password':{component: password},
+  //忘记密码
+  'forget':{component: forget},
+  'forget/password':{component: password},
+  'main/': {
     component: Main,
     subRoutes: {
       'user/': {
@@ -45,7 +53,6 @@ router.map({
       }
     }
   },
-  'agreement':{component: agreement},
   'user/resetPwd': {component: userResetPwd},
   'user/info': {component: userInfo},
   //设置
