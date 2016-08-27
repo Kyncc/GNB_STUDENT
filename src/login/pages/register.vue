@@ -27,7 +27,7 @@
           我是倒计时
         </flexbox-item>
     </flexbox>
-    <p>我已阅读并同意<b>使用条款和隐私政策</b></p>
+    <p ><input name="Fruit" type="checkbox" value="" />我已阅读并同意<b>使用条款和隐私政策</b></p>
     <flexbox :gutter="0" wrap="wrap">
       <flexbox-item :span="1/12"></flexbox-item>
       <flexbox-item :span="10/12">
@@ -47,6 +47,9 @@ import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader} from 'vux'
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import { getCode } from '../actions'
+import { messageCode } from '../getters'
+
 Vue.use(Router)
 const router = new Router();
 export default {
@@ -57,6 +60,21 @@ export default {
      FlexboxItem,
      Flexbox,
      XHeader
+  },
+  vuex: {
+      getters: {
+        messageCode: messageCode
+      },
+      actions: {
+        getCode
+      }
+  },
+  ready () {
+    let params = {
+      mobile: '18949554415',
+      type:1
+    }
+    this.getCode(params);
   },
   methods:{
     _next(){

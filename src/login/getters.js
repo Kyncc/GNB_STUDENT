@@ -1,0 +1,1 @@
+export const messageCode = (state) => state.register.messageCode

@@ -41,7 +41,7 @@ export default {
   },
   methods:{
     _login(){
-      router.go('main');
+      router.replace('main');
     }
   }
 }
