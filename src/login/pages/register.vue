@@ -66,7 +66,7 @@ export default {
         messageCode: messageCode
       },
       actions: {
-        getCode
+        //getCode
       }
   },
   ready () {
@@ -115,7 +115,6 @@ export default {
          height:46/40em;
       }
     }
-   
     .form{
          padding:.75em 65/40em;
         .weui_input{text-align:center;font-size:32/40em;}

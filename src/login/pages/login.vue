@@ -1,29 +1,23 @@
 <template>
   <div class="login">
     <div class="icon">
-      <img src="../../assets/login/icon.jpg" alt="">
+      <img src="../../assets/login/icon.jpg"/>
     </div>
     <div class="title">
-      <img src="../../assets/login/title.png" alt="">
+      <img src="../../assets/login/title.png"/>
     </div>
-    <div class="form">
-        <group>
-          <x-input title="" name="mobile" placeholder="请输入手机号码" keyboard="number" is-type="china-mobile"></x-input>
-        </group>
-        <group>
-          <x-input title="" name="password" placeholder="请输入密码" type="password" :min="6" :max="18"></x-input>
-        </group>
-        <div class="btnWapper">
-          <x-button type="primary" @click='_login'>登陆</x-button>
-        </div>
-        <div class="link">
-          <a v-link="{ path: 'forget' }" class="resetPwd">登陆遇到问题?</a>
-          <a v-link="{ path: 'register' }" class="register">快速注册</a>
-        </div>
-     </div>
+    <group>
+      <x-input name="mobile" placeholder="手机号" keyboard="number" :value.sync="mobile" is-type="china-mobile" v-ref:mobile></x-input>
+      <x-input name="password" placeholder="密码" type="password" :value.sync="password" :min="6" :max="18" v-ref:password ></x-input>
+    </group>
+    <div class="btnWapper">
+      <x-button type="primary" @click='_login'>登陆</x-button>
+      <div class="link">
+        <a v-link="{ path: 'forget' }" class="resetPwd">登陆遇到问题?</a>
+        <a v-link="{ path: 'register' }" class="register">新用户注册</a>
+      </div>
+    </div>
   </div>
-    
-   
 </template>
 
 <script>
@@ -39,9 +33,17 @@ export default {
      Group,
      XButton
   },
+  data(){
+    return{
+      mobile:'',
+      password:''
+    }
+  },
   methods:{
     _login(){
-      router.replace('main');
+     
+      console.log(this.$refs.password.valid+"&&&"+this.$refs.mobile.valid);
+      //router.replace('main');
     }
   }
 }
@@ -49,10 +51,18 @@ export default {
 
 
 <style lang="less">
+  .weui_btn_primary{background:#4bb7aa;}
+  .weui_btn_primary:not(.weui_btn_disabled):active {
+    color: hsla(0,0%,100%,.4);
+    background-color: #4bb7aa;
+  }
+  .weui_btn_primary{
+    background:#4bb7aa;
+  }
   .login{
     .link{
       font-size:inherit;
-      padding:.5em 0 1em;
+      padding:.75em 0 1em;
       a{color:#6fb9e5;font-size:32/40em;}
       .resetPwd{
         float:left;
@@ -62,15 +72,15 @@ export default {
       }
     }
     div{
-        text-align:center;
-        font-size:inherit;
+      text-align:center;
+      font-size:inherit;
     }
     .icon{
       margin-top:46px;
       padding:1.5em 0 0;
       img{
          width:118/40em;
-        height:116/40em;
+         height:116/40em;
       }
     }
     .title{
@@ -79,17 +89,10 @@ export default {
          height:46/40em;
       }
     }
-    .form{
-        padding:1em 65/40em;
-        .weui_input{text-align:center;font-size:32/40em;}
-        .weui_btn_primary{background:#4bb7aa;}
-        .weui_cell{border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;}
-        .btnWapper{
-          padding:66/40em 0 0;
-        }
+    .btnWapper{
+      padding:66/40em 0 1em;
+      width:90%;
+      margin:0 auto;
     }
   }
-
-
-
 </style>
