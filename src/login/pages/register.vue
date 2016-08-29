@@ -9,46 +9,29 @@
     <div class="title">
       <img src="../../assets/login/title.png">
     </div>
+    <group class="weui_cells_form">
+      <x-input name="mobile" placeholder="手机号" keyboard="number" is-type="china-mobile" :value.sync="mobile" v-ref:mobile></x-input>
+      <x-input name="code" placeholder="验证码" keyboard="number" class="weui_vcode" style="padding:0 15px;" :value.sync="code" :min="4" :max="4"  v-ref:code>
+        <x-button slot="right" :text="btnValue" type="primary" :disabled="disableMobile" style="width:118px;height:49px;border-radius:0;"  @click="_getCode"></x-button>
+      </x-input>
+    </group>
     <flexbox :gutter="0" wrap="wrap">
-       <flexbox-item :span="1/12"></flexbox-item>
-       <flexbox-item :span="10/12">
-          <group>
-            <x-input title="" name="mobile" placeholder="请输入手机号码" keyboard="number" is-type="china-mobile"></x-input>
-          </group>
-        </flexbox-item>
-       <flexbox-item :span="1/12"></flexbox-item>
-       <flexbox-item :span="1/12"></flexbox-item>
-       <flexbox-item :span="6/12">
-          <group>
-            <x-input title="" name="mobile" placeholder="请输入验证码" keyboard="number" is-type="china-mobile"></x-input>
-          </group>
-        </flexbox-item>
-        <flexbox-item :span="4/12">
-          我是倒计时
-        </flexbox-item>
-    </flexbox>
-    <p ><input name="Fruit" type="checkbox" value="" />我已阅读并同意<b>使用条款和隐私政策</b></p>
-    <flexbox :gutter="0" wrap="wrap">
-      <flexbox-item :span="1/12"></flexbox-item>
-      <flexbox-item :span="10/12">
+      <flexbox-item :span="1/20"></flexbox-item>
+      <flexbox-item :span="18/20">
         <group>
-           <x-button type="primary" @click="_next">下一步</x-button>
+           <x-button type="primary"  :disabled="disableNext" @click="_next">下一步</x-button>
         </group>
       </flexbox-item>
-      <flexbox-item :span="1/12"></flexbox-item>
+      <flexbox-item :span="1/20"></flexbox-item>
     </flexbox>
   </div>
-    
-   
 </template>
 
 <script>
-import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader} from 'vux'
+import '../main.less'
+import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Countdown,Cell} from 'vux'
 import Vue from 'vue'
 import Router from 'vue-router'
-
-import { getCode } from '../actions'
-import { messageCode } from '../getters'
 
 Vue.use(Router)
 const router = new Router();
@@ -59,73 +42,49 @@ export default {
      XButton,
      FlexboxItem,
      Flexbox,
-     XHeader
+     XHeader,
+     Countdown,
+     Cell
   },
-  vuex: {
-      getters: {
-        messageCode: messageCode
-      },
-      actions: {
-        //getCode
-      }
-  },
-  ready () {
-    let params = {
-      mobile: '18949554415',
-      type:1
+  data(){
+    return{
+      disableMobile: true,
+      disableNext:true,
+      currentDown:false,
+      mobile:'',
+      code:'',
+      btnValue:'获取验证码'
     }
-    this.getCode(params);
   },
   methods:{
     _next(){
-      router.go('register/password');
+      router.go('forget/password');
+    },
+    _getCode(){
+        if(this.currentDown){
+           return;
+        }
+        this.currentDown = true;
+        let time = 5;
+        let _this = this;
+        let timeDown = setInterval(function(){
+            time--;
+            _this.btnValue = '已发送('+time +')' ;
+            if(time == '0') {
+              clearInterval(timeDown);
+              _this.btnValue = '获取验证码';
+              _this.currentDown = false;
+            };
+        },1000);
     }
+  },
+  computed: {
+     disableMobile(){
+         return (this.$refs.mobile.valid && !this.currentDown ? false : true);
+     },
+     disableNext(){
+        return  (this.$refs.mobile.valid && this.$refs.code.valid  ? false : true);
+     }
   }
 }
 </script>
-
-
-<style lang="less">
-  .register{
-    .link{
-      font-size:inherit;
-      padding:.5em 0 1em;
-      a{color:#6fb9e5;font-size:32/40em;}
-      .resetPwd{
-        float:left;
-      }
-      .register{
-        float:right;
-      }
-    }
-    div{
-        text-align:center;
-        font-size:inherit;
-    }
-    .icon{
-      padding:60/40em 0 0;
-      img{
-         width:118/40em;
-        height:116/40em;
-      }
-    }
-    .title{
-      img{
-         width:209/40em;
-         height:46/40em;
-      }
-    }
-    .form{
-         padding:.75em 65/40em;
-        .weui_input{text-align:center;font-size:32/40em;}
-        .weui_btn_primary{background:#4bb7aa;}
-        .weui_cell{border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;margin-bottom:0;}
-        .btnWapper{
-          padding:66/40em 0 0;
-        }
-    }
-  }
-
-
-
-</style>

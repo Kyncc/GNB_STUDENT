@@ -9,33 +9,20 @@
     <div class="title">
       <img src="../../assets/login/title.png">
     </div>
+    <group class="weui_cells_form">
+      <x-input  placeholder="新密码" keyboard="text" :value.sync="password" v-ref:password :min="6" :max="18"></x-input>
+      <x-input  placeholder="再次确认密码" keyboard="text" :value.sync="passwordAgain" v-ref:passwordagain :equal-with="password"></x-input>
+    </group>
     <flexbox :gutter="0" wrap="wrap">
-       <flexbox-item :span="1/12"></flexbox-item>
-       <flexbox-item :span="10/12">
-          <group>
-            <x-input name="password" placeholder="请输入密码" type="password" :min="6" :max="18"></x-input>
-          </group>
-        </flexbox-item>
-       <flexbox-item :span="1/12"></flexbox-item>
-       <flexbox-item :span="1/12"></flexbox-item>
-       <flexbox-item :span="10/12">
-          <group>
-            <x-input name="password" placeholder="请再次输入密码" type="password" :min="6" :max="18"></x-input>
-          </group>
-        </flexbox-item>
-    </flexbox>
-    <flexbox :gutter="0" wrap="wrap">
-      <flexbox-item :span="1/12"></flexbox-item>
-      <flexbox-item :span="10/12">
+      <flexbox-item :span="1/20"></flexbox-item>
+      <flexbox-item :span="18/20">
         <group>
-           <x-button type="primary" @click="_complete">完成</x-button>
+           <x-button type="primary" @click="_complete" :disabled="disable">完成</x-button>
         </group>
       </flexbox-item>
-      <flexbox-item :span="1/12"></flexbox-item>
+      <flexbox-item :span="1/20"></flexbox-item>
     </flexbox>
   </div>
-    
-   
 </template>
 
 <script>
@@ -55,54 +42,22 @@ export default {
      Flexbox,
      XHeader
   },
+  data(){
+    return{
+      disable: true,
+      password:'',
+      passwordAgain:''
+    }
+  },
   methods:{
     _complete(){
       router.go('/');
     }
+  },
+  computed:{
+     disable(){
+         return (this.$refs.password.valid && this.$refs.passwordagain.valid ? false : true);
+     }
   }
 }
 </script>
-
-
-<style lang="less">
-  .register{
-    .link{
-      font-size:inherit;
-      padding:.5em 0 1em;
-      a{color:#6fb9e5;font-size:32/40em;}
-      .resetPwd{
-        float:left;
-      }
-      .register{
-        float:right;
-      }
-    }
-    div{
-        text-align:center;
-        font-size:inherit;
-    }
-    .icon{
-      padding:60/40em 0 0;
-      img{
-         width:118/40em;
-        height:116/40em;
-      }
-    }
-    .title{
-      img{
-         width:209/40em;
-         height:46/40em;
-      }
-    }
-   
-    .form{
-         padding:.75em 65/40em;
-        .weui_input{text-align:center;font-size:32/40em;}
-        .weui_btn_primary{background:#4bb7aa;}
-        .weui_cell{border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;margin-bottom:0;}
-        .btnWapper{
-          padding:66/40em 0 0;
-        }
-    }
-  }
-</style>
