@@ -11,7 +11,3 @@ export default {
 }
 </script>
 
-
-<style>
-  @import '~vux/dist/vux.css';
-</style>

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueTouch from 'vue-touch'
-import App from './App'
+import App from './app'
 //登陆、注册
 import Login from './login/pages/login'
 import agreement from './login/pages/agreement'
@@ -83,6 +83,6 @@ router.redirect({
   }
 }())
 
-router.start(App,'#app')
+router.start(App,'#App')
 
 

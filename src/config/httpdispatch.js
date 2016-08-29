@@ -11,5 +11,8 @@ Vue.use(VueResource)
 export default {
   getCode: (params) => {
     return Vue.resource(API_PATHS.getCode).get(params)
+  },
+  login: (params) => {
+    return Vue.resource(API_PATHS.login).get(params)
   }
 }

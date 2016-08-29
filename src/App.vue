@@ -5,15 +5,15 @@
 </template>
 
 <script>
-import store from './Store'
+import store from './store'
 
- export default {
-    store
-  }
+export default {
+  store
+}
 </script>
 
 <style>
-  @import '~vux/dist/vux.css';
+ 
 
   @font-face {
     font-family: 'iconfont';
@@ -41,9 +41,9 @@ import store from './Store'
     background:#fff;
   }
   .vux-header{
-    color:#fff;
-    background-color:#4bb7aa;
-    .vux-header-right a{color:#fff;}
+    color:#fff !important;;
+    background-color:#4bb7aa !important;;
+    .vux-header-right a{color:#fff !important;}
     .vux-header-left, .vux-header .vux-header-right{font-size:16px;}
     .vux-header-left .vux-header-back:before{border:1px solid #fff;color:#fff;}
     .vux-header-title, .vux-header h1{margin-left:88px;}
@@ -51,5 +51,14 @@ import store from './Store'
   .vux-header .vux-header-left a{color:#fff;}
   .vux-header .vux-header-left .vux-header-back:before{border-color:#fff;}
   
-  
+  .weui_btn_primary{background:#4bb7aa;}
+  .weui_btn_primary:not(.weui_btn_disabled):active {
+    color: hsla(0,0%,100%,.4);
+    background-color: #4bb7aa;
+  }
+  .weui_btn_disabled {
+    color: hsla(0,0%,100%,.6);
+    background: #ccc !important;
+  }
+   @import 'assets/vux.css';
 </style>
