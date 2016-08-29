@@ -43,7 +43,7 @@ export default {
   },
   methods:{
     _login(){
-      
+      router.replace('main');
     }
   },
   computed: {

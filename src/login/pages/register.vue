@@ -15,6 +15,9 @@
         <x-button slot="right" :text="btnValue" type="primary" :disabled="disableMobile" style="width:118px;height:49px;border-radius:0;"  @click="_getCode"></x-button>
       </x-input>
     </group>
+    <p class="agreement">
+      <input type="checkbox" v-model="agree" /> 我已经阅读并同意<a v-link="{ path: 'agreement' }">使用条款和隐私政策</a>
+    </p>
     <flexbox :gutter="0" wrap="wrap">
       <flexbox-item :span="1/20"></flexbox-item>
       <flexbox-item :span="18/20">
@@ -51,6 +54,7 @@ export default {
       disableMobile: true,
       disableNext:true,
       currentDown:false,
+      agree:true,
       mobile:'',
       code:'',
       btnValue:'获取验证码'
@@ -83,7 +87,7 @@ export default {
          return (this.$refs.mobile.valid && !this.currentDown ? false : true);
      },
      disableNext(){
-        return  (this.$refs.mobile.valid && this.$refs.code.valid  ? false : true);
+        return  (this.$refs.mobile.valid && this.$refs.code.valid && this.agree ? false : true);
      }
   }
 }
