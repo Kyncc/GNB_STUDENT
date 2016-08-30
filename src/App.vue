@@ -6,6 +6,7 @@
 
 <script>
 import store from './store'
+import './common/transition.less'
 
 export default {
   store
@@ -13,8 +14,6 @@ export default {
 </script>
 
 <style>
- 
-
   @font-face {
     font-family: 'iconfont';
     src:url('assets/iconfont.ttf') format('truetype')
@@ -60,6 +59,9 @@ export default {
   .weui_btn_disabled {
     color: hsla(0,0%,100%,.6);
     background: #ccc !important;
+  }
+  .weui_toast {
+    top:85%;
   }
    @import 'assets/vux.css';
 </style>

@@ -4,12 +4,14 @@ import {
 } from '../mutationTypes'
 
 const state = {
-  messageCode: ''
+  messageCode:'',
+  registerMobilde:''
 }
 
 const mutations = {
-  [GET_MESSAGE_SUCCESS](state, data){
-    state.messageCode = data
+  [GET_MESSAGE_SUCCESS](state , data){
+    state.messageCode = data.data.code;
+    state.registerMobilde = data.data.mobile;
   },
   [GET_MESSAGE_ERROR](state, err){
     console.log(err)

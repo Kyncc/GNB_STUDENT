@@ -11,13 +11,13 @@
     </div>
     <group class="weui_cells_form">
       <x-input name="mobile" placeholder="手机号" keyboard="number" is-type="china-mobile" :value.sync="mobile" v-ref:mobile></x-input>
-      <x-input name="code" placeholder="验证码" keyboard="number" class="weui_vcode" style="padding:0 15px;" :value.sync="code" :min="4" :max="4"  v-ref:code>
+      <x-input name="code" placeholder="验证码" keyboard="number" class="weui_vcode" style="padding:0 15px;" :value.sync="code" :min="6" :max="6"  v-ref:code>
         <x-button slot="right" :text="btnValue" type="primary" :disabled="disableMobile" style="width:118px;height:49px;border-radius:0;"  @click="_getCode"></x-button>
       </x-input>
     </group>
-    <p class="agreement">
+    <!--<p class="agreement">
       <input type="checkbox" v-model="agree" /> 我已经阅读并同意<a v-link="{ path: 'agreement' }">使用条款和隐私政策</a>
-    </p>
+    </p>-->
     <flexbox :gutter="0" wrap="wrap">
       <flexbox-item :span="1/20"></flexbox-item>
       <flexbox-item :span="18/20">
@@ -27,14 +27,18 @@
       </flexbox-item>
       <flexbox-item :span="1/20"></flexbox-item>
     </flexbox>
+    <toast :show.sync="toastShow" type="text" :time="2000">错误的验证码</toast>
   </div>
 </template>
 
 <script>
 import '../main.less'
-import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Countdown,Cell} from 'vux'
+import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Toast,Cell} from 'vux'
 import Vue from 'vue'
 import Router from 'vue-router'
+
+import { getCode } from '../actions'
+import { messageCode,registerMobile } from '../getters'
 
 Vue.use(Router)
 const router = new Router();
@@ -46,7 +50,7 @@ export default {
      FlexboxItem,
      Flexbox,
      XHeader,
-     Countdown,
+     Toast,
      Cell
   },
   data(){
@@ -54,22 +58,37 @@ export default {
       disableMobile: true,
       disableNext:true,
       currentDown:false,
+      toastShow:false,
       agree:true,
       mobile:'',
       code:'',
       btnValue:'获取验证码'
     }
   },
+  vuex: {
+    getters: {
+      messageCode: messageCode,
+      registerMobile: registerMobile
+    },
+    actions: {
+      getCode
+    }
+  },
   methods:{
-    _next(){
-      router.go('forget/password');
+    _next(){  
+       if(this.messageCode == this.code){
+          router.go('forget/password');
+       }else{
+         this.toastShow = true;
+         this.code = '';
+       }
     },
     _getCode(){
         if(this.currentDown){
            return;
         }
         this.currentDown = true;
-        let time = 5;
+        let time = 60;
         let _this = this;
         let timeDown = setInterval(function(){
             time--;
@@ -80,6 +99,11 @@ export default {
               _this.currentDown = false;
             };
         },1000);
+        let params = {
+            mobile: this.mobile,
+            type:1
+        }
+        this.getCode(params);
     }
   },
   computed: {

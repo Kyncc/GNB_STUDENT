@@ -48,7 +48,7 @@ export default {
   },
   computed: {
      disable(){
-         return (this.$refs.mobile.valid && this.$refs.password.valid ? false : true);
+        return (this.$refs.mobile.valid && this.$refs.password.valid ? false : true);
      }
   }
 }
