@@ -26,6 +26,9 @@ import {XInput,Group,XButton} from 'vux'
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import { login } from '../actions'
+import { userInfo } from '../getters'
+
 Vue.use(Router)
 const router = new Router();
 export default {
@@ -33,6 +36,14 @@ export default {
      XInput,
      Group,
      XButton
+  },
+  vuex: {
+    getters: {
+      userInfo: userInfo
+    },
+    actions: {
+      login
+    }
   },
   data(){
     return{
@@ -43,7 +54,11 @@ export default {
   },
   methods:{
     _login(){
-      router.replace('main');
+      let params = {
+        mobile:this.mobile,
+        pwd:this.password
+      }
+      this.login(params);
     }
   },
   computed: {

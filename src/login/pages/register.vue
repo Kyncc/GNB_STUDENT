@@ -27,13 +27,12 @@
       </flexbox-item>
       <flexbox-item :span="1/20"></flexbox-item>
     </flexbox>
-    <toast :show.sync="toastShow" type="text" :time="2000">错误的验证码</toast>
   </div>
 </template>
 
 <script>
 import '../main.less'
-import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Toast,Cell} from 'vux'
+import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Cell} from 'vux'
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -50,7 +49,6 @@ export default {
      FlexboxItem,
      Flexbox,
      XHeader,
-     Toast,
      Cell
   },
   data(){
@@ -58,7 +56,6 @@ export default {
       disableMobile: true,
       disableNext:true,
       currentDown:false,
-      toastShow:false,
       agree:true,
       mobile:'',
       code:'',
@@ -79,7 +76,6 @@ export default {
        if(this.messageCode == this.code){
           router.go('forget/password');
        }else{
-         this.toastShow = true;
          this.code = '';
        }
     },

@@ -1,15 +1,32 @@
 <template>
   <div>
     <router-view></router-view>
+    <toast :show.sync="toastShow" type="text" :time="2000">{{toastMsg}}</toast>
   </div>
 </template>
 
 <script>
 import store from './store'
 import './common/transition.less'
+import { toast } from 'vux'
 
+import { getToastMsg,getToastShow } from './common/actions'
+import { toastMsg,toastShow } from './common/getters'
 export default {
-  store
+  components: {
+     toast
+  },
+  store,
+  vuex: {
+    getters: {
+      toastMsg: toastMsg,
+      toastShow:toastShow
+    },
+    actions: {
+      getToastMsg,
+      getToastShow
+    }
+  },
 }
 </script>
 

@@ -64,7 +64,7 @@ router.map({
   'user/invite': {component: userInviteIndex},
   'user/invite/friend': {component: userInviteFriend},
   'user/invite/input': {component: userCodeInput},
-  'user/calendar':{calendar: userCalendar}
+  'user/calendar':{component: userCalendar}
 
 })
 
