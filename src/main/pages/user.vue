@@ -31,7 +31,7 @@
       </confirm>
 
   </div>
-  
+
 
 
 </template>
@@ -75,7 +75,7 @@ export default {
     }
     .weui_cell{padding:12px 15px;}
     .weui_cells{margin-top:0;}
-    .icon{width:26px;height:24px;display: block;background-size: 100%;background-repeat:no-repeat;margin-right:17px;}
+    .icon{width:26px;height:28px;display: block;background-size: 100%;background-repeat:no-repeat;margin-right:17px;background-position: center}
     .icon-info{background-image:url('../../assets/user/info.png');}
     .icon-textbook{background-image:url('../../assets/user/textbook.png');}
     .icon-class{background-image:url('../../assets/user/class.png');}

@@ -23,6 +23,8 @@ import userSettingsAboutUs from './user/pages/settings/aboutUs'
 import userInviteIndex from './user/pages/invite/index'
 import userInviteFriend from './user/pages/invite/friend'
 import userCodeInput from './user/pages/invite/input'
+//我的会员
+import userCalendar from './user/pages/calendar/index'
 //通知
 Vue.use(Router)
 Vue.use(VueTouch)
@@ -61,8 +63,9 @@ router.map({
   //邀请好友
   'user/invite': {component: userInviteIndex},
   'user/invite/friend': {component: userInviteFriend},
-  'user/invite/input': {component: userCodeInput}
-  
+  'user/invite/input': {component: userCodeInput},
+  'user/calendar':{calendar: userCalendar}
+
 })
 
 router.redirect({
@@ -84,5 +87,3 @@ router.redirect({
 }())
 
 router.start(App,'#App')
-
-
