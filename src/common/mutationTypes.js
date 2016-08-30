@@ -1,0 +1,2 @@
+export const GET_TOAST_MESSAGE = 'GET_TOAST_MESSAGE'
+export const GET_TOAST_SHOW = 'GET_TOAST_SHOW'
