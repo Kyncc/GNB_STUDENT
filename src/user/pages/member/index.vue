@@ -1,9 +1,10 @@
 <style lang="less">
+
 body {
-    -webkit-touch-callout: none
+    -webkit-touch-callout: none;
 }
 
-.calendar {
+.member {
     .vux-header {
         color: #fff;
         background-color: #4bb7aa;
@@ -17,6 +18,7 @@ body {
         img {
             width: 139/40em;
             height: 139/40em;
+            border-radius: 70/40em;
             margin: 0 auto;
             display: block;
         }
@@ -26,52 +28,78 @@ body {
             margin-top: 50/40em;
         }
     }
-    .weui_cells {
-        margin-top: 0;
-    }
-    .vux-no-group-title {
-        margin-top: 0;
-    }
-    .vux-header .vux-header-left,
-    .vux-header .vux-header-right {
-        font-size: 16px;
-    }
-    .vux-header .vux-header-left .vux-header-back:before {
-        border-color: #fff;
-    }
-    .vux-header .vux-header-title,
-    .vux-header h1 {
-        margin-left: 88px;
-    }
-    .vux-flexbox-item{
+    .vux-flexbox-item {
+        background: #fff;
         margin: 0 !important;
         padding: 0 36/40em;
-        .flex-key{
+        .flex-key {
             height: 96/40em;
             line-height: 96/40em;
             text-align: center;
             font-size: 32/40em;
         }
-        .flex-value{
+        .flex-value {
             height: 96/40em;
             line-height: 96/40em;
             text-align: center;
             color: #ff9800;
             font-size: 32/40em;
         }
+        .points {
+            height: 96/40em;
+            background: url('../../../assets/user/points.png') no-repeat right center /52/40em auto;
+        }
+        .dollar {
+            height: 96/40em;
+            background: url('../../../assets/user/dollar.png') no-repeat right center /52/40em auto;
+        }
+
+    }
+    .content {
+        background: #fff;
+        margin-top: 12/40em;
+        .vux-flexbox {
+            .vux-flexbox-item {
+                align-items:center;
+                display: flex;
+                height: 125/40em;
+                font-size: 32/40em;
+                text-align: center;
+                padding: 0 1.4em;
+                justify-content: center;
+                .upgrade{
+                    color: #29b6f6;
+                    font-size: 28/40em;
+                    border: 1px solid #cacaca;
+                    background: #fff;
+                    border-radius: 3px;
+                    padding: 14/40em 24/40em;
+                }
+            }
+        }
     }
 }
-.vux-1px-r{
+.disable{
+    color: #adadad;
+}
+.padnone {
+    padding: 0 !important;
+}
+.vux-1px-r {
     border-right: 1px solid #d2d2d2;
 }
-.vux-1px-b{
+
+.vux-1px-b {
     border-bottom: 1px solid #d2d2d2;
+}
+.vux-1px-t {
+    border-top: 1px solid #d2d2d2;
 }
 </style>
 
 <template>
 
-<div class='calendar'>
+<div class='member'>
     <x-header :left-options="{showBack: true}">我的会员</x-header>
     <div class="headimg">
         <img src="../../../assets/user/headimg.png" alt="" />
@@ -79,27 +107,89 @@ body {
     </div>
     <flexbox class="vux-1px-b">
         <flexbox-item class="vux-1px-r">
-            <flexbox orient="vertical" :margin-left=0>
+            <flexbox orient="vertical">
                 <flexbox-item>
-                    <div class="flex-key vux-1px-b" >我的积分</div>
+                    <div class="flex-key vux-1px-b">我的积分</div>
                 </flexbox-item>
                 <flexbox-item>
-                    <div class="flex-value" >1000</div>
+                    <flexbox>
+                        <flexbox-item :span="4/10" class="points padnone"></flexbox-item>
+                        <flexbox-item :span="4/10" class="flex-value padnone">1000</flexbox-item>
+                    </flexbox>
                 </flexbox-item>
             </flexbox>
         </flexbox-item>
         <flexbox-item>
-            <flexbox orient="vertical" :margin-left=0>
+            <flexbox orient="vertical">
                 <flexbox-item>
-                    <div class="flex-key vux-1px-b" >余额</div>
+                    <div class="flex-key vux-1px-b">余额</div>
                 </flexbox-item>
                 <flexbox-item>
-                    <div class="flex-value" >0元</div>
+                    <flexbox>
+                        <flexbox-item :span="4/10" class="dollar padnone"></flexbox-item>
+                        <flexbox-item :span="4/10" class="flex-value padnone">0元</flexbox-item>
+                    </flexbox>
                 </flexbox-item>
             </flexbox>
         </flexbox-item>
     </flexbox>
-
+    <div class="content vux-1px-b vux-1px-t">
+        <flexbox class="vux-1px-b">
+            <flexbox-item class="padnone disable" :span="7/20">
+                我的特权
+            </flexbox-item>
+            <flexbox-item class="padnone" :span="8/20">
+                VIP拥有更多特权
+            </flexbox-item>
+            <flexbox-item class="padnone" :span="4/20">
+                <button type="button" name="button" class="upgrade">升级</button>
+            </flexbox-item>
+        </flexbox>
+        <flexbox>
+            <flexbox-item>
+                拍错题
+            </flexbox-item>
+            <flexbox-item>
+                归纳本
+            </flexbox-item>
+            <flexbox-item class="disable">
+                知识图谱
+            </flexbox-item>
+        </flexbox>
+        <flexbox>
+            <flexbox-item class="disable">
+                报听写
+            </flexbox-item>
+            <flexbox-item class="disable">
+                刷题型
+            </flexbox-item>
+            <flexbox-item class="disable">
+                高考系数分布图
+            </flexbox-item>
+        </flexbox>
+        <flexbox>
+            <flexbox-item class="disable">
+                单词练习
+            </flexbox-item>
+            <flexbox-item class="disable">
+                组卷
+            </flexbox-item>
+            <flexbox-item class="disable">
+                在线考试
+            </flexbox-item>
+        </flexbox>
+        <flexbox>
+            <flexbox-item class="disable">
+                我的作业
+            </flexbox-item>
+            <flexbox-item class="disable">
+                找辅导老师
+            </flexbox-item>
+            <flexbox-item class="disable">
+                参与活动
+            </flexbox-item>
+        </flexbox>
+    </div>
 </div>
 
 </template>
@@ -107,12 +197,22 @@ body {
 <script>
 
 import {
-    XHeader, Cell, Group, Alert, Flexbox, FlexboxItem
+    XHeader,
+    Cell,
+    Group,
+    Alert,
+    Flexbox,
+    FlexboxItem
 }
 from 'vux'
 export default {
     components: {
-        XHeader, Cell, Group, Alert, Flexbox, FlexboxItem
+        XHeader,
+        Cell,
+        Group,
+        Alert,
+        Flexbox,
+        FlexboxItem
     },
     data() {
         return {
