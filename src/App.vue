@@ -53,6 +53,7 @@ export default {
       font-style:normal;
       font-family:"iconfont";
   }
+  .weui_cells{margin-top:0;}
   .weui_tabbar_item{
     background:#fff;
   }
@@ -60,14 +61,10 @@ export default {
     color:#fff ;
     background-color:#4bb7aa ;
     .vux-header-right a{color:#fff }
-    .vux-header-left, .vux-header .vux-header-right{font-size:16px;}
-    .vux-header-left .vux-header-back:before{border:1px solid #fff;color:#fff;}
-    
   }
   .vux-header .vux-header-title, .vux-header h1{margin-left:88px;}
   .vux-header .vux-header-left a{color:#fff;}
   .vux-header .vux-header-left .vux-header-back:before{border-color:#fff;}
-  
   .weui_btn_primary{background:#4bb7aa;}
   .weui_btn_primary:not(.weui_btn_disabled):active {
     color: hsla(0,0%,100%,.4);

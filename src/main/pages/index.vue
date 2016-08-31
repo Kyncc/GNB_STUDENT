@@ -38,6 +38,7 @@ const baseList =[
 import Vue from 'vue'
 import Router from 'vue-router'
 import { XHeader,Swiper,SwiperItem} from 'vux'
+import './main.less'
 export default {
   components: {
     XHeader,Swiper,SwiperItem

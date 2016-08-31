@@ -13,7 +13,7 @@
  6. [Vue.js单项数据流-Vuex][6]
  7. [加触摸手势指令-VueTouch][7]
 
-##文件夹结构
+## 文件夹结构
 
     ├── build       # webpack编译配置
     ├── config      # webpack配置
@@ -34,7 +34,7 @@
             └── mutatuinTypes.js    # mutatuinTypes
      
 
-###安装
+### 安装
 
     npm install //安装依赖包
 

@@ -13,6 +13,12 @@ import Main from './main/common/main'
 import User from './main/pages/user'
 import Message from './main/pages/message'
 import Index from './main/pages/index'
+//通知
+import messageClass from './message/pages/class'
+import messageCorrect from './message/pages/correct'
+import messageHomework from './message/pages/homework'
+import messageSystem from './message/pages/system'
+import messageAdvice from './message/pages/advice'
 //个人中心
 import userResetPwd from './user/pages/resetPwd'
 import userInfo from './user/pages/info'
@@ -26,7 +32,8 @@ import userInviteFriend from './user/pages/invite/friend'
 import userCodeInput from './user/pages/invite/input'
 //我的会员
 import userMemberIndex from './user/pages/member/index'
-//通知
+
+
 Vue.use(Router)
 Vue.use(VueTouch)
 Vue.config.devtools = true
@@ -39,6 +46,12 @@ router.map({
   //注册账户
   'register':{component: register},
   'register/password':{component: password},
+  //消息
+  'message/class':{component: messageClass},
+  'message/homework':{component: messageHomework},
+  'message/advice':{component: messageAdvice},
+  'message/system':{component: messageSystem},
+  'message/correct':{component: messageCorrect},
   //忘记密码
   'forget':{component: forget},
   'forget/password':{component: password},
