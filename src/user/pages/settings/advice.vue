@@ -1,6 +1,6 @@
 <template>
-	<div class='userSetingsAboutUs'>
-		<x-header :left-options="{showBack: true}">关于我们</x-header>
+	<div class='userSetingsAdvice'>
+		<x-header :left-options="{showBack: true}">意见反馈</x-header>
 	</div>
 </template>
 
@@ -9,11 +9,10 @@ import {XHeader,XInput,Group} from 'vux'
 
 export default {
 	components: {
-		XHeader,XInput,Group
+		XHeader,XInput
 	},
 	methods: {
 		
 	}
 }
 </script>
-

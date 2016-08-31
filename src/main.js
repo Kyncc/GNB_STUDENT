@@ -19,12 +19,13 @@ import userInfo from './user/pages/info'
 //个人中心-设置
 import userSettingsIndex from './user/pages/settings/index'
 import userSettingsAboutUs from './user/pages/settings/aboutUs'
+import userSettingsAdvice from './user/pages/settings/advice'
 //个人中心-邀请好友
 import userInviteIndex from './user/pages/invite/index'
 import userInviteFriend from './user/pages/invite/friend'
 import userCodeInput from './user/pages/invite/input'
 //我的会员
-import userCalendar from './user/pages/calendar/index'
+import userMemberIndex from './user/pages/member/index'
 //通知
 Vue.use(Router)
 Vue.use(VueTouch)
@@ -60,18 +61,18 @@ router.map({
   //设置
   'user/settings': {component: userSettingsIndex},
   'user/settings/aboutUs': {component: userSettingsAboutUs},
+  'user/settings/advice': {component: userSettingsAdvice},
   //邀请好友
   'user/invite': {component: userInviteIndex},
   'user/invite/friend': {component: userInviteFriend},
   'user/invite/input': {component: userCodeInput},
-  'user/calendar':{component: userCalendar}
+  'user/member':{component: userMemberIndex}
 
 })
 
 router.redirect({
   '/main/': '/main/index'
 });
-
 
 (function(){
   function plusReady(){

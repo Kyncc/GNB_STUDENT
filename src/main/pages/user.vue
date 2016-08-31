@@ -14,7 +14,7 @@
            <cell title="我的班级" link="../user/class/">
               <span class="icon icon-class" slot="icon"></span>
           </cell>
-           <cell title="我的会员" link="../user/calendar/">
+           <cell title="我的会员" link="../user/member/">
               <span class="icon icon-member" slot="icon"></span>
           </cell>
            <cell title="邀请好友" link="../user/invite/">
@@ -23,13 +23,11 @@
            <cell title="设置" link="../user/settings/">
               <span class="icon icon-settings" slot="icon"></span>
           </cell>
-           <cell title="修改密码" link="../user/resetPwd/">
+          <cell title="修改密码" link="../user/resetPwd/">
               <span class="icon icon-resetPwd" slot="icon"></span>
           </cell>
       </group>
-      <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')">
-      </confirm>
-
+      <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
   </div>
 
 
@@ -65,7 +63,6 @@ export default {
       background-color:#4bb7aa;
       a{color:#fff;}
     }
-    .vux-header .vux-header-left, .vux-header .vux-header-right{font-size:16px;}
     .info{
       font-size:inherit;
       height:365/40em;
@@ -73,9 +70,9 @@ export default {
       text-align:center;
       background:url('../../assets/user/userBg.jpg') repeat;
     }
-    .weui_cell{padding:12px 15px;}
+    .weui_cell{padding:10px 15px;}
     .weui_cells{margin-top:0;}
-    .icon{width:26px;height:28px;display: block;background-size: 100%;background-repeat:no-repeat;margin-right:17px;background-position: center}
+    .icon{width:30px;height:30px;display: block;background-size: 100%;background-repeat:no-repeat;margin-right:17px;background-position: center}
     .icon-info{background-image:url('../../assets/user/info.png');}
     .icon-textbook{background-image:url('../../assets/user/textbook.png');}
     .icon-class{background-image:url('../../assets/user/class.png');}

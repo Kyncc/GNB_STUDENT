@@ -8,13 +8,13 @@
 <script>
 import store from './store'
 import './common/transition.less'
-import { toast } from 'vux'
+import { Toast } from 'vux'
 
 import { getToastMsg,getToastShow } from './common/actions'
 import { toastMsg,toastShow } from './common/getters'
 export default {
   components: {
-     toast
+     Toast
   },
   store,
   vuex: {
@@ -44,7 +44,7 @@ export default {
     -webkit-user-select: none;
     user-select: none;
     font-family: 'simhei';
-    background:#f0f0f0;
+    background:#edf2f1;
   }
   .iconfont{
       -webkit-font-smoothing: antialiased;
