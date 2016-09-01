@@ -5,7 +5,7 @@
           <cell title="清除缓存" link="javascript:;" v-touch:tap="_clear">
               <span class="demo-icon" slot="icon"></span>
           </cell>
-          <cell title="检查更新" value="当前版本号:7.2.2" link="javascript:;">
+          <cell title="检查更新" value="当前版本号:V1.0.0" link="javascript:;">
               <span class="demo-icon" slot="icon"></span>
           </cell>
            <cell title="关注我们" value="微信公众号:guina_book" link="javascript:;">
