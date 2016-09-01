@@ -101,10 +101,13 @@ body {
 
 <div class='member'>
     <x-header :left-options="{showBack: true}">我的会员</x-header>
+    <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}"  @pulldown:loading="load">
+      <group>
     <div class="headimg">
         <img src="../../../assets/user/headimg.png" alt="" />
         <p>普通会员</p>
     </div>
+
     <flexbox class="vux-1px-b">
         <flexbox-item class="vux-1px-r">
             <flexbox orient="vertical">
@@ -190,19 +193,21 @@ body {
             </flexbox-item>
         </flexbox>
     </div>
+</group>
+</scroller>
 </div>
 
 </template>
 
 <script>
-
 import {
     XHeader,
     Cell,
     Group,
     Alert,
     Flexbox,
-    FlexboxItem
+    FlexboxItem,
+    Scroller
 }
 from 'vux'
 export default {
@@ -212,14 +217,16 @@ export default {
         Group,
         Alert,
         Flexbox,
-        FlexboxItem
+        FlexboxItem,
+        Scroller
     },
-    data() {
-        return {
-            show: false
-        }
-    },
-    methods: {}
+    methods: {
+        load (uuid) {
+			setTimeout(() => {
+				this.$broadcast('pulldown:reset', uuid)
+			}, 1000)
+		}
+    }
 }
 
 </script>
