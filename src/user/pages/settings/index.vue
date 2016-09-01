@@ -28,6 +28,7 @@
 
 <script>
 import {XHeader,Cell,Group,Alert} from 'vux'
+import './setting.less'
 export default{
   components: {
     XHeader,Cell,Group,Alert

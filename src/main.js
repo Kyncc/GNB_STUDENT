@@ -26,6 +26,7 @@ import userInfo from './user/pages/info'
 import userSettingsIndex from './user/pages/settings/index'
 import userSettingsAboutUs from './user/pages/settings/aboutUs'
 import userSettingsAdvice from './user/pages/settings/advice'
+import userSettingsAdviceHistory from './user/pages/settings/adviceHistory'
 //个人中心-邀请好友
 import userInviteIndex from './user/pages/invite/index'
 import userInviteFriend from './user/pages/invite/friend'
@@ -39,7 +40,6 @@ Vue.use(VueTouch)
 Vue.config.devtools = true
 
 const router = new Router()
-
 router.map({
   '/': { component: Login},
   'agreement':{component: agreement},
@@ -75,6 +75,7 @@ router.map({
   'user/settings': {component: userSettingsIndex},
   'user/settings/aboutUs': {component: userSettingsAboutUs},
   'user/settings/advice': {component: userSettingsAdvice},
+  'user/settings/advice/history': {component: userSettingsAdviceHistory},
   //邀请好友
   'user/invite': {component: userInviteIndex},
   'user/invite/friend': {component: userInviteFriend},
