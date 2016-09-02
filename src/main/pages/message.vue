@@ -5,12 +5,12 @@
     </div>
     <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}"  @pulldown:loading="load">
       <group>
-				<cell title="作业消息" link="../message/homework" inline-desc='这是张老师布置的一道作业' >
+				<!--<cell title="作业消息" link="../message/homework" inline-desc='这是张老师布置的一道作业' >
           <div slot="value">2016.02.15</div>
           <div class="vux-reddot" slot="icon" style="margin-right:.5em;" >
             <img width="40" class="vux-reddot" style="margin-right:.5em;" src="../../assets/message/homework.png">
           </div> 
-				</cell>
+				</cell>-->
         <cell title="班级消息" link="../message/class" inline-desc='这是张老师布置的一道作业' >
           <div slot="value">2016.02.15</div>
           <div class="vux-reddot" slot="icon" style="margin-right:.5em;" >

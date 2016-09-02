@@ -17,6 +17,9 @@
            <cell title="关于我们" link="aboutUs">
               <span class="demo-icon" slot="icon"></span>
           </cell>
+           <cell title="应用评分" link="javascript:;" v-touch:tap="_openStore">
+              <span class="demo-icon" slot="icon"></span>
+          </cell>
           <cell title="意见反馈" link="advice">
               <span class="demo-icon" slot="icon"></span>
           </cell>
@@ -44,6 +47,9 @@ export default{
     },
     _openQQ(){
       window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
+    },
+    _openStore(){
+      window.location.href = "market://details?id=io.dcloud.HelloH5";
     }
   }
 }

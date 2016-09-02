@@ -3,7 +3,7 @@
 		<div style="height:46px;">
 			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">系统消息</x-header>
 		</div>
-		<scroller class="messageSection" lock-x scrollbar-y use-pulldown :pulldown-config={content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'} @pulldown:loading="load">
+		<scroller class="messageSection" lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
 			<div class="scollMain">
 				<section>
 					<h3>2016.02.16</h3>

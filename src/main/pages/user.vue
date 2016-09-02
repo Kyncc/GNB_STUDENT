@@ -1,44 +1,48 @@
 <template>
-  <div class='user'>
-      <x-header :left-options="{showBack: false}">个人中心<a slot="right" v-touch:tap="_quit">退出</a></x-header>
-      <div class="info">
+  <div class='user vux-scroller-header-box' >
+		<div style="height:46px;">
+      <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">个人中心<a slot="right" v-touch:tap="_quit">退出</a></x-header>
+    </div>
+    <scroller lock-x v-ref:scroller height="-46px">
+      <div>
+        <div class="info">
 
+        </div>
+        <group style="padding-bottom:50px;">
+            <cell title="个人资料" link="../user/info/">
+                <span class="icon icon-info" slot="icon"></span>
+            </cell>
+            <cell title="我的教材" link="../user/textBook/">
+                <span class="icon icon-textbook" slot="icon"></span>
+            </cell>
+              <cell title="我的班级" link="../user/class/">
+                <span class="icon icon-class" slot="icon"></span>
+            </cell>
+              <cell title="我的会员" link="../user/member/">
+                <span class="icon icon-member" slot="icon"></span>
+            </cell>
+              <cell title="邀请好友" link="../user/invite/">
+                <span class="icon icon-invite" slot="icon"></span>
+            </cell>
+              <cell title="设置" link="../user/settings/">
+                <span class="icon icon-settings" slot="icon"></span>
+            </cell>
+            <cell title="修改密码" link="../user/resetPwd/">
+                <span class="icon icon-resetPwd" slot="icon"></span>
+            </cell>
+        </group>
       </div>
-      <group>
-          <cell title="个人资料" link="../user/info/">
-              <span class="icon icon-info" slot="icon"></span>
-          </cell>
-          <cell title="我的教材" link="../user/textBook/">
-              <span class="icon icon-textbook" slot="icon"></span>
-          </cell>
-           <cell title="我的班级" link="../user/class/">
-              <span class="icon icon-class" slot="icon"></span>
-          </cell>
-           <cell title="我的会员" link="../user/member/">
-              <span class="icon icon-member" slot="icon"></span>
-          </cell>
-           <cell title="邀请好友" link="../user/invite/">
-              <span class="icon icon-invite" slot="icon"></span>
-          </cell>
-           <cell title="设置" link="../user/settings/">
-              <span class="icon icon-settings" slot="icon"></span>
-          </cell>
-          <cell title="修改密码" link="../user/resetPwd/">
-              <span class="icon icon-resetPwd" slot="icon"></span>
-          </cell>
-      </group>
-      <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
+    </scroller>
   </div>
-
-
-
+  <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
+  
 </template>
 
 <script>
-import {XHeader,Cell,Group,Confirm} from 'vux'
+import {XHeader,Cell,Group,Confirm,Scroller} from 'vux'
 export default {
   components: {
-    XHeader,Cell,Group,Confirm
+    XHeader,Cell,Group,Confirm,Scroller
   },
   methods: {
     onAction: function (type) {
@@ -53,6 +57,11 @@ export default {
       show: false
     }
   },
+  ready () {
+    this.$nextTick(() => {
+      this.$refs.scroller.reset()
+    })
+  }
 }
 </script>
 

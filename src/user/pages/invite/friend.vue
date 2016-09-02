@@ -1,7 +1,7 @@
 <template>
 	<div class='inviteFriend vux-scroller-header-box'>
 		<div style="height:46px;">
-			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">受邀好友<a slot="right" v-touch:tap="_refersh">刷新</a></x-header>
+			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">受邀好友</x-header>
 		</div>
 		<scroller lock-x v-ref:scroller use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}"  @pulldown:loading="load" height="-46px">
 			<group>

@@ -34,7 +34,6 @@ import userCodeInput from './user/pages/invite/input'
 //我的会员
 import userMemberIndex from './user/pages/member/index'
 
-
 Vue.use(Router)
 Vue.use(VueTouch)
 Vue.config.devtools = true

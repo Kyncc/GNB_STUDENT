@@ -29,7 +29,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import {XHeader,XInput,Group,XButton} from 'vux'
-
+import './invite.less'
 
 Vue.use(Router)
 const router = new Router();
@@ -52,31 +52,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="less">
-.inviteIndex{
-	font-size:inheirt;
-	.vux-header{
-		color:#fff;
-		background-color:#4bb7aa;
-	}
-	.title{width:750/40em;height:104/40em;padding:45/40em 0 0}
-	.step {
-		margin-bottom:65/40em;
-		article{width:590/40em;height:155/40em;background: #ffffff;border-radius:5px;padding:.5em .75em .75em;margin:.5em auto;}
-		h3{font-size:30/40em;color:#229bf5;padding:0 0 .5em;}
-		p{font-size:30/40em;color:#000;line-height:1.8em;}
-	}
-	.copyCode{width:590/40em;height:120/40em;background: #ffffff;border-radius:5px;margin:0 auto 65/40em;border:2px dashed #959595;text-align:center;padding:.75em 0 1em;}
-	.button{width:560/40em;margin:0 auto;}
-	.weui_btn_primary{
-		background: #fd7e3f;
-	}
-	.weui_btn_primary:not(.weui_btn_disabled):active {
-		color: hsla(0,0%,100%,.4);
-		background: #fd7e3f ;
-	}
-	.weui_cells{margin-top:0;}
-	.vux-no-group-title{margin-top:0;}
-}
-</style>
