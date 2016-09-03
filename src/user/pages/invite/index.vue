@@ -7,11 +7,11 @@
 		<section class="step">
 			<article>
 				<h3>第一步</h3>
-				<p>被邀请的好友需安装归纳本APP，且被邀请好友必须是新用户哦！</p>		
+				<p>被邀请的好友需安装归纳本APP，且被邀请好友必须是新用户哦！</p>
 			</article>
 			<article>
 				<h3>第二步</h3>
-				<p>请好友在本界面填写您的邀请码，您和您的好友登录归纳本APP均可获得1000点积分。</p>		
+				<p>请好友在本界面填写您的邀请码，您和您的好友登录归纳本APP均可获得1000点积分。</p>
 			</article>
 		</section>
 		<section class="copyCode">
@@ -20,19 +20,14 @@
 		</section>
 		<div class="button">
 			<x-button type="primary" v-touch:tap="_shareCode">分享给好友</x-button>
-			<x-button type="primary" v-touch:tap="_inputCode">输入邀请码</x-button>	
+			<x-button type="primary" v-touch:tap="_inputCode">输入邀请码</x-button>
 		</div>
 	</div>
 </template>
 
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import {XHeader,XInput,Group,XButton} from 'vux'
 import './invite.less'
-
-Vue.use(Router)
-const router = new Router();
 
 export default {
 	components: {
@@ -40,10 +35,10 @@ export default {
 	},
 	methods: {
 		_friend(){
-			router.go('friend');
+			this.$router.go('friend');
 		},
 		_inputCode(){
-			router.go('input');
+			this.$router.go('input');
 		},
 		_sharetCode(){
 			//alert(111);

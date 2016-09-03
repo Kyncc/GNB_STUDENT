@@ -33,14 +33,11 @@
 <script>
 import '../main.less'
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Cell} from 'vux'
-import Vue from 'vue'
-import Router from 'vue-router'
 
 import { getCode } from '../actions'
 import { messageCode,registerMobile } from '../getters'
 
-Vue.use(Router)
-const router = new Router();
+
 export default {
   components: {
      XInput,
@@ -72,9 +69,9 @@ export default {
     }
   },
   methods:{
-    _next(){  
+    _next(){
        if(this.messageCode == this.code){
-          router.go('forget/password');
+          this.$router.go('forget/password');
        }else{
          this.code = '';
        }
