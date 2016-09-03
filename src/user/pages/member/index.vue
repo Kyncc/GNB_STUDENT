@@ -120,7 +120,7 @@ body {
           </flexbox>
         </flexbox-item>
         <flexbox-item>
-          <flexbox orient="vertical">
+          <flexbox orient="vertical" v-touch:tap="_recharge">
             <flexbox-item>
               <div class="flex-key vux-1px-b">余额</div>
             </flexbox-item>
@@ -226,7 +226,7 @@ export default {
       this.$router.go('points')
     },
     _recharge() {
-      alert(1)
+      this.$router.go('recharge')
     }
   }
 }
