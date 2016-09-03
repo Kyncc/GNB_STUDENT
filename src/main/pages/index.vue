@@ -38,14 +38,17 @@ const baseList =[
 import Vue from 'vue'
 import Router from 'vue-router'
 import { XHeader,Swiper,SwiperItem} from 'vux'
+
+import {shareReady} from '../../common/h5Plus/share.js';
 import './main.less'
+
 export default {
   components: {
     XHeader,Swiper,SwiperItem
   },
   methods: {
 		_share(){
-		  alert(1);
+      //shareReady()
     }
   },
   data(){
@@ -54,6 +57,8 @@ export default {
     }
   }
 }
+
+
 </script>
 
 <style lang = 'less'>

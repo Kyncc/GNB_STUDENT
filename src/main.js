@@ -90,17 +90,17 @@ router.redirect({
   '/main/': '/main/index'
 });
 
-(function(){
-  function plusReady(){
-    plus.key.addEventListener("backbutton",function(){
-		  window.history.back();
-	  });
-  }
-  if(window.plus){
-    plusReady();
-  }else{
-    document.addEventListener("plusready",plusReady,false);
-  }
-}())
+// (function(){
+//   function plusReady(){
+//     plus.key.addEventListener("backbutton",function(){
+// 		  window.history.back();
+// 	  });
+//   }
+//   if(window.plus){
+//     plusReady();
+//   }else{
+//     document.addEventListener("plusready",plusReady,false);
+//   }
+// }())
 
 router.start(App,'#App')

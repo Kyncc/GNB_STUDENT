@@ -33,7 +33,6 @@
 <script>
 import '../main.less'
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Cell} from 'vux'
-
 import { getCode } from '../actions'
 import { messageCode,registerMobile } from '../getters'
 
