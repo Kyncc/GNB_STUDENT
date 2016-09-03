@@ -1,43 +1,85 @@
 <template>
-  <div class='info'>
-      <x-header :left-options="{showBack: true}">个人资料 <a slot="right" v-touch:tap="_complete">完成</a></x-header>
-      <group>
-        <x-input title="姓名" name="username" placeholder="请输入姓名" is-type="china-name"></x-input>
-        <x-input title="姓名" name="username" placeholder="请输入姓名" is-type="china-name"></x-input>
-        <x-input title="学校" name="school" placeholder="请输入学校名称" ></x-input>
-      </group>
-  </div>
-
+<div class='points'>
+  <x-header :left-options="{showBack: true}">我的积分<a slot="right" v-touch:tap="_rull">积分规则</a></x-header>
+  <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
+    <group>
+      <h3 class="title vux-1px-b">积分明细</h3>
+      <flexbox class="vux-1px-b points-items">
+        <flexbox-item :span="1/40">
+        </flexbox-item>
+        <flexbox-item :span="9/20">
+          <div>注册</div>
+        </flexbox-item>
+        <flexbox-item :span="9/20">
+          <flexbox orient="vertical">
+            <flexbox-item>
+              <div class="tar money">+100</div>
+            </flexbox-item>
+            <flexbox-item>
+              <div class="tar time">2016.9.3</div>
+            </flexbox-item>
+          </flexbox>
+        </flexbox-item>
+        <flexbox-item :span="1/40">
+        </flexbox-item>
+      </flexbox>
+    </group>
+  </scroller>
+</div>
 </template>
 
 <script>
-import {XHeader,XInput,Group} from 'vux'
+import {
+  XHeader,
+  Group,
+  Scroller,
+  Flexbox,
+  FlexboxItem,
+} from 'vux'
 
 export default {
   components: {
-    XHeader,XInput,Group
+    XHeader,
+    Group,
+    Scroller,
+    Flexbox,
+    FlexboxItem,
   },
   methods: {
-    _complete(){
+    load(uuid) {
+      setTimeout(() => {
+        this.$broadcast('pulldown:reset', uuid)
+      }, 1000)
+    },
+    _rull() {
       alert(1);
     }
-
-
   }
 }
 </script>
 
 <style lang="less">
-.info{
-  .vux-header{
-    color:#fff;
-    background-color:#4bb7aa;
-  }
-  .weui_cells{margin-top:0;}
-  .vux-no-group-title{margin-top:0;}
-  .vux-header .vux-header-right a{color:#fff;}
-  .vux-header .vux-header-left, .vux-header .vux-header-right{font-size:16px;}
-  .vux-header .vux-header-left .vux-header-back:before{border-color:#fff;}
-  .vux-header .vux-header-title, .vux-header h1{margin-left:88px;}
+.points {
+    .title {
+        padding: 0 1em;
+        font-size: 1em;
+        line-height: 2em;
+    }
+    .points-items {
+        padding: 0.3em 0;   
+        .vux-flexbox-item {
+            margin: 0 !important;
+            .money{
+
+            }
+            .time{
+                font-size: 0.5em;
+                color: #999;
+            }
+        }
+    }
+}
+.tar {
+    text-align: right;
 }
 </style>
