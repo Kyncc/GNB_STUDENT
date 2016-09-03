@@ -8,7 +8,7 @@
         <div class="info">
 
         </div>
-        <group style="padding-bottom:50px;">
+        <group style="padding-bottom:100px;">
             <cell title="个人资料" link="../user/info/">
                 <span class="icon icon-info" slot="icon"></span>
             </cell>
@@ -63,31 +63,3 @@ export default {
     })
   }
 }
-</script>
-
-
-<style lang="less">
-  .user{
-    .vux-header{
-      background-color:#4bb7aa;
-      a{color:#fff;}
-    }
-    .info{
-      font-size:inherit;
-      height:365/40em;
-      width:100%;
-      text-align:center;
-      background:url('../../assets/user/userBg.jpg') repeat;
-    }
-    .weui_cell{padding:10px 15px;}
-    .weui_cells{margin-top:0;}
-    .icon{width:30px;height:30px;display: block;background-size: 100%;background-repeat:no-repeat;margin-right:17px;background-position: center}
-    .icon-info{background-image:url('../../assets/user/info.png');}
-    .icon-textbook{background-image:url('../../assets/user/textbook.png');}
-    .icon-class{background-image:url('../../assets/user/class.png');}
-    .icon-member{background-image:url('../../assets/user/member.png');}
-    .icon-invite{background-image:url('../../assets/user/invite.png');}
-    .icon-settings{background-image:url('../../assets/user/settings.png');}
-    .icon-resetPwd{background-image:url('../../assets/user/resetPwd.png');}
-  }
-</style>

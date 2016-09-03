@@ -27,11 +27,6 @@
 
 <script>
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader} from 'vux'
-import Vue from 'vue'
-import Router from 'vue-router'
-
-Vue.use(Router)
-const router = new Router();
 
 export default {
   components: {
@@ -51,7 +46,7 @@ export default {
   },
   methods:{
     _complete(){
-      router.go('/');
+      this.$router.go('/');
     }
   },
   computed:{

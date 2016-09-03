@@ -30,11 +30,9 @@
 <script>
 import '../main.less'
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Countdown,Cell} from 'vux'
-import Vue from 'vue'
-import Router from 'vue-router'
 
-Vue.use(Router)
-const router = new Router();
+
+
 export default {
   components: {
      XInput,
@@ -58,7 +56,7 @@ export default {
   },
   methods:{
     _next(){
-      router.go('forget/password');
+      this.$router.go('forget/password');
     },
     _getCode(){
         if(this.currentDown){
