@@ -31,8 +31,6 @@
 import '../main.less'
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Countdown,Cell} from 'vux'
 
-
-
 export default {
   components: {
      XInput,

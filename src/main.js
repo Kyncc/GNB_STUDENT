@@ -33,6 +33,7 @@ import userInviteFriend from './user/pages/invite/friend'
 import userCodeInput from './user/pages/invite/input'
 //我的会员
 import userMemberIndex from './user/pages/member/index'
+import userMemberPoints from './user/pages/member/points'
 
 Vue.use(Router)
 Vue.use(VueTouch)
@@ -79,7 +80,8 @@ router.map({
   'user/invite': {component: userInviteIndex},
   'user/invite/friend': {component: userInviteFriend},
   'user/invite/input': {component: userCodeInput},
-  'user/member':{component: userMemberIndex}
+  'user/member':{component: userMemberIndex},//我的会员
+  'user/member/points':{component: userMemberPoints},//我的积分
 
 })
 

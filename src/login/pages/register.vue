@@ -34,7 +34,6 @@
 import '../main.less'
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Cell} from 'vux'
 
-
 import { getCode } from '../actions'
 import { messageCode,registerMobile } from '../getters'
 
@@ -70,7 +69,7 @@ export default {
     }
   },
   methods:{
-    _next(){  
+    _next(){
        if(this.messageCode == this.code){
           this.$router.go('forget/password');
        }else{

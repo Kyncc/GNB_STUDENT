@@ -12,19 +12,15 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import {XHeader,XInput,Group,XTextarea,XButton} from 'vux'
 
-Vue.use(Router)
-const router = new Router();
 export default {
 	components: {
 		XHeader,XInput,XTextarea,Group,XButton
 	},
 	methods: {
 		_history(){
-			router.go('advice/history');
+			this.$router.go('advice/history');
 		}
 	}
 }

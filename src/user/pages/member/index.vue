@@ -53,21 +53,20 @@ body {
             height: 96/40em;
             background: url('../../../assets/user/dollar.png') no-repeat right center /52/40em auto;
         }
-
     }
     .content {
         background: #fff;
         margin-top: 12/40em;
         .vux-flexbox {
             .vux-flexbox-item {
-                align-items:center;
+                align-items: center;
                 display: flex;
                 height: 125/40em;
                 font-size: 32/40em;
                 text-align: center;
                 padding: 0 1.4em;
                 justify-content: center;
-                .upgrade{
+                .upgrade {
                     color: #29b6f6;
                     font-size: 28/40em;
                     border: 1px solid #cacaca;
@@ -79,12 +78,15 @@ body {
         }
     }
 }
-.disable{
+
+.disable {
     color: #adadad;
 }
+
 .padnone {
     padding: 0 !important;
 }
+
 .vux-1px-r {
     border-right: 1px solid #d2d2d2;
 }
@@ -92,114 +94,117 @@ body {
 .vux-1px-b {
     border-bottom: 1px solid #d2d2d2;
 }
+
 .vux-1px-t {
     border-top: 1px solid #d2d2d2;
 }
+
 </style>
 
 <template>
 
 <div class='member'>
     <x-header :left-options="{showBack: true}">我的会员</x-header>
-    <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}"  @pulldown:loading="load">
-      <group>
-    <div class="headimg">
-        <img src="../../../assets/user/headimg.png" alt="" />
-        <p>普通会员</p>
-    </div>
+    <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
+        <group>
+            <div class="headimg">
+                <img src="../../../assets/user/headimg.png" alt="" />
+                <p>普通会员</p>
+            </div>
 
-    <flexbox class="vux-1px-b">
-        <flexbox-item class="vux-1px-r">
-            <flexbox orient="vertical">
-                <flexbox-item>
-                    <div class="flex-key vux-1px-b">我的积分</div>
+            <flexbox class="vux-1px-b">
+                <flexbox-item class="vux-1px-r">
+                    <flexbox orient="vertical" v-touch:tap="_points">
+                        <flexbox-item>
+                            <div class="flex-key vux-1px-b">我的积分</div>
+                        </flexbox-item>
+                        <flexbox-item>
+                            <flexbox>
+                                <flexbox-item :span="4/10" class="points padnone"></flexbox-item>
+                                <flexbox-item :span="4/10" class="flex-value padnone">1000</flexbox-item>
+                            </flexbox>
+                        </flexbox-item>
+                    </flexbox>
                 </flexbox-item>
                 <flexbox-item>
-                    <flexbox>
-                        <flexbox-item :span="4/10" class="points padnone"></flexbox-item>
-                        <flexbox-item :span="4/10" class="flex-value padnone">1000</flexbox-item>
+                    <flexbox orient="vertical">
+                        <flexbox-item>
+                            <div class="flex-key vux-1px-b">余额</div>
+                        </flexbox-item>
+                        <flexbox-item>
+                            <flexbox>
+                                <flexbox-item :span="4/10" class="dollar padnone"></flexbox-item>
+                                <flexbox-item :span="4/10" class="flex-value padnone">0元</flexbox-item>
+                            </flexbox>
+                        </flexbox-item>
                     </flexbox>
                 </flexbox-item>
             </flexbox>
-        </flexbox-item>
-        <flexbox-item>
-            <flexbox orient="vertical">
-                <flexbox-item>
-                    <div class="flex-key vux-1px-b">余额</div>
-                </flexbox-item>
-                <flexbox-item>
-                    <flexbox>
-                        <flexbox-item :span="4/10" class="dollar padnone"></flexbox-item>
-                        <flexbox-item :span="4/10" class="flex-value padnone">0元</flexbox-item>
-                    </flexbox>
-                </flexbox-item>
-            </flexbox>
-        </flexbox-item>
-    </flexbox>
-    <div class="content vux-1px-b vux-1px-t">
-        <flexbox class="vux-1px-b">
-            <flexbox-item class="padnone disable" :span="7/20">
-                我的特权
-            </flexbox-item>
-            <flexbox-item class="padnone" :span="8/20">
-                VIP拥有更多特权
-            </flexbox-item>
-            <flexbox-item class="padnone" :span="4/20">
-                <button type="button" name="button" class="upgrade">升级</button>
-            </flexbox-item>
-        </flexbox>
-        <flexbox>
-            <flexbox-item>
-                拍错题
-            </flexbox-item>
-            <flexbox-item>
-                归纳本
-            </flexbox-item>
-            <flexbox-item class="disable">
-                知识图谱
-            </flexbox-item>
-        </flexbox>
-        <flexbox>
-            <flexbox-item class="disable">
-                报听写
-            </flexbox-item>
-            <flexbox-item class="disable">
-                刷题型
-            </flexbox-item>
-            <flexbox-item class="disable">
-                高考系数分布图
-            </flexbox-item>
-        </flexbox>
-        <flexbox>
-            <flexbox-item class="disable">
-                单词练习
-            </flexbox-item>
-            <flexbox-item class="disable">
-                组卷
-            </flexbox-item>
-            <flexbox-item class="disable">
-                在线考试
-            </flexbox-item>
-        </flexbox>
-        <flexbox>
-            <flexbox-item class="disable">
-                我的作业
-            </flexbox-item>
-            <flexbox-item class="disable">
-                找辅导老师
-            </flexbox-item>
-            <flexbox-item class="disable">
-                参与活动
-            </flexbox-item>
-        </flexbox>
-    </div>
-</group>
-</scroller>
+            <div class="content vux-1px-b vux-1px-t">
+                <flexbox class="vux-1px-b">
+                    <flexbox-item class="padnone disable" :span="7/20">
+                        我的特权
+                    </flexbox-item>
+                    <flexbox-item class="padnone" :span="8/20">
+                        VIP拥有更多特权
+                    </flexbox-item>
+                    <flexbox-item class="padnone" :span="4/20">
+                        <button type="button" name="button" class="upgrade">升级</button>
+                    </flexbox-item>
+                </flexbox>
+                <flexbox>
+                    <flexbox-item>
+                        拍错题
+                    </flexbox-item>
+                    <flexbox-item>
+                        归纳本
+                    </flexbox-item>
+                    <flexbox-item class="disable">
+                        知识图谱
+                    </flexbox-item>
+                </flexbox>
+                <flexbox>
+                    <flexbox-item class="disable">
+                        报听写
+                    </flexbox-item>
+                    <flexbox-item class="disable">
+                        刷题型
+                    </flexbox-item>
+                    <flexbox-item class="disable">
+                        高考系数分布图
+                    </flexbox-item>
+                </flexbox>
+                <flexbox>
+                    <flexbox-item class="disable">
+                        单词练习
+                    </flexbox-item>
+                    <flexbox-item class="disable">
+                        组卷
+                    </flexbox-item>
+                    <flexbox-item class="disable">
+                        在线考试
+                    </flexbox-item>
+                </flexbox>
+                <flexbox>
+                    <flexbox-item class="disable">
+                        我的作业
+                    </flexbox-item>
+                    <flexbox-item class="disable">
+                        找辅导老师
+                    </flexbox-item>
+                    <flexbox-item class="disable">
+                        参与活动
+                    </flexbox-item>
+                </flexbox>
+            </div>
+        </group>
+    </scroller>
 </div>
 
 </template>
 
 <script>
+
 import {
     XHeader,
     Cell,
@@ -221,11 +226,14 @@ export default {
         Scroller
     },
     methods: {
-        load (uuid) {
-			setTimeout(() => {
-				this.$broadcast('pulldown:reset', uuid)
-			}, 1000)
-		}
+        load(uuid) {
+                setTimeout(() => {
+                    this.$broadcast('pulldown:reset', uuid)
+                }, 1000)
+            },
+            _points() {
+                this.$router.go('points');
+            }
     }
 }
 
