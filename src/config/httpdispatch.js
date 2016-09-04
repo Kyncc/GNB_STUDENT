@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
-import store from '../store'
+import * as _ from './whole.js'
 import {
     API_PATHS,
     OK_CODE,
@@ -11,7 +11,13 @@ Vue.use(VueResource)
 
 export default {
   getCode: (params) => {
-    return Vue.resource(API_PATHS.getCode).get(params)
+   return http({
+      method:'get',
+      url:API_PATHS.getCode,
+      data:params.data,
+      ok:params.ok,
+      wrong:params.wrong
+    });
   },
   login: (params) => {
     return http({
@@ -30,15 +36,13 @@ export function http(params){
   }else{
       const promise = Vue.resource(params.url).get(params.data);
   }
-  store.dispatch('GET_LOADING', true);
-  store.dispatch('GET_TOAST_SHOW', false);
-
+  _.busy();
   Vue.resource(params.url).get(params.data)
       .then(resp => { 
             if (resp.code == 401) {
                 window.location.href = '/login';
             }
-            return resp.data;
+            return resp;
       })
       .then(resp => {
            if (resp.code === OK_CODE) {
@@ -46,15 +50,15 @@ export function http(params){
            }else{
                 params.wrong(resp);
            }
-           store.dispatch('GET_LOADING', false);
+           _.leave();
         } 
      ,err => {
           console.log('Network Error:', err);
-          store.dispatch('GET_LOADING', false);
-          store.dispatch('GET_TOAST_SHOW', true); 
-          store.dispatch('GET_TOAST_MESSAGE','接口异常'); 
+          _.leave();
+          _.toast('接口异常');
       })
       .catch(err => {
           console.log(err);
       });
 }
+
