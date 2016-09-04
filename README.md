@@ -5,11 +5,11 @@
 
 ## 使用技术简介
 
- 1. [调用跨平台功能-H5+][1] 
+ 1. [调用跨平台功能-H5+][1]
  2. [Vue.js-MVVM框架][2]
  3. [Vue.js的路由-VueRouter][3]  
- 4. [Vue.js推荐的打包编译环境-VueLoader][4] 
- 5. [Vue.js手机组件库-Vux][5] 
+ 4. [Vue.js推荐的打包编译环境-VueLoader][4]
+ 5. [Vue.js手机组件库-Vux][5]
  6. [Vue.js单项数据流-Vuex][6]
  7. [加触摸手势指令-VueTouch][7]
 
@@ -24,15 +24,20 @@
     ├── index.html  # html模版
     ├── src         # 开发目录
         ├── api         # 用来放置接口
-        ├── assets      # 静态资源文件 
-        ├── main        # 主页模块 
+        ├── assets      # 静态资源文件
+        ├── common      # 公共文件模块
+        ├── main        # 主页模块
         ├── login       # 登陆模块
+        ├── collect     # 收藏本模块
+        ├── error       # 归纳本（错题统计）模块
+        ├── picture     # 拍错题模块
+        ├── message     # 消息模块
         ├── users       # 个人中心
-            ├── pages               # 页面文件 
+            ├── pages               # 页面文件
             ├── modules             # 逻辑
             ├── action.js           # action
             └── mutatuinTypes.js    # mutatuinTypes
-     
+
 
 ### 安装
 

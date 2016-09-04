@@ -13,6 +13,9 @@ import Main from './main/common/main'
 import User from './main/pages/user'
 import Message from './main/pages/message'
 import Index from './main/pages/index'
+//收藏本
+import collect from './collect/pages/index'
+import collectDetail from './collect/pages/detail'
 //通知
 import messageClass from './message/pages/class'
 import messageCorrect from './message/pages/correct'
@@ -47,15 +50,10 @@ router.map({
   //注册账户
   'register':{component: register},
   'register/password':{component: password},
-  //消息
-  'message/class':{component: messageClass},
-  'message/homework':{component: messageHomework},
-  'message/advice':{component: messageAdvice},
-  'message/system':{component: messageSystem},
-  'message/correct':{component: messageCorrect},
   //忘记密码
   'forget':{component: forget},
   'forget/password':{component: password},
+  //主页
   'main/': {
     component: Main,
     subRoutes: {
@@ -70,6 +68,18 @@ router.map({
       }
     }
   },
+  //拍错题
+  //归纳本
+  //收藏本
+  'collect':{component: collect},
+  'collect/detail':{component: collectDetail},
+  //消息
+  'message/class':{component: messageClass},
+  'message/homework':{component: messageHomework},
+  'message/advice':{component: messageAdvice},
+  'message/system':{component: messageSystem},
+  'message/correct':{component: messageCorrect},
+  //个人中心
   'user/resetPwd': {component: userResetPwd},
   'user/info': {component: userInfo},
   //设置
