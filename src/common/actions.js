@@ -9,6 +9,6 @@ export const getToastShow = ({ dispatch }, status) => {
     dispatch(types.GET_TOAST_SHOW,status);
 }
 
-export const getIsLoading = ({ dispatch }, status) => {
+export const getIsLoading = ({ dispatch }, status)=> {
     dispatch(types.GET_LOADING,status);
 }

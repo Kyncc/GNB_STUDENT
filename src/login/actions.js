@@ -13,13 +13,17 @@ export const getCode = ({ dispatch }, params) => {
 
 /*用户登陆*/
 export const login = ({ dispatch }, params) => {
-  Api.login(params).then(response => {
-    if(response.data.code != 200){
-        dispatch(types.GET_LOGIN_FAILED,response.data.msg);
-    }else{
-       dispatch(types.GET_LOGIN_SUCCESS,response.data);
-    }
-  }), err => {
-     dispatch(types.GET_LOGIN_ERROR, err);
-  }
+  
+
+
+
+  // Api.login(params).then(response => {
+  //   if(response.data.code != 200){
+  //       dispatch(types.GET_LOGIN_FAILED,response.data.msg);
+  //   }else{
+  //      dispatch(types.GET_LOGIN_SUCCESS,response.data);
+  //   }
+  // }), err => {
+  //    dispatch(types.GET_LOGIN_ERROR, err);
+  // }
 }

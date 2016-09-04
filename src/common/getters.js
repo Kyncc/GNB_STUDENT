@@ -1,4 +1,4 @@
-export const toastMsg = (state) => state.toastMsg
-export const toastShow = (state) => state.toastShow
+export const toastMsg = (state) => state.common.toastMsg
+export const toastShow = (state) => state.common.toastShow
 
-export const isLoading = (state) => state.isLoading
+export const isLoading = (state) => state.common.isLoading
