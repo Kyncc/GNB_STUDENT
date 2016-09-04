@@ -1,7 +1,9 @@
 <template>
   <div style="height:100%;">
      <view-box v-ref:view-box>
-        <router-view></router-view>
+       <div>
+          <router-view></router-view>
+       </div>
         <tabbar slot="bottom">
           <tabbar-item link="index">
             <img slot="icon" src="https://o84lhz5xo.qnssl.com/master/src/assets/demo/icon_nav_button.png"/>
@@ -18,7 +20,6 @@
         </tabbar>
       </view-box>
   </div>
- 
 </template>
 <script>
 import { Tabbar, TabbarItem,ViewBox } from 'vux'

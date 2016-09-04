@@ -3,14 +3,14 @@
     <div style="position:fixed;left:0;top:0;width:100%;z-index:2016" slot="header">
       <x-header :left-options="{showBack: false}">归纳本
         <a slot="right" v-touch:tap="_share">
-          <img src="../../assets/main/share.png" height="30px"/>
+          <img src="../../assets/main/share.png" height="30px">
         </a>
       </x-header>
     </div>
     <div style="padding-top:46px;">
       <div class="swiper">
         <swiper auto loop height="10em" dots-position="center">
-          <swiper-item class="swiperImg" v-for="item in swiperImg" ><img :src="item.img"></swiper-item>
+          <swiper-item class="swiperImg" v-for="item in swiperImg" ><img :src="item.img"/></swiper-item>
         </swiper>
       </div>
       <section class="content">

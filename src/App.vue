@@ -1,38 +1,35 @@
 <template>
   <div>
     <router-view></router-view>
+    <loading :show="isLoading" :text="loadingText"  position="absolute"></loading>
   </div>
-  <loading :show="isLoading" :text="loadingText" position="absolute"></loading>
 </template>
 
 <script>
 import store from './store'
-import './common/transition.less'
 import './common/common.less'
-import { Toast,Loading } from 'vux'
+import {Loading} from 'vux'
 
-import { getToastMsg,getToastShow } from './common/actions'
-import { toastMsg,toastShow } from './common/getters'
+import { toastMsg,toastShow,isLoading} from './common/getters'
 export default {
   components: {
-     Toast,Loading
+     Loading
   },
   store,
-  vuex: {
-    getters: {
-      toastMsg: toastMsg,
-      toastShow:toastShow
-    },
-    actions: {
-      getToastMsg,
-      getToastShow
-    }
-  },
   data(){
     return{
-      isLoading:false,
-      loadingText:'加载中'
+      loadingText:'载入中'
     }
+  },
+  vuex: {
+    getters: {
+      toastMsg,
+      toastShow,
+      isLoading
+    }
+  },
+  ready(){
+    console.log(this.isLoading);
   }
 }
 </script>

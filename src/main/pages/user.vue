@@ -35,7 +35,6 @@
     </scroller>
   </div>
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
-
 </template>
 
 <script>
