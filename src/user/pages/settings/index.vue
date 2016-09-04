@@ -11,7 +11,7 @@
            <cell title="关注我们" value="微信公众号:guina_book" link="javascript:;">
               <span class="demo-icon" slot="icon"></span>
           </cell>
-           <cell title="加入我们" value="qq群:458410557" link="javascript:;" v-touch:tap="_openQQ"> 
+           <cell title="加入我们" value="qq群:458410557" link="javascript:;" v-touch:tap="_openQQ">
               <span class="demo-icon" slot="icon"></span>
           </cell>
            <cell title="关于我们" link="aboutUs">
@@ -26,7 +26,7 @@
       </group>
        <alert :show.sync="show" title="清除缓存成功"></alert>
   </div>
-  
+
 </template>
 
 <script>

@@ -36,6 +36,7 @@ import userInviteFriend from './user/pages/invite/friend'
 import userCodeInput from './user/pages/invite/input'
 //我的会员
 import userMemberIndex from './user/pages/member/index'
+import userMemberVip from './user/pages/member/vip'
 import userMemberPoints from './user/pages/member/points'
 import userMemberRecharge from './user/pages/member/recharge'
 
@@ -92,8 +93,9 @@ router.map({
   'user/invite/friend': {component: userInviteFriend},
   'user/invite/input': {component: userCodeInput},
   'user/member':{component: userMemberIndex},//我的会员
+  'user/vip':{component: userMemberVip},//我的会员 VIP
   'user/member/points':{component: userMemberPoints},//我的积分
-  'user/member/recharge':{component: userMemberRecharge}
+  'user/member/recharge':{component: userMemberRecharge},//充值
 })
 
 router.redirect({

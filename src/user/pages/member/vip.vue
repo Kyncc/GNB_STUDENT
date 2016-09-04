@@ -105,7 +105,7 @@ body {
     <group>
       <div class="headimg">
         <img src="../../../assets/user/headimg.png" alt="" />
-        <p>普通会员</p>
+        <p>VIP</p>
       </div>
 
       <flexbox class="vux-1px-b">
@@ -137,15 +137,9 @@ body {
         </flexbox-item>
       </flexbox>
       <div class="content vux-1px-b vux-1px-t">
-        <flexbox class="vux-1px-b">
-          <flexbox-item class="padnone disable title" :span="7/20">
+        <flexbox class="vux-1px-b" >
+          <flexbox-item class="padnone disable title" :span="7/20" >
             我的特权
-          </flexbox-item>
-          <flexbox-item class="padnone title" :span="8/20">
-            VIP拥有更多特权
-          </flexbox-item>
-          <flexbox-item class="padnone title" :span="4/20">
-            <button type="button" name="button" class="upgrade"  v-touch:tap="_recharge">升级</button>
           </flexbox-item>
         </flexbox>
         <flexbox>
