@@ -10,8 +10,8 @@
       <img src="../../assets/login/title.png">
     </div>
     <group class="weui_cells_form">
-      <x-input  placeholder="新密码" keyboard="text" :value.sync="password" v-ref:password :min="6" :max="18"></x-input>
-      <x-input  placeholder="再次确认密码" keyboard="text" :value.sync="passwordAgain" v-ref:passwordagain :equal-with="password"></x-input>
+      <x-input  type="password" placeholder="新密码" keyboard="text" :value.sync="password" v-ref:password :min="6" :max="18"></x-input>
+      <x-input  type="password" placeholder="再次确认密码" keyboard="text" :value.sync="passwordAgain" v-ref:passwordagain :equal-with="password"></x-input>
     </group>
     <flexbox :gutter="0" wrap="wrap">
       <flexbox-item :span="1/20"></flexbox-item>

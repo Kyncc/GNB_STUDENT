@@ -11,11 +11,11 @@ import {XHeader} from 'vux'
 // import './collect.less'
 
 export default {
-	components: {
-		XHeader
-	},
-	methods: {
-		
-	}
+    components: {
+        XHeader
+    },
+    methods: {
+        
+    }
 }
 </script>

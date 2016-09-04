@@ -16,3 +16,4 @@ export default {
     return Vue.resource(API_PATHS.login).get(params)
   }
 }
+

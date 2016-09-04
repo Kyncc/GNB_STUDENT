@@ -1,36 +1,39 @@
 <template >
-  <div class='mainIndex vux-scroller-header-box'>
-    <div style="height:46px;">
-      <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">归纳本<a slot="right" v-touch:tap="_share"><img src="../../assets/main/share.png" height="30px"></a></x-header>
+  <div class="mainIndex">
+    <div style="position:fixed;left:0;top:0;width:100%;z-index:2016" slot="header">
+      <x-header :left-options="{showBack: false}">归纳本
+        <a slot="right" v-touch:tap="_share">
+          <img src="../../assets/main/share.png" height="30px"/>
+        </a>
+      </x-header>
     </div>
-    <scroller lock-x v-ref:scroller height="-46px">
+    <div style="padding-top:46px;">
       <div class="swiper">
         <swiper auto loop height="10em" dots-position="center">
           <swiper-item class="swiperImg" v-for="item in swiperImg" ><img :src="item.img"></swiper-item>
         </swiper>
       </div>
-      <section class="content" style="padding-bottom:100px;">
+      <section class="content">
         <panel :footer="{'title':'您已拍错'+pictureCount+'道题目','url':'/user/settings/aboutUs'}" :list="pictureInc" :type="type"></panel>
         <panel :footer="{'title':'您已归纳'+errorCount+'道题目','url':'/user/settings/aboutUs'}" :list="errorInc" :type="type"></panel>
         <panel :footer="{'title':'您已收藏'+collectCount+'道题目','url':'/user/settings/aboutUs'}" :list="collectInc" :type="type"></panel>
       </section>
-    </scroller>
+    </div>
   </div>   
 </template>
 
 <script>
 
-
 import Vue from 'vue'
 import Router from 'vue-router'
-import { XHeader,Swiper,SwiperItem,Scroller,Panel} from 'vux'
+import { XHeader,Swiper,SwiperItem,Panel} from 'vux'
 
 import {shareReady} from '../../common/h5Plus/share.js';
 import './main.less'
 
 export default {
   components: {
-    XHeader,Swiper,SwiperItem,Scroller,Panel
+    XHeader,Swiper,SwiperItem,Panel
   },
   methods: {
 		_share(){

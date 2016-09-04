@@ -1,21 +1,21 @@
 <template>
   <div>
     <router-view></router-view>
-    <toast :show.sync="toastShow" type="text" :time="2000">{{toastMsg}}</toast>
   </div>
+  <loading :show="isLoading" :text="loadingText" position="absolute"></loading>
 </template>
 
 <script>
 import store from './store'
 import './common/transition.less'
 import './common/common.less'
-import { Toast } from 'vux'
+import { Toast,Loading } from 'vux'
 
 import { getToastMsg,getToastShow } from './common/actions'
 import { toastMsg,toastShow } from './common/getters'
 export default {
   components: {
-     Toast
+     Toast,Loading
   },
   store,
   vuex: {
@@ -28,6 +28,12 @@ export default {
       getToastShow
     }
   },
+  data(){
+    return{
+      isLoading:false,
+      loadingText:'加载中'
+    }
+  }
 }
 </script>
 
