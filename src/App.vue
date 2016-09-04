@@ -2,7 +2,7 @@
   <div>
     <router-view></router-view>
     <loading :show="isLoading" text="载入中"  position="absolute"></loading>
-    <toast :show.sync="toastShow" type="text" :text="toastMsg"></toast>
+    <toast :show="toastShow" type="text" :text="toastMsg"></toast>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import store from './store'
 import './common/common.less'
 import {Loading,Toast} from 'vux'
 import {toastMsg,toastShow,isLoading} from './common/getters'
-import {getIsLoading} from './common/actions'
+import * as actions from './common/actions'
 
 export default {
   components: {
@@ -24,14 +24,13 @@ export default {
       toastShow,
       isLoading
     },
-    actions: {
-      //getIsLoading
-    }
+    actions
   },
   ready(){
-    setTimeout(function(){
-      //getIsLoading(false);
-    },3000);
+    // var _this = this;
+    // setTimeout(function(){
+    //   _this.getToastShow(false);
+    // },1000);
   }
 }
 </script>

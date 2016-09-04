@@ -5,8 +5,8 @@ import {
 } from './mutationTypes'
 
 const state = {
-    toastMsg:'1111',
-    toastShow:true,
+    toastMsg:'',
+    toastShow:false,
     isLoading:false
 }
 
