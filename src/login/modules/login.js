@@ -11,6 +11,9 @@ const state = {
     mobile:'',
     name:'',
     msg:'',
+    isVip:'0',
+    balance:'0',
+    numerical:'0',
     token:''
   }
 }

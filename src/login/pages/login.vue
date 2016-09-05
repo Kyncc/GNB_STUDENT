@@ -13,8 +13,8 @@
     <div class="btnWapper">
       <x-button :disabled="disable" @click='_login' type="primary" >登陆</x-button>
       <div class="link">
-        <a v-link="{ path: 'forget' }" class="resetPwd">登陆遇到问题?</a>
-        <a v-link="{ path: 'register' }" class="register">新用户注册</a>
+        <a v-link="{ path: 'forget',replace: true}" class="resetPwd">登陆遇到问题?</a>
+        <a v-link="{ path: 'register',replace: true }" class="register">新用户注册</a>
       </div>
     </div>
   </div>

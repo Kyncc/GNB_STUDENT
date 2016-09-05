@@ -8,7 +8,6 @@ const state = {
   mobile:''
 }
 
-
 const mutations = {
   [GET_FORGET_MESSAGE_SUCCESS](state , data){
     state.code = data.code;

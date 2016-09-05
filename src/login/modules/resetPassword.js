@@ -14,7 +14,7 @@ const state = {
 const mutations = {
   [RESET_PASSWORD_SUCCESS](state , data){
     state.msg = data.msg;
-    router.go('/');
+    router.replace('/');
   },
   [RESET_PASSWORD_ERROR](state, data){
      state.msg = data.msg;
