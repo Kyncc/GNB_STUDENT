@@ -28,9 +28,6 @@ const mutations = {
   },
   [GET_LOGIN_FAILED](state , msg){
     state.userInfo.msg = msg;
-  },
-  [GET_LOGIN_ERROR](state, err){
-    console.log(err)
   }
 }
 

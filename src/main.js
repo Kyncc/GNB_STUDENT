@@ -6,8 +6,9 @@ import App from './app'
 import Login from './login/pages/login'
 import agreement from './login/pages/agreement'
 import register from './login/pages/register'
-import password from './login/pages/password'
+import setPassword from './login/pages/setPassword'
 import forget from './login/pages/forget'
+import resetPassword from './login/pages/resetPassword'
 //首页
 import Main from './main/common/main'
 import User from './main/pages/user'
@@ -50,10 +51,10 @@ router.map({
   'agreement':{component: agreement},
   //注册账户
   'register':{component: register},
-  'register/password':{component: password},
+  'register/password':{component: setPassword},
   //忘记密码
   'forget':{component: forget},
-  'forget/password':{component: password},
+  'forget/password':{component: resetPassword},
   //主页
   'main/': {
     component: Main,

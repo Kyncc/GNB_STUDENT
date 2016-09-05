@@ -27,29 +27,43 @@ export default {
       ok:params.ok,
       wrong:params.wrong
     });
+  },
+  addPwd: (params) => {
+   return http({
+      method:'get',
+      url:API_PATHS.addPwd,
+      data:params.data,
+      ok:params.ok,
+      wrong:params.wrong
+    });
+  },
+  resetPwd: (params) => {
+   return http({
+      method:'get',
+      url:API_PATHS.resetPwd,
+      data:params.data,
+      ok:params.ok,
+      wrong:params.wrong
+    });
   }
 }
 
 export function http(params){
-  if(params.method == 'post'){
-      const promise = Vue.resource(params.url).post(params.data);
-  }else{
-      const promise = Vue.resource(params.url).get(params.data);
-  }
   _.busy();
   Vue.resource(params.url).get(params.data)
       .then(resp => { 
+        console.log(resp);
             if (resp.code == 401) {
                 window.location.href = '/login';
             }
             return resp;
       })
       .then(resp => {
-           if (resp.code === OK_CODE) {
-                params.ok(resp.data);
-           }else{
-                params.wrong(resp);
-           }
+          if(resp.data.code == 200){
+            params.ok(resp.data);
+          }else{
+            params.wrong(resp);  
+          }
            _.leave();
         } 
      ,err => {

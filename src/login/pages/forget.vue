@@ -30,6 +30,9 @@
 <script>
 import '../main.less'
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Countdown,Cell} from 'vux'
+import { getForgetCode } from '../actions'
+import { forgetMessageCode,forgetMobile } from '../getters'
+import * as _ from '../../config/whole.js'
 
 export default {
   components: {
@@ -41,6 +44,15 @@ export default {
      XHeader,
      Countdown,
      Cell
+  },
+  vuex: {
+    getters: {
+      forgetMessageCode,
+      forgetMobile
+    },
+    actions: {
+      getForgetCode
+    }
   },
   data(){
     return{
@@ -54,7 +66,12 @@ export default {
   },
   methods:{
     _next(){
-      this.$router.go('forget/password');
+       if(this.forgetMessageCode == this.code){
+          this.$router.go('forget/password');
+       }else{
+         this.code = '';
+         _.toast('错误的验证码');
+       }
     },
     _getCode(){
         if(this.currentDown){
@@ -72,6 +89,11 @@ export default {
               _this.currentDown = false;
             };
         },1000);
+        let params = {
+            mobile: this.mobile,
+            type:2
+        }
+        this.getForgetCode(params);
     }
   },
   computed: {

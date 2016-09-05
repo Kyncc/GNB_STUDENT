@@ -33,9 +33,9 @@
 <script>
 import '../main.less'
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Cell} from 'vux'
-import { getCode } from '../actions'
-import { messageCode,registerMobile } from '../getters'
-import store from '../../store'
+import { getRegisterCode } from '../actions'
+import { registerMessageCode,registerMobile } from '../getters'
+import * as _ from '../../config/whole.js'
 
 export default {
   components: {
@@ -60,19 +60,20 @@ export default {
   },
   vuex: {
     getters: {
-      messageCode: messageCode,
-      registerMobile: registerMobile
+      registerMessageCode,
+      registerMobile
     },
     actions: {
-      getCode
+      getRegisterCode
     }
   },
   methods:{
     _next(){
-       if(this.messageCode == this.code){
-          this.$router.go('forget/password');
+       if(this.registerMessageCode == this.code){
+          this.$router.go('register/password');
        }else{
          this.code = '';
+         _.toast('错误的验证码');
        }
     },
     _getCode(){
@@ -95,7 +96,7 @@ export default {
             mobile: this.mobile,
             type:1
         }
-        this.getCode(params);
+        this.getRegisterCode(params);
     }
   },
   computed: {
