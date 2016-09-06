@@ -2,6 +2,11 @@ import Api from '../config/httpdispatch'
 import * as types from './mutationTypes'
 import * as _ from '../config/whole'
 
+import Vue from 'vue'
+import Router from 'vue-router'
+Vue.use(Router)
+
+const router = new Router();
 /*获取短信验证码(注册账号)*/
 export const getRegisterCode = ({ dispatch }, params) => {
   Api.getCode({
@@ -10,22 +15,22 @@ export const getRegisterCode = ({ dispatch }, params) => {
         dispatch(types.GET_REGISTER_MESSAGE_SUCCESS,response.data);
       },
       wrong:response=>{
-        dispatch(types.GET_REGISTER_MESSAGE_ERROR,response);
-        _.toast(response.msg);
+        dispatch(types.GET_REGISTER_MESSAGE_ERROR,response.data);
       }
   })
 }
 
-/*获取短信验证码(忘记密码)*/
-export const getForgetCode = ({ dispatch }, params) => {
-  Api.getCode({
+/*设置登陆密码*/
+export const addPwd = ({ dispatch }, params) => {
+  Api.addPwd({
       data:params,
       ok:response=>{
-        dispatch(types.GET_FORGET_MESSAGE_SUCCESS,response.data);
+        dispatch(types.SET_PASSWORD_SUCCESS,response.data);
+        router.replace('/');
       },
       wrong:response=>{
-        dispatch(types.GET_FORGET_MESSAGE_ERROR,response);
-        _.toast(response.msg);
+        dispatch(types.SET_PASSWORD_ERROR,response.data);
+         _.toast(response.data.msg);
       }
   })
 }
@@ -38,22 +43,22 @@ export const login = ({ dispatch }, params) => {
         dispatch(types.GET_LOGIN_SUCCESS,response.data);
       },
       wrong:response=>{
-        dispatch(types.GET_LOGIN_FAILED,response);
-        _.toast('账号或密码错误');
+        dispatch(types.GET_LOGIN_FAILED,response.data);
+        _.toast(response.data.msg);
       }
   })
 }
 
-/*设置登陆密码*/
-export const addPwd = ({ dispatch }, params) => {
-  Api.addPwd({
+/*获取短信验证码(忘记密码)*/
+export const getForgetCode = ({ dispatch }, params) => {
+  Api.getCode({
       data:params,
       ok:response=>{
-        dispatch(types.SET_PASSWORD_SUCCESS,response);
+        dispatch(types.GET_FORGET_MESSAGE_SUCCESS,response.data);
       },
       wrong:response=>{
-        dispatch(types.SET_PASSWORD_ERROR,response);
-        _.toast(response.msg);
+        dispatch(types.GET_FORGET_MESSAGE_ERROR,response.data);
+        _.toast(response.data.msg);
       }
   })
 }
@@ -63,11 +68,12 @@ export const resetPwd = ({ dispatch }, params) => {
   Api.resetPwd({
       data:params,
       ok:response=>{
-        dispatch(types.RESET_PASSWORD_SUCCESS,response);
+        dispatch(types.RESET_PASSWORD_SUCCESS,response.data);
+        router.replace('/');
       },
       wrong:response=>{
-        dispatch(types.RESET_PASSWORD_ERROR,response);
-        _.toast(response.msg);
+        dispatch(types.RESET_PASSWORD_ERROR,response.data);
+        _.toast(response.data.msg);
       }
   })
 }

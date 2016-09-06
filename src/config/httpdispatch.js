@@ -52,7 +52,7 @@ export function http(params){
   _.busy();
   Vue.resource(params.url).get(params.data)
       .then(resp => { 
-        console.log(resp);
+            console.log(resp);
             if (resp.code == 401) {
                 window.location.href = '/login';
             }
@@ -60,16 +60,18 @@ export function http(params){
       })
       .then(resp => {
           if(resp.data.code == 200){
-            params.ok(resp.data);
+            params.ok(resp);
           }else{
             params.wrong(resp);  
           }
            _.leave();
+           return resp;
         } 
      ,err => {
           console.log('Network Error:', err);
           _.leave();
           _.toast('接口异常');
+          return err;
       })
       .catch(err => {
           console.log(err);

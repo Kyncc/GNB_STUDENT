@@ -5,16 +5,18 @@ import {
 
 const state = {
   code:'',
-  mobile:''
+  mobile:'',
+  msg:''
 }
 
 const mutations = {
   [GET_REGISTER_MESSAGE_SUCCESS](state , data){
-    state.code = data.code;
-    state.mobile = data.mobile;
+    state.code = data.data.code;
+    state.mobile = data.data.mobile;
+    state.msg = data.msg;
   },
-  [GET_REGISTER_MESSAGE_ERROR](state, err){
-    console.log(err)
+  [GET_REGISTER_MESSAGE_ERROR](state, data){
+    state.msg = data.msg;
   }
 }
 
