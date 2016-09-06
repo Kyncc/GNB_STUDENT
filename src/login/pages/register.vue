@@ -73,7 +73,7 @@ export default {
     },
     _next(){
        if(this.registerMessageCode == this.code){
-          this.$router.replace('register/password');
+          this.$router.go({path: 'register/password', registerMobile:this.mobile});
        }else{
          this.code = '';
          _.toast('错误的验证码');
@@ -102,12 +102,14 @@ export default {
         this.getRegisterCode(params);
     }
   },
+  watch:{
+  },
   computed: {
      disableMobile(){
          return (this.$refs.mobile.valid && !this.currentDown ? false : true);
      },
      disableNext(){
-        return  (this.$refs.mobile.valid && this.$refs.code.valid && this.agree ? false : true);
+         return  (this.$refs.mobile.valid && this.$refs.code.valid && this.agree ? false : true);
      }
   }
 }

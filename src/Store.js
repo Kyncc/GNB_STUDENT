@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import common from './common/common'
+import Global from './common/global'
 import register from './login/modules/register'
 import login from './login/modules/login'
 import setPassword from './login/modules/setPassword'
@@ -11,7 +11,7 @@ import resetPassword from './login/modules/resetPassword'
 Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
-    common,
+    Global,
     login,
     register,
     setPassword,

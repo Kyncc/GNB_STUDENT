@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueTouch from 'vue-touch'
+import { sync } from 'vuex-router-sync'
 import App from './app'
+import store from './store'
 //登陆、注册
 import Login from './login/pages/login'
 import agreement from './login/pages/agreement'
@@ -41,6 +43,8 @@ import userMemberVip from './user/pages/member/vip'
 import userMemberPoints from './user/pages/member/points'
 import userMemberRecharge from './user/pages/member/recharge'
 
+
+
 Vue.use(Router)
 Vue.use(VueTouch)
 Vue.config.devtools = true
@@ -54,7 +58,10 @@ router.map({
   'register/password':{component: setPassword},
   //忘记密码
   'forget':{component: forget},
-  'forget/password':{component: resetPassword},
+  'forget/password':{
+    component: resetPassword,
+    forgetMobile: ''
+  },
   //主页
   'main/': {
     component: Main,
@@ -102,6 +109,26 @@ router.map({
 router.redirect({
   '/main/': '/main/index'
 });
+
+sync(store, router)
+
+router.beforeEach(function(transition) {
+    if (transition.to.path == '/register/password') {
+      if(store.state.register.mobile == ''){
+          console.log("禁止访问!");
+          router.replace('/register');
+      }
+    }
+    if (transition.to.path == '/forget/password') {
+      if(store.state.forget.mobile == ''){
+          console.log("禁止访问!");
+          router.replace('/forget');
+      }
+    }
+    transition.next();
+})
+
+
 
 // (function(){
 //   function plusReady(){
