@@ -4,6 +4,9 @@ body {
 }
 
 .member {
+    .weui_cells{
+        margin-top: 0;
+    }
     .headimg {
         width: 100%;
         height: 286/40rem;

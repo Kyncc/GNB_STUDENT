@@ -42,6 +42,10 @@ import userMemberIndex from './user/pages/member/index'
 import userMemberVip from './user/pages/member/vip'
 import userMemberPoints from './user/pages/member/points'
 import userMemberRecharge from './user/pages/member/recharge'
+//我的班级
+import userClassIndex from './user/pages/class/index'
+import userClassDetail from './user/pages/class/classDetail'
+import userClassAdd from './user/pages/class/addClass'
 
 Vue.use(Router)
 Vue.use(VueTouch)
@@ -95,10 +99,15 @@ router.map({
   'user/invite': {component: userInviteIndex},
   'user/invite/friend': {component: userInviteFriend},
   'user/invite/input': {component: userCodeInput},
-  'user/member':{component: userMemberIndex},//我的会员
+  //我的会员
+  'user/member':{component: userMemberIndex},
   'user/vip':{component: userMemberVip},//我的会员 VIP
   'user/member/points':{component: userMemberPoints},//我的积分
   'user/member/recharge':{component: userMemberRecharge},//充值
+  //我的班级
+  'user/class':{component: userClassIndex},
+  'user/class/detail':{component: userClassDetail},
+  'user/class/addClass':{component: userClassAdd},
 })
 
 router.redirect({
