@@ -18,9 +18,9 @@ export function leave(){
 *   Toast公共方法
 */
 export function toast(str){
-     store.dispatch('GET_TOAST_SHOW', true); 
-     store.dispatch('GET_TOAST_MESSAGE',str);
-     setTimeout(()=>{
-          store.dispatch('GET_TOAST_SHOW', false); 
-     },1500); 
+    store.dispatch('GET_TOAST_SHOW', true); 
+    store.dispatch('GET_TOAST_MESSAGE',str);
+    setTimeout(()=>{
+        store.dispatch('GET_TOAST_SHOW', false); 
+    },1500); 
 }

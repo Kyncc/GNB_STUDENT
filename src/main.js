@@ -43,8 +43,6 @@ import userMemberVip from './user/pages/member/vip'
 import userMemberPoints from './user/pages/member/points'
 import userMemberRecharge from './user/pages/member/recharge'
 
-
-
 Vue.use(Router)
 Vue.use(VueTouch)
 Vue.config.devtools = true
@@ -58,10 +56,7 @@ router.map({
   'register/password':{component: setPassword},
   //忘记密码
   'forget':{component: forget},
-  'forget/password':{
-    component: resetPassword,
-    forgetMobile: ''
-  },
+  'forget/password':{component: resetPassword},
   //主页
   'main/': {
     component: Main,
