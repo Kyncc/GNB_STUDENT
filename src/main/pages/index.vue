@@ -16,7 +16,7 @@
       <section class="content">
         <panel :footer="{'title':'您已拍错'+pictureCount+'道题目','url':'/user/settings/aboutUs'}" :list="pictureInc" :type="type"></panel>
         <panel :footer="{'title':'您已归纳'+errorCount+'道题目','url':'/user/settings/aboutUs'}" :list="errorInc" :type="type"></panel>
-        <panel :footer="{'title':'您已收藏'+collectCount+'道题目','url':'/user/settings/aboutUs'}" :list="collectInc" :type="type"></panel>
+        <panel :footer="{'title':'您已收藏'+collectCount+'道题目','url':'/collect/'}" :list="collectInc" :type="type"></panel>
       </section>
     </div>
   </div>   

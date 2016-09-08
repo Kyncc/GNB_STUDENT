@@ -5,7 +5,7 @@
 		</div>
         <div>
 
-            <div class="weui_panel weui_panel_access example">
+            <div class="weui_panel weui_panel_access exerciseExampleList">
                  <div class="weui_panel_hd">2.5 函数零点判定原理</div> 
                  <div class="weui_panel_bd"> 
                     <a class="weui_media_box weui_media_appmsg" href="#!/collect/detail">  
