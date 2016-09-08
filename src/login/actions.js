@@ -41,6 +41,7 @@ export const login = ({ dispatch }, params) => {
       data:params,
       ok:response=>{
         dispatch(types.GET_LOGIN_SUCCESS,response.data);
+        router.replace('/main');
       },
       wrong:response=>{
         dispatch(types.GET_LOGIN_FAILED,response.data);
