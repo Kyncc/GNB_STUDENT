@@ -46,6 +46,9 @@ import userMemberRecharge from './user/pages/member/recharge'
 import userClassIndex from './user/pages/class/index'
 import userClassDetail from './user/pages/class/classDetail'
 import userClassAdd from './user/pages/class/addClass'
+//我的教材
+import userTextbook from './user/pages/textbook/index'
+
 
 Vue.use(Router)
 Vue.use(VueTouch)
@@ -53,14 +56,14 @@ Vue.config.devtools = true
 
 const router = new Router()
 router.map({
-  '/': { component: Login},
-  'agreement':{component: agreement},
+  '/': { component: Login },
+  'agreement': { component: agreement },
   //注册账户
-  'register':{component: register},
-  'register/password':{component: setPassword},
+  'register': { component: register },
+  'register/password': { component: setPassword },
   //忘记密码
-  'forget':{component: forget},
-  'forget/password':{component: resetPassword},
+  'forget': { component: forget },
+  'forget/password': { component: resetPassword },
   //主页
   'main/': {
     component: Main,
@@ -79,35 +82,37 @@ router.map({
   //拍错题
   //归纳本
   //收藏本
-  'collect':{component: collect},
-  'collect/detail':{component: collectDetail},
+  'collect': { component: collect },
+  'collect/detail': { component: collectDetail },
   //消息
-  'message/class':{component: messageClass},
-  'message/homework':{component: messageHomework},
-  'message/advice':{component: messageAdvice},
-  'message/system':{component: messageSystem},
-  'message/correct':{component: messageCorrect},
+  'message/class': { component: messageClass },
+  'message/homework': { component: messageHomework },
+  'message/advice': { component: messageAdvice },
+  'message/system': { component: messageSystem },
+  'message/correct': { component: messageCorrect },
   //个人中心
-  'user/resetPwd': {component: userResetPwd},
-  'user/info': {component: userInfo},
+  'user/resetPwd': { component: userResetPwd },
+  'user/info': { component: userInfo },
   //设置
-  'user/settings': {component: userSettingsIndex},
-  'user/settings/aboutUs': {component: userSettingsAboutUs},
-  'user/settings/advice': {component: userSettingsAdvice},
-  'user/settings/advice/history': {component: userSettingsAdviceHistory},
+  'user/settings': { component: userSettingsIndex },
+  'user/settings/aboutUs': { component: userSettingsAboutUs },
+  'user/settings/advice': { component: userSettingsAdvice },
+  'user/settings/advice/history': { component: userSettingsAdviceHistory },
   //邀请好友
-  'user/invite': {component: userInviteIndex},
-  'user/invite/friend': {component: userInviteFriend},
-  'user/invite/input': {component: userCodeInput},
+  'user/invite': { component: userInviteIndex },
+  'user/invite/friend': { component: userInviteFriend },
+  'user/invite/input': { component: userCodeInput },
   //我的会员
-  'user/member':{component: userMemberIndex},
-  'user/vip':{component: userMemberVip},//我的会员 VIP
-  'user/member/points':{component: userMemberPoints},//我的积分
-  'user/member/recharge':{component: userMemberRecharge},//充值
+  'user/member': { component: userMemberIndex },
+  'user/vip': { component: userMemberVip }, //我的会员 VIP
+  'user/member/points': { component: userMemberPoints }, //我的积分
+  'user/member/recharge': { component: userMemberRecharge }, //充值
   //我的班级
-  'user/class':{component: userClassIndex},
-  'user/class/detail':{component: userClassDetail},
-  'user/class/addClass':{component: userClassAdd},
+  'user/class': { component: userClassIndex },
+  'user/class/detail': { component: userClassDetail },
+  'user/class/addClass': { component: userClassAdd },
+  //我的教材
+  'user/textBook': { component: userTextbook },
 })
 
 router.redirect({
@@ -117,19 +122,19 @@ router.redirect({
 sync(store, router)
 
 router.beforeEach(function(transition) {
-    if (transition.to.path == '/register/password') {
-      if(store.state.register.mobile == ''){
-          console.log("禁止访问!");
-          router.replace('/register');
-      }
+  if (transition.to.path == '/register/password') {
+    if (store.state.register.mobile == '') {
+      console.log("禁止访问!");
+      router.replace('/register');
     }
-    if (transition.to.path == '/forget/password') {
-      if(store.state.forget.mobile == ''){
-          console.log("禁止访问!");
-          router.replace('/forget');
-      }
+  }
+  if (transition.to.path == '/forget/password') {
+    if (store.state.forget.mobile == '') {
+      console.log("禁止访问!");
+      router.replace('/forget');
     }
-    transition.next();
+  }
+  transition.next();
 })
 
 
@@ -147,4 +152,4 @@ router.beforeEach(function(transition) {
 //   }
 // }())
 
-router.start(App,'#App')
+router.start(App, '#App')
