@@ -73,16 +73,27 @@ html,body{
 /**
 *   Vux-Scoll
 */
-.xs-plugin-pulldown-container{font-size:16px;}                                                                                                                                                                                                                                                                
+.xs-plugin-pulldown-container{font-size:16/20rem;}                                                                                                                                                                                                                                                                
 
 .exerciseExampleList{
     .weui_panel_hd{
+        padding:8/20rem 15/20rem 8/20rem;
         color:#000;
+        Button{margin-right:.75em;}
+        font-size:16/20rem;
+    }
+    
+     .weui_panel_ft{
+        padding:5/20rem 15/20rem;
     }
     .weui_media_box{
+         padding:15/20rem;
         .weui_media_desc{
             -webkit-line-clamp:5;
             font-size:.75rem;
+            img{
+                 width:100%;display:block; 
+            }
         }
     } 
     .weui_panel_ft::after{display: none;}
@@ -90,11 +101,20 @@ html,body{
 
 .exerciseDetail{
     .weui_panel_hd{
+        padding:8/20rem 15/20rem 8/20rem;
         color:#000;
+        font-size:15/20rem;
+        Button{margin-right:.75/20rem;}
     }
+   .options{
+       .weui_media_desc{
+           padding:.5rem .3rem;
+       }
+   }
     .weui_media_box{
+        padding:15/40rem;
         .weui_media_desc{
-            -webkit-line-clamp:5;
+            -webkit-line-clamp:100;
             font-size:.75rem;
         }
     } 

@@ -6,7 +6,7 @@
         <div>
 
             <div class="weui_panel weui_panel_access exerciseExampleList">
-                 <div class="weui_panel_hd">2.5 函数零点判定原理</div> 
+                 <div class="weui_panel_hd"><x-button type='primary' mini>收藏题1</x-button>2.5 函数零点判定原理</div> 
                  <div class="weui_panel_bd"> 
                     <a class="weui_media_box weui_media_appmsg" href="#!/collect/detail">  
                         <div class="weui_media_bd"> 
@@ -19,9 +19,29 @@
                     </a>  
                     <div class="weui_panel_ft" >
                          <flexbox :gutter="0" wrap="wrap">
-                             <flexbox-item :span="1/3"> 难度：3</flexbox-item>
-                             <flexbox-item :span="1/3"></flexbox-item>
-                             <flexbox-item :span="1/3" style="text-align:right">错误：10次</flexbox-item>
+                             <flexbox-item :span="1/2">收藏时间：2016-01-14</flexbox-item>
+                             <flexbox-item :span="1/4"></flexbox-item>
+                             <flexbox-item :span="1/4" style="text-align:right"> 难度：3</flexbox-item>
+                         </flexbox>
+                    </div>
+                </div>  
+            </div>
+            
+            <div class="weui_panel weui_panel_access exerciseExampleList ">
+                 <div class="weui_panel_hd"><x-button type='primary' mini>收藏题2</x-button>2.6 函数零点判定原理</div> 
+                 <div class="weui_panel_bd"> 
+                    <a class="weui_media_box weui_media_appmsg" href="#!/collect/detail">  
+                        <div class="weui_media_bd"> 
+                            <p class="weui_media_desc" >
+                                <img src="http://placeholder.qiniudn.com/640x300">
+                            </p> 
+                        </div> 
+                    </a>  
+                    <div class="weui_panel_ft" >
+                         <flexbox :gutter="0" wrap="wrap">
+                             <flexbox-item :span="1/2">收藏时间：2016-01-14</flexbox-item>
+                             <flexbox-item :span="1/4"></flexbox-item>
+                             <flexbox-item :span="1/4" style="text-align:right"> 难度：3</flexbox-item>
                          </flexbox>
                     </div>
                 </div>  
@@ -32,12 +52,12 @@
 </template>
 
 <script>
-import {XHeader,Panel,Flexbox,FlexboxItem} from 'vux'
-// import './collect.less'
+import {XHeader,Panel,Flexbox,FlexboxItem,XButton} from 'vux'
+ import './collect.less'
 
 export default {
     components: {
-        XHeader,
+        XHeader,XButton,
         Panel,Flexbox,FlexboxItem
     },
     methods: {

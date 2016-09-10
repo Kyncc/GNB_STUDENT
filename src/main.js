@@ -19,6 +19,7 @@ import Index from './main/pages/index'
 //收藏本
 import collect from './collect/pages/index'
 import collectDetail from './collect/pages/detail'
+import collectCorrect from './collect/pages/correct'
 //通知
 import messageClass from './message/pages/class'
 import messageCorrect from './message/pages/correct'
@@ -84,6 +85,7 @@ router.map({
   //收藏本
   'collect': { component: collect },
   'collect/detail': { component: collectDetail },
+  'collect/correct': { component: collectCorrect },
   //消息
   'message/class': { component: messageClass },
   'message/homework': { component: messageHomework },
