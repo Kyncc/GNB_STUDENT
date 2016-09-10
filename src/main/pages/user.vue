@@ -59,7 +59,6 @@ export default {
         this.showsheet = true
     },
     _uploadclick (key) {
-
        if(key == 'menu1'){
            alert('拍照')
        }else if(key == 'menu2'){
