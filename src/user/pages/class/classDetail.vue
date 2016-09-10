@@ -1,8 +1,4 @@
 <style lang="less">
-body {
-    -webkit-touch-callout: none;
-}
-
 .class {
     .weui_cells {
         margin-top: 0;

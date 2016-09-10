@@ -1,17 +1,17 @@
 <template>
 <div class='textbook'>
   <x-header :left-options="{showBack: true}">我的教材</x-header>
-  <div style="margin-bottom: 1rem;position:relative;height:6rem;overflow:scroll;margin-top: 1rem;">
-     <div class="swipe" style="height:6rem;position:absolute;left:0;top:0;">
-         <flexbox>
-           <flexbox-item :span="4/20" v-for="book in booklist">
-             <div class="bookswipe">
-               {{book.name}}
-             </div>
-           </flexbox-item>
-         </flexbox>
-     </div>
- </div>
+  <div class="swipewrap">
+    <div class="topswipe">
+      <flexbox>
+        <flexbox-item :span="3/swipelist.length" v-for="book in swipelist">
+          <div class="bookswipe">
+            {{book.name}}
+          </div>
+        </flexbox-item>
+      </flexbox>
+    </div>
+  </div>
   <group>
     <selector placeholder="人教版1" title="数学" :options="list" @on-change="onChange"></selector>
   </group>
@@ -43,6 +43,25 @@ export default {
       }, {
         key: '3',
         value: '人教版3'
+      }],
+      swipelist: [{
+        name: '必修1'
+      }, {
+        name: '必修2'
+      }, {
+        name: '必修3'
+      }, {
+        name: '必修3'
+      }, {
+        name: '必修3'
+      }, {
+        name: '必修2'
+      }, {
+        name: '必修3'
+      }, {
+        name: '必修3'
+      }, {
+        name: '必修3'
       }],
       booklist: [{
         name: '必修1'
@@ -101,10 +120,25 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less">::-webkit-scrollbar {
+    width: 0;
+}
 .textbook {
     .vux-no-group-title {
         margin-top: 0;
+    }
+    .swipewrap {
+        margin-bottom: 1rem;
+        position: relative;
+        height: 6rem;
+        overflow: scroll;
+        margin-top: 1rem;
+        .topswipe {
+            height: 6rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
     }
     .bookswipe {
         width: 4rem;
