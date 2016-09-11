@@ -1,48 +1,3 @@
-<style lang="less">
-.recharge {
-    .weixin {
-        margin-top: 0.5rem;
-    }
-    .recharge-wrap {
-        padding: 1.3rem 2%;
-        .wrap {
-            padding: 0.7rem 2%;
-            border-radius: 1rem;
-            background: #fff;
-            box-shadow: 0.1rem 0.2rem 0.1rem #888888;
-            .recharge-item {
-                border: none;
-                .vux-flexbox-item {
-                    margin: 0 !important;
-                    &.money-item {
-                        border-right: 1px dashed #000;
-                        .moeny {
-                            text-align: center;
-                            color: #ff5722;
-                            font-size: 1rem;
-                        }
-                    }
-                    .tip {
-                        font-size: 0.3rem;
-                    }
-                }
-            }
-        }
-    }
-    .recharge-btn {
-        padding: 0.5rem 3%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 94%;
-        background-color: #edf2f1;
-    }
-}
-
-.tar {
-    text-align: right;
-}
-</style>
 
 <template>
 <div class='recharge'>
@@ -94,6 +49,7 @@
 </template>
 
 <script>
+import './member.less'
 import {
   XHeader,
   Group,

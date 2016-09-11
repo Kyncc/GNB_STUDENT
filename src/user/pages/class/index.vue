@@ -1,25 +1,3 @@
-<style lang="less">
-.class {
-    .weui_cells{
-        margin-top: 0;
-    }
-    .weui_search_bar:after{
-        border: none;
-    }
-    .vux-flexbox{
-        .vux-flexbox-item{
-            margin-left: 0 !important;
-        }
-    }
-    .btn-wrap{
-        height:43px;width:100%;position:relative;
-        .search-btn{
-            position:absolute;top:0;bottom:0;margin:auto;height:28px;line-height:28px;font-size:14px;text-align:center;width:80%;background:#fff;border-radius:5px;
-        }
-    }
-}
-</style>
-
 <template>
 <div class='class'>
   <x-header :left-options="{showBack: true}">我的班级</x-header>
@@ -46,6 +24,7 @@
 </template>
 
 <script>
+import './myClass.less'
 import {
   XHeader,
   Cell,

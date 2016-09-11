@@ -1,102 +1,3 @@
-<style lang="less">
-.member {
-    .weui_cells{
-        margin-top: 0;
-    }
-    .headimg {
-        width: 100%;
-        height: 286/40rem;
-        background: url('../../../assets/user/headbg.jpg') no-repeat;
-        background-size: 100%;
-        padding-top: 80/40rem;
-        img {
-            width: 139/40rem;
-            height: 139/40rem;
-            border-radius: 70/40rem;
-            margin: 0 auto;
-            display: block;
-        }
-        p {
-            color: #fff;
-            text-align: center;
-            margin-top: 50/40rem;
-        }
-    }
-    .vux-flexbox-item {
-        background: #fff;
-        margin: 0 !important;
-        padding: 0 36/40rem;
-        .flex-key {
-            height: 96/40rem;
-            line-height: 96/40rem;
-            text-align: center;
-            font-size: 32/40rem;
-        }
-        .flex-value {
-            height: 96/40rem;
-            line-height: 96/40rem;
-            text-align: center;
-            color: #ff9800;
-            font-size: 32/40rem;
-        }
-        .points {
-            height: 96/40rem;
-            background: url('../../../assets/user/points.png') no-repeat right center /52/40rem auto;
-        }
-        .dollar {
-            height: 96/40rem;
-            background: url('../../../assets/user/dollar.png') no-repeat right center /52/40rem auto;
-        }
-    }
-    .content {
-        background: #fff;
-        margin-top: 12/40rem;
-        .title{
-            height: 90/40rem !important;
-        }
-        .vux-flexbox {
-            .vux-flexbox-item {
-                align-items: center;
-                display: flex;
-                height: 125/40rem;
-                font-size: 32/40rem;
-                text-align: center;
-                padding: 0 1.4rem;
-                justify-content: center;
-                .upgrade {
-                    color: #29b6f6;
-                    font-size: 28/40rem;
-                    border: 1px solid #cacaca;
-                    background: #fff;
-                    border-radius: 3px;
-                    padding: 14/40rem 24/40rem;
-                }
-            }
-        }
-    }
-}
-
-.disable {
-    color: #adadad;
-}
-
-.padnone {
-    padding: 0 !important;
-}
-
-.vux-1px-r {
-    border-right: 1px solid #d2d2d2;
-}
-
-.vux-1px-b {
-    border-bottom: 1px solid #d2d2d2;
-}
-
-.vux-1px-t {
-    border-top: 1px solid #d2d2d2;
-}
-</style>
-
 <template>
 <div class='member'>
   <x-header :left-options="{showBack: true}">我的会员 <a slot="right" v-touch:tap="_recharge">充值</a></x-header>
@@ -198,6 +99,7 @@
 </template>
 
 <script>
+import './member.less'
 import {
   XHeader,
   Cell,

@@ -1,19 +1,3 @@
-<style lang="less">
-.class {
-    .weui_cells {
-        margin-top: 0;
-    }
-    .weui_search_bar:after {
-        border: none;
-    }
-    .vux-flexbox {
-        .vux-flexbox-item {
-            margin-left: 0 !important;
-        }
-    }
-}
-</style>
-
 <template>
 <div class='class'>
   <x-header :left-options="{showBack: true}">数学一班</x-header>
@@ -60,6 +44,7 @@
 </template>
 
 <script>
+import './myClass.less'
 import {
   XHeader,
   Cell,

@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import './member.less'
 import {
   XHeader,
   Group,
@@ -57,29 +58,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less">
-.points {
-    .title {
-        padding: 0 1em;
-        font-size: 1em;
-        line-height: 2em;
-    }
-    .points-items {
-        padding: 0.3em 0;   
-        .vux-flexbox-item {
-            margin: 0 !important;
-            .money{
-
-            }
-            .time{
-                font-size: 0.5em;
-                color: #999;
-            }
-        }
-    }
-}
-.tar {
-    text-align: right;
-}
-</style>
