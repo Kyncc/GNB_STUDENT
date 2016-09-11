@@ -1,4 +1,3 @@
-
 <template>
 <view-box v-ref:view-box class='recharge'>
   <x-header :left-options="{showBack: true}">充值<a slot="right" v-touch:tap="_rull">我的账单</a></x-header>
