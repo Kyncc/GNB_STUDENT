@@ -1,12 +1,13 @@
 <template>
-	<div class='collect  vux-scroller-header-box'>
-		<div style="height:46px;">
-			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">收藏本</x-header>
-		</div>
-        <div>
-
+    <view-box v-ref:view-box class="collect">
+        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
+            <x-header :left-options="{showBack: true}">收藏本</x-header>
+        </div>
+	
+		
+       <div style="padding-top:46px;">
             <div class="weui_panel weui_panel_access exerciseExampleList">
-                 <div class="weui_panel_hd"><x-button type='primary' mini>收藏题1</x-button>2.5 函数零点判定原理</div> 
+                 <div class="weui_panel_hd"><x-button type='primary' mini>收藏题</x-button>2.5 函数零点判定原理</div> 
                  <div class="weui_panel_bd"> 
                     <a class="weui_media_box weui_media_appmsg" href="#!/collect/detail">  
                         <div class="weui_media_bd"> 
@@ -28,7 +29,7 @@
             </div>
             
             <div class="weui_panel weui_panel_access exerciseExampleList">
-                 <div class="weui_panel_hd"><x-button type='primary' mini>收藏题1</x-button>2.5 函数零点判定原理</div> 
+                 <div class="weui_panel_hd"><x-button type='primary' mini>收藏题</x-button>2.5 函数零点判定原理</div> 
                  <div class="weui_panel_bd"> 
                     <a class="weui_media_box weui_media_appmsg" href="#!/collect/detail">  
                         <div class="weui_media_bd"> 
@@ -48,11 +49,10 @@
                     </div>
                 </div>  
             </div>
-
 
             
             <div class="weui_panel weui_panel_access exerciseExampleList ">
-                 <div class="weui_panel_hd"><x-button type='primary' mini>收藏题2</x-button>2.6 函数零点判定原理</div> 
+                 <div class="weui_panel_hd"><x-button type='primary' mini>收藏题</x-button>2.6 函数零点判定原理</div> 
                  <div class="weui_panel_bd"> 
                     <a class="weui_media_box weui_media_appmsg" href="#!/collect/detail">  
                         <div class="weui_media_bd"> 
@@ -72,17 +72,17 @@
             </div>
 
         </div>
-	</div>
+	</view-box>
 </template>
 
 <script>
-import {XHeader,Panel,Flexbox,FlexboxItem,XButton} from 'vux'
+import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox} from 'vux'
  import './collect.less'
 
 export default {
     components: {
         XHeader,XButton,
-        Panel,Flexbox,FlexboxItem
+        Panel,Flexbox,FlexboxItem,ViewBox
     },
     methods: {
         
