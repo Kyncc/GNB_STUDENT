@@ -1,6 +1,6 @@
 
 <template>
-<div class='recharge'>
+<view-box v-ref:view-box class='recharge'>
   <x-header :left-options="{showBack: true}">充值<a slot="right" v-touch:tap="_rull">我的账单</a></x-header>
   <div class="recharge-wrap">
     <div class="wrap">
@@ -45,7 +45,7 @@
       </flexbox-item>
     </flexbox>
   </group>
-</div>
+</view-box>
 </template>
 
 <script>
@@ -58,7 +58,8 @@ import {
   Flexbox,
   FlexboxItem,
   Selector,
-  Switch
+  Switch,
+  ViewBox
 }
 from 'vux'
 
@@ -83,7 +84,8 @@ export default {
     Flexbox,
     FlexboxItem,
     Selector,
-    Switch
+    Switch,
+    ViewBox
   },
   methods: {
     _rull() {

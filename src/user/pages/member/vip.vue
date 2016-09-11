@@ -1,5 +1,5 @@
 <template>
-<div class='member'>
+<view-box v-ref:view-box class='member'>
   <x-header :left-options="{showBack: true}">我的会员 <a slot="right" v-touch:tap="_recharge">充值</a></x-header>
   <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
     <group>
@@ -89,7 +89,7 @@
       </div>
     </group>
   </scroller>
-</div>
+</view-box>
 </template>
 
 <script>
@@ -101,7 +101,8 @@ import {
   Alert,
   Flexbox,
   FlexboxItem,
-  Scroller
+  Scroller,
+  ViewBox
 }
 from 'vux'
 export default {
@@ -112,7 +113,8 @@ export default {
     Alert,
     Flexbox,
     FlexboxItem,
-    Scroller
+    Scroller,
+    ViewBox
   },
   methods: {
     load(uuid) {

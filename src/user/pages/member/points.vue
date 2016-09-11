@@ -1,5 +1,5 @@
 <template>
-<div class='points'>
+<view-box v-ref:view-box class='points'>
   <x-header :left-options="{showBack: true}">我的积分<a slot="right" v-touch:tap="_rull">积分规则</a></x-header>
   <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
     <group>
@@ -25,7 +25,7 @@
       </flexbox>
     </group>
   </scroller>
-</div>
+</view-box>
 </template>
 
 <script>
@@ -36,6 +36,7 @@ import {
   Scroller,
   Flexbox,
   FlexboxItem,
+  ViewBox
 } from 'vux'
 
 export default {
@@ -45,6 +46,7 @@ export default {
     Scroller,
     Flexbox,
     FlexboxItem,
+    ViewBox
   },
   methods: {
     load(uuid) {
