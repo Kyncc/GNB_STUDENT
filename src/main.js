@@ -16,6 +16,11 @@ import Main from './main/common/main'
 import User from './main/pages/user'
 import Message from './main/pages/message'
 import Index from './main/pages/index'
+//归纳本
+import errorDetail from './error/pages/detail'
+import errorCorrect from './error/pages/correct'
+import errorMore from './error/pages/more'
+import errorRecommend from './error/pages/recommend'
 //收藏本
 import collect from './collect/pages/index'
 import collectDetail from './collect/pages/detail'
@@ -81,7 +86,12 @@ router.map({
     }
   },
   //拍错题
+
   //归纳本
+ 'error/detail':{component: errorDetail},
+ 'error/correct':{component: errorCorrect},
+ 'error/more':{component: errorMore},
+ 'error/recommend':{component: errorRecommend},
   //收藏本
   'collect': { component: collect },
   'collect/detail': { component: collectDetail },

@@ -1,8 +1,8 @@
 <template>
-	<view-box v-ref:view-box class="collectDetail">
+	<view-box v-ref:view-box class="errorDetail">
 
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
-			<x-header :left-options="{showBack: true}">我的收藏<a slot="right" v-touch:tap="_remove">移除本题</a></x-header>
+			<x-header :left-options="{showBack: true}">例题</x-header>
 		</div>
 
 		<div style="padding-top:46px;">
@@ -10,7 +10,12 @@
 			<div class="weui_panel weui_panel_access exerciseDetail">
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="3/5" style="color:#4bb7aa">收藏题1</flexbox-item>
+						<flexbox-item :span="2/4" style="color:#4bb7aa">例题内容</flexbox-item>
+                        <flexbox-item :span="1/4" style="text-align:right;">
+                            <!--<span><i class="icon iconfont icon-collect"></i>收藏</span>-->
+                            <span style="color:orange"><i class="icon iconfont icon-collect"></i>已收藏</span>
+                        </flexbox-item>
+                        <flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct" ><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
 					</flexbox>				
 				</div>
 				<!--题目整体--> 
@@ -44,11 +49,8 @@
 			<div class="weui_panel weui_panel_access exerciseDetail">
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析</flexbox-item>
+						<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析：</flexbox-item>
 						<flexbox-item :span="1/5"></flexbox-item>
-						<flexbox-item :span="2/5" style="text-align:right">
-						 	<x-button mini type="primary" plain @click="_correct">点我纠错</x-button>
-						</flexbox-item>
 					</flexbox>				
 				</div> 
 				<!--解析主体--> 
@@ -68,24 +70,41 @@
 				</div>
 			</div>
 		</div>
+
+        <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
+            <flexbox :gutter="0" wrap="wrap">
+                <flexbox-item :span="1/3">
+                    <x-button mini type="primary"  @click="_typeList">查看错题</x-button>
+                </flexbox-item>
+                <flexbox-item :span="1/3">
+                    <x-button mini type="primary"  @click="_more">更多例题</x-button>
+                </flexbox-item>
+                <flexbox-item :span="1/3">
+                    <x-button mini type="primary"  @click="_recommend">推荐练习</x-button>
+                </flexbox-item>
+            </flexbox>		
+        </tabbar>
+
 	</view-box>
-	<confirm :show.sync="show" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="onAction('是')" @on-cancel="onAction('否')"></confirm>
 </template>
 
 <script>
-import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
-// import './collect.less'
+import {Tabbar, TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
+import './error.less'
 
 export default {
 	components: {
-		XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox
+		Tabbar, TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox
 	},
 	methods: {
-		_remove(){
-			 this.show = true
+		_typeList(){
+			 this.$router.go('/error/list')
 		},
-		_correct(){
-			this.$router.go('/collect/correct')
+		_more(){
+			this.$router.go('/error/more')
+		},
+		_recommend(){
+			this.$router.go('/error/recommend')
 		},
 		onAction:(type)=>{
 			alert(type);
