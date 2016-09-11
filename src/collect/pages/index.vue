@@ -77,7 +77,7 @@
 
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox} from 'vux'
- import './collect.less'
+import './collect.less'
 
 export default {
     components: {
