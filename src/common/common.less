@@ -11,7 +11,9 @@ html,body{
     height:100%;
 }
 @import '../assets/iconfont.css';
-
+.iconfont{
+    position: relative;
+}
 .weui_tabbar_item{
     background:#fff;
 }
@@ -85,6 +87,11 @@ html,body{
         color: #000;
         font-size: 0.7rem;
         Button{margin-right:.75em;}
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
     }
     .weui_panel_ft{
         padding:5/20rem 15/20rem;
@@ -108,6 +115,11 @@ html,body{
         color:#000;
         font-size:15/20rem;
         Button{margin-right:.75/20rem;}
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
     }
    .options{
        .weui_media_desc{

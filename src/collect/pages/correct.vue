@@ -7,15 +7,16 @@
             <group title="纠错类型">
                 <checker style="padding:.25rem .75rem 1rem;"
                     :value.sync="select"
-                    :max="4"
+                    :max="5"
                     type="checkbox"
                     default-item-class="select-item"
                     selected-item-class="select-item-selected"
-                    >
+                >
                         <checker-item :value="0">答案错误</checker-item>
                         <checker-item :value="1">解析不全</checker-item>
                         <checker-item :value="2">题目超纲</checker-item>
                         <checker-item :value="3">题型太老</checker-item>
+                        <checker-item :value="4">其它</checker-item>
                 </checker>
             </group>
             <group title="纠错内容">

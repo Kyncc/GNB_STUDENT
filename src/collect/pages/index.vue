@@ -1,13 +1,16 @@
 <template>
     <view-box v-ref:view-box class="collect">
-        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
+        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">收藏本</x-header>
         </div>
 	
 		
        <div style="padding-top:46px;">
             <div class="weui_panel weui_panel_access exerciseExampleList">
-                 <div class="weui_panel_hd"><x-button type='primary' mini>收藏题</x-button>2.5 函数零点判定原理</div> 
+                 <div class="weui_panel_hd">
+                     <x-button type='primary' mini>收藏题</x-button>
+                     2.5 函数零点判定原理
+                 </div> 
                  <div class="weui_panel_bd"> 
                     <a class="weui_media_box weui_media_appmsg" href="#!/collect/detail">  
                         <div class="weui_media_bd"> 

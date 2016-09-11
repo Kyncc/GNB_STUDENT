@@ -2,7 +2,7 @@
 	<view-box v-ref:view-box class="collectDetail">
 
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
-			<x-header :left-options="{showBack: true}">我的收藏<a slot="right" v-touch:tap="_remove">移除本题</a></x-header>
+			<x-header :left-options="{showBack: true}">我的收藏</x-header>
 		</div>
 
 		<div style="padding-top:46px;">
@@ -10,8 +10,14 @@
 			<div class="weui_panel weui_panel_access exerciseDetail">
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="3/5" style="color:#4bb7aa">收藏题1</flexbox-item>
-					</flexbox>				
+						<flexbox-item :span="1/2" style="color:#4bb7aa">收藏题</flexbox-item>
+                        <flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct" >
+							<span style="color:orange"><i class="icon iconfont icon-error-login"></i>纠错</span>
+						</flexbox-item>
+						 <flexbox-item :span="1/4" style="text-align:right;" v-touch:tap="_remove">
+                            <span style="color:green"><i class="icon iconfont icon-clear"></i>移除</span>
+                        </flexbox-item>
+					</flexbox>		
 				</div>
 				<!--题目整体--> 
 				<div class="weui_panel_bd"> 
@@ -45,10 +51,6 @@
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
 						<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析</flexbox-item>
-						<flexbox-item :span="1/5"></flexbox-item>
-						<flexbox-item :span="2/5" style="text-align:right">
-						 	<x-button mini type="primary" plain @click="_correct">点我纠错</x-button>
-						</flexbox-item>
 					</flexbox>				
 				</div> 
 				<!--解析主体--> 
@@ -93,7 +95,7 @@ export default {
 	},
 	data(){
 		return{
-			 ashow: false
+			 show: false
 		} 
 	}
 }
