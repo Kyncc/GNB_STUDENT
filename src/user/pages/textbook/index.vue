@@ -1,5 +1,5 @@
 <template>
-<div class='textbook'>
+<view-box v-ref:view-box class='textbook'>
   <x-header :left-options="{showBack: true}">我的教材</x-header>
   <div class="swipewrap">
     <div class="topswipe">
@@ -20,7 +20,7 @@
       {{book.name}}
     </div>
   </scroller>
-</div>
+</view-box>
 </template>
 
 <script>
@@ -31,7 +31,8 @@ import {
   Selector,
   Flexbox,
   FlexboxItem,
-  Scroller
+  Scroller,
+  ViewBox
 } from 'vux'
 
 export default {
@@ -105,7 +106,8 @@ export default {
     Selector,
     Flexbox,
     FlexboxItem,
-    Scroller
+    Scroller,
+    ViewBox
   },
   methods: {
     load(uuid) {

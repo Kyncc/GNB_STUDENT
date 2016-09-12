@@ -2,23 +2,20 @@
     <div class='info'>
         <x-header :left-options="{showBack: true}">个人资料 <a slot="right" v-touch:tap="_complete">完成</a></x-header>
         <group>
-            <group>
+
                 <x-input title="姓名" name="username" placeholder="请输入姓名" is-type="china-name"></x-input>
-            </group>
-            <group>
+
                 <cell title="性别">
                     <checker :value.sync="sex" default-item-class="demo2-item" selected-item-class="demo2-item-selected">
                         <checker-item value="1">男</checker-item>
                         <checker-item value="2">女</checker-item>
                     </checker>
                 </cell>
-            </group>
-            <group>
+
                 <x-input title="年级" name="grade" value="高中" readonly></x-input>
-            </group>
-            <group>
+
                 <x-input title="学校" name="school" placeholder="请输入学校名称" ></x-input>
-            </group>
+        
         </group>
     </div>
 </template>

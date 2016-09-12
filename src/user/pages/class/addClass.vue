@@ -1,5 +1,5 @@
 <template>
-<div class='class'>
+<view-box v-ref:view-box class='class'>
   <x-header :left-options="{showBack: true}">添加班级</x-header>
   <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
 
@@ -12,7 +12,7 @@
       </cell>
     </group>
   </scroller>
-</div>
+</view-box >
 </template>
 
 <script>
@@ -26,7 +26,8 @@ import {
   Flexbox,
   FlexboxItem,
   Scroller,
-  Search
+  Search,
+  ViewBox
 }
 from 'vux'
 export default {
@@ -39,7 +40,8 @@ export default {
     Flexbox,
     FlexboxItem,
     Scroller,
-    Search
+    Search,
+    ViewBox
   },
   methods: {
     load(uuid) {
