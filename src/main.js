@@ -94,8 +94,8 @@ router.map({
  'error/recommend':{component: errorRecommend},
   //收藏本
   'collect': { component: collect },
-  'collect/detail': { component: collectDetail },
-  'collect/correct': { component: collectCorrect },
+  'collect/detail/:id': { component: collectDetail },
+  'collect/correct/:id': { component: collectCorrect },
   //消息
   'message/class': { component: messageClass },
   'message/homework': { component: messageHomework },

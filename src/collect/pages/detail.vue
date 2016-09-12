@@ -24,30 +24,19 @@
 					<!--题目-->
 					<div class="weui_media_bd weui_media_box "> 
 						<p class="weui_media_desc">
-							小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．<br/> 
-							（1）用数轴表示A，B，C，D的位置；<br/>
-							（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？<br/>
+							{{{* detail.content }}}
 						</p>
 					</div> 
 					<!--选项-->
-					<div class="weui_media_bd weui_media_box options">
-						<p class="weui_media_desc"> 
-								A.(-4.2)
-						</p>
-						<p class="weui_media_desc"> 
-								B.(-4.2)
-						</p>
-						<p class="weui_media_desc"> 
-								C.(-4.2)
-						</p>
-						<p class="weui_media_desc"> 
-								D.(-4.2)
+					<div class="weui_media_bd weui_media_box options"  v-bind:class="{'none': detail.pic != '' ? true:false}">
+						<p class="weui_media_desc" v-for="value in detail.tabs"> 
+							{{ $key }} : {{{* value }}}
 						</p>
 					</div>  
 				</div>
 			</div>
 			<!--解析--> 
-			<div class="weui_panel weui_panel_access exerciseDetail">
+			<div class="weui_panel weui_panel_access exerciseDetail"  v-bind:class="{'none': detail.pic != '' ? true:false}">
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
 						<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析</flexbox-item>
@@ -57,26 +46,40 @@
 				<div class="weui_panel_bd"> 
 					<div class="weui_media_bd weui_media_box "> 
 						<p class="weui_media_desc">
-							小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．<br/> 
-							（1）用数轴表示A，B，C，D的位置；<br/>
-							（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？<br/>
-							（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？<br/>
-							（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？<br/>
-							（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？<br/>
-							（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？<br/>
-							（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？<br/>
+							{{{* detail.answer }}}
 						</p>
 					</div> 
 				</div>
 			</div>
 		</div>
 	</view-box>
-	<confirm :show.sync="show" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="onAction('是')" @on-cancel="onAction('否')"></confirm>
+	<confirm :show.sync="show" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="_onAction('是')" @on-cancel="_onAction('否')"></confirm>
 </template>
 
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 // import './collect.less'
+
+const DATA = {
+    "code": 1,
+    "data":{
+            "content": "小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>",
+            "difficult": 3,
+            "id": 83783,
+            "isCollect": 1,
+            "knowledge": "2.5 函数零点判定原理 ",
+            "pic": "",
+            "time": "1473682257",
+			"tabs":{
+				 A: '(-4.2)',
+				 B: '(-4.2)',
+				 C: '(-4.2)',
+				 D: '(-4.2)'
+			},
+			"answer":"小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>"
+	},
+    "msg": 1
+}
 
 export default {
 	components: {
@@ -84,18 +87,21 @@ export default {
 	},
 	methods: {
 		_remove(){
-			 this.show = true
+			console.log(this.id);
+			this.show = true
 		},
 		_correct(){
-			this.$router.go('/collect/correct')
+			this.$router.go('/collect/correct/'+this.id);
 		},
-		onAction:(type)=>{
+		_onAction:(type)=>{
 			alert(type);
 		}
 	},
 	data(){
 		return{
-			 show: false
+			 show: false,
+			 id:DATA.data.id,
+			 detail:DATA.data
 		} 
 	}
 }
