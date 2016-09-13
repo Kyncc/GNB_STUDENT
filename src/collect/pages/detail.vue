@@ -28,29 +28,35 @@
 						</p>
 					</div> 
 					<!--选项-->
-					<div class="weui_media_bd weui_media_box options"  v-bind:class="{'none': detail.pic != '' ? true:false}">
-						<p class="weui_media_desc" v-for="value in detail.tabs"> 
-							{{ $key }} : {{{* value }}}
-						</p>
-					</div>  
+					<template v-if="detail.pic != '' ? false:true">
+						<div class="weui_media_bd weui_media_box options">
+							<p class="weui_media_desc" v-for="value in detail.tabs"> 
+								{{ $key }} : {{{* value }}}
+							</p>
+						</div>
+					</template>
+
 				</div>
 			</div>
 			<!--解析--> 
-			<div class="weui_panel weui_panel_access exerciseDetail"  v-bind:class="{'none': detail.pic != '' ? true:false}">
-				<div class="weui_panel_hd">
-					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析</flexbox-item>
-					</flexbox>				
-				</div> 
-				<!--解析主体--> 
-				<div class="weui_panel_bd"> 
-					<div class="weui_media_bd weui_media_box "> 
-						<p class="weui_media_desc">
-							{{{* detail.answer }}}
-						</p>
+			<template v-if="detail.pic != '' ? false:true">
+				<div class="weui_panel weui_panel_access exerciseDetail">
+					<div class="weui_panel_hd">
+						<flexbox :gutter="0" wrap="wrap">
+							<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析</flexbox-item>
+						</flexbox>				
 					</div> 
+					<!--解析主体--> 
+					<div class="weui_panel_bd"> 
+						<div class="weui_media_bd weui_media_box "> 
+							<p class="weui_media_desc">
+								{{{* detail.answer }}}
+							</p>
+						</div> 
+					</div>
 				</div>
-			</div>
+			</template>
+
 		</div>
 	</view-box>
 	<confirm :show.sync="show" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="_onAction('是')" @on-cancel="_onAction('否')"></confirm>

@@ -55,10 +55,16 @@ import userClassAdd from './user/pages/class/addClass'
 //我的教材
 import userTextbook from './user/pages/textbook/index'
 
+import moment from 'moment'
 
 Vue.use(Router)
 Vue.use(VueTouch)
 Vue.config.devtools = true
+
+Vue.filter('ymd', function (value) {
+  return moment.unix(value).format('YYYY-MM-DD');
+});
+
 
 const router = new Router()
 router.map({
