@@ -11,7 +11,9 @@
  4. [Vue.js推荐的打包编译环境-VueLoader][4]
  5. [Vue.js手机组件库-Vux][5]
  6. [Vue.js单项数据流-Vuex][6]
- 7. [加触摸手势指令-VueTouch][7]
+ 7. [VueRouter和Vuex流同步-Vuex-router-sync][7]
+ 8. [Vue.js触摸手势组件-VueTouch][8]
+ 9. [时间格式化-Moment.js][9]
 
 ## 文件夹结构
 
@@ -55,4 +57,6 @@
   [4]: http://vue-loader.vuejs.org/en/index.html
   [5]: https://vuxjs.gitbooks.io/vux/content/about/component-standard.html
   [6]: http://vuex.vuejs.org/zh-cn/index.html
-  [7]: https://github.com/vuejs/vue-touch
+  [7]: https://github.com/vuejs/vuex-router-sync
+  [8]: https://github.com/vuejs/vue-touch
+  [9]: http://momentjs.cn/

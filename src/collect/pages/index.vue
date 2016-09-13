@@ -15,6 +15,7 @@
                     <a class="weui_media_box weui_media_appmsg" href="#!/collect/detail/{{item.id}}">  
                         <div class="weui_media_bd"> 
                             <p class="weui_media_desc">
+                                <!--拍错题和普通题目收藏的判断-->
                                 <template v-if="item.pic != '' ? false:true">
                                     {{{item.content}}}
                                  </template>
@@ -24,7 +25,6 @@
                             </p> 
                         </div> 
                     </a>
-                    
                     <div class="weui_panel_ft" >
                         <flexbox :gutter="0" wrap="wrap">
                             <flexbox-item :span="1/2">收藏时间：{{item.time | ymd}}</flexbox-item>
@@ -34,7 +34,6 @@
                             </template>
                         </flexbox>
                     </div>
-                    
                 </div>  
             </div>
         </div>
@@ -44,10 +43,7 @@
 
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox} from 'vux'
-
-
 import './collect.less'
-
 
 const DATA = {
     "code": 1,
@@ -79,7 +75,6 @@ const DATA = {
     ],
     "msg": 1
 }
-
 
 
 export default {
