@@ -43,9 +43,9 @@ export default {
   },
   data(){
     return{
-      disable: true,
-      mobile:'',
-      password:''
+      disable: false,
+      mobile:'18949554415',
+      password:'112233'
     }
   },
   methods:{

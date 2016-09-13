@@ -1,5 +1,5 @@
 <template>
-<div class='user vux-scroller-header-box'>
+<view-box v-ref:view-box class='user vux-scroller-header-box'>
   <div style="height:46px;">
     <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">个人中心<a slot="right" v-touch:tap="_quit">退出</a></x-header>
   </div>
@@ -16,9 +16,9 @@
         <cell title="个人资料" link="../user/info/">
           <span class="icon icon-info" slot="icon"></span>
         </cell>
-        <cell title="我的教材" link="../user/textBook/">
+        <!-- <cell title="我的教材" link="../user/textBook/">
           <span class="icon icon-textbook" slot="icon"></span>
-        </cell>
+        </cell> -->
         <cell title="我的班级" link="../user/class/">
           <span class="icon icon-class" slot="icon"></span>
         </cell>
@@ -38,15 +38,17 @@
     </div>
   </scroller>
   <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
-</div>
-<confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
+  <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
+  <input id="camera" v-show="false" type="file" capture="camera" accept="image/*"/>
+  <input id="file" v-show="false" type="file" accept="image/*"/>
+</view-box>
 </template>
 
 <script>
-import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet} from 'vux'
+import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 export default {
   components: {
-    XHeader,Cell,Group,Confirm,Scroller,Actionsheet
+    XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox
   },
   methods: {
     onAction: function (type) {
@@ -60,9 +62,9 @@ export default {
     },
     _uploadclick (key) {
        if(key == 'menu1'){
-           alert('拍照')
+           document.getElementById('camera').click()
        }else if(key == 'menu2'){
-           alert('从相册选择')
+           document.getElementById('file').click()
        }
      }
   },
