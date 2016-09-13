@@ -21,6 +21,7 @@ import errorDetail from './error/pages/detail'
 import errorCorrect from './error/pages/correct'
 import errorMore from './error/pages/more'
 import errorRecommend from './error/pages/recommend'
+import errorComment from './error/pages/comment'
 //收藏本
 import collect from './collect/pages/index'
 import collectDetail from './collect/pages/detail'
@@ -95,9 +96,10 @@ router.map({
 
   //归纳本
  'error/detail':{component: errorDetail},
- 'error/correct':{component: errorCorrect},
  'error/more':{component: errorMore},
- 'error/recommend':{component: errorRecommend},
+ 'error/recommend/:id':{component: errorRecommend},
+ 'error/correct/:id':{component: errorCorrect},
+ 'error/comment/:id':{component: errorComment},
   //收藏本
   'collect': { component: collect },
   'collect/detail/:id': { component: collectDetail },

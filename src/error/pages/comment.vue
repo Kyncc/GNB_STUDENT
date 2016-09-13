@@ -1,28 +1,31 @@
 <template>
-	<div class='correctDetail vux-scroller-header-box'>
+	<div class='commentDetail vux-scroller-header-box'>
 		<div style="height:46px;">
-			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">我要纠错
+			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">点评
                 <a slot="right" v-touch:tap="_commit">提交</a>
             </x-header>
 		</div>
         <div>
             <group title="纠错类型">
-                <checker style="padding:.25rem .75rem 1rem;"
+                <checker style="padding:.25rem .85rem 1rem;"
                     :value.sync="select"
                     :max="5"
                     type="checkbox"
                     default-item-class="select-item"
                     selected-item-class="select-item-selected"
                 >
-                        <checker-item :value="0">答案错误</checker-item>
-                        <checker-item :value="1">解析不全</checker-item>
-                        <checker-item :value="2">题目超纲</checker-item>
-                        <checker-item :value="3">题型太老</checker-item>
-                        <checker-item :value="4">其它</checker-item>
+                        <checker-item :value="0">粗心</checker-item>
+                        <checker-item :value="1">概念不清</checker-item>
+                        <checker-item :value="2">审题错误</checker-item>
+                        <checker-item :value="3">记忆错误</checker-item>
+                        <checker-item :value="4">理解错误</checker-item>
+                        <checker-item :value="5">计算错误</checker-item>
+                        <checker-item :value="6">不会做</checker-item>
+                        <checker-item :value="7">其他</checker-item>
                 </checker>
             </group>
-            <group title="纠错内容">
-                <x-textarea :max="200" :rows="6"  placeholder="请简单描述纠错内容"></x-textarea>
+            <group title="点评一下">
+                <x-textarea :max="200" :rows="6"  placeholder="请简单描述点评内容"></x-textarea>
             </group>
         </div>
 

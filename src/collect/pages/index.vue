@@ -43,7 +43,6 @@
 
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox} from 'vux'
-import './collect.less'
 
 const DATA = {
     "code": 1,
