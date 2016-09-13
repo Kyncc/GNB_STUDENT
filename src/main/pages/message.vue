@@ -1,5 +1,5 @@
 <template>
-  <div class='mainMessage vux-scroller-header-box'>
+  <view-box v-ref:view-box  class='mainMessage vux-scroller-header-box'>
     <div style="height:46px;">
       <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">消息</x-header>
     </div>
@@ -9,13 +9,13 @@
           <div slot="value">2016.02.15</div>
           <div class="vux-reddot" slot="icon" style="margin-right:.5em;" >
             <img width="40" class="vux-reddot" style="margin-right:.5em;" src="../../assets/message/homework.png">
-          </div> 
+          </div>
 				</cell>-->
         <cell title="班级消息" link="../message/class" inline-desc='这是张老师布置的一道作业' >
           <div slot="value">2016.02.15</div>
           <div class="vux-reddot" slot="icon" style="margin-right:.5em;" >
             <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/class.png">
-          </div> 
+          </div>
 				</cell>
         <cell title="纠错消息" link="../message/correct" inline-desc='这是张老师布置的一道作业' >
            <div slot="value">2016.02.15</div>
@@ -37,18 +37,18 @@
 				</cell>
 			</group>
     </scroller>
-  </div>   
+</view-box>   
 </template>
 
 <script>
-  
+
 import Vue from 'vue'
 import Router from 'vue-router'
-import {XHeader,Group,Scroller,Cell} from 'vux'
+import {XHeader,Group,Scroller,Cell,ViewBox} from 'vux'
 
 export default {
   components: {
-    XHeader,Scroller,Group,Cell
+    XHeader,Scroller,Group,Cell,ViewBox
   },
   methods: {
 		_refersh(){
@@ -62,6 +62,3 @@ export default {
 	}
 }
 </script>
-
-
-

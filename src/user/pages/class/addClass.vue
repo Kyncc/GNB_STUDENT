@@ -1,8 +1,7 @@
 <template>
-<view-box v-ref:view-box class='class'>
+<view-box v-ref:view-box class='myClass'>
   <x-header :left-options="{showBack: true}">添加班级</x-header>
   <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
-
     <group>
         <cell title="数学一班" >
            <x-button type="primary" :mini="true">添加</x-button>
