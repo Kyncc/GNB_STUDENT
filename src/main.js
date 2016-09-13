@@ -17,6 +17,7 @@ import User from './main/pages/user'
 import Message from './main/pages/message'
 import Index from './main/pages/index'
 //归纳本
+import error from './error/pages/index'
 import errorDetail from './error/pages/detail'
 import errorCorrect from './error/pages/correct'
 import errorMore from './error/pages/more'
@@ -95,9 +96,10 @@ router.map({
   //拍错题
 
   //归纳本
- 'error/detail':{component: errorDetail},
- 'error/more':{component: errorMore},
- 'error/recommend/:id':{component: errorRecommend},
+ 'error':{component: error},
+ 'error/detail/:id':{component: errorDetail},
+ 'error/more/:knowledgeId':{component: errorMore},
+ 'error/recommend/:knowledgeId':{component: errorRecommend},
  'error/correct/:id':{component: errorCorrect},
  'error/comment/:id':{component: errorComment},
   //收藏本

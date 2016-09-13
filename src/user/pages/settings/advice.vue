@@ -12,6 +12,7 @@
 </template>
 
 <script>
+	
 import {XHeader,XInput,Group,XTextarea,XButton} from 'vux'
 
 export default {
