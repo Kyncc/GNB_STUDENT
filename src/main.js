@@ -18,6 +18,7 @@ import Message from './main/pages/message'
 import Index from './main/pages/index'
 //归纳本
 import error from './error/pages/index'
+import errorList from './error/pages/list'
 import errorDetail from './error/pages/detail'
 import errorCorrect from './error/pages/correct'
 import errorMore from './error/pages/more'
@@ -98,6 +99,7 @@ router.map({
   //归纳本
  'error':{component: error},
  'error/detail/:id':{component: errorDetail},
+ 'error/list/:knowledgeId':{component: errorList},
  'error/more/:knowledgeId':{component: errorMore},
  'error/recommend/:knowledgeId':{component: errorRecommend},
  'error/correct/:id':{component: errorCorrect},

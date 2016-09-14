@@ -61,7 +61,7 @@
         <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
             <flexbox :gutter="0" wrap="wrap">
                 <flexbox-item :span="1/3">
-                    <x-button mini type="primary"  @click="_typeList">查看错题</x-button>
+                    <x-button mini type="primary"  @click="_errorList">错题列表</x-button>
                 </flexbox-item>
                 <flexbox-item :span="1/3">
                     <x-button mini type="primary"  @click="_more">更多例题</x-button>
@@ -108,7 +108,7 @@ export default {
 		Tabbar, TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox
 	},
 	methods: {
-		_typeList(){
+		_errorList(){
 			 this.$router.go('/error/list/'+this.detail.knowledgeId)
 		},
 		_more(){
