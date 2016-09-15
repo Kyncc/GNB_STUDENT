@@ -100,7 +100,7 @@ router.map({
  'error':{component: error},
  'error/detail/:id':{component: errorDetail},
  'error/list/:knowledgeId':{component: errorList},
- 'error/more/:knowledgeId':{component: errorMore},
+ 'error/more/:knowledgeId/:Id':{component: errorMore},
  'error/recommend/:knowledgeId':{component: errorRecommend},
  'error/correct/:id':{component: errorCorrect},
  'error/comment/:id':{component: errorComment},
@@ -140,7 +140,8 @@ router.map({
 })
 
 router.redirect({
-  '/main/': '/main/index'
+  '/main/': '/main/index',
+  '/error/more/:knowledgeId/':'/error/more/:knowledgeId/:Id'
 });
 
 sync(store, router)
