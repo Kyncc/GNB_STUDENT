@@ -13,10 +13,12 @@ export const API_VERSION = `${version}`;
 
 // api path map
 export const API_PATHS = {
-    //短信
-    getCode:`${API_ENV}/common/getCode`,
-    //登陆
-    login:`${API_ENV}${API_VERSION}/student/login`,
-    addPwd:`${API_ENV}${API_VERSION}/student/pwd/add`,
-    resetPwd:`${API_ENV}${API_VERSION}/student/pwd/resetByMobile`
+  //短信
+  getCode: `${API_ENV}/common/getCode`,
+  //登陆
+  login: `${API_ENV}${API_VERSION}/student/login`,
+  addPwd: `${API_ENV}${API_VERSION}/student/pwd/add`,
+  resetPwd: `${API_ENV}${API_VERSION}/student/pwd/resetByMobile`,
+  //获取用户信息
+  getUserInfo: `${API_ENV}${API_VERSION}/student/user/getUserInfo`,
 }

@@ -39,17 +39,18 @@
   </scroller>
   <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
-  <input id="camera" v-show="false" type="file" capture="camera" accept="image/*"/>
-  <input id="file" v-show="false" type="file" accept="image/*"/>
+  <input id="camera" v-show="false" type="file" capture="camera" accept="image/*" />
+  <input id="file" v-show="false" type="file" accept="image/*" />
 </view-box>
 </template>
 
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
+
 export default {
   components: {
     XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox
-  },
+  }, 
   methods: {
     onAction: function (type) {
       alert(type)
