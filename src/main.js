@@ -16,6 +16,10 @@ import Main from './main/common/main'
 import User from './main/pages/user'
 import Message from './main/pages/message'
 import Index from './main/pages/index'
+//拍错题
+import camera from './camera/pages/index'
+import cameraHistory from './camera/pages/history'
+import cameraCorrect from './camera/pages/correct'
 //归纳本
 import error from './error/pages/index'
 import errorList from './error/pages/list'
@@ -95,7 +99,9 @@ router.map({
     }
   },
   //拍错题
-
+ 'camera':{component: camera},
+ 'camera/history':{component: cameraHistory},
+ 'camera/correct/:id':{component: cameraCorrect},
   //归纳本
  'error':{component: error},
  'error/detail/:id':{component: errorDetail},

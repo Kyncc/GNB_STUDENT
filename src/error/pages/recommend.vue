@@ -182,7 +182,7 @@ export default {
 	ready(){
 		let time = 10;
         let _this = this;
-        let timeDown = setInterval(function(){
+        let timeDown = setInterval(()=>{
 			time--;
 			_this.answerText = time;
             if(time == '0') {
