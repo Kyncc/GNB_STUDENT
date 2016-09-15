@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     _rull() {
-      alert(1);
+      this.$router.go('myBill')
     },
     onChange() {
 
