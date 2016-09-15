@@ -16,9 +16,9 @@
 						<flexbox :gutter="0" wrap="wrap">
 							<flexbox-item :span="2/4" style="color:#4bb7aa">{{index}}/{{count}}</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right;">
-								<template v-if="item.isCollect == 1 ? true:false">
+								<!--<template v-if="item.isCollect == 1 ? true:false">
 									<span style="color:orange"><i class="icon iconfont icon-collect"></i>已收藏</span>
-								</template>
+								</template>-->
 								<template v-else>
 									<span><i class="icon iconfont icon-collect"></i>收藏</span>
 								</template>

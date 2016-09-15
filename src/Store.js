@@ -6,7 +6,7 @@ import login from './login/modules/login'
 import setPassword from './login/modules/setPassword'
 import forget from './login/modules/forget'
 import resetPassword from './login/modules/resetPassword'
-import info from './main/modules/info'
+//import info from './main/modules/info'
 
 
 Vue.use(Vuex)
@@ -18,6 +18,6 @@ export default new Vuex.Store({
     setPassword,
     forget,
     resetPassword,
-    info
+    //info
   }
 })
