@@ -25,7 +25,6 @@
 import { Tabbar, TabbarItem,ViewBox } from 'vux'
 import store from '../../store' 
 
-
 export default {
   components: {
     Tabbar,

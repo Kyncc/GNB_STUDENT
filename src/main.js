@@ -31,8 +31,10 @@ import errorMore from './error/pages/more'
 import errorRecommend from './error/pages/recommend'
 import errorComment from './error/pages/comment'
 //收藏本
-import collect from './collect/pages/index'
-import collectDetail from './collect/pages/detail'
+import collectExample from './collect/pages/example'
+import collectCamera from './collect/pages/camera'
+import collectExampleDetail from './collect/pages/exampleDetail'
+import collectCameraDetail from './collect/pages/cameraDetail'
 import collectCorrect from './collect/pages/correct'
 //通知
 import messageClass from './message/pages/class'
@@ -116,8 +118,10 @@ router.map({
   'error/correct/:id': { component: errorCorrect },
   'error/comment/:id': { component: errorComment },
   //收藏本
-  'collect': { component: collect },
-  'collect/detail/:id': { component: collectDetail },
+  'collect/example': { component: collectExample },
+  'collect/camera': { component: collectCamera },
+  'collect/camera/detail/:id': { component: collectCameraDetail },
+  'collect/example/detail/:id': { component: collectExampleDetail },
   'collect/correct/:id': { component: collectCorrect },
   //消息
   'message/class': { component: messageClass },
@@ -153,6 +157,7 @@ router.map({
 
 router.redirect({
   '/main/': '/main/index',
+  '/collect/': '/collect/example',
   '/error/more/:knowledgeId/': '/error/more/:knowledgeId/:Id'
 });
 
