@@ -1,7 +1,7 @@
 <template>
 <view-box v-ref:view-box class='my-bill'>
   <x-header :left-options="{showBack: true}">我的账单</x-header>
-  <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
+
     <div class="bill-item">
       <flexbox>
         <flexbox-item>
@@ -34,7 +34,7 @@
         </flexbox-item>
       </flexbox>
     </div>
-  </scroller>
+
 </view-box>
 </template>
 
@@ -46,7 +46,6 @@ import {
   Alert,
   Flexbox,
   FlexboxItem,
-  Scroller,
   Search,
   ViewBox
 }
@@ -59,16 +58,10 @@ export default {
     Alert,
     Flexbox,
     FlexboxItem,
-    Scroller,
     Search,
     ViewBox
   },
   methods: {
-    load(uuid) {
-      setTimeout(() => {
-        this.$broadcast('pulldown:reset', uuid)
-      }, 1000)
-    },
     _points() {
       this.$router.go('points')
     },

@@ -2,7 +2,7 @@
   <div class='settings'>
       <x-header :left-options="{showBack: true}">设置</x-header>
       <group>
-          <cell title="清除缓存" link="javascript:;" v-touch:tap="_clear">
+          <cell title="清除缓存" v-touch:tap="_clear">
               <span class="demo-icon" slot="icon"></span>
           </cell>
           <cell title="检查更新" value="当前版本号:V1.0.0" link="javascript:;">

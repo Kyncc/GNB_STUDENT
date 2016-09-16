@@ -1,11 +1,10 @@
 <template>
 <view-box v-ref:view-box class='myClass'>
   <x-header :left-options="{showBack: true}">我的班级</x-header>
-  <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
     <group>
         <flexbox>
             <flexbox-item :span="17/20">
-                <search placeholder="Search" :auto-fixed="false"></search>
+                <search placeholder="请输入班级编号" :auto-fixed="false"></search>
             </flexbox-item>
             <flexbox-item style="background:#efeff4;" :span="3/20">
                 <div class="btn-wrap" style="">
@@ -19,7 +18,7 @@
            <span class="demo-icon" slot="icon"></span>
        </cell>
     </group>
-  </scroller>
+
 </view-box>
 </template>
 
@@ -32,7 +31,6 @@ import {
   Alert,
   Flexbox,
   FlexboxItem,
-  Scroller,
   Search,
   ViewBox
 }
@@ -45,16 +43,10 @@ export default {
     Alert,
     Flexbox,
     FlexboxItem,
-    Scroller,
     Search,
     ViewBox
   },
   methods: {
-    load(uuid) {
-      setTimeout(() => {
-        this.$broadcast('pulldown:reset', uuid)
-      }, 1000)
-    },
     _search(){
         this.$router.go('addClass')
     },
