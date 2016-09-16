@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1473594920'); /* IE9*/
-  src: url('iconfont.eot?t=1473594920#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1473594920') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1473594920') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1473594920#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1474006879'); /* IE9*/
+  src: url('iconfont.eot?t=1474006879#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1474006879') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1474006879') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1474006879#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -19,5 +19,6 @@
 .icon-home:before { content: "\e601"; }
 .icon-31wode:before { content: "\e602"; }
 .icon-clear:before { content: "\e605"; }
+.icon-camera:before { content: "\e606"; }
 .icon-error-login:before { content: "\e603"; }
 .icon-collect:before { content: "\e604"; }

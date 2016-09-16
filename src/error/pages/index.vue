@@ -2,12 +2,16 @@
     <view-box v-ref:view-box class="collect">
 
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">归纳本</x-header>
-            <button-tab style="padding:10px 0;background:#edf2f1;">
-                <button-tab-item selected >一周内</button-tab-item>
-                <button-tab-item >一月内</button-tab-item>
-                <button-tab-item>全部</button-tab-item>
-            </button-tab>
+           <x-header :left-options="{showBack: true}">归纳本</x-header>
+           <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
+                <flexbox-item :span="3/4">
+                    <button-tab >
+                    <button-tab-item selected >一周内</button-tab-item>
+                    <button-tab-item >一月内</button-tab-item>
+                    <button-tab-item>全部</button-tab-item>
+                </flexbox-item>
+            </flexbox>
+            </div>
         </div>
 
         <div style="margin-top:98px;">

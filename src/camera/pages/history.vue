@@ -4,44 +4,71 @@
             <x-header :left-options="{showBack: true}">拍题记录</x-header>
         </div>
 
-        <div style="margin-top:46px;">
-
+        <div style="margin-top:46px;" class="main">
+            <flexbox class="list" v-for="item in list">
+                <flexbox-item :span="2/5">
+                    <img class="previewer-demo-img" src="https://placekitten.com/250/180"  @click="$refs.previewer.show($index)">
+                </flexbox-item>
+                <flexbox-item :span="3/5" style="position:relative" ">
+                     <div v-touch:tap="_record(item.knowledgeId)">
+                        <div class="title">{{{item.knowledge}}}</div>
+                        <div class="difficult">
+                            难度：
+                            <template v-for="1 in item.difficult">
+                                <i class="icon iconfont icon-collect"></i>
+                            </template>
+                        </div>
+                        <div class="time">{{{item.cameraTime | ymd}}} </div>
+                     </div>
+                     <i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id)"></i>
+                </flexbox-item>
+            <flexbox>
         </div>
+
+
 	</view-box>
+    <previewer :list="imgList" v-ref:previewer :options="options"></previewer>
+    <confirm :show.sync="clearShow" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="_onAction('是')" @on-cancel="_onAction('否')"></confirm>
 </template>
 
 <script>
-import {XHeader,Panel,ViewBox} from 'vux'
+import {XHeader,Panel,ViewBox,FlexboxItem,Flexbox,Previewer,Confirm} from 'vux'
 
 const DATA = {
     "code": 1,
     "data":[
         {
-            "content": "小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>",
+            "collectTime":"1473682257",
             "difficult": 3,
-            "id": 83783,
             "knowledge": "2.5 函数零点判定原理 ",
             "knowledgeId": 31,
-            "time": "1473682257",
-            "errorCount":3
+            "cameraTime": "1473682257",
+            "id":1,
+            "src":"https://placekitten.com/1400/1200",
+            "width":1400,
+            "height":1200
 	    },
         {
-            "content": "小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>",
+            "collectTime":"1473682257",
             "difficult": 3,
-            "id": 83783,
             "knowledge": "2.5 函数零点判定原理 ",
-            "knowledgeId": 31,
-            "time": "1473682257",
-            "errorCount":3
+            "knowledgeId": 12,
+            "cameraTime": "1473682257",
+            "id":1,
+            "src":"https://placekitten.com/1400/1200",
+            "width":1400,
+            "height":1200
 	    },
         {
-             "content": "小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>",
-            "difficult": 3,
-            "id": 83783,
+            "collectTime":"1473682257",
+            "difficult": 2,
             "knowledge": "2.5 函数零点判定原理 ",
-            "knowledgeId": 31,
-            "time": "1473682257",
-            "errorCount":3
+            "knowledgeId": 12,
+            "cameraTime": "1473682257",
+            "id":1,
+            "src":"https://placekitten.com/1400/1200",
+            "width":1400,
+            "height":1200
 	    }
     ],
     "msg": 1
@@ -50,14 +77,34 @@ const DATA = {
 
 export default {
     components: {
-       XHeader,Panel,ViewBox
+       XHeader,Panel,ViewBox,Flexbox,FlexboxItem,Previewer,Confirm
+    
     },
     methods: {
-        
+        _remove(id){
+			this.clearShow = true;
+		},
+        _record(id){
+            this.$router.go(`/camera/record/${id}`);
+		},
     },
     data(){
         return{
-            detail:DATA.data
+            clearShow: false,
+            list:DATA.data,
+            imgList: [{
+                src: 'https://placekitten.com/600/400',
+                w: 600,
+                h: 400
+            }],
+            options: {
+                getThumbBoundsFn (index) {
+                    let thumbnail = document.querySelectorAll('.previewer-demo-img')[index]
+                    let pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+                    let rect = thumbnail.getBoundingClientRect()
+                    return {x: rect.left, y: rect.top + pageYScroll, w: rect.width}
+                }
+            }
         }
     },
     computed:{

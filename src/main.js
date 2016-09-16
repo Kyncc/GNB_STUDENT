@@ -20,6 +20,8 @@ import Index from './main/pages/index'
 import camera from './camera/pages/index'
 import cameraHistory from './camera/pages/history'
 import cameraCorrect from './camera/pages/correct'
+import cameraRecord from './camera/pages/record'
+import cameraResult from './camera/pages/result'
 //归纳本
 import error from './error/pages/index'
 import errorList from './error/pages/list'
@@ -101,6 +103,8 @@ router.map({
   //拍错题
  'camera':{component: camera},
  'camera/history':{component: cameraHistory},
+ 'camera/record/:knowledgeId':{component: cameraRecord},
+ 'camera/result/:knowledgeId':{component: cameraResult},
  'camera/correct/:id':{component: cameraCorrect},
   //归纳本
  'error':{component: error},
