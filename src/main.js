@@ -57,6 +57,7 @@ import userMemberIndex from './user/pages/member/index'
 import userMemberVip from './user/pages/member/vip'
 import userMemberPoints from './user/pages/member/points'
 import userMemberRecharge from './user/pages/member/recharge'
+import userMemberMyBill from './user/pages/member/myBill'
 //我的班级
 import userClassIndex from './user/pages/class/index'
 import userClassDetail from './user/pages/class/classDetail'
@@ -70,7 +71,7 @@ Vue.use(Router)
 Vue.use(VueTouch)
 Vue.config.devtools = true
 
-Vue.filter('ymd', function (value) {
+Vue.filter('ymd', function(value) {
   return moment.unix(value).format('YYYY-MM-DD');
 });
 
@@ -107,13 +108,13 @@ router.map({
  'camera/result/:knowledgeId':{component: cameraResult},
  'camera/correct/:id':{component: cameraCorrect},
   //归纳本
- 'error':{component: error},
- 'error/detail/:id':{component: errorDetail},
- 'error/list/:knowledgeId':{component: errorList},
- 'error/more/:knowledgeId/:Id':{component: errorMore},
- 'error/recommend/:knowledgeId':{component: errorRecommend},
- 'error/correct/:id':{component: errorCorrect},
- 'error/comment/:id':{component: errorComment},
+  'error': { component: error },
+  'error/detail/:id': { component: errorDetail },
+  'error/list/:knowledgeId': { component: errorList },
+  'error/more/:knowledgeId/:Id': { component: errorMore },
+  'error/recommend/:knowledgeId': { component: errorRecommend },
+  'error/correct/:id': { component: errorCorrect },
+  'error/comment/:id': { component: errorComment },
   //收藏本
   'collect': { component: collect },
   'collect/detail/:id': { component: collectDetail },
@@ -141,6 +142,7 @@ router.map({
   'user/vip': { component: userMemberVip }, //我的会员 VIP
   'user/member/points': { component: userMemberPoints }, //我的积分
   'user/member/recharge': { component: userMemberRecharge }, //充值
+  'user/member/myBill': { component: userMemberMyBill }, //我的账单
   //我的班级
   'user/class': { component: userClassIndex },
   'user/class/detail': { component: userClassDetail },
@@ -151,7 +153,7 @@ router.map({
 
 router.redirect({
   '/main/': '/main/index',
-  '/error/more/:knowledgeId/':'/error/more/:knowledgeId/:Id'
+  '/error/more/:knowledgeId/': '/error/more/:knowledgeId/:Id'
 });
 
 sync(store, router)
@@ -187,5 +189,4 @@ router.beforeEach(function(transition) {
 //   }
 // }())
 
-router.start(App,'#App')
-
+router.start(App, '#App')
