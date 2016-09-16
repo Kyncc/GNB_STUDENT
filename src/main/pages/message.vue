@@ -12,29 +12,36 @@
           </div>
 				</cell>-->
         <cell title="班级消息" link="../message/class" inline-desc='这是张老师布置的一道作业' >
-          <div slot="value">2016.02.15</div>
           <div class="vux-reddot" slot="icon" style="margin-right:.5em;" >
             <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/class.png">
           </div>
 				</cell>
         <cell title="纠错消息" link="../message/correct" inline-desc='这是张老师布置的一道作业' >
-           <div slot="value">2016.02.15</div>
            <div class="vux-reddot" slot="icon" style="margin-right:.5em;" >
               <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/correct.png">
            </div>
         </cell>
-        <cell title="意见反馈" link="../message/advice" inline-desc='这是张老师布置的一道作业' >
-          <div slot="value">2016.02.15</div>
-          <div class="vux-reddot" slot="icon" style="margin-right:.5em;" >
-            <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/advice.png">
-          </div>
-        </cell>
 				<cell title="系统消息" link="../message/system" inline-desc='这是张老师布置的一道作业' >
-          <div slot="value">2016.02.15</div>
           <div class="vux-reddot" slot="icon" style="margin-right:.5em;" >
             <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/system.png">
           </div>
 				</cell>
+        <cell title="关注我们" link="javascript:;" inline-desc='微信公众号:guina_book' >
+          <div slot="icon" style="margin-right:.5em;" >
+            <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/focus.png">
+          </div>
+				</cell>
+        <cell title="加入我们" inline-desc='QQ群:458410557' link="javascript:;" v-touch:tap="_openQQ">
+          <div slot="icon" style="margin-right:.5em;" >
+            <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/add.png">
+          </div>
+				</cell>
+        <cell title="联系我们" link="../message/advice" inline-desc='欢迎各位小主吐槽' >
+          <div slot="icon" style="margin-right:.5em;" >
+            <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/contact.png">
+          </div>
+				</cell>
+
 			</group>
     </scroller>
 </view-box>   
@@ -54,6 +61,9 @@ export default {
 		_refersh(){
 			alert(1);
 		},
+     _openQQ(){
+      window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
+    },
 		load (uuid) {
 			setTimeout(() => {
 				this.$broadcast('pulldown:reset', uuid)

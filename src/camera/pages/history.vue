@@ -24,9 +24,8 @@
                 </flexbox-item>
             <flexbox>
         </div>
-
-
 	</view-box>
+    
     <previewer :list="imgList" v-ref:previewer :options="options"></previewer>
     <confirm :show.sync="clearShow" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="_onAction('是')" @on-cancel="_onAction('否')"></confirm>
 </template>
