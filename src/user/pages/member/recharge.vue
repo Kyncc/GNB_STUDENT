@@ -31,9 +31,9 @@
     <cell title="需支付费用" value="￥9.9" v-touch:tap="_clear">
       <span class="demo-icon" slot="icon"></span>
     </cell>
-    <group>
-      <selector placeholder="500积分可用" title="积分兑换" :options="list" @on-change="onChange"></selector>
-    </group>
+
+    <selector placeholder="500积分可用" title="积分兑换" :options="list" @on-change="onChange"></selector>
+
     <cell title="总计" value="￥9.9" v-touch:tap="_clear">
       <span class="demo-icon" slot="icon"></span>
     </cell>

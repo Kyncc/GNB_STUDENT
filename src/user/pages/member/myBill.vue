@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import './member.less'
 import {
   XHeader,
   Cell,
@@ -71,24 +72,3 @@ export default {
   }
 }
 </script>
-<style lang="less">
-    .my-bill{
-        .bill-item{
-            background-color: #fff;
-            padding: 0 3%;
-            .vux-flexbox-item{
-                margin: 0 !important;
-            }
-            .bill-right{
-                text-align: right;
-            }
-            .bill-top{
-                font-size: 1rem;
-            }
-            .bill-bottom{
-                font-size: 0.5rem;
-                color: #999;
-            }
-        }
-    }
-</style>
