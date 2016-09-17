@@ -5,7 +5,14 @@
     <div class="wrap">
       <flexbox class="vux-1px-b recharge-item">
         <flexbox-item :span="2/10" class="money-item">
-          <div class="moeny">￥9.9</div>
+          <flexbox orient="vertical">
+            <flexbox-item>
+              <div class="moeny">￥9.9</div>
+            </flexbox-item>
+            <flexbox-item>
+              <div class="tip tac"><s>￥49</s> </div>
+            </flexbox-item>
+          </flexbox>
         </flexbox-item>
         <flexbox-item :span="8/10">
           <flexbox orient="vertical">
@@ -21,13 +28,13 @@
     </div>
   </div>
   <group>
-    <cell title="需支付费用" value="￥9.9" link="javascript:;" v-touch:tap="_clear">
+    <cell title="需支付费用" value="￥9.9" v-touch:tap="_clear">
       <span class="demo-icon" slot="icon"></span>
     </cell>
-    <group>
-      <selector placeholder="500积分可用" title="积分兑换" :options="list" @on-change="onChange"></selector>
-    </group>
-    <cell title="总计" value="￥9.9" link="javascript:;" v-touch:tap="_clear">
+
+    <selector placeholder="500积分可用" title="积分兑换" :options="list" @on-change="onChange"></selector>
+
+    <cell title="总计" value="￥9.9" v-touch:tap="_clear">
       <span class="demo-icon" slot="icon"></span>
     </cell>
   </group>
