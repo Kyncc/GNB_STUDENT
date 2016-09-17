@@ -14,9 +14,6 @@
            <cell title="加入我们" value="qq群:458410557" link="javascript:;" v-touch:tap="_openQQ">
               <span class="demo-icon" slot="icon"></span>
           </cell>
-           <cell title="关于我们" link="aboutUs">
-              <span class="demo-icon" slot="icon"></span>
-          </cell>
            <cell title="应用评分" link="javascript:;" v-touch:tap="_openStore">
               <span class="demo-icon" slot="icon"></span>
           </cell>

@@ -36,11 +36,6 @@
             <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/add.png">
           </div>
 				</cell>
-        <cell title="联系我们" link="../message/advice" inline-desc='欢迎各位小主吐槽' >
-          <div slot="icon" style="margin-right:.5em;" >
-            <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/contact.png">
-          </div>
-				</cell>
 
 			</group>
     </scroller>

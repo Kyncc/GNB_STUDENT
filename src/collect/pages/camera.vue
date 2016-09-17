@@ -5,10 +5,10 @@
             <x-header :left-options="{showBack: true}">收藏本</x-header>
             <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
                 <flexbox-item :span="3/4">
-                    <button-tab >
-                        <button-tab-item v-touch:tap="_example">例题收藏</button-tab-item>
+                    <button-tab>
+                        <button-tab-item v-touch:tap="_example">习题收藏</button-tab-item>
                         <button-tab-item selected>错题收藏</button-tab-item>
-                    </button-tab >
+                    </button-tab>
                 </flexbox-item>
             </flexbox>
         </div>

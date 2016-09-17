@@ -6,7 +6,7 @@
             <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
                 <flexbox-item :span="3/4">
                     <button-tab >
-                        <button-tab-item selected>例题收藏</button-tab-item>
+                        <button-tab-item selected>习题收藏</button-tab-item>
                         <button-tab-item v-touch:tap="_camera">错题收藏</button-tab-item>
                     </button-tab >
                 </flexbox-item>
