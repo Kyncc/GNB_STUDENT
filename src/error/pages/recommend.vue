@@ -7,9 +7,6 @@
 					{{answerText}}
 				</a>
 			</x-header>
-			<!--<group class="currentTime">
-				离查看解析还有20秒
-    		</group>-->
 		</div>
 
 		<div style="padding-top:46px;">
@@ -41,7 +38,7 @@
 					<template v-if=" item.type == 1 ? true:false">
 						<div class="weui_media_bd weui_media_box options">
 							<p class="weui_media_desc" v-for="value in item.tabs"> 
-									{{ $key }} : {{{* value }}}
+								{{ $key }} : {{{* value }}}
 							</p>
 						</div>  
 					</template>
@@ -152,8 +149,6 @@ const DATA = {
 	,
     "msg": 1
 }
-
-
 
 export default {
 	components: {

@@ -15,7 +15,7 @@
           </tabbar-item>
           <tabbar-item link="user" :selected="userState">
                <i slot="icon" class="icon iconfont icon-31wode"></i>
-            <span slot="label">个人中心</span>
+            <span slot="label">我的</span>
           </tabbar-item>
         </tabbar>
       </view-box>
