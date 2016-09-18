@@ -19,6 +19,9 @@ export const API_PATHS = {
   login: `${API_ENV}${API_VERSION}/student/login`,
   addPwd: `${API_ENV}${API_VERSION}/student/pwd/add`,
   resetPwd: `${API_ENV}${API_VERSION}/student/pwd/resetByMobile`,
+  //收藏本
+  collectExample: `${API_ENV}${API_VERSION}/student/collect/example`,
+  collectCamera: `${API_ENV}${API_VERSION}/student/collect/camera`,
   //获取用户信息
   getUserInfo: `${API_ENV}${API_VERSION}/student/user/getUserInfo`,
 }

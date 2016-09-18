@@ -29,13 +29,7 @@ export default {
     });
   },
   addPwd: (params) => {
-    return http({
-      method: 'get',
-      url: API_PATHS.addPwd,
-      data: params.data,
-      ok: params.ok,
-      wrong: params.wrong
-    });
+    return http({method: 'get',url: API_PATHS.addPwd,data: params.data,ok: params.ok, wrong: params.wrong});
   },
   resetPwd: (params) => {
     return http({
@@ -45,6 +39,13 @@ export default {
       ok: params.ok,
       wrong: params.wrong
     });
+  },
+  //收藏本
+  collectExample: (params) => {
+    return http({method: 'get',url: API_PATHS.collectExample,data: params.data,ok: params.ok, wrong: params.wrong});
+  },
+  collectCamera: (params) => {
+    return http({method: 'get',url: API_PATHS.collectCamera,data: params.data,ok: params.ok, wrong: params.wrong});
   },
   getUserInfo: (params) => {
     return http({

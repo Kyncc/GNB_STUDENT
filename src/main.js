@@ -79,7 +79,6 @@ Vue.filter('ymd', function(value) {
   return moment.unix(value).format('YYYY-MM-DD');
 });
 
-
 const router = new Router()
 router.map({
   '/': { component: Login },

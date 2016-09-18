@@ -7,7 +7,7 @@ import setPassword from './login/modules/setPassword'
 import forget from './login/modules/forget'
 import resetPassword from './login/modules/resetPassword'
 //import info from './main/modules/info'
-
+import collect from './collect/modules/index'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
@@ -19,5 +19,8 @@ export default new Vuex.Store({
     forget,
     resetPassword,
     //info
+    //收藏本
+    collect
+    
   }
 })
