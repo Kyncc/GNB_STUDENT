@@ -20,7 +20,7 @@
               <div class="tar">1年会员充值</div>
             </flexbox-item>
             <flexbox-item>
-              <div class="tar tip">上线优惠期间（截止至2016年12月31日）</div>
+              <div class="tar tip">上线优惠期间（截止至2017年3月1日）</div>
             </flexbox-item>
           </flexbox>
         </flexbox-item>
