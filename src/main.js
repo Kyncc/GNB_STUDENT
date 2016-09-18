@@ -68,10 +68,12 @@ import userClassAdd from './user/pages/class/addClass'
 import userTextbook from './user/pages/textbook/index'
 
 import moment from 'moment'
+import FastClick from 'fastclick'
 
 Vue.use(Router)
 Vue.use(VueTouch)
 Vue.config.devtools = true
+FastClick.attach(document.body)
 
 Vue.filter('ymd', function(value) {
   return moment.unix(value).format('YYYY-MM-DD');
