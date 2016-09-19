@@ -7,7 +7,9 @@ import {
 const state = {
     toastMsg:'',
     toastShow:false,
-    isLoading:false
+    isLoading:false,
+    period_id:3,
+    subject_id:2
 }
 
 const mutations = {

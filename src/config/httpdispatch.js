@@ -11,41 +11,47 @@ Vue.use(VueResource)
 
 export default {
   getCode: (params) => {
-    return http({
-      method: 'get',
-      url: API_PATHS.getCode,
-      data: params.data,
-      ok: params.ok,
-      wrong: params.wrong
-    });
+    return http({method: 'get',url: API_PATHS.getCode,data: params.data,ok: params.ok,wrong: params.wrong});
   },
   login: (params) => {
-    return http({
-      method: 'get',
-      url: API_PATHS.login,
-      data: params.data,
-      ok: params.ok,
-      wrong: params.wrong
-    });
+    return http({method: 'get', url: API_PATHS.login, data: params.data,ok: params.ok,wrong: params.wrong});
   },
   addPwd: (params) => {
     return http({method: 'get',url: API_PATHS.addPwd,data: params.data,ok: params.ok, wrong: params.wrong});
   },
   resetPwd: (params) => {
-    return http({
-      method: 'get',
-      url: API_PATHS.resetPwd,
-      data: params.data,
-      ok: params.ok,
-      wrong: params.wrong
-    });
+    return http({method: 'get',url: API_PATHS.resetPwd, data: params.data,ok: params.ok,wrong: params.wrong});
+  },
+  //添加收藏
+  collectAdd: (params) => {
+    return http({method: 'post',url: API_PATHS.collectAdd,data: params.data,ok: params.ok, wrong: params.wrong});
+  },
+  //取消收藏
+  collectRemove: (params) => {
+    return http({method: 'post',url: API_PATHS.collectRemove,data: params.data,ok: params.ok, wrong: params.wrong});
+  },
+  //评注
+  comment: (params) => {
+    return http({method: 'post',url: API_PATHS.comment,data: params.data,ok: params.ok, wrong: params.wrong});
+  },
+  //纠错
+  correct: (params) => {
+    return http({method: 'post',url: API_PATHS.correct,data: params.data,ok: params.ok, wrong: params.wrong});
+  },
+  //拍错题列表
+  cameraList: (params) => {
+    return http({method: 'get',url: API_PATHS.cameraList,data: params.data,ok: params.ok, wrong: params.wrong});
+  },
+  //习题列表
+  exerciseList: (params) => {
+    return http({method: 'get',url: API_PATHS.exerciseList,data: params.data,ok: params.ok, wrong: params.wrong});
   },
   //收藏本
-  collectExample: (params) => {
-    return http({method: 'get',url: API_PATHS.collectExample,data: params.data,ok: params.ok, wrong: params.wrong});
+  collectExampleIds: (params) => {
+    return http({method: 'get',url: API_PATHS.collectExampleIds,data: params.data,ok: params.ok, wrong: params.wrong});
   },
-  collectCamera: (params) => {
-    return http({method: 'get',url: API_PATHS.collectCamera,data: params.data,ok: params.ok, wrong: params.wrong});
+  collectCameraIds: (params) => {
+    return http({method: 'get',url: API_PATHS.collectCameraIds,data: params.data,ok: params.ok, wrong: params.wrong});
   },
   getUserInfo: (params) => {
     return http({

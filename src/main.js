@@ -173,8 +173,7 @@ router.redirect({
   'error/correct/:id':'/correct/:id',
   'camera/comment/:id':'/comment/:id',
   'collect/comment/:id':'/comment/:id',
-  'error/comment/:id':'/comment/:id',
-  '/error/more/:knowledgeId/': '/error/more/:knowledgeId/:Id'
+  'error/comment/:id':'/comment/:id'
 });
 
 sync(store, router)

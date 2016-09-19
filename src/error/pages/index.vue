@@ -7,7 +7,7 @@
                 <flexbox-item :span="3/4">
                     <button-tab >
                         <button-tab-item selected>一周内</button-tab-item>
-                        <button-tab-item >一月内</button-tab-item>
+                        <button-tab-item>一月内</button-tab-item>
                         <button-tab-item>全部</button-tab-item>
                      </button-tab >
                 </flexbox-item>
