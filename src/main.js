@@ -16,6 +16,9 @@ import Main from './main/common/main'
 import User from './main/pages/user'
 import Message from './main/pages/message'
 import Index from './main/pages/index'
+//题目评注、纠错
+import correct from './common/pages/correct'
+import comment from './common/pages/comment'
 //拍错题
 import camera from './camera/pages/index'
 import cameraHistory from './camera/pages/history'
@@ -89,6 +92,10 @@ router.map({
   //忘记密码
   'forget': { component: forget },
   'forget/password': { component: resetPassword },
+  //纠错
+  'correct/:id':{component: correct},
+  //评注
+  'comment/:id':{component: comment},
   //主页
   'main/': {
     component: Main,
@@ -109,21 +116,23 @@ router.map({
  'camera/history':{component: cameraHistory},
  'camera/record/:knowledgeId':{component: cameraRecord},
  'camera/result/:knowledgeId':{component: cameraResult},
- 'camera/correct/:id':{component: cameraCorrect},
+  //'camera/correct/:id':{component: exampleCorrect},
+ //'camera/comment/:id': { component: cameraComment },
   //归纳本
   'error': { component: error },
   'error/detail/:id': { component: errorDetail },
   'error/list/:knowledgeId': { component: errorList },
   'error/more/:knowledgeId/:Id': { component: errorMore },
   'error/recommend/:knowledgeId': { component: errorRecommend },
-  'error/correct/:id': { component: errorCorrect },
-  'error/comment/:id': { component: errorComment },
+  //'error/correct/:id': { component: exampleCorrect },
+  //'error/comment/:id': { component: cameraComment },
   //收藏本
   'collect/example': { component: collectExample },
   'collect/camera': { component: collectCamera },
   'collect/camera/detail/:id': { component: collectCameraDetail },
   'collect/example/detail/:id': { component: collectExampleDetail },
-  'collect/correct/:id': { component: collectCorrect },
+  //'collect/correct/:id': { component: exampleCorrect },
+  //'collect/comment/:id': { component: cameraComment },
   //消息
   'message/class': { component: messageClass },
   'message/homework': { component: messageHomework },
@@ -159,6 +168,12 @@ router.map({
 router.redirect({
   '/main/': '/main/index',
   '/collect/': '/collect/example',
+  'camera/correct/:id':'/correct/:id',
+  'collect/correct/:id':'/correct/:id',
+  'error/correct/:id':'/correct/:id',
+  'camera/comment/:id':'/comment/:id',
+  'collect/comment/:id':'/comment/:id',
+  'error/comment/:id':'/comment/:id',
   '/error/more/:knowledgeId/': '/error/more/:knowledgeId/:Id'
 });
 

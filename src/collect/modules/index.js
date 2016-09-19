@@ -1,9 +1,13 @@
 import {
   GET_COLLECT_EXAMPLEIDS_SUCCESS,
   GET_COLLECT_EXAMPLEIDS_ERROR,
+  GET_COLLECT_EXAMPLELIST_SUCCESS,
+  GET_COLLECT_EXAMPLELIST_ERROR,
   GET_COLLECT_CAMERALEIDS_SUCCESS,
-  GET_COLLECT_CAMERALEIDS_ERROR
-} from '../mutationTypes'
+  GET_COLLECT_CAMERALEIDS_ERROR,
+  GET_COLLECT_CAMERALELIST_SUCCESS,
+  GET_COLLECT_CAMERALELIST_ERROR
+}from '../mutationTypes'
 
 const state = {
     example:{
@@ -22,20 +26,36 @@ const state = {
 
 const mutations = {
   [GET_COLLECT_EXAMPLEIDS_SUCCESS](state , data){
-    state.code = data.data.code;
-    state.ids = data.data.ids;
-    state.msg = data.msg;
+    state.example.code = data.data.code;
+    state.example.ids = data.data.ids;
+    state.example.msg = data.msg;
   },
   [GET_COLLECT_EXAMPLEIDS_ERROR](state, data){
-    state.msg = data.msg;
+    state.example.msg = data.msg;
+  },
+  [GET_COLLECT_EXAMPLELIST_SUCCESS](state , data){
+    state.example.code = data.data.code;
+    state.example.list = data.data.list;
+    state.example.msg = data.msg;
+  },
+  [GET_COLLECT_EXAMPLELIST_ERROR](state, data){
+    state.example.msg = data.msg;
   },
   [GET_COLLECT_CAMERALEIDS_SUCCESS](state , data){
-    state.code = data.data.code;
-    state.ids = data.data.ids;
-    state.msg = data.msg;
+    state.camera.code = data.data.code;
+    state.camera.ids = data.data.ids;
+    state.camera.msg = data.msg;
   },
   [GET_COLLECT_CAMERALEIDS_ERROR](state, data){
-    state.msg = data.msg;
+    state.camera.msg = data.msg;
+  },
+  [GET_COLLECT_CAMERALELIST_SUCCESS](state , data){
+    state.camera.code = data.data.code;
+    state.camera.list = data.data.list;
+    state.camera.msg = data.msg;
+  },
+  [GET_COLLECT_CAMERALELIST_ERROR](state, data){
+    state.camera.msg = data.msg;
   }
 }
 
