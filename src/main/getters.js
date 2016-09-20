@@ -1,8 +1,7 @@
-/*用户登陆*/
-export const userInfo = (state) => state.login.userInfo
-/*手机号注册*/
-export const registerMessageCode = (state) => state.register.code
-export const registerMobile = (state) => state.register.mobile
-/*手机号注册*/
-export const forgetMessageCode = (state) => state.forget.code
-export const forgetMobile = (state) => state.forget.mobile
+/*首页*/
+export const indexCollectCount = (state) => state.index.collectCount
+export const indexErrorCount = (state) => state.index.errorCount
+export const indexCameraCount = (state) => state.index.cameraCount
+export const indexSwiper = (state) => state.index.swiper
+
+

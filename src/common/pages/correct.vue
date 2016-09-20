@@ -6,7 +6,7 @@
         <div>
             <group title="纠错类型">
                 <checker style="padding:.25rem .75rem 1rem;"
-                    :value.sync="select"
+                    :value.sync="type"
                     :max="4"
                     type="checkbox"
                     default-item-class="select-item"
@@ -19,7 +19,7 @@
                 </checker>
             </group>
             <group title="纠错内容">
-                <x-textarea :max="200" :rows="6"  placeholder="请简单描述纠错内容"></x-textarea>
+                <x-textarea :max="200" :rows="6" :value.sync="content" placeholder="请简单描述纠错内容"></x-textarea>
             </group>
         </div>
 
@@ -28,23 +28,53 @@
 
 <script>
 import {XHeader,XButton,Checker, Flexbox,FlexboxItem,CheckerItem,Group,XTextarea} from 'vux'
-// import './collect.less'
+import store from '../../store' 
+import { correct } from '../actions'
+import { period_id,subject_id,token } from '../getters'
+import * as _ from '../../config/whole'
 
 export default {
 	components: {
 		XHeader,XButton,
         Checker, CheckerItem, XTextarea, Group,Flexbox,FlexboxItem
 	},
+     vuex: {
+        getters: {
+            period_id,subject_id,token
+        },
+        actions: {
+            correct
+        }
+    },
 	methods: {
 		_commit(){
-			alert(1);
+             if(!this.type[0]){
+               _.toast("请选择纠错类型");
+               return;
+            }
+
+			 let params = {
+                options:{
+                    id:Number(this.id),
+                    period_id:this.period_id,
+                    subject_id:this.subject_id
+                },
+                data:{
+                    content:this.content,
+                    type:this.type
+                },
+                token:this.token
+            }
+            this.correct(params);
 		}
 	},
+    store,
     data(){
         return{
-             select: []
+             type: [],
+             content:'',
+             id:store.state.route.params.id
         }
-        
     }
 }
 </script>

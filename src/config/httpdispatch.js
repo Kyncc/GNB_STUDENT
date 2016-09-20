@@ -22,6 +22,10 @@ export default {
   resetPwd: (params) => {
     return http({method: 'get',url: API_PATHS.resetPwd, data: params.data,ok: params.ok,wrong: params.wrong});
   },
+  //首页
+  index: (params) => {
+    return http({method: 'get',url: API_PATHS.index,data: params.data,ok: params.ok, wrong: params.wrong});
+  },
   //添加收藏
   collectAdd: (params) => {
     return http({method: 'post',url: API_PATHS.collectAdd,data: params.data,ok: params.ok, wrong: params.wrong});
@@ -66,7 +70,13 @@ export default {
 
 export function http(params) {
   _.busy();
-  Vue.resource(params.url).get(params.data)
+  let resource;
+  if(params.method == 'post'){
+       resource = Vue.resource(params.url).save(params.data);
+  }else{
+      resource = Vue.resource(params.url).get(params.data);
+  } 
+  resource
     .then(resp => {
       console.log(resp);
       if (resp.code == 401) {

@@ -5,7 +5,7 @@ import * as _ from '../config/whole'
 
 /*获取首页数据*/
 export const getStudentIndex = ({ dispatch }, params) => {
-  Api.getCode({
+  Api.index({
     data: params,
     ok: response => {
       dispatch(types.GET_STUDENT_INDEX_SUCCESS, response.data);

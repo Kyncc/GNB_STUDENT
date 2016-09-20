@@ -19,6 +19,8 @@ export const API_PATHS = {
   login: `${API_ENV}${API_VERSION}/student/login`,
   addPwd: `${API_ENV}${API_VERSION}/student/pwd/add`,
   resetPwd: `${API_ENV}${API_VERSION}/student/pwd/resetByMobile`,
+  //首页
+  index: `${API_ENV}${API_VERSION}/student/index`,
   //收藏事件
   collectAdd: `${API_ENV}${API_VERSION}/student/collect/add`,
   collectRemove: `${API_ENV}${API_VERSION}/student/collect/remove`,

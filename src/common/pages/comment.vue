@@ -6,9 +6,9 @@
             </x-header>
 		</div>
         <div>
-            <group title="纠错类型">
+            <group title="点评类型">
                 <checker style="padding:.25rem .85rem 1rem;"
-                    :value.sync="select"
+                    :value.sync="type"
                     :max="5"
                     type="checkbox"
                     default-item-class="select-item"
@@ -25,10 +25,9 @@
                 </checker>
             </group>
             <group title="点评一下">
-                <x-textarea :max="200" :rows="6"  placeholder="请简单描述点评内容" ></x-textarea>
+                <x-textarea :max="200" :rows="6"  :value.sync="content" placeholder="请简单描述点评内容" ></x-textarea>
             </group>
         </div>
-
     </div>
 </template>
 
@@ -37,6 +36,7 @@ import store from '../../store'
 import { comment } from '../actions'
 import { period_id,subject_id,token } from '../getters'
 import {XHeader,XButton,Checker, Flexbox,FlexboxItem,CheckerItem,Group,XTextarea} from 'vux'
+import * as _ from '../../config/whole'
 
 export default {
 	components: {
@@ -53,18 +53,33 @@ export default {
     },
 	methods: {
 		_commit(){
-			alert(1);
+            if(!this.type[0]){
+               _.toast("请选择评注类型");
+               return;
+            }
+           
+            let params = {
+                options:{
+                    id:Number(this.id),
+                    period_id:this.period_id,
+                    subject_id:this.subject_id
+                },
+                data:{
+                    content:this.content,
+                    type:this.type
+                },
+                token:this.token
+            }
+            this.comment(params);
 		}
 	},
     store,
     data(){
         return{
-             select: [],
+             type: [],
+             content:'',
              id:store.state.route.params.id
         }
-    },
-    ready(){
-        console.log(this.id);
     }
 }
 </script>
