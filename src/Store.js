@@ -6,6 +6,8 @@ import login from './login/modules/login'
 import setPassword from './login/modules/setPassword'
 import forget from './login/modules/forget'
 import resetPassword from './login/modules/resetPassword'
+import comment from './common/modules/comment'
+import correct from './common/modules/correct'
 //import info from './main/modules/info'
 import collect from './collect/modules/index'
 
@@ -18,6 +20,10 @@ export default new Vuex.Store({
     setPassword,
     forget,
     resetPassword,
+    //评注
+    comment,
+    //纠错
+    correct,
     //info
     //收藏本
     collect

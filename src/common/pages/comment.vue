@@ -25,7 +25,7 @@
                 </checker>
             </group>
             <group title="点评一下">
-                <x-textarea :max="200" :rows="6"  placeholder="请简单描述点评内容"></x-textarea>
+                <x-textarea :max="200" :rows="6"  placeholder="请简单描述点评内容" ></x-textarea>
             </group>
         </div>
 
@@ -34,6 +34,8 @@
 
 <script>
 import store from '../../store' 
+import { comment } from '../actions'
+import { period_id,subject_id,token } from '../getters'
 import {XHeader,XButton,Checker, Flexbox,FlexboxItem,CheckerItem,Group,XTextarea} from 'vux'
 
 export default {
@@ -41,6 +43,14 @@ export default {
 		XHeader,XButton,
         Checker, CheckerItem, XTextarea, Group,Flexbox,FlexboxItem
 	},
+    vuex: {
+        getters: {
+            period_id,subject_id,token
+        },
+        actions: {
+            comment
+        }
+    },
 	methods: {
 		_commit(){
 			alert(1);
