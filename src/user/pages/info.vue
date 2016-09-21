@@ -2,21 +2,21 @@
 <div class='info'>
   <x-header :left-options="{showBack: true}">个人资料 <a slot="right" v-touch:tap="_complete">{{edit}}</a></x-header>
   <group v-show="edit=='编辑'">
-    <x-input title="姓名" name="username" value="姓名" readonly></x-input>
-    <x-input title="性别" name="sex" value="男" readonly></x-input>
+    <x-input title="姓名" name="username" :value.sync="fetchUserInfo.name" readonly></x-input>
+    <x-input title="性别" name="sex" :value.sync="fetchUserInfo.sex | sex" readonly></x-input>
     <x-input title="年级" name="grade" value="高中" readonly></x-input>
-    <x-input title="学校" name="school" value="学校名称" readonly></x-input>
+    <x-input title="学校" name="school" :value.sync="fetchUserInfo.school" readonly></x-input>
   </group>
   <group v-show="edit=='完成'">
-    <x-input title="姓名" name="username" placeholder="请输入姓名" is-type="china-name"></x-input>
+    <x-input title="姓名" name="username" placeholder="请输入姓名" is-type="china-name" :value.sync="name"></x-input>
     <cell title="性别">
       <checker :value.sync="sex" default-item-class="demo2-item" selected-item-class="demo2-item-selected">
         <checker-item value="1">男</checker-item>
-        <checker-item value="2">女</checker-item>
+        <checker-item value="0">女</checker-item>
       </checker>
     </cell>
     <x-input title="年级" name="grade" value="高中" readonly></x-input>
-    <x-input title="学校" name="school" placeholder="请输入学校名称"></x-input>
+    <x-input title="学校" name="school" placeholder="请输入学校名称" :value.sync="school"></x-input>
   </group>
 </div>
 </template>
@@ -31,7 +31,8 @@ import {
   Cell
 } from 'vux'
 import {
-  getUserInfo
+  getUserInfo,
+  updateUserInfo
 } from '../actions'
 import {
   fetchUserInfo,
@@ -49,8 +50,15 @@ export default {
   },
   data() {
     return {
-      sex: ['男', '女'],
-      edit: '编辑'
+      edit: '编辑',
+      sex: '1',
+      name: '',
+      school: ''
+    }
+  },
+  filters: {
+    'sex' (val) {
+      return (val == 0) ? '女' : '男'
     }
   },
   vuex: {
@@ -59,27 +67,41 @@ export default {
       fetchToken
     },
     actions: {
-      getUserInfo
+      getUserInfo,
+      updateUserInfo
     }
   },
   methods: {
     _complete() {
       if (this.edit == '编辑') {
         this.edit = '完成'
+        this.name = this.fetchUserInfo.name
+        this.sex = this.fetchUserInfo.sex
+        this.school = this.fetchUserInfo.school
       } else {
-        this.edit = '编辑'
+        this.updateUserInfo({
+          name: this.name,
+          sex: this.sex,
+          school: this.school,
+          grade: 1,
+          subject: 3,
+          token: this.fetchToken
+        }, () => {
+          this.edit = '编辑'
+        })
       }
-    },
-    change(value) {
-      console.log('change:', value)
     }
   },
   ready() {
-    console.log(this.fetchToken)
-    let params = {
+    this.getUserInfo({
       token: this.fetchToken
-    }
-    this.getUserInfo(params)
+    }, () => {
+      //判断是否为空
+      if ((this.fetchUserInfo.grade == 0) && (this.fetchUserInfo.sex == 0) && (!this.fetchUserInfo.name) && (!this.fetchUserInfo.school)) {
+        this.edit = '完成'
+      }
+    })
+
   }
 }
 </script>

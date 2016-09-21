@@ -37,4 +37,6 @@ export const API_PATHS = {
   collectCamera: `${API_ENV}${API_VERSION}/student/collect/camera`,
   //获取用户信息
   getUserInfo: `${API_ENV}${API_VERSION}/student/user/getUserInfo`,
+  //编辑用户信息
+  updateUserInfo: `${API_ENV}${API_VERSION}/student/user/updateUserInfo`,
 }

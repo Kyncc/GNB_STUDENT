@@ -9,7 +9,7 @@ import resetPassword from './login/modules/resetPassword'
 import comment from './common/modules/comment'
 import correct from './common/modules/correct'
 import index from './main/modules/index'
-//import info from './main/modules/info'
+import info from './user/modules/info'
 import collect from './collect/modules/index'
 
 Vue.use(Vuex)
@@ -26,9 +26,9 @@ export default new Vuex.Store({
     comment,
     //纠错
     correct,
-    //info
+    info,
     //收藏本
     collect
-    
+
   }
 })
