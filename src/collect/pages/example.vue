@@ -44,10 +44,15 @@
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 
+import store from '../../store' 
+import { period_id,subject_id,token } from '../../common/getters'
+import { CollectExampleIds,CollectExampleList } from '../getters'
+// import { getCollectExampleIds,getCollectExampleList } from '../actions'
+
 const DATA = {
     "code": 1,
     "data":[
-        {
+        "83783",{
             "content": "小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>",
             "difficult": 3,
             "id": 83783,
@@ -86,13 +91,31 @@ export default {
             this.$router.go(`/collect/camera`);
         }
     },
+    vuex: {
+        getters: {
+             period_id,subject_id,token,
+            CollectExampleIds,CollectExampleList
+        },
+        actions: {
+            //getCollectExampleIds,getCollectExampleList
+        }
+    },
+    store,
     data(){
         return{
             detail:DATA.data
         }
     },
-    computed:{
-
+    ready(){
+        let params = {
+            currentPage:1,
+            options:{
+                period_id:this.period_id,
+                subject_id:this.subject_id
+            },
+            token:this.token
+        }
+        //this.getCollectExampleIds(parmas);
     }
 }
 </script>
