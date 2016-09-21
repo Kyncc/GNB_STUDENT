@@ -10,6 +10,7 @@ import comment from './common/modules/comment'
 import correct from './common/modules/correct'
 import index from './main/modules/index'
 import info from './user/modules/info'
+import myClass from './user/modules/class'
 import collect from './collect/modules/index'
 
 Vue.use(Vuex)
@@ -27,6 +28,7 @@ export default new Vuex.Store({
     //纠错
     correct,
     info,
+    myClass,
     //收藏本
     collect
 

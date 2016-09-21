@@ -76,14 +76,50 @@ export default {
       ok: params.ok,
       wrong: params.wrong
     })
-  }
+  },
+  //获取班级列表
+  myClassList: (params) => {
+    return http({
+      method: 'get',
+      url: API_PATHS.myClassList,
+      data: params.data,
+      ok: params.ok,
+      wrong: params.wrong
+    })
+  },
+  //获取班级成员名单
+  myClassmateList: (params) => {
+    return http({
+      method: 'get',
+      url: API_PATHS.myClassmateList,
+      data: params.data,
+      ok: params.ok,
+      wrong: params.wrong
+    })
+  },
+  //修改密码
+  updatePwd: (params) => {
+    return http({
+      method: 'post',
+      url: API_PATHS.updatePwd,
+      data: params.data,
+      ok: params.ok,
+      wrong: params.wrong
+    })
+  },
 }
 
 export function http(params) {
   _.busy();
   let resource;
   if (params.method == 'post') {
-    resource = Vue.resource(params.url).save(params.data);
+    //resource = Vue.resource(params.url).save(params.data);
+    resource = Vue.http.post(params.url, params.data, {
+      emulateJSON: true,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      }
+    })
   } else {
     resource = Vue.resource(params.url).get(params.data);
   }

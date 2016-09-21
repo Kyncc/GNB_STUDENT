@@ -1,23 +1,23 @@
 <template>
 <view-box v-ref:view-box class='myClass'>
   <x-header :left-options="{showBack: true}">我的班级</x-header>
-    <group>
-        <flexbox>
-            <flexbox-item :span="17/20">
-                <search placeholder="请输入班级编号" :auto-fixed="false"></search>
-            </flexbox-item>
-            <flexbox-item style="background:#efeff4;" :span="3/20">
-                <div class="btn-wrap" style="">
-                    <div class="search-btn"  v-touch:tap="_search">搜索</div>
-                </div>
-            </flexbox-item>
-        </flexbox>
-    </group>
-    <group>
-        <cell title="数学一班" link="detail" v-touch:tap="_detail">
-           <span class="demo-icon" slot="icon"></span>
-       </cell>
-    </group>
+  <group>
+    <flexbox>
+      <flexbox-item :span="17/20">
+        <search placeholder="请输入班级编号" :auto-fixed="false"></search>
+      </flexbox-item>
+      <flexbox-item style="background:#efeff4;" :span="3/20">
+        <div class="btn-wrap" style="">
+          <div class="search-btn" v-touch:tap="_search">搜索</div>
+        </div>
+      </flexbox-item>
+    </flexbox>
+  </group>
+  <group>
+    <cell v-for="item in fetchClassList" title="数学一班" link="detail" v-touch:tap="_detail">
+      <span class="demo-icon" slot="icon"></span>
+    </cell>
+  </group>
 
 </view-box>
 </template>
@@ -35,6 +35,14 @@ import {
   ViewBox
 }
 from 'vux'
+import {
+  myClassList
+} from '../../actions'
+import {
+  fetchClassList,
+  fetchToken
+} from '../../getters'
+
 export default {
   components: {
     XHeader,
@@ -46,13 +54,26 @@ export default {
     Search,
     ViewBox
   },
+  vuex: {
+    getters: {
+      fetchClassList,
+      fetchToken
+    },
+    actions: {
+      myClassList
+    }
+  },
   methods: {
-    _search(){
-        this.$router.go('addClass')
+    _search() {
+      this.$router.go('addClass')
     },
     _detail() {
       this.$router.go('detail')
     }
+  },
+  ready() {
+      console.log(this.fetchToken)
+      this.myClassList({token:this.fetchToken})
   }
 }
 </script>

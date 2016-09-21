@@ -20,11 +20,38 @@ export const updateUserInfo = ({ dispatch }, params, callback) => {
   Api.updateUserInfo({
     data: params,
     ok: response => {
-        callback()
-      //dispatch(types.GET_USER_INFO, response.data)
+      callback()
+        //dispatch(types.GET_USER_INFO, response.data)
     },
     wrong: response => {
       //dispatch(types.GET_USER_INFO, response.data)
+    }
+  })
+}
+
+
+//获取班级列表
+export const myClassList = ({ dispatch }, params) => {
+    Api.myClassList({
+      data: params,
+      ok: response => {
+        dispatch(types.GET_CLASS_LIST, response.data.data)
+      },
+      wrong: response => {
+        dispatch(types.GET_CLASS_LIST, response.data.data)
+      }
+    })
+  }
+  //修改密码
+export const updatePwd = ({ dispatch }, params, callback) => {
+  Api.updatePwd({
+    data: params,
+    ok: response => {
+        callback()
+      //dispatch(types.UPDATE_PWD, response.data.data)
+    },
+    wrong: response => {
+      //dispatch(types.UPDATE_PWD, response.data.data)
     }
   })
 }

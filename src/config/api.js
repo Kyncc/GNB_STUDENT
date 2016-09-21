@@ -39,4 +39,10 @@ export const API_PATHS = {
   getUserInfo: `${API_ENV}${API_VERSION}/student/user/getUserInfo`,
   //编辑用户信息
   updateUserInfo: `${API_ENV}${API_VERSION}/student/user/updateUserInfo`,
+  //获取班级列表
+  myClassList: `${API_ENV}${API_VERSION}/student/class/myClassList`,
+  //班级成员名单
+  myClassmateList: `${API_ENV}${API_VERSION}/student/class/myClassmateList`,
+  //修改密码
+  updatePwd: `${API_ENV}${API_VERSION}/student/user/updatePwd`,
 }
