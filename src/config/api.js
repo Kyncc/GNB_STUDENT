@@ -45,4 +45,8 @@ export const API_PATHS = {
   myClassmateList: `${API_ENV}${API_VERSION}/student/class/myClassmateList`,
   //修改密码
   updatePwd: `${API_ENV}${API_VERSION}/student/user/updatePwd`,
+  //反馈
+  advice: `${API_ENV}${API_VERSION}/student/user/advice`,
+  //反馈历史
+  adviceHistory: `${API_ENV}${API_VERSION}/student/user/adviceHistory`,
 }

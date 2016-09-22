@@ -11,6 +11,7 @@ import correct from './common/modules/correct'
 import index from './main/modules/index'
 import info from './user/modules/info'
 import myClass from './user/modules/class'
+import advice from './user/modules/advice.js'
 import collect from './collect/modules/index'
 
 Vue.use(Vuex)
@@ -29,6 +30,7 @@ export default new Vuex.Store({
     correct,
     info,
     myClass,
+    advice,
     //收藏本
     collect
 
