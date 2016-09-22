@@ -47,7 +47,8 @@ export default {
 				this.advice({
 					token:this.fetchToken,
 					title:this.title,
-					content:this.content
+					content:this.content,
+					contact:this.contact
 				},()=>{
 					this.$router.go('advice/history')
 				})
