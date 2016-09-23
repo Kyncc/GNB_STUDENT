@@ -16,7 +16,7 @@
 	</section>
 	<section class="copyCode">
 		<h3>我的邀请码</h3>
-		<b>3418</b>
+		<b>{{fetchInviteCode}}</b>
 	</section>
 	<div class="button">
 		<x-button type="primary" v-touch:tap="_shareCode">分享给好友</x-button>
@@ -33,6 +33,9 @@ import {
 	XButton
 } from 'vux'
 import './invite.less'
+import { getInviteCode } from '../../actions.js'
+import {fetchToken,fetchInviteCode} from '../../getters'
+import * as _  from '../../../config/whole.js'
 
 export default {
 	components: {
@@ -40,6 +43,18 @@ export default {
 		XInput,
 		Group,
 		XButton
+	},
+	vuex:{
+		actions:{
+			getInviteCode
+		},
+		getters:{
+			fetchToken,
+			fetchInviteCode
+		}
+	},
+	ready(){
+		this.getInviteCode({token:this.fetchToken})
 	},
 	methods: {
 		_friend() {
