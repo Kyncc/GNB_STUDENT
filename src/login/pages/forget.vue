@@ -66,7 +66,7 @@ export default {
   },
   methods:{
     _back(){
-        this.$router.replace('/');
+        this.$router.replace('/')
     },
     _next(){
        if(this.forgetMessageCode == this.code){

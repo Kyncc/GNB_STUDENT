@@ -44,14 +44,35 @@ export const myClassList = ({ dispatch }, params) => {
   }
   //修改密码
 export const updatePwd = ({ dispatch }, params, callback) => {
-  Api.updatePwd({
+    Api.updatePwd({
+      data: params,
+      ok: response => {
+        callback()
+      },
+      wrong: response => {
+      }
+    })
+  }
+  //反馈
+export const advice = ({ dispatch }, params, callback) => {
+  Api.advice({
     data: params,
     ok: response => {
-        callback()
-      //dispatch(types.UPDATE_PWD, response.data.data)
+      callback()
     },
     wrong: response => {
-      //dispatch(types.UPDATE_PWD, response.data.data)
+    }
+  })
+}
+//反馈列表
+export const adviceHistory = ({ dispatch }, params, callback) => {
+  Api.adviceHistory({
+    data: params,
+    ok: response => {
+        dispatch(types.GET_ADVICE_LIST, response.data.data)
+        callback()
+    },
+    wrong: response => {
     }
   })
 }

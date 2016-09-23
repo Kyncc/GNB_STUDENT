@@ -3,7 +3,8 @@
   <x-header :left-options="{showBack: true}">个人资料 <a slot="right" v-touch:tap="_complete">{{edit}}</a></x-header>
   <group v-show="edit=='编辑'">
     <x-input title="姓名" name="username" :value.sync="fetchUserInfo.name" readonly></x-input>
-    <x-input title="性别" name="sex" :value.sync="fetchUserInfo.sex | sex" readonly></x-input>
+    <x-input title="性别" name="sex" value="女" v-show="fetchUserInfo.sex=='0'" readonly></x-input>
+    <x-input title="性别" name="sex" value="男" v-show="fetchUserInfo.sex=='1'" readonly></x-input>
     <x-input title="年级" name="grade" value="高中" readonly></x-input>
     <x-input title="学校" name="school" :value.sync="fetchUserInfo.school" readonly></x-input>
   </group>
@@ -57,8 +58,9 @@ export default {
     }
   },
   filters: {
-    'sex' (val) {
-      return (val == 0) ? '女' : '男'
+    'sexs' (val) {
+        console.log( val == "0")
+      return ( val == "0") ? '女' : '男'
     }
   },
   vuex: {
@@ -74,11 +76,11 @@ export default {
   methods: {
     _complete() {
       if (this.edit == '编辑') {
-        this.edit = '完成'
         this.name = this.fetchUserInfo.name
         this.sex = this.fetchUserInfo.sex
         this.school = this.fetchUserInfo.school
-      } else {
+        this.edit = '完成'
+      } else if (this.edit == '完成') {
         this.updateUserInfo({
           name: this.name,
           sex: this.sex,
@@ -87,7 +89,11 @@ export default {
           subject: 3,
           token: this.fetchToken
         }, () => {
-          this.edit = '编辑'
+          this.getUserInfo({
+            token: this.fetchToken
+          }, () => {
+              this.edit = '编辑'
+          })
         })
       }
     }

@@ -13,7 +13,11 @@ const state = {
     isVip:'0',
     balance:'0',
     numerical:'0',
+<<<<<<< HEAD
     token:'2923de032ab45edd4f1897b58c0f5bcf'
+=======
+    token:'2923de032ab45edd4f1897b58c0f5bcf',
+>>>>>>> 64a252e593836e5d1e091dc54d4c3ee9be7952fe
   },
   msg:''
 }

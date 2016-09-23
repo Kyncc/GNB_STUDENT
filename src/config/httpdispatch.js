@@ -59,53 +59,31 @@ export default {
   },
   //获取用户信息
   getUserInfo: (params) => {
-    return http({
-      method: 'get',
-      url: API_PATHS.getUserInfo,
-      data: params.data,
-      ok: params.ok,
-      wrong: params.wrong
-    })
+    return http({ method: 'get', url: API_PATHS.getUserInfo, data: params.data, ok: params.ok, wrong: params.wrong })
   },
   //编辑用户信息
   updateUserInfo: (params) => {
-    return http({
-      method: 'post',
-      url: API_PATHS.updateUserInfo,
-      data: params.data,
-      ok: params.ok,
-      wrong: params.wrong
-    })
+    return http({ method: 'post', url: API_PATHS.updateUserInfo, data: params.data, ok: params.ok, wrong: params.wrong })
   },
   //获取班级列表
   myClassList: (params) => {
-    return http({
-      method: 'get',
-      url: API_PATHS.myClassList,
-      data: params.data,
-      ok: params.ok,
-      wrong: params.wrong
-    })
+    return http({ method: 'get', url: API_PATHS.myClassList, data: params.data, ok: params.ok, wrong: params.wrong })
   },
   //获取班级成员名单
   myClassmateList: (params) => {
-    return http({
-      method: 'get',
-      url: API_PATHS.myClassmateList,
-      data: params.data,
-      ok: params.ok,
-      wrong: params.wrong
-    })
+    return http({ method: 'get', url: API_PATHS.myClassmateList, data: params.data, ok: params.ok, wrong: params.wrong })
   },
   //修改密码
   updatePwd: (params) => {
-    return http({
-      method: 'post',
-      url: API_PATHS.updatePwd,
-      data: params.data,
-      ok: params.ok,
-      wrong: params.wrong
-    })
+    return http({ method: 'post', url: API_PATHS.updatePwd, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  //反馈
+  advice: (params) => {
+    return http({ method: 'post', url: API_PATHS.advice, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  //反馈历史
+  adviceHistory: (params) => {
+    return http({ method: 'get', url: API_PATHS.adviceHistory, data: params.data, ok: params.ok, wrong: params.wrong })
   },
 }
 

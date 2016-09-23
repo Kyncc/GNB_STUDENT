@@ -22,7 +22,7 @@ import {
 import {
   updatePwd
 } from '../actions.js'
-
+import * as _ from '../../config/whole.js'
 export default {
   components: {
     XHeader,
@@ -47,13 +47,32 @@ export default {
   },
   methods: {
     _complete() {
-      this.updatePwd({
-        oldPwd: this.oldPwd,
-        pwd: this.newPwd,
-        token: this.fetchToken
-      }, () => {
-        console.log('修改成功')
-      })
+      if (this.newPwd && this.repeatPwd && this.oldPwd) {
+        if (this.oldPwd == this.newPwd) {
+          _.toast("不可与旧密码一致")
+        } else {
+          if (this.newPwd == this.repeatPwd) {
+            this.updatePwd({
+              oldPwd: this.oldPwd,
+              pwd: this.newPwd,
+              token: this.fetchToken
+            }, () => {
+              _.toast("修改成功请重新登录")
+              setTimeout(() => {
+                this.$router.go('/')
+              }, 500)
+
+            })
+          } else {
+            _.toast("两次密码输入不一致")
+          }
+        }
+
+      } else {
+        _.toast("请填写密码")
+      }
+
+
     }
   },
   computed: {
