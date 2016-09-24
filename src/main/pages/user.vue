@@ -39,7 +39,10 @@
   </scroller>
   <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
-  <input id="file" v-show="false" type="file" accept="image/*" />
+  <form  v-show="false" enctype="multipart/form-data" action="http://122.114.55.74:8070/v1/student/user/headImg" method="post">
+    <input type="file" id="choosefile" />
+    <input type="submit" value="上传文件" id="submitBtn" />
+</form>
 </view-box>
 </template>
 
@@ -77,10 +80,10 @@ export default {
         this.showsheet = true
     },
     _uploadclick (key) {
-     if(key == 'menu2'){
-           document.getElementById('file').click()
-       }
-     }
+         if(key == 'menu2'){
+             document.getElementById('choosefile').click();
+           }
+         }
   },
   data(){
     return {
