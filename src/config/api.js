@@ -49,4 +49,10 @@ export const API_PATHS = {
   advice: `${API_ENV}${API_VERSION}/student/user/advice`,
   //反馈历史
   adviceHistory: `${API_ENV}${API_VERSION}/student/user/adviceHistory`,
+  //受邀同学
+  getInviteStudentList: `${API_ENV}${API_VERSION}/student/user/invite/getInviteStudentList`,
+  //绑定邀请码
+  bindInviteCode: `${API_ENV}${API_VERSION}/student/user/invite/bindInviteCode`,
+  //获取邀请码
+  getInviteCode: `${API_ENV}${API_VERSION}/student/user/invite/getInviteCode`,
 }

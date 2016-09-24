@@ -85,6 +85,18 @@ export default {
   adviceHistory: (params) => {
     return http({ method: 'get', url: API_PATHS.adviceHistory, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  //受邀同学
+  getInviteStudentList: (params) => {
+    return http({ method: 'post', url: API_PATHS.getInviteStudentList, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  //绑定邀请码
+  bindInviteCode: (params) => {
+    return http({ method: 'post', url: API_PATHS.bindInviteCode, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  //获取邀请码
+  getInviteCode: (params) => {
+    return http({ method: 'get', url: API_PATHS.getInviteCode, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
 }
 
 export function http(params) {

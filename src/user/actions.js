@@ -76,3 +76,36 @@ export const adviceHistory = ({ dispatch }, params, callback) => {
     }
   })
 }
+//受邀同学
+export const getInviteStudentList = ({ dispatch }, params) => {
+  Api.getInviteStudentList({
+    data: params,
+    ok: response => {
+        dispatch(types.GET_INVITE_STUDENT_LIST, response.data.data)
+    },
+    wrong: response => {
+    }
+  })
+}
+//邀请码
+export const getInviteCode = ({ dispatch }, params) => {
+  Api.getInviteCode({
+    data: params,
+    ok: response => {
+        dispatch(types.GET_INVITE_CODE, response.data.data.inviteCode)
+    },
+    wrong: response => {
+    }
+  })
+}
+//绑定邀请码
+export const bindInviteCode = ({ dispatch }, params, callback) => {
+  Api.bindInviteCode({
+    data: params,
+    ok: response => {        
+        callback()
+    },
+    wrong: response => {
+    }
+  })
+}
