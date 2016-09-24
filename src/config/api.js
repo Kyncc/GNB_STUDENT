@@ -35,6 +35,14 @@ export const API_PATHS = {
   //收藏本
   collectExampleIds: `${API_ENV}${API_VERSION}/student/collect/example`,
   collectCameraIds: `${API_ENV}${API_VERSION}/student/collect/camera`,
+ /**互动模块
+   * msgSystem:系统消息
+   * msgClass:班级消息
+   * msgCorrect:纠错消息
+   */
+  msgSystem:`${API_ENV}${API_VERSION}/student/message/system`,
+  msgClass:`${API_ENV}${API_VERSION}/student/message/class`,
+  msgCorrect:`${API_ENV}${API_VERSION}/student/message/correct`,
   //获取用户信息
   getUserInfo: `${API_ENV}${API_VERSION}/student/user/getUserInfo`,
   //编辑用户信息

@@ -1,60 +1,73 @@
 <template>
-  <div class='systemHomework vux-scroller-header-box'>
-		<div style="height:46px;">
-			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">系统消息</x-header>
+	<view-box v-ref:view-box class="messageSystem">
+		 <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+            <x-header :left-options="{showBack: true}">系统消息</x-header>
+        </div>
+		<div style="padding-top:46px;" class="messageSection">
+			<section v-for="item in list">
+				<h3>{{item.time | ymd}}</h3>
+				<article>
+					{{item.content}}
+				</article>
+			</section>
 		</div>
-		<scroller class="messageSection" lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
-			<div class="scollMain">
-				<section>
-					<h3>2016.02.16</h3>
-					<article>
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-					</article>
-				</section>
-				<section>
-					<h3>2016.02.16</h3>
-					<article>
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-					</article>
-				</section>
-				<section>
-					<h3>2016.02.16</h3>
-					<article>
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-						这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈这里是意见反馈是意见反馈
-					</article>
-				</section>
-			</div>
-		</scroller>
-  </div>   
+	</view-box>
 </template>
 <script>
 import Vue from 'vue'
 import Router from 'vue-router'
-import {XHeader,Group,Scroller,Cell,Spinner } from 'vux'
+import {XHeader,ViewBox} from 'vux'
+import store from '../../store' 
+import { token } from '../../common/getters'
+import { getMessageSystem } from '../actions'
+import { messageSystemList } from '../getters'
+
+const data = {
+	code:'200',
+	data:[
+		{
+			"time": "1473682257",
+			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
+		},
+		{
+			"time": "1473682257",
+			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
+		},
+		{
+			"time": "1473682257",
+			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
+		},
+		{
+			"time": "1473682257",
+			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
+		}
+	]
+}
 
 export default {
-  components: {
-    XHeader,Scroller,Group,Cell
-  },
-   methods: {
-		load (uuid) {
-			setTimeout(() => {
-				this.$broadcast('pulldown:reset', uuid)
-			}, 2000)
+	components: {
+		XHeader,ViewBox
+	},
+	vuex: {
+		getters: {
+			token
+			//,messageSystemList
+		},
+		actions: {
+			messageSystemList
 		}
-   }
+	},
+	store,
+	data(){
+		return{
+			list:data.data
+		}
+	},
+	ready(){
+
+
+
+  	}
 }
 </script>
 

@@ -57,6 +57,20 @@ export default {
   collectCameraIds: (params) => {
     return http({ method: 'get', url: API_PATHS.collectCameraIds, data: params.data, ok: params.ok, wrong: params.wrong });
   },
+  /**互动模块
+   * msgSystem:系统消息
+   * msgClass:班级消息
+   * msgCorrect:纠错消息
+   */
+  msgCorrect: (params) => {
+    return http({ method: 'get', url: API_PATHS.msgSystem, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
+  msgClass: (params) => {
+    return http({ method: 'get', url: API_PATHS.msgClass, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
+  msgSystem: (params) => {
+    return http({ method: 'get', url: API_PATHS.msgCorrect, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
   //获取用户信息
   getUserInfo: (params) => {
     return http({ method: 'get', url: API_PATHS.getUserInfo, data: params.data, ok: params.ok, wrong: params.wrong })

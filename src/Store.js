@@ -9,6 +9,7 @@ import resetPassword from './login/modules/resetPassword'
 import comment from './common/modules/comment'
 import correct from './common/modules/correct'
 import index from './main/modules/index'
+import message from './message/modules/index'
 import info from './user/modules/info'
 import myClass from './user/modules/class'
 import advice from './user/modules/advice.js'
@@ -29,6 +30,7 @@ export default new Vuex.Store({
     comment,
     //纠错
     correct,
+    message,//互动
     info,//个人资料
     myClass,//我的班级
     advice,//反馈

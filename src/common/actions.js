@@ -62,10 +62,12 @@ export const collectRemove = ({ dispatch }, params) => {
   Api.collectRemove({
       data:params,
       ok:response=>{
-        dispatch(types.COLLECT_CANCEL_SUCCESS,response.data);
+        dispatch(types.COLLECT_CANCEL_SUCCESS);
+        // callback();
+         _.toast('已移除');
       },
       wrong:response=>{
-        dispatch(types.COLLECT_CANCEL_ERROR,response.data);
+        dispatch(types.COLLECT_CANCEL_ERROR);
         _.toast(response.data.msg);
       }
   })

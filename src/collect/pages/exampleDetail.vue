@@ -59,11 +59,15 @@
 
 		</div>
 	</view-box>
-	<confirm :show.sync="show" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="_onAction('是')" @on-cancel="_onAction('否')"></confirm>
+	<confirm :show.sync="show" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="_onAction()"></confirm>
 </template>
 
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
+import { collectRemove } from '../../common/actions'
+import { CollectExampleList } from '../getters'
+import { period_id,subject_id,token } from '../../common/getters'
+import store from '../../store' 
 
 const DATA = {
     "code": 1,
@@ -91,6 +95,14 @@ export default {
 	components: {
 		XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox
 	},
+	vuex: {
+        getters: {
+            CollectExampleList,period_id,subject_id,token
+        },
+        actions: {
+            collectRemove
+        }
+    },
 	methods: {
 		_remove(){
 			console.log(this.id);
@@ -99,16 +111,54 @@ export default {
 		_correct(){
 			this.$router.go('/collect/correct/'+this.id);
 		},
-		_onAction:(type)=>{
-			alert(type);
+		_onAction:()=>{
+			let that = this;
+			// console.log(that.token);
+
+			// this.collectRemove({
+			// 	options:{
+			// 		id:Number(that.id),
+			// 		period_id:that.period_id,
+			// 		subject_id:that.subject_id
+			// 	},
+			// 	token:that.token
+			// },()=>{
+			// 	alert("移除成功！");
+			// });
+			// alert(type);
 		}
 	},
+    store,
 	data(){
 		return{
-			 show: false,
-			 id:DATA.data.id,
-			 detail:DATA.data
+			show: false,
+			id:store.state.route.params.id
 		} 
+	},
+	computed:{
+		detail(){
+			return this.CollectExampleList[`${this.id}`]
+		}
+	},
+	ready(){
+		// this.collectRemove({
+		
+		// },()=>{
+		// 	alert("移除成功！");
+		// });
+		let that = this;
+		
+
+		let parm = 	{
+			options:{
+				id:Number(that.id),
+				period_id:that.period_id,
+				subject_id:that.subject_id
+			},
+			token:that.token
+		}
+		console.log(parm);
+		// this.collectRemove(parm);		
 	}
 }
 </script>

@@ -42,9 +42,7 @@ import collectCorrect from './collect/pages/correct'
 //通知
 import messageClass from './message/pages/class'
 import messageCorrect from './message/pages/correct'
-import messageHomework from './message/pages/homework'
 import messageSystem from './message/pages/system'
-import messageAdvice from './message/pages/advice'
 //个人中心
 import userResetPwd from './user/pages/resetPwd'
 import userInfo from './user/pages/info'
@@ -135,8 +133,6 @@ router.map({
   //'collect/comment/:id': { component: cameraComment },
   //消息
   'message/class': { component: messageClass },
-  'message/homework': { component: messageHomework },
-  'message/advice': { component: messageAdvice },
   'message/system': { component: messageSystem },
   'message/correct': { component: messageCorrect },
   //个人中心
