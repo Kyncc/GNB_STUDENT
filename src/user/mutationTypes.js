@@ -14,3 +14,5 @@ export const GET_NUMERICAL_LIST= 'GET_NUMERICAL_LIST'
 export const GET_BILL_LIST= 'GET_BILL_LIST'
 //会员信息
 export const GET_MEMBER_INFO= 'GET_MEMBER_INFO'
+//版本信息
+export const GET_VERSION = 'GET_VERSION'

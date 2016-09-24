@@ -16,3 +16,5 @@ export const fetchNumericalList = (state) => state.member.numericalList
 export const fetchBilllList = (state) => state.member.myBillList
 //会员信息
 export const fetchMemberInfo = (state) => state.member.memberInfo
+//会员信息
+export const fetchVersion = (state) => state.setting.version

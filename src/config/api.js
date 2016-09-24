@@ -63,4 +63,6 @@ export const API_PATHS = {
   member: `${API_ENV}${API_VERSION}/student/member`,
   //退出
   quitToken: `${API_ENV}${API_VERSION}/student/quitToken`,
+  //检查版本
+  updateVersion: `${API_ENV}${API_VERSION}/student/updateVersion`,
 }

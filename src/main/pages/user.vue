@@ -61,7 +61,7 @@ export default {
     }
   },
   methods: {
-    onAction: function (type) {
+    onAction(type) {
         if(type=='确认'){
             this.quitToken({token:this.fetchToken},()=>{
                 this.$router.replace('/')

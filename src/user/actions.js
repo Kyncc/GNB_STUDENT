@@ -49,96 +49,98 @@ export const updatePwd = ({ dispatch }, params, callback) => {
       ok: response => {
         callback()
       },
-      wrong: response => {
-      }
+      wrong: response => {}
     })
   }
   //反馈
 export const advice = ({ dispatch }, params, callback) => {
-  Api.advice({
-    data: params,
-    ok: response => {
-      callback()
-    },
-    wrong: response => {
-    }
-  })
-}
-//反馈列表
+    Api.advice({
+      data: params,
+      ok: response => {
+        callback()
+      },
+      wrong: response => {}
+    })
+  }
+  //反馈列表
 export const adviceHistory = ({ dispatch }, params, callback) => {
-  Api.adviceHistory({
-    data: params,
-    ok: response => {
+    Api.adviceHistory({
+      data: params,
+      ok: response => {
         dispatch(types.GET_ADVICE_LIST, response.data.data)
         callback()
-    },
-    wrong: response => {
-    }
-  })
-}
-//受邀同学
+      },
+      wrong: response => {}
+    })
+  }
+  //受邀同学
 export const getInviteStudentList = ({ dispatch }, params) => {
-  Api.getInviteStudentList({
-    data: params,
-    ok: response => {
+    Api.getInviteStudentList({
+      data: params,
+      ok: response => {
         dispatch(types.GET_INVITE_STUDENT_LIST, response.data.data)
-    },
-    wrong: response => {
-    }
-  })
-}
-//邀请码
+      },
+      wrong: response => {}
+    })
+  }
+  //邀请码
 export const getInviteCode = ({ dispatch }, params) => {
-  Api.getInviteCode({
-    data: params,
-    ok: response => {
+    Api.getInviteCode({
+      data: params,
+      ok: response => {
         dispatch(types.GET_INVITE_CODE, response.data.data.inviteCode)
-    },
-    wrong: response => {
-    }
-  })
-}
-//绑定邀请码
+      },
+      wrong: response => {}
+    })
+  }
+  //绑定邀请码
 export const bindInviteCode = ({ dispatch }, params, callback) => {
-  Api.bindInviteCode({
-    data: params,
-    ok: response => {
+    Api.bindInviteCode({
+      data: params,
+      ok: response => {
         callback()
-    },
-    wrong: response => {
-    }
-  })
-}
-//我的积分
+      },
+      wrong: response => {}
+    })
+  }
+  //我的积分
 export const numerical = ({ dispatch }, params) => {
-  Api.numerical({
-    data: params,
-    ok: response => {
+    Api.numerical({
+      data: params,
+      ok: response => {
         dispatch(types.GET_NUMERICAL_LIST, response.data.data)
-    },
-    wrong: response => {
-    }
-  })
-}
-//我的账单
+      },
+      wrong: response => {}
+    })
+  }
+  //我的账单
 export const payList = ({ dispatch }, params) => {
-  Api.payList({
-    data: params,
-    ok: response => {
+    Api.payList({
+      data: params,
+      ok: response => {
         dispatch(types.GET_BILL_LIST, response.data.data)
-    },
-    wrong: response => {
-    }
-  })
-}
-//会员信息
+      },
+      wrong: response => {}
+    })
+  }
+  //会员信息
 export const member = ({ dispatch }, params) => {
-  Api.member({
+    Api.member({
+      data: params,
+      ok: response => {
+        dispatch(types.GET_MEMBER_INFO, response.data.data)
+      },
+      wrong: response => {}
+    })
+  }
+  //检查版本
+export const updateVersion = ({ dispatch }, params, callback) => {
+  Api.updateVersion({
     data: params,
     ok: response => {
-        dispatch(types.GET_MEMBER_INFO, response.data.data)
+      dispatch(types.GET_VERSION, response.data.data)
+      callback()
     },
-    wrong: response => {
-    }
+    wrong: response => {}
   })
 }

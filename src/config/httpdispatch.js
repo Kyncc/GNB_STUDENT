@@ -113,6 +113,10 @@ export default {
   quitToken: (params) => {
     return http({ method: 'get', url: API_PATHS.quitToken, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  //检查版本
+  updateVersion: (params) => {
+    return http({ method: 'get', url: API_PATHS.updateVersion, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
 }
 
 export function http(params) {
