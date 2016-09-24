@@ -9,7 +9,7 @@
                 <flexbox-item :span="2/5">
                     <img class="previewer-demo-img" src="https://placekitten.com/250/180"  @click="$refs.previewer.show($index)">
                 </flexbox-item>
-                <flexbox-item :span="3/5" style="position:relative" ">
+                <flexbox-item :span="3/5" style="position:relative">
                      <div v-touch:tap="_record(item.knowledgeId)">
                         <div class="title">{{{item.knowledge}}}</div>
                         <div class="difficult">

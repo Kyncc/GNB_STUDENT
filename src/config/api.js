@@ -33,8 +33,8 @@ export const API_PATHS = {
   //拍错题获取
   cameraList: `${API_ENV}${API_VERSION}/student/cameraList`,
   //收藏本
-  collectExample: `${API_ENV}${API_VERSION}/student/collect/example`,
-  collectCamera: `${API_ENV}${API_VERSION}/student/collect/camera`,
+  collectExampleIds: `${API_ENV}${API_VERSION}/student/collect/example`,
+  collectCameraIds: `${API_ENV}${API_VERSION}/student/collect/camera`,
   //获取用户信息
   getUserInfo: `${API_ENV}${API_VERSION}/student/user/getUserInfo`,
   //编辑用户信息

@@ -13,13 +13,13 @@ const state = {
     example:{
       code:'',
       ids:[],
-      list:[{}],
+      list:{},
       msg:''
     },
     camera:{
       code:'',
       ids:[],
-      list:[{}],
+      list:{},
       msg:''
     }
 }
@@ -34,8 +34,8 @@ const mutations = {
     state.example.msg = data.msg;
   },
   [GET_COLLECT_EXAMPLELIST_SUCCESS](state , data){
-    state.example.code = data.data.code;
-    state.example.list = data.data.list;
+    state.example.code = data.code;
+    state.example.list = data.data;
     state.example.msg = data.msg;
   },
   [GET_COLLECT_EXAMPLELIST_ERROR](state, data){

@@ -13,13 +13,13 @@ export const getToastShow = ({ dispatch }, status) => {
 export const getIsLoading = ({ dispatch }, status)=> {
     dispatch(types.GET_LOADING,status);
 }
-
 //点评
 export const comment = ({ dispatch }, params) => {
   Api.comment({
       data:params,
       ok:response=>{
         dispatch(types.COMMENT_SUCCESS,response.data);
+         _.toast("点评成功");
       },
       wrong:response=>{
         dispatch(types.COMMENT_ERROR,response.data);
@@ -34,7 +34,7 @@ export const correct = ({ dispatch }, params) => {
       data:params,
       ok:response=>{
         dispatch(types.CORRECT_SUCCESS,response.data);
-        _.toast(response.data.msg);
+        _.toast("纠错成功");
       },
       wrong:response=>{
         dispatch(types.CORRECT_ERROR,response.data);

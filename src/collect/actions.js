@@ -3,11 +3,12 @@ import * as types from './mutationTypes'
 import * as _ from '../config/whole'
 
 
-export const getCollectExampleIds = ({ dispatch }, params) => {
+export const getCollectExampleIds = ({ dispatch }, params,callback) => {
   Api.collectExampleIds({
       data:params,
       ok:response=>{
         dispatch(types.GET_COLLECT_EXAMPLEIDS_SUCCESS,response.data);
+        callback(response.data);
       },
       wrong:response=>{
         dispatch(types.GET_COLLECT_EXAMPLEIDS_ERROR,response.data);
@@ -16,11 +17,12 @@ export const getCollectExampleIds = ({ dispatch }, params) => {
   })
 }
 
-export const getCollectCameraIds = ({ dispatch }, params) => {
+export const getCollectCameraIds = ({ dispatch }, params,callback) => {
   Api.collectCameraIds({
       data:params,
       ok:response=>{
         dispatch(types.GET_COLLECT_CAMERALEIDS_SUCCESS,response.data);
+         callback();
       },
       wrong:response=>{
         dispatch(types.GET_COLLECT_CAMERALEIDS_ERROR,response.data);
@@ -29,11 +31,12 @@ export const getCollectCameraIds = ({ dispatch }, params) => {
   })
 }
 
-export const getCollectExampleList = ({ dispatch }, params) => {
-  Api.collectExampleList({
+export const getCollectExampleList = ({ dispatch }, params,callback) => {
+  Api.exerciseList({
       data:params,
       ok:response=>{
         dispatch(types.GET_COLLECT_EXAMPLELIST_SUCCESS,response.data);
+        callback();
       },
       wrong:response=>{
         dispatch(types.GET_COLLECT_EXAMPLELIST_ERROR,response.data);
@@ -43,7 +46,7 @@ export const getCollectExampleList = ({ dispatch }, params) => {
 }
 
 export const getCollectCameraList = ({ dispatch }, params) => {
-  Api.collectCameraList({
+  Api.cameraList({
       data:params,
       ok:response=>{
         dispatch(types.GET_COLLECT_CAMERALELIST_SUCCESS,response.data);

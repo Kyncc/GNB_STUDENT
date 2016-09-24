@@ -91,7 +91,6 @@ export function http(params) {
   _.busy();
   let resource;
   if (params.method == 'post') {
-    //resource = Vue.resource(params.url).save(params.data);
     resource = Vue.http.post(params.url, params.data, {
       emulateJSON: true,
       headers: {
