@@ -102,8 +102,41 @@ export const getInviteCode = ({ dispatch }, params) => {
 export const bindInviteCode = ({ dispatch }, params, callback) => {
   Api.bindInviteCode({
     data: params,
-    ok: response => {        
+    ok: response => {
         callback()
+    },
+    wrong: response => {
+    }
+  })
+}
+//我的积分
+export const numerical = ({ dispatch }, params) => {
+  Api.numerical({
+    data: params,
+    ok: response => {
+        dispatch(types.GET_NUMERICAL_LIST, response.data.data)
+    },
+    wrong: response => {
+    }
+  })
+}
+//我的账单
+export const payList = ({ dispatch }, params) => {
+  Api.payList({
+    data: params,
+    ok: response => {
+        dispatch(types.GET_BILL_LIST, response.data.data)
+    },
+    wrong: response => {
+    }
+  })
+}
+//会员信息
+export const member = ({ dispatch }, params) => {
+  Api.member({
+    data: params,
+    ok: response => {
+        dispatch(types.GET_MEMBER_INFO, response.data.data)
     },
     wrong: response => {
     }

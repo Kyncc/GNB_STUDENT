@@ -45,14 +45,30 @@
 
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
+import {quitToken} from '../actions.js'
+import {fetchToken } from '../../user/getters.js'
 
 export default {
   components: {
     XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox
   },
+  vuex:{
+    actions:{
+        quitToken
+    },
+    getters:{
+        fetchToken
+    }
+  },
   methods: {
     onAction: function (type) {
-      alert(type)
+        if(type=='确认'){
+            this.quitToken({token:this.fetchToken},()=>{
+                this.$router.replace('/')
+            })
+        }else{
+
+        }
     },
     _quit(){
         this.show = true

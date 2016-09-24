@@ -55,4 +55,12 @@ export const API_PATHS = {
   bindInviteCode: `${API_ENV}${API_VERSION}/student/user/invite/bindInviteCode`,
   //获取邀请码
   getInviteCode: `${API_ENV}${API_VERSION}/student/user/invite/getInviteCode`,
+  //积分账单
+  numerical: `${API_ENV}${API_VERSION}/student/member/numerical/history`,
+  //我的账单
+  payList: `${API_ENV}${API_VERSION}/student/member/payList`,
+  //会员信息
+  member: `${API_ENV}${API_VERSION}/student/member`,
+  //退出
+  quitToken: `${API_ENV}${API_VERSION}/student/quitToken`,
 }
