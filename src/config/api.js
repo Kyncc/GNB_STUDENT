@@ -40,6 +40,7 @@ export const API_PATHS = {
    * msgClass:班级消息
    * msgCorrect:纠错消息
    */
+  msg:`${API_ENV}${API_VERSION}/student/message`,
   msgSystem:`${API_ENV}${API_VERSION}/student/message/system`,
   msgClass:`${API_ENV}${API_VERSION}/student/message/class`,
   msgCorrect:`${API_ENV}${API_VERSION}/student/message/correct`,

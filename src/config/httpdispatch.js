@@ -58,10 +58,14 @@ export default {
     return http({ method: 'get', url: API_PATHS.collectCameraIds, data: params.data, ok: params.ok, wrong: params.wrong });
   },
   /**互动模块
+   * msg:消息首页
    * msgSystem:系统消息
    * msgClass:班级消息
    * msgCorrect:纠错消息
    */
+  msg: (params) => {
+    return http({ method: 'get', url: API_PATHS.msg, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
   msgCorrect: (params) => {
     return http({ method: 'get', url: API_PATHS.msgSystem, data: params.data, ok: params.ok, wrong: params.wrong });
   },
