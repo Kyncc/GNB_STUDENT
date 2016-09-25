@@ -12,20 +12,20 @@
                 </flexbox-item>
             </flexbox>
         </div>
-		
-        <div style="padding-top:98px;"> 
+
+        <div style="padding-top:98px;">
             <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in CollectExampleList">
                 <div class="weui_panel_hd">
                     <x-button type='primary' mini>收藏题</x-button>
                     {{{item.knowledge}}}
-                </div> 
+                </div>
                 <div class="weui_panel_bd">
-                    <a class="weui_media_box weui_media_appmsg" href="#!/collect/example/detail/{{item.id}}">  
-                        <div class="weui_media_bd"> 
+                    <a class="weui_media_box weui_media_appmsg" href="#!/collect/example/detail/{{item.id}}">
+                        <div class="weui_media_bd">
                             <p class="weui_media_desc">
                             {{{item.content}}}
-                            </p> 
-                        </div> 
+                            </p>
+                        </div>
                     </a>
                     <div class="weui_panel_ft">
                         <flexbox :gutter="0" wrap="wrap">
@@ -34,9 +34,12 @@
                             <flexbox-item :span="1/4" style="text-align:right"> 难度：{{item.difficult}}</flexbox-item>
                         </flexbox>
                     </div>
-                </div>  
+                </div>
             </div>
             <infinite-loading :on-infinite="onInfinite" spinner="bubbles">
+                <span slot="no-more">
+                    没有更多啦
+                </span>
             </infinite-loading>
         </div>
 
@@ -48,7 +51,7 @@ import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabIte
 import Vue from 'vue'
 import Router from 'vue-router'
 import InfiniteLoading from 'vue-infinite-loading';
-import store from '../../store' 
+import store from '../../store'
 import { period_id,subject_id,token } from '../../common/getters'
 import { CollectExampleIds,CollectExampleList,CollectExampleTotalPage } from '../getters'
 import { getCollectExampleIds,getCollectExampleList } from '../actions'
@@ -118,8 +121,10 @@ export default {
                         },
                         token:that.token
                     };
-                    that.getCollectExampleList(params);
-                    this.$broadcast('$InfiniteLoading:loaded');
+                    that.getCollectExampleList(params,()=>{
+                        this.$broadcast('$InfiniteLoading:loaded')                        
+                    })
+
                 }
             );
             this.currentPage ++;
