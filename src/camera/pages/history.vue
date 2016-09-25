@@ -7,7 +7,7 @@
         <div style="margin-top:46px;" class="main">
             <flexbox class="list" v-for="item in list">
                 <flexbox-item :span="2/5">
-                    <img class="previewer-demo-img" src="https://placekitten.com/250/180"  @click="$refs.previewer.show($index)">
+                    <img class="previewer-demo-img" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80"  @click="$refs.previewer.show($index)">
                 </flexbox-item>
                 <flexbox-item :span="3/5" style="position:relative">
                      <div v-touch:tap="_record(item.knowledgeId)">
@@ -25,7 +25,7 @@
             <flexbox>
         </div>
 	</view-box>
-    
+
     <previewer :list="imgList" v-ref:previewer :options="options"></previewer>
     <confirm :show.sync="clearShow" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="_onAction('是')" @on-cancel="_onAction('否')"></confirm>
 </template>
@@ -43,7 +43,7 @@ const DATA = {
             "knowledgeId": 31,
             "cameraTime": "1473682257",
             "id":1,
-            "src":"https://placekitten.com/1400/1200",
+            "src":"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80",
             "width":1400,
             "height":1200
 	    },
@@ -54,7 +54,7 @@ const DATA = {
             "knowledgeId": 12,
             "cameraTime": "1473682257",
             "id":1,
-            "src":"https://placekitten.com/1400/1200",
+            "src":"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80",
             "width":1400,
             "height":1200
 	    },
@@ -65,7 +65,7 @@ const DATA = {
             "knowledgeId": 12,
             "cameraTime": "1473682257",
             "id":1,
-            "src":"https://placekitten.com/1400/1200",
+            "src":"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80",
             "width":1400,
             "height":1200
 	    }
@@ -77,7 +77,7 @@ const DATA = {
 export default {
     components: {
        XHeader,Panel,ViewBox,Flexbox,FlexboxItem,Previewer,Confirm
-    
+
     },
     methods: {
         _remove(id){
@@ -92,7 +92,7 @@ export default {
             clearShow: false,
             list:DATA.data,
             imgList: [{
-                src: 'https://placekitten.com/600/400',
+                src: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80',
                 w: 600,
                 h: 400
             }],

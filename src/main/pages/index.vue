@@ -7,6 +7,7 @@
         </a>
       </x-header>
     </div>
+    <scroller lock-x v-ref:scroller height="-46px">
     <div style="padding-top:46px;">
       <div class="swiper">
         <swiper auto loop height="10em" dots-position="center">
@@ -19,14 +20,16 @@
         <panel :footer="{'title':'您已收藏'+collectCount+'道题目','url':'/collect/'}" :list="collectInc" :type="type"></panel>
       </section>
     </div>
-  </div>   
+
+  </scroller>
+  </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '../../store' 
-import { XHeader,Swiper,SwiperItem,Panel} from 'vux'
+import store from '../../store'
+import { XHeader,Swiper,SwiperItem,Panel,Scroller} from 'vux'
 import { collectCount,errorCount,cameraCount,swiper} from '../getters'
 import { period_id,subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
@@ -36,7 +39,7 @@ import './main.less'
 
 export default {
   components: {
-    XHeader,Swiper,SwiperItem,Panel
+    XHeader,Swiper,SwiperItem,Panel,Scroller
   },
   methods: {
 		_share(){
@@ -94,7 +97,7 @@ export default {
             subject_id:this.subject_id
         },
         token:this.token
-    }        
+    }
     this.getStudentIndex(params);
   }
 }
@@ -131,4 +134,3 @@ export default {
 
 }
 </style>
-
