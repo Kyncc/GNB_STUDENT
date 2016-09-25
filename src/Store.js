@@ -8,6 +8,7 @@ import forget from './login/modules/forget'
 import resetPassword from './login/modules/resetPassword'
 import comment from './common/modules/comment'
 import correct from './common/modules/correct'
+import collectAdd from './common/modules/collect'
 import index from './main/modules/index'
 import message from './message/modules/index'
 import error from './error/modules/index'
@@ -34,6 +35,7 @@ export default new Vuex.Store({
     comment,
     //纠错
     correct,
+    collectAdd,//收藏动作
     message,//互动
     info,//个人资料
     myClass,//我的班级

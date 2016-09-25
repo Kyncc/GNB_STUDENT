@@ -13,17 +13,17 @@
             </flexbox>
         </div>
 		
-        <div style="padding-top:98px;">
+        <div style="padding-top:98px;"> 
             <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in CollectExampleList">
-                 <div class="weui_panel_hd">
-                     <x-button type='primary' mini>收藏题</x-button>
-                     {{{item.knowledge}}}
-                 </div> 
-                 <div class="weui_panel_bd">
+                <div class="weui_panel_hd">
+                    <x-button type='primary' mini>收藏题</x-button>
+                    {{{item.knowledge}}}
+                </div> 
+                <div class="weui_panel_bd">
                     <a class="weui_media_box weui_media_appmsg" href="#!/collect/example/detail/{{item.id}}">  
                         <div class="weui_media_bd"> 
                             <p class="weui_media_desc">
-                              {{{item.content}}}
+                            {{{item.content}}}
                             </p> 
                         </div> 
                     </a>
@@ -36,6 +36,8 @@
                     </div>
                 </div>  
             </div>
+            <infinite-loading :on-infinite="onInfinite" spinner="bubbles">
+            </infinite-loading>
         </div>
 
 	</view-box>
@@ -45,9 +47,10 @@
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import Vue from 'vue'
 import Router from 'vue-router'
+import InfiniteLoading from 'vue-infinite-loading';
 import store from '../../store' 
 import { period_id,subject_id,token } from '../../common/getters'
-import { CollectExampleIds,CollectExampleList } from '../getters'
+import { CollectExampleIds,CollectExampleList,CollectExampleTotalPage } from '../getters'
 import { getCollectExampleIds,getCollectExampleList } from '../actions'
 
 const DATA = {
@@ -83,18 +86,49 @@ const DATA = {
 
 export default {
     components: {
-        XHeader,XButton,
+        XHeader,XButton,InfiniteLoading,
         Panel,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem
     },
     methods: {
         _camera(){
             this.$router.go(`/collect/camera`);
-        }
+        },
+        onInfinite(){
+            let that = this;
+            //根据索引获取题目
+            if(this.totalPage < this.currentPage) {
+                this.$broadcast('$InfiniteLoading:complete');
+                return;
+            }else{
+                this.$broadcast('$InfiniteLoading:loaded');
+            }
+            this.getCollectExampleIds({
+                currentPage:that.currentPage,
+                token:that.token,
+                options:{
+                    period_id:that.period_id,
+                    subject_id:that.subject_id
+                }
+            },(ret)=>{
+                    let params = {
+                        options:{
+                            ids:ret.data.ids,
+                            period_id:that.period_id,
+                            subject_id:that.subject_id
+                        },
+                        token:that.token
+                    };
+                    that.getCollectExampleList(params);
+                    this.$broadcast('$InfiniteLoading:loaded');
+                }
+            );
+            this.currentPage ++;
+       }
     },
     vuex: {
         getters: {
             period_id,subject_id,token,
-            CollectExampleIds,CollectExampleList
+            CollectExampleIds,CollectExampleList,CollectExampleTotalPage
         },
         actions: {
             getCollectExampleIds,
@@ -104,32 +138,19 @@ export default {
     store,
     data(){
         return{
+            currentPage:1
             // list:CollectExampleList
         }
     },
     ready(){
-        let that = this;
-        //根据索引获取题目
-        this.getCollectExampleIds({
-            currentPage:1,
-            token:that.token,
-            options:{
-                period_id:that.period_id,
-                subject_id:that.subject_id
-            }
-        },(ret)=>{
-                let params = {
-                    options:{
-                        ids:ret.data.ids,
-                        period_id:that.period_id,
-                        subject_id:that.subject_id
-                    },
-                    token:that.token
-                };
-                that.getCollectExampleList(params);
-            }
-        );
-
+    },
+    computed:{
+        totalPage(){
+            return this.CollectExampleTotalPage;
+        },
+        list(){
+            return this.CollectExampleList;
+        }
     }
 }
 </script>

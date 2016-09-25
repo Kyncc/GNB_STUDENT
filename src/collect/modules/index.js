@@ -14,6 +14,7 @@ const state = {
       code:'',
       ids:[],
       list:{},
+      totalPage:'1',
       msg:''
     },
     camera:{
@@ -27,7 +28,8 @@ const state = {
 const mutations = {
   [GET_COLLECT_EXAMPLEIDS_SUCCESS](state , data){
     state.example.code = data.data.code;
-    state.example.ids = data.data.ids;
+    state.example.ids = state.example.ids.concat(data.data.ids);
+    state.example.totalPage = data.data.totalPage;
     state.example.msg = data.msg;
   },
   [GET_COLLECT_EXAMPLEIDS_ERROR](state, data){
@@ -35,6 +37,7 @@ const mutations = {
   },
   [GET_COLLECT_EXAMPLELIST_SUCCESS](state , data){
     state.example.code = data.code;
+    // let obj = state.example.list; 
     state.example.list = data.data;
     state.example.msg = data.msg;
   },

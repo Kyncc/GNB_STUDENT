@@ -158,7 +158,7 @@ router.map({
   'user/class/detail': { component: userClassDetail },
   'user/class/addClass': { component: userClassAdd },
   //我的教材
-  'user/textBook': { component: userTextbook },
+  'user/textBook': { component: userTextbook }
 })
 
 router.redirect({

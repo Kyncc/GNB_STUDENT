@@ -15,16 +15,15 @@ export const getErrorIds = ({ dispatch }, params,callback) => {
   })
 }
 
-export const getErrorList = ({ dispatch }, params,callback) => {
+export const getErrorList = ({ dispatch }, params) => {
   Api.exerciseList({
       data:params,
       ok:response=>{
         dispatch(types.GET_ERROR_INDEXLIST_SUCCESS,response.data);
-        callback();
       },
       wrong:response=>{
         dispatch(types.GET_ERROR_INDEXLIST_ERROR,response.data);
-        _.toast(response.data.msg);
+        _.toast(response.msg);
       }
   })
 }
@@ -123,5 +122,7 @@ export const getErrorListList = ({ dispatch }, params,callback) => {
       }
   })
 }
+
+
 
 

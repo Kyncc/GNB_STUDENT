@@ -12,12 +12,12 @@
 					<flexbox :gutter="0" wrap="wrap">
 						<flexbox-item :span="2/4" style="color:#4bb7aa">例题内容</flexbox-item>
                         <flexbox-item :span="1/4" style="text-align:right;">
-							<template v-if="item.isCollect == 1 ? true:false">
+							<!--<template v-if="item.isCollect == 1 ? true:false">
 								<span style="color:orange"><i class="icon iconfont icon-collect"></i>已收藏</span>
 							</template>
 							<template v-else>
 								<span><i class="icon iconfont icon-collect"></i>收藏</span>
-							</template>
+							</template>-->
                         </flexbox-item>
                         <flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
 					</flexbox>				
@@ -31,13 +31,13 @@
 						</p>
 					</div> 
 					<!--选项-->
-					<template v-if=" detail.type == 1 ? true:false">
+					<!--<template v-if=" detail.type == '1' ? true:false">
 						<div class="weui_media_bd weui_media_box options">
 							<p class="weui_media_desc" v-for="value in detail.tabs"> 
 									{{ $key }} : {{{* value }}}
 							</p>
 						</div>  
-					</template>
+					</template>-->
 				</div>
 			</div>
 			<!--解析--> 
@@ -77,6 +77,11 @@
 
 <script>
 import {Tabbar, TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
+import { collectRemove,collectAdd } from '../../common/actions'
+import { period_id,subject_id,token } from '../../common/getters'
+import { errorIndexList } from '../getters'
+import { getErrorList } from '../actions'
+import store from '../../store'
 import './error.less'
 
 const DATA = {
@@ -87,8 +92,7 @@ const DATA = {
             "id": 83783,
             "isCollect": 1,
             "knowledge": "2.5 函数零点判定原理",
-			"knowledgeId": 12,
-			"isCollect":0,
+            "pic": "",
             "time": "1473682257",
 			"tabs":{
 				 A: '(-4.2)',
@@ -107,6 +111,15 @@ export default {
 	components: {
 		Tabbar, TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox
 	},
+	store,
+	vuex: {
+        getters: {
+            period_id,subject_id,token,errorIndexList
+        },
+        actions: {
+            collectRemove,collectAdd,getErrorList
+        }
+    },
 	methods: {
 		_errorList(){
 			 this.$router.go('/error/list/'+this.detail.knowledgeId)
@@ -120,15 +133,37 @@ export default {
 		_correct(){
 			this.$router.go('/error/correct/'+this.detail.id);
 		},
-		onAction:(type)=>{
-			alert(type);
+		onAction:()=>{
+
+
+
 		}
+
 	},
 	data(){
 		return{
 			 ashow: false,
+			 id:store.state.route.params.id,
 			 detail:DATA.data
 		} 
 	},
+	ready(){
+		let parm = {
+			options:{
+				ids:this.id,
+				period_id:this.period_id,
+				subject_id:this.subject_id
+			},
+			token:this.token
+		}
+		
+		// this.detail = this.errorIndexList[`${this.id}`];
+		//console.log(this.errorIndexList[this.id]);
+	},
+	computed:{
+		// detail(){
+		// 	// return this.errorIndexList[`${this.id}`]
+		// }
+	}
 }
 </script>

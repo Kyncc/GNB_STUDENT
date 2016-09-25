@@ -17,20 +17,20 @@
 						 <flexbox-item :span="1/4" style="text-align:right;" v-touch:tap="_remove">
                             <span style="color:green"><i class="icon iconfont icon-clear"></i>移除</span>
                         </flexbox-item>
-					</flexbox>		
+					</flexbox>
 				</div>
-				<!--题目整体--> 
-				<div class="weui_panel_bd"> 
+				<!--题目整体-->
+				<div class="weui_panel_bd">
 					<!--题目-->
-					<div class="weui_media_bd weui_media_box"> 
+					<div class="weui_media_bd weui_media_box">
 						<p class="weui_media_desc">
 							{{{* detail.content }}}
 						</p>
-					</div> 
+					</div>
 					<!--选项-->
 					<template v-if=" detail.type == 1 ? true:false">
 						<div class="weui_media_bd weui_media_box options">
-							<p class="weui_media_desc" v-for="value in detail.tabs"> 
+							<p class="weui_media_desc" v-for="value in detail.tabs">
 								{{ $key }} : {{{* value }}}
 							</p>
 						</div>
@@ -38,21 +38,21 @@
 
 				</div>
 			</div>
-			<!--解析--> 
+			<!--解析-->
 			<template v-if="detail.pic != ''  ? false:true">
 				<div class="weui_panel weui_panel_access exerciseDetail">
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
 							<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析</flexbox-item>
-						</flexbox>				
-					</div> 
-					<!--解析主体--> 
-					<div class="weui_panel_bd"> 
-						<div class="weui_media_bd weui_media_box "> 
+						</flexbox>
+					</div>
+					<!--解析主体-->
+					<div class="weui_panel_bd">
+						<div class="weui_media_bd weui_media_box ">
 							<p class="weui_media_desc">
 								{{{* detail.answer }}}
 							</p>
-						</div> 
+						</div>
 					</div>
 				</div>
 			</template>
@@ -67,7 +67,7 @@ import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import { collectRemove } from '../../common/actions'
 import { CollectExampleList } from '../getters'
 import { period_id,subject_id,token } from '../../common/getters'
-import store from '../../store' 
+import store from '../../store'
 
 const DATA = {
     "code": 1,
@@ -133,7 +133,7 @@ export default {
 		return{
 			show: false,
 			id:store.state.route.params.id
-		} 
+		}
 	},
 	computed:{
 		detail(){
@@ -142,12 +142,12 @@ export default {
 	},
 	ready(){
 		// this.collectRemove({
-		
+
 		// },()=>{
 		// 	alert("移除成功！");
 		// });
 		let that = this;
-		
+
 
 		let parm = 	{
 			options:{
@@ -158,7 +158,7 @@ export default {
 			token:that.token
 		}
 		console.log(parm);
-		// this.collectRemove(parm);		
+		// this.collectRemove(parm);
 	}
 }
 </script>
