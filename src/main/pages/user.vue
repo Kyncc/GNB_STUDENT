@@ -19,7 +19,7 @@
         <!-- <cell title="我的教材" link="../user/textBook/">
           <span class="icon icon-textbook" slot="icon"></span>
         </cell> -->
-        <cell title="我的班级" v-touch:tap="_myClass">
+        <cell title="我的班级" link="javascript:void(0);" v-touch:tap="_myClass">
           <span class="icon icon-class" slot="icon"></span>
         </cell>
         <cell title="我的会员" link="../user/member/">
@@ -79,7 +79,7 @@ export default {
         this.show = true
     },
     _myClass(){
-        _.toast('暂未开放,敬请期待')
+        _.toast('敬请期待')
     },
     _upload(){
         this.showsheet = true
