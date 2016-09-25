@@ -1,7 +1,7 @@
 <template>
 <view-box v-ref:view-box class='member'>
-  <x-header :left-options="{showBack: true}">我的会员 <a slot="right" v-touch:tap="_recharge">充值</a></x-header>
-  <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
+  <x-header :left-options="{showBack: true}">我的会员 <!--<a slot="right" v-touch:tap="_recharge">充值</a>--></x-header>
+  <scroller lock-x scrollbar-y>
     <group>
       <div class="headimg">
         <img src="../../../assets/user/headimg.png" alt="" />
@@ -113,6 +113,7 @@ import {
 from 'vux'
 import { member } from '../../actions.js'
 import {fetchToken,fetchMemberInfo} from '../../getters'
+import * as _ from '../../../config/whole.js'
 
 export default {
   components: {
@@ -147,7 +148,8 @@ export default {
       this.$router.go('points')
     },
     _recharge() {
-      this.$router.go('recharge')
+        _.toast('暂未开放,敬请期待')
+      //this.$router.go('recharge')
     }
   }
 }

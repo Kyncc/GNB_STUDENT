@@ -1,22 +1,22 @@
 <template>
-    <view-box v-ref:view-box class="cameraHistory">
-        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">拍题记录</x-header>
-        </div>
+<view-box v-ref:view-box class="cameraHistory">
+  <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+    <x-header :left-options="{showBack: true}">拍题记录</x-header>
+  </div>
 
-        <div style="margin-top:46px;" class="main">
-            <flexbox class="list" v-for="item in list">
-                <flexbox-item :span="2/5">
-                    <img class="previewer-demo-img" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80"  @click="$refs.previewer.show($index)">
-                </flexbox-item>
-                <flexbox-item :span="3/5" style="position:relative">
-                     <div v-touch:tap="_record(item.knowledgeId)">
-                        <div class="title">{{{item.knowledge}}}</div>
-                        <div class="difficult">
-                            难度：
-                            <template v-for="1 in item.difficult">
+  <div style="margin-top:46px;" class="main">
+    <flexbox class="list" v-for="item in list">
+      <flexbox-item :span="2/5">
+        <img class="previewer-demo-img" :src="item.src" @click="_show(item.src,$index)">
+      </flexbox-item>
+      <flexbox-item :span="3/5" style="position:relative">
+        <div v-touch:tap="_record(item.knowledgeId)">
+          <div class="title">{{{item.knowledge}}}</div>
+          <div class="difficult">
+            难度：
+            <template v-for="1 in item.difficult">
                                 <i class="icon iconfont icon-collect"></i>
-                            </template>
+</template>
                         </div>
                         <div class="time">{{{item.cameraTime | ymd}}} </div>
                      </div>
@@ -30,82 +30,103 @@
 </template>
 
 <script>
-import {XHeader,Panel,ViewBox,FlexboxItem,Flexbox,Previewer,Confirm} from 'vux'
+import {
+  XHeader,
+  Panel,
+  ViewBox,
+  FlexboxItem,
+  Flexbox,
+  Previewer,
+  Confirm
+} from 'vux'
 
 const DATA = {
-    "code": 1,
-    "data":[
-        {
-            "collectTime":"1473682257",
-            "difficult": 3,
-            "knowledge": "2.5 函数零点判定原理 ",
-            "knowledgeId": 31,
-            "cameraTime": "1473682257",
-            "id":1,
-            "src":"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80",
-            "width":1400,
-            "height":1200
-	    },
-        {
-            "collectTime":"1473682257",
-            "difficult": 3,
-            "knowledge": "2.5 函数零点判定原理 ",
-            "knowledgeId": 12,
-            "cameraTime": "1473682257",
-            "id":1,
-            "src":"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80",
-            "width":1400,
-            "height":1200
-	    },
-        {
-            "collectTime":"1473682257",
-            "difficult": 2,
-            "knowledge": "2.5 函数零点判定原理 ",
-            "knowledgeId": 12,
-            "cameraTime": "1473682257",
-            "id":1,
-            "src":"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80",
-            "width":1400,
-            "height":1200
-	    }
-    ],
-    "msg": 1
+  "code": 1,
+  "data": [{
+    "collectTime": "1473682257",
+    "difficult": 3,
+    "knowledge": "2.5 函数零点判定原理 ",
+    "knowledgeId": 31,
+    "cameraTime": "1473682257",
+    "id": 1,
+    "src": "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80",
+    "width": 1400,
+    "height": 1200
+  }, {
+    "collectTime": "1473682257",
+    "difficult": 3,
+    "knowledge": "2.5 函数零点判定原理 ",
+    "knowledgeId": 12,
+    "cameraTime": "1473682257",
+    "id": 1,
+    "src": "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2116654715,901919733&fm=80",
+    "width": 1400,
+    "height": 1200
+  }, {
+    "collectTime": "1473682257",
+    "difficult": 2,
+    "knowledge": "2.5 函数零点判定原理 ",
+    "knowledgeId": 12,
+    "cameraTime": "1473682257",
+    "id": 1,
+    "src": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2713790248,650364002&fm=80",
+    "width": 1400,
+    "height": 1200
+  }],
+  "msg": 1
 }
 
 
 export default {
-    components: {
-       XHeader,Panel,ViewBox,Flexbox,FlexboxItem,Previewer,Confirm
-    },
-    methods: {
-        _remove(id){
-			this.clearShow = true;
-		},
-        _record(id){
-            this.$router.go(`/camera/record/${id}`);
-		},
-    },
-    data(){
-        return{
-            clearShow: false,
-            list:DATA.data,
-            imgList: [{
-                src: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80',
-                w: 600,
-                h: 400
-            }],
-            options: {
-                getThumbBoundsFn (index) {
-                    let thumbnail = document.querySelectorAll('.previewer-demo-img')[index]
-                    let pageYScroll = window.pageYOffset || document.documentElement.scrollTop
-                    let rect = thumbnail.getBoundingClientRect()
-                    return {x: rect.left, y: rect.top + pageYScroll, w: rect.width}
-                }
-            }
-        }
-    },
-    computed:{
+  components: {
+    XHeader,
+    Panel,
+    ViewBox,
+    Flexbox,
+    FlexboxItem,
+    Previewer,
+    Confirm
 
+  },
+  methods: {
+    _remove(id) {
+      this.clearShow = true;
+    },
+    _record(id) {
+      this.$router.go(`/camera/record/${id}`);
+    },
+    _show(src, index) {
+      this.imgList[index].src = src
+      this.$refs.previewer.show(index)
     }
+  },
+  data() {
+    return {
+      clearShow: false,
+      list: DATA.data,
+      imgList: [],
+      options: {
+        getThumbBoundsFn(index) {
+          let thumbnail = document.querySelectorAll('.previewer-demo-img')[index]
+          let pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+          let rect = thumbnail.getBoundingClientRect()
+          return {
+            x: rect.left,
+            y: rect.top + pageYScroll,
+            w: rect.width
+          }
+        }
+      }
+    }
+  },
+  ready() {
+    for (let i in this.list) {
+      this.imgList.push({
+        src: this.list[i].src,
+        w: 600,
+        h: 400
+      })
+    }
+  }
 }
 </script>
