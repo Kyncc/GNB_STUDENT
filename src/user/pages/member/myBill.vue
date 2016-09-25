@@ -2,18 +2,18 @@
 <view-box v-ref:view-box class='my-bill'>
   <x-header :left-options="{showBack: true}">我的账单</x-header>
 
-    <div class="bill-item">
+    <div class="bill-item" v-for="item in fetchBilllList">
       <flexbox>
         <flexbox-item>
           <flexbox orient="vertical">
             <flexbox-item>
               <div class="bill-left bill-top">
-                支付9.9
+                支付{{item.payMoney}}元
               </div>
             </flexbox-item>
             <flexbox-item>
               <div class="bill-left bill-bottom">
-                2016-9-16
+                {{item.payTime}}
               </div>
             </flexbox-item>
           </flexbox>
@@ -27,7 +27,7 @@
             </flexbox-item>
             <flexbox-item>
               <div class="bill-right bill-bottom">
-                2017-9-16
+                {{item.endTime}}
               </div>
             </flexbox-item>
           </flexbox>
@@ -51,6 +51,9 @@ import {
   ViewBox
 }
 from 'vux'
+import { payList } from '../../actions.js'
+import {fetchToken,fetchBilllList} from '../../getters'
+
 export default {
   components: {
     XHeader,
@@ -61,6 +64,18 @@ export default {
     FlexboxItem,
     Search,
     ViewBox
+  },
+  vuex:{
+      actions:{
+          payList
+      },
+      getters:{
+          fetchToken,
+          fetchBilllList
+      }
+  },
+  ready(){
+      this.payList({token:this.fetchToken})
   },
   methods: {
     _points() {

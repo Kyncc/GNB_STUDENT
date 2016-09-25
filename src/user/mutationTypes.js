@@ -8,3 +8,11 @@ export const GET_ADVICE_LIST = 'GET_ADVICE_LIST'
 export const GET_INVITE_STUDENT_LIST = 'GET_INVITE_STUDENT_LIST'
 //邀请码
 export const GET_INVITE_CODE = 'GET_INVITE_CODE'
+//我的积分
+export const GET_NUMERICAL_LIST= 'GET_NUMERICAL_LIST'
+//我的账单
+export const GET_BILL_LIST= 'GET_BILL_LIST'
+//会员信息
+export const GET_MEMBER_INFO= 'GET_MEMBER_INFO'
+//版本信息
+export const GET_VERSION = 'GET_VERSION'

@@ -1,22 +1,21 @@
 <template>
 <view-box v-ref:view-box class='points'>
   <x-header :left-options="{showBack: true}">我的积分<a slot="right" v-touch:tap="_rull">积分规则</a></x-header>
-  <scroller lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
     <group>
       <h3 class="title vux-1px-b">积分明细</h3>
-      <flexbox class="vux-1px-b points-items">
+      <flexbox class="vux-1px-b points-items" v-for="item in fetchNumericalList">
         <flexbox-item :span="1/40">
         </flexbox-item>
         <flexbox-item :span="9/20">
-          <div>注册</div>
+          <div>{{item.title}}</div>
         </flexbox-item>
         <flexbox-item :span="9/20">
           <flexbox orient="vertical">
             <flexbox-item>
-              <div class="tar money">+100</div>
+              <div class="tar money">{{item.number}}</div>
             </flexbox-item>
             <flexbox-item>
-              <div class="tar time">2016.9.3</div>
+              <div class="tar time">{{item.time}}</div>
             </flexbox-item>
           </flexbox>
         </flexbox-item>
@@ -24,7 +23,6 @@
         </flexbox-item>
       </flexbox>
     </group>
-  </scroller>
 </view-box>
 </template>
 
@@ -33,20 +31,33 @@ import './member.less'
 import {
   XHeader,
   Group,
-  Scroller,
   Flexbox,
   FlexboxItem,
   ViewBox
 } from 'vux'
+import { numerical } from '../../actions.js'
+import {fetchToken,fetchNumericalList} from '../../getters'
+import * as _  from '../../../config/whole.js'
 
 export default {
   components: {
     XHeader,
     Group,
-    Scroller,
     Flexbox,
     FlexboxItem,
     ViewBox
+  },
+  vuex:{
+      actions:{
+          numerical
+      },
+      getters:{
+          fetchToken,
+          fetchNumericalList
+      }
+  },
+  ready(){
+      this.numerical({token:this.fetchToken})
   },
   methods: {
     load(uuid) {

@@ -5,7 +5,7 @@
     <group>
       <div class="headimg">
         <img src="../../../assets/user/headimg.png" alt="" />
-        <p>普通会员</p>
+        <p >{{fetchMemberInfo.isVip=='0'?'普通会员':'VIP'}}</p>
       </div>
 
       <flexbox class="vux-1px-b">
@@ -17,7 +17,7 @@
             <flexbox-item>
               <flexbox>
                 <flexbox-item :span="4/10" class="points padnone"></flexbox-item>
-                <flexbox-item :span="4/10" class="flex-value padnone">1000</flexbox-item>
+                <flexbox-item :span="4/10" class="flex-value padnone">{{fetchMemberInfo.numerical}}</flexbox-item>
               </flexbox>
             </flexbox-item>
           </flexbox>
@@ -30,7 +30,7 @@
             <flexbox-item>
               <flexbox>
                 <flexbox-item :span="4/10" class="dollar padnone"></flexbox-item>
-                <flexbox-item :span="4/10" class="flex-value padnone">0元</flexbox-item>
+                <flexbox-item :span="4/10" class="flex-value padnone">{{fetchMemberInfo.balance}}元</flexbox-item>
               </flexbox>
             </flexbox-item>
           </flexbox>
@@ -41,10 +41,10 @@
           <flexbox-item class="padnone disable title" :span="7/20">
             我的特权
           </flexbox-item>
-          <flexbox-item class="padnone title" :span="8/20">
+          <flexbox-item v-if="fetchMemberInfo.isVip=='0'" class="padnone title" :span="8/20">
             VIP拥有更多特权
           </flexbox-item>
-          <flexbox-item class="padnone title" :span="4/20">
+          <flexbox-item v-if="fetchMemberInfo.isVip=='0'" class="padnone title" :span="4/20">
             <button type="button" name="button" class="upgrade"  v-touch:tap="_recharge">升级</button>
           </flexbox-item>
         </flexbox>
@@ -111,6 +111,9 @@ import {
   ViewBox
 }
 from 'vux'
+import { member } from '../../actions.js'
+import {fetchToken,fetchMemberInfo} from '../../getters'
+
 export default {
   components: {
     XHeader,
@@ -121,6 +124,18 @@ export default {
     FlexboxItem,
     Scroller,
     ViewBox
+  },
+  vuex:{
+      actions:{
+          member
+      },
+      getters:{
+          fetchToken,
+          fetchMemberInfo
+      }
+  },
+  ready(){
+      this.member({token:this.fetchToken})
   },
   methods: {
     load(uuid) {

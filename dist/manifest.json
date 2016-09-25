@@ -226,7 +226,11 @@
 					"static/js/app.c898179e08d2e237cd2f.js",
 					"static/js/manifest.04fe6a5220bc5f533938.js",
 					"static/css/app.2a5988515058e6a259e606ba2576e647.css",
-					"static/js/vendor.aa6ce2614eadc0403acf.js"
+					"static/js/vendor.aa6ce2614eadc0403acf.js",
+					"static/js/manifest.dfb1c827b73c82d2ffcd.js",
+					"static/js/vendor.467846d882574e836d9f.js",
+					"static/js/app.74dec0ad26b70e552ada.js",
+					"static/css/app.fa39f773f47f541a49f3cb822abde94b.css"
 				],
 				"refer": [],
 				"priority": 0

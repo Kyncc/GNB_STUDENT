@@ -115,6 +115,26 @@ export default {
   getInviteCode: (params) => {
     return http({ method: 'get', url: API_PATHS.getInviteCode, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  //积分账单
+  numerical: (params) => {
+    return http({ method: 'get', url: API_PATHS.numerical, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  //我的账单
+  payList: (params) => {
+    return http({ method: 'get', url: API_PATHS.payList, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  //会员信息
+  member: (params) => {
+    return http({ method: 'get', url: API_PATHS.member, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  //退出
+  quitToken: (params) => {
+    return http({ method: 'get', url: API_PATHS.quitToken, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  //检查版本
+  updateVersion: (params) => {
+    return http({ method: 'get', url: API_PATHS.updateVersion, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
 }
 
 export function http(params) {
@@ -149,7 +169,7 @@ export function http(params) {
     }, err => {
       console.log('Network Error:', err);
       _.leave();
-      _.toast('接口异常');
+      _.toast(JSON.parse(err.body).msg);
       return err;
     })
     .catch(err => {
