@@ -39,10 +39,11 @@
   </scroller>
   <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
-  <form v-show="false" enctype="multipart/form-data" action="http://122.114.55.74:8070/v1/student/user/headImg" method="post">
-    <input type="file" id="choosefile" />
-    <input type="submit" value="上传文件" id="submitBtn" />
-  </form>
+
+  <ul id="files" style="display:none;">
+
+  </ul>
+
 </view-box>
 </template>
 
@@ -85,7 +86,6 @@ export default {
 		var files = [];
         var index = 1;
          if(key == 'menu2'){
-             //document.getElementById('choosefile').click();
              plus.gallery.pick(function(p) {
                 var fe = document.getElementById("files");
 				var li = document.createElement("li");
@@ -97,20 +97,16 @@ export default {
 					path: p
 				});
 				index++;
-				empty.style.display = "none";
                 var task = plus.uploader.createUpload(server, {
 						method: "POST"
 					},
-					function(t, status) { //上传完成
-                        _.toast(status)
+					function(t, status) {
 						if(status == 200) {
-                            _.toast('上传成功')
-							outLine("上传成功：" + t.responseText);
+                            _.toast('上传成功' + t.responseText)
 							plus.storage.setItem("uploader", t.responseText);
 
 						} else {
-                            _.toast('上传失败')
-							outLine("上传失败：" + status);
+                            _.toast('上传失败'+ status)
 						}
 					}
 				);
