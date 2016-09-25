@@ -57,8 +57,8 @@ import userInviteFriend from './user/pages/invite/friend'
 import userCodeInput from './user/pages/invite/input'
 //我的会员
 import userMemberIndex from './user/pages/member/index'
-import userMemberVip from './user/pages/member/vip'
 import userMemberPoints from './user/pages/member/points'
+import userMemberRule from './user/pages/member/rule'
 import userMemberRecharge from './user/pages/member/recharge'
 import userMemberMyBill from './user/pages/member/myBill'
 //我的班级
@@ -149,10 +149,10 @@ router.map({
   'user/invite/input': { component: userCodeInput },
   //我的会员
   'user/member': { component: userMemberIndex },
-  'user/vip': { component: userMemberVip }, //我的会员 VIP
   'user/member/points': { component: userMemberPoints }, //我的积分
   'user/member/recharge': { component: userMemberRecharge }, //充值
   'user/member/myBill': { component: userMemberMyBill }, //我的账单
+  'user/member/rule':{ component: userMemberRule}, //积分规则
   //我的班级
   'user/class': { component: userClassIndex },
   'user/class/detail': { component: userClassDetail },

@@ -79,7 +79,6 @@ export default {
     }
   },
   ready(){
-      console.log(this.swiper)
     let params = {
         options:{
             period_id:this.period_id,
