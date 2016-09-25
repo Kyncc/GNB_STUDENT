@@ -44,6 +44,11 @@
 
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
+import store from '../../store' 
+import { period_id,subject_id,token } from '../../common/getters'
+import { errorIndexIds,errorIndexList } from '../getters'
+import { getErrorIds,getErrorList } from '../actions'
+
 
 const DATA = {
     "code": 1,
@@ -88,6 +93,17 @@ export default {
     methods: {
         
     },
+    vuex: {
+        getters: {
+            period_id,subject_id,token,
+            errorIndexIds,errorIndexList
+        },
+        actions: {
+            getErrorIds,
+            getErrorList
+        }
+    },
+    store,
     data(){
         return{
             detail:DATA.data

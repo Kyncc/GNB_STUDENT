@@ -42,6 +42,20 @@ export const getErrorMoreIds = ({ dispatch }, params,callback) => {
   })
 }
 
+export const getErrorMoreList = ({ dispatch }, params,callback) => {
+  Api.cameraList({
+      data:params,
+      ok:response=>{
+        dispatch(types.GET_ERROR_MORELIST_SUCCESS,response.data);
+        callback();
+      },
+      wrong:response=>{
+        dispatch(types.GET_ERROR_MORELIST_ERROR,response.data);
+        _.toast(response.data.msg);
+      }
+  })
+}
+
 
 export const getErrorRecommendIds = ({ dispatch }, params,callback) => {
   Api.errorRecommend({
@@ -55,6 +69,20 @@ export const getErrorRecommendIds = ({ dispatch }, params,callback) => {
       }
   })
 }
+
+export const getErrorRecommendList = ({ dispatch }, params,callback) => {
+  Api.exerciseList({
+      data:params,
+      ok:response=>{
+        dispatch(types.GET_ERROR_RECOMMENDLIST_SUCCESS,response.data);
+      },
+      wrong:response=>{
+        dispatch(types.GET_ERROR_RECOMMENDLIST_SERROR,response.data);
+        _.toast(response.data.msg);
+      }
+  })
+}
+
 
 export const postErrorRecommend = ({ dispatch }, params,callback) => {
   Api.errorRecommendPost({
@@ -81,4 +109,19 @@ export const getErrorListIds = ({ dispatch }, params,callback) => {
       }
   })
 }
+
+
+export const getErrorListList = ({ dispatch }, params,callback) => {
+  Api.exerciseList({
+      data:params,
+      ok:response=>{
+        dispatch(types.GET_ERROR_LISTLIST_SUCCESS,response.data);
+      },
+      wrong:response=>{
+        dispatch(types.GET_ERROR_LISTLIST_ERROR,response.data);
+        _.toast(response.data.msg);
+      }
+  })
+}
+
 
