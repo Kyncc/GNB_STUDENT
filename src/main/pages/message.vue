@@ -8,17 +8,17 @@
       <scroller lock-x scrollbar-y use-pulldown :pulldown-status.sync="pulldownStatus" @pulldown:loading="load">
         <group>
           <cell title="班级消息" link="../message/class" inline-desc='这是张老师布置的一道作业' >
-            <div class="vux-reddot" slot="icon" style="margin-right:.5em;" >
+            <div v-bind:class="{'vux-reddot':messageIndex.hasNewClassMsg}" slot="icon" style="margin-right:.5em;" >
               <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/class.png">
             </div>
           </cell>
           <cell title="纠错消息" link="../message/correct" inline-desc='这是张老师布置的一道作业' >
-            <div class="vux-reddot" slot="icon" style="margin-right:.5em;" >
+            <div v-bind:class="{'vux-reddot':messageIndex.hasNewCorretMsg}" slot="icon" style="margin-right:.5em;" >
                 <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/correct.png">
             </div>
           </cell>
           <cell title="系统消息" link="../message/system" inline-desc='这是张老师布置的一道作业' >
-            <div class="vux-reddot" slot="icon" style="margin-right:.5em;" >
+            <div v-bind:class="{'vux-reddot':messageIndex.hasNewSystemMsg}" slot="icon" style="margin-right:.5em;" >
               <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/system.png">
             </div>
           </cell>
@@ -44,12 +44,11 @@
 </template>
 
 <script>
-
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../../store' 
 import {XHeader,Group,Scroller,Cell,ViewBox,Spinner} from 'vux'
 import { token } from '../../common/getters'
-
 import { messageIndex } from '../../message/getters'
 import { getMessageIndex} from '../../message/actions'
 
@@ -57,34 +56,42 @@ export default {
   components: {
     XHeader,Scroller,Group,Cell,ViewBox,Spinner
   },
+  vuex: {
+      getters: {
+          token,messageIndex
+      },
+      actions: {
+          getMessageIndex
+      }
+  },
+  store,
   methods: {
-    load (uuid) {
-      setTimeout(() => {
-        this.$broadcast('pulldown:reset', uuid)
-      }, 2000)
-    },
-		_refersh(){
-			alert(1);
-		},
-     _openQQ(){
-      window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
+    _openQQ(){
+        window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
     },
 		load (uuid) {
 			setTimeout(() => {
-				this.$broadcast('pulldown:reset', uuid)
+				this.$broadcast('pulldown:reset', uuid);
+        this.getMessageIndex({"token":this.token});
 			}, 1000)
-		}
+		},
+    _refresh(){
+      this.getMessageIndex({"token":this.token});
+    }
 	},
   data () {
     return {
       pulldownStatus: 'default'
     }
+  },
+  ready(){
+    this._refresh();
   }
 }
 </script>
 
 <style>
-  .rotate {
+.rotate {
   transform: rotate(-180deg);
 }
 .pulldown-arrow {

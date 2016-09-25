@@ -3,15 +3,16 @@ import * as types from './mutationTypes'
 import * as _ from '../config/whole'
 
 
-export const getMessageIndex = ({ dispatch }, params) => {
+export const getMessageIndex = ({ dispatch }, params,callback) => {
   Api.msg({
       data:params,
       ok:response=>{
         dispatch(types.GET_MESSAGE_HOME_SUCCESS,response.data);
+        callback();
       },
       wrong:response=>{
         dispatch(types.GET_MESSAGE_HOME_ERROR,response.data);
-        _.toast(response.data.msg);
+        _.toast('获取信息失败');
       }
   })
 }

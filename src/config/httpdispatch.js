@@ -57,6 +57,27 @@ export default {
   collectCameraIds: (params) => {
     return http({ method: 'get', url: API_PATHS.collectCameraIds, data: params.data, ok: params.ok, wrong: params.wrong });
   },
+  /**归纳本模块
+   *  error:归纳本首页获取数据
+   * errorList:归纳本错题列表
+   * errorMore:归纳本首更多习题
+   * errorRecommend:归纳本推荐习题
+   */
+  error: (params) => {
+    return http({ method: 'get', url: API_PATHS.error, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
+  errorList: (params) => {
+    return http({ method: 'get', url: API_PATHS.errorList, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
+  errorMore: (params) => {
+    return http({ method: 'get', url: API_PATHS.errorMore, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
+  errorRecommend: (params) => {
+    return http({ method: 'get', url: API_PATHS.errorRecommend, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
+  errorRecommendPost: (params) => {
+    return http({ method: 'post', url: API_PATHS.errorRecommendPost, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
   /**互动模块
    * msg:消息首页
    * msgSystem:系统消息

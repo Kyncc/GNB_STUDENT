@@ -35,7 +35,18 @@ export const API_PATHS = {
   //收藏本
   collectExampleIds: `${API_ENV}${API_VERSION}/student/collect/example`,
   collectCameraIds: `${API_ENV}${API_VERSION}/student/collect/camera`,
- /**互动模块
+   /**归纳本模块
+   *  error:归纳本首页获取数据
+   *  errorList:归纳本错题列表
+   *  errorMore:归纳本首更多习题
+   *  errorRecommend:归纳本推荐习题
+   */
+   error:`${API_ENV}${API_VERSION}/student/error`,
+   errorList:`${API_ENV}${API_VERSION}/student/error/list`,
+   errorMore:`${API_ENV}${API_VERSION}/student/error/more`,
+   errorRecommend:`${API_ENV}${API_VERSION}/student/error/recommend`,
+   errorRecommendPost:`${API_ENV}${API_VERSION}/student/error/recommendPost`,
+   /**互动模块
    * msgSystem:系统消息
    * msgClass:班级消息
    * msgCorrect:纠错消息
