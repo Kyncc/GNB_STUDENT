@@ -29,25 +29,29 @@ const state = {
       code:'',
       ids:[],
       list:{},
-      msg:''
+      msg:'',
+      totalPage:'1'
     },
     more:{
       code:'',
       ids:[],
       list:{},
-      msg:''
+      msg:'',
+      totalPage:'1'
     },
     list:{
       code:'',
       ids:[],
       list:{},
-      msg:''
+      msg:'',
+      totalPage:'1'
     },
     recommend:{
       code:'',
       ids:[],
       list:{},
-      msg:''
+      msg:'',
+      totalPage:'1'
     },
     recommendPost:{
       code:'',
@@ -62,6 +66,7 @@ const mutations = {
     state.index.code = data.data.code;
     state.index.ids = data.data.ids;
     state.index.msg = data.msg;
+    state.index.totalPage = data.data.totalPage;
   },
   [GET_ERROR_INDEXIDS_ERROR](state, data){
     state.index.msg = data.msg;
@@ -79,6 +84,7 @@ const mutations = {
     state.more.code = data.data.code;
     state.more.ids = data.data.ids;
     state.more.msg = data.msg;
+    state.more.totalPage = data.data.totalPage;
   },
   [GET_ERROR_MOREIDS_ERROR](state, data){
     state.more.msg = data.msg;
@@ -96,6 +102,7 @@ const mutations = {
     state.list.code = data.data.code;
     state.list.ids = data.data.ids;
     state.list.msg = data.msg;
+    state.list.totalPage = data.data.totalPage;
   },
   [GET_ERROR_LISTIDS_ERROR](state, data){
     state.list.msg = data.msg;
@@ -113,6 +120,7 @@ const mutations = {
     state.recommend.code = data.data.code;
     state.recommend.ids = data.data.ids;
     state.recommend.msg = data.msg;
+    state.recommend.totalPage = data.data.totalPage;
   },
   [GET_ERROR_RECOMMENDIDS_ERROR](state, data){
     state.recommend.msg = data.msg;

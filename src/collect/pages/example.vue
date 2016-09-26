@@ -49,9 +49,7 @@
 
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
-import InfiniteLoading from 'vue-infinite-loading';
-import Vue from 'vue'
-import Router from 'vue-router'
+import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import { period_id,subject_id,token } from '../../common/getters'
 import { CollectExampleIds,CollectExampleList,CollectExampleTotalPage } from '../getters'

@@ -21,7 +21,8 @@ const state = {
       code:'',
       ids:[],
       list:[],
-      msg:''
+      msg:'',
+      totalPage:'1',
     }
 }
 
@@ -47,6 +48,7 @@ const mutations = {
     state.camera.code = data.data.code;
     state.camera.ids = data.data.ids;
     state.camera.msg = data.msg;
+    state.camera.totalPage = data.data.totalPage;
   },
   [GET_COLLECT_CAMERALEIDS_ERROR](state, data){
     state.camera.msg = data.msg;
