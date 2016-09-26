@@ -12,24 +12,24 @@ import {
 const state = {
     index:{
       code:'',
-      hasNewClassMsg:false,
-      hasNewCorretMsg:true,
-      hasNewSystemMsg:false,
+      hasNewClassMsg:'',
+      hasNewCorretMsg:'',
+      hasNewSystemMsg:'',
       msg:''
     },
     system:{
       code:'',
-      list:[],
+      list:{},
       msg:''
     },
     class:{
       code:'',
-      list:[],
+      list:{},
       msg:''
     },
     correct:{
       code:'',
-      list:[],
+      list:{},
       msg:''
     }
 }
@@ -48,27 +48,27 @@ const mutations = {
   },
   [GET_MESSAGE_SYSTEM_SUCCESS](state , data){
     state.system.code = data.data.code;
-    state.system.list = data.data.list;
+    state.system.list = data.data;
     state.system.msg = data.msg;
   },
   [GET_MESSAGE_SYSTEM_ERROR](state, data){
-    state.example.msg = data.msg;
+    state.system.msg = data.msg;
   },
   [GET_MESSAGE_CORRECT_SUCCESS](state , data){
-    state.system.code = data.data.code;
-    state.system.list = data.data.list;
-    state.system.msg = data.msg;
+    state.correct.code = data.data.code;
+    state.correct.list = data.data;
+    state.correct.msg = data.msg;
   },
  [GET_MESSAGE_CORRECT_ERROR](state, data){
-    state.example.msg = data.msg;
+    state.correct.msg = data.msg;
   },
   [GET_MESSAGE_CLASS_SUCCESS](state , data){
-    state.system.code = data.data.code;
-    state.system.list = data.data.list;
-    state.system.msg = data.msg;
+    state.class.code = data.data.code;
+    state.class.list = data.data;
+    state.class.msg = data.msg;
   },
   [GET_MESSAGE_CLASS_ERROR](state, data){
-    state.example.msg = data.msg;
+    state.class.msg = data.msg;
   }
 }
 export default {

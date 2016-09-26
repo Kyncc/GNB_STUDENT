@@ -13,12 +13,12 @@
 						<flexbox :gutter="0" wrap="wrap">
 							<flexbox-item :span="2/4" style="color:#4bb7aa">例题内容</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right;">
-								<!--<template v-if="item.isCollect == 1 ? true:false">
-									<span style="color:orange"><i class="icon iconfont icon-collect"></i>已收藏</span>
+								<template v-if="detail.collectTime != '0' ? true:false">
+									<span class="isCollect"><i class="icon iconfont icon-collect"></i>已收藏</span>
 								</template>
 								<template v-else>
-									<span><i class="icon iconfont icon-collect"></i>收藏</span>
-								</template>-->
+									<span class="isCollect"><i class="icon iconfont icon-collect"></i>收藏</span>
+								</template>
 							</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
 						</flexbox>				
@@ -26,19 +26,18 @@
 					<!--题目整体--> 
 					<div class="weui_panel_bd"> 
 						<!--题目-->
-						<div class="weui_media_bd weui_media_box "> 
+						<div class="weui_media_bd weui_media_box"> 
 							<p class="weui_media_desc">
 								{{{* detail.content }}}
 							</p>
 						</div> 
-						<!--选项-->
-						<!--<template v-if=" detail.type == '1' ? true:false">
+						<template v-if=" detail.type == '1' ? true:false">
 							<div class="weui_media_bd weui_media_box options">
 								<p class="weui_media_desc" v-for="value in detail.tabs"> 
-										{{ $key }} : {{{* value }}}
+									{{ $key }} : {{{* value }}}
 								</p>
 							</div>  
-						</template>-->
+						</template>
 					</div>
 				</div>
 				<!--解析--> 
@@ -116,28 +115,8 @@ export default {
 		onAction:()=>{
 
 
-
-		}
-	},
-	data(){
-		return{
-			 ashow: false,
-			 list:[]
-		} 
-	},
-	ready(){
-		let params = {
-			options:{
-				ids:[this.id],
-				period_id:this.period_id,
-				subject_id:this.subject_id
-			},
-			token:this.token
-		};
-		this.getErrorList(params);
-	},
-	watch:{
-		id(){
+		},
+		_getData(){
 			let params = {
 				options:{
 					ids:[this.id],
@@ -147,6 +126,21 @@ export default {
 				token:this.token
 			};
 			this.getErrorList(params);
+		}
+	},
+	data(){
+		return{
+			 ashow: false,
+			 list:[],
+			 
+		} 
+	},
+	ready(){
+		this._getData()
+	},
+	watch:{
+		id(){
+			this._getData();
 		},
 		errorIndexList(){
 			this.list = this.errorIndexList;

@@ -4,7 +4,7 @@
             <x-header :left-options="{showBack: true}">系统消息</x-header>
         </div>
 		<div style="padding-top:46px;" class="messageSection">
-			<section v-for="item in list">
+			<section v-for="item in messageSystemList">
 				<h3>{{item.time | ymd}}</h3>
 				<article>
 					{{item.content}}
@@ -22,51 +22,24 @@ import { token } from '../../common/getters'
 import { getMessageSystem } from '../actions'
 import { messageSystemList } from '../getters'
 
-const data = {
-	code:'200',
-	data:[
-		{
-			"time": "1473682257",
-			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
-		},
-		{
-			"time": "1473682257",
-			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
-		},
-		{
-			"time": "1473682257",
-			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
-		},
-		{
-			"time": "1473682257",
-			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
-		}
-	]
-}
-
 export default {
 	components: {
 		XHeader,ViewBox
 	},
 	vuex: {
 		getters: {
-			token
-			//,messageSystemList
+			token,messageSystemList
 		},
 		actions: {
-			messageSystemList
+			getMessageSystem
 		}
 	},
 	store,
-	data(){
-		return{
-			list:data.data
-		}
-	},
 	ready(){
-
-
-
+		let parme = {
+			"token":this.token
+		}
+		this.getMessageSystem(parme);
   	}
 }
 </script>

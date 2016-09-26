@@ -1,10 +1,10 @@
 <template>
 	<view-box v-ref:view-box class="messageCorrect">
 		 <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">系统消息</x-header>
+            <x-header :left-options="{showBack: true}">纠错消息</x-header>
         </div>
 		<div style="padding-top:46px;" class="messageSection">
-			<section v-for="item in list">
+			<section v-for="item in messageCorrectList">
 				<h3>{{item.time | ymd}}</h3>
 				<article>
 					{{item.content}}
@@ -22,27 +22,6 @@ import { token } from '../../common/getters'
 import { getMessageCorrect } from '../actions'
 import { messageCorrectList } from '../getters'
 
-const data = {
-	code:'200',
-	data:[
-		{
-			"time": "1473682257",
-			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
-		},
-		{
-			"time": "1473682257",
-			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
-		},
-		{
-			"time": "1473682257",
-			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
-		},
-		{
-			"time": "1473682257",
-			"content": "馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意馈这里是意见反馈这里是意"
-		}
-	]
-}
 
 export default {
 	components: {
@@ -50,23 +29,18 @@ export default {
 	},
 	vuex: {
 		getters: {
-			token
-			//,messageSystemList
+			token,messageCorrectList
 		},
 		actions: {
-			messageCorrectList
+			getMessageCorrect
 		}
 	},
 	store,
-	data(){
-		return{
-			list:data.data
-		}
-	},
 	ready(){
-
-
-
+		let parme = {
+			"token":this.token
+		}
+		this.getMessageCorrect(parme);
   	}
 }
 </script>
