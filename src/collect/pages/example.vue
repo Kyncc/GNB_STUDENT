@@ -14,7 +14,7 @@
         </div>
 
         <div style="padding-top:98px;">
-            <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in CollectExampleList">
+            <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
                 <div class="weui_panel_hd">
                     <x-button type='primary' mini>收藏题</x-button>
                     {{{item.knowledge}}}
@@ -36,9 +36,10 @@
                     </div>
                 </div>
             </div>
-            <infinite-loading :on-infinite="onInfinite" spinner="bubbles">
-                <span slot="no-more">
-                    没有更多啦
+            <infinite-loading :on-infinite="onInfinite" spinner="waveDots">
+                <span slot="no-more" style="color:#4bb7aa;">
+                    <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+                    <p style="font-size:1rem;display:inline-block;">没有更多数据了</p>
                 </span>
             </infinite-loading>
         </div>
@@ -56,37 +57,6 @@ import { period_id,subject_id,token } from '../../common/getters'
 import { CollectExampleIds,CollectExampleList,CollectExampleTotalPage } from '../getters'
 import { getCollectExampleIds,getCollectExampleList } from '../actions'
 
-const DATA = {
-    "code": 1,
-    "data":{
-        83783:{
-            "content": "小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>",
-            "difficult": 3,
-            "id": 83783,
-            "knowledge": "2.5 函数零点判定原理 ",
-            "pic": "",
-            "time": "1473682257"
-	    },
-         83784:{
-            "content": "小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>",
-            "difficult": 3,
-            "id": 83784,
-            "knowledge": "2.5 函数零点判定原理 ",
-            "pic": "",
-            "time": "1473682257"
-	    },
-         83785:{
-            "content": "小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>",
-            "difficult": 3,
-            "id": 83783,
-            "knowledge": "2.5 函数零点判定原理 ",
-            "pic": "",
-            "time": "1473682257"
-	    }
-    },
-    "msg": 1
-}
-
 export default {
     components: {
         XHeader,XButton,InfiniteLoading,
@@ -102,9 +72,8 @@ export default {
             if(this.totalPage < this.currentPage) {
                 this.$broadcast('$InfiniteLoading:complete');
                 return;
-            }else{
-                this.$broadcast('$InfiniteLoading:loaded');
             }
+
             this.getCollectExampleIds({
                 currentPage:that.currentPage,
                 token:that.token,
@@ -112,22 +81,13 @@ export default {
                     period_id:that.period_id,
                     subject_id:that.subject_id
                 }
-            },(ret)=>{
-                    let params = {
-                        options:{
-                            ids:ret.data.ids,
-                            period_id:that.period_id,
-                            subject_id:that.subject_id
-                        },
-                        token:that.token
-                    };
-                    that.getCollectExampleList(params,()=>{
-                        this.$broadcast('$InfiniteLoading:loaded')                        
-                    })
-
-                }
-            );
+            },()=>{
+                setTimeout(()=>{
+                    that.$broadcast('$InfiniteLoading:loaded');
+                },1000);
+            })
             this.currentPage ++;
+
        }
     },
     vuex: {
@@ -143,18 +103,29 @@ export default {
     store,
     data(){
         return{
-            currentPage:1
-            // list:CollectExampleList
+            currentPage:1,
+            list:[]
         }
-    },
-    ready(){
     },
     computed:{
         totalPage(){
             return this.CollectExampleTotalPage;
+        }
+    },
+    watch:{
+        CollectExampleIds(){
+            let params = {
+                options:{
+                    ids:this.CollectExampleIds,
+                    period_id:this.period_id,
+                    subject_id:this.subject_id
+                },
+                token:this.token
+            };
+            this.getCollectExampleList(params)
         },
-        list(){
-            return this.CollectExampleList;
+        CollectExampleList(){
+            this.list =  this.list.concat(this.CollectExampleList);
         }
     }
 }

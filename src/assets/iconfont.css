@@ -15,10 +15,11 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-xiaoxi:before { content: "\e600"; }
 .icon-home:before { content: "\e601"; }
 .icon-31wode:before { content: "\e602"; }
 .icon-clear:before { content: "\e605"; }
 .icon-camera:before { content: "\e606"; }
+.icon-hudong:before { content: "\e607"; }
 .icon-error-login:before { content: "\e603"; }
 .icon-collect:before { content: "\e604"; }
+.icon-comiiszanwushuju:before { content: "\e600"; }

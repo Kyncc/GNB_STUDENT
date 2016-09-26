@@ -28,7 +28,7 @@ const state = {
 const mutations = {
   [GET_COLLECT_EXAMPLEIDS_SUCCESS](state , data){
     state.example.code = data.data.code;
-    state.example.ids = state.example.ids.concat(data.data.ids);
+    state.example.ids = data.data.ids;
     state.example.totalPage = data.data.totalPage;
     state.example.msg = data.msg;
   },
@@ -37,7 +37,8 @@ const mutations = {
   },
   [GET_COLLECT_EXAMPLELIST_SUCCESS](state , data){
     state.example.code = data.code;
-    state.example.list = state.example.list.concat(data.data);
+    // state.example.list = state.example.list.concat(data.data);
+    state.example.list = data.data;
     state.example.msg = data.msg;
   },
   [GET_COLLECT_EXAMPLELIST_ERROR](state, data){

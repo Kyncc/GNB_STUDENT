@@ -159,7 +159,7 @@ export default {
 }
 
 export function http(params) {
-  _.busy();
+  // _.busy();
   let resource;
   if (params.method == 'post') {
     resource = Vue.http.post(params.url, params.data, {
@@ -185,11 +185,11 @@ export function http(params) {
       } else {
         params.wrong(resp);
       }
-      _.leave();
+      // _.leave();
       return resp;
     }, err => {
       console.log('Network Error:', err);
-      _.leave();
+      // _.leave();
       _.toast(JSON.parse(err.body).msg);
       return err;
     })

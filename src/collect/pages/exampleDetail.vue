@@ -2,44 +2,44 @@
 	<view-box v-ref:view-box class="collectDetail">
 
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
-			<x-header :left-options="{showBack: true}">我的收藏</x-header>
+			<x-header :left-options="{showBack:true,preventGoBack:true}" @on-click-back="_back()">我的收藏</x-header>
 		</div>
 
 		<div style="padding-top:46px;">
 			<!--内容-->
-			<div class="weui_panel weui_panel_access exerciseDetail">
-				<div class="weui_panel_hd">
-					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="1/2" style="color:#4bb7aa">收藏题</flexbox-item>
-                        <flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct" >
-							<span style="color:orange"><i class="icon iconfont icon-error-login"></i>纠错</span>
-						</flexbox-item>
-						 <flexbox-item :span="1/4" style="text-align:right;" v-touch:tap="_remove">
-                            <span style="color:green"><i class="icon iconfont icon-clear"></i>移除</span>
-                        </flexbox-item>
-					</flexbox>
-				</div>
-				<!--题目整体-->
-				<div class="weui_panel_bd">
-					<!--题目-->
-					<div class="weui_media_bd weui_media_box">
-						<p class="weui_media_desc">
-							{{{* detail.content }}}
-						</p>
+			<div v-for="detail in list">
+				<div class="weui_panel weui_panel_access exerciseDetail" >
+					<div class="weui_panel_hd">
+						<flexbox :gutter="0" wrap="wrap">
+							<flexbox-item :span="1/2" style="color:#4bb7aa">收藏题</flexbox-item>
+							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct" >
+								<span style="color:orange"><i class="icon iconfont icon-error-login"></i>纠错</span>
+							</flexbox-item>
+							<flexbox-item :span="1/4" style="text-align:right;" v-touch:tap="_remove">
+								<span style="color:green"><i class="icon iconfont icon-clear"></i>移除</span>
+							</flexbox-item>
+						</flexbox>
 					</div>
-					<!--选项-->
-					<template v-if=" detail.type == 1 ? true:false">
-						<div class="weui_media_bd weui_media_box options">
-							<p class="weui_media_desc" v-for="value in detail.tabs">
-								{{ $key }} : {{{* value }}}
+					<!--题目整体-->
+					<div class="weui_panel_bd">
+						<!--题目-->
+						<div class="weui_media_bd weui_media_box">
+							<p class="weui_media_desc">
+								{{{* detail.content }}}
 							</p>
 						</div>
-					</template>
+						<!--选项-->
+						<template v-if=" detail.type == 1 ? true:false">
+							<div class="weui_media_bd weui_media_box options">
+								<p class="weui_media_desc" v-for="value in detail.tabs">
+									{{ $key }} : {{{* value }}}
+								</p>
+							</div>
+						</template>
 
+					</div>
 				</div>
-			</div>
-			<!--解析-->
-			<template v-if="detail.pic != ''  ? false:true">
+				<!--解析-->
 				<div class="weui_panel weui_panel_access exerciseDetail">
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
@@ -55,8 +55,8 @@
 						</div>
 					</div>
 				</div>
-			</template>
-
+			</div>
+			
 		</div>
 	</view-box>
 	<confirm :show.sync="show" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="_onAction()"></confirm>
@@ -65,31 +65,11 @@
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import { collectRemove } from '../../common/actions'
+import { getCollectExampleList } from '../actions'
 import { CollectExampleList } from '../getters'
-import { period_id,subject_id,token } from '../../common/getters'
+import { period_id,subject_id,token,id } from '../../common/getters'
 import store from '../../store'
 
-const DATA = {
-    "code": 1,
-    "data":{
-            "content": "小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>",
-            "difficult": 3,
-            "id": 83783,
-            "isCollect": 1,
-            "knowledge": "2.5 函数零点判定原理",
-            "pic": "",
-            "time": "1473682257",
-			"tabs":{
-				 A: '(-4.2)',
-				 B: '(-4.2)',
-				 C: '(-4.2)',
-				 D: '(-4.2)'
-			},
-			"type":1,
-			"answer":"小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>"
-	},
-    "msg": 1
-}
 
 export default {
 	components: {
@@ -97,24 +77,24 @@ export default {
 	},
 	vuex: {
         getters: {
-            CollectExampleList,period_id,subject_id,token
+            CollectExampleList,period_id,subject_id,token,id
         },
         actions: {
-            collectRemove
+            collectRemove,getCollectExampleList
         }
     },
 	methods: {
 		_remove(){
-			console.log(this.id);
 			this.show = true
 		},
 		_correct(){
 			this.$router.go('/collect/correct/'+this.id);
 		},
+		_back(){
+			this.$router.go('/collect/');
+		},
 		_onAction:()=>{
 			let that = this;
-			// console.log(that.token);
-
 			// this.collectRemove({
 			// 	options:{
 			// 		id:Number(that.id),
@@ -132,33 +112,35 @@ export default {
 	data(){
 		return{
 			show: false,
-			id:store.state.route.params.id
-		}
-	},
-	computed:{
-		detail(){
-			return this.CollectExampleList[`${this.id}`]
+			list:[]
 		}
 	},
 	ready(){
-		// this.collectRemove({
-
-		// },()=>{
-		// 	alert("移除成功！");
-		// });
-		let that = this;
-
-
-		let parm = 	{
+		let params = {
 			options:{
-				id:Number(that.id),
-				period_id:that.period_id,
-				subject_id:that.subject_id
+				ids:[this.id],
+				period_id:this.period_id,
+				subject_id:this.subject_id
 			},
-			token:that.token
+			token:this.token
+		};
+		this.getCollectExampleList(params);
+	},
+	watch:{
+		id(){
+			let params = {
+				options:{
+					ids:[this.id],
+					period_id:this.period_id,
+					subject_id:this.subject_id
+				},
+				token:this.token
+			};
+			this.getCollectExampleList(params);
+		},
+		CollectExampleList(){
+			this.list = this.CollectExampleList;
 		}
-		console.log(parm);
-		// this.collectRemove(parm);
 	}
 }
 </script>

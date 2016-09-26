@@ -31,14 +31,11 @@ export const getCollectCameraIds = ({ dispatch }, params,callback) => {
   })
 }
 
-export const getCollectExampleList = ({ dispatch }, params,callback) => {
+export const getCollectExampleList = ({ dispatch }, params) => {
   Api.exerciseList({
       data:params,
       ok:response=>{
           dispatch(types.GET_COLLECT_EXAMPLELIST_SUCCESS,response.data)
-          setTimeout(()=>{
-              callback()
-          },1000)
       },
       wrong:response=>{
         dispatch(types.GET_COLLECT_EXAMPLELIST_ERROR,response.data);
