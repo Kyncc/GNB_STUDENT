@@ -2,7 +2,7 @@
     <view-box v-ref:view-box class="collect">
 
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">收藏本</x-header>
+            <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">收藏本</x-header>
             <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
                 <flexbox-item :span="3/4">
                     <button-tab>
@@ -91,6 +91,9 @@ export default {
 		},
         _onAction(){
 			alert(this.removeId);
+		},
+        _back(){
+			this.$router.go('/main');
 		}
     },
     vuex: {

@@ -19,6 +19,9 @@ export const comment = ({ dispatch }, params) => {
       data:params,
       ok:response=>{
         dispatch(types.COMMENT_SUCCESS,response.data);
+        setTimeout(()=>{
+          history.back();
+        },1000);
          _.toast("点评成功");
       },
       wrong:response=>{
@@ -35,6 +38,9 @@ export const correct = ({ dispatch }, params) => {
       ok:response=>{
         dispatch(types.CORRECT_SUCCESS,response.data);
         _.toast("纠错成功");
+        setTimeout(()=>{
+          history.back();
+        },1000);
       },
       wrong:response=>{
         dispatch(types.CORRECT_ERROR,response.data);

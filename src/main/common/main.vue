@@ -10,7 +10,7 @@
             <span slot="label">主页</span>
           </tabbar-item>
           <tabbar-item link="message" :selected="messageState">
-            <i slot="icon" class="icon iconfont icon-xiaoxi"></i>
+            <i slot="icon" class="icon iconfont icon-hudong"></i>
             <span slot="label">互动</span>
           </tabbar-item>
           <tabbar-item link="user" :selected="userState">

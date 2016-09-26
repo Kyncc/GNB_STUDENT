@@ -37,8 +37,6 @@ import errorComment from './error/pages/comment'
 import collectExample from './collect/pages/example'
 import collectCamera from './collect/pages/camera'
 import collectExampleDetail from './collect/pages/exampleDetail'
-import collectCameraDetail from './collect/pages/cameraDetail'
-import collectCorrect from './collect/pages/correct'
 //通知
 import messageClass from './message/pages/class'
 import messageCorrect from './message/pages/correct'
@@ -127,10 +125,7 @@ router.map({
   //收藏本
   'collect/example': { component: collectExample },
   'collect/camera': { component: collectCamera },
-  'collect/camera/detail/:id': { component: collectCameraDetail },
   'collect/example/detail/:id': { component: collectExampleDetail },
-  //'collect/correct/:id': { component: exampleCorrect },
-  //'collect/comment/:id': { component: cameraComment },
   //消息
   'message/class': { component: messageClass },
   'message/system': { component: messageSystem },

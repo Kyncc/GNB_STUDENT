@@ -2,7 +2,7 @@
     <view-box v-ref:view-box class="collect">
 
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">收藏本</x-header>
+            <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()" >收藏本</x-header>
             <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
                 <flexbox-item :span="3/4">
                     <button-tab >
@@ -49,9 +49,9 @@
 
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
+import InfiniteLoading from 'vue-infinite-loading';
 import Vue from 'vue'
 import Router from 'vue-router'
-import InfiniteLoading from 'vue-infinite-loading';
 import store from '../../store'
 import { period_id,subject_id,token } from '../../common/getters'
 import { CollectExampleIds,CollectExampleList,CollectExampleTotalPage } from '../getters'
@@ -66,6 +66,9 @@ export default {
         _camera(){
             this.$router.go(`/collect/camera`);
         },
+        _back(){
+			this.$router.go('/main/');
+		},
         onInfinite(){
             let that = this;
             //根据索引获取题目
