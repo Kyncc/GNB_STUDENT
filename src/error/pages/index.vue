@@ -29,7 +29,7 @@
                                 </p> 
                             </div> 
                         </a>
-                        <div class="weui_panel_ft" >
+                        <div class="weui_panel_ft">
                             <flexbox :gutter="0" wrap="wrap">
                                 <flexbox-item :span="1/2">难度：{{item.difficult}} </flexbox-item>
                                 <flexbox-item :span="1/4"></flexbox-item>

@@ -37,7 +37,6 @@ const mutations = {
   },
   [GET_COLLECT_EXAMPLELIST_SUCCESS](state , data){
     state.example.code = data.code;
-    // state.example.list = state.example.list.concat(data.data);
     state.example.list = data.data;
     state.example.msg = data.msg;
   },

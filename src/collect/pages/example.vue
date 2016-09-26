@@ -64,7 +64,7 @@ export default {
     },
     methods: {
         _camera(){
-            this.$router.go(`/collect/camera`);
+            this.$router.replace(`/collect/camera`);
         },
         _back(){
 			this.$router.go('/main/');

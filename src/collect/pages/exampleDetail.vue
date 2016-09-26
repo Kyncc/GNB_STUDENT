@@ -1,6 +1,5 @@
 <template>
 	<view-box v-ref:view-box class="collectDetail">
-
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
 			<x-header :left-options="{showBack:true,preventGoBack:true}" @on-click-back="_back()">我的收藏</x-header>
 		</div>
