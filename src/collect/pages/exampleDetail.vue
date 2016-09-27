@@ -93,18 +93,20 @@ export default {
 			this.$router.go('/collect/');
 		},
 		_onAction:()=>{
-			let that = this;
-			// this.collectRemove({
-			// 	options:{
-			// 		id:Number(that.id),
-			// 		period_id:that.period_id,
-			// 		subject_id:that.subject_id
-			// 	},
-			// 	token:that.token
-			// },()=>{
-			// 	alert("移除成功！");
-			// });
-			// alert(type);
+			let self =  this;
+			this.collectRemove({
+				options:{
+					id:self.id,
+					period_id:self.period_id,
+					subject_id:self.subject_id
+				},
+				token:self.token,
+				type:'example'
+			},()=>{
+				setTimeout(()=>{
+					history.back();
+				});
+			});
 		}
 	},
     store,

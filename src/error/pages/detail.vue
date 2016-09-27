@@ -2,7 +2,7 @@
 	<view-box v-ref:view-box class="errorDetail">
 
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
-			<x-header :left-options="{showBack: true}">例题</x-header>
+			<x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">例题</x-header>
 		</div>
 
 		<div style="padding-top:46px;">
@@ -83,6 +83,7 @@ import { period_id,subject_id,token,id } from '../../common/getters'
 import { errorIndexList } from '../getters'
 import { getErrorList } from '../actions'
 import store from '../../store'
+import moment from 'moment'
 import './error.less'
 
 
@@ -101,7 +102,7 @@ export default {
     },
 	methods: {
 		_errorList(){
-			 this.$router.go('/error/list/'+this.list[0].knowledgeId)
+			this.$router.go('/error/list/'+this.list[0].knowledgeId)
 		},
 		_more(){
 			this.$router.go('/error/more/'+this.list[0].knowledgeId)
@@ -111,6 +112,9 @@ export default {
 		},
 		_correct(){
 			this.$router.go('/error/correct/'+this.list[0].id);
+		},
+		_back() {
+			this.$router.go('/error');
 		},
 		_collectAdd(id){
 			let self =  this;
@@ -123,9 +127,7 @@ export default {
 				token:self.token,
 				type:'example'
 			},()=>{
-
-
-
+				self.list[0].collectTime = moment().unix();
 			});
 		},
 		_getData(){

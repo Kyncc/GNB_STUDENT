@@ -66,16 +66,16 @@ export const collectAdd = ({ dispatch }, params,callback) => {
 }
 
 //取消收藏
-export const collectRemove = ({ dispatch }, params) => {
+export const collectRemove = ({ dispatch }, params,callback) => {
   Api.collectRemove({
       data:params,
       ok:response=>{
-        dispatch(types.COLLECT_CANCEL_SUCCESS);
-        // callback();
+        dispatch(types.COLLECT_CANCEL_SUCCESS,response.data);
          _.toast('已移除');
+         callback();
       },
       wrong:response=>{
-        dispatch(types.COLLECT_CANCEL_ERROR);
+        dispatch(types.COLLECT_CANCEL_ERROR,response.data);
         _.toast(response.data.msg);
       }
   })

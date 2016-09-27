@@ -7,24 +7,30 @@ import {
 
 
 const state = {
-  code:'',
-  msg:''
+  add:{
+     code:'',
+     msg:''
+  },
+  remove:{
+    code:'',
+    msg:''
+  }
 }
 
 const mutations = {
   [COLLECT_ADD_SUCCESS](state , data){
-    state.code = data.code;
-    state.msg = data.msg;
+    state.add.code = data.code;
+    state.add.msg = data.msg;
   },
   [COLLECT_ADD_ERROR](state, data){
-    state.msg = data.msg;
+    state.add.msg = data.msg;
   },
   [COLLECT_CANCEL_SUCCESS](state , data){
-    state.code = data.code;
-    state.msg = data.msg;
+    state.remove.code = data.code;
+    state.remove.msg = data.msg;
   },
   [COLLECT_CANCEL_ERROR](state, data){
-    state.msg = data.msg;
+    state.remove.msg = data.msg;
   }
 }
 
