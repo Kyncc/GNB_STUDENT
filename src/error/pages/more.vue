@@ -69,6 +69,9 @@
 
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,PopupPicker} from 'vux'
+import {period_id,subject_id,token,id} from '../../common/getters'
+import { errorMoreIds,errorMoreList } from '../getters'
+import { getErrorMoreIds,getErrorMoreList } from '../actions'
 import store from '../../store' 
 
 
@@ -116,6 +119,15 @@ export default {
 			this.$router.go(`/error/correct/${this.exerciseId}`);
 		}
 	},
+	store,
+	vuex: {
+        getters: {
+            period_id,subject_id,token,id,errorMoreIds,errorMoreList
+        },
+        actions: {
+			getErrorMoreIds,getErrorMoreList
+        }
+    },
 	data(){
 		return{
 			 showPopupPicker: false,

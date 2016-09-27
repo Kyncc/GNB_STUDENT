@@ -10,12 +10,12 @@
 				<div class="weui_panel weui_panel_access exerciseDetail" >
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="1/2" style="color:#4bb7aa">收藏题</flexbox-item>
+							<flexbox-item :span="1/2" style="color:#4bb7aa">收藏习题</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct" >
 								<span style="color:orange"><i class="icon iconfont icon-error-login"></i>纠错</span>
 							</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right;" v-touch:tap="_remove">
-								<span style="color:green"><i class="icon iconfont icon-clear"></i>移除</span>
+								<span style="color:green"><i class="icon iconfont icon-clear"></i>取消收藏</span>
 							</flexbox-item>
 						</flexbox>
 					</div>
@@ -69,7 +69,6 @@ import { CollectExampleList } from '../getters'
 import { period_id,subject_id,token,id } from '../../common/getters'
 import store from '../../store'
 
-
 export default {
 	components: {
 		XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox
@@ -92,7 +91,7 @@ export default {
 		_back(){
 			this.$router.go('/collect/');
 		},
-		_onAction:()=>{
+		_removeCollect(){
 			let self =  this;
 			this.collectRemove({
 				options:{
@@ -105,8 +104,11 @@ export default {
 			},()=>{
 				setTimeout(()=>{
 					history.back();
-				});
+				},1000);
 			});
+		},
+		_onAction(){
+			this._removeCollect();
 		}
 	},
     store,
@@ -126,6 +128,7 @@ export default {
 			token:this.token
 		};
 		this.getCollectExampleList(params);
+		
 	},
 	watch:{
 		id(){

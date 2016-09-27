@@ -80,35 +80,92 @@
 import {Tabbar, TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import { collectRemove,collectAdd } from '../../common/actions'
 import { period_id,subject_id,token,id } from '../../common/getters'
-import { errorIndexList } from '../getters'
-import { getErrorList } from '../actions'
+import { errorIndexList,errorMoreIds,errorRecommendIds,errorListIds } from '../getters'
+import { getErrorList,getErrorMoreIds,getErrorRecommendIds,getErrorListIds } from '../actions'
 import store from '../../store'
 import moment from 'moment'
+import * as _ from '../../config/whole'
 import './error.less'
-
 
 export default {
 	components: {
-		Tabbar, TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox
+		Tabbar,TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox
 	},
 	store,
 	vuex: {
         getters: {
-            period_id,subject_id,token,id,errorIndexList
+            period_id,subject_id,token,id,errorIndexList,errorMoreIds,errorRecommendIds,errorListIds
         },
         actions: {
-            collectRemove,collectAdd,getErrorList
+            collectRemove,collectAdd,getErrorList,getErrorMoreIds,getErrorRecommendIds,getErrorListIds
         }
     },
 	methods: {
-		_errorList(){
-			this.$router.go('/error/list/'+this.list[0].knowledgeId)
+		_errorList(){			//错题列表IDS获取
+			let self = this;
+			_.busy();
+			this.getErrorListIds({
+				knowledgeId:self.list[0].knowledgeId,
+				options:{
+					period_id:self.period_id,
+					subject_id:self.subject_id
+				},
+				token:self.token
+			},()=>{
+				if(self.errorListIds.length == 0){
+					_.toast("暂无例题");
+				}else{
+					self.$router.go('/error/list/'+self.list[0].knowledgeId);
+				}
+				_.leave();
+			},()=>{
+				_.toast("接口异常");
+				_.leave();
+			});
 		},
-		_more(){
-			this.$router.go('/error/more/'+this.list[0].knowledgeId)
+		_more(){	//更多例题IDS获取
+			let self = this;
+			_.busy();
+			this.getErrorMoreIds({
+				knowledgeId:self.list[0].knowledgeId,
+				options:{
+					period_id:self.period_id,
+					subject_id:self.subject_id
+				},
+				token:self.token
+			},()=>{
+				if(self.errorMoreIds.length == 0){
+					_.toast("暂无例题");
+				}else{
+					self.$router.go(`/error/more/${self.list[0].knowledgeId}/${self.errorMoreIds[0]}`);
+				}
+				_.leave();
+			},()=>{
+				_.toast("接口异常");
+				_.leave();
+			});
 		},
-		_recommend(){
-			this.$router.go('/error/recommend/'+this.list[0].knowledgeId);
+		_recommend(){ //推荐练习IDS获取
+			let self = this;
+			_.busy();
+			this.getErrorRecommendIds({
+				knowledgeId:self.list[0].knowledgeId,
+				options:{
+					period_id:self.period_id,
+					subject_id:self.subject_id
+				},
+				token:self.token
+			},()=>{
+				if(self.errorRecommendIds.length == 0){
+					_.toast("暂无推荐");
+				}else{
+					self.$router.go('/error/recommend/'+self.list[0].knowledgeId);
+				}
+				_.leave();
+			},()=>{
+				_.toast("接口异常");
+				_.leave();
+			});
 		},
 		_correct(){
 			this.$router.go('/error/correct/'+this.list[0].id);
@@ -148,7 +205,7 @@ export default {
 		} 
 	},
 	ready(){
-		this._getData()
+		this._getData();
 	},
 	watch:{
 		id(){

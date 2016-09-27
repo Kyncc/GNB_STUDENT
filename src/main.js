@@ -118,7 +118,7 @@ router.map({
   'error': { component: error },
   'error/detail/:id': { component: errorDetail },
   'error/list/:knowledgeId': { component: errorList },
-  'error/more/:knowledgeId/:Id': { component: errorMore },
+  'error/more/:knowledgeId/:id': { component: errorMore },
   'error/recommend/:knowledgeId': { component: errorRecommend },
   //'error/correct/:id': { component: exampleCorrect },
   //'error/comment/:id': { component: cameraComment },

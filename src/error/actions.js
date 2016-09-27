@@ -28,15 +28,16 @@ export const getErrorList = ({ dispatch }, params) => {
   })
 }
 
-export const getErrorMoreIds = ({ dispatch }, params, callback) => {
+export const getErrorMoreIds = ({ dispatch }, params, success,wrong) => {
   Api.errorMore({
     data: params,
     ok: response => {
       dispatch(types.GET_ERROR_MOREIDS_SUCCESS, response.data);
+      success();
     },
     wrong: response => {
       dispatch(types.GET_ERROR_MOREIDS_ERROR, response.data);
-      _.toast(response.data.msg);
+      wrong();
     }
   })
 }
@@ -56,15 +57,16 @@ export const getErrorMoreList = ({ dispatch }, params, callback) => {
 }
 
 
-export const getErrorRecommendIds = ({ dispatch }, params, callback) => {
+export const getErrorRecommendIds = ({ dispatch }, params, success,wrong) => {
   Api.errorRecommend({
     data: params,
     ok: response => {
       dispatch(types.GET_ERROR_RECOMMENDIDS_SUCCESS, response.data);
+      success();
     },
     wrong: response => {
-      dispatch(types.GET_ERROR_RECOMMENDIDS_SERROR, response.data);
-      _.toast(response.data.msg);
+      dispatch(types.GET_ERROR_RECOMMENDIDS_ERROR, response.data);
+      wrong();
     }
   })
 }

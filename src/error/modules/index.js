@@ -36,22 +36,19 @@ const state = {
       code:'',
       ids:[],
       list:{},
-      msg:'',
-      totalPage:'1'
+      msg:''
     },
     list:{
       code:'',
       ids:[],
       list:{},
-      msg:'',
-      totalPage:'1'
+      msg:''
     },
     recommend:{
       code:'',
       ids:[],
       list:{},
-      msg:'',
-      totalPage:'1'
+      msg:''
     },
     recommendPost:{
       code:'',
@@ -120,7 +117,6 @@ const mutations = {
     state.recommend.code = data.data.code;
     state.recommend.ids = data.data.ids;
     state.recommend.msg = data.msg;
-    state.recommend.totalPage = data.data.totalPage;
   },
   [GET_ERROR_RECOMMENDIDS_ERROR](state, data){
     state.recommend.msg = data.msg;
