@@ -50,11 +50,13 @@ export const correct = ({ dispatch }, params) => {
 }
 
 //收藏
-export const collectAdd = ({ dispatch }, params) => {
+export const collectAdd = ({ dispatch }, params,callback) => {
   Api.collectAdd({
       data:params,
       ok:response=>{
         dispatch(types.COLLECT_ADD_SUCCESS,response.data);
+        _.toast('收藏成功');
+        callback();
       },
       wrong:response=>{
         dispatch(types.COLLECT_ADD_ERROR,response.data);

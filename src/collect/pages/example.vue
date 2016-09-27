@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <infinite-loading :on-infinite="onInfinite" spinner="waveDots">
+            <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
                 <span slot="no-more" style="color:#4bb7aa;">
                     <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
                     <p style="font-size:1rem;display:inline-block;">没有更多数据了</p>
@@ -67,14 +67,8 @@ export default {
         _back(){
 			this.$router.go('/main/');
 		},
-        onInfinite(){
+        _onInfinite(){
             let that = this;
-            //根据索引获取题目
-            if(this.totalPage < this.currentPage) {
-                this.$broadcast('$InfiniteLoading:complete');
-                return;
-            }
-
             this.getCollectExampleIds({
                 currentPage:that.currentPage,
                 token:that.token,
@@ -85,10 +79,13 @@ export default {
             },()=>{
                 setTimeout(()=>{
                     that.$broadcast('$InfiniteLoading:loaded');
-                },1000);
+                    if(that.totalPage <= that.currentPage){
+                        this.$broadcast('$InfiniteLoading:complete');
+                        return;
+                    }
+                    this.currentPage ++;
+                },2000);
             })
-            this.currentPage ++;
-
        }
     },
     vuex: {

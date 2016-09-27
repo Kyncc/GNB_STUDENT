@@ -48,25 +48,10 @@
 </template>
 
 <script>
-import {
-  XHeader,
-  Panel,
-  Flexbox,
-  FlexboxItem,
-  XButton,
-  ViewBox,
-  ButtonTab,
-  ButtonTabItem,
-  Scroller,
-  Spinner
-} from 'vux'
+import {XHeader, Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,Scroller,Spinner} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading';
 import store from '../../store'
-import {
-  period_id,
-  subject_id,
-  token
-} from '../../common/getters'
+import {period_id,subject_id,token} from '../../common/getters'
 import {
   errorIndexIds,
   errorIndexList,
@@ -80,17 +65,7 @@ import moment from 'moment'
 
 export default {
   components: {
-    XHeader,
-    XButton,
-    Scroller,
-    Spinner,
-    InfiniteLoading,
-    Panel,
-    Flexbox,
-    FlexboxItem,
-    ViewBox,
-    ButtonTab,
-    ButtonTabItem
+    XHeader, Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,Scroller,Spinner,InfiniteLoading
   },
   data() {
     return {
@@ -119,25 +94,27 @@ export default {
     onInfinite() {
       let that = this;
       //根据索引获取题目
-      console.log(this.totalPage)
-      if (this.totalPage < this.currentPage) {
-        this.$broadcast('$InfiniteLoading:complete');
-        return;
-      }
       this.getErrorIds({
-        currentPage: that.currentPage,
+        currentPage:that.currentPage,
+        between:{
+            start:'',
+            end:''
+        },
         token: that.token,
         options: {
           period_id: that.period_id,
           subject_id: that.subject_id
         }
-      }, () => {
-        setTimeout(() => {
-          that.$broadcast('$InfiniteLoading:loaded');
-        }, 1000);
+      },() => {
+          setTimeout(()=>{
+              that.$broadcast('$InfiniteLoading:loaded');
+              if(that.totalPage <= that.currentPage){
+                  this.$broadcast('$InfiniteLoading:complete');
+                  return;
+              }
+              this.currentPage ++;
+          },2000);
       })
-      this.currentPage++;
-
     }
   },
   computed: {
@@ -163,17 +140,9 @@ export default {
   },
   vuex: {
     getters: {
-      period_id,
-      subject_id,
-      token,
-      errorIndexIds,
-      errorIndexList,
-      errorIndexTotalPage
+      period_id,subject_id,token,errorIndexIds,errorIndexList,errorIndexTotalPage
     },
-    actions: {
-      getErrorIds,
-      getErrorList
-    }
+    actions: {getErrorIds,getErrorList}
   },
   store
 }
