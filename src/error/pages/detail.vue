@@ -137,7 +137,7 @@ export default {
 				if(self.errorMoreIds.length == 0){
 					_.toast("暂无例题");
 				}else{
-					self.$router.replace(`/error/more/${self.list[0].knowledgeId}/${self.errorMoreIds[0]}`);
+					self.$router.go(`/error/more/${self.list[0].knowledgeId}/${self.errorMoreIds[0]}`);
 				}
 				_.leave();
 			},()=>{
