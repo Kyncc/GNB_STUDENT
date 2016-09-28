@@ -1,7 +1,7 @@
 <template>
 <view-box v-ref:view-box class='member'>
   <x-header :left-options="{showBack: true}">我的会员 <!--<a slot="right" v-touch:tap="_recharge">充值</a>--></x-header>
-  <scroller lock-x scrollbar-y>
+  <scroller lock-x>
     <group>
       <div class="headimg">
         <img src="../../../assets/user/headimg.png" alt="" />
@@ -100,31 +100,14 @@
 
 <script>
 import './member.less'
-import {
-  XHeader,
-  Cell,
-  Group,
-  Alert,
-  Flexbox,
-  FlexboxItem,
-  Scroller,
-  ViewBox
-}
-from 'vux'
+import {  XHeader,  Cell,  Group,  Alert,  Flexbox,  FlexboxItem,  Scroller,  ViewBox}from 'vux'
 import { member } from '../../actions.js'
 import {fetchToken,fetchMemberInfo} from '../../getters'
 import * as _ from '../../../config/whole.js'
 
 export default {
   components: {
-    XHeader,
-    Cell,
-    Group,
-    Alert,
-    Flexbox,
-    FlexboxItem,
-    Scroller,
-    ViewBox
+    XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Scroller,ViewBox
   },
   vuex:{
       actions:{
@@ -148,7 +131,7 @@ export default {
       this.$router.go('points')
     },
     _recharge() {
-        _.toast('暂未开放,敬请期待')
+        _.toast('敬请期待')
       //this.$router.go('recharge')
     }
   }

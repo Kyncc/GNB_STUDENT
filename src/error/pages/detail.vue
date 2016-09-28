@@ -21,45 +21,45 @@
 								</template>
 							</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
-						</flexbox>				
+						</flexbox>
 					</div>
-					<!--题目整体--> 
-					<div class="weui_panel_bd"> 
+					<!--题目整体-->
+					<div class="weui_panel_bd">
 						<!--题目-->
-						<div class="weui_media_bd weui_media_box"> 
+						<div class="weui_media_bd weui_media_box">
 							<p class="weui_media_desc">
 								{{{* detail.content }}}
 							</p>
-						</div> 
+						</div>
 						<template v-if=" detail.type == '1' ? true:false">
 							<div class="weui_media_bd weui_media_box options">
-								<p class="weui_media_desc" v-for="value in detail.tabs"> 
+								<p class="weui_media_desc" v-for="value in detail.tabs">
 									{{ $key }} : {{{* value }}}
 								</p>
-							</div>  
+							</div>
 						</template>
 					</div>
 				</div>
-				<!--解析--> 
+				<!--解析-->
 				<div class="weui_panel weui_panel_access exerciseDetail">
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
 							<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析：</flexbox-item>
-						</flexbox>				
-					</div> 
-					<!--解析主体--> 
-					<div class="weui_panel_bd"> 
-						<div class="weui_media_bd weui_media_box "> 
+						</flexbox>
+					</div>
+					<!--解析主体-->
+					<div class="weui_panel_bd">
+						<div class="weui_media_bd weui_media_box ">
 							<p class="weui_media_desc">
 								{{{* detail.answer }}}
 							</p>
-						</div> 
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-        <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
+        <tabbar class="vux-demo-tabbar bottom" icon-class="vux-center" slot="bottom">
             <flexbox :gutter="0" wrap="wrap">
                 <flexbox-item :span="1/3">
                     <x-button mini type="primary"  @click="_errorList">错题列表</x-button>
@@ -70,7 +70,7 @@
                 <flexbox-item :span="1/3">
                     <x-button mini type="primary"  @click="_recommend">推荐练习</x-button>
                 </flexbox-item>
-            </flexbox>		
+            </flexbox>
         </tabbar>
 
 	</view-box>
@@ -216,7 +216,7 @@ export default {
 	data(){
 		return{
 			list:[]
-		} 
+		}
 	},
 	ready(){
 		this._getData();
