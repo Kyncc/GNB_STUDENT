@@ -49,7 +49,7 @@ export default {
         onInfinite(){
 			setTimeout(() => {
 		        const temp = [];
-				this.list = this.fetchInviteStudentList
+				this.list = this.fetchInviteStudentList;
 		       	this.$broadcast('$InfiniteLoading:loaded');
 			}, 1000);
 
