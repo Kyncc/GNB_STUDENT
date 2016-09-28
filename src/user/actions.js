@@ -78,7 +78,7 @@ export const getInviteStudentList = ({ dispatch }, params) => {
     Api.getInviteStudentList({
       data: params,
       ok: response => {
-        dispatch(types.GET_INVITE_STUDENT_LIST, response.data.data)
+        dispatch(types.GET_INVITE_STUDENT_LIST, response.data.data)        
       },
       wrong: response => {}
     })
