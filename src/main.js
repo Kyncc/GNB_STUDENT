@@ -29,10 +29,8 @@ import cameraResult from './camera/pages/result'
 import error from './error/pages/index'
 import errorList from './error/pages/list'
 import errorDetail from './error/pages/detail'
-import errorCorrect from './error/pages/correct'
 import errorMore from './error/pages/more'
 import errorRecommend from './error/pages/recommend'
-import errorComment from './error/pages/comment'
 //收藏本
 import collectExample from './collect/pages/example'
 import collectCamera from './collect/pages/camera'
@@ -74,9 +72,25 @@ Vue.use(VueTouch)
 Vue.config.devtools = true
 FastClick.attach(document.body)
 
+//格式化时间
 Vue.filter('ymd', function(value) {
   return moment.unix(value).format('YYYY-MM-DD');
 });
+
+//interceptors timeOut
+Vue.http.interceptors.push((request, next) => {
+    var timeout;
+	  // _timeout
+    if (request._timeout) {
+        timeout = setTimeout(() => {
+            if(request.onTimeout) request.onTimeout(request)
+			      request.abort()
+        }, request._timeout);
+    }
+    next((response) => {
+        clearTimeout(timeout);
+    });
+})
 
 const router = new Router()
 router.map({
@@ -112,7 +126,6 @@ router.map({
  'camera/history':{component: cameraHistory},
  'camera/record/:knowledgeId':{component: cameraRecord},
  'camera/result/:knowledgeId':{component: cameraResult},
-  //'camera/correct/:id':{component: exampleCorrect},
  //'camera/comment/:id': { component: cameraComment },
   //归纳本
   'error': { component: error },
@@ -121,9 +134,9 @@ router.map({
   'error/more/:knowledgeId/:id': { component: errorMore },
   'error/recommend/:knowledgeId': { component: errorRecommend },
   //收藏本
-  'collect/example': { component: collectExample },
-  'collect/camera': { component: collectCamera },
-  'collect/example/detail/:id': { component: collectExampleDetail },
+  'collect/example': {component: collectExample},
+  'collect/camera': {component: collectCamera},
+  'collect/example/detail/:id': {component: collectExampleDetail},
   //消息
   'message/class': { component: messageClass },
   'message/system': { component: messageSystem },

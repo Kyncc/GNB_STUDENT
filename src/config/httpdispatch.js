@@ -167,33 +167,39 @@ export function http(params) {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
-      timeout:3000
+      _timeout: 3000,
+      onTimeout: (request) => {
+        _.toast("服务器繁忙");
+        _.leave();
+      }
     })
   } else {
      resource = Vue.http.get(params.url,{
-       params:params.data,
-       timeout:3000
+        params:params.data,
+        _timeout: 3000,
+        onTimeout: (request) => {
+          _.toast("服务器繁忙");
+          _.leave();
+        }
      })
-    //  .post(params.url, params.data, {
-    // resource = Vue.resource(params.url).get(params.data,{timeout:3000});
   }
   resource
     .then(resp => {
-      console.log(resp);
-      if (resp.code == 401) {
-        window.location.href = '/login';
-      }
-      return resp;
+        console.log(resp);
+        if (resp.code == 401) {
+          window.location.href = '/login';
+        }
+        return resp;
     })
     .then(resp => {
-      if (resp.data.code == 200) {
-        params.ok(resp);
-      } else {
-        params.wrong(resp);
-      }
-      // _.leave();
-      return resp;
-    }, err => {
+        if (resp.data.code == 200) {
+          params.ok(resp);
+        } else {
+          params.wrong(resp);
+        }
+        // _.leave();
+        return resp;
+      }, err => {
       console.log('Network Error:', err);
       _.toast("接口异常");
       _.leave();
