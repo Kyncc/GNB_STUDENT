@@ -17,7 +17,7 @@
 									<span @click="_collectAdd(detail.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
 								</template>
 								<template v-if="detail.collectTime != '0' ? true:false">
-									<span class="isCollect"><i class="icon iconfont icon-collect"></i>已收藏</span>
+									<span @click="_removeCollect(detail.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消收藏</span>
 								</template>
 							</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
@@ -101,7 +101,7 @@ export default {
         }
     },
 	methods: {
-		_errorList(){			//错题列表IDS获取
+		_errorList(){	//错题列表IDS获取
 			let self = this;
 			_.busy();
 			this.getErrorListIds({
@@ -115,7 +115,7 @@ export default {
 				if(self.errorListIds.length == 0){
 					_.toast("暂无例题");
 				}else{
-					self.$router.go('/error/list/'+self.list[0].knowledgeId);
+					self.$router.replace('/error/list/'+self.list[0].knowledgeId);
 				}
 				_.leave();
 			},()=>{
@@ -123,7 +123,7 @@ export default {
 				_.leave();
 			});
 		},
-		_more(){	//更多例题IDS获取
+		_more(){		//更多例题IDS获取
 			let self = this;
 			_.busy();
 			this.getErrorMoreIds({
@@ -137,7 +137,7 @@ export default {
 				if(self.errorMoreIds.length == 0){
 					_.toast("暂无例题");
 				}else{
-					self.$router.go(`/error/more/${self.list[0].knowledgeId}/${self.errorMoreIds[0]}`);
+					self.$router.replace(`/error/more/${self.list[0].knowledgeId}/${self.errorMoreIds[0]}`);
 				}
 				_.leave();
 			},()=>{
@@ -145,7 +145,7 @@ export default {
 				_.leave();
 			});
 		},
-		_recommend(){ //推荐练习IDS获取
+		_recommend(){ 	//推荐练习IDS获取
 			let self = this;
 			_.busy();
 			this.getErrorRecommendIds({
@@ -187,6 +187,20 @@ export default {
 				self.list[0].collectTime = moment().unix();
 			});
 		},
+		_removeCollect(id){
+			let self =  this;
+			this.collectRemove({
+				options:{
+					id:self.id,
+					period_id:self.period_id,
+					subject_id:self.subject_id
+				},
+				token:self.token,
+				type:'example'
+			},()=>{
+				self.list[0].collectTime = 0;
+			});
+		},
 		_getData(){
 			let params = {
 				options:{
@@ -201,7 +215,7 @@ export default {
 	},
 	data(){
 		return{
-			 list:[]
+			list:[]
 		} 
 	},
 	ready(){

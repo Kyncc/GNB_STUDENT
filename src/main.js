@@ -120,8 +120,6 @@ router.map({
   'error/list/:knowledgeId': { component: errorList },
   'error/more/:knowledgeId/:id': { component: errorMore },
   'error/recommend/:knowledgeId': { component: errorRecommend },
-  //'error/correct/:id': { component: exampleCorrect },
-  //'error/comment/:id': { component: cameraComment },
   //收藏本
   'collect/example': { component: collectExample },
   'collect/camera': { component: collectCamera },

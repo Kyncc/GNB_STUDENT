@@ -14,10 +14,10 @@ import {
   GET_ERROR_LISTLISTS_SUCCESS,
   GET_ERROR_LISTLIST_ERROR,
 
-  GET_ERROR_RECOMMENDIDS_SUCCESS,
-  GET_ERROR_RECOMMENDIDS_ERROR,
-  GET_ERROR_RECOMMENDLIST_SUCCESS,
-  GET_ERROR_RECOMMENDLIST_ERROR,
+  GET_ERROR_RMDIDS_SUCCESS,
+  GET_ERROR_RMDIDS_ERROR,
+  GET_ERROR_RMDLIST_SUCCESS,
+  GET_ERROR_RMDLIST_ERROR,
 
   POST_ERROR_RECOMMENDIDS_SUCCESS,
   POST_ERROR_RECOMMENDIDS_ERROR
@@ -59,7 +59,7 @@ const state = {
 
 const mutations = {
    //错题本首页
-  [GET_ERROR_INDEXIDS_SUCCESS](state , data){
+  [GET_ERROR_INDEXIDS_SUCCESS](state,data){
     state.index.code = data.data.code;
     state.index.ids = data.data.ids;
     state.index.msg = data.msg;
@@ -106,33 +106,33 @@ const mutations = {
   },
   [GET_ERROR_LISTLISTS_SUCCESS](state , data){
     state.list.code = data.data.code;
-    state.list.list = data.data.list;
+    state.list.list = data.data;
     state.list.msg = data.msg;
   },
   [GET_ERROR_LISTLIST_ERROR](state, data){
     state.list.msg = data.msg;
   },
    //推荐列表
-  [GET_ERROR_RECOMMENDIDS_SUCCESS](state , data){
+  [GET_ERROR_RMDIDS_SUCCESS](state,data){
     state.recommend.code = data.data.code;
     state.recommend.ids = data.data.ids;
     state.recommend.msg = data.msg;
   },
-  [GET_ERROR_RECOMMENDIDS_ERROR](state, data){
+  [GET_ERROR_RMDIDS_ERROR](state, data){
     state.recommend.msg = data.msg;
   },
-  [GET_ERROR_RECOMMENDIDS_SUCCESS](state , data){
+  [GET_ERROR_RMDLIST_SUCCESS](state , data){
     state.recommend.code = data.data.code;
-    state.recommend.list = data.data.list;
+    state.recommend.list = data.data;
     state.recommend.msg = data.msg;
   },
-  [GET_ERROR_RECOMMENDIDS_ERROR](state, data){
+  [GET_ERROR_RMDLIST_ERROR](state, data){
     state.recommend.msg = data.msg;
   },
   //提交推荐题目结果
   [POST_ERROR_RECOMMENDIDS_SUCCESS](state , data){
-    state.recommendPost.code = data.data.code;
-    state.camera.msg = data.msg;
+    state.recommendPost.code = data.code;
+    state.recommendPost.msg = data.msg;
   },
   [POST_ERROR_RECOMMENDIDS_ERROR](state, data){
     state.recommendPost.msg = data.msg;

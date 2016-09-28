@@ -147,15 +147,3 @@ export default {
   store
 }
 </script>
-
-<style lang="less" scoped>
-.rotate {
-    display: inline-block;
-    transform: rotate(-180deg);
-}
-.pullup-arrow {
-    transition: all linear 0.5s;
-    color: #666;
-    font-size: 25px;
-}
-</style>

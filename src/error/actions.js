@@ -28,6 +28,32 @@ export const getErrorList = ({ dispatch }, params) => {
   })
 }
 
+export const getErrorRecommendList = ({ dispatch }, params) => {
+  Api.exerciseList({
+    data: params,
+    ok: response => {
+      dispatch(types.GET_ERROR_RMDLIST_SUCCESS, response.data);
+    },
+    wrong: response => {
+      dispatch(types.GET_ERROR_RMDLIST_ERROR, response.data);
+      _.toast(response.msg);
+    }
+  })
+}
+
+export const getErrorMoreList = ({ dispatch }, params) => {
+  Api.exerciseList({
+    data: params,
+    ok: response => {
+      dispatch(types.GET_ERROR_MORELIST_SUCCESS, response.data);
+    },
+    wrong: response => {
+      dispatch(types.GET_ERROR_MORELIST_ERROR, response.data);
+      _.toast(response.data.msg);
+    }
+  })
+}
+
 export const getErrorMoreIds = ({ dispatch }, params, success,wrong) => {
   Api.errorMore({
     data: params,
@@ -42,58 +68,30 @@ export const getErrorMoreIds = ({ dispatch }, params, success,wrong) => {
   })
 }
 
-export const getErrorMoreList = ({ dispatch }, params, callback) => {
-  Api.cameraList({
-    data: params,
-    ok: response => {
-      dispatch(types.GET_ERROR_MORELIST_SUCCESS, response.data);
-      callback();
-    },
-    wrong: response => {
-      dispatch(types.GET_ERROR_MORELIST_ERROR, response.data);
-      _.toast(response.data.msg);
-    }
-  })
-}
-
-
 export const getErrorRecommendIds = ({ dispatch }, params, success,wrong) => {
   Api.errorRecommend({
     data: params,
     ok: response => {
-      dispatch(types.GET_ERROR_RECOMMENDIDS_SUCCESS, response.data);
+      dispatch(types.GET_ERROR_RMDIDS_SUCCESS, response.data);
       success();
     },
     wrong: response => {
-      dispatch(types.GET_ERROR_RECOMMENDIDS_ERROR, response.data);
+      dispatch(types.GET_ERROR_RMDIDS_ERROR, response.data);
       wrong();
     }
   })
 }
 
-export const getErrorRecommendList = ({ dispatch }, params, callback) => {
-  Api.exerciseList({
-    data: params,
-    ok: response => {
-      dispatch(types.GET_ERROR_RECOMMENDLIST_SUCCESS, response.data);
-    },
-    wrong: response => {
-      dispatch(types.GET_ERROR_RECOMMENDLIST_SERROR, response.data);
-      _.toast(response.data.msg);
-    }
-  })
-}
-
-
-export const postErrorRecommend = ({ dispatch }, params, callback) => {
+export const postErrorRecommend = ({ dispatch }, params, success) => {
   Api.errorRecommendPost({
     data: params,
     ok: response => {
       dispatch(types.POST_ERROR_RECOMMENDIDS_SUCCESS, response.data);
+      success();
     },
     wrong: response => {
       dispatch(types.POST_ERROR_RECOMMENDIDS_ERROR, response.data);
-      _.toast(response.data.msg);
+      _.toast('提交失败');
     }
   })
 }

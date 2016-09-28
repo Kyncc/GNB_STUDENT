@@ -4,23 +4,23 @@
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
 			<x-header :left-options="{showBack: true}">
 				更多例题
-				<a slot="right" href="javascript:;"  @click="showPopupPicker = true">选择例题</a>
+				<a slot="right" href="javascript:;" @click="showPopupPicker = true">选择例题</a>
 			</x-header>
 		</div>
 
 		<div style="padding-top:46px;">
-			<template v-for="item in exerciseList">
+			<template v-for="item in list">
 				<!--内容-->
 				<div class="weui_panel weui_panel_access exerciseDetail">
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
 							<flexbox-item :span="2/4" style="color:#4bb7aa">{{index}}/{{count}}</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right;">
-								<!--<template v-if="item.isCollect == 1 ? true:false">
-									<span style="color:orange"><i class="icon iconfont icon-collect"></i>已收藏</span>
-								</template>-->
-								<template v-else>
-									<span><i class="icon iconfont icon-collect"></i>收藏</span>
+								<template v-if="item.collectTime == '0' ? true:false">
+									<span @click="_collectAdd(item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
+								</template>
+								<template v-if="item.collectTime != '0' ? true:false">
+									<span @click="_removeCollect(item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消收藏</span>
 								</template>
 							</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
@@ -69,46 +69,12 @@
 
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,PopupPicker} from 'vux'
+import moment from 'moment'
 import {period_id,subject_id,token,id} from '../../common/getters'
-import { errorMoreIds,errorMoreList } from '../getters'
-import { getErrorMoreIds,getErrorMoreList } from '../actions'
+import { errorMoreIds,errorIndexList } from '../getters'
+import { collectAdd,collectRemove } from '../../common/actions'
+import { getErrorMoreIds,getErrorList } from '../actions'
 import store from '../../store' 
-
-
-const DATAKONW = {
- "code": 1,
- "data":{
-	 "id":12,
-	 "list":[1,2,3,4]
- },
- "msg": 1
-}
-
-const DATA = {
-    "code": 1,
-    "data":
-		[{
-            "content": "小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>",
-            "difficult": 3,
-            "id": 1,
-            "isCollect": 1,
-            "knowledge": "2.5 函数零点判定原理",
-			"knowledgeId": 12,
-			"isCollect":1,
-            "time": "1473682257",
-			"tabs":{
-				 A: '(-4.2)',
-				 B: '(-4.2)',
-				 C: '(-4.2)',
-				 D: '(-4.2)'
-			},
-			"type":1,
-			"answer":"小敏家、学校、邮局、图书馆坐落在一条东西走向的大街上，依次记为A，B，C，D，学校位于小敏家西150米，邮局位于小敏家东100米，图书馆位于小敏家西400米．\<br\/\>（1）用数轴表示A，B，C，D的位置；\<br\/\>（2）一天小敏从家里先去邮局寄信后，再以每分钟50米的速度往图书馆方向走了约8分钟．试问这时小敏约在什么位置？距图书馆和学校各约多少米？\<br\/\>"
-		}]
-	,
-    "msg": 1
-}
-
 
 export default {
 	components: {
@@ -116,46 +82,82 @@ export default {
 	},
 	methods: {
 		_correct(){
-			this.$router.go(`/error/correct/${this.exerciseId}`);
+			this.$router.go(`/error/correct/${this.id}`);
+		},
+		_getData(){
+			 let params = {
+				options: {
+					ids: [this.id],
+					period_id: this.period_id,
+					subject_id: this.subject_id
+				},
+				token: this.token
+			};
+			this.getErrorList(params);
+			window.scrollTo(0,0); 
+		},
+		_collectAdd(id){
+			let self =  this;
+			this.collectAdd({
+				options:{
+					id:self.id,
+					period_id:self.period_id,
+					subject_id:self.subject_id
+				},
+				token:self.token,
+				type:'example'
+			},()=>{
+				self.list[0].collectTime = moment().unix();
+			});
+		},
+		_removeCollect(id){
+			let self =  this;
+			this.collectRemove({
+				options:{
+					id:self.id,
+					period_id:self.period_id,
+					subject_id:self.subject_id
+				},
+				token:self.token,
+				type:'example'
+			},()=>{
+				self.list[0].collectTime = 0;
+			});
 		}
 	},
 	store,
 	vuex: {
         getters: {
-            period_id,subject_id,token,id,errorMoreIds,errorMoreList
+            period_id,subject_id,token,id,errorMoreIds,errorIndexList
         },
         actions: {
-			getErrorMoreIds,getErrorMoreList
+			getErrorMoreIds,getErrorList,collectAdd,collectRemove
         }
     },
 	data(){
 		return{
 			 showPopupPicker: false,
-			 exerciseList:DATA.data,
-			 knowledge:DATAKONW.data,
+			 list:[],
 			 selectData:[]
 		}
 	},
 	computed:{
-		exerciseId(){
-			return store.state.route.params.Id;
-		},
 		knowledgeId(){
 			return store.state.route.params.knowledgeId;
 		},
 		count(){
 			//例题数量
-			return this.knowledge.list.length;
+			return this.errorMoreIds.length;
 		},
 		index(){
 			//当前题目索引
-			return this.knowledge.list.indexOf(Number(this.exerciseId))+1;
+			return (this.errorMoreIds.indexOf(Number(this.id))+1);
 		},
 		selectIndex(){
 			//选择题目的索引
 			let arr= [];
 			for(let i = 0; i< this.count;i++){
-				arr.push({name:`第${i+1}题`,value:this.knowledge.list[i]});
+				arr.push({name:`第${i+1}题`,value:this.errorMoreIds[i]});
 			}
 			return [arr];
 		}
@@ -163,7 +165,16 @@ export default {
 	watch:{
 		selectData(val){
 			this.$router.replace(`/error/more/${this.knowledgeId}/${Number(val)}`);
+		},
+		errorIndexList(){
+      		this.list = this.errorIndexList;
+    	},
+		id(){
+			this._getData();	
 		}
+	},
+	ready(){
+		this._getData();
 	}
 }
 </script>

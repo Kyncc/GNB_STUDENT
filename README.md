@@ -14,6 +14,7 @@
  7. [VueRouter和Vuex流同步-Vuex-router-sync][7]
  8. [Vue.js触摸手势组件-VueTouch][8]
  9. [时间格式化-Moment.js][9]
+ 10. [Vue手机加载数据组件vue-infinite-loading][10]
 
 ## 文件夹结构
 
@@ -60,3 +61,4 @@
   [7]: https://github.com/vuejs/vuex-router-sync
   [8]: https://github.com/vuejs/vue-touch
   [9]: http://momentjs.cn/
+  [10]: https://peachscript.github.io/vue-infinite-loading/#!/slots

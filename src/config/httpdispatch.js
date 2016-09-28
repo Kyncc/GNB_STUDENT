@@ -166,10 +166,16 @@ export function http(params) {
       emulateJSON: true,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      }
+      },
+      timeout:3000
     })
   } else {
-    resource = Vue.resource(params.url).get(params.data);
+     resource = Vue.http.get(params.url,{
+       params:params.data,
+       timeout:3000
+     })
+    //  .post(params.url, params.data, {
+    // resource = Vue.resource(params.url).get(params.data,{timeout:3000});
   }
   resource
     .then(resp => {
@@ -189,8 +195,9 @@ export function http(params) {
       return resp;
     }, err => {
       console.log('Network Error:', err);
-      // _.leave();
-      _.toast(JSON.parse(err.body).msg);
+      _.toast("接口异常");
+      _.leave();
+      // _.toast(JSON.parse(err.body).msg);
       return err;
     })
     .catch(err => {
