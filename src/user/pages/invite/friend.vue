@@ -5,9 +5,12 @@
 		</div>
 			<group>
 				<div class="">
-					<cell v-for="item in fetchInviteStudentList" :title="item.name">
+					<!-- <cell v-for="item in fetchInviteStudentList" :title="item.name">
 						<img slot="icon" width="30" style="display:block;margin-right:5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" :src="item.headImg">
-					</cell>
+					</cell> -->
+					<div class="" v-for="item in list">
+						{{item}}
+					</div>
 					<infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
 		                <span slot="no-more" style="color:#4bb7aa;">
 		                    <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -40,8 +43,13 @@ export default {
 			fetchInviteStudentList
 		}
 	},
+	data(){
+		return {
+			list: []
+		}
+	},
 	ready(){
-		this.getInviteStudentList({token:this.fetchToken})
+		//this.getInviteStudentList({token:this.fetchToken})
 		//console.log(this.fetchInviteStudentList)
 	},
 	methods: {
@@ -56,10 +64,10 @@ export default {
         _onInfinite(){
 			setTimeout(() => {
 		        const temp = [];
-		        for (let i = this.fetchInviteStudentList.length + 1; i <= this.fetchInviteStudentList.length + 20; i++) {
+		        for (let i = this.list.length + 1; i <= this.list.length + 20; i++) {
 		          temp.push(i);
 		        }
-		        this.fetchInviteStudentList = this.fetchInviteStudentList.concat(temp);
+		        this.list = this.list.concat(temp);
 		        this.$broadcast('$InfiniteLoading:loaded');
 		      }, 1000);
        }
