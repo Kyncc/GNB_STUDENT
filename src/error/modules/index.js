@@ -28,26 +28,26 @@ const state = {
     index:{
       code:'',
       ids:[],
-      list:{},
+      list:[],
       msg:'',
       totalPage:'1'
     },
     more:{
       code:'',
       ids:[],
-      list:{},
+      list:[],
       msg:''
     },
     list:{
       code:'',
       ids:[],
-      list:{},
+      list:[],
       msg:''
     },
     recommend:{
       code:'',
       ids:[],
-      list:{},
+      list:[],
       msg:''
     },
     recommendPost:{
@@ -88,7 +88,7 @@ const mutations = {
   },
   [GET_ERROR_MORELIST_SUCCESS](state , data){
     state.more.code = data.data.code;
-    state.more.list = data.data.list;
+    state.more.list = data.data;
     state.more.msg = data.msg;
   },
   [GET_ERROR_MORELIST_ERROR](state, data){
@@ -96,7 +96,7 @@ const mutations = {
   },
  //错题列表
   [GET_ERROR_LISTIDS_SUCCESS](state , data){
-    state.list.code = data.data.code;
+    state.list.code = data.code;
     state.list.ids = data.data.ids;
     state.list.msg = data.msg;
     state.list.totalPage = data.data.totalPage;
@@ -105,7 +105,7 @@ const mutations = {
     state.list.msg = data.msg;
   },
   [GET_ERROR_LISTLISTS_SUCCESS](state , data){
-    state.list.code = data.data.code;
+    state.list.code = data.code;
     state.list.list = data.data;
     state.list.msg = data.msg;
   },

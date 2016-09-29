@@ -62,7 +62,15 @@
 				</div>
 			</template>
 		</div>
-       
+		
+		<infinite-loading :on-infinite="_onInfinite" spinner="bubbles">
+			<span slot="no-results" style="color:#4bb7aa;">
+				<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+				<p style="font-size:1rem;display:inline-block;">服务器发生一点小问题~</p>
+			</span>
+			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)阅读完毕</span>
+		</infinite-loading>
+
 		<popup-picker :show.sync="showPopupPicker" :show-cell="false" title="TEST" :data="selectIndex" :value.sync="selectData"></popup-picker>	
 	</view-box>
 </template>
@@ -71,14 +79,15 @@
 import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,PopupPicker} from 'vux'
 import moment from 'moment'
 import {period_id,subject_id,token,id} from '../../common/getters'
-import { errorMoreIds,errorIndexList } from '../getters'
+import { errorMoreIds,errorMoreList } from '../getters'
 import { collectAdd,collectRemove } from '../../common/actions'
-import { getErrorMoreIds,getErrorList } from '../actions'
+import { getErrorMoreIds,getErrorMoreList } from '../actions'
 import store from '../../store' 
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
 	components: {
-		XHeader,Flexbox,FlexboxItem,XButton,ViewBox,PopupPicker
+		XHeader,Flexbox,FlexboxItem,XButton,ViewBox,PopupPicker,InfiniteLoading
 	},
 	methods: {
 		_correct(){
@@ -93,7 +102,7 @@ export default {
 				},
 				token: this.token
 			};
-			this.getErrorList(params);
+			this.getErrorMoreList(params);
 			window.scrollTo(0,0); 
 		},
 		_collectAdd(id){
@@ -123,15 +132,32 @@ export default {
 			},()=>{
 				self.list[0].collectTime = 0;
 			});
+		},
+		_onInfinite(){
+			let params = {
+				options: {
+					ids: [this.id],
+					period_id: this.period_id,
+					subject_id: this.subject_id
+				},
+				token: this.token
+			};
+			this.getErrorMoreList(params,()=>{
+				setTimeout(()=>{
+					this.list = this.errorMoreList;
+					if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+					this.$broadcast('$InfiniteLoading:complete');
+				},300);
+			});
 		}
 	},
 	store,
 	vuex: {
         getters: {
-            period_id,subject_id,token,id,errorMoreIds,errorIndexList
+            period_id,subject_id,token,id,errorMoreIds,errorMoreList
         },
         actions: {
-			getErrorMoreIds,getErrorList,collectAdd,collectRemove
+			getErrorMoreIds,getErrorMoreList,collectAdd,collectRemove
         }
     },
 	data(){
@@ -166,15 +192,16 @@ export default {
 		selectData(val){
 			this.$router.replace(`/error/more/${this.knowledgeId}/${Number(val)}`);
 		},
-		errorIndexList(){
-      		this.list = this.errorIndexList;
-    	},
 		id(){
-			this._getData();	
+			this.list = [];
+			this.$nextTick(() => {
+				this.$broadcast('$InfiniteLoading:reset');
+			});
+			// this._getData();	
 		}
 	},
 	ready(){
-		this._getData();
+		// this._getData();
 	}
 }
 </script>

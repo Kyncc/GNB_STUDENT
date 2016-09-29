@@ -71,7 +71,7 @@ export const collectRemove = ({ dispatch }, params,callback) => {
       data:params,
       ok:response=>{
         dispatch(types.COLLECT_CANCEL_SUCCESS,response.data);
-         _.toast('已移除');
+         _.toast('取消成功');
          callback();
       },
       wrong:response=>{

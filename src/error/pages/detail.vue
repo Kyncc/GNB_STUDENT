@@ -2,7 +2,7 @@
 	<view-box v-ref:view-box class="errorDetail">
 
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
-			<x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">例题</x-header>
+			<x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">归纳例题</x-header>
 		</div>
 
 		<div style="padding-top:46px;">
@@ -59,6 +59,14 @@
 			</div>
 		</div>
 
+		<infinite-loading :on-infinite="_onInfinite" spinner="bubbles">
+			<span slot="no-results" style="color:#4bb7aa;">
+				<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+				<p style="font-size:1rem;display:inline-block;">服务器出差了~</p>
+			</span>
+			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底了</span>
+		</infinite-loading>
+
         <tabbar class="vux-demo-tabbar bottom" icon-class="vux-center" slot="bottom">
             <flexbox :gutter="0" wrap="wrap">
                 <flexbox-item :span="1/3">
@@ -78,6 +86,7 @@
 
 <script>
 import {Tabbar, TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
+import InfiniteLoading from 'vue-infinite-loading'
 import { collectRemove,collectAdd } from '../../common/actions'
 import { period_id,subject_id,token,id } from '../../common/getters'
 import { errorIndexList,errorMoreIds,errorRecommendIds,errorListIds } from '../getters'
@@ -89,7 +98,7 @@ import './error.less'
 
 export default {
 	components: {
-		Tabbar,TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox
+		Tabbar,TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
 	},
 	store,
 	vuex: {
@@ -201,7 +210,7 @@ export default {
 				self.list[0].collectTime = 0;
 			});
 		},
-		_getData(){
+		_onInfinite(){
 			let params = {
 				options:{
 					ids:[this.id],
@@ -210,7 +219,13 @@ export default {
 				},
 				token:this.token
 			};
-			this.getErrorList(params);
+			this.getErrorList(params,()=>{
+				setTimeout(()=>{
+					this.list = this.errorIndexList;
+					if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+					this.$broadcast('$InfiniteLoading:complete');
+				},300);
+			});
 		}
 	},
 	data(){
@@ -218,15 +233,12 @@ export default {
 			list:[]
 		}
 	},
-	ready(){
-		this._getData();
-	},
 	watch:{
 		id(){
-			this._getData();
-		},
-		errorIndexList(){
-			this.list = this.errorIndexList;
+			this.list = [];
+			this.$nextTick(() => {
+				this.$broadcast('$InfiniteLoading:reset');
+			});
 		}
 	}
 }

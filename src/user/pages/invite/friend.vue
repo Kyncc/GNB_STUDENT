@@ -11,10 +11,11 @@
 				</cell>
 			</group>
 			<infinite-loading :on-infinite="onInfinite" spinner="spiral">
-				<span slot="no-more" style="color:#4bb7aa;">
+				<span slot="no-results" style="color:#4bb7aa;">
 					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
 					<p style="font-size:1rem;display:inline-block;">快来邀请~</p>
 				</span>
+				<span slot="no-more" ></span>
 			</infinite-loading>
 		</div>
 	</view-box>
@@ -59,15 +60,14 @@ export default {
 			this.list[index].headImg = 'http://www.atool.org/placeholder.png?size=60x60&text=头像&&bg=4bb7aa&fg=fff';
 		},
         onInfinite(){
-			let self = this;
 			this.getInviteStudentList({
 				token:this.fetchToken
 			},()=>{
 					setTimeout(()=>{
-						self.$broadcast('$InfiniteLoading:loaded');	
-						self.list = self.fetchInviteStudentList;
-						(self.list.length == 0 ? self.$broadcast('$InfiniteLoading:complete'):self.$broadcast('$InfiniteLoading:loaded'));
-					},1000);
+						this.list = this.fetchInviteStudentList
+						if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+						this.$broadcast('$InfiniteLoading:complete');
+					},300);
 				}
 			)
        }

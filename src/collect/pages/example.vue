@@ -37,10 +37,11 @@
                 </div>
             </div>
             <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
-                <span slot="no-more" style="color:#4bb7aa;">
-                    <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-                    <p style="font-size:1rem;display:inline-block;">没有更多数据了</p>
-                </span>
+               <span slot="no-results" style="color:#4bb7aa;">
+					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+					<p style="font-size:1rem;display:inline-block;">还没收藏习题~</p>
+				</span>
+                <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已加载全部收藏</span>
             </infinite-loading>
         </div>
 
@@ -65,26 +66,25 @@ export default {
             this.$router.replace(`/collect/camera`);
         },
         _back(){
-			this.$router.go('/main/');
-		},
+    			this.$router.go('/main/');
+    		},
         _onInfinite(){
-            let that = this;
             this.getCollectExampleIds({
-                currentPage:that.currentPage,
-                token:that.token,
+                currentPage:this.currentPage,
+                token:this.token,
                 options:{
-                    period_id:that.period_id,
-                    subject_id:that.subject_id
+                    period_id:this.period_id,
+                    subject_id:this.subject_id
                 }
             },()=>{
                 setTimeout(()=>{
-                    that.$broadcast('$InfiniteLoading:loaded');
-                    if(that.totalPage <= that.currentPage){
+                    this.$broadcast('$InfiniteLoading:loaded');
+                    if(this.totalPage <= this.currentPage){
                         this.$broadcast('$InfiniteLoading:complete');
                         return;
                     }
                     this.currentPage ++;
-                },2000);
+                },500);
             })
        }
     },

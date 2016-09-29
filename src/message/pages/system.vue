@@ -12,10 +12,11 @@
 			</section>
 			
 			<infinite-loading :on-infinite="onInfinite" spinner="spiral">
-				<span slot="no-more" style="color:#4bb7aa;">
+				<span slot="no-results" style="color:#4bb7aa;">
 					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
 					<p style="font-size:1rem;display:inline-block;">暂无消息~</p>
 				</span>
+				<span slot="no-more"></span>
 			</infinite-loading>
 		</div>
 	</view-box>
@@ -53,10 +54,10 @@ export default {
 				"token":this.token
 			},()=>{
 				setTimeout(()=>{
-					self.$broadcast('$InfiniteLoading:loaded');	
 					self.list = self.messageSystemList;
-					(self.list.length == 0 ? self.$broadcast('$InfiniteLoading:complete'):self.$broadcast('$InfiniteLoading:loaded'));
-				},500);
+					if(self.list.length != 0) {self.$broadcast('$InfiniteLoading:loaded');}
+					self.$broadcast('$InfiniteLoading:complete');
+				},300);
 			});
 		}
 	}

@@ -5,17 +5,18 @@
 		</div>
 
 		<div style="padding-top:46px;">
+			
 			<!--内容-->
 			<div v-for="detail in list">
 				<div class="weui_panel weui_panel_access exerciseDetail" >
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
 							<flexbox-item :span="1/2" style="color:#4bb7aa">收藏习题</flexbox-item>
-							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct" >
-								<span style="color:orange"><i class="icon iconfont icon-error-login"></i>纠错</span>
+							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct">
+								<span><i class="icon iconfont icon-error-login"></i>纠错</span>
 							</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right;" v-touch:tap="_remove">
-								<span style="color:green"><i class="icon iconfont icon-clear"></i>取消收藏</span>
+								<span style="color:orange"><i class="icon iconfont icon-clear"></i>取消收藏</span>
 							</flexbox-item>
 						</flexbox>
 					</div>
@@ -56,6 +57,14 @@
 				</div>
 			</div>
 			
+			<infinite-loading :on-infinite="_onInfinite" spinner="bubbles">
+				<span slot="no-results" style="color:#4bb7aa;">
+					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+					<p style="font-size:1rem;display:inline-block;">服务器发生一点小问题~</p>
+				</span>
+				<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)阅读完毕</span>
+			</infinite-loading>
+
 		</div>
 	</view-box>
 	<confirm :show.sync="show" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="_onAction()"></confirm>
@@ -67,11 +76,12 @@ import { collectRemove } from '../../common/actions'
 import { getCollectExampleList } from '../actions'
 import { CollectExampleList } from '../getters'
 import { period_id,subject_id,token,id } from '../../common/getters'
+import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 
 export default {
 	components: {
-		XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox
+		XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
 	},
 	vuex: {
         getters: {
@@ -82,6 +92,24 @@ export default {
         }
     },
 	methods: {
+		_onInfinite(){
+			let self = this;
+			this.getCollectExampleList({
+				options:{
+					ids:[this.id],
+					period_id:this.period_id,
+					subject_id:this.subject_id
+				},
+				token:this.token
+			},()=>{
+					setTimeout(()=>{
+						self.list = self.CollectExampleList;
+						if(self.list.length != 0) {self.$broadcast('$InfiniteLoading:loaded');}
+						self.$broadcast('$InfiniteLoading:complete');
+					},300);
+				}
+			)
+		},
 		_remove(){
 			this.show = true
 		},
@@ -115,35 +143,15 @@ export default {
 	data(){
 		return{
 			show: false,
-			list:[]
+			list:[],
 		}
-	},
-	ready(){
-		let params = {
-			options:{
-				ids:[this.id],
-				period_id:this.period_id,
-				subject_id:this.subject_id
-			},
-			token:this.token
-		};
-		this.getCollectExampleList(params);
-		
 	},
 	watch:{
 		id(){
-			let params = {
-				options:{
-					ids:[this.id],
-					period_id:this.period_id,
-					subject_id:this.subject_id
-				},
-				token:this.token
-			};
-			this.getCollectExampleList(params);
-		},
-		CollectExampleList(){
-			this.list = this.CollectExampleList;
+			this.list = [];
+			this.$nextTick(() => {
+				this.$broadcast('$InfiniteLoading:reset');
+			});
 		}
 	}
 }

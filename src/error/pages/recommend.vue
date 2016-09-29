@@ -63,17 +63,21 @@
 			</div>
 		</div>
 
+		<infinite-loading :on-infinite="_onInfinite" spinner="bubbles">
+			<span slot="no-results" style="color:#4bb7aa;">
+				<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+				<p style="font-size:1rem;display:inline-block;">服务器出差了~</p>
+			</span>
+			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底啦~</span>
+		</infinite-loading>
+
 		 <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom"  v-show="answerShow">
 			<div style="text-align:center;font-size:.8rem;padding-bottom:10px;">
 				错题请点击记错呦
 			</div>
 			<div>
 				<checker :value.sync="answer" class="vux-flexbox vux-flex-row" type="checkbox" default-item-class="demo2-item" selected-item-class="demo2-item-selected">
-					<checker-item value="1" class="vux-flexbox-item" style="flex: 0 0 10%;">1</checker-item>
-					<checker-item value="2" class="vux-flexbox-item" style="flex: 0 0 10%;">2</checker-item>
-					<checker-item value="3" class="vux-flexbox-item" style="flex: 0 0 10%;">3</checker-item>
-					<checker-item value="4" class="vux-flexbox-item" style="flex: 0 0 10%;">4</checker-item>
-					<checker-item value="5" class="vux-flexbox-item" style="flex: 0 0 10%;">5</checker-item>
+					<checker-item :value="$index+1" class="vux-flexbox-item" style="flex: 0 0 10%;" v-for="item in errorRecommendIds">{{$index+1}}</checker-item>
 					<x-button type="primary" @click="_postAnswer()" class="vux-flexbox-item" style="flex: 0 0 25%;">提交 </x-button>
 				</checker>
 			</div>
@@ -84,6 +88,7 @@
 
 <script>
 import {Tabbar, TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group,Checker,CheckerItem} from 'vux'
+import InfiniteLoading from 'vue-infinite-loading'
 import moment from 'moment'
 import {period_id,subject_id,token,knowledgeId} from '../../common/getters'
 import {errorRecommendIds,errorRecommendList} from '../getters'
@@ -95,7 +100,7 @@ import './error.less'
 
 export default {
 	components: {
-		Tabbar,TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group,Checker,CheckerItem
+		Tabbar,TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group,Checker,CheckerItem,InfiniteLoading
 	},
 	store,
 	vuex: {
@@ -173,8 +178,8 @@ export default {
 				self.list[index].collectTime = 0;
 			});
 		},
-		_getData(){
-			 let params = {
+		_onInfinite(){
+			let params = {
 				options: {
 					ids: this.errorRecommendIds,
 					period_id: this.period_id,
@@ -182,14 +187,20 @@ export default {
 				},
 				token: this.token
 			};
-			this.getErrorRecommendList(params);
+			this.getErrorRecommendList(params,()=>{
+				setTimeout(()=>{
+					this.list = this.errorRecommendList;
+					if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+					this.$broadcast('$InfiniteLoading:complete');
+				},300);
+			});
 		}
 	},
 	data(){
 		return{
 			 answerShow: false,
 			 list:[],
-			 corrects:[1,1,1,1,1],
+			 corrects:[],
 			 answer: [],
 			 answerText:'10',
 			 answerClick:false
@@ -197,16 +208,18 @@ export default {
 	},
 	ready(){
 		this._startTimeDown();
-		this._getData();
 	},
 	watch:{
-		errorRecommendList(){
-			this.list = this.errorRecommendList;
-		},
 		answer(){
 			for(let i = 0; i< this.answer.length;i++){
 				let index = this.answer[i];
 				this.corrects[index-1] = 0;
+			}
+		},
+		errorRecommendIds(){
+			this.corrects= [];
+			for(let i = 0; i< this.errorRecommendIds.length;i++){
+				this.corrects.push('1');
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 <template>
-<view-box v-ref:view-box class="collect">
+<view-box v-ref:view-box class="errorIndex">
 
   <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
     <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">错题归纳</x-header>
@@ -13,6 +13,7 @@
       </flexbox-item>
     </flexbox>
   </div>
+
   <div style="padding-top:98px;">
     <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
       <div class="weui_panel_hd">
@@ -36,114 +37,115 @@
         </div>
       </div>
     </div>
-    <infinite-loading :on-infinite="onInfinite" spinner="waveDots">
-      <span slot="no-more" style="color:#4bb7aa;">
+
+    <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
+        <span slot="no-results" style="color:#4bb7aa;">
             <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-            <p style="font-size:1rem;display:inline-block;">没有更多数据了</p>
+            <p style="font-size:1rem;display:inline-block;">还没有归纳错题~</p>
         </span>
+        <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底啦~</span>
     </infinite-loading>
+
   </div>
 
 </view-box>
 </template>
 
 <script>
-import {XHeader, Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,Scroller,Spinner} from 'vux'
-import InfiniteLoading from 'vue-infinite-loading';
+import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
+import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import {period_id,subject_id,token} from '../../common/getters'
-import {
-  errorIndexIds,
-  errorIndexList,
-  errorIndexTotalPage
-} from '../getters'
-import {
-  getErrorIds,
-  getErrorList
-} from '../actions'
+import {errorIndexIds,errorIndexList,errorIndexTotalPage} from '../getters'
+import {getErrorIds,getErrorList} from '../actions'
 import moment from 'moment'
 
 export default {
-  components: {
-    XHeader, Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,Scroller,Spinner,InfiniteLoading
-  },
-  data() {
-    return {
-      currentPage: 1,
-      list: [],
-      startTime: moment().unix(),
-      endTime: moment().add(-7, 'd').unix(),
-    }
-  },
-  methods: {
-    _time(value) {
-      if (value == 'week') {
-        this.startTime = moment().unix();
-        this.endTime = moment().add(-7, 'd').unix();
-      } else if (value == 'month') {
-        this.startTime = moment().unix();
-        this.endTime = moment().add(-1, 'M').unix();
-      } else {
-        this.startTime = moment().unix();
-        this.endTime = moment().add(-3, 'M').unix();
-      }
+    components: {
+        XHeader,XButton,InfiniteLoading,
+        Panel,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem
     },
-    _back() {
-      this.$router.go('/main');
-    },
-    onInfinite() {
-      let that = this;
-      //根据索引获取题目
-      this.getErrorIds({
-        currentPage:that.currentPage,
-        between:{
-            start:'',
-            end:''
+    vuex: {
+        getters: {
+            period_id,subject_id,token,errorIndexIds,errorIndexList,errorIndexTotalPage
         },
-        token: that.token,
-        options: {
-          period_id: that.period_id,
-          subject_id: that.subject_id
+        actions: {
+            getErrorIds,getErrorList
         }
-      },() => {
-          setTimeout(()=>{
-              that.$broadcast('$InfiniteLoading:loaded');
-              if(that.totalPage <= that.currentPage){
-                  this.$broadcast('$InfiniteLoading:complete');
-                  return;
-              }
-              this.currentPage ++;
-          },2000);
-      })
-    }
-  },
-  computed: {
-    totalPage() {
-      return this.errorIndexTotalPage;
-    }
-  },
-  watch: {
-    errorIndexIds() {
-      let params = {
-        options: {
-          ids: this.errorIndexIds,
-          period_id: this.period_id,
-          subject_id: this.subject_id
+    },
+    methods: {
+        _time(value) {
+            if (value == 'week') {
+                this.endTime= moment().unix();
+                this.startTime = moment().add(-7, 'd').unix();
+            } else if (value == 'month') {
+                this.endTime = moment().unix();
+                this.startTime = moment().add(-1, 'M').unix();
+            } else {
+                this.endTime = moment().unix();
+                this.startTime = moment().add(-3, 'M').unix();
+            }
+            this.list = [];
+            this.currentPage = 1;
+			this.$nextTick(() => {
+				this.$broadcast('$InfiniteLoading:reset');
+			});
         },
-        token: this.token
-      };
-      this.getErrorList(params)
+        _back() {
+            this.$router.go('/main');
+        },
+        _onInfinite(){
+            this.getErrorIds({
+                currentPage:this.currentPage,
+                between:{
+                    start:this.startTime,
+                    end:this.endTime
+                },
+                token: this.token,
+                options: {
+                    period_id: this.period_id,
+                    subject_id: this.subject_id
+                }
+            },()=>{
+                setTimeout(()=>{
+                    this.$broadcast('$InfiniteLoading:loaded');
+                    if(this.errorIndexTotalPage <= this.currentPage){
+                        this.$broadcast('$InfiniteLoading:complete');
+                        return;
+                    }
+                    this.currentPage ++;
+                },1000);
+            })
+        }
     },
-    errorIndexList() {
-      this.list = this.list.concat(this.errorIndexList);
+    store,
+    data(){
+        return{
+            currentPage:1,
+            list:[],
+            totalPage:1,
+            endTime:moment().unix(),
+            startTime:moment().add(-7, 'd').unix()
+        }
+    },
+    watch:{
+        totalPage() {
+            return this.errorIndexTotalPage;
+        },
+        errorIndexIds() {
+            let params = {
+                options: {
+                    ids: this.errorIndexIds,
+                    period_id: this.period_id,
+                    subject_id: this.subject_id
+                },
+                token: this.token
+            };
+            this.getErrorList(params);
+        },
+        errorIndexList(){
+            this.list = this.list.concat(this.errorIndexList);
+        }
     }
-  },
-  vuex: {
-    getters: {
-      period_id,subject_id,token,errorIndexIds,errorIndexList,errorIndexTotalPage
-    },
-    actions: {getErrorIds,getErrorList}
-  },
-  store
 }
 </script>

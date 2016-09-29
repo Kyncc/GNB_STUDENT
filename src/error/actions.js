@@ -2,11 +2,12 @@ import Api from '../config/httpdispatch'
 import * as types from './mutationTypes'
 import * as _ from '../config/whole'
 
-export const getErrorIds = ({ dispatch }, params, callback) => {
+export const getErrorIds = ({ dispatch }, params, success) => {
   Api.error({
     data: params,
     ok: response => {
       dispatch(types.GET_ERROR_INDEXIDS_SUCCESS, response.data);
+      success&&success();
     },
     wrong: response => {
       dispatch(types.GET_ERROR_INDEXIDS_ERROR, response.data);
@@ -15,37 +16,40 @@ export const getErrorIds = ({ dispatch }, params, callback) => {
   })
 }
 
-export const getErrorList = ({ dispatch }, params) => {
+export const getErrorList = ({ dispatch }, params,success) => {
   Api.exerciseList({
     data: params,
     ok: response => {
       dispatch(types.GET_ERROR_INDEXLIST_SUCCESS, response.data);
+      success&&success();
     },
     wrong: response => {
       dispatch(types.GET_ERROR_INDEXLIST_ERROR, response.data);
-      _.toast(response.msg);
+      _.toast(response.data.msg);
     }
   })
 }
 
-export const getErrorRecommendList = ({ dispatch }, params) => {
+export const getErrorRecommendList = ({ dispatch }, params,success) => {
   Api.exerciseList({
     data: params,
     ok: response => {
       dispatch(types.GET_ERROR_RMDLIST_SUCCESS, response.data);
+      success&&success();
     },
     wrong: response => {
       dispatch(types.GET_ERROR_RMDLIST_ERROR, response.data);
-      _.toast(response.msg);
+      _.toast(response.data.msg);
     }
   })
 }
 
-export const getErrorMoreList = ({ dispatch }, params) => {
+export const getErrorMoreList = ({ dispatch }, params,success) => {
   Api.exerciseList({
     data: params,
     ok: response => {
       dispatch(types.GET_ERROR_MORELIST_SUCCESS, response.data);
+      success&&success();
     },
     wrong: response => {
       dispatch(types.GET_ERROR_MORELIST_ERROR, response.data);
