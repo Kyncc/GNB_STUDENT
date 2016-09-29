@@ -92,32 +92,3 @@ export default {
 
 </script>
 
-<style lang = 'less'>
-.mainIndex{
-  font-size:inheirt;
-	.vux-header{
-		color:#fff;
-		background-color:#4bb7aa;
-	}
-  .vux-header-right{
-    top:8px;
-  }
-  .swiper{
-    height:400/40em;
-    width:100%;
-    .swiperImg img {
-      width: 100%;
-    }
-  }
-  .content{
-    .block{height:215/40em;background:#fff;border-top:1px solid #ccc;border-bottom:1px solid #ccc;}
-  }
-  .weui_panel_access .weui_panel_ft{
-    padding:5px 10px;
-    color:#999;
-    text-align:right;
-  }
-  .weui_panel_access .weui_panel_ft:after{display:none;}
-
-}
-</style>

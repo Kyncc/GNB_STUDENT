@@ -164,8 +164,11 @@ export function http(params) {
   if (params.method == 'post') {
     resource = Vue.http.post(params.url, params.data, {
       emulateJSON: true,
+      // headers: {
+      //   'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      // },
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        'Content-Type': 'application/json'
       },
       _timeout: 3000,
       onTimeout: (request) => {
