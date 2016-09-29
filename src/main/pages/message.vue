@@ -7,17 +7,17 @@
     <div style="padding-top:48px;">
       <scroller lock-x scrollbar-y use-pulldown :pulldown-status.sync="pulldownStatus" @pulldown:loading="load">
         <group>
-          <cell title="班级消息" link="../message/class" inline-desc='这是张老师布置的一道作业' >
+          <cell title="班级消息" link="../message/class" :inline-desc='messageIndex.classMsgNew' >
             <div v-bind:class="{'vux-reddot':messageIndex.hasNewClassMsg}" slot="icon" style="margin-right:.5em;" >
               <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/class.png">
             </div>
           </cell>
-          <cell title="纠错消息" link="../message/correct" inline-desc='这是张老师布置的一道作业' >
+          <cell title="纠错消息" link="../message/correct" :inline-desc='messageIndex.correctMsgNew' >
             <div v-bind:class="{'vux-reddot':messageIndex.hasNewCorretMsg}" slot="icon" style="margin-right:.5em;" >
                 <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/correct.png">
             </div>
           </cell>
-          <cell title="系统消息" link="../message/system" inline-desc='这是张老师布置的一道作业' >
+          <cell title="系统消息" link="../message/system" :inline-desc='messageIndex.systemMsgNew' >
             <div v-bind:class="{'vux-reddot':messageIndex.hasNewSystemMsg}" slot="icon" style="margin-right:.5em;" >
               <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/system.png">
             </div>
@@ -44,13 +44,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import store from '../../store' 
 import {XHeader,Group,Scroller,Cell,ViewBox,Spinner} from 'vux'
 import { token } from '../../common/getters'
 import { messageIndex } from '../../message/getters'
 import { getMessageIndex} from '../../message/actions'
+import * as _ from '../../config/whole'
 
 export default {
   components: {
@@ -72,11 +71,13 @@ export default {
 		load (uuid) {
 			setTimeout(() => {
 				this.$broadcast('pulldown:reset', uuid);
-        this.getMessageIndex({"token":this.token});
+        this._refresh();
 			}, 1000)
 		},
     _refresh(){
-      this.getMessageIndex({"token":this.token});
+      this.getMessageIndex({"token":this.token},()=>{
+          _.toast('刷新成功');
+      });
     }
 	},
   data () {
@@ -85,7 +86,7 @@ export default {
     }
   },
   ready(){
-    this._refresh();
+      this.getMessageIndex({"token":this.token});
   }
 }
 </script>

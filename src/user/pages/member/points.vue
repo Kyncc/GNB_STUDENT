@@ -67,11 +67,6 @@ export default {
     })
   },
   methods: {
-    load(uuid) {
-      setTimeout(() => {
-        this.$broadcast('pulldown:reset', uuid)
-      }, 1000)
-    },
     _rule() {
       this.$router.go('/user/member/rule')
     }

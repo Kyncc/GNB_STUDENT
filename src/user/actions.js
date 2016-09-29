@@ -112,6 +112,7 @@ export const numerical = ({ dispatch }, params) => {
       data: params,
       ok: response => {
         dispatch(types.GET_NUMERICAL_LIST, response.data.data)
+        
       },
       wrong: response => {}
     })

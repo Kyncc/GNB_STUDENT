@@ -15,6 +15,9 @@ const state = {
       hasNewClassMsg:'',
       hasNewCorretMsg:'',
       hasNewSystemMsg:'',
+      classMsgNew:'',
+      correctMsgNew:'',
+      systemMsgNew:'',
       msg:''
     },
     system:{
@@ -40,6 +43,9 @@ const mutations = {
     state.index.hasNewClassMsg = data.data.hasNewClassMsg;
     state.index.hasNewCorretMsg = data.data.hasNewCorretMsg;
     state.index.hasNewSystemMsg = data.data.hasNewSystemMsg;
+    state.index.classMsgNew = data.data.classMsgNew;
+    state.index.correctMsgNew = data.data.correctMsgNew;
+    state.index.systemMsgNew = data.data.systemMsgNew;
     state.index.msg = data.msg;
   },
   [GET_MESSAGE_HOME_ERROR](state , data){

@@ -4,27 +4,33 @@
             <x-header :left-options="{showBack: true}">系统消息</x-header>
         </div>
 		<div style="padding-top:46px;" class="messageSection">
-			<section v-for="item in messageSystemList">
+			<section v-for="item in list">
 				<h3>{{item.time | ymd}}</h3>
 				<article>
 					{{item.content}}
 				</article>
 			</section>
+			
+			<infinite-loading :on-infinite="onInfinite" spinner="spiral">
+				<span slot="no-more" style="color:#4bb7aa;">
+					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+					<p style="font-size:1rem;display:inline-block;">暂无消息~</p>
+				</span>
+			</infinite-loading>
 		</div>
 	</view-box>
 </template>
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import {XHeader,ViewBox} from 'vux'
 import store from '../../store' 
 import { token } from '../../common/getters'
 import { getMessageSystem } from '../actions'
 import { messageSystemList } from '../getters'
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
 	components: {
-		XHeader,ViewBox
+		XHeader,ViewBox,InfiniteLoading
 	},
 	vuex: {
 		getters: {
@@ -35,12 +41,25 @@ export default {
 		}
 	},
 	store,
-	ready(){
-		let parme = {
-			"token":this.token
+	data(){
+		return {
+			list: []
 		}
-		this.getMessageSystem(parme);
-  	}
+	},
+	methods: {
+		onInfinite(){
+			let self = this;
+			this.getMessageSystem({
+				"token":this.token
+			},()=>{
+				setTimeout(()=>{
+					self.$broadcast('$InfiniteLoading:loaded');	
+					self.list = self.messageSystemList;
+					(self.list.length == 0 ? self.$broadcast('$InfiniteLoading:complete'):self.$broadcast('$InfiniteLoading:loaded'));
+				},500);
+			});
+		}
+	}
 }
 </script>
 
