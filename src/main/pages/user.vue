@@ -75,7 +75,6 @@ export default {
         },
         _uploadclick () {
             document.getElementById('base64').click()
-            document.getElementById('base64').click()
         }
     },
     data(){
