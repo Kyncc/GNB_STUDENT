@@ -74,13 +74,16 @@ export const adviceHistory = ({ dispatch }, params, callback) => {
     })
   }
   //受邀同学
-export const getInviteStudentList = ({ dispatch }, params) => {
+export const getInviteStudentList = ({ dispatch }, params,success) => {
     Api.getInviteStudentList({
       data: params,
       ok: response => {
-        dispatch(types.GET_INVITE_STUDENT_LIST, response.data.data)
+        dispatch(types.GET_INVITE_STUDENT_LIST, response.data.data);
+        success()        
       },
-      wrong: response => {}
+      wrong: response => {
+        _.toast("异常请求");
+      }
     })
   }
   //邀请码
