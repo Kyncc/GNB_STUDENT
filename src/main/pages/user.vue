@@ -6,7 +6,7 @@
   <scroller lock-x v-ref:scroller height="-46px">
     <div>
       <div class="info">
-        <img class="defaultimg" src="../../assets/user/defaultimg.png" alt="" />
+        <img class="defaultimg" :src="imgSrc" />
         <p class="phone">15812341234</p>
         <div class="upload" v-touch:tap="_upload">
           上传头像
@@ -17,8 +17,8 @@
           <span class="icon icon-info" slot="icon"></span>
         </cell>
         <!-- <cell title="我的教材" link="../user/textBook/">
-          <span class="icon icon-textbook" slot="icon"></span>
-        </cell> -->
+                    <span class="icon icon-textbook" slot="icon"></span>
+                </cell> -->
         <cell title="我的班级" link="javascript:void(0);" v-touch:tap="_myClass">
           <span class="icon icon-class" slot="icon"></span>
         </cell>
@@ -39,105 +39,58 @@
   </scroller>
   <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
-
-  <ul id="files" style="display:none;">
-
-  </ul>
-
+  <file-base64 id="base64" :multiple="true" :done="getFiles" style="display:none"></file-base64>
 </view-box>
 </template>
 
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
-import {quitToken} from '../actions.js'
-import {fetchToken } from '../../user/getters.js'
 import * as _ from '../../config/whole.js'
+import fileBase64 from 'vue-file-base64'
 
 export default {
-  components: {
-    XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox
-  },
-  vuex:{
-    actions:{
-        quitToken
+    components: {
+        XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox,fileBase64
     },
-    getters:{
-        fetchToken
-    }
-  },
-  methods: {
-    onAction(type) {
-        if(type=='确认'){
-            this.quitToken({token:this.fetchToken},()=>{
-                this.$router.replace('/')
-            })
-        }else{
+    methods: {
+        onAction(type) {
+            if(type=='确认'){
+                plus.runtime.quit()
+            }else{
 
+            }
+        },
+        _quit(){
+            this.show = true
+        },
+        getFiles(files){
+            this.imgSrc = files[0].base64
+            console.log(files);
+        },
+        _myClass(){
+            _.toast('敬请期待')
+        },
+        _upload(){
+            this.showsheet = true
+        },
+        _uploadclick () {
+            document.getElementById('base64').click()
+            document.getElementById('base64').click()
         }
     },
-    _quit(){
-        this.show = true
+    data(){
+        return {
+            show: false,
+            showsheet: false,
+            imgSrc:'',
+            menus: {
+                menu2: '从相册选择'
+            },
+        }
     },
-    _myClass(){
-        _.toast('敬请期待')
-    },
-    _upload(){
-        this.showsheet = true
-    },
-    _uploadclick (key) {
-        var server = "http://demo.dcloud.net.cn/helloh5/uploader/upload.php";
-		var files = [];
-        var index = 1;
-         if(key == 'menu2'){
-             plus.gallery.pick(function(p) {
-                var fe = document.getElementById("files");
-				var li = document.createElement("li");
-				var n = p.substr(p.lastIndexOf('/') + 1);
-				li.innerText = n;
-				fe.appendChild(li);
-				files.push({
-					name: "uploadkey" + index,
-					path: p
-				});
-				index++;
-                var task = plus.uploader.createUpload(server, {
-						method: "POST"
-					},
-					function(t, status) {
-						if(status == 200) {
-                            _.toast('上传成功' + t.responseText)
-							plus.storage.setItem("uploader", t.responseText);
-
-						} else {
-                            _.toast('上传失败'+ status)
-						}
-					}
-				);
-				task.addData("client", "HelloH5+");
-				task.addData("uid", Math.floor(Math.random() * 100000000 + 10000000).toString());
-				for(var i = 0; i < files.length; i++) {
-					var f = files[i];
-					task.addFile(f.path, {
-						key: f.name
-					});
-				}
-				task.start();
-			});
-           }
-         }
-  },
-  data(){
-    return {
-      show: false,
-      showsheet: false,
-      menus: {
-        menu2: '从相册选择'
-      },
+    ready () {
+        this.$nextTick(() => {
+            this.$refs.scroller.reset()
+        })
     }
-  },
-  ready () {
-    this.$nextTick(() => {
-      this.$refs.scroller.reset()
-    })
-  }
 }

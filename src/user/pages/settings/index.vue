@@ -20,28 +20,21 @@
     <cell title="意见反馈" link="advice">
       <span class="demo-icon" slot="icon"></span>
     </cell>
+    <cell title="退出登录" v-touch:tap="_quitlogin"  link="javascript:void(0);">
+      <span class="demo-icon" slot="icon"></span>
+    </cell>
   </group>
   <alert :show.sync="show" title="清除缓存成功"></alert>
   <confirm :show.sync="confirm" confirm-text="确定" cancel-text="取消" title="发现新版本是否更新" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
+  <confirm :show.sync="quit" confirm-text="确定" cancel-text="取消" title="是否退出登录" @on-confirm="_quit('确认')" @on-cancel="_quit('取消')"></confirm>
 </div>
 </template>
 
 <script>
-import {
-  XHeader,
-  Cell,
-  Group,
-  Alert,
-  Confirm
-} from 'vux'
+import {  XHeader,  Cell,  Group,  Alert,  Confirm} from 'vux'
 import './setting.less'
-import {
-  updateVersion
-} from '../../actions.js'
-import {
-  fetchVersion,
-  fetchToken
-} from '../../getters.js'
+import {  updateVersion, quitToken} from '../../actions.js'
+import {  fetchVersion,  fetchToken} from '../../getters.js'
 
 export default {
   components: {
@@ -55,12 +48,13 @@ export default {
     return {
       version: '1.0.0',
       show: false,
-      confirm: false
+      confirm: false,
+      quit:false
     }
   },
   vuex: {
     actions: {
-      updateVersion
+      updateVersion,quitToken
     },
     getters: {
       fetchVersion,
@@ -70,6 +64,18 @@ export default {
   methods: {
     _clear() {
       this.show = true
+    },
+    _quitlogin(){
+        this.quit = true
+    },
+    _quit(type) {
+        if(type=='确认'){
+            this.quitToken({token:this.fetchToken},()=>{
+                this.$router.replace('/')
+            })
+        }else{
+
+        }
     },
     onAction(type) {
       if (type == '确认') {

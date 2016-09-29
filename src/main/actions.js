@@ -15,14 +15,3 @@ export const getStudentIndex = ({ dispatch }, params) => {
     }
   })
 }
-//退出
-export const quitToken = ({ dispatch }, params, callback) => {
-  Api.quitToken({
-    data: params,
-    ok: response => {
-        callback()
-    },
-    wrong: response => {
-    }
-  })
-}

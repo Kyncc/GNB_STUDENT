@@ -79,7 +79,7 @@ export const getInviteStudentList = ({ dispatch }, params,success) => {
       data: params,
       ok: response => {
         dispatch(types.GET_INVITE_STUDENT_LIST, response.data.data);
-        success()        
+        success()
       },
       wrong: response => {
         _.toast("异常请求");
@@ -107,12 +107,12 @@ export const bindInviteCode = ({ dispatch }, params, callback) => {
     })
   }
   //我的积分
-export const numerical = ({ dispatch }, params) => {
+export const numerical = ({ dispatch }, params,callback) => {
     Api.numerical({
       data: params,
       ok: response => {
         dispatch(types.GET_NUMERICAL_LIST, response.data.data)
-        
+        callback()
       },
       wrong: response => {}
     })
@@ -146,5 +146,16 @@ export const updateVersion = ({ dispatch }, params, callback) => {
       callback()
     },
     wrong: response => {}
+  })
+}
+//退出
+export const quitToken = ({ dispatch }, params, callback) => {
+  Api.quitToken({
+    data: params,
+    ok: response => {
+        callback()
+    },
+    wrong: response => {
+    }
   })
 }
