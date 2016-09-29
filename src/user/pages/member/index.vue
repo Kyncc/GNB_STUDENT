@@ -1,10 +1,11 @@
 <template>
-  <div class="member">
-    <div style="position:fixed;left:0;top:0;width:100%;z-index:2016" slot="header">
-        <x-header :left-options="{showBack: true}">我的会员<!--<a slot="right" v-touch:tap="_recharge">充值</a>--></x-header>
-    </div> 
-    <scroller lock-x height="-46px">
-        <div style="padding-top:46px;">
+  <view-box v-ref:view-box class='member vux-scroller-header-box'>
+    <div style="height:46px;" slot="header" style="position:fixed;left:0;top:0;width:100%;z-index:100">
+      <x-header :left-options="{showBack: true}"  class="vux-scroller-header">我的会员<!--<a slot="right" v-touch:tap="_recharge">充值</a>--></x-header>
+    </div>
+
+    <scroller lock-x v-ref:scroller height="-46px">
+        <div>
           <group>
             <div class="headimg">
               <img src="../../../assets/user/headimg.png" alt="" />
@@ -99,18 +100,19 @@
           </group>
         </div>
     </scroller>
+  </view-box>
 </template>
 
 <script>
 import './member.less'
-import {  XHeader,  Cell,  Group,  Alert,  Flexbox,  FlexboxItem,  Scroller}from 'vux'
+import {  XHeader,  Cell,  Group,  Alert,  Flexbox,  FlexboxItem,  Scroller,ViewBox}from 'vux'
 import { member } from '../../actions.js'
 import {fetchToken,fetchMemberInfo} from '../../getters'
 import * as _ from '../../../config/whole.js'
 
 export default {
   components: {
-    XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Scroller
+    XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Scroller,ViewBox
   },
   vuex:{
       actions:{

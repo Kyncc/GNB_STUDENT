@@ -1,11 +1,11 @@
 <template>
-   <div class="mainMessage"> 
-      <div style="position:fixed;left:0;top:0;width:100%;z-index:2016" slot="header">
-        <x-header :left-options="{showBack: false}">消息</x-header>
+  <view-box v-ref:view-box class='mainMessage vux-scroller-header-box'>
+      <div style="height:46px;"  slot="header" style="position:fixed;left:0;top:0;width:100%;z-index:100">
+          <x-header :left-options="{showBack: false}" class="vux-scroller-header">消息</x-header>
       </div>
 
-      <scroller lock-x  use-pulldown :pulldown-status.sync="pulldownStatus" @pulldown:loading="load" height="-46px">
-        <div style="padding-top:46px;">
+      <scroller lock-x v-ref:scroller use-pulldown :pulldown-status.sync="pulldownStatus" @pulldown:loading="load" height="-46px">
+        <div>
           <group>
             <cell title="班级消息" link="../message/class" :inline-desc='messageIndex.classMsgNew' >
               <div v-bind:class="{'vux-reddot':messageIndex.hasNewClassMsg}" slot="icon" style="margin-right:.5em;" >
@@ -40,12 +40,12 @@
           </div>
         </div>
       </scroller>
-   </div>
+  </view-box>
 </template>
 
 <script>
 import store from '../../store' 
-import {XHeader,Group,Scroller,Cell,Spinner} from 'vux'
+import {XHeader,Group,Scroller,Cell,Spinner,ViewBox} from 'vux'
 import { token } from '../../common/getters'
 import { messageIndex } from '../../message/getters'
 import { getMessageIndex} from '../../message/actions'
@@ -53,7 +53,7 @@ import * as _ from '../../config/whole'
 
 export default {
   components: {
-    XHeader,Scroller,Group,Cell,Spinner
+    XHeader,Scroller,Group,Cell,Spinner,ViewBox
   },
   vuex: {
       getters: {

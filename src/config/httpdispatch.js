@@ -126,7 +126,7 @@ export default {
   },
   //受邀同学
   getInviteStudentList: (params) => {
-    return http({ method: 'post', url: API_PATHS.getInviteStudentList, data: params.data, ok: params.ok, wrong: params.wrong })
+    return http({ method: 'get', url: API_PATHS.getInviteStudentList, data: params.data, ok: params.ok, wrong: params.wrong })
   },
   //绑定邀请码
   bindInviteCode: (params) => {
