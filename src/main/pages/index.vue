@@ -8,20 +8,19 @@
       </x-header>
     </div>
     <scroller lock-x v-ref:scroller height="-46px">
-    <div style="padding-top:46px;">
-      <div class="swiper">
-        <swiper auto loop height="10em" dots-position="center">
-          <swiper-item class="swiperImg" v-for="item in swiper" ><img :src="item"/></swiper-item>
-        </swiper>
+      <div style="padding-top:46px;">
+        <div class="swiper">
+          <swiper auto loop height="10em" dots-position="center">
+            <swiper-item class="swiperImg" v-for="item in swiper" ><img :src="item"/></swiper-item>
+          </swiper>
+        </div>
+        <section class="content">
+          <panel :footer="{'title':'您已拍错'+cameraCount+'道题目','url':'/camera'}" :list="pictureInc" :type="type"></panel>
+          <panel :footer="{'title':'您已归纳'+errorCount+'道题目','url':'/error/'}" :list="errorInc" :type="type"></panel>
+          <panel :footer="{'title':'您已收藏'+collectCount+'道题目','url':'/collect/'}" :list="collectInc" :type="type"></panel>
+        </section>
       </div>
-      <section class="content">
-        <panel :footer="{'title':'您已拍错'+cameraCount+'道题目','url':'/camera'}" :list="pictureInc" :type="type"></panel>
-        <panel :footer="{'title':'您已归纳'+errorCount+'道题目','url':'/error/'}" :list="errorInc" :type="type"></panel>
-        <panel :footer="{'title':'您已收藏'+collectCount+'道题目','url':'/collect/'}" :list="collectInc" :type="type"></panel>
-      </section>
-    </div>
-
-  </scroller>
+    </scroller>
   </div>
 </template>
 
