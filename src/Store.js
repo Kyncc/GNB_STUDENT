@@ -11,6 +11,7 @@ import correct from './common/modules/correct'
 import collectAction from './common/modules/collect'
 import index from './main/modules/index'
 import message from './message/modules/index'
+import camera from './camera/modules/index'
 import error from './error/modules/index'
 import collect from './collect/modules/index'
 import info from './user/modules/info'
@@ -46,7 +47,9 @@ export default new Vuex.Store({
     //收藏本
     collect,
     //归纳本
-    error
+    error,
+    //拍错题
+    camera
 
   }
 })

@@ -35,6 +35,18 @@ export const API_PATHS = {
   //收藏本
   collectExampleIds: `${API_ENV}${API_VERSION}/student/collect/example`,
   collectCameraIds: `${API_ENV}${API_VERSION}/student/collect/camera`,
+   /**拍错题模块
+   *  camera:拍错题搜索
+   *  cameraImportant:拍错题设为例题
+   *  cameraSearch:拍错题匹配
+   *  cameraHistory:拍错题记录
+   *  cameraRemove:例题删除
+   */
+   camera:`${API_ENV}${API_VERSION}/student/camera`,
+   cameraImportant:`${API_ENV}${API_VERSION}/student/camera/important`,
+   cameraMatch:`${API_ENV}${API_VERSION}/student/camera/match`,
+   cameraHistory:`${API_ENV}${API_VERSION}/student/camera`,
+   cameraRemove:`${API_ENV}${API_VERSION}/student/camera/remove`,
    /**归纳本模块
    *  error:归纳本首页获取数据
    *  errorList:归纳本错题列表
