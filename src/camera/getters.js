@@ -5,5 +5,4 @@ export const cameraHistoryTotalPage  = (state) => state.camera.history.totalPage
 export const cameraResultIds  = (state) => state.camera.result.ids 
 export const cameraResultList  = (state) => state.camera.result.list
 //例题
-export const cameraExampleIds  = (state) => state.camera.example.ids 
 export const cameraExampleList  = (state) => state.camera.example.list 

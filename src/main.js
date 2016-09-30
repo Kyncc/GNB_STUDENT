@@ -22,7 +22,6 @@ import comment from './common/pages/comment'
 //拍错题
 import camera from './camera/pages/index'
 import cameraHistory from './camera/pages/history'
-import cameraCorrect from './camera/pages/correct'
 import cameraRecord from './camera/pages/record'
 import cameraResult from './camera/pages/result'
 //归纳本
@@ -124,9 +123,8 @@ router.map({
   //拍错题
  'camera':{component: camera},
  'camera/history':{component: cameraHistory},
- 'camera/record/:knowledgeId':{component: cameraRecord},
- 'camera/result/:knowledgeId':{component: cameraResult},
- //'camera/comment/:id': { component: cameraComment },
+ 'camera/record/:id':{component: cameraRecord},
+ 'camera/result':{component: cameraResult},
   //归纳本
   'error': { component: error },
   'error/detail/:id': { component: errorDetail },

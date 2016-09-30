@@ -50,7 +50,7 @@ const state = {
     result:{
       code:'',
       id:'',
-      ids:[],
+      ids:[1,2,3,4,5],
       list:[],
       msg:'',
     },
@@ -99,6 +99,7 @@ const mutations = {
   [GET_CAMERA_RESULTIDS_SUCCESS](state , data){
     state.result.code = data.data.code;
     state.result.ids = data.data.ids;
+    state.result.id = data.data.id;
     state.result.msg = data.msg;
   },
   [GET_CAMERA_RESULTIDS_ERROR](state, data){
