@@ -162,8 +162,8 @@
 			},
 			"splashscreen": {
 				"ios": {
-					"iphone": {
-						"default": ""
+					"iphone": {"retina47":"unpackage/res/start/750x1334.png","retina40":"unpackage/res/start/640x1136.png","retina35":"unpackage/res/start/640x960.png"
+						
 					},
 					"ipad": {
 						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
@@ -176,9 +176,9 @@
 						"landscape-retina7": ""
 					}
 				},
-				"android": {
-					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
-					"ldpi": ""
+				"android": {"hdpi":"unpackage/res/start/480x762.png","xhdpi":"unpackage/res/start/720x1242.png","xxhdpi":"unpackage/res/start/1080x1882.png"
+					 /*普通屏启动图片，分辨率：240x282*/
+					
 				}
 			}
 		}

@@ -180,6 +180,7 @@ router.redirect({
 sync(store, router)
 
 router.beforeEach(function(transition) {
+    console.log(transition)
   if (transition.to.path == '/register/password') {
     if (store.state.register.mobile == '') {
       console.log("禁止访问!");
