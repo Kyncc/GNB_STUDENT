@@ -140,9 +140,6 @@ export default {
 		},
 		_correct(id){
 			this.$router.go(`/camera/correct/${id}`);
-		},
-		_back(){
-			this.$router.go(`/camera/history`);
 		}
 	},
 	data(){
