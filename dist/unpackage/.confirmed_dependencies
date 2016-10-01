@@ -56,7 +56,12 @@
       "static/js/manifest.ba3cd64b44e4bf6d48d8.js",
       "static/js/app.e341c5bf1e9caf8f308b.js",
       "static/js/app.0e0ce3aeaf98df4ffd24.js",
-      "static/js/manifest.aaa75fd4d83dae5dbb69.js"
-    ]
+      "static/js/manifest.aaa75fd4d83dae5dbb69.js",
+      "static/js/manifest.497195747f3d182b8386.js",
+      "static/js/vendor.91f0db2c1bf5c41c828d.js",
+      "static/css/app.383a6bac8e2045f0626ec8717df0a71e.css",
+      "static/js/app.65cced16e0906492f488.js"
+    ],
+    "refer": []
   }
 }
