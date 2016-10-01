@@ -163,13 +163,7 @@
 			},
 			"splashscreen": {
 				"ios": {
-<<<<<<< HEAD
 					"iphone": {},
-=======
-					"iphone": {
-						
-					},
->>>>>>> 278465b04c3ef56c0eaf4a5ffc5d0b3865ac8224
 					"ipad": {
 						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
 						"portrait-retina": "",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
@@ -182,13 +176,9 @@
 					}
 				},
 				"android": {
-<<<<<<< HEAD
 					"xxhdpi": "unpackage/res/start/1080x1882.png",
 					"hdpi": "unpackage/res/start/480x762.png"
-=======
 					 /*普通屏启动图片，分辨率：240x282*/
-					
->>>>>>> 278465b04c3ef56c0eaf4a5ffc5d0b3865ac8224
 				}
 			}
 		}
