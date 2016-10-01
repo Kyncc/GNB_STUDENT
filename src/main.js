@@ -4,6 +4,7 @@ import VueTouch from 'vue-touch'
 import { sync } from 'vuex-router-sync'
 import App from './app'
 import store from './store'
+import * as _ from './config/whole.js'
 //登陆、注册
 import Login from './login/pages/login'
 import agreement from './login/pages/agreement'
@@ -180,7 +181,6 @@ router.redirect({
 sync(store, router)
 
 router.beforeEach(function(transition) {
-    console.log(transition)
   if (transition.to.path == '/register/password') {
     if (store.state.register.mobile == '') {
       console.log("禁止访问!");
@@ -199,16 +199,32 @@ router.beforeEach(function(transition) {
 
 
 // (function(){
-//   function plusReady(){
-//     plus.key.addEventListener("backbutton",function(){
-// 		  window.history.back();
-// 	  });
-//   }
-//   if(window.plus){
-//     plusReady();
-//   }else{
-//     document.addEventListener("plusready",plusReady,false);
-//   }
+  function plusReady(){
+    let first = null;
+    plus.key.addEventListener("backbutton",function(){
+        if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
+            if (!first) {
+                first = new Date().getTime();
+                _.toast('再按一次退出应用')
+                setTimeout(function() {
+                    first = null;
+                }, 1000);
+            } else {
+                if (new Date().getTime() - first < 1000) {
+                    plus.runtime.quit();
+                }
+            }
+        }else{
+            window.history.back();
+        }
+
+	  });
+  }
+  if(window.plus){
+    plusReady();
+  }else{
+    document.addEventListener("plusready",plusReady,false);
+  }
 // }())
 
 router.start(App, '#App')

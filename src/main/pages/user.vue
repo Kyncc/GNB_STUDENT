@@ -7,7 +7,7 @@
     <div>
       <div class="info">
         <img class="defaultimg" :src="imgSrc" />
-        <p class="phone">15812341234</p>
+        <p class="phone">&nbsp;{{fetchPhone}}&nbsp;</p>
         <div class="upload" v-touch:tap="_upload">
           上传头像
         </div>
@@ -17,8 +17,8 @@
           <span class="icon icon-info" slot="icon"></span>
         </cell>
         <!-- <cell title="我的教材" link="../user/textBook/">
-                    <span class="icon icon-textbook" slot="icon"></span>
-                </cell> -->
+            <span class="icon icon-textbook" slot="icon"></span>
+        </cell> -->
         <cell title="我的班级" link="javascript:void(0);" v-touch:tap="_myClass">
           <span class="icon icon-class" slot="icon"></span>
         </cell>
@@ -38,7 +38,7 @@
     </div>
   </scroller>
   <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
-  <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出当前登陆账号么" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
+  <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出归纳本吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
   <file-base64 id="base64" :multiple="true" :done="getFiles" style="display:none"></file-base64>
 </view-box>
 </template>
@@ -47,17 +47,24 @@
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from '../../config/whole.js'
 import fileBase64 from 'vue-file-base64'
+import { fetchPhone, fetchHeadImg } from '../getters.js'
 
 export default {
     components: {
         XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox,fileBase64
+    },
+    vuex:{
+        getters:{
+            fetchPhone,
+            fetchHeadImg
+        }
     },
     methods: {
         onAction(type) {
             if(type=='确认'){
                 plus.runtime.quit()
             }else{
-
+                return
             }
         },
         _quit(){
@@ -88,6 +95,7 @@ export default {
         }
     },
     ready () {
+        this.imgSrc = this.fetchHeadImg
         this.$nextTick(() => {
             this.$refs.scroller.reset()
         })
