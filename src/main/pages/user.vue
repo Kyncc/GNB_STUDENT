@@ -39,19 +39,19 @@
   </scroller>
   <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出归纳本吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
-  <file-base64 id="base64" :multiple="true" :done="getFiles" style="display:none"></file-base64>
+  <!-- <file-base64 id="base64" :multiple="true" :done="galleryImgs" style="display:none"></file-base64> -->
 </view-box>
 </template>
 
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from '../../config/whole.js'
-import fileBase64 from 'vue-file-base64'
+// import fileBase64 from 'vue-file-base64'
 import { fetchPhone, fetchHeadImg } from '../getters.js'
 
 export default {
     components: {
-        XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox,fileBase64
+        XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox
     },
     vuex:{
         getters:{
@@ -70,9 +70,30 @@ export default {
         _quit(){
             this.show = true
         },
-        getFiles(files){
-            this.imgSrc = files[0].base64
-            console.log(files);
+        // getFiles(files){
+        //     this.imgSrc = files[0].base64
+        // },
+        getImage(){
+            let self  = this
+            let cmr = plus.camera.getCamera();
+			cmr.captureImage(function(p) {
+				plus.io.resolveLocalFileSystemURL(p, function(entry) {
+					self.imgSrc = entry.toLocalURL()
+                    console.log(self.imgSrc)
+				})
+			})
+        },
+        galleryImgs(){
+            let self = this
+            plus.gallery.pick(function(e) {
+                self.imgSrc = e.files[0]
+                console.log(self.imgSrc)
+			}, function(e) {
+                 _.toast("取消选择图片")
+			}, {
+				filter: "image",
+				multiple: true
+			})
         },
         _myClass(){
             _.toast('敬请期待')
@@ -80,8 +101,13 @@ export default {
         _upload(){
             this.showsheet = true
         },
-        _uploadclick () {
-            document.getElementById('base64').click()
+        _uploadclick (val) {
+            if(val == 'menu1'){
+                this.getImage()
+            }else if(val =='menu2'){
+                this.galleryImgs()
+            }
+            //document.getElementById('base64').click()
         }
     },
     data(){
@@ -89,7 +115,9 @@ export default {
             show: false,
             showsheet: false,
             imgSrc:'',
+            mask: false,
             menus: {
+                menu1: '拍照',
                 menu2: '从相册选择'
             },
         }

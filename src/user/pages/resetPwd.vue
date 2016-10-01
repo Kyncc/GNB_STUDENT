@@ -46,8 +46,7 @@ export default {
       onAction(type) {
           if(type=='确认'){
               setTimeout(() => {
-                  _.toast('退出登陆生效');
-                //  this.$router.go('/main/user')
+                 this.$router.go('/main/user')
              }, 500)
           }else{
               return
@@ -57,7 +56,7 @@ export default {
       if (this.newPwd && this.repeatPwd && this.oldPwd) {
         if (this.oldPwd == this.newPwd) {
           _.toast("不可与旧密码一致")
-          
+
         } else {
           if (this.newPwd == this.repeatPwd) {
             this.updatePwd({
@@ -65,10 +64,11 @@ export default {
               pwd: this.newPwd,
               token: this.fetchToken
             }, () => {
-              _.toast("修改成功请重新登录")
-              setTimeout(() => {
-                this.$router.go('/')
-                }, 800)
+                 _.toast('退出登陆生效')
+            //   _.toast("修改成功请重新登录")
+            //   setTimeout(() => {
+            //     this.$router.go('/')
+            //     }, 800)
             })
           } else {
             _.toast("两次密码输入不一致")
