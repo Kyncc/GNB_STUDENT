@@ -205,7 +205,7 @@ router.beforeEach(function(transition) {
         if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
             if (!first) {
                 first = new Date().getTime();
-                _.toast('再按一次退出应用')
+                _.toast('再按一次退出')
                 setTimeout(function() {
                     first = null;
                 }, 1000);
