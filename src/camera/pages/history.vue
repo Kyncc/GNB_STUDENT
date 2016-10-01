@@ -6,25 +6,25 @@
       <div style="margin-top:46px;" class="main">
         <flexbox class="list" v-for="item in list">
           <flexbox-item :span="2/5">
-            <img class="previewer-demo-img" :src="item.src" @click="_show(item.src,$index)">
+            <img class="previewer-demo-img" :src="item.compressPic" @click="_show(item.pic,$index)">
           </flexbox-item>
           <flexbox-item :span="3/5" style="position:relative">
-            <div v-touch:tap="_record(item.knowledgeId)">
+            <div v-touch:tap="_record(item.importantId,item.id)">
                 <div class="title">{{{item.knowledge}}}</div>
                   <div class="difficult">
                     难度：
-                    <template v-for="1 in item.difficult">
-                          <i class="icon iconfont icon-collect"></i>
-                    </template>
+                    <!--<template v-for="1 in item.difficult">
+                       <i class="icon iconfont icon-collect"></i>
+                    </template>-->
                   </div>
                   <div class="time">{{{item.cameraTime | ymd}}} </div>
               </div>
-              <i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id)"></i>
+              <i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id,$index)"></i>
             </flexbox-item>
           <flexbox>
       </div>
-      
-      <infinite-loading :on-infinite="_onInfinite" spinner="default">
+
+      <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
           <p style="font-size:1rem;display:inline-block;">服务器出差了~</p>
@@ -34,8 +34,8 @@
 
     </view-box>
     <!--<previewer :list="imgList" v-ref:previewer :options="options"></previewer>-->
-    <confirm :show.sync="clearShow" confirm-text="是" cancel-text="否" title="确定移除此题么?" @on-confirm="_onAction('是')" @on-cancel="_onAction('否')"></confirm>
-   
+    <confirm :show.sync="clearShow" confirm-text="是" cancel-text="否" title="确定移除此题么?" @on-confirm="_delelte()"></confirm>
+
   </div>
 </template>
 
@@ -45,44 +45,8 @@ import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import { period_id,subject_id,token } from '../../common/getters'
 import { cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage } from '../getters'
-import { getCameraHistoryIds,getCameraHistoryList } from '../actions'
-
-const DATA = {
-  "code": 1,
-  "data": [{
-    "collectTime": "1473682257",
-    "difficult": 3,
-    "knowledge": "2.5 函数零点判定原理 ",
-    "knowledgeId": 31,
-    "cameraTime": "1473682257",
-    "id": 1,
-    "src": "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3830827124,2277766622&fm=80",
-    "width": 1400,
-    "height": 1200
-  }, {
-    "collectTime": "1473682257",
-    "difficult": 3,
-    "knowledge": "2.5 函数零点判定原理 ",
-    "knowledgeId": 12,
-    "cameraTime": "1473682257",
-    "id": 1,
-    "src": "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2116654715,901919733&fm=80",
-    "width": 1400,
-    "height": 1200
-  }, {
-    "collectTime": "1473682257",
-    "difficult": 2,
-    "knowledge": "2.5 函数零点判定原理 ",
-    "knowledgeId": 12,
-    "cameraTime": "1473682257",
-    "id": 1,
-    "src": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2713790248,650364002&fm=80",
-    "width": 1400,
-    "height": 1200
-  }],
-  "msg": 1
-}
-
+import { getCameraHistoryIds,getCameraHistoryList,delCameraHistroy } from '../actions'
+import * as _ from '../../config/whole'
 
 export default {
   components: {
@@ -93,18 +57,20 @@ export default {
           period_id,subject_id,token,cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage
       },
       actions: {
-          getCameraHistoryIds,getCameraHistoryList
+          getCameraHistoryIds,getCameraHistoryList,delCameraHistroy
       }
   },
   store,
   methods: {
-    _remove(id) {
+    _remove(id,index) {
       this.clearShow = true;
+      this.delPic.index = index;
+      this.delPic.id = id;
     },
-    _record(id) {
-      this.$router.go(`/camera/record/${id}`);
+    _record(importantId,id) {
+      this.$router.go(`/camera/record/${importantId}/${id}`);
     },
-    _show(src, index) {
+    _show(src,index) {
       this.imgList[index].src = src
       this.$refs.previewer.show(index)
     },
@@ -117,8 +83,8 @@ export default {
               subject_id:this.subject_id
           }
       },()=>{
+          this.$broadcast('$InfiniteLoading:loaded');
           setTimeout(()=>{
-              this.$broadcast('$InfiniteLoading:loaded');
               if(this.cameraHistoryTotalPage <= this.currentPage){
                   this.$broadcast('$InfiniteLoading:complete');
                   return;
@@ -126,14 +92,31 @@ export default {
               this.currentPage ++;
           },500);
       })
+    },
+    _delelte(){
+       this.delCameraHistroy({
+          token:this.token,
+          options:{
+              id:this.delPic.id,
+              period_id:this.period_id,
+              subject_id:this.subject_id
+          }
+      },()=>{
+          this.list.$remove(this.list[this.delPic.index]);
+          _.toast("删除成功");
+      });
     }
   },
   data() {
     return {
       currentPage:1,
-      list:[],
       clearShow: false,
-      list: DATA.data,
+      //待删除的索引
+      delPic:{
+        index:'',
+        id:''
+      },
+      list:[],
       imgList: [],
       options: {
         getThumbBoundsFn(index) {
@@ -149,10 +132,21 @@ export default {
       }
     }
   },
-  watch(){
-
-
-
+  watch:{
+    cameraHistoryIds(){
+        let params = {
+            options:{
+                ids:this.cameraHistoryIds,
+                period_id:this.period_id,
+                subject_id:this.subject_id
+            },
+            token:this.token
+        };
+        this.getCameraHistoryList(params);
+    },
+    cameraHistoryList(){
+        this.list =  this.list.concat(this.cameraHistoryList);
+    }
   },
   ready() {
     // for (let i in this.list) {

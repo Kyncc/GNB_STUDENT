@@ -34,6 +34,7 @@ import errorRecommend from './error/pages/recommend'
 //收藏本
 import collectExample from './collect/pages/example'
 import collectCamera from './collect/pages/camera'
+import collectCameraDetail from './collect/pages/cameraRecord'
 import collectExampleDetail from './collect/pages/exampleDetail'
 //通知
 import messageClass from './message/pages/class'
@@ -124,7 +125,7 @@ router.map({
   //拍错题
  'camera':{component: camera},
  'camera/history':{component: cameraHistory},
- 'camera/record/:id':{component: cameraRecord},
+ 'camera/record/:id/:cameraId':{component: cameraRecord},
  'camera/result':{component: cameraResult},
   //归纳本
   'error': { component: error },
@@ -135,6 +136,7 @@ router.map({
   //收藏本
   'collect/example': {component: collectExample},
   'collect/camera': {component: collectCamera},
+  'collect/camera/detail/:id/:cameraId': {component: collectCameraDetail},
   'collect/example/detail/:id': {component: collectExampleDetail},
   //消息
   'message/class': { component: messageClass },

@@ -84,7 +84,7 @@ const mutations = {
     state.history.list = data.data;
     state.history.msg = data.msg;
   },
-  [GET_CAMERA_HISTORYLIST_SUCCESS](state, data){
+  [GET_CAMERA_HISTORYLIST_ERROR](state, data){
     state.history.msg = data.msg;
   },
 

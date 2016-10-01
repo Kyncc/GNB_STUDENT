@@ -50,14 +50,16 @@ export default {
   exerciseList: (params) => {
     return http({ method: 'get', url: API_PATHS.exerciseList, data: params.data, ok: params.ok, wrong: params.wrong });
   },
-  //收藏本
+  /**收藏本模块
+   *  collectExampleIds:收藏习题IDS
+   *  collectCameraIds:收藏拍错题IDS
+   * **/
   collectExampleIds: (params) => {
     return http({ method: 'get', url: API_PATHS.collectExampleIds, data: params.data, ok: params.ok, wrong: params.wrong });
   },
   collectCameraIds: (params) => {
     return http({ method: 'get', url: API_PATHS.collectCameraIds, data: params.data, ok: params.ok, wrong: params.wrong });
   },
-
    /**拍错题模块
    *  camera:拍错题搜索
    *  cameraImportant:拍错题设为例题
@@ -71,11 +73,20 @@ export default {
   cameraHistory: (params) => {
     return http({ method: 'get', url: API_PATHS.cameraHistory, data: params.data, ok: params.ok, wrong: params.wrong });
   },
+  cameraRemove: (params) => {
+    return http({ method: 'post', url: API_PATHS.cameraRemove, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
+  cameraImportant: (params) => {
+    return http({ method: 'post', url: API_PATHS.cameraImportant, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
+  cameraMatch: (params) => {
+    return http({ method: 'post', url: API_PATHS.cameraMatch, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
   /**归纳本模块
    *  error:归纳本首页获取数据
-   * errorList:归纳本错题列表
-   * errorMore:归纳本首更多习题
-   * errorRecommend:归纳本推荐习题
+   *  errorList:归纳本错题列表
+   *  errorMore:归纳本首更多习题
+   *  errorRecommend:归纳本推荐习题
    */
   error: (params) => {
     return http({ method: 'get', url: API_PATHS.error, data: params.data, ok: params.ok, wrong: params.wrong });
@@ -178,17 +189,17 @@ export function http(params) {
   if (params.method == 'post') {
     resource = Vue.http.post(params.url, params.data, {
       emulateJSON: true,
-      // headers: {
-      //   'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      // },
       headers: {
-        'Content-Type': 'application/json'
-      },
-      _timeout: 3000,
-      onTimeout: (request) => {
-        _.toast("服务器繁忙");
-        _.leave();
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       }
+      // headers: {
+      //   'Content-Type': 'application/json'
+      // },
+      // _timeout: 3000,
+      // onTimeout: (request) => {
+      //   _.toast("服务器繁忙");
+      //   _.leave();
+      // }
     })
   } else {
      resource = Vue.http.get(params.url,{

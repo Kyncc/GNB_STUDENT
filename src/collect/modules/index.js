@@ -55,7 +55,7 @@ const mutations = {
   },
   [GET_COLLECT_CAMERALELIST_SUCCESS](state , data){
     state.camera.code = data.data.code;
-    state.camera.list = data.data.list;
+    state.camera.list = data.data;
     state.camera.msg = data.msg;
   },
   [GET_COLLECT_CAMERALELIST_ERROR](state, data){
