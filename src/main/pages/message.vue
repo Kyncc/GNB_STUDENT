@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import store from '../../store' 
+import store from '../../store'
 import {XHeader,Group,Scroller,Cell,Spinner,ViewBox} from 'vux'
 import { token } from '../../common/getters'
 import { messageIndex } from '../../message/getters'
