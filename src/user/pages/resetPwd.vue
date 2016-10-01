@@ -46,7 +46,7 @@ export default {
       onAction(type) {
           if(type=='确认'){
               setTimeout(() => {
-                  _.toast(‘退出登陆生效’)
+                  _.toast('退出登陆生效');
                 //  this.$router.go('/main/user')
              }, 500)
           }else{
