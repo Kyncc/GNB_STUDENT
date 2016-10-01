@@ -1,6 +1,6 @@
 <template>
 <div class='info'>
-  <x-header :left-options="{showBack: true}">个人资料 <a slot="right" v-touch:tap="_complete">{{edit}}</a></x-header>
+  <x-header :left-options="{showBack: true,preventGoBack: true}"  @on-click-back="_back()">个人资料 <a slot="right" v-touch:tap="_complete">{{edit}}</a></x-header>
   <group v-show="edit=='编辑'">
     <x-input title="姓名" name="username" :value.sync="fetchUserInfo.name" readonly></x-input>
     <x-input title="性别" name="sex" value="女" v-show="fetchUserInfo.sex=='0'" readonly></x-input>
@@ -19,42 +19,26 @@
     <x-input title="年级" name="grade" value="高中" readonly></x-input>
     <x-input title="学校" name="school" placeholder="请输入学校名称" :value.sync="school"></x-input>
   </group>
+  <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="还未保存,确定返回吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
 </div>
 </template>
 
 <script>
-import {
-  Checker,
-  CheckerItem,
-  XHeader,
-  XInput,
-  Group,
-  Cell
-} from 'vux'
-import {
-  getUserInfo,
-  updateUserInfo
-} from '../actions'
-import {
-  fetchUserInfo,
-  fetchToken
-} from '../getters'
+import {Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm} from 'vux'
+import {getUserInfo,updateUserInfo} from '../actions'
+import {fetchUserInfo,fetchToken} from '../getters'
 
 export default {
   components: {
-    Checker,
-    CheckerItem,
-    XHeader,
-    XInput,
-    Group,
-    Cell
+    Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm
   },
   data() {
     return {
       edit: '编辑',
       sex: '1',
       name: '',
-      school: ''
+      school: '',
+      show: false,
     }
   },
   filters: {
@@ -74,6 +58,24 @@ export default {
     }
   },
   methods: {
+    _back(){
+        if (this.edit == '完成'){
+            this.show = true
+        }else if(this.edit = '编辑'){
+            setTimeout(() => {
+               this.$router.go('/main/user')
+           }, 500)
+        }
+    },
+    onAction(type) {
+        if(type=='确认'){
+            setTimeout(() => {
+               this.$router.go('/main/user')
+           }, 500)
+        }else{
+            return
+        }
+    },
     _complete() {
       if (this.edit == '编辑') {
         this.name = this.fetchUserInfo.name
