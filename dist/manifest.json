@@ -21,9 +21,7 @@
 		"url": "http://www.dcloud.io"
 	},
 	"permissions": {
-		"Accelerometer": {
-			"description": "访问加速度感应器"
-		},
+		
 		"Audio": {
 			"description": "访问麦克风"
 		},
@@ -36,9 +34,7 @@
 		"Console": {
 			"description": "跟踪调试输出日志"
 		},
-		"Contacts": {
-			"description": "访问系统联系人信息"
-		},
+		
 		"Device": {
 			"description": "访问设备信息"
 		},
@@ -64,9 +60,7 @@
 		"Orientation": {
 			"description": "访问方向感应器"
 		},
-		"Proximity": {
-			"description": "访问距离感应器"
-		},
+		
 		"Storage": {
 			"description": "管理应用本地数据"
 		},
@@ -83,15 +77,9 @@
 		"Zip": {
 			"description": "文件压缩与解压缩"
 		},
-		"Barcode": {
-			"description": "管理二维码扫描插件"
-		},
-		"Maps": {
-			"description": "管理地图插件"
-		},
-		"Speech": {
-			"description": "管理语音识别插件"
-		},
+		
+		
+		
 		"Webview": {
 			"description": "窗口管理"
 		},
@@ -103,8 +91,7 @@
 		},
 		"NativeObj": {
 			"description": "原生对象"
-		},
-		"Share": {}
+		}
 	},
 	"plus": {
 		"splashscreen": {
@@ -116,11 +103,7 @@
 		"distribute": {
 			"plugins": {
 				"share": {
-					"weixin": {
-						"appid": "asdasdasdsad",
-						"appsecret": "asdasdasd",
-						"description": "可选，微信分享"
-					}
+					
 				}
 			},
 			"apple": {
@@ -136,33 +119,7 @@
 				"keystore": "",/*Android应用打包使用的密钥库文件*/
 				"password": "",/*Android应用打包使用密钥库中证书的密码*/
 				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
-				"permissions": [
-					"<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
-					"<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
-					"<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
-					"<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>",
-					"<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
-					"<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
-					"<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
-					"<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
-					"<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
-					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
-					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
-					"<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
-					"<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
-					"<uses-feature android:name=\"android.hardware.camera\"/>",
-					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_MOCK_LOCATION\"/>",
-					"<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
-					"<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>",
-					"<uses-permission android:name=\"android.permission.CAMERA\"/>"
-				]
+				"permissions": ["<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
 			},
 			"orientation": [
 				"portrait-primary"

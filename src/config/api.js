@@ -45,7 +45,7 @@ export const API_PATHS = {
    camera:`${API_ENV}${API_VERSION}/student/camera`,
    cameraImportant:`${API_ENV}${API_VERSION}/student/camera/important`,
    cameraMatch:`${API_ENV}${API_VERSION}/student/camera/match`,
-   cameraHistory:`${API_ENV}${API_VERSION}/student/camera`,
+   cameraHistory:`${API_ENV}${API_VERSION}/student/camera/list`,
    cameraRemove:`${API_ENV}${API_VERSION}/student/camera/remove`,
    /**归纳本模块
    *  error:归纳本首页获取数据

@@ -57,6 +57,20 @@ export default {
   collectCameraIds: (params) => {
     return http({ method: 'get', url: API_PATHS.collectCameraIds, data: params.data, ok: params.ok, wrong: params.wrong });
   },
+
+   /**拍错题模块
+   *  camera:拍错题搜索
+   *  cameraImportant:拍错题设为例题
+   *  cameraSearch:拍错题匹配
+   *  cameraHistory:拍错题记录
+   *  cameraRemove:例题删除
+   */
+  camera: (params) => {
+    return http({ method: 'get', url: API_PATHS.camera, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
+  cameraHistory: (params) => {
+    return http({ method: 'get', url: API_PATHS.cameraHistory, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
   /**归纳本模块
    *  error:归纳本首页获取数据
    * errorList:归纳本错题列表
@@ -88,13 +102,13 @@ export default {
     return http({ method: 'get', url: API_PATHS.msg, data: params.data, ok: params.ok, wrong: params.wrong });
   },
   msgCorrect: (params) => {
-    return http({ method: 'get', url: API_PATHS.msgSystem, data: params.data, ok: params.ok, wrong: params.wrong });
+    return http({ method: 'get', url: API_PATHS.msgCorrect, data: params.data, ok: params.ok, wrong: params.wrong });
   },
   msgClass: (params) => {
     return http({ method: 'get', url: API_PATHS.msgClass, data: params.data, ok: params.ok, wrong: params.wrong });
   },
   msgSystem: (params) => {
-    return http({ method: 'get', url: API_PATHS.msgCorrect, data: params.data, ok: params.ok, wrong: params.wrong });
+    return http({ method: 'get', url: API_PATHS.msgSystem, data: params.data, ok: params.ok, wrong: params.wrong });
   },
   //获取用户信息
   getUserInfo: (params) => {
