@@ -8,16 +8,17 @@
         </div>
 
         <div style="margin-top:46px;" >
-            <div class="img" v-touch:tap="_camera()">
+              <img id="defaultimg" src="../../assets/logo.png" />
+            <!--<div class="img" v-touch:tap="_camera()">
                 <i class="icon iconfont icon-camera"></i>
                 <p>横屏拍照，注意尽量对焦哦</p>
-            </div>
+            </div>-->
         </div>
 
         <file-base64 id="base64" :multiple="true" :done="getFiles" style="display:none"></file-base64>
 
 
-        <img class="defaultimg" :src="imgSrc" />
+      
        
 
         <!--<tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
@@ -30,6 +31,8 @@
 <script>
 import {XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton} from 'vux'
 import fileBase64 from '../componts/vue-file-base64-camera.vue';
+import Cropper from 'Cropperjs'
+
 
 export default {
     components: {
@@ -53,6 +56,23 @@ export default {
         }
     },
     computed:{
+
+    },
+    ready(){
+
+        var image = document.getElementById('defaultimg');
+        var cropper = new Cropper(image, {
+        aspectRatio: 16 / 9,
+        crop: function(e) {
+            console.log(e.detail.x);
+            console.log(e.detail.y);
+            console.log(e.detail.width);
+            console.log(e.detail.height);
+            console.log(e.detail.rotate);
+            console.log(e.detail.scaleX);
+            console.log(e.detail.scaleY);
+        }
+        });
 
     }
 }

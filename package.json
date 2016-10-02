@@ -10,6 +10,7 @@
     "test": ""
   },
   "dependencies": {
+    "cropperjs": "^0.8.1",
     "fastclick": "^1.0.6",
     "moment": "^2.15.0",
     "vue": "^1.0.21",

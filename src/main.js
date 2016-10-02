@@ -68,6 +68,8 @@ import userTextbook from './user/pages/textbook/index'
 import moment from 'moment'
 import FastClick from 'fastclick'
 
+import '../node_modules/cropperjs/dist/cropper.min.css'
+
 Vue.use(Router)
 Vue.use(VueTouch)
 Vue.config.devtools = true
