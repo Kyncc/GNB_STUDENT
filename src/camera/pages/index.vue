@@ -8,72 +8,63 @@
         </div>
 
         <div style="margin-top:46px;" >
-              <img id="defaultimg" src="../../assets/logo.png" />
+              <img id="defaultimg" v-el:img src="../../assets/logo.png"/>
             <!--<div class="img" v-touch:tap="_camera()">
                 <i class="icon iconfont icon-camera"></i>
                 <p>横屏拍照，注意尽量对焦哦</p>
             </div>-->
         </div>
 
-        <file-base64 id="base64" :multiple="true" :done="getFiles" style="display:none"></file-base64>
-
-
-      
-       
-
-        <!--<tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-			 <x-button type="primary" v-touch:tap="_history()">拍题记录</x-button>
-        </tabbar>-->
+      <x-button @click="_img">click</x-button>
+      <img :src="jpgData"/>
 
 	</view-box>
 </template>
 
 <script>
 import {XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton} from 'vux'
-import fileBase64 from '../componts/vue-file-base64-camera.vue';
 import Cropper from 'Cropperjs'
-
 
 export default {
     components: {
-       XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton,fileBase64
+       XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton
     },
     methods: {
+        imgclick(){
+            alert(1);
+        },
+        _img(){
+            // let cropBoxData = this.cropper.getCropBoxData();
+            let canvasData = this.cropper.getCanvasData();
+            
+
+            this.jpgData = this.cropper.getCroppedCanvas().toDataURL('image/png');
+            // this.cropper.setCropBoxData(this.jpgData);
+            this.cropper.setCropBoxData(this.jpgData);
+            //  this.cropper.destroy();
+            //  this.cropper = new Cropper(this.$els.img, {
+            //     aspectRatio: NaN,
+            //  });
+        },
         _history(){
             this.$router.go(`/camera/history`);
         },
         _camera(){
-            document.getElementById('base64').click();
-        },
-        getFiles(files){
-            this.imgSrc = files[0].base64;
-            console.log(files);
         }
     },
     data(){
         return{
-           imgSrc:''
+           cropper:'',
+           jpgData:''
         }
     },
     computed:{
 
     },
     ready(){
-
-        var image = document.getElementById('defaultimg');
-        var cropper = new Cropper(image, {
-        aspectRatio: 16 / 9,
-        crop: function(e) {
-            console.log(e.detail.x);
-            console.log(e.detail.y);
-            console.log(e.detail.width);
-            console.log(e.detail.height);
-            console.log(e.detail.rotate);
-            console.log(e.detail.scaleX);
-            console.log(e.detail.scaleY);
-        }
+        this.cropper = new Cropper(this.$els.img, {
+            aspectRatio: NaN
         });
-
     }
 }
 </script>
