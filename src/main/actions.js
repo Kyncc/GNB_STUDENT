@@ -15,3 +15,7 @@ export const getStudentIndex = ({ dispatch }, params) => {
     }
   })
 }
+
+export const setHeadPhoto = ({ dispatch }, params) => {
+    dispatch(types.SET_HEAD_PHOTO, params)
+}

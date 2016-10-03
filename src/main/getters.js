@@ -7,3 +7,5 @@ export const swiper = (state) => state.index.swiper
 export const fetchPhone = (state) => state.login.userInfo.mobile
 
 export const fetchHeadImg = (state) => state.login.userInfo.headImg
+
+export const fetchHeadPhoto = (state) => state.index.headPhoto

@@ -6,7 +6,7 @@
   <scroller lock-x v-ref:scroller height="-46px">
     <div>
       <div class="info">
-        <img class="defaultimg" :src="cropImg" />
+        <img class="defaultimg" :src="fetchHeadImg" />
         <p class="phone">&nbsp;{{fetchPhone}}&nbsp;</p>
         <div class="upload" v-touch:tap="_upload">
           上传头像
@@ -39,34 +39,26 @@
   </scroller>
   <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出归纳本吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
-  <!-- <file-base64 id="base64" :multiple="true" :done="galleryImgs" style="display:none"></file-base64> -->
-  <div  v-show="cropShow"  style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);">
-    <div  style="max-width: 900px; display: inline-block;">
-        <!--<vue-cropper v-ref:cropper :guides="true" :view-mode="2" drag-mode="crop" :auto-crop-area="0.5" :min-container-width="250" :min-container-height="180" :background="true" :rotatable="true" :src="imgSrc">
-        </vue-cropper>-->
-    </div>
-    <button class="corp-btn" type="button" name="button" @click="cropCancel">取消</button>
-    <button class="corp-btn" type="button" name="button" @click="cropImage">确认</button>
-  </div>
-
 </view-box>
 </template>
 
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from '../../config/whole.js'
-// import VueCropper from 'vue-cropperjs'
-// import fileBase64 from 'vue-file-base64'
 import { fetchPhone, fetchHeadImg } from '../getters.js'
+import { setHeadPhoto } from '../actions.js'
 
 export default {
     components: {
-        XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox//,VueCropper
+        XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox
     },
     vuex:{
         getters:{
             fetchPhone,
             fetchHeadImg
+        },
+        actions:{
+            setHeadPhoto
         }
     },
     methods: {
@@ -80,31 +72,22 @@ export default {
         _quit(){
             this.show = true
         },
-        // getFiles(files){
-        //     this.imgSrc = files[0].base64
-        // },
+
         getImage(){
             let self  = this
             let cmr = plus.camera.getCamera();
 			cmr.captureImage(function(p) {
 				plus.io.resolveLocalFileSystemURL(p, function(entry) {
-					self.imgSrc = entry.toLocalURL()
-                    self.cropShow = true
+					self.setHeadPhoto(entry.toLocalURL())
+                    self.$router.go('main/user/photo')
 				})
 			})
-        },
-        cropImage () {
-            this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL()
-            this.cropShow = false
-        },
-        cropCancel(){
-            this.cropShow = false
         },
         galleryImgs(){
             let self = this
             plus.gallery.pick(function(e) {
-                self.imgSrc = e.files[0]
-                self.cropShow = true
+                self.setHeadPhoto(e.files[0])
+                self.$router.go('user/photo')
 			}, function(e) {
                  _.toast("取消选择图片")
 			}, {
@@ -130,9 +113,6 @@ export default {
         return {
             show: false,
             showsheet: false,
-            imgSrc: '',
-            cropImg: '',
-            cropShow: false,
             menus: {
                 menu1: '拍照',
                 menu2: '从相册选择'
@@ -140,7 +120,6 @@ export default {
         }
     },
     ready () {
-        //this.imgSrc = this.fetchHeadImg
         this.$nextTick(() => {
             this.$refs.scroller.reset()
         })
