@@ -3,7 +3,7 @@
     <div style="position:fixed;left:0;top:0;width:100%;z-index:2016" slot="header">
       <x-header :left-options="{showBack: false}">归纳本
         <a slot="right" v-touch:tap="_share">
-          <img src="../../assets/main/share.png" height="30px">
+          <i class="icon iconfont icon-share"></i>
         </a>
       </x-header>
     </div>

@@ -14,9 +14,8 @@
                 <p>横屏拍照，注意尽量对焦哦</p>
             </div>-->
         </div>
-
       <x-button @click="_img">click</x-button>
-      <img :src="jpgData"/>
+      <img :src="jpgData"/> 
 
 	</view-box>
 </template>

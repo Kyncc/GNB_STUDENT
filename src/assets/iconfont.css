@@ -1,12 +1,8 @@
-
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1474006879'); /* IE9*/
-  src: url('iconfont.eot?t=1474006879#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1474006879') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1474006879') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1474006879#iconfont') format('svg'); /* iOS 4.1- */
+  src:url('iconfont.woff?t=1474006879') format('woff'), /* chrome, firefox */
+      url('iconfont.ttf?t=1474006879') format('truetype'); 
+      /*Chrome, firefox, opera, Safari, Android, iOS 4.2+*/
 }
-
 .iconfont {
   font-family:"iconfont" !important;
   font-size:16px;
@@ -17,7 +13,10 @@
 }
 .icon-home:before { content: "\e601"; }
 .icon-31wode:before { content: "\e602"; }
+.icon-tishi:before { content: "\e608"; }
+.icon-share:before { content: "\e609"; }
 .icon-clear:before { content: "\e605"; }
+.icon-flag:before { content: "\e60a"; }
 .icon-camera:before { content: "\e606"; }
 .icon-hudong:before { content: "\e607"; }
 .icon-error-login:before { content: "\e603"; }
