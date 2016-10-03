@@ -16,7 +16,7 @@
   <div style="padding-top:98px;" class="main">
       <flexbox class="list" v-for="item in list">
       <flexbox-item :span="2/5">
-        <img class="previewer-demo-img" v-lazy="item.compressPic" @click="_show(item.pic,$index)">
+        <img class="previewer-demo-img" v-lazy="item.compressPic" @click="_show($index)">
       </flexbox-item>
       <flexbox-item :span="3/5" style="position:relative">
         <div v-touch:tap="_record(item.importantId,item.id)">
@@ -43,7 +43,7 @@
   </infinite-loading>
 </view-box>
 
-<!--<previewer :list="imgList" v-ref:previewer :options="options"></previewer>-->
+<previewer :list="imgList" v-ref:previewer ></previewer>
 <confirm :show.sync="show" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="_delelte()"></confirm>
 </template>
 
@@ -78,6 +78,12 @@ export default {
     },
     _example() {
       this.$router.replace(`/collect/example`);
+    },
+    _show(index) {
+      this.imgList[0].src = this.list[index].pic;
+      this.imgList[0].w = this.list[index].width;
+      this.imgList[0].h = this.list[index].height;
+      this.$refs.previewer.show();
     },
     _remove(id,index) {
       this.show = true;
@@ -129,7 +135,12 @@ export default {
         index:'',
         id:''
       },
-      list: []
+      list: [],
+      imgList: [{
+        src: '',
+        w: '',
+        h: ''
+      }]
     }
   },
   watch: {

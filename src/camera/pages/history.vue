@@ -6,7 +6,7 @@
       <div style="margin-top:46px;" class="main">
         <flexbox class="list" v-for="item in list">
           <flexbox-item :span="2/5">
-            <img class="previewer-demo-img"  v-lazy="item.compressPic" @click="_show(item.pic,$index)">
+            <img class="previewer-demo-img"  v-lazy="item.compressPic" @click="_show($index)">
           </flexbox-item>
           <flexbox-item :span="3/5" style="position:relative">
             <div v-touch:tap="_record(item.importantId,item.id)">
@@ -33,7 +33,7 @@
   </infinite-loading>
 
     </view-box>
-    <!--<previewer :list="imgList" v-ref:previewer :options="options"></previewer>-->
+    <previewer :list="imgList" v-ref:previewer ></previewer>
     <confirm :show.sync="clearShow" confirm-text="是" cancel-text="否" title="确定移除此题么?" @on-confirm="_delelte()"></confirm>
 
   </div>
@@ -70,9 +70,11 @@ export default {
     _record(importantId,id) {
       this.$router.go(`/camera/record/${importantId}/${id}`);
     },
-    _show(src,index) {
-      this.imgList[index].src = src
-      this.$refs.previewer.show(index)
+    _show(index) {
+      this.imgList[0].src = this.list[index].pic;
+      this.imgList[0].w = this.list[index].width;
+      this.imgList[0].h = this.list[index].height;
+      this.$refs.previewer.show();
     },
     _onInfinite(){
       this.getCameraHistoryIds({
@@ -117,19 +119,11 @@ export default {
         id:''
       },
       list:[],
-      imgList: [],
-      options: {
-        getThumbBoundsFn(index) {
-          let thumbnail = document.querySelectorAll('.previewer-demo-img')[index]
-          let pageYScroll = window.pageYOffset || document.documentElement.scrollTop
-          let rect = thumbnail.getBoundingClientRect()
-          return {
-            x: rect.left,
-            y: rect.top + pageYScroll,
-            w: rect.width
-          }
-        }
-      }
+      imgList: [{
+        src: '',
+        w: '',
+        h: ''
+      }]
     }
   },
   watch:{
@@ -147,15 +141,6 @@ export default {
     cameraHistoryList(){
         this.list =  this.list.concat(this.cameraHistoryList);
     }
-  },
-  ready() {
-    // for (let i in this.list) {
-    //   this.imgList.push({
-    //     src: this.list[i].src,
-    //     w: 600,
-    //     h: 400
-    //   })
-    // }
   }
 }
 </script>
