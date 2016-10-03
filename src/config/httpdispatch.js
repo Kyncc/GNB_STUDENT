@@ -204,7 +204,7 @@ export function http(params) {
   } else {
      resource = Vue.http.get(params.url,{
         params:params.data,
-        _timeout: 7000,
+        _timeout: 5000,
         onTimeout: (request) => {
           _.toast("服务器繁忙");
           _.leave();

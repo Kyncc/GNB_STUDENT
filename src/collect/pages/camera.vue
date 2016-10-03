@@ -123,7 +123,7 @@ export default {
                   return;
               }
               this.currentPage ++;
-          },500);
+          },1000);
       })
     }
   },
