@@ -320,7 +320,11 @@
 					"static/js/manifest.0c8b82896a15f3216c85.js",
 					"static/js/app.df18c56909affd50339d.js",
 					"static/js/manifest.fee3f537cccf7b4f70eb.js",
-					"static/js/app.a4808f99bcc36c35bb11.js"
+					"static/js/app.a4808f99bcc36c35bb11.js",
+					"static/js/vendor.a974ec36a197122ed338.js",
+					"static/css/app.229dd9021548af6f1cb0953b9759f8e5.css",
+					"static/js/manifest.2736469cf3915947fc88.js",
+					"static/js/app.fc2b1c8af01b0383285f.js"
 				],
 				"refer": [],
 				"priority": 0
