@@ -4,19 +4,24 @@
 
 
 ## 使用技术简介
-
+ ---------------编译环境---------------   
+ 1. [VueLoader][4]
+ ---------------Hybird框架---------------   
  1. [调用跨平台功能-H5+][1]
- 2. [Vue.js-MVVM框架][2]
- 3. [Vue.js的路由-VueRouter][3]  
- 4. [Vue.js推荐的打包编译环境-VueLoader][4]
- 5. [Vue.js手机组件库-Vux][5]
- 6. [Vue.js单项数据流-Vuex][6]
- 7. [VueRouter和Vuex流同步-Vuex-router-sync][7]
- 8. [Vue.js触摸手势组件-VueTouch][8]
- 9. [时间格式化-Moment.js][9]
- 10. [Vue手机加载数据组件vue-infinite-loading][10]
- 11. [图片控制剪裁cropper.js][11]
-
+ ---------------页面逻辑---------------   
+ 1. [Vue.js][2]
+ 2. [路由-VueRouter][3]  
+ 3. [单项数据流-Vuex][6]
+ 4. [VueRouter和Vuex流同步-Vuex-router-sync][7]
+ --------------功能组件-----------------
+ 1. [时间格式化-Moment.js][8]
+ 2. [图片控制剪裁cropper.js][11]
+ --------------UI组件------------------ 
+ 1. [手机UI库-Vux][5]
+ 2. [触摸手势组件-VueTouch][9]
+ 3. [加载数据组件Vue-infinite-loading][10]
+ 4. [图片懒加载Vue-lazyload][12]
+ 
 ## 文件夹结构
 
     ├── build       # webpack编译配置
@@ -60,7 +65,8 @@
   [5]: https://vuxjs.gitbooks.io/vux/content/about/component-standard.html
   [6]: http://vuex.vuejs.org/zh-cn/index.html
   [7]: https://github.com/vuejs/vuex-router-sync
-  [8]: https://github.com/vuejs/vue-touch
-  [9]: http://momentjs.cn/
+  [8]: http://momentjs.cn/
+  [9]: https://github.com/vuejs/vue-touch
   [10]: https://peachscript.github.io/vue-infinite-loading/#!/slots
   [11]: https://fengyuanchen.github.io/cropperjs/
+  [12]: https://github.com/hilongjw/vue-lazyload

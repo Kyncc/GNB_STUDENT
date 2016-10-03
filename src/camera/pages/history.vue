@@ -6,16 +6,16 @@
       <div style="margin-top:46px;" class="main">
         <flexbox class="list" v-for="item in list">
           <flexbox-item :span="2/5">
-            <img class="previewer-demo-img" :src="item.compressPic" @click="_show(item.pic,$index)">
+            <img class="previewer-demo-img"  v-lazy="item.compressPic" @click="_show(item.pic,$index)">
           </flexbox-item>
           <flexbox-item :span="3/5" style="position:relative">
             <div v-touch:tap="_record(item.importantId,item.id)">
                 <div class="title">{{{item.knowledge}}}</div>
                   <div class="difficult">
                     难度：
-                    <!--<template v-for="1 in item.difficult">
+                    <template v-for="1 in item.difficult">
                        <i class="icon iconfont icon-collect"></i>
-                    </template>-->
+                    </template>
                   </div>
                   <div class="time">{{{item.cameraTime | ymd}}} </div>
               </div>

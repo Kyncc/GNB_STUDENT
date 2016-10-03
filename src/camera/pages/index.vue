@@ -39,7 +39,7 @@ export default {
 
             this.jpgData = this.cropper.getCroppedCanvas().toDataURL('image/png');
             // this.cropper.setCropBoxData(this.jpgData);
-            this.cropper.setCropBoxData(this.jpgData);
+            // this.cropper.setCropBoxData(this.jpgData);
             //  this.cropper.destroy();
             //  this.cropper = new Cropper(this.$els.img, {
             //     aspectRatio: NaN,

@@ -64,16 +64,25 @@ import userClassDetail from './user/pages/class/classDetail'
 import userClassAdd from './user/pages/class/addClass'
 //我的教材
 import userTextbook from './user/pages/textbook/index'
-
+//插件
 import moment from 'moment'
 import FastClick from 'fastclick'
+import VueLazyload from 'vue-lazyload'
 
 import '../node_modules/cropperjs/dist/cropper.min.css'
 
 Vue.use(Router)
 Vue.use(VueTouch)
+
 Vue.config.devtools = true
 FastClick.attach(document.body)
+
+
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: 'http://www.atool.org/placeholder.png?size=300x200&text=%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5&&bg=ccc&fg=fff',
+  loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
+})
 
 //格式化时间
 Vue.filter('ymd', function(value) {
