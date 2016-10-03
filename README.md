@@ -5,22 +5,22 @@
 
 ## 使用技术简介
 ### 编译环境
- 1. [VueLoader][4]
+ - [VueLoader][4]
 ### Hybird框架
- 1. [调用跨平台功能-H5+][1]
-### 逻辑技术
- 1. [Vue.js][2]
- 2. [路由-VueRouter][3]  
- 3. [单项数据流-Vuex][6]
- 4. [VueRouter和Vuex流同步-Vuex-router-sync][7]
+ - [调用跨平台功能-H5+][1]
+### 数据视图控制
+ - [Vue.js][2]
+ - [路由-VueRouter][3]  
+ - [单项数据流-Vuex][6]
+ - [VueRouter和Vuex流同步-Vuex-router-sync][7]
 ### 功能组件
- 1. [时间格式化-Moment.js][8]
- 2. [图片控制剪裁cropper.js][11]
+ - [时间格式化-Moment.js][8]
+ - [图片控制剪裁cropper.js][11]
 ### UI组件
- 1. [手机UI库-Vux][5]
- 2. [触摸手势组件-VueTouch][9]
- 3. [加载数据组件Vue-infinite-loading][10]
- 4. [图片懒加载Vue-lazyload][12]
+ - [手机UI库-Vux][5]
+ - [触摸手势组件-VueTouch][9]
+ - [加载数据组件Vue-infinite-loading][10]
+ - [图片懒加载Vue-lazyload][12]
  
 ## 文件夹结构
 
