@@ -27,6 +27,7 @@
 import {Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm} from 'vux'
 import {getUserInfo,updateUserInfo} from '../actions'
 import {fetchUserInfo,fetchToken} from '../getters'
+import * as _ from '../../config/whole.js'
 
 export default {
   components: {
@@ -83,20 +84,25 @@ export default {
         this.school = this.fetchUserInfo.school
         this.edit = '完成'
       } else if (this.edit == '完成') {
-        this.updateUserInfo({
-          name: this.name,
-          sex: this.sex,
-          school: this.school,
-          grade: 1,
-          subject: 3,
-          token: this.fetchToken
-        }, () => {
-          this.getUserInfo({
-            token: this.fetchToken
-          }, () => {
-              this.edit = '编辑'
-          })
-        })
+          if(this.name && this.school){
+              this.updateUserInfo({
+                name: this.name,
+                sex: this.sex,
+                school: this.school,
+                subject: 3,
+                grade: 1,
+                token: this.fetchToken
+              }, () => {
+                this.getUserInfo({
+                  token: this.fetchToken
+                }, () => {
+                    this.edit = '编辑'
+                })
+              })
+          }else{
+              _.toast('请完善内容')
+          }
+
       }
     }
   },
