@@ -181,6 +181,9 @@ export default {
   updateVersion: (params) => {
     return http({ method: 'get', url: API_PATHS.updateVersion, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  headImg: (params) => {
+    return http({ method: 'post', url: API_PATHS.headImg, data: params.data, ok: params.ok, wrong: params.wrong })
+  }
 }
 
 export function http(params) {

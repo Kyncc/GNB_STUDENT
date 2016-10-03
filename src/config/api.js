@@ -97,4 +97,6 @@ export const API_PATHS = {
   quitToken: `${API_ENV}${API_VERSION}/student/quitToken`,
   //检查版本
   updateVersion: `${API_ENV}${API_VERSION}/student/updateVersion`,
+  //编辑头像
+  headImg: `${API_ENV}${API_VERSION}/student/user/headImg`,
 }

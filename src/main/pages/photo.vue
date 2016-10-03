@@ -16,6 +16,8 @@
 import {XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton} from 'vux'
 import Cropper from 'Cropperjs'
 import { fetchHeadPhoto } from '../getters.js'
+import { fetchToken } from '../../user/getters.js'
+import { postHeadImg } from '../actions.js'
 import { setHeadImg } from '../../login/actions.js'
 
 export default {
@@ -25,23 +27,24 @@ export default {
     methods: {
         _img(){
             // let cropBoxData = this.cropper.getCropBoxData();
-            let canvasData = this.cropper.getCanvasData();
-            this.setHeadImg(this.cropper.getCroppedCanvas().toDataURL('image/png'))
-            this.$router.replace('/main/user/')
-            // this.cropper.setCropBoxData(this.jpgData);
-            // this.cropper.setCropBoxData(this.jpgData);
-            //  this.cropper.destroy();
-            //  this.cropper = new Cropper(this.$els.img, {
-            //     aspectRatio: NaN,
-            //  });
+            //let canvasData = this.cropper.getCanvasData();
+            let self = this
+            self.postHeadImg({
+                file:self.cropper.getCroppedCanvas().toDataURL('image/png'),
+                token:self.fetchToken
+            },(data)=>{
+                console.log(data)
+                self.setHeadImg(data.headImg)
+                self.$router.replace('/main/user/')
+            })
         }
     },
     vuex:{
         actions:{
-            setHeadImg
+            setHeadImg,postHeadImg
         },
         getters:{
-            fetchHeadPhoto
+            fetchHeadPhoto,fetchToken
         }
     },
     data(){
