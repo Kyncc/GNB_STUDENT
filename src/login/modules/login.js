@@ -2,7 +2,8 @@ import {
   GET_LOGIN_SUCCESS,
   GET_LOGIN_ERROR,
   GET_LOGIN_FAILED,
-  GET_LOGIN_CLEAR
+  GET_LOGIN_CLEAR,
+  SET_HEAD_IMG
 } from '../mutationTypes'
 
 const state = {
@@ -31,6 +32,9 @@ const mutations = {
   },
   [GET_LOGIN_FAILED](state , data){
     state.msg = data.msg;
+  },
+  [SET_HEAD_IMG](state, data) {
+    state.headImg = data;
   }
 }
 

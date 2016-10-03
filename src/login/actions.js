@@ -78,3 +78,6 @@ export const resetPwd = ({ dispatch }, params) => {
       }
   })
 }
+export const setHeadImg = ({ dispatch }, params) => {
+    dispatch(types.SET_HEAD_IMG, params)
+}

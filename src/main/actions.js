@@ -15,3 +15,19 @@ export const getStudentIndex = ({ dispatch }, params) => {
     }
   })
 }
+
+export const setHeadPhoto = ({ dispatch }, params) => {
+    dispatch(types.SET_HEAD_PHOTO, params)
+}
+/*编辑头像*/
+export const postHeadImg = ({ dispatch }, params, callback) => {
+  Api.headImg({
+    data: params,
+    ok: response => {
+      callback(response.data)
+    },
+    wrong: response => {
+      _.toast(response.data.msg);
+    }
+  })
+}

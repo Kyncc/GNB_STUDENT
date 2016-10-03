@@ -17,6 +17,7 @@ import Main from './main/common/main'
 import User from './main/pages/user'
 import Message from './main/pages/message'
 import Index from './main/pages/index'
+import Photo from './main/pages/photo.vue'
 //题目评注、纠错
 import correct from './common/pages/correct'
 import comment from './common/pages/comment'
@@ -131,6 +132,9 @@ router.map({
         component: Index
       }
     }
+  },
+  'main/user/photo':{
+      component:Photo
   },
   //拍错题
  'camera':{component: camera},
