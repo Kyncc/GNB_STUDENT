@@ -41,11 +41,13 @@
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出归纳本吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
 </view-box>
 </template>
+
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from '../../config/whole.js'
 import { fetchPhone, fetchHeadImg } from '../getters.js'
 import { setHeadPhoto } from '../actions.js'
+
 export default {
     components: {
         XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox
@@ -70,27 +72,28 @@ export default {
         _quit(){
             this.show = true
         },
+
         getImage(){
             let self  = this
             let cmr = plus.camera.getCamera();
-            cmr.captureImage(function(p) {
-                plus.io.resolveLocalFileSystemURL(p, function(entry) {
-                    self.setHeadPhoto(entry.toLocalURL())
-                    self.$router.go('main/user/photo')
-                })
-            })
+			cmr.captureImage(function(p) {
+				plus.io.resolveLocalFileSystemURL(p, function(entry) {
+					self.setHeadPhoto(entry.toLocalURL())
+                    self.$router.go('user/photo')
+				})
+			})
         },
         galleryImgs(){
             let self = this
             plus.gallery.pick(function(e) {
                 self.setHeadPhoto(e.files[0])
-                self.$router.go('main/user/photo')
-            }, function(e) {
+                self.$router.go('user/photo')
+			}, function(e) {
                  _.toast("取消选择图片")
-            }, {
-                filter: "image",
-                multiple: true
-            })
+			}, {
+				filter: "image",
+				multiple: true
+			})
         },
         _myClass(){
             _.toast('敬请期待')
