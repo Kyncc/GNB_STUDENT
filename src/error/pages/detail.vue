@@ -2,7 +2,7 @@
 	<view-box v-ref:view-box class="errorDetail">
 
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
-			<x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">归纳例题</x-header>
+			<x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">例题详情</x-header>
 		</div>
 
 		<div style="padding-top:46px;">

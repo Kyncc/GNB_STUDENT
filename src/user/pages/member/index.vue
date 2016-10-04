@@ -9,7 +9,7 @@
           <group>
             <div class="headimg">
               <img src="../../../assets/user/headimg.png" alt="" />
-              <p >{{fetchMemberInfo.isVip=='0'?'普通会员':'VIP'}}</p>
+              <p>{{fetchMemberInfo.isVip=='0'?'普通会员':'VIP'}}</p>
             </div>
 
             <flexbox class="vux-1px-b">
@@ -67,7 +67,7 @@
                 </flexbox-item>-->
               </flexbox>
               <flexbox>
-                <flexbox-item >
+                <flexbox-item class="disable">
                   记错题
                 </flexbox-item>
                 <flexbox-item class="disable">
