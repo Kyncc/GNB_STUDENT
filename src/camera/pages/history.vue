@@ -12,10 +12,10 @@
             <div v-touch:tap="_record(item.importantId,item.id)">
                 <div class="title">{{{item.knowledge}}}</div>
                   <div class="difficult">
-                    难度：
-                    <template v-for="1 in item.difficult">
-                       <i class="icon iconfont icon-collect"></i>
-                    </template>
+                    难度：{{item.difficult}}
+                    <!--<template v-for="1 in item.difficult">
+                      <i class="icon iconfont icon-collect"></i>
+                    </template>-->
                   </div>
                   <div class="time">{{{item.cameraTime | ymd}}} </div>
               </div>
@@ -25,12 +25,12 @@
       </div>
 
       <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
-     <span slot="no-results" style="color:#4bb7aa;">
-					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-					<p style="font-size:1rem;display:inline-block;">还没收藏习题~</p>
-      </span>
-      <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已加载全部记录</span>
-  </infinite-loading>
+        <span slot="no-results" style="color:#4bb7aa;">
+            <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+            <p style="font-size:1rem;display:inline-block;">还没收藏习题~</p>
+        </span>
+        <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已加载全部记录</span>
+      </infinite-loading>
 
     </view-box>
     <previewer :list="imgList" v-ref:previewer ></previewer>

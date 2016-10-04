@@ -6,7 +6,7 @@
   <scroller lock-x v-ref:scroller height="-46px">
     <div>
       <div class="info">
-        <img class="defaultimg" :src="fetchHeadImg" />
+        <img class="defaultimg" v-lazy="fetchHeadImg"/>
         <p class="phone">&nbsp;{{fetchPhone}}&nbsp;</p>
         <div class="upload" v-touch:tap="_upload">
           上传头像

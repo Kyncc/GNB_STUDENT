@@ -11,7 +11,7 @@
       <div style="padding-top:46px;">
         <div class="swiper">
           <swiper auto loop height="10em" dots-position="center">
-            <swiper-item class="swiperImg" v-for="item in swiper" ><img :src="item"/></swiper-item>
+            <swiper-item class="swiperImg" v-for="item in swiper"><img :src="item"/></swiper-item>
           </swiper>
         </div>
         <section class="content">
