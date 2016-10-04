@@ -209,17 +209,19 @@ export default {
 	ready(){
 		this._startTimeDown();
 	},
-	watch:{
-		answer(){
-			for(let i = 0; i< this.answer.length;i++){
-				let index = this.answer[i];
-				this.corrects[index-1] = 0;
-			}
-		},
+	computed:{
 		errorRecommendIds(){
 			this.corrects= [];
 			for(let i = 0; i< this.errorRecommendIds.length;i++){
 				this.corrects.push('1');
+			}
+		}
+	},
+	watch:{
+		answer(){
+			for(let i = 0; i< this.answer.length;i++){
+				let index = this.answer[i];
+				this.corrects[index-1] = '0';
 			}
 		}
 	}

@@ -18,7 +18,7 @@
               </div>
               <i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id,$index)"></i>
             </flexbox-item>
-          <flexbox>
+          </flexbox>
       </div>
 
       <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
