@@ -22,10 +22,7 @@
         <div v-touch:tap="_record(item.importantId,item.id)">
             <div class="title">{{{item.knowledge}}}</div>
               <div class="difficult">
-                难度：
-                <template v-for="1 in item.difficult">
-                    <i class="icon iconfont icon-collect"></i>
-                </template>
+                难度：{{item.difficult}}
               </div>
               <div class="time">{{{item.cameraTime | ymd}}} </div>
           </div>

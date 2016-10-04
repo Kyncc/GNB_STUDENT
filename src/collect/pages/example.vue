@@ -16,7 +16,7 @@
         <div style="padding-top:98px;">
             <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
                 <div class="weui_panel_hd">
-                    <x-button type='primary' mini>收藏习题</x-button>
+                    <!--<x-button type='primary' mini>收藏习题</x-button>-->
                     {{{item.knowledge}}}
                 </div>
                 <div class="weui_panel_bd">

@@ -6,7 +6,7 @@
     <x-input type="password" name="newPwd" placeholder="新密码6位字母或符号组合" keyboard="text" :value.sync="newPwd" v-ref:newpwd :min="6" :max="18"></x-input>
     <x-input type="password" name="repeatPwd" placeholder="请再次输入新密码" keyboard="text" :value.sync="repeatPwd" v-ref:repeatpwd :equal-with="newPwd"></x-input>
   </group>
-  <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定放弃修改密码吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
+  <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定放弃修改密码?" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
 </div>
 </template>
 

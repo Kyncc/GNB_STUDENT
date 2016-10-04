@@ -16,7 +16,7 @@
 								<span><i class="icon iconfont icon-error-login"></i>纠错</span>
 							</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right;" v-touch:tap="_remove">
-								<span style="color:orange"><i class="icon iconfont icon-clear"></i>取消收藏</span>
+								<span style="color:orange"><i class="icon iconfont icon-clear"></i>取消</span>
 							</flexbox-item>
 						</flexbox>
 					</div>

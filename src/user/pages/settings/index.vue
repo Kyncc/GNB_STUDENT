@@ -2,18 +2,6 @@
 <div class='settings'>
   <x-header :left-options="{showBack: true}">设置</x-header>
   <group>
-    <cell title="清除缓存" v-touch:tap="_clear">
-      <span class="demo-icon" slot="icon"></span>
-    </cell>
-    <cell title="检查更新" :value="'当前版本号:V'+ version" v-touch:tap="_update">
-      <span class="demo-icon" slot="icon"></span>
-    </cell>
-    <cell title="关注我们" value="微信公众号:guina_book" link="javascript:;">
-      <span class="demo-icon" slot="icon"></span>
-    </cell>
-    <cell title="加入我们" value="qq群:458410557" link="javascript:;" v-touch:tap="_openQQ">
-      <span class="demo-icon" slot="icon"></span>
-    </cell>
     <cell title="应用评分" link="javascript:;" v-touch:tap="_openStore">
       <span class="demo-icon" slot="icon"></span>
     </cell>
@@ -21,6 +9,12 @@
       <span class="demo-icon" slot="icon"></span>
     </cell>
     <cell title="退出登录" v-touch:tap="_quitlogin"  link="javascript:void(0);">
+      <span class="demo-icon" slot="icon"></span>
+    </cell>
+     <cell title="清除缓存" v-touch:tap="_clear">
+      <span class="demo-icon" slot="icon"></span>
+    </cell>
+    <cell title="检查更新" :value="'当前版本号:V'+ version" v-touch:tap="_update">
       <span class="demo-icon" slot="icon"></span>
     </cell>
   </group>

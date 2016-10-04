@@ -11,9 +11,9 @@
       <x-input name="password" placeholder="密码" type="password" :value.sync="password" :min="6" :max="18" v-ref:password ></x-input>
     </group>
     <div class="btnWapper">
-      <x-button :disabled="disable" @click='_login' type="primary" >登陆</x-button>
+      <x-button :disabled="disable" @click='_login' type="primary" >登录</x-button>
       <div class="link">
-        <a v-link="{ path: 'forget',replace: true}" class="resetPwd">登陆遇到问题?</a>
+        <a v-link="{ path: 'forget',replace: true}" class="resetPwd">登录遇到问题?</a>
         <a v-link="{ path: 'register',replace: true }" class="register">新用户注册</a>
       </div>
     </div>
@@ -44,10 +44,10 @@ export default {
   data(){
     return{
       disable: false,
-      mobile:'',
-      password:''
-      // mobile:'18949554415',
-      // password:'112233'
+      // mobile:'',
+      // password:''
+      mobile:'15375117191',
+      password:'112233'
     }
   },
   methods:{

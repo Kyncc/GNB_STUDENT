@@ -14,7 +14,7 @@ const state = {
     isVip:'0',
     balance:'0',
     numerical:'0',
-    token:'2923de032ab45edd4f1897b58c0f5bcf'
+    token:''
   },
   msg:''
 }
