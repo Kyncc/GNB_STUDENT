@@ -132,6 +132,7 @@ export default {
 				},
 				token:self.token
 			};
+			console.log(this.errorRecommendIds);
 			this.postErrorRecommend(parm,()=>{
 				_.toast("提交成功");
 				history.back();
@@ -209,19 +210,15 @@ export default {
 	ready(){
 		this._startTimeDown();
 	},
-	computed:{
-		errorRecommendIds(){
-			this.corrects= [];
-			for(let i = 0; i< this.errorRecommendIds.length;i++){
-				this.corrects.push('1');
-			}
-		}
-	},
 	watch:{
 		answer(){
+			this.corrects = new Array(this.errorRecommendIds.length);
+			for(let i = 0; i< this.corrects.length;i++){
+				this.corrects[i] = '0' ;
+			}
 			for(let i = 0; i< this.answer.length;i++){
-				let index = this.answer[i];
-				this.corrects[index-1] = '0';
+				let index = this.answer[i] - 1;
+				this.corrects[index] = '1' ;
 			}
 		}
 	}

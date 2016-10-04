@@ -140,7 +140,7 @@ router.map({
  'camera':{component: camera},
  'camera/history':{component: cameraHistory},
  'camera/record/:id/:cameraId':{component: cameraRecord},
- 'camera/result':{component: cameraResult},
+ 'camera/result/:id':{component: cameraResult},
   //归纳本
   'error': { component: error },
   'error/detail/:id': { component: errorDetail },

@@ -11,15 +11,24 @@
 			<div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="2/4" style="color:#4bb7aa">例题{{{$index+1}}}</flexbox-item>
+						<flexbox-item :span="2/4" style="color:#4bb7aa">参考例题{{{$index+1}}}</flexbox-item>
                         <flexbox-item :span="1/4" style="text-align:right;">
-                           <template v-if="item.collectTime == '0' ? true:false">
+                           <!--<template v-if="item.collectTime == '0' ? true:false">
 								<span @click="_collectAdd(item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
 							</template>
 							<template v-if="item.collectTime != '0' ? true:false">
 								<span @click="_removeCollect(item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消收藏</span>
-							</template>
+							</template>-->
                         </flexbox-item>
+						 <flexbox-item :span="1/4" style="text-align:right;">
+						 	<template v-if="item.important == '1' ? true:false">
+								<span @click="_important(item.id,$index)" class="isCollect"><i class="icon iconfont icon-collect">最佳例题</i></span>
+							</template>
+							<template v-if="item.important != '1'? true:false">
+								<span @click="_important(item.id,$index)" ><i class="icon iconfont icon-flag"></i>设为例题</span>
+							</template>
+						 
+						 </flexbox-item>
 					</flexbox>				
 				</div>
 				<!--题目整体--> 
@@ -67,26 +76,29 @@
 		</infinite-loading>
 
 		 <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-			 <x-button type="primary" v-touch:tap="_camera()">再拍一题</x-button>
+			 <x-button type="primary" v-touch:tap="_match()">没有合适例题?</x-button>
         </tabbar>
 
+		<confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="我们会为您人工挑选合适例题,敬请期待" @on-confirm="_onAction()"></confirm>	
 	</view-box>
 </template>
 
 <script>
-import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group,Tabbar, TabbarItem} from 'vux'
+import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group,Tabbar,TabbarItem,Confirm} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { period_id,subject_id,token,id } from '../../common/getters'
 import { cameraResultIds,cameraResultList } from '../getters'
 import { collectRemove,collectAdd } from '../../common/actions'
-import { getCameraResultList } from '../actions'
+import { getCameraResultList,postCameraSearch,postCameraExample } from '../actions'
 import moment from 'moment'
 import store from '../../store'
+import * as _ from '../../config/whole'
 import './camera.less'
+
 
 export default {
 	components: {
-		XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group,Tabbar,TabbarItem,InfiniteLoading
+		XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group,Tabbar,TabbarItem,InfiniteLoading,Confirm
 	},
 	store,
 	vuex: {
@@ -94,10 +106,49 @@ export default {
             period_id,subject_id,token,id,cameraResultIds,cameraResultList
         },
         actions: {
-            collectRemove,collectAdd,getCameraResultList
+            collectRemove,collectAdd,getCameraResultList,postCameraSearch,postCameraExample
         }
     },
 	methods: {
+		//设为例题
+		_important(id,index){
+			let parm = {
+				importantId:id,
+				options:{
+					id:this.id,
+					period_id:this.period_id,
+					subject_id:this.subject_id
+				}
+			};
+			this.postCameraExample(parm,
+				()=>{
+					for(let i = 0; i<this.list.length; i++){
+						this.list[i].important = '0';
+					}
+					this.list[index].important = '1';
+					_.toast("设置成功");
+				}
+			);
+		},
+		//人工匹配
+		_match(){
+			this.show = true;
+		},
+		_onAction(){
+			let parm = {
+				options:{
+					id:this.id,
+					period_id:this.period_id,
+					subject_id:this.subject_id
+				}
+
+			};
+			this.postCameraSearch(parm,
+				()=>{
+					_.toast("已提交");
+				}
+			);
+		},
 		_collectAdd(id){
 			this.collectAdd({
 				options:{
@@ -147,7 +198,8 @@ export default {
 	},
 	data(){
 		return{
-			list:[]
+			list:[],
+			show:false
 		} 
 	}
 }
