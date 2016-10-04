@@ -13,9 +13,6 @@
                 <div class="title">{{{item.knowledge}}}</div>
                   <div class="difficult">
                     难度：{{item.difficult}}
-                    <!--<template v-for="1 in item.difficult">
-                      <i class="icon iconfont icon-collect"></i>
-                    </template>-->
                   </div>
                   <div class="time">{{{item.cameraTime | ymd}}} </div>
               </div>
