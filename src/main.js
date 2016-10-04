@@ -134,7 +134,7 @@ router.map({
     }
   },
   'main/user/photo':{
-      component:Photo
+      component: Photo
   },
   //拍错题
  'camera':{component: camera},
