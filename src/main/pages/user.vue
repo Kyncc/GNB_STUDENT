@@ -13,7 +13,7 @@
         </div>
       </div>
       <group style="padding-bottom:100px;">
-        <cell title="个人资料" link="../user/info/">
+        <cell title="个人资料" link="/user/info/">
           <span class="icon icon-info" slot="icon"></span>
         </cell>
         <!-- <cell title="我的教材" link="../user/textBook/">
@@ -22,16 +22,16 @@
         <cell title="我的班级" link="javascript:void(0);" v-touch:tap="_myClass">
           <span class="icon icon-class" slot="icon"></span>
         </cell>
-        <cell title="我的会员" link="../user/member/">
+        <cell title="我的会员" link="/user/member/">
           <span class="icon icon-member" slot="icon"></span>
         </cell>
-        <cell title="邀请好友" link="../user/invite/">
+        <cell title="邀请好友" link="/user/invite/">
           <span class="icon icon-invite" slot="icon"></span>
         </cell>
-        <cell title="设置" link="../user/settings/">
+        <cell title="设置" link="/user/settings/">
           <span class="icon icon-settings" slot="icon"></span>
         </cell>
-        <cell title="修改密码" link="../user/resetPwd/">
+        <cell title="修改密码" link="/user/resetPwd/">
           <span class="icon icon-resetPwd" slot="icon"></span>
         </cell>
       </group>
@@ -72,7 +72,6 @@ export default {
         _quit(){
             this.show = true
         },
-
         getImage(){
             let self  = this
             let cmr = plus.camera.getCamera();
@@ -81,19 +80,19 @@ export default {
 					self.setHeadPhoto(entry.toLocalURL())
                     self.$router.go('main/user/photo')
 				})
-			})
+			});
         },
         galleryImgs(){
             let self = this
             plus.gallery.pick(function(e) {
                 self.setHeadPhoto(e.files[0])
-                self.$router.go('user/photo')
+                self.$router.go('main/user/photo')
 			}, function(e) {
                  _.toast("取消选择图片")
 			}, {
 				filter: "image",
 				multiple: true
-			})
+			});
         },
         _myClass(){
             _.toast('敬请期待')

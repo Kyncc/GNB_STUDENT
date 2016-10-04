@@ -7,7 +7,7 @@
             </x-header>
         </div>
         <div style="margin-top:46px;" >
-              <img id="defaultimg" v-el:img :src="fetchHeadPhoto"/>
+            <img id="defaultimg" v-el:img :src="fetchHeadPhoto"/>
         </div>
 	</view-box>
 </template>

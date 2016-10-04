@@ -78,6 +78,7 @@ Vue.use(VueTouch)
 Vue.config.devtools = true
 FastClick.attach(document.body)
 
+//图片异步加载
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: 'http://www.atool.org/placeholder.png?size=300x200&text=%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5&&bg=ccc&fg=fff',
@@ -89,10 +90,9 @@ Vue.filter('ymd', function(value) {
   return moment.unix(value).format('YYYY-MM-DD');
 });
 
-//interceptors timeOut
+//请求超时
 Vue.http.interceptors.push((request, next) => {
     var timeout;
-	  // _timeout
     if (request._timeout) {
         timeout = setTimeout(() => {
             if(request.onTimeout) request.onTimeout(request)
