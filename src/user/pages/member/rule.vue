@@ -36,7 +36,7 @@
     </flexbox>
     <flexbox class="vux-1px-b">
       <flexbox-item :span="4/10">
-        <div>纠错题目</div>
+        <div>题目纠错</div>
       </flexbox-item>
       <flexbox-item  class="vux-1px-l" :span="6/10">
         <div>+100积分（审核通过）</div>

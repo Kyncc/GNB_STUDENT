@@ -36,15 +36,17 @@ export const addPwd = ({ dispatch }, params) => {
 }
 
 /*用户登陆*/
-export const login = ({ dispatch }, params) => {
+export const login = ({ dispatch }, params,success,wrong) => {
   Api.login({
       data:params,
       ok:response=>{
         dispatch(types.GET_LOGIN_SUCCESS,response.data);
-        router.replace('/main');
+        success&&success();
+        // router.replace('/main');
       },
       wrong:response=>{
         dispatch(types.GET_LOGIN_FAILED,response.data);
+        wrong&&wrong();
         _.toast(response.data.msg);
       }
   })

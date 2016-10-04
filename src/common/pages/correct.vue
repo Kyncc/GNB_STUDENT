@@ -16,6 +16,7 @@
                         <checker-item :value="1">解析不全</checker-item>
                         <checker-item :value="2">题目超纲</checker-item>
                         <checker-item :value="3">题型太老</checker-item>
+                        <checker-item :value="4">其他</checker-item>
                 </checker>
             </group>
             <group title="纠错内容">

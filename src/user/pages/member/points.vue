@@ -12,7 +12,7 @@
       <flexbox-item :span="9/20">
         <flexbox orient="vertical">
           <flexbox-item>
-            <div class="tar money">{{item.number}}</div>
+            <div class="tar money">+{{item.number}}</div>
           </flexbox-item>
           <flexbox-item>
             <div class="tar time">{{item.time}}</div>

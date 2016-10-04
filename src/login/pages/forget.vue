@@ -81,7 +81,7 @@ export default {
            return;
         }
         this.currentDown = true;
-        let time = 5;
+        let time = 60;
         let _this = this;
         let timeDown = setInterval(function(){
             time--;

@@ -22,14 +22,14 @@
                 <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/system.png">
               </div>
             </cell>
-            <cell title="关注我们" link="javascript:;" inline-desc='微信公众号:guina_book' >
-              <div slot="icon" style="margin-right:.5em;" >
-                <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/focus.png">
-              </div>
-            </cell>
             <cell title="加入我们" inline-desc='QQ群:458410557' link="javascript:;" v-touch:tap="_openQQ">
               <div slot="icon" style="margin-right:.5em;" >
                 <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/add.png">
+              </div>
+            </cell>
+            <cell title="关注我们" inline-desc='微信公众号:guina_book' >
+              <div slot="icon" style="margin-right:.5em;" >
+                <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/focus.png">
               </div>
             </cell>
           </group>

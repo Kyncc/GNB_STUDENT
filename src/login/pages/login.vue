@@ -23,9 +23,9 @@
 <script>
 import '../main.less'
 import {XInput,Group,XButton} from 'vux'
-
 import { login } from '../actions'
 import { userInfo } from '../getters'
+import * as _ from '../../config/whole'
 
 export default {
   components: {
@@ -44,8 +44,10 @@ export default {
   data(){
     return{
       disable: false,
-      mobile:'18949554415',
-      password:'112233'
+      mobile:'',
+      password:''
+      // mobile:'18949554415',
+      // password:'112233'
     }
   },
   methods:{
@@ -54,7 +56,18 @@ export default {
         mobile:this.mobile,
         pwd:this.password
       }
-      this.login(params);
+      _.busy();
+      this.login(params,()=>{
+          setTimeout(()=>{
+              _.leave();
+              this.$router.replace('/main');
+          },500);
+      },()=>{
+          setTimeout(()=>{
+              _.leave();
+              this.pwd = '';
+          },500);
+      });
     }
   },
   computed: {

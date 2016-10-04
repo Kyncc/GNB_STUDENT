@@ -19,7 +19,7 @@
 		<b>{{fetchInviteCode}}</b>
 	</section>
 	<div class="button">
-		<x-button type="primary" v-touch:tap="_shareCode">分享给好友</x-button>
+		<!--<x-button type="primary" v-touch:tap="_shareCode">分享给好友</x-button>-->
 		<x-button type="primary" v-touch:tap="_inputCode">输入邀请码</x-button>
 	</div>
 </div>

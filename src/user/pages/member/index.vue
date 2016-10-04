@@ -57,21 +57,24 @@
                   拍错题
                 </flexbox-item>
                 <flexbox-item>
-                  归纳本
+                  错题归纳
                 </flexbox-item>
-                <flexbox-item class="disable">
+                <flexbox-item>
+                  收藏本
+                </flexbox-item>
+                <!--<flexbox-item class="disable">
                   知识图谱
-                </flexbox-item>
+                </flexbox-item>-->
               </flexbox>
               <flexbox>
-                <flexbox-item class="disable">
-                  报听写
+                <flexbox-item >
+                  记错题
                 </flexbox-item>
                 <flexbox-item class="disable">
                   刷题型
                 </flexbox-item>
                 <flexbox-item class="disable">
-                  高考系数分布图
+                  知识图谱
                 </flexbox-item>
               </flexbox>
               <flexbox>
@@ -90,7 +93,7 @@
                   我的作业
                 </flexbox-item>
                 <flexbox-item class="disable">
-                  找辅导老师
+                  找辅导
                 </flexbox-item>
                 <flexbox-item class="disable">
                   参与活动

@@ -70,11 +70,10 @@ export default {
     },
     _quit(type) {
         if(type=='确认'){
-            this.quitToken({token:this.fetchToken},()=>{
-                this.$router.replace('/')
-            })
-        }else{
-
+          this.$router.replace('/');
+            // this.quitToken({token:this.fetchToken},()=>{
+            //     this.$router.replace('/')
+            // })
         }
     },
     onAction(type) {
