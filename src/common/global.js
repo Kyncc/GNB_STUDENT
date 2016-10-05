@@ -8,8 +8,8 @@ const state = {
     toastMsg:'',
     toastShow:false,
     isLoading:false,
-    period_id:2,
-    subject_id:3
+    period_id:3,
+    subject_id:2
 }
 
 const mutations = {

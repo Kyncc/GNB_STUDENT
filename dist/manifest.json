@@ -332,7 +332,11 @@
 					"static/js/vendor.8d5d4f76326c67a7886c.js",
 					"static/js/manifest.dd448d1743e0281df9b8.js",
 					"static/js/app.e0b60c06acf37a0d1c88.js",
-					"static/css/app.da7048f831f581bdba63a9342388e674.css"
+					"static/css/app.da7048f831f581bdba63a9342388e674.css",
+					"static/js/vendor.102774d81de64f51ad33.js",
+					"static/js/manifest.8a0a82b7ab409c4c4860.js",
+					"static/js/app.4fbe1d9fff30e81c74f6.js",
+					"static/css/app.4261f11a66da980f3bc2b1b379ea701f.css"
 				],
 				"refer": [],
 				"priority": 0
