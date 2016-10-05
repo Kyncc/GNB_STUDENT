@@ -7,7 +7,7 @@
             </x-header>
         </div>
         <div style="margin-top:46px;" >
-            <img id="defaultimg" v-el:img :src="fetchHeadPhoto" style="width:100%;"/>
+            <img id="defaultimg" v-el:img :src="fetchHeadPhoto" style="width:640px;"/>
              <!--<img id="defaultimg" v-el:img src="../../assets/main/test.jpg" style="width:100%;"/>-->
         </div>
 	</view-box>
@@ -23,7 +23,7 @@ import { setHeadImg } from '../../login/actions.js'
 
 export default {
     components: {
-       XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton
+       XHeader,Panel,ViewBox,Tabbar,TabbarItem,XButton
     },
     methods: {
         _img(){

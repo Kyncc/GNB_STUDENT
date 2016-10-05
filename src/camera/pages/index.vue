@@ -8,62 +8,52 @@
         </div>
 
         <div style="margin-top:46px;" >
-              <img id="defaultimg" v-el:img src="../../assets/logo.png"/>
-            <!--<div class="img" v-touch:tap="_camera()">
+            <div class="img">
                 <i class="icon iconfont icon-camera"></i>
                 <p>横屏拍照，注意尽量对焦哦</p>
-            </div>-->
+            </div>
         </div>
-      <x-button @click="_img">click</x-button>
-      <img :src="jpgData"/> 
-
-	</view-box>
+      <x-button @click="getImage()">拍照</x-button>
+      <x-button @click="galleryImgs()">从相册选择</x-button>
 </template>
 
 <script>
 import {XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton} from 'vux'
-import Cropper from 'Cropperjs'
+import * as _ from '../../config/whole.js'
+import { setCameraImg } from '../actions.js'
 
 export default {
     components: {
-       XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton
+       XHeader,Panel,ViewBox,Tabbar,TabbarItem,XButton
+    },
+    vuex:{
+        actions:{
+            setCameraImg
+        }
     },
     methods: {
-        imgclick(){
-            alert(1);
+        getImage(){
+            let cmr = plus.camera.getCamera()
+            let self = this
+			cmr.captureImage(function(p) {
+				plus.io.resolveLocalFileSystemURL(p, function(entry) {
+					self.setCameraImg(entry.toLocalURL())
+                    self.$router.go('/camera/photo')
+				})
+			})
         },
-        _img(){
-            // let cropBoxData = this.cropper.getCropBoxData();
-            let canvasData = this.cropper.getCanvasData();
-            
-
-            this.jpgData = this.cropper.getCroppedCanvas().toDataURL('image/png');
-            // this.cropper.setCropBoxData(this.jpgData);
-            // this.cropper.setCropBoxData(this.jpgData);
-            //  this.cropper.destroy();
-            //  this.cropper = new Cropper(this.$els.img, {
-            //     aspectRatio: NaN,
-            //  });
-        },
-        _history(){
-            this.$router.go(`/camera/history`);
-        },
-        _camera(){
+        galleryImgs(){
+            let self = this
+            plus.gallery.pick(function(e) {
+                self.setCameraImg(e.files[0])
+                self.$router.go('/camera/photo')
+			}, function(e) {
+                 _.toast("取消选择图片")
+			}, {
+				filter: "image",
+				multiple: true
+			})
         }
-    },
-    data(){
-        return{
-           cropper:'',
-           jpgData:''
-        }
-    },
-    computed:{
-
-    },
-    ready(){
-        this.cropper = new Cropper(this.$els.img, {
-            aspectRatio: NaN
-        });
     }
 }
 </script>

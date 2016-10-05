@@ -21,12 +21,16 @@ import {
   POST_CAMERA_RESULTSEARCH_ERROR,
 
   POST_CAMERA_EXAMPLE_SUCCESS,
-  POST_CAMERA_EXAMPLE_ERROR
+  POST_CAMERA_EXAMPLE_ERROR,
+  SET_CAMERA_IMG,
+  POST_CAMERA_SUCCESS,
+  POST_CAMERA_ERROR,
 }from '../mutationTypes'
 
 
 
 const state = {
+    cameraImg:'',
     //拍照历史
     history:{
       code:'',
@@ -54,7 +58,7 @@ const state = {
       list:[],
       msg:'',
     },
-    
+
     //设置例题
     setExample:{
       code:'',
@@ -78,7 +82,6 @@ const mutations = {
   [GET_CAMERA_HISTORYIDS_ERROR](state, data){
     state.history.msg = data.msg;
   },
-
   [GET_CAMERA_HISTORYLIST_SUCCESS](state , data){
     state.history.code = data.code;
     state.history.list = data.data;
@@ -114,7 +117,6 @@ const mutations = {
   [GET_CAMERA_RESULTLIST_ERROR](state, data){
     state.result.msg = data.msg;
   },
-
   [GET_CAMERA_HISTORYEXAMPLEID_SUCCESS](state , data){
     state.example.code = data.data.code;
     state.example.list = data.data;
@@ -123,7 +125,6 @@ const mutations = {
   [GET_CAMERA_HISTORYEXAMPLEID_ERROR](state, data){
     state.example.msg = data.msg;
   },
-
   [POST_CAMERA_RESULTSEARCH_SUCCESS](state , data){
     state.search.code = data.data.code;
     state.search.msg = data.msg;
@@ -131,8 +132,6 @@ const mutations = {
   [POST_CAMERA_RESULTSEARCH_ERROR](state, data){
     state.search.msg = data.msg;
   },
-
-
   [POST_CAMERA_EXAMPLE_SUCCESS](state , data){
     state.setExample.code = data.data.code;
     state.setExample.msg = data.msg;
@@ -140,7 +139,9 @@ const mutations = {
   [POST_CAMERA_EXAMPLE_ERROR](state, data){
     state.setExample.msg = data.msg;
   },
-
+  [SET_CAMERA_IMG](state, data){
+    state.cameraImg = data;
+    }
 }
 
 

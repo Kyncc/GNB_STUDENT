@@ -68,7 +68,7 @@ export default {
    *  cameraRemove:例题删除
    */
   camera: (params) => {
-    return http({ method: 'get', url: API_PATHS.camera, data: params.data, ok: params.ok, wrong: params.wrong });
+    return http({ method: 'post', url: API_PATHS.camera, data: params.data, ok: params.ok, wrong: params.wrong });
   },
   cameraHistory: (params) => {
     return http({ method: 'get', url: API_PATHS.cameraHistory, data: params.data, ok: params.ok, wrong: params.wrong });

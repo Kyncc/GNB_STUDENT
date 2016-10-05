@@ -124,6 +124,7 @@ export const postCameraSearch = ({ dispatch }, params,success) => {
   })
 }
 
-
-
-
+//设置头像图片
+export const setCameraImg = ({ dispatch }, params) => {
+    dispatch(types.SET_CAMERA_IMG, params)
+}
