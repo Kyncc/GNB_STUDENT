@@ -17,10 +17,10 @@
 								<span @click="_collectAdd(item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
 							</template>
 							<template v-if="item.collectTime != '0' ? true:false">
-								<span @click="_removeCollect(item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消收藏</span>
+								<span @click="_removeCollect(item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消</span>
 							</template>
 						</flexbox-item>
-                        <flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_comment(item.id)" ><i class="icon iconfont icon-error-login"></i>点评</flexbox-item>
+                        <flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_comment()" ><i class="icon iconfont icon-error-login"></i>点评</flexbox-item>
 					</flexbox>
 				</div>
 				<!--题目整体-->
@@ -75,7 +75,7 @@ import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { collectRemove,collectAdd } from '../../common/actions'
 import { getCameraExample } from '../actions'
-import {period_id,subject_id,token,id } from '../../common/getters'
+import {period_id,subject_id,token,id,cameraId } from '../../common/getters'
 import { cameraExampleList } from '../getters'
 import moment from 'moment'
 import store from '../../store'
@@ -88,7 +88,7 @@ export default {
 	store,
 	vuex: {
         getters: {
-            period_id,subject_id,token,id,cameraExampleList
+            period_id,subject_id,token,id,cameraExampleList,cameraId
         },
         actions: {
             collectRemove,collectAdd,getCameraExample
@@ -138,8 +138,8 @@ export default {
 				},300);
 			});
 		},
-		_comment(id){
-			this.$router.go(`/camera/comment/${id}`);
+		_comment(){
+			this.$router.go(`/camera/comment/${this.cameraId}`);
 		}
 	},
 	data(){

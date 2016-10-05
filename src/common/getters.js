@@ -5,6 +5,7 @@ export const period_id = (state) => state.Global.period_id
 export const subject_id = (state) => state.Global.subject_id
 export const id = (state) => state.route.params.id
 export const knowledgeId = (state) => state.route.params.knowledgeId
+export const cameraId = (state) => state.route.params.cameraId
 
 export const token = (state) => state.login.userInfo.token
 export const userBalance = (state) => state.login.userInfo.balance

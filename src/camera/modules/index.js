@@ -92,7 +92,7 @@ const mutations = {
   },
 
   [DEL_CAMERA_HISTORYID_SUCCESS](state , data){
-    state.del.code = data.data.code;
+    state.del.code = data.code;
     state.del.msg = data.msg;
   },
   [DEL_CAMERA_HISTORYID_ERROR](state, data){

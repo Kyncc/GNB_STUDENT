@@ -11,7 +11,7 @@
 				<div class="weui_panel weui_panel_access exerciseDetail" >
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="1/2" style="color:#4bb7aa">收藏习题</flexbox-item>
+							<flexbox-item :span="1/2" style="color:#4bb7aa">题干</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct">
 								<span><i class="icon iconfont icon-error-login"></i>纠错</span>
 							</flexbox-item>
@@ -43,7 +43,7 @@
 				<div class="weui_panel weui_panel_access exerciseDetail">
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析</flexbox-item>
+							<flexbox-item :span="2/5" style="color:#4bb7aa">解析</flexbox-item>
 						</flexbox>
 					</div>
 					<!--解析主体-->

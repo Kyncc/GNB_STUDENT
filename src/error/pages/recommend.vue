@@ -47,7 +47,7 @@
 				<div class="weui_panel weui_panel_access exerciseDetail" v-show="answerShow">
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析：</flexbox-item>
+							<flexbox-item :span="2/5" style="color:#4bb7aa">解析</flexbox-item>
 						</flexbox>				
 					</div> 
 					<!--解析主体--> 
