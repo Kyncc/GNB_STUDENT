@@ -11,7 +11,7 @@ import {
 
   GET_ERROR_LISTIDS_SUCCESS,
   GET_ERROR_LISTIDS_ERROR,
-  GET_ERROR_LISTLISTS_SUCCESS,
+  GET_ERROR_LISTLIST_SUCCESS,
   GET_ERROR_LISTLIST_ERROR,
 
   GET_ERROR_RMDIDS_SUCCESS,
@@ -78,7 +78,7 @@ const mutations = {
   },
   //更多例题
   [GET_ERROR_MOREIDS_SUCCESS](state , data){
-    state.more.code = data.data.code;
+    state.more.code = data.code;
     state.more.ids = data.data.ids;
     state.more.msg = data.msg;
     state.more.totalPage = data.data.totalPage;
@@ -96,15 +96,15 @@ const mutations = {
   },
  //错题列表
   [GET_ERROR_LISTIDS_SUCCESS](state , data){
+    // debugger;
     state.list.code = data.code;
     state.list.ids = data.data.ids;
     state.list.msg = data.msg;
-    state.list.totalPage = data.data.totalPage;
   },
   [GET_ERROR_LISTIDS_ERROR](state, data){
     state.list.msg = data.msg;
   },
-  [GET_ERROR_LISTLISTS_SUCCESS](state , data){
+  [GET_ERROR_LISTLIST_SUCCESS](state , data){
     state.list.code = data.code;
     state.list.list = data.data;
     state.list.msg = data.msg;

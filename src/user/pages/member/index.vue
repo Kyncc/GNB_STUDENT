@@ -42,10 +42,10 @@
             </flexbox>
             <div class="content vux-1px-b vux-1px-t">
               <flexbox class="vux-1px-b">
-                <flexbox-item class="padnone disable title" :span="7/20">
+                <flexbox-item class="padnone  title" :span="7/20">
                   我的特权
                 </flexbox-item>
-                <flexbox-item v-if="fetchMemberInfo.isVip=='0'" class="padnone title" :span="8/20">
+                <flexbox-item v-if="fetchMemberInfo.isVip=='0'" class="disable padnone title" :span="8/20">
                   VIP拥有更多特权
                 </flexbox-item>
                 <flexbox-item v-if="fetchMemberInfo.isVip=='0'" class="padnone title" :span="4/20">

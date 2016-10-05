@@ -111,20 +111,21 @@ export default {
     },
 	methods: {
 		_errorList(){	//错题列表IDS获取
-			let self = this;
+			// let self = this;
 			_.busy();
 			this.getErrorListIds({
-				knowledgeId:self.list[0].knowledgeId,
+				knowledgeId:this.list[0].knowledgeId,
 				options:{
-					period_id:self.period_id,
-					subject_id:self.subject_id
+					period_id:this.period_id,
+					subject_id:this.subject_id
 				},
-				token:self.token
+				token:this.token
 			},()=>{
-				if(self.errorListIds.length == 0){
+				if(this.errorListIds.length == 0){
 					_.toast("暂无例题");
 				}else{
-					self.$router.replace('/error/list/'+self.list[0].knowledgeId);
+					this.$router.go(`/error/list/${this.list[0].knowledgeId}`);
+					// self.$router.on('/error/list/'+self.list[0].knowledgeId);
 				}
 				_.leave();
 			},()=>{

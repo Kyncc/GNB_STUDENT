@@ -20,7 +20,7 @@
 								<span @click="_collectAdd($index,item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
 							</template>
 							<template v-if="item.collectTime != '0' ? true:false">
-								<span @click="_removeCollect($index,item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消收藏</span>
+								<span @click="_removeCollect($index,item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消</span>
 							</template>
                         </flexbox-item>
                         <flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct(item.id)" ><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>

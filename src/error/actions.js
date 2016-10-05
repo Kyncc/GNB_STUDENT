@@ -100,25 +100,28 @@ export const postErrorRecommend = ({ dispatch }, params, success) => {
   })
 }
 
-export const getErrorListIds = ({ dispatch }, params, callback) => {
+export const getErrorListIds = ({ dispatch }, params, success,wrong) => {
   Api.errorList({
     data: params,
     ok: response => {
       dispatch(types.GET_ERROR_LISTIDS_SUCCESS, response.data);
+      success&&success();
     },
     wrong: response => {
       dispatch(types.GET_ERROR_LISTIDS_ERROR, response.data);
+      wrong&&wrong();
       _.toast(response.data.msg);
     }
   })
 }
 
 
-export const getErrorListList = ({ dispatch }, params, callback) => {
-  Api.exerciseList({
+export const getErrorListList = ({ dispatch }, params, success,wrong) => {
+  Api.cameraList({
     data: params,
     ok: response => {
       dispatch(types.GET_ERROR_LISTLIST_SUCCESS, response.data);
+      success&&success();
     },
     wrong: response => {
       dispatch(types.GET_ERROR_LISTLIST_ERROR, response.data);

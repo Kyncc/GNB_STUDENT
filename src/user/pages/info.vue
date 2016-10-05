@@ -6,6 +6,7 @@
     <x-input title="性别" name="sex" value="女" v-show="fetchUserInfo.sex=='0'" readonly></x-input>
     <x-input title="性别" name="sex" value="男" v-show="fetchUserInfo.sex=='1'" readonly></x-input>
     <x-input title="年级" name="grade" value="高中" readonly></x-input>
+    <x-input title="版本" name="textbook" value="人教A版" readonly></x-input>
     <x-input title="学校" name="school" :value.sync="fetchUserInfo.school" readonly></x-input>
   </group>
   <group v-show="edit=='完成'">
