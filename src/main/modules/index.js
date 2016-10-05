@@ -6,9 +6,8 @@ const state = {
   errorCount: 0,
   cameraCount: 0,
   swiper: [],
-  msg: '',
-  headImg: '',
-  headPhoto: ''
+  msg: '',  
+  headPhoto: ''     //本地base64
 }
 
 const mutations = {
@@ -23,12 +22,11 @@ const mutations = {
   [GET_STUDENT_INDEX_ERROR](state, data) {
     state.msg = data.msg;
   },
-  [SET_HEAD_IMG](state, data) {
-    state.headImg = data;
-  },
   [SET_HEAD_PHOTO](state, data) {
     state.headPhoto = data;
   }
+
+
 }
 
 export default {

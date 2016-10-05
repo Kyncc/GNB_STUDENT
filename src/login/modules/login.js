@@ -34,7 +34,7 @@ const mutations = {
     state.msg = data.msg;
   },
   [SET_HEAD_IMG](state, data) {
-    state.headImg = data;
+    state.userInfo.headImg = data;
   }
 }
 
