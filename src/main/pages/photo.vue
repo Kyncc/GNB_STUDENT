@@ -7,7 +7,8 @@
             </x-header>
         </div>
         <div style="margin-top:46px;" >
-            <img id="defaultimg" v-el:img :src="fetchHeadPhoto"/>
+            <img id="defaultimg" v-el:img :src="fetchHeadPhoto" style="width:100%;"/>
+             <!--<img id="defaultimg" v-el:img src="../../assets/main/test.jpg" style="width:100%;"/>-->
         </div>
 	</view-box>
 </template>
@@ -57,7 +58,11 @@ export default {
         let minHeight= document.documentElement.clientHeight - 46
         this.cropper = new Cropper(this.$els.img, {
             aspectRatio: NaN,
-            minContainerHeight: minHeight
+            minContainerHeight:minHeight
+            // movable: false,
+            // zoomable: false,
+            // rotatable: false,
+            // scalable: false
         });
     }
 }
