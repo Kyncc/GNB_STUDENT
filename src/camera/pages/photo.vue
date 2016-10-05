@@ -35,7 +35,7 @@ export default {
                 }
             },()=>{
                 //上传图片成功回调
-                self.$router.go('camera/result/'+ self.cameraResultId)
+                self.$router.go('/camera/result/'+ self.cameraResultId)
             })
         }
     },

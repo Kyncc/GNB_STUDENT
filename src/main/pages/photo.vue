@@ -36,7 +36,7 @@ export default {
                 // console.log(data.data.headImg);
                 self.setHeadImg(data.headImg);
                 setTimeout(()=>{
-                    self.$router.replace('/main/user/');
+                    self.$router.replace('/main/user');
                 },500);
             })
         }
