@@ -15,7 +15,8 @@
 <script>
 import {XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton} from 'vux'
 import Cropper from 'Cropperjs'
-import { fetchCameraImg,cameraResultId } from '../getters.js'
+import * as _ from '../../config/whole.js'
+import { fetchCameraImg,cameraResultId,cameraResultIds } from '../getters.js'
 import { getCameraResultIds } from '../actions.js'
 import { token,period_id,subject_id } from '../../common/getters.js'
 
@@ -26,8 +27,9 @@ export default {
     methods: {
         _next(){
             let self = this
+            _.busy()
             self.getCameraResultIds({
-                file: self.cropper.getCroppedCanvas({width:140,height:140}).toDataURL('image/png'),
+                file: self.cropper.getCroppedCanvas({width:640}).toDataURL('image/png'),
                 token: self.token,
                 options: {
                     period_id: self.period_id,
@@ -35,7 +37,15 @@ export default {
                 }
             },()=>{
                 //上传图片成功回调
-                self.$router.go('/camera/result/'+ self.cameraResultId)
+                if(self.cameraResultIds.length){
+                    self.$router.go('/camera/result/'+ self.cameraResultId)                    
+                }else{
+                    _.toast('沒有合适例题')
+                    setTimeout(()=>{
+                        self.$router.replace('/camera')
+                    },500)
+                }
+
             })
         }
     },
@@ -44,7 +54,7 @@ export default {
             getCameraResultIds
         },
         getters:{
-            fetchCameraImg,token,period_id,subject_id,cameraResultId
+            fetchCameraImg,token,period_id,subject_id,cameraResultId,cameraResultIds
         }
     },
     data(){

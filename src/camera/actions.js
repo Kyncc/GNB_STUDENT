@@ -9,7 +9,7 @@ export const getCameraResultIds = ({ dispatch }, params,success,error) => {
       data:params,
       ok:response=>{
         dispatch(types.GET_CAMERA_RESULTIDS_SUCCESS,response.data);
-        success&&success();
+        success&&success()
       },
       wrong:response=>{
         dispatch(types.GET_CAMERA_RESULTIDS_ERROR,response.data);
@@ -115,11 +115,13 @@ export const postCameraSearch = ({ dispatch }, params,success) => {
       data:params,
       ok:response=>{
           dispatch(types.POST_CAMERA_RESULTSEARCH_SUCCESS,response.data);
-          success&&success();
+          success&&success()
+          _.leave()
       },
       wrong:response=>{
         dispatch(types.POST_CAMERA_RESULTSEARCH_ERROR,response.data);
-        _.toast(response.data.msg);
+        _.toast(response.data.msg)
+        _.leave()
       }
   })
 }

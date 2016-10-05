@@ -13,12 +13,14 @@
                 <p>横屏拍照，注意尽量对焦哦</p>
             </div>
         </div>
-      <x-button @click="getImage()">拍照</x-button>
-      <x-button @click="galleryImgs()">从相册选择</x-button>
+        <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom" style="background:#edf2f1;border:none;">
+            <x-button style="width:40%;margin:3% 0 3% 7%;border-radius:5px;"  type="primary" v-touch:tap="getImage()">拍照</x-button>
+            <x-button style="width:40%;margin:3% 0 3% 7%;border-radius:5px;" type="primary" v-touch:tap="galleryImgs()">从相册选择</x-button>
+       </tabbar>
 </template>
 
 <script>
-import {XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton} from 'vux'
+import {XHeader,Panel,ViewBox,Tabbar,TabbarItem,XButton} from 'vux'
 import * as _ from '../../config/whole.js'
 import { setCameraImg } from '../actions.js'
 
