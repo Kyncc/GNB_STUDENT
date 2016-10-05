@@ -98,12 +98,12 @@ export default {
 		_collectAdd(){
 			this.collectAdd({
 				options:{
-					id:this.cameraId,
+					id:this.id,
 					period_id:this.period_id,
 					subject_id:this.subject_id
 				},
 				token:this.token,
-				type:'camera'
+				type:'example'
 			},()=>{
 				this.list[0].collectTime = moment().unix();
 			});
@@ -111,12 +111,12 @@ export default {
 		_removeCollect(){
 			this.collectRemove({
 				options:{
-					id:this.cameraId,
+					id:this.id,
 					period_id:this.period_id,
 					subject_id:this.subject_id
 				},
 				token:this.token,
-				type:'camera'
+				type:'example'
 			},()=>{
 				this.list[0].collectTime = 0;
 			});
