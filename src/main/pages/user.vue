@@ -78,7 +78,7 @@ export default {
 			cmr.captureImage(function(p) {
 				plus.io.resolveLocalFileSystemURL(p, function(entry) {
 					self.setHeadPhoto(entry.toLocalURL())
-                    self.$router.go('user/photo')
+                    self.$router.go('/main/user/photo');
 				})
 			});
         },
@@ -86,7 +86,7 @@ export default {
             let self = this
             plus.gallery.pick(function(e) {
                 self.setHeadPhoto(e.files[0])
-                self.$router.go('user/photo')
+                self.$router.go('/main/user/photo');
 			}, function(e) {
                  _.toast("取消选择图片")
 			}, {
