@@ -7,12 +7,11 @@
             </x-header>
         </div>
         <div style="margin-top:46px;" >
-            <!--<img id="defaultimg" v-el:img :src="fetchHeadPhoto" style="width:100%;"/>-->
-             <img id="defaultimg" v-el:img src="../../assets/main/test.jpg" style="width:100%;"/>
+            <img id="defaultimg" v-el:img :src="fetchHeadPhoto" style="width:100%;"/>
+            <!-- <img id="defaultimg" v-el:img src="../../assets/main/test.jpg" style="width:100%;"/> -->
         </div>
-	</view-box>
+    </view-box>
 </template>
-
 <script>
 import {XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton} from 'vux'
 import Cropper from 'Cropperjs'
@@ -21,26 +20,23 @@ import { fetchToken } from '../../user/getters.js'
 import { postHeadImg } from '../actions.js'
 import { setHeadImg } from '../../login/actions.js'
 import * as _ from '../../config/whole'
-
 export default {
     components: {
        XHeader,Panel,ViewBox,Tabbar, TabbarItem,XButton
     },
     methods: {
         _img(){
-            // let cropBoxData = this.cropper.getCropBoxData();
-            //let canvasData = this.cropper.getCanvasData();
-            // let self = this
+            let self = this
             _.busy();
-            this.postHeadImg({
-                file:this.cropper.getCroppedCanvas({"width":140,"height":140}).toDataURL('image/png'),
-                token:this.fetchToken
+            self.postHeadImg({
+                file:self.cropper.getCroppedCanvas({width:140,height:140}).toDataURL('image/png'),
+                token:self.fetchToken
             },(data)=>{
                 _.toast("上传成功");
                 // console.log(data.data.headImg);
-                this.setHeadImg(data.headImg);
+                self.setHeadImg(data.headImg);
                 setTimeout(()=>{
-                    this.$router.replace('/main/user/');
+                    self.$router.replace('/main/user/');
                 },500);
             })
         }
@@ -64,10 +60,6 @@ export default {
         this.cropper = new Cropper(this.$els.img, {
             aspectRatio: NaN,
             minContainerHeight:minHeight
-            // movable: false,
-            // zoomable: false,
-            // rotatable: false,
-            // scalable: false
         });
     }
 }
