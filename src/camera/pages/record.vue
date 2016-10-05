@@ -14,10 +14,10 @@
 						<flexbox-item :span="2/4" style="color:#4bb7aa">参照例题</flexbox-item>
 						<flexbox-item :span="1/4" style="text-align:right;">
 							<template v-if="item.collectTime == '0' ? true:false">
-								<span @click="_collectAdd(item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
+								<span @click="_collectAdd()"><i class="icon iconfont icon-collect"></i>收藏</span>
 							</template>
 							<template v-if="item.collectTime != '0' ? true:false">
-								<span @click="_removeCollect(item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消</span>
+								<span @click="_removeCollect()" class="isCollect"><i class="icon iconfont icon-collect"></i>取消</span>
 							</template>
 						</flexbox-item>
                         <flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_comment()" ><i class="icon iconfont icon-error-login"></i>点评</flexbox-item>
@@ -95,10 +95,10 @@ export default {
         }
     },
 	methods: {
-		_collectAdd(id){
+		_collectAdd(){
 			this.collectAdd({
 				options:{
-					id:id,
+					id:this.cameraId,
 					period_id:this.period_id,
 					subject_id:this.subject_id
 				},
@@ -108,10 +108,10 @@ export default {
 				this.list[0].collectTime = moment().unix();
 			});
 		},
-		_removeCollect(id){
+		_removeCollect(){
 			this.collectRemove({
 				options:{
-					id:id,
+					id:this.cameraId,
 					period_id:this.period_id,
 					subject_id:this.subject_id
 				},
