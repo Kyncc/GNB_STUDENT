@@ -19,10 +19,10 @@
               <p>
                   <i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id,$index)"></i>
                   <template v-if="item.collectTime != '0' ? true:false">
-                      <span @click="_removeCollect(item.id,$index)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消</span>
+                      <span @click="_removeCollect(item.id,$index)" class="isCollect"><i class="icon iconfont icon-collect1"></i></span>
                   </template>
                   <template v-if="item.collectTime == '0' ? true:false">
-                      <span @click="_collectAdd(item.id,$index)" class="isCollect"><i class="icon iconfont icon-collect"></i>收藏</span>
+                      <span @click="_collectAdd(item.id,$index)" class="isCollect"><i class="icon iconfont icon-collect"></i></span>
                   </template>
               </p>
             </flexbox-item>

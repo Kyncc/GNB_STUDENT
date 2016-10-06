@@ -1,6 +1,6 @@
 @font-face {font-family: "iconfont";
   src:url('iconfont.woff?t=1474006879') format('woff'), /* chrome, firefox */
-      url('iconfont.ttf?t=1474006879') format('truetype'); 
+      url('iconfont.ttf?t=1474006879') format('truetype');
       /*Chrome, firefox, opera, Safari, Android, iOS 4.2+*/
 }
 .iconfont {
@@ -15,6 +15,7 @@
 .icon-31wode:before { content: "\e602"; }
 .icon-tishi:before { content: "\e608"; }
 .icon-share:before { content: "\e609"; }
+.icon-collect1:before { content: "\e60b"; }
 .icon-clear:before { content: "\e605"; }
 .icon-flag:before { content: "\e60a"; }
 .icon-camera:before { content: "\e606"; }
