@@ -18,6 +18,7 @@
       </checker>
     </cell>
     <x-input title="年级" name="grade" value="高中" readonly></x-input>
+    <x-input title="版本" name="textbook" value="人教A版" readonly></x-input>
     <x-input title="学校" name="school" placeholder="请输入学校名称" :value.sync="school"></x-input>
   </group>
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="还未保存,确定返回吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>

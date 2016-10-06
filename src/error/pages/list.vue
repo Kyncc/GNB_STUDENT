@@ -5,10 +5,7 @@
 		<group class="knowledge">
 			<p><span>知识点：</span>{{{knowledge}}}</p>
 			<p>
-				<span>难度等级：{{difficult}}</span>
-				<!-- <template v-for="1 in difficult">
-							<i class="icon iconfont icon-collect"></i>
-				</template> -->
+				<span>难度：{{difficult}}</span>
 			</p>
 		</group>
 	</div>
@@ -19,10 +16,10 @@
 					<flexbox-item :span="2/4" style="color:#4bb7aa">{{item.cameraTime | ymd}}</flexbox-item>
 					<flexbox-item :span="1/4" style="text-align:right;">
 						<template v-if="item.collectTime == '0' ? true:false">
-							<span @click="_collectAdd($index,item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
+							<span @click="_collectAdd($index,item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>收藏</span>
 						</template>
 							<template v-if="item.collectTime != '0' ? true:false">
-							<span @click="_removeCollect($index,item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消</span>
+							<span @click="_removeCollect($index,item.id)"><i class="icon iconfont icon-collect"></i>取消</span>
 						</template>
 					</flexbox-item>
 					<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_comment(item.id)" >
@@ -48,7 +45,7 @@
 				<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
 				<p style="font-size:1rem;display:inline-block;">服务器出差了~</p>
 			</span>
-			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底拉~</span>
+			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底啦~</span>
 		</infinite-loading>
 		<previewer :list="imgList" v-ref:previewer ></previewer>
 	</view-box>
