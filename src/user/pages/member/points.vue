@@ -27,7 +27,7 @@
             <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
             <p style="font-size:1rem;display:inline-block;">没有更多积分</p>
         </span>
-      <span slot="no-more"></span>
+      <!-- <span slot="no-more"></span> -->
     </infinite-loading>
   </group>
 </view-box>

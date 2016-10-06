@@ -1,6 +1,6 @@
 <template>
   <view-box v-ref:view-box class='member vux-scroller-header-box'>
-    <div style="height:46px;" slot="header">
+    <div style="height:45px;" slot="header">
       <x-header :left-options="{showBack: true}"  class="vux-scroller-header">我的会员<!--<a slot="right" v-touch:tap="_recharge">充值</a>--></x-header>
     </div>
 
@@ -122,8 +122,7 @@ export default {
           member
       },
       getters:{
-          fetchToken,
-          fetchMemberInfo
+          fetchToken,fetchMemberInfo
       }
   },
   ready(){
