@@ -16,7 +16,15 @@
                   </div>
                   <div class="time">{{{item.cameraTime | ymd}}} </div>
               </div>
-              <i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id,$index)"></i>
+              <p>
+                  <i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id,$index)"></i>
+                  <template v-if="item.collectTime != '0' ? true:false">
+                      <span @click="_removeCollect(item.id,$index)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消</span>
+                  </template>
+                  <template v-if="item.collectTime == '0' ? true:false">
+                      <span @click="_collectAdd(item.id,$index)" class="isCollect"><i class="icon iconfont icon-collect"></i>收藏</span>
+                  </template>
+              </p>
             </flexbox-item>
           </flexbox>
       </div>
@@ -40,21 +48,23 @@
 import {XHeader,Panel,ViewBox,FlexboxItem,Flexbox,Previewer,Confirm} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
+import moment from 'moment'
 import { period_id,subject_id,token } from '../../common/getters'
+import { collectRemove,collectAdd } from '../../common/actions'
 import { cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage } from '../getters'
 import { getCameraHistoryIds,getCameraHistoryList,delCameraHistroy } from '../actions'
 import * as _ from '../../config/whole'
 
 export default {
   components: {
-    XHeader,Panel,ViewBox,FlexboxItem,Flexbox,Previewer,Confirm,InfiniteLoading
+    XHeader,Panel,ViewBox,FlexboxItem,Flexbox,Previewer,Confirm,InfiniteLoading,moment
   },
   vuex: {
       getters: {
           period_id,subject_id,token,cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage
       },
       actions: {
-          getCameraHistoryIds,getCameraHistoryList,delCameraHistroy
+          getCameraHistoryIds,getCameraHistoryList,delCameraHistroy,collectRemove,collectAdd
       }
   },
   store,
@@ -63,6 +73,34 @@ export default {
       this.clearShow = true;
       this.delPic.index = index;
       this.delPic.id = id;
+    },
+    _collectAdd(id,index){
+        let self =  this;
+        this.collectAdd({
+            options:{
+                id:id,
+                period_id: self.period_id,
+                subject_id: self.subject_id
+            },
+            token: self.token,
+            type:'camera'
+        },()=>{
+            self.list[index].collectTime = moment().unix();
+        });
+    },
+    _removeCollect(id,index){
+        let self =  this;
+        this.collectRemove({
+            options:{
+                id:id,
+                period_id:self.period_id,
+                subject_id:self.subject_id
+            },
+            token:self.token,
+            type:'camera'
+        },()=>{
+            self.list[index].collectTime = 0;
+        });
     },
     _record(importantId,id) {
       this.$router.go(`/camera/record/${importantId}/${id}`);

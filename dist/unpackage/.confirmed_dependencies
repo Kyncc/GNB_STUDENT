@@ -150,7 +150,11 @@
 			"static/js/vendor.102774d81de64f51ad33.js",
 			"static/js/manifest.8a0a82b7ab409c4c4860.js",
 			"static/js/app.4fbe1d9fff30e81c74f6.js",
-			"static/css/app.4261f11a66da980f3bc2b1b379ea701f.css"
+			"static/css/app.4261f11a66da980f3bc2b1b379ea701f.css",
+			"static/js/app.js",
+			"static/js/manifest.js",
+			"static/js/vendor.js",
+			"static/css/app.css"
 		],
 		"refer": []
 	}

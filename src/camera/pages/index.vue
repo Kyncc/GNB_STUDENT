@@ -9,7 +9,7 @@
 
         <div style="margin-top:46px;" >
             <div class="img">
-                <i class="icon iconfont icon-camera"></i>
+                <i class="icon iconfont icon-camera"  v-touch:tap="getImage()"></i>
                 <p>横屏拍照，注意尽量对焦哦</p>
             </div>
         </div>
