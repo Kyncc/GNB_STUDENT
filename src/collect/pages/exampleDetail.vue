@@ -35,7 +35,7 @@
 									{{ $key }} : {{{* value }}}
 								</p>
 							</div>
-						</template>
+						</template> 
 
 					</div>
 				</div>

@@ -54,11 +54,10 @@ const state = {
     result:{
       code:'',
       id:'',
-      ids:'',
+      ids:[],
       list:[],
       msg:'',
     },
-
     //设置例题
     setExample:{
       code:'',
@@ -110,7 +109,7 @@ const mutations = {
   },
 
   [GET_CAMERA_RESULTLIST_SUCCESS](state , data){
-    state.result.code = data.data.code;
+    state.result.code = data.code;
     state.result.list = data.data;
     state.result.msg = data.msg;
   },
@@ -118,7 +117,7 @@ const mutations = {
     state.result.msg = data.msg;
   },
   [GET_CAMERA_HISTORYEXAMPLEID_SUCCESS](state , data){
-    state.example.code = data.data.code;
+    state.example.code = data.code;
     state.example.list = data.data;
     state.example.msg = data.msg;
   },
@@ -126,14 +125,14 @@ const mutations = {
     state.example.msg = data.msg;
   },
   [POST_CAMERA_RESULTSEARCH_SUCCESS](state , data){
-    state.search.code = data.data.code;
+    state.search.code = data.code;
     state.search.msg = data.msg;
   },
   [POST_CAMERA_RESULTSEARCH_ERROR](state, data){
     state.search.msg = data.msg;
   },
   [POST_CAMERA_EXAMPLE_SUCCESS](state , data){
-    state.setExample.code = data.data.code;
+    state.setExample.code = data.code;
     state.setExample.msg = data.msg;
   },
   [POST_CAMERA_EXAMPLE_ERROR](state, data){
@@ -143,8 +142,6 @@ const mutations = {
     state.cameraImg = data;
     }
 }
-
-
 
 export default {
   state,

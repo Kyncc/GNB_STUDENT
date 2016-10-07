@@ -1,8 +1,9 @@
 <template>
 	<view-box v-ref:view-box class="cameraResult">
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
-			<x-header :left-options="{showBack: true}" >
+			<x-header :left-options="{showBack: true,preventGoBack:true}"  @on-click-back="_back()">
 				搜题结果
+				<a slot="right" @click="_back()">再拍一题</a>
 			</x-header>
 		</div>
 
@@ -22,10 +23,10 @@
                         </flexbox-item>
 						 <flexbox-item :span="1/4" style="text-align:right;">
 						 	<template v-if="item.important == '1' ? true:false">
-								<span @click="_important(item.id,$index)" class="isCollect"><i class="icon iconfont icon-collect">最佳例题</i></span>
+								<span @click="_important(item.id,$index)" style="color:#666;"><i class="icon iconfont icon-flag"></i>例题</span>
 							</template>
 							<template v-if="item.important != '1'? true:false">
-								<span @click="_important(item.id,$index)" ><i class="icon iconfont icon-flag"></i>设为例题</span>
+								<span @click="_important(item.id,$index)" style="color:#666;"><i class="icon iconfont icon-flag"></i>设为例题</span>
 							</template>
 						 
 						 </flexbox-item>
@@ -110,6 +111,9 @@ export default {
         }
     },
 	methods: {
+		_back(){
+			this.$router.go('/camera');
+		},
 		//设为例题
 		_important(id,index){
 			let parm = {
@@ -118,7 +122,8 @@ export default {
 					id:this.id,
 					period_id:this.period_id,
 					subject_id:this.subject_id
-				}
+				},
+				token:this.token
 			};
 			this.postCameraExample(parm,
 				()=>{
@@ -140,8 +145,8 @@ export default {
 					id:this.id,
 					period_id:this.period_id,
 					subject_id:this.subject_id
-				}
-
+				},
+				token:this.token
 			};
 			this.postCameraSearch(parm,
 				()=>{
