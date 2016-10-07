@@ -226,13 +226,14 @@ export function http(params) {
         if (resp.data.code == 200) {
           params.ok(resp);
         } else {
+            _.toast(resp.data.msg);
           params.wrong(resp);
         }
         // _.leave();
         return resp;
       }, err => {
       console.log('Network Error:', err);
-      _.toast("接口异常");
+      _.toast(err.data.msg);
       _.leave();
       // _.toast(JSON.parse(err.body).msg);
       return err;
