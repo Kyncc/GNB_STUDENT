@@ -3,19 +3,19 @@
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">
                 拍错题
-                <a slot="right" v-link="{path: 'camera/history'}" >历史记录</a>
+                <a slot="right" v-link="{path: 'camera/history'}">拍题记录</a>
             </x-header>
         </div>
 
         <div style="margin-top:46px;" >
             <div class="img">
                 <i class="icon iconfont icon-camera"  v-touch:tap="getImage()"></i>
-                <p>横屏拍照，注意尽量对焦哦</p>
+                <p>横屏拍照，尽量注意尽量对焦哦</p>
             </div>
         </div>
-        <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom" style="background:#edf2f1;border:none;">
-            <x-button style="width:40%;margin:3% 0 3% 7%;border-radius:5px;"  type="primary" v-touch:tap="getImage()">拍照</x-button>
-            <x-button style="width:40%;margin:3% 0 3% 7%;border-radius:5px;" type="primary" v-touch:tap="galleryImgs()">从相册选择</x-button>
+        <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom" >
+            <!--<x-button style="width:40%;margin:3% 0 3% 7%;border-radius:5px;"  type="primary" v-touch:tap="getImage()">拍照</x-button>-->
+            <x-button style="width:100%;border-radius:0px;background:#fff;color:#000" type="primary" v-touch:tap="galleryImgs()">从相册选择</x-button>
        </tabbar>
 </template>
 

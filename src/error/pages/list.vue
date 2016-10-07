@@ -16,15 +16,14 @@
 					<flexbox-item :span="2/4" style="color:#4bb7aa">{{item.cameraTime | ymd}}</flexbox-item>
 					<flexbox-item :span="1/4" style="text-align:right;">
 						<template v-if="item.collectTime == '0' ? true:false">
-							<span @click="_collectAdd($index,item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>收藏</span>
+							<span style="color:#666" @click="_collectAdd($index,item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>收藏</span>
 						</template>
 							<template v-if="item.collectTime != '0' ? true:false">
-							<span @click="_removeCollect($index,item.id)"><i class="icon iconfont icon-collect"></i>取消</span>
+							<span style="color:#666" @click="_removeCollect($index,item.id)"><i class="icon iconfont icon-collect"></i>取消</span>
 						</template>
 					</flexbox-item>
-					<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_comment(item.id)" >
-						<i class="icon iconfont icon-error-login" style="font-size:20px;top:2px;"></i>
-						点评
+					<flexbox-item :span="1/4" style="text-align:right;color:#666" v-touch:tap="_comment(item.id)" >
+						<i class="icon iconfont icon-comment"></i>点评
 					</flexbox-item>
 				</flexbox>
 			</div>

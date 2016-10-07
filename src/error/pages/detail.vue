@@ -14,13 +14,13 @@
 							<flexbox-item :span="2/4" style="color:#4bb7aa">题干</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right;">
 								<template v-if="detail.collectTime != '0' ? true:false">
-									<span @click="_removeCollect(detail.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消</span>
+									<span @click="_removeCollect(detail.id)" style="color:#666;text-align:right" ><i class="icon iconfont icon-collect"></i>取消</span>
 								</template>
 								<template v-if="detail.collectTime == '0' ? true:false">
-									<span @click="_collectAdd(detail.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
+									<span @click="_collectAdd(detail.id)" style="color:#666;text-align:right"><i class="icon iconfont icon-collect"></i>收藏</span>
 								</template>
 							</flexbox-item>
-							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
+							<flexbox-item :span="1/4" v-touch:tap="_correct"  style="color:#666;text-align:right"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
 						</flexbox>
 					</div>
 					<!--题目整体-->

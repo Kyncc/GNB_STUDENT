@@ -12,11 +12,11 @@
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
 							<flexbox-item :span="1/2" style="color:#4bb7aa">题干</flexbox-item>
-							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct">
-								<span><i class="icon iconfont icon-error-login"></i>纠错</span>
-							</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right;" v-touch:tap="_remove">
-								<span style="color:orange"><i class="icon iconfont icon-clear"></i>取消</span>
+								<span style="color:#666"><i class="icon iconfont icon-clear"></i>取消</span>
+							</flexbox-item>
+							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct">
+								<span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
 							</flexbox-item>
 						</flexbox>
 					</div>

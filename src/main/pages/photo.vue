@@ -58,7 +58,7 @@ export default {
     ready(){
         let minHeight= document.documentElement.clientHeight - 46
         this.cropper = new Cropper(this.$els.img, {
-            aspectRatio: NaN,
+            aspectRatio: 1/1,
             minContainerHeight:minHeight
         });
     }

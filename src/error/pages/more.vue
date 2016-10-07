@@ -17,13 +17,13 @@
 							<flexbox-item :span="2/4" style="color:#4bb7aa">{{index}}/{{count}}</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right;">
 								<template v-if="item.collectTime == '0' ? true:false">
-									<span @click="_collectAdd(item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
+									<span @click="_collectAdd(item.id)" style="text-align:right;color:#666;"><i class="icon iconfont icon-collect"></i>收藏</span>
 								</template>
 								<template v-if="item.collectTime != '0' ? true:false">
-									<span @click="_removeCollect(item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消</span>
+									<span @click="_removeCollect(item.id)" style="text-align:right;color:#666;"><i class="icon iconfont icon-collect"></i>取消</span>
 								</template>
 							</flexbox-item>
-							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
+							<flexbox-item :span="1/4" style="text-align:right;color:#666;" v-touch:tap="_correct"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
 						</flexbox>				
 					</div>
 					<!--题目整体--> 
