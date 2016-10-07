@@ -11,7 +11,7 @@
 			<div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="2/4" style="color:#4bb7aa">参考例题</flexbox-item>
+						<flexbox-item :span="2/4" style="color:#4bb7aa">题干</flexbox-item>
 						<flexbox-item :span="1/4" style="text-align:right;">
 							<template v-if="item.collectTime == '0' ? true:false">
 								<span style="color:#666" @click="_collectAdd(item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
