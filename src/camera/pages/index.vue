@@ -1,7 +1,7 @@
 <template>
     <view-box v-ref:view-box class="cameraIndex">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">
+            <x-header :left-options="{showBack: true,preventGoBack:true}"  @on-click-back="_back()">
                 拍错题
                 <a slot="right" v-link="{path: 'camera/history'}">拍题记录</a>
             </x-header>
@@ -10,7 +10,7 @@
         <div style="margin-top:46px;" >
             <div class="img">
                 <i class="icon iconfont icon-camera"  v-touch:tap="getImage()"></i>
-                <p>横屏拍照，尽量注意尽量对焦哦</p>
+                <p>横屏拍照，尽量注意对焦哦</p>
             </div>
         </div>
         <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom" >
@@ -34,13 +34,16 @@ export default {
         }
     },
     methods: {
+        _back(){
+            this.$router.go(`/main`);
+        },
         getImage(){
             let cmr = plus.camera.getCamera()
             let self = this
 			cmr.captureImage(function(p) {
 				plus.io.resolveLocalFileSystemURL(p, function(entry) {
 					self.setCameraImg(entry.toLocalURL())
-                    self.$router.go('/camera/photo')
+                    self.$router.replace('/camera/photo')
 				})
 			})
         },
@@ -48,7 +51,7 @@ export default {
             let self = this
             plus.gallery.pick(function(e) {
                 self.setCameraImg(e.files[0])
-                self.$router.go('/camera/photo')
+                self.$router.replace('/camera/photo')
 			}, function(e) {
                  _.toast("取消选择图片")
 			}, {

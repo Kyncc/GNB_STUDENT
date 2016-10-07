@@ -2,7 +2,7 @@
 	<view-box v-ref:view-box class="cameraRecord">
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
 			<x-header :left-options="{showBack: true}">
-				参照例题
+				参考例题
 			</x-header>
 		</div>
 
@@ -11,7 +11,7 @@
 			<div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="2/4" style="color:#4bb7aa">参照例题</flexbox-item>
+						<flexbox-item :span="2/4" style="color:#4bb7aa">参考例题</flexbox-item>
 						<flexbox-item :span="1/4" style="text-align:right;">
 							<template v-if="item.collectTime == '0' ? true:false">
 								<span style="color:#666" @click="_collectAdd(item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
@@ -64,7 +64,7 @@
 				<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
 				<p style="font-size:1rem;display:inline-block;">服务器出差了~</p>
 			</span>
-			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底拉~</span>
+			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底啦~</span>
 		</infinite-loading>
 
 	</view-box>

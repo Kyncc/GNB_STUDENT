@@ -8,7 +8,8 @@
         <div>
           <group>
             <div class="headimg">
-              <img src="../../../assets/user/headimg.png" alt="" />
+              <img v-lazy="userHeadImg"/>
+              <!--<img src="../../../assets/user/headimg.png" alt="" />-->
               <p>{{fetchMemberInfo.isVip=='0'?'普通会员':'VIP'}}</p>
             </div>
 
@@ -110,6 +111,7 @@
 import './member.less'
 import {  XHeader,  Cell,  Group,  Alert,  Flexbox,  FlexboxItem,  Scroller,ViewBox}from 'vux'
 import { member } from '../../actions.js'
+import {userHeadImg} from '../../../common/getters'
 import {fetchToken,fetchMemberInfo} from '../../getters'
 import * as _ from '../../../config/whole.js'
 
@@ -122,7 +124,7 @@ export default {
           member
       },
       getters:{
-          fetchToken,fetchMemberInfo
+          fetchToken,fetchMemberInfo,userHeadImg
       }
   },
   ready(){

@@ -10,7 +10,7 @@
           </flexbox-item>
           <flexbox-item :span="3/5" style="position:relative">
             <div v-touch:tap="_record(item.importantId,item.id)">
-                <div class="title">{{{item.knowledge}}}</div>
+                <div class="title ellipsis">{{{item.knowledge}}}</div>
                   <div class="difficult">
                     难度：{{item.difficult}}
                   </div>

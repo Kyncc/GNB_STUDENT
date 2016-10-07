@@ -80,7 +80,8 @@
 			 <x-button type="primary" v-touch:tap="_match()">没有合适例题?</x-button>
         </tabbar>
 
-		<confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="我们会为您人工挑选合适例题,敬请期待" @on-confirm="_onAction()"></confirm>	
+		<confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="我们会为您人工挑选合适例题,敬请期待" @on-confirm="_onAction()"></confirm>
+		<confirm :show.sync="setImportant.show" confirm-text="确定" cancel-text="取消" title="是否替换例题" @on-confirm="_onActionReplace()"></confirm>		
 	</view-box>
 </template>
 
@@ -114,8 +115,9 @@ export default {
 		_back(){
 			this.$router.go('/camera');
 		},
-		//设为例题
-		_important(id,index){
+		_onActionReplace(){
+			let id = this.setImportant.id;
+			let index   = this.setImportant.index;
 			let parm = {
 				importantId:id,
 				options:{
@@ -131,9 +133,25 @@ export default {
 						this.list[i].important = '0';
 					}
 					this.list[index].important = '1';
+					this.setImportant.isOnce = false;
 					_.toast("设置成功");
 				}
 			);
+		},
+		//设为例题 第二次点击替换例题出现弹窗
+		_important(id,index){
+			//如果以为例题则返回
+			if(this.setImportant.id == id){
+				return;
+			}
+			this.setImportant.index = index;
+			this.setImportant.id = id;
+			if(!this.setImportant.isOnce){		//第二次点击例题
+				this.setImportant.show = true;
+				return;
+			}
+			
+			this._onActionReplace();
 		},
 		//人工匹配
 		_match(){
@@ -204,7 +222,13 @@ export default {
 	data(){
 		return{
 			list:[],
-			show:false
+			show:false,
+			setImportant:{
+				show:false,			//是否替换例题的弹窗
+				isOnce:true,
+				id:'',
+				index:''
+			}
 		} 
 	}
 }

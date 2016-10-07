@@ -21,6 +21,7 @@
 - [触摸手势组件-VueTouch][9]
 - [加载数据组件-Vue-infinite-loading][10]
 - [图片懒加载-Vue-lazyload][12]
+- [灯箱-PhotoSwipe][13]
  
 ## 文件夹结构
 
@@ -70,3 +71,5 @@
   [10]: https://peachscript.github.io/vue-infinite-loading/#!/slots
   [11]: https://fengyuanchen.github.io/cropperjs/
   [12]: https://github.com/hilongjw/vue-lazyload
+  [13]: https://github.com/dimsemenov/PhotoSwipe
+  

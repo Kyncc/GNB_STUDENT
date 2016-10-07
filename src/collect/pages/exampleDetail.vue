@@ -103,9 +103,9 @@ export default {
 				token:this.token
 			},()=>{
 					setTimeout(()=>{
-						self.list = self.CollectExampleList;
-						if(self.list.length != 0) {self.$broadcast('$InfiniteLoading:loaded');}
-						self.$broadcast('$InfiniteLoading:complete');
+						this.list = this.CollectExampleList;
+						if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+						this.$broadcast('$InfiniteLoading:complete');
 					},300);
 				}
 			)
@@ -120,14 +120,13 @@ export default {
 			this.$router.go('/collect/');
 		},
 		_removeCollect(){
-			let self =  this;
 			this.collectRemove({
 				options:{
-					id:self.id,
-					period_id:self.period_id,
-					subject_id:self.subject_id
+					id:this.id,
+					period_id:this.period_id,
+					subject_id:this.subject_id
 				},
-				token:self.token,
+				token:this.token,
 				type:'example'
 			},()=>{
 				setTimeout(()=>{
