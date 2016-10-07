@@ -233,7 +233,11 @@ export function http(params) {
         return resp;
       }, err => {
       console.log('Network Error:', err);
-      _.toast(err.data.msg);
+      if(err.data.msg){
+          _.toast(err.data.msg)
+      }else{
+          _.toast('接口异常')
+      }
       _.leave();
       // _.toast(JSON.parse(err.body).msg);
       return err;
