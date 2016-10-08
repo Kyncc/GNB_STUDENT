@@ -73,11 +73,11 @@ export default {
     onAction(type) {
       if (type == '确认') {
         let start = true;
-        let dtask = plus.downloader.createDownload("http://lynh.ilvzan.com/app/ilvzan-last.apk", {}, (d, status)=> {
+        let dtask = plus.downloader.createDownload("http://www.chinasanbao.com/app/gnb-student.apk", {}, (d, status)=> {
           if (status == 200) {
             console.log('下载完成：' + d.filename);
             plus.ui.toast('下载完成：' + d.filename);
-            void plus.runtime.install('_downloads/ilvzan-last.apk');
+            void plus.runtime.install('_downloads/gnb-student.apk');
           } else {
             console.log('下载失败：' + status);
             plus.ui.toast('下载失败：' + status);
