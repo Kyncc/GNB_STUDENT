@@ -103,7 +103,8 @@ export const bindInviteCode = ({ dispatch }, params, callback) => {
       ok: response => {
         callback()
       },
-      wrong: response => {}
+      wrong: response => {
+      }
     })
   }
   //我的积分
