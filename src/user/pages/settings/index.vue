@@ -111,7 +111,7 @@ export default {
       window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
     },
     _openStore() {
-      window.location.href = "market://details?id=io.dcloud.HelloH5";
+      window.location.href = "market://details?id=com.sanbao.guinaben.student";
     }
   }
 }
