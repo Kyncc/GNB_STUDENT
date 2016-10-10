@@ -75,7 +75,7 @@ export default {
 			}, 1000)
 		},
     _refresh(){
-      this.getMessageIndex({"token":this.token},()=>{
+      this.getMessageIndex({"token":localStorage.getItem('token')},()=>{
           _.toast('刷新成功');
       });
     }
@@ -86,7 +86,7 @@ export default {
     }
   },
   ready(){
-      this.getMessageIndex({"token":this.token});
+      this.getMessageIndex({"token":localStorage.getItem('token')});
   }
 }
 </script>

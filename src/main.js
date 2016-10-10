@@ -199,6 +199,11 @@ router.redirect({
 sync(store, router)
 
 router.beforeEach(function(transition) {
+    if (transition.to.path == '/') {
+      if(localStorage.token){
+          router.replace('/main/index');
+      }
+    }
   if (transition.to.path == '/register/password') {
     if (store.state.register.mobile == '') {
       console.log("禁止访问!");

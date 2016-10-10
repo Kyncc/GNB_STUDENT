@@ -83,7 +83,7 @@ export default {
             period_id:this.period_id,
             subject_id:this.subject_id
         },
-        token:this.token
+        token:localStorage.getItem('token')
     }
     this.getStudentIndex(params);
   }

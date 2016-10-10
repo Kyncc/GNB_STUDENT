@@ -74,10 +74,6 @@ export default {
      disable(){
         return (this.$refs.mobile.valid && this.$refs.password.valid ? false : true);
      }
- },ready(){
-     if(localStorage.token){
-         this.$router.replace('/main');
-     }
  }
 }
 </script>

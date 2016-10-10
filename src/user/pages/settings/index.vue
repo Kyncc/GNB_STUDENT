@@ -64,11 +64,14 @@ export default {
     },
     _quit(type) {
         if(type=='确认'){
-            localStorage.setItem('token','')
-          this.$router.replace('/');
-            // this.quitToken({token:this.fetchToken},()=>{
-            //     this.$router.replace('/')
-            // })
+            localStorage.removeItem('headImg');
+            localStorage.removeItem('mobile');
+            localStorage.removeItem('name');
+            localStorage.removeItem('token');
+            localStorage.removeItem('isVip');
+            localStorage.removeItem('balance');
+            localStorage.removeItem('numerical');
+            this.$router.replace('/');
         }
     },
     onAction(type) {
