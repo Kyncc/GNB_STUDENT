@@ -61,7 +61,7 @@ export default {
           setTimeout(()=>{
               _.leave();
               this.$router.replace('/main');
-          },500);
+          },1000);
       },()=>{
           setTimeout(()=>{
               _.leave();
@@ -74,6 +74,10 @@ export default {
      disable(){
         return (this.$refs.mobile.valid && this.$refs.password.valid ? false : true);
      }
-  }
+ },ready(){
+     if(localStorage.token){
+         this.$router.replace('/main');
+     }
+ }
 }
 </script>

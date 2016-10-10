@@ -64,6 +64,7 @@ export default {
     methods: {
         onAction(type) {
             if(type=='确认'){
+                localStorage.setItem('token','')
                 plus.runtime.quit()
             }else{
                 return

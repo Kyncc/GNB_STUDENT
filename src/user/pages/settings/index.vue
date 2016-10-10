@@ -64,6 +64,7 @@ export default {
     },
     _quit(type) {
         if(type=='确认'){
+            localStorage.setItem('token','')
           this.$router.replace('/');
             // this.quitToken({token:this.fetchToken},()=>{
             //     this.$router.replace('/')

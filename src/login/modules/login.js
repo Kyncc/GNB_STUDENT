@@ -14,7 +14,7 @@ const state = {
     isVip:'0',
     balance:'0',
     numerical:'0',
-    token:''
+    token: localStorage.getItem('token')
   },
   msg:''
 }
@@ -24,7 +24,8 @@ const mutations = {
     state.userInfo.headImg =data.data.headImg;
     state.userInfo.mobile = data.data.mobile;
     state.userInfo.name = data.data.name;
-    state.userInfo.token = data.data.token;
+    //state.userInfo.token = data.data.token;
+    localStorage.setItem('token',data.data.token);
     state.userInfo.isVip = data.data.isVip;
     state.userInfo.balance = data.data.balance;
     state.userInfo.numerical = data.data.numerical;
