@@ -4,8 +4,8 @@
 		"iPhone",
 		"iPad"
 	],
-	"id": "H55E5EFFB",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "GNB_APP",/*应用名称，程序桌面图标名称*/
+	"id": "H5B0E7680",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "归纳本-学生端",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "1.0.0",/*应用版本名称*/
 		"code": "83"
@@ -16,9 +16,9 @@
 	},
 	"launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
 	"developer": {
-		"name": "",/*开发者名称*/
-		"email": "",/*开发者邮箱地址*/
-		"url": "http://www.dcloud.io"
+		"name": "李颖琨 王成龙",/*开发者名称*/
+		"email": "walykadyb@vip.qq.com",/*开发者邮箱地址*/
+		"url": "www.guinaben.com"
 	},
 	"permissions": {
 
@@ -57,9 +57,7 @@
 			"description": "使用Native.js能力"
 		},
 
-		"Orientation": {
-			"description": "访问方向感应器"
-		},
+		
 
 		"Storage": {
 			"description": "管理应用本地数据"
