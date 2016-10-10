@@ -4,14 +4,11 @@
 		<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">邀请好友<a slot="right" v-touch:tap="_friend">受邀好友</a></x-header>
 	</div>
 	<img src="../../../assets/user/friend_title.png" class="title" />
-	<section class="step">
+	<section class="step">		
 		<article>
-			<h3>第一步</h3>
+			<h3>提示</h3>
 			<p>被邀请的好友需安装归纳本APP，且被邀请好友必须是新用户哦！</p>
-		</article>
-		<article>
-			<h3>第二步</h3>
-			<p>请好友在本界面填写您的邀请码，您和您的好友登录归纳本APP均可获得1000点积分。</p>
+			<p>请好友在本界面填写您的邀请码，您再次登录归纳本APP即可获得500积分。</p>
 		</article>
 	</section>
 	<section class="copyCode">
