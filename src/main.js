@@ -107,7 +107,7 @@ Vue.http.interceptors.push((request, next) => {
 
 const router = new Router()
 router.map({
-  '/': { component: Login },
+  '/login': { component: Login },
   'agreement': { component: agreement },
   //注册账户
   'register': { component: register },
@@ -202,6 +202,8 @@ router.beforeEach(function(transition) {
     if (transition.to.path == '/') {
       if(localStorage.token){
           router.replace('/main/index');
+      }else{
+          router.replace('/login');
       }
     }
   if (transition.to.path == '/register/password') {
