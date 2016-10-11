@@ -21,13 +21,13 @@ const state = {
 
 const mutations = {
   [GET_LOGIN_SUCCESS](state, data){
-    // state.userInfo.headImg =data.data.headImg;
-    // state.userInfo.mobile = data.data.mobile;
-    // state.userInfo.name = data.data.name;
-    //state.userInfo.token = data.data.token;
-    // state.userInfo.isVip = data.data.isVip;
-    // state.userInfo.balance = data.data.balance;
-    // state.userInfo.numerical = data.data.numerical;
+    state.userInfo.headImg =data.data.headImg;
+    state.userInfo.mobile = data.data.mobile;
+    state.userInfo.name = data.data.name;
+    state.userInfo.token = data.data.token;
+    state.userInfo.isVip = data.data.isVip;
+    state.userInfo.balance = data.data.balance;
+    state.userInfo.numerical = data.data.numerical;
     localStorage.setItem('headImg',data.data.headImg);
     localStorage.setItem('mobile',data.data.mobile);
     localStorage.setItem('name',data.data.name);
