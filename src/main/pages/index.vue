@@ -86,6 +86,7 @@ export default {
         token:localStorage.getItem('token')
     }
     this.getStudentIndex(params);
+    plus.navigator.closeSplashscreen();
   }
 }
 

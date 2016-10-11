@@ -74,6 +74,8 @@ export default {
      disable(){
         return (this.$refs.mobile.valid && this.$refs.password.valid ? false : true);
      }
+ },ready(){
+     plus.navigator.closeSplashscreen();
  }
 }
 </script>

@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-      version: '1.0.0',
+      version: '1.0.1',
       show: false,
       confirm: false,
       quit:false
@@ -77,11 +77,11 @@ export default {
     onAction(type) {
       if (type == '确认') {
         let start = true;
-        let dtask = plus.downloader.createDownload("http://www.chinasanbao.com/app/gnb-student.apk", {}, (d, status)=> {
+        let dtask = plus.downloader.createDownload("http://www.chinasanbao.com/app/com.sanbao.guinaben.student.apk", {}, (d, status)=> {
           if (status == 200) {
             console.log('下载完成：' + d.filename);
             plus.ui.toast('下载完成：' + d.filename);
-            void plus.runtime.install('_downloads/gnb-student.apk');
+            void plus.runtime.install('_downloads/com.sanbao.guinaben.student.apk');
           } else {
             console.log('下载失败：' + status);
             plus.ui.toast('下载失败：' + status);
