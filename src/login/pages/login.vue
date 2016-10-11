@@ -75,7 +75,14 @@ export default {
         return (this.$refs.mobile.valid && this.$refs.password.valid ? false : true);
      }
  },ready(){
-     plus.navigator.closeSplashscreen();
- }
+        function plusReady() {
+    		plus.navigator.closeSplashscreen();
+    	}
+    	if(window.plus) {
+    		plusReady();
+    	} else {
+    		document.addEventListener('plusready', plusReady, false);
+    	}
+    }
 }
 </script>
