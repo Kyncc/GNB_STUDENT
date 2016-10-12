@@ -53,7 +53,7 @@ export default {
     },
 	methods: {
 		_commit(){
-            if(!this.type[0]){
+            if(!this.type[0] && this.type[0]!='0'){
                _.toast("请选择评注类型");
                return;
             }
