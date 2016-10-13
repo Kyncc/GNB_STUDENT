@@ -3,7 +3,7 @@
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true,preventGoBack:true}"  @on-click-back="_back()">
                 拍错题
-                <a slot="right" v-link="{path: 'camera/history'}">拍题记录</a>
+                <a slot="right" v-link="{path: '/camera/history'}">拍题记录</a>
             </x-header>
         </div>
 
