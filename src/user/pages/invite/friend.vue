@@ -9,10 +9,7 @@
 				<img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="item.headImg">
 			</cell>
 			<infinite-loading :on-infinite="onInfinite" >
-				<span slot="no-more" style="color:#4bb7aa;">
-					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-					<p style="font-size:1rem;display:inline-block;">没有更多数据了</p>
-				</span>
+				<span slot="no-results"></span>
 			</infinite-loading>
 		</div>
 	</view-box>
@@ -24,6 +21,7 @@ import {getInviteStudentList } from '../../actions.js'
 import {fetchToken,fetchInviteStudentList} from '../../getters'
 import * as _ from '../../../config/whole.js'
 import InfiniteLoading from 'vue-infinite-loading'
+import './invite.less'
 
 export default {
 	components: {
@@ -49,8 +47,8 @@ export default {
 			setTimeout(() => {
 		        const temp = [];
 				this.list = this.fetchInviteStudentList
-		       	this.$broadcast('$InfiniteLoading:loaded');
-			}, 1000);
+		       	this.$broadcast('$InfiniteLoading:complete');
+			}, 500);
 
        }
 	},

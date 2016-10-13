@@ -22,12 +22,8 @@
       <flexbox-item :span="1/40">
       </flexbox-item>
     </flexbox>
-    <infinite-loading :on-infinite="onInfinite" spinner="spiral">
-      <span slot="no-results" style="color:#4bb7aa;">
-            <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-            <p style="font-size:1rem;display:inline-block;">没有更多积分</p>
-        </span>
-      <!-- <span slot="no-more"></span> -->
+    <infinite-loading :on-infinite="onInfinite" >
+				<span slot="no-results" ></span>
     </infinite-loading>
   </group>
 </view-box>
@@ -70,7 +66,7 @@ export default {
                 setTimeout(()=>{
                     this.list = this.fetchNumericalList
                     if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-                    this.$broadcast('$InfiniteLoading:complete');
+                   	this.$broadcast('$InfiniteLoading:complete');
                 },300);
             }
         )

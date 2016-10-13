@@ -4,18 +4,11 @@
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
 			<x-header :left-options="{showBack: true}">
 				更多例题
-				<!--<a slot="right" href="javascript:;" @click="showPopupPicker = true">选择例题</a>-->
+				<a slot="right" href="javascript:;" @click="showPopupPicker = true">选择例题</a>
 			</x-header>
 		</div>
 
 		<div style="padding-top:46px;">
-
-			<template v-for="id in errorMoreIds">
-				<div @click="">
-					{{$index}}
-				</div>
-			</template>
-
 			<template v-for="item in list">
 				<!--内容-->
 				<div class="weui_panel weui_panel_access exerciseDetail">
@@ -78,7 +71,7 @@
 			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)阅读完毕</span>
 		</infinite-loading>
 
-		<!--<popup-picker :show.sync="showPopupPicker" :show-cell="false" title="TEST" :data="selectIndex" :value.sync="selectData"></popup-picker>	-->
+		<popup-picker :show.sync="showPopupPicker" :show-cell="false" title="TEST" :data="selectIndex" :value.sync="selectData"></popup-picker>	
 	</view-box>
 </template>
 
@@ -169,7 +162,7 @@ export default {
     },
 	data(){
 		return{
-			//  showPopupPicker: false,
+			 showPopupPicker: false,
 			 list:[],
 			 selectData:[]
 		}
@@ -204,7 +197,11 @@ export default {
 			this.$nextTick(() => {
 				this.$broadcast('$InfiniteLoading:reset');
 			});
+			// this._getData();	
 		}
+	},
+	ready(){
+		// this._getData();
 	}
 }
 </script>

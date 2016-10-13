@@ -5,7 +5,8 @@ html,body{
     background:#edf2f1;
     height: 100%;
     width: 100%;
-    overflow-x: hidden;
+    overflow-x:hidden;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 #App{
     height:100%;
@@ -70,7 +71,7 @@ img[lazy=error] {
   animation-name: fadeIn;
 }
 
-
+.vux-header .vux-header-left a:active, .vux-header .vux-header-left button:active, .vux-header .vux-header-right a:active, .vux-header .vux-header-right button:active{opacity:1;}
 /**
 *   反馈历史、作业消息历史、班级消息历史、纠错消息历史、意见反馈历史、系统消息历史
 */
@@ -143,7 +144,7 @@ img[lazy=error] {
 .exerciseExampleList{
    
     .weui_panel_hd{
-        padding: 0.4rem 0.75rem 0.4rem;
+        padding: 0.4rem 0.75rem 0.2rem;
         color: #000;
         font-size: 0.8rem;
         Button{margin-right:.75em;}

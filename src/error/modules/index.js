@@ -23,7 +23,6 @@ import {
   POST_ERROR_RECOMMENDIDS_ERROR
 }from '../mutationTypes'
 
-
 const state = {
     index:{
       code:'',
@@ -34,7 +33,7 @@ const state = {
     },
     more:{
       code:'',
-      ids:[],
+      ids:[1,2,3,4,5],
       list:[],
       msg:''
     },
