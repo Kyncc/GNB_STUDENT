@@ -5,9 +5,6 @@
         <cell title="数学一班" >
            <x-button type="primary" :mini="true">添加</x-button>
        </cell>
-       <cell title="数学一班" >
-          <x-button type="primary" :mini="true">添加</x-button>
-      </cell>
     </group>
 </view-box >
 </template>

@@ -107,7 +107,7 @@ Vue.http.interceptors.push((request, next) => {
 
 const router = new Router()
 router.map({
-  '/login': { component: Login },
+  'login': { component: Login },
   'agreement': { component: agreement },
   //注册账户
   'register': { component: register },
@@ -178,7 +178,7 @@ router.map({
   'user/member/rule':{ component: userMemberRule}, //积分规则
   //我的班级
   'user/class': { component: userClassIndex },
-  'user/class/detail': { component: userClassDetail },
+  'user/class/detail/:id': { component: userClassDetail },
   'user/class/addClass': { component: userClassAdd },
   //我的教材
   'user/textBook': { component: userTextbook }

@@ -5,7 +5,7 @@
   <group>
     <flexbox>
       <flexbox-item :span="17/20">
-        <search placeholder="请输入班级编号" @on-submit="onSubmit" :auto-fixed="false"></search>
+        <search placeholder="请输入班级编号" :value.sync="code" :auto-fixed="false"></search>
       </flexbox-item>
       <flexbox-item style="background:#efeff4;" :span="3/20">
         <div class="btn-wrap" style="">
@@ -17,16 +17,16 @@
 
   <group>
 
-    <cell v-for="item in fetchClassList" title="数学一班" link="detail" v-touch:tap="_detail">
-      <span class="demo-icon" slot="icon"></span>
-    </cell>
+   <template  v-for="item in fetchMyClass">
+      <cell title="{{item.name}}" link="detail/{{item.classCode}}"> </cell>
+   </template>
 
    <infinite-loading :on-infinite="_onInfinite" spinner="default">
 			<span slot="no-results" style="color:#4bb7aa;">
 				<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
 				<p style="font-size:1rem;display:inline-block;">您还未加入任何班级~</p>
 			</span>
-			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底啦~</span>
+			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
 		</infinite-loading>
 
   </group>
@@ -68,24 +68,30 @@ export default {
       // getMyClassSearchClass
       //this.$router.go('addClass')
     },
-    _detail() {
-      this.$router.go('detail')
+    _onInfinite(){
+      this.getMyClass({
+        token:this.fetchToken
+      },()=>{
+				setTimeout(()=>{
+					 if(this.fetchMyClass.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+					 this.$broadcast('$InfiniteLoading:complete');
+				},300);
+			});
+
+
+
+
     }
   },
-  _onInfinite(){
-    this.getMyClass({
-      token:fetchToken
-    },()=>{
-				setTimeout(()=>{
-            this.list = this.getMyClass;
-            if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-            this.$broadcast('$InfiniteLoading:complete');
-				},300);
-    });
-  },
+  
   ready() {
       // console.log(this.fetchToken)
       // this.myClassList({token:this.fetchToken})
+  },
+  data(){
+    return{
+      code:''
+    }
   }
 }
 </script>
