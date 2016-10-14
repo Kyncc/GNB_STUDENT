@@ -32,7 +32,10 @@ export const API_PATHS = {
   exerciseList: `${API_ENV}${API_VERSION}/student/exerciseList`,
   //拍错题获取
   cameraList: `${API_ENV}${API_VERSION}/student/cameraList`,
-  //收藏本
+  /**收藏题模块
+   * collectExampleIds：获取收藏练习题ID
+   * collectCameraIds：获取收藏拍错题ID
+   */
   collectExampleIds: `${API_ENV}${API_VERSION}/student/collect/example`,
   collectCameraIds: `${API_ENV}${API_VERSION}/student/collect/camera`,
    /**拍错题模块
@@ -69,12 +72,18 @@ export const API_PATHS = {
   msgCorrect:`${API_ENV}${API_VERSION}/student/message/correct`,
   //获取用户信息
   getUserInfo: `${API_ENV}${API_VERSION}/student/user/getUserInfo`,
+  /**我的班级
+   * myClassList:获取班级列表
+   * myClassmateList:班级成员名单
+   * myClassInto:加入班级
+   * myClassSearch:搜索班级
+   */
+  myClassList: `${API_ENV}${API_VERSION}/student/class/myClassList`,
+  myClassmateList: `${API_ENV}${API_VERSION}/student/class/myClassmateList`,
+  myClassInto: `${API_ENV}${API_VERSION}/student/class/intoClass`,
+  myClassSearch: `${API_ENV}${API_VERSION}/student/class/bindClass`,
   //编辑用户信息
   updateUserInfo: `${API_ENV}${API_VERSION}/student/user/updateUserInfo`,
-  //获取班级列表
-  myClassList: `${API_ENV}${API_VERSION}/student/class/myClassList`,
-  //班级成员名单
-  myClassmateList: `${API_ENV}${API_VERSION}/student/class/myClassmateList`,
   //修改密码
   updatePwd: `${API_ENV}${API_VERSION}/student/user/updatePwd`,
   //反馈

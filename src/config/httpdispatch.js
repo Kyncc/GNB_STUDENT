@@ -129,13 +129,23 @@ export default {
   updateUserInfo: (params) => {
     return http({ method: 'post', url: API_PATHS.updateUserInfo, data: params.data, ok: params.ok, wrong: params.wrong })
   },
-  //获取班级列表
+   /**我的班级
+   * myClassList:获取班级列表
+   * myClassmateList:班级成员名单
+   * myClassInto:加入班级
+   * myClassSearch:搜索班级
+   */
   myClassList: (params) => {
     return http({ method: 'get', url: API_PATHS.myClassList, data: params.data, ok: params.ok, wrong: params.wrong })
   },
-  //获取班级成员名单
   myClassmateList: (params) => {
     return http({ method: 'get', url: API_PATHS.myClassmateList, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  myClassInto: (params) => {
+    return http({ method: 'post', url: API_PATHS.myClassInto, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  myClassSearch: (params) => {
+    return http({ method: 'post', url: API_PATHS.myClassSearch, data: params.data, ok: params.ok, wrong: params.wrong })
   },
   //修改密码
   updatePwd: (params) => {

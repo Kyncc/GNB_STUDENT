@@ -22,5 +22,5 @@ export function toast(str){
     store.dispatch('GET_TOAST_MESSAGE',str);
     setTimeout(()=>{
         store.dispatch('GET_TOAST_SHOW', false); 
-    },1500); 
+    },1200); 
 }
