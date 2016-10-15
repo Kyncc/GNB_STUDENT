@@ -54,12 +54,6 @@ export default {
       }
   },
   methods: {
-    _points() {
-      this.$router.go('points')
-    },
-    _recharge() {
-      this.$router.go('recharge')
-    },
     _onInfinite(){
 			let params = {
         classCode:this.id,

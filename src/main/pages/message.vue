@@ -27,7 +27,7 @@
                 <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/add.png">
               </div>
             </cell>
-            <cell title="关注我们" inline-desc='微信公众号:guina_book' >
+            <cell title="关注我们" inline-desc='微信公众号:guina_book'  @click="show=true">
               <div slot="icon" style="margin-right:.5em;" >
                 <img slot="icon" width="40" style="margin-right:.5em;" src="../../assets/message/focus.png">
               </div>
@@ -40,12 +40,20 @@
           </div>
         </div>
       </scroller>
+
+    <dialog :show.sync="show" class="dialog-demo">
+      <div class="img-box">
+        <img src="https://o3e85j0cv.qnssl.com/static/01.jpg?06186f7" style="max-width:100%">
+      </div>
+      <span class="vux-close" @click="show=false">点我关闭</span>
+    </dialog>
+
   </view-box>
 </template>
 
 <script>
 import store from '../../store'
-import {XHeader,Group,Scroller,Cell,Spinner,ViewBox} from 'vux'
+import {XHeader,Group,Scroller,Cell,Spinner,ViewBox,Dialog} from 'vux'
 import { token } from '../../common/getters'
 import { messageIndex } from '../../message/getters'
 import { getMessageIndex} from '../../message/actions'
@@ -53,7 +61,7 @@ import * as _ from '../../config/whole'
 
 export default {
   components: {
-    XHeader,Scroller,Group,Cell,Spinner,ViewBox
+    XHeader,Scroller,Group,Cell,Spinner,ViewBox,Dialog
   },
   vuex: {
       getters: {
@@ -82,7 +90,8 @@ export default {
 	},
   data () {
     return {
-      pulldownStatus: 'default'
+      pulldownStatus: 'default',
+      show:false
     }
   },
   ready(){
@@ -100,5 +109,20 @@ export default {
   transition: all linear 0.2s;
   color: #666;
   font-size: 25px;
+}
+.dialog-demo {
+   .img-box{
+    height: 350px;
+    overflow: hidden;
+  }
+}
+.vux-close{
+       position: relative; 
+    display: inline;
+     vertical-align: middle; 
+    width: 24px; 
+     height: 24px; 
+    overflow: hidden;
+    color: #ccc;
 }
 </style>

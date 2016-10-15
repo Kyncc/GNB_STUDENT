@@ -139,8 +139,18 @@ img[lazy=error] {
 }
 .vux-header .vux-header-title, .vux-header h1{margin-left:88px;}
 .vux-header .vux-header-left a{color:#fff;}
-.vux-header .vux-header-left .vux-header-back:before{border-color:#fff; width: 15px;height: 15px; top: 0px;border-width:3px 0 0 3px;}
-
+.vux-header .vux-header-left .vux-header-back:before{
+    transform:none;
+    -webkit-transform:none;
+    border:none;
+    background: url('../assets/back.png') no-repeat -5px center;
+    background-size: 100%;
+    border-width: 0;
+    width: 30px;
+    height: 22px;
+    top: -4px;
+    left: -5px;
+}
 /**
 *   Vux-Scoll
 */

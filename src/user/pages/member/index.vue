@@ -22,7 +22,8 @@
                   <flexbox-item>
                     <flexbox>
                       <flexbox-item :span="4/10" class="points padnone"></flexbox-item>
-                      <flexbox-item :span="4/10" class="flex-value padnone">{{fetchMemberInfo.numerical}}</flexbox-item>
+                      <!--<flexbox-item :span="4/10" class="flex-value padnone">{{fetchMemberInfo.numerical}}</flexbox-item>-->
+                      <flexbox-item :span="6/10" class="flex-value padnone">敬请期待</flexbox-item>
                     </flexbox>
                   </flexbox-item>
                 </flexbox>

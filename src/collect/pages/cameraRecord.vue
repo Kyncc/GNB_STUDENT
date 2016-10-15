@@ -24,7 +24,7 @@
 					</flexbox>				
 				</div>
 				<!--题目整体--> 
-				<div class="weui_panel_bd" > 
+				<div class="weui_panel_bd"> 
 					<!--题目-->
 					<div class="weui_media_bd weui_media_box "> 
 						<p class="weui_media_desc">
