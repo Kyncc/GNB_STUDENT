@@ -12,15 +12,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .icon-comment:before { content: "\e60c"; }
+.icon-closezhuanhuan:before { content: "\e60d"; }
 .icon-home:before { content: "\e601"; }
 .icon-31wode:before { content: "\e602"; }
 .icon-tishi:before { content: "\e608"; }
 .icon-share:before { content: "\e609"; }
-.icon-collect:before { content: "\e604"; }
+.icon-collect:before { content: "\e60b"; }
 .icon-clear:before { content: "\e605"; }
 .icon-flag:before { content: "\e60a"; }
 .icon-camera:before { content: "\e606"; }
 .icon-hudong:before { content: "\e607"; }
 .icon-error-login:before { content: "\e603"; }
-.icon-collect1:before { content: "\e60b"; }
+.icon-collect1:before { content: "\e604"; }
 .icon-comiiszanwushuju:before { content: "\e600"; }

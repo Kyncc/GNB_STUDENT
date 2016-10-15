@@ -41,11 +41,11 @@
         </div>
       </scroller>
 
-    <dialog :show.sync="show" class="dialog-demo">
+    <dialog :show.sync="show" class="dialog-demo" @click="show=false">
       <div class="img-box">
-        <img src="https://o3e85j0cv.qnssl.com/static/01.jpg?06186f7" style="max-width:100%">
+        <img src="../../assets/main/ewm.jpg" style="max-width:100%">
       </div>
-      <span class="vux-close" @click="show=false">点我关闭</span>
+      <span class="vux-close">截屛到微信中识别二维码</span>
     </dialog>
 
   </view-box>
@@ -99,30 +99,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.rotate {
-  transform: rotate(-180deg);
-}
-.pulldown-arrow {
-  display: inline-block;
-  transition: all linear 0.2s;
-  color: #666;
-  font-size: 25px;
-}
-.dialog-demo {
-   .img-box{
-    height: 350px;
-    overflow: hidden;
-  }
-}
-.vux-close{
-       position: relative; 
-    display: inline;
-     vertical-align: middle; 
-    width: 24px; 
-     height: 24px; 
-    overflow: hidden;
-    color: #ccc;
-}
-</style>

@@ -15,7 +15,8 @@
 
             <flexbox class="vux-1px-b">
               <flexbox-item class="vux-1px-r">
-                <flexbox orient="vertical" v-touch:tap="_points">
+                <!--<flexbox orient="vertical" v-touch:tap="_points">-->
+                <flexbox orient="vertical">
                   <flexbox-item>
                     <div class="flex-key vux-1px-b">我的积分</div>
                   </flexbox-item>
@@ -29,7 +30,7 @@
                 </flexbox>
               </flexbox-item>
               <flexbox-item>
-                <flexbox orient="vertical" v-touch:tap="_recharge">
+                <flexbox orient="vertical">
                   <flexbox-item>
                     <div class="flex-key vux-1px-b">余额</div>
                   </flexbox-item>
