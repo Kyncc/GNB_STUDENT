@@ -100,9 +100,10 @@ export default {
     }
 }
 </script>
-<style media="screen" scoped>
-.infinite-status-prompt{
-    display: none;
-    height: 0;
+<style lang="less" >
+.myClass{
+    .infinite-status-prompt{
+        display: none;
+    }
 }
 </style>
