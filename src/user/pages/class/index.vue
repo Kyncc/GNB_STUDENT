@@ -18,7 +18,7 @@
         <group>
 
             <template  v-for="item in fetchMyClass">
-                <cell :title="item.name" :link="'detail/'+item.classCode"> </cell>
+                <cell :title="item.name" :link="'/user/class/detail/'+item.classCode"> </cell>
             </template>
 
             <infinite-loading :on-infinite="_onInfinite" spinner="default">
@@ -26,7 +26,6 @@
                     <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
                     <p style="font-size:1rem;display:inline-block;">您还未加入任何班级~</p>
                 </span>
-                <span class="no-more" slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
             </infinite-loading>
 
         </group>
@@ -61,12 +60,18 @@ export default {
     },
     methods: {
         _search() {
-            let parm = {
-                classCode:'',
-                token:this.fetchToken
+            let self = this
+            if(self.code){
+                self.getMyClassSearchClass({classCode:self.code,token:self.fetchToken},()=>{
+                    console.log("查询成功")
+                    self.$router.go('/user/class/addClass')
+                },()=>{
+                    console.log("查询失败")
+                })
+            }else{
+                console.log("请输入内容")
             }
-            // getMyClassSearchClass
-            //this.$router.go('addClass')
+
         },
         _onInfinite(){
             this.getMyClass({
@@ -96,7 +101,8 @@ export default {
 }
 </script>
 <style media="screen" scoped>
-    .no-more{
-        display: none;
-    }
+.infinite-status-prompt{
+    display: none;
+    height: 0;
+}
 </style>
