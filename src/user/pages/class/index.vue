@@ -16,20 +16,17 @@
         </group>
 
         <group>
-
             <template  v-for="item in fetchMyClass">
                 <cell :title="item.name" :link="'/user/class/detail/'+item.classCode"> </cell>
             </template>
-
-            <infinite-loading :on-infinite="_onInfinite" spinner="default">
-                <span slot="no-results" style="color:#4bb7aa;">
-                    <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-                    <p style="font-size:1rem;display:inline-block;">您还未加入任何班级~</p>
-                </span>
-            </infinite-loading>
-
         </group>
 
+        <infinite-loading :on-infinite="_onInfinite" spinner="default">
+            <span slot="no-results" style="color:#4bb7aa;">
+                <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+                <p style="font-size:1rem;display:inline-block;">您还未加入任何班级~</p>
+            </span>
+        </infinite-loading>
     </view-box>
 </template>
 
@@ -74,24 +71,14 @@ export default {
 
         },
         _onInfinite(){
+            console.log(this.fetchMyClass);
             this.getMyClass({
                 token:this.fetchToken
             },()=>{
-                setTimeout(()=>{
-                    if(this.fetchMyClass.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-                    this.$broadcast('$InfiniteLoading:complete');
-                },300);
+                if(this.fetchMyClass.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+                this.$broadcast('$InfiniteLoading:complete');
             });
-
-
-
-
         }
-    },
-
-    ready() {
-        // console.log(this.fetchToken)
-        // this.myClassList({token:this.fetchToken})
     },
     data(){
         return{
