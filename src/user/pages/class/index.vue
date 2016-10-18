@@ -33,18 +33,13 @@
 <script>
 import './myClass.less'
 import InfiniteLoading from 'vue-infinite-loading'
-import {XHeader,Cell, Group,Alert,Flexbox,FlexboxItem,Search,ViewBox} from 'vux'
-import {
-    getMyClass,getMyClassSearchClass
-} from '../../actions/class'
-import {
-    fetchMyClass,
-    fetchToken
-} from '../../getters'
+import {XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox} from 'vux'
+import {getMyClass,getMyClassSearchClass} from '../../actions/class'
+import {fetchMyClass,fetchToken} from '../../getters'
 
 export default {
     components: {
-        XHeader,Cell, Group,Alert,Flexbox,FlexboxItem,Search,ViewBox,InfiniteLoading
+        XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox,InfiniteLoading
     },
     vuex: {
         getters: {
@@ -68,7 +63,6 @@ export default {
             }else{
                 console.log("请输入内容")
             }
-
         },
         _onInfinite(){
             console.log(this.fetchMyClass);
@@ -91,6 +85,22 @@ export default {
 .myClass{
     .infinite-status-prompt{
         display: none;
+    }
+    .weui_search_inner .weui_search_input{
+        height:1.6rem;
+        .weui_search_inner .weui_search_input{
+            line-height:1.6rem;
+        }
+
+        .weui_search_text span{
+            font-size:16px;
+        }
+    }
+    .weui_search_text{
+        padding-top:4px;
+    }
+    .weui_search_inner .weui_icon_search{
+        top:2px;
     }
 }
 </style>

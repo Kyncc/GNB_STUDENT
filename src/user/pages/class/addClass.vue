@@ -3,7 +3,7 @@
   <x-header :left-options="{showBack: true}">添加班级</x-header>
     <group>
         <cell :title="fetchMyClassSearchClass.name" v-if="fetchMyClassSearchClass.name">
-           <x-button type="primary" :mini="true" v-touch:tap="_add(fetchMyClassSearchClass.classCode)">添加</x-button>
+           <x-button type="primary" :mini="true" v-touch:tap="_add(fetchMyClassSearchClass.classCode)">申请加入</x-button>
        </cell>
        <p class="tips" v-else>
            没有查询到班级
