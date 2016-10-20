@@ -54,6 +54,8 @@ export default {
       _add(code){
           this.postMyClassInto({classCode:code,token:this.token},()=>{
               this.$router.go('/user/class')
+          },()=>{
+              this.$router.go('/user/class')
           })
       }
   }
