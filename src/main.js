@@ -26,7 +26,8 @@ import camera from './camera/pages/index'
 import cameraHistory from './camera/pages/history'
 import cameraRecord from './camera/pages/record'
 import cameraResult from './camera/pages/result'
-import cameraPhoto from './camera/pages/photo.vue'
+import cameraPhoto from './camera/pages/photo'
+import cameraSuccess from './camera/pages/success'
 //归纳本
 import error from './error/pages/index'
 import errorList from './error/pages/list'
@@ -143,6 +144,7 @@ router.map({
  'camera/photo':{component: cameraPhoto},
  'camera/record/:id/:cameraId':{component: cameraRecord},
  'camera/result/:id':{component: cameraResult},
+ 'camera/success':{component: cameraSuccess},
   //归纳本
   'error': { component: error },
   'error/detail/:id': { component: errorDetail },

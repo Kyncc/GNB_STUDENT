@@ -36,16 +36,18 @@ export default {
                     subject_id: self.subject_id
                 }
             },()=>{
-                //上传图片成功回调
-                if(self.cameraResultIds.length){
-                    self.$router.go('/camera/result/'+ self.cameraResultId)                    
-                }else{
-                    _.toast('沒有合适例题')
-                    setTimeout(()=>{
-                        self.$router.replace('/camera')
-                    },500)
-                }
+                /*上传图片成功回调*/
+                // if(self.cameraResultIds.length){
+                //     self.$router.go('/camera/result/'+ self.cameraResultId)                    
+                // }else{
+                //     _.toast('沒有合适例题')
+                //     setTimeout(()=>{
+                //         self.$router.replace('/camera')
+                //     },500)
+                // }
 
+                /*上传成功*/
+                self.$router.go('/camera/success');      
             })
         }
     },

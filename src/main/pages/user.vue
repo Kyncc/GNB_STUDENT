@@ -22,9 +22,9 @@
         <cell title="我的班级" link="/user/class/">
           <span class="icon icon-class" slot="icon"></span>
         </cell>
-        <cell title="我的会员" link="/user/member/">
+        <!--<cell title="我的会员" link="/user/member/">
           <span class="icon icon-member" slot="icon"></span>
-        </cell>
+        </cell>-->
         <cell title="邀请好友" link="/user/invite/">
           <span class="icon icon-invite" slot="icon"></span>
         </cell>
