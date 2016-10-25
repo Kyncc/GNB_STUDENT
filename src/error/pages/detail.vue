@@ -69,14 +69,11 @@
 
         <tabbar class="vux-demo-tabbar bottom" icon-class="vux-center" slot="bottom">
             <flexbox :gutter="0" wrap="wrap">
-                <flexbox-item :span="1/3">
-                    <x-button mini type="primary"  @click="_errorList">错题列表</x-button>
+                <flexbox-item :span="1/2">
+                    <x-button mini type="primary" @click="_errorList" >对应错题</x-button>
                 </flexbox-item>
-                <flexbox-item :span="1/3">
-                    <x-button mini type="primary"  @click="_more">更多例题</x-button>
-                </flexbox-item>
-                <flexbox-item :span="1/3">
-                    <x-button mini type="primary"  @click="_recommend">推荐练习</x-button>
+                <flexbox-item :span="1/2">
+                    <x-button mini type="primary" @click="_recommend" >相近例题</x-button>
                 </flexbox-item>
             </flexbox>
         </tabbar>
@@ -133,29 +130,7 @@ export default {
 				_.leave();
 			});
 		},
-		_more(){		//更多例题IDS获取
-			let self = this;
-			_.busy();
-			this.getErrorMoreIds({
-				knowledgeId:self.list[0].knowledgeId,
-				options:{
-					period_id:self.period_id,
-					subject_id:self.subject_id
-				},
-				token:self.token
-			},()=>{
-				if(self.errorMoreIds.length == 0){
-					_.toast("暂无例题");
-				}else{
-					self.$router.go(`/error/more/${self.list[0].knowledgeId}/${self.errorMoreIds[0]}`);
-				}
-				_.leave();
-			},()=>{
-				_.toast("接口异常");
-				_.leave();
-			});
-		},
-		_recommend(){ 	//推荐练习IDS获取
+		_recommend(){ 	//相近例题IDS获取
 			let self = this;
 			_.busy();
 			this.getErrorRecommendIds({
