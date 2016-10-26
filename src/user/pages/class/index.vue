@@ -3,20 +3,11 @@
         <x-header :left-options="{showBack: true}">我的班级</x-header>
 
         <group>
-            <flexbox>
-                <flexbox-item :span="17/20">
-                    <search placeholder="请输入班级编号" :value.sync="code" :auto-fixed="false"></search>
-                </flexbox-item>
-                <flexbox-item style="background:#efeff4;" :span="3/20">
-                    <div class="btn-wrap" style="">
-                        <div class="search-btn" v-touch:tap="_search">搜索</div>
-                    </div>
-                </flexbox-item>
-            </flexbox>
+            <search  placeholder="请输入班级编号" @result-click="resultClick" @on-change="getResult" :results="results" :value.sync="value"></search>
         </group>
 
-        <group>
-            <template  v-for="item in fetchMyClass">
+        <group v-show="!value">
+            <template  v-for="item in fetchMyClass" >
                 <cell :title="item.name" :link="'/user/class/detail/'+item.classCode"> </cell>
             </template>
         </group>
@@ -34,8 +25,8 @@
 import './myClass.less'
 import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox} from 'vux'
-import {getMyClass,getMyClassSearchClass} from '../../actions/class'
-import {fetchMyClass,fetchToken} from '../../getters'
+import {getMyClass,getMyClassSearchClass,postMyClassInto} from '../../actions/class'
+import {fetchMyClass,fetchToken,fetchMyClassSearchClass} from '../../getters'
 
 export default {
     components: {
@@ -44,25 +35,30 @@ export default {
     vuex: {
         getters: {
             fetchMyClass,             //加入班级
-            fetchToken
+            fetchToken,
+            fetchMyClassSearchClass
         },
         actions: {
-            getMyClass,getMyClassSearchClass
+            getMyClass,getMyClassSearchClass,postMyClassInto
         }
     },
     methods: {
-        _search() {
+        resultClick (item) {
+            this.postMyClassInto({classCode:item.code,token:this.fetchToken},()=>{
+                console.log("添加成功")
+            },()=>{
+                console.log("添加失败")
+            })
+        },
+        getResult (val) {
             let self = this
-            if(self.code){
-                self.getMyClassSearchClass({classCode:self.code,token:self.fetchToken},()=>{
-                    console.log("查询成功")
-                    self.$router.go('/user/class/addClass')
-                },()=>{
-                    console.log("查询失败")
-                })
-            }else{
-                console.log("请输入内容")
-            }
+            self.results= []
+            this.getMyClassSearchClass({classCode:self.value,token:self.fetchToken},()=>{
+                console.log("查询成功"+self.value)
+                if(self.fetchMyClassSearchClass.name){
+                    self.results.push({title:self.fetchMyClassSearchClass.name,code:self.fetchMyClassSearchClass.classCode})
+                }
+            })
         },
         _onInfinite(){
             console.log(this.fetchMyClass);
@@ -76,10 +72,12 @@ export default {
     },
     data(){
         return{
-            code:''
+            results: [],
+            value: ''
         }
     }
 }
+
 </script>
 <style lang="less" >
 .myClass{
