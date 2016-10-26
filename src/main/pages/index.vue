@@ -48,7 +48,7 @@
                   <img src="../../assets/main/home_6.png" alt="" />
                   <p class="disable">刷题型</p>
               </flexbox-item>
-                <flexbox-item :span="246.6/750" @click='_warn()'>
+                <!--<flexbox-item :span="246.6/750" @click='_warn()'>
                     <img src="../../assets/main/home_7.png" alt="" />
                     <p class="disable">报听写</p>
                 </flexbox-item>
@@ -63,7 +63,7 @@
                 <flexbox-item :span="246.6/750" @click='_warn()'>
                     <img src="../../assets/main/home_9.png" alt="" />
                     <p class="disable">在线练习</p>
-                </flexbox-item>
+                </flexbox-item>-->
           </flexbox>
         </section>
       </div>

@@ -4,7 +4,7 @@
         <x-header :left-options="{showBack: true}">拍题记录</x-header>
       </div>
       <div style="margin-top:46px;" class="main">
-        <flexbox class="list" v-for="item in list">
+        <flexbox class="list" v-for="item in cameraHistoryList" track-by="$index">
           <flexbox-item :span="2/5">
             <img class="previewer-demo-img"  v-lazy="item.compressPic" @click="_show($index)">
           </flexbox-item>
@@ -18,12 +18,6 @@
               </div>
               <p>
                   <i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id,$index)"></i>
-                  <!--<template v-if="item.collectTime != '0' ? true:false">
-                      <span @click="_removeCollect(item.id,$index)" class="isCollect"><i class="icon iconfont icon-collect1"></i></span>
-                  </template>
-                  <template v-if="item.collectTime == '0' ? true:false">
-                      <span @click="_collectAdd(item.id,$index)" class="isCollect"><i class="icon iconfont icon-collect"></i></span>
-                  </template>-->
               </p>
             </flexbox-item>
           </flexbox>
@@ -32,7 +26,7 @@
       <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
         <span slot="no-results" style="color:#4bb7aa;">
             <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-            <p style="font-size:1rem;display:inline-block;">还没收藏习题~</p>
+            <p style="font-size:1rem;display:inline-block;">还没拍题记录~</p>
         </span>
         <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已加载全部记录</span>
       </infinite-loading>
@@ -51,7 +45,7 @@ import store from '../../store'
 import moment from 'moment'
 import { period_id,subject_id,token } from '../../common/getters'
 import { collectRemove,collectAdd } from '../../common/actions'
-import { cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage } from '../getters'
+import { cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage } from '../getters'
 import { getCameraHistoryIds,getCameraHistoryList,delCameraHistroy } from '../actions'
 import * as _ from '../../config/whole'
 
@@ -61,7 +55,8 @@ export default {
   },
   vuex: {
       getters: {
-          period_id,subject_id,token,cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage
+          period_id,subject_id,token,
+          cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage
       },
       actions: {
           getCameraHistoryIds,getCameraHistoryList,delCameraHistroy,collectRemove,collectAdd
@@ -112,23 +107,36 @@ export default {
       this.$refs.previewer.show();
     },
     _onInfinite(){
-      this.getCameraHistoryIds({
-          currentPage:this.currentPage,
-          token:this.token,
-          options:{
-              period_id:this.period_id,
-              subject_id:this.subject_id
-          }
-      },()=>{
-          this.$broadcast('$InfiniteLoading:loaded');
-          setTimeout(()=>{
-              if(this.cameraHistoryTotalPage <= this.currentPage){
-                  this.$broadcast('$InfiniteLoading:complete');
-                  return;
-              }
-              this.currentPage ++;
-          },500);
-      })
+        this.$broadcast('$InfiniteLoading:loaded');
+        if(this.cameraHistoryTotalPage != 0 && this.cameraHistoryTotalPage <= this.cameraHistoryCurrentPage){
+            this.$broadcast('$InfiniteLoading:complete');
+            return;
+        }
+        setTimeout(()=>{
+            this.getCameraHistoryIds({
+                currentPage:this.cameraHistoryCurrentPage,
+                token:this.token,
+                options:{
+                    period_id:this.period_id,
+                    subject_id:this.subject_id
+                }
+            },(ids)=>{
+                this.$broadcast('$InfiniteLoading:loaded');
+                if(this.cameraHistoryTotalPage <= this.cameraHistoryCurrentPage-1){
+                    this.$broadcast('$InfiniteLoading:complete');
+                    return;
+                }
+                let params = {
+                    options:{
+                        ids:ids,
+                        period_id:this.period_id,
+                        subject_id:this.subject_id
+                    },
+                    token:this.token
+                };
+                this.getCameraHistoryList(params);
+            })
+        },500);
     },
     _delelte(){
        this.delCameraHistroy({
@@ -146,35 +154,17 @@ export default {
   },
   data() {
     return {
-      currentPage:1,
       clearShow: false,
       //待删除的索引
       delPic:{
         index:'',
         id:''
       },
-      list:[],
       imgList: [{
         src: '',
         w: '',
         h: ''
       }]
-    }
-  },
-  watch:{
-    cameraHistoryIds(){
-        let params = {
-            options:{
-                ids:this.cameraHistoryIds,
-                period_id:this.period_id,
-                subject_id:this.subject_id
-            },
-            token:this.token
-        };
-        this.getCameraHistoryList(params);
-    },
-    cameraHistoryList(){
-        this.list =  this.list.concat(this.cameraHistoryList);
     }
   }
 }

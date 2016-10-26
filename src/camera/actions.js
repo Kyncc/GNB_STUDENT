@@ -10,7 +10,7 @@ export const getCameraResultIds = ({ dispatch }, params,success,error) => {
       ok:response=>{
         dispatch(types.GET_CAMERA_RESULTIDS_SUCCESS,response.data);
         _.leave()
-        success&&success()
+        success&&success();
       },
       wrong:response=>{
         dispatch(types.GET_CAMERA_RESULTIDS_ERROR,response.data);
@@ -57,7 +57,7 @@ export const getCameraHistoryIds = ({ dispatch }, params,success) => {
       data:params,
       ok:response=>{
           dispatch(types.GET_CAMERA_HISTORYIDS_SUCCESS,response.data);
-          success&&success();
+          success(response.data.data.ids);
       },
       wrong:response=>{
         dispatch(types.GET_CAMERA_HISTORYIDS_ERROR,response.data);

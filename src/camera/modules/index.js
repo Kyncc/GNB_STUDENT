@@ -33,11 +33,10 @@ const state = {
     cameraImg:'',
     //拍照历史
     history:{
-      code:'',
       ids:[],
       list:[],
-      totalPage:'1',
-      msg:''
+      totalPage:0,
+      currentPage:1
     },
     //例题
     example:{
@@ -73,47 +72,26 @@ const state = {
 
 const mutations = {
   [GET_CAMERA_HISTORYIDS_SUCCESS](state , data){
-    state.history.code = data.data.code;
-    state.history.ids = data.data.ids;
-    state.history.totalPage = data.data.totalPage;
-    state.history.msg = data.msg;
-  },
-  [GET_CAMERA_HISTORYIDS_ERROR](state, data){
-    state.history.msg = data.msg;
+    state.history.ids = state.history.ids.concat(data.data.ids);
+    state.history.totalPage = Number(data.data.totalPage);
+    state.history.currentPage++;
   },
   [GET_CAMERA_HISTORYLIST_SUCCESS](state , data){
-    state.history.code = data.code;
-    state.history.list = data.data;
-    state.history.msg = data.msg;
+    state.history.list = state.history.list.concat(data.data);
   },
-  [GET_CAMERA_HISTORYLIST_ERROR](state, data){
-    state.history.msg = data.msg;
-  },
-
   [DEL_CAMERA_HISTORYID_SUCCESS](state , data){
     state.del.code = data.code;
     state.del.msg = data.msg;
   },
-  [DEL_CAMERA_HISTORYID_ERROR](state, data){
-    state.del.msg = data.msg;
-  },
-
   [GET_CAMERA_RESULTIDS_SUCCESS](state , data){
     state.result.code = data.data.code;
     state.result.ids = data.data.ids;
     state.result.id = data.data.id;
     state.result.msg = data.msg;
   },
-  [GET_CAMERA_RESULTIDS_ERROR](state, data){
-    state.result.msg = data.msg;
-  },
-
   [GET_CAMERA_RESULTLIST_SUCCESS](state , data){
     state.result.code = data.code;
     state.result.list = data.data;
-    state.result.msg = data.msg;
-  },
-  [GET_CAMERA_RESULTLIST_ERROR](state, data){
     state.result.msg = data.msg;
   },
   [GET_CAMERA_HISTORYEXAMPLEID_SUCCESS](state , data){
@@ -121,21 +99,12 @@ const mutations = {
     state.example.list = data.data;
     state.example.msg = data.msg;
   },
-  [GET_CAMERA_HISTORYEXAMPLEID_ERROR](state, data){
-    state.example.msg = data.msg;
-  },
   [POST_CAMERA_RESULTSEARCH_SUCCESS](state , data){
     state.search.code = data.code;
     state.search.msg = data.msg;
   },
-  [POST_CAMERA_RESULTSEARCH_ERROR](state, data){
-    state.search.msg = data.msg;
-  },
   [POST_CAMERA_EXAMPLE_SUCCESS](state , data){
     state.setExample.code = data.code;
-    state.setExample.msg = data.msg;
-  },
-  [POST_CAMERA_EXAMPLE_ERROR](state, data){
     state.setExample.msg = data.msg;
   },
   [SET_CAMERA_IMG](state, data){
