@@ -1,12 +1,8 @@
 import {
   GET_CAMERA_HISTORYIDS_SUCCESS,
-  GET_CAMERA_HISTORYIDS_ERROR,
-
   GET_CAMERA_HISTORYLIST_SUCCESS,
-  GET_CAMERA_HISTORYLIST_ERROR,
-
   DEL_CAMERA_HISTORYID_SUCCESS,
-  DEL_CAMERA_HISTORYID_ERROR,
+  CLEAR_CAMERA_HISTORY,
 
   GET_CAMERA_RESULTIDS_SUCCESS,
   GET_CAMERA_RESULTIDS_ERROR,
@@ -28,7 +24,6 @@ import {
 }from '../mutationTypes'
 
 
-
 const state = {
     cameraImg:'',
     //拍照历史
@@ -42,11 +37,6 @@ const state = {
     example:{
       code:'',
       list:[],
-      msg:''
-    },
-    //移除历史
-    del:{
-      code:'',
       msg:''
     },
     //搜题结果
@@ -79,9 +69,14 @@ const mutations = {
   [GET_CAMERA_HISTORYLIST_SUCCESS](state , data){
     state.history.list = state.history.list.concat(data.data);
   },
-  [DEL_CAMERA_HISTORYID_SUCCESS](state , data){
-    state.del.code = data.code;
-    state.del.msg = data.msg;
+  [DEL_CAMERA_HISTORYID_SUCCESS](state,index){
+    state.history.list.splice(index,1);
+  },
+  [CLEAR_CAMERA_HISTORY](state){
+    state.history.ids = [];
+    state.history.list = [];
+    state.history.totalPage = 0;
+    state.history.currentPage = 1;
   },
   [GET_CAMERA_RESULTIDS_SUCCESS](state , data){
     state.result.code = data.data.code;
@@ -109,7 +104,7 @@ const mutations = {
   },
   [SET_CAMERA_IMG](state, data){
     state.cameraImg = data;
-    }
+  }
 }
 
 export default {

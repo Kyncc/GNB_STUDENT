@@ -82,11 +82,11 @@ export const getCameraHistoryList = ({ dispatch }, params,success) => {
 }
 
 //移除拍错题
-export const delCameraHistroy = ({ dispatch }, params,success) => {
+export const delCameraHistroy = ({ dispatch },params,id,success) => {
   Api.cameraRemove({
       data:params,
       ok:response=>{
-          dispatch(types.DEL_CAMERA_HISTORYID_SUCCESS,response.data);
+          dispatch(types.DEL_CAMERA_HISTORYID_SUCCESS,id);
           success&&success();
       },
       wrong:response=>{
@@ -94,6 +94,11 @@ export const delCameraHistroy = ({ dispatch }, params,success) => {
         _.toast(response.data.msg);
       }
   })
+}
+
+//清空历史题目信息
+export const clearCameraHistroy = ({ dispatch }) => {
+    dispatch(types.CLEAR_CAMERA_HISTORY);
 }
 
 //设置例题

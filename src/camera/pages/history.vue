@@ -80,7 +80,7 @@ export default {
             token: self.token,
             type:'camera'
         },()=>{
-            self.list[index].collectTime = moment().unix();
+            self.cameraHistoryList[index].collectTime = moment().unix();
         });
     },
     _removeCollect(id,index){
@@ -94,21 +94,21 @@ export default {
             token:self.token,
             type:'camera'
         },()=>{
-            self.list[index].collectTime = 0;
+            self.cameraHistoryList[index].collectTime = 0;
         });
     },
     _record(importantId,id) {
       this.$router.go(`/camera/record/${importantId}/${id}`);
     },
     _show(index) {
-      this.imgList[0].src = this.list[index].pic;
-      this.imgList[0].w = this.list[index].width;
-      this.imgList[0].h = this.list[index].height;
+      this.imgList[0].src = this.cameraHistoryList[index].pic;
+      this.imgList[0].w = this.cameraHistoryList[index].width;
+      this.imgList[0].h = this.cameraHistoryList[index].height;
       this.$refs.previewer.show();
     },
     _onInfinite(){
-        this.$broadcast('$InfiniteLoading:loaded');
         if(this.cameraHistoryTotalPage != 0 && this.cameraHistoryTotalPage <= this.cameraHistoryCurrentPage){
+            this.$broadcast('$InfiniteLoading:loaded');
             this.$broadcast('$InfiniteLoading:complete');
             return;
         }
@@ -146,8 +146,7 @@ export default {
               period_id:this.period_id,
               subject_id:this.subject_id
           }
-      },()=>{
-          this.list.$remove(this.list[this.delPic.index]);
+      },this.delPic.index,()=>{
           _.toast("删除成功");
       });
     }
