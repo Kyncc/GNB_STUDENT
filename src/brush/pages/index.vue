@@ -7,7 +7,45 @@
         </div>
 
         <div style="padding-top:46px;">
-            123123
+            <header class="sectionHeader vux-1px-b">必修1</header>
+            <section class="section">
+                <flexbox :gutter="0" wrap="wrap" class="sectionTitle">
+                    <flexbox-item :span="3/4">
+                        <h1>第一章 集合与函数概念</h1>
+                    </flexbox-item>
+                    <flexbox-item :span="1/4">
+                        <x-button mini plain type="primary">巩固练习</x-button>
+                    </flexbox-item>
+                </flexbox>
+                <flexbox :gutter="0" wrap="wrap" class="sectionDegree">
+                    <flexbox-item :span="3/4">
+                        <h3>掌握程度<b>87%</b></h3>
+                    </flexbox-item>
+                    <flexbox-item :span="1/4">
+                        <x-button mini plain type="primary">剩余题型</x-button>
+                    </flexbox-item>
+                </flexbox>
+            </section>
+
+            <section class="section">
+                <flexbox :gutter="0" wrap="wrap" class="sectionTitle">
+                    <flexbox-item :span="3/4">
+                        <h1>第一章 集合与函数概念</h1>
+                    </flexbox-item>
+                    <flexbox-item :span="1/4">
+                        <x-button mini plain type="primary">巩固练习</x-button>
+                    </flexbox-item>
+                </flexbox>
+                <flexbox :gutter="0" wrap="wrap" class="sectionDegree">
+                    <flexbox-item :span="3/4">
+                        <h3>掌握程度<b>87%</b></h3>
+                    </flexbox-item>
+                    <flexbox-item :span="1/4">
+                        <x-button mini plain type="primary">剩余题型</x-button>
+                    </flexbox-item>
+                </flexbox>
+            </section>
+            
         </div>
     </view-box>
 </template>
@@ -16,13 +54,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
-import { XHeader,Panel,ViewBox} from 'vux'
+import { XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton} from 'vux'
 import { period_id,subject_id,token } from '../../common/getters'
 import '../index.less'
 
 export default {
   components: {
-    XHeader,ViewBox,Panel
+    XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton
   },
   methods: {
 	_back() {

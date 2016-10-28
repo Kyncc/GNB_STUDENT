@@ -1,12 +1,13 @@
 <template >
-    <view-box v-ref:view-box class="mapIndex">
+    <view-box v-ref:view-box class="brushIndex">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
-                知识图谱
+                巩固练习
             </x-header>
         </div>
 
         <div style="padding-top:46px;">
+            <header class="sectionHeader vux-1px-b">第一章 集合与函数概念</header>
             
         </div>
     </view-box>
@@ -22,7 +23,7 @@ import '../index.less'
 
 export default {
   components: {
-    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton
+    XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton
   },
   methods: {
 	_back() {
