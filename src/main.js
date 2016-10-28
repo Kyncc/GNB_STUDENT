@@ -43,6 +43,12 @@ import collectExampleDetail from './collect/pages/exampleDetail'
 import messageClass from './message/pages/class'
 import messageCorrect from './message/pages/correct'
 import messageSystem from './message/pages/system'
+//知识图谱
+import map from './map/pages/index'
+//刷题型
+import brush from './brush/pages/index'
+//记错题
+import remember from './remember/pages/index'
 //个人中心
 import userResetPwd from './user/pages/resetPwd'
 import userInfo from './user/pages/info'
@@ -160,6 +166,12 @@ router.map({
   'message/class': { component: messageClass },
   'message/system': { component: messageSystem },
   'message/correct': { component: messageCorrect },
+  //知识图谱
+  'map': {component: map},
+  //记错题
+  'remember':{component: remember},
+  //刷题型
+  'brush':{component: brush},
   //个人中心
   'user/resetPwd': { component: userResetPwd },
   'user/info': { component: userInfo },
