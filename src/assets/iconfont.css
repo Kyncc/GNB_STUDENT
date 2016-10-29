@@ -13,6 +13,7 @@
 }
 .icon-comment:before { content: "\e60c"; }
 .icon-closezhuanhuan:before { content: "\e60d"; }
+.icon-plus:before { content: "\e60e"; }
 .icon-home:before { content: "\e601"; }
 .icon-31wode:before { content: "\e602"; }
 .icon-tishi:before { content: "\e608"; }

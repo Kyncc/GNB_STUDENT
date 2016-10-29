@@ -9,41 +9,25 @@
         <div style="padding-top:46px;">
             <header class="sectionHeader vux-1px-b">必修1</header>
             <section class="section">
-                <flexbox :gutter="0" wrap="wrap" class="sectionTitle">
-                    <flexbox-item :span="3/4">
-                        <h1>第一章 集合与函数概念</h1>
-                    </flexbox-item>
-                    <flexbox-item :span="1/4">
-                        <x-button mini plain type="primary">巩固练习</x-button>
-                    </flexbox-item>
-                </flexbox>
-                <flexbox :gutter="0" wrap="wrap" class="sectionDegree">
-                    <flexbox-item :span="3/4">
-                        <h3>掌握程度<b>87%</b></h3>
-                    </flexbox-item>
-                    <flexbox-item :span="1/4">
-                        <x-button mini plain type="primary">剩余题型</x-button>
-                    </flexbox-item>
-                </flexbox>
+                <div class="sectionTitle">
+                    <h1 style="width:73%;display:inline-block;float:left;">第一章 集合与函数</h1>
+                    <x-button mini plain type="primary" style="width:25%;margin:.25rem 0;">巩固练习</x-button>
+                </div>
+                <div  class="sectionDegree">
+                    <h3 style="width:73%;display:inline-block;float:left;">掌握程度<b>87%</b></h3>
+                    <x-button mini plain type="primary" style="width:25%;margin:.25rem 0;">剩余题型</x-button>
+                </div>
             </section>
 
             <section class="section">
-                <flexbox :gutter="0" wrap="wrap" class="sectionTitle">
-                    <flexbox-item :span="3/4">
-                        <h1>第一章 集合与函数概念</h1>
-                    </flexbox-item>
-                    <flexbox-item :span="1/4">
-                        <x-button mini plain type="primary">巩固练习</x-button>
-                    </flexbox-item>
-                </flexbox>
-                <flexbox :gutter="0" wrap="wrap" class="sectionDegree">
-                    <flexbox-item :span="3/4">
-                        <h3>掌握程度<b>87%</b></h3>
-                    </flexbox-item>
-                    <flexbox-item :span="1/4">
-                        <x-button mini plain type="primary">剩余题型</x-button>
-                    </flexbox-item>
-                </flexbox>
+                <div class="sectionTitle">
+                    <h1 style="width:73%;display:inline-block;float:left;">第一章 集合与函数</h1>
+                    <x-button mini plain type="primary" style="width:25%;margin:.25rem 0;">巩固练习</x-button>
+                </div>
+                <div  class="sectionDegree">
+                    <h3 style="width:73%;display:inline-block;float:left;">掌握程度<b>87%</b></h3>
+                    <x-button mini plain type="primary" style="width:25%;margin:.25rem 0;">剩余题型</x-button>
+                </div>
             </section>
             
         </div>

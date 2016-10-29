@@ -1,7 +1,9 @@
 <template>
 <view-box v-ref:view-box class='user vux-scroller-header-box'>
   <div style="height:46px;">
-    <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">个人中心<a slot="right" v-touch:tap="_quit">退出</a></x-header>
+    <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">个人中心
+        <a slot="right" v-touch:tap="_quit">退出</a>
+    </x-header>
   </div>
   <scroller lock-x v-ref:scroller height="-47px">
     <div>
@@ -14,11 +16,14 @@
       </div>
       <group style="padding-bottom:100px;">
         <cell title="个人资料" link="/user/info/">
-          <span class="icon icon-info" slot="icon"></span>
+            <span class="icon icon-info" slot="icon"></span>
         </cell>
-        <!--<cell title="我的教材" link="../user/textBook/">
+        <cell title="我的教材" link="../user/textBook/">
             <span class="icon icon-textbook" slot="icon"></span>
-        </cell> -->
+        </cell>
+        <cell title="我的习题册" link="../user/textBook/">
+            <span class="icon icon-textbook" slot="icon"></span>
+        </cell>
         <cell title="我的班级" link="/user/class/">
           <span class="icon icon-class" slot="icon"></span>
         </cell>
