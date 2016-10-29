@@ -1,74 +1,57 @@
-<template >
+<template>
     <view-box v-ref:view-box class="mainIndex">
-        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: false}">
-                归纳本
-                <!--<a slot="right" v-touch:tap="_share">
-                        <i class="icon iconfont icon-share"></i>
-                    </a>
-                -->
-            </x-header>
+        <div style="position:fixed;left:0;top:0;width:100%;z-index:2016" slot="header">
+            <x-header :left-options="{showBack: false}">归纳本</x-header>
         </div>
-
-        <div style="padding-top:46px;">
-            <div class="swiper">
-                <swiper auto loop height="10em" dots-position="center">
-                    <swiper-item class="swiperImg" v-for="item in swiper"><img :src="item"/></swiper-item>
-                </swiper>
+        <scroller lock-x v-ref:scroller height="-46px">
+            <div style="padding-top:46px;">
+                <div class="swiper">
+                    <swiper auto loop height="10em" dots-position="center">
+                        <swiper-item class="swiperImg" v-for="item in swiper"><img :src="item"/></swiper-item>
+                    </swiper>
+                </div>
+                <section class="content">
+                    <div class="flex-wrap">
+                        <div class="flex-item right1px bottom1px" v-link="{ path: '/camera/'}">
+                            <img src="../../assets/main/home_1.png"/>
+                            <p>拍错题</p>
+                        </div>
+                        <div class="flex-item right1px bottom1px" v-link="{ path: '/error/'}">
+                            <img src="../../assets/main/home_2.png" alt="" />
+                            <p>错题归纳</p>
+                        </div>
+                        <div class="flex-item bottom1px" v-link="{ path: '/collect/'}">
+                            <img src="../../assets/main/home_4.png" alt="" />
+                            <p >收藏本</p>
+                        </div>
+                        <div class="flex-item right1px bottom1px" v-link="{ path: '/remember'}">
+                            <img src="../../assets/main/home_3.png" alt="" />
+                            <p >记错题</p>
+                        </div>
+                        <div class="flex-item right1px bottom1px" v-link="{ path: '/map'}">
+                            <img src="../../assets/main/home_5.png" alt="" />
+                            <p >知识图谱</p>
+                        </div>
+                        <div class="flex-item bottom1px" v-link="{ path: '/brush'}">
+                            <img src="../../assets/main/home_6.png" alt="" />
+                            <p >刷题型</p>
+                        </div>
+                        <div class="flex-item right1px" @click='_warn()'>
+                            <img src="../../assets/main/home_7.png"  />
+                            <p class="disable">报听写</p>
+                        </div>
+                        <div class="flex-item right1px" @click='_warn()'>
+                            <img src="../../assets/main/home_8.png"  />
+                            <p class="disable">我的作业</p>
+                        </div>
+                        <div class="flex-item" @click='_warn()'>
+                            <img src="../../assets/main/home_9.png"  />
+                            <p class="disable">在线练习</p>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <section class="content">
-                <flexbox :gutter="0" wrap="wrap">
-                    <flexbox-item :span="246.6/750" v-link="{ path: '/camera/'}">
-                        <img src="../../assets/main/home_1.png"/>
-                        <p>拍错题</p>
-                    </flexbox-item>
-                    <flexbox-item :span="5/750">
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750"  v-link="{ path: '/error/'}">
-                        <img src="../../assets/main/home_2.png"  />
-                        <p>错题归纳</p>
-                    </flexbox-item>
-                    <flexbox-item :span="5/750">
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750"  v-link="{ path: '/collect/'}">
-                        <img src="../../assets/main/home_4.png"  />
-                        <p>收藏本</p>
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750" v-link="{ path: '/remember'}">
-                        <img src="../../assets/main/home_3.png"  />
-                        <p>记错题</p>
-                    </flexbox-item>
-                    <flexbox-item :span="5/750">
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750" v-link="{ path: '/map'}">
-                        <img src="../../assets/main/home_5.png"  />
-                        <p>知识图谱</p>
-                    </flexbox-item>
-                    <flexbox-item :span="5/750">
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750" v-link="{ path: '/brush'}">
-                        <img src="../../assets/main/home_6.png"  />
-                        <p >刷题型</p>
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750" @click='_warn()'>
-                        <img src="../../assets/main/home_7.png"  />
-                        <p class="disable">报听写</p>
-                    </flexbox-item>
-                    <flexbox-item :span="5/750">
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750" @click='_warn()'>
-                        <img src="../../assets/main/home_8.png"  />
-                        <p class="disable">我的作业</p>
-                    </flexbox-item>
-                    <flexbox-item :span="5/750">
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750" @click='_warn()'>
-                        <img src="../../assets/main/home_9.png"  />
-                        <p class="disable">在线练习</p>
-                    </flexbox-item>
-                 </flexbox>
-            </section>
-        </div>
+        </scroller>
     </view-box>
 </template>
 
@@ -86,48 +69,50 @@ import * as _ from '../../config/whole.js'
 import './main.less'
 
 export default {
-  components: {
-    XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem,ViewBox
-  },
-  methods: {
-		// _share(){
-      //shareReady()
-      _warn(){
-        _.toast('敬请期待')
-     }
-  },
-  vuex: {
-    getters: {
-        collectCount,errorCount,cameraCount,swiper,
-        period_id,subject_id,token
+    components: {
+        XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem,ViewBox
     },
-    actions: {
-      getStudentIndex
-    }
-  },
-  store,
-  ready(){
-    let params = {
-        options:{
-            period_id:this.period_id,
-            subject_id:this.subject_id
+    methods: {
+        // _share(){
+        //shareReady()
+        _warn(){
+            _.toast('敬请期待')
+        }
+    },
+    vuex: {
+        getters: {
+            collectCount,errorCount,cameraCount,swiper,
+            period_id,subject_id,token
         },
-        token:localStorage.getItem('token')
+        actions: {
+            getStudentIndex
+        }
+    },
+    store,
+    ready(){
+        let self = this
+        self.getStudentIndex({
+            options:{
+                period_id:self.period_id,
+                subject_id:self.subject_id
+            },
+            token:localStorage.getItem('token')
+        })
+        if(window.plus) {
+            plus.navigator.closeSplashscreen();
+        }
     }
-    this.getStudentIndex(params);
-    if(window.plus) {
-        plus.navigator.closeSplashscreen();
-    }
-  }
 }
 </script>
 <style lang="less" scoped>
 .content{
-    .vux-flexbox{
-        .vux-flexbox-item{
+    .flex-wrap{
+        width:100%;
+        .flex-item{
             background:#fff;
-            margin-bottom:0.13rem;
-            min-width:0;
+            width:33.3333%;
+            box-sizing:border-box;
+            float:left;
             img{
                 width:2rem;
                 height:2rem;
@@ -140,6 +125,15 @@ export default {
                 margin-bottom:0.5rem;
             }
         }
+
+        .right1px{
+            border-right:2px solid #edf2f1;
+        }
+        .bottom1px{
+            border-bottom:2px solid #edf2f1;
+        }
+
     }
 }
+
 </style>
