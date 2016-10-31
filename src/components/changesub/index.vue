@@ -1,9 +1,12 @@
 <template>
-    <mt-popup :visible.sync="show" popup-transition="popup-fade" class="gnb-changeSub">
-      <p >数学</p>
-      <p >物理</p>
-      <p >化学</p>
-    </mt-popup>
+    <div class="">
+        <mt-popup :visible.sync="visible" popup-transition="popup-fade" class="gnb-changeSub">
+          <p >数学</p>
+          <p >物理</p>
+          <p >化学</p>
+        </mt-popup>
+    </div>
+
 </template>
 
 
@@ -12,20 +15,13 @@ import Vue from 'vue'
 import { Popup } from 'mint-ui'
 import './index.less'
 
-Vue.component('mt-popup', Popup);
-
-module.default = {
-    props: {
-        show: {
-            type:Boolean,
-            default: true
-        }
+export default  {
+    props: ['visible'],
+    components:{
+        'mt-popup': Popup
     },
     methods: {
-
-
 
     }
 }
 </script>
-
