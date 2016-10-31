@@ -15,13 +15,6 @@
 - [单项数据流-Vuex][6]
 - [VueRouter和Vuex流同步-Vuex-router-sync][7]
 ### 功能组件
-<details>
-  <summary>Is this production ready?</summary>
-  Next.js has been powering `https://zeit.co` since its inception.
-
-  We’re ecstatic about both the developer experience and end-user performance, so we decided to share it with the community.
-</details>
-
 - [时间格式化-Moment.js][8]
 - [图片控制剪裁-Cropper.js][11]
 ### UI组件
