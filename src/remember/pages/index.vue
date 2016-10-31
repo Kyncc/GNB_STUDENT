@@ -30,16 +30,25 @@
             
         </div>
     </view-box>
+    <mt-popup :visible="true" popup-transition="popup-fade" class="mint-popup-1" :style="{ top: buttonBottom + 10 + 'px' }">
+      <p>数学</p>
+      <p>物理</p>
+      <p>化学</p>
+    </mt-popup>
+
 </template>
 
 <script>
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
+import { Popup } from 'mint-ui';
 import { XHeader,Panel,ViewBox,Group,Cell,Search} from 'vux'
 import { period_id,subject_id,token } from '../../common/getters'
 import '../index.less'
-  
+
+
+Vue.component('mt-popup', Popup);  
 export default {
   components:{
     XHeader,ViewBox,Panel,Group,Cell,Search
@@ -63,3 +72,26 @@ export default {
   }
 }
 </script>
+
+
+<style>
+.mint-popup-1{
+    width: 5rem;
+    border-radius: 8px;
+    padding: 10px;
+    transform: translate(-50%, 0);
+    p{margin-bottom: .5rem;font-size:.8rem;}
+}
+.mint-popup-1:before {
+display: inline-block;
+width: 0;
+height: 0;
+border: solid transparent;
+border-width:.5rem;
+border-bottom-color: #fff;
+content: '';
+position: absolute;
+top: -1rem;
+right: 1rem;
+}
+</style>

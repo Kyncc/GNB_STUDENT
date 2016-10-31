@@ -1,6 +1,6 @@
 ﻿# 归纳本学生端
 
-> 基于Vue.js和Dcloud(H5+)混合技术Hybrid App
+> 基于Vue(1.0).js和Dcloud(H5+)混合技术Hybrid App
 
 
 ## 使用技术简介
@@ -18,6 +18,7 @@
 - [图片控制剪裁-Cropper.js][11]
 ### UI组件
 - [手机UI库-Vux][5]
+- [手机UI库-Mint][14]
 - [触摸手势组件-VueTouch][9]
 - [加载数据组件-Vue-infinite-loading][10]
 - [图片懒加载-Vue-lazyload][12]
@@ -38,7 +39,11 @@
         ├── common      # 公共文件模块
         ├── main        # 主页模块
         ├── login       # 登陆模块
+        ├── camera      # 拍错题模块
         ├── collect     # 收藏本模块
+        ├── remember    # 记错题模块
+        ├── map         # 知识图谱模块
+        ├── brush       # 刷错题模块
         ├── error       # 归纳本（错题统计）模块
         ├── picture     # 拍错题模块
         ├── message     # 消息模块
@@ -49,11 +54,11 @@
             └── mutatuinTypes.js    # mutatuinTypes
 
 
-### 安装
+## 安装
 
     npm install //安装依赖包
 
-### 使用
+## 使用
 
     npm run dev     //进入开发模式
     npm run build   //打包生成的目录在dist下
@@ -72,4 +77,5 @@
   [11]: https://fengyuanchen.github.io/cropperjs/
   [12]: https://github.com/hilongjw/vue-lazyload
   [13]: https://github.com/dimsemenov/PhotoSwipe
+  [14]: https://github.com/ElemeFE/mint-ui/tree/1.x
   
