@@ -30,7 +30,7 @@
             
         </div>
     </view-box>
-    <gnb-change-sub :visible="show"><gnb-change-sub>
+    <gnb-change-sub :visible="visible"><gnb-change-sub>
     
 
 </template>
@@ -65,7 +65,7 @@ export default {
   store,
   data(){
 		return {
-			show: true
+			visible:true
 		}
 	},
   ready(){

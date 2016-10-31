@@ -1,9 +1,11 @@
 <template>
-    <mt-popup :visible.sync="show" popup-transition="popup-fade" class="gnb-changeSub">
-      <p >数学</p>
-      <p >物理</p>
-      <p >化学</p>
-    </mt-popup>
+    <div>
+        <mt-popup :visible.sync="show" popup-transition="popup-fade" class="gnb-changeSub">
+            <p >数学</p>
+            <p >物理</p>
+            <p >化学</p>
+        </mt-popup>
+    </div>
 </template>
 
 
@@ -18,7 +20,7 @@ module.default = {
     props: {
         show: {
             type:Boolean,
-            default: true
+            default:true
         }
     },
     methods: {
