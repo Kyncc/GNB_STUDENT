@@ -4,6 +4,7 @@
 
 
 ## 使用技术简介
+
 ### 编译环境
 - [VueLoader][4]
 ### Hybird框架
@@ -14,6 +15,11 @@
 - [单项数据流-Vuex][6]
 - [VueRouter和Vuex流同步-Vuex-router-sync][7]
 ### 功能组件
+<details>
+<summary>HTML 5</summary>
+This document teaches you everything you have to learn about HTML 5.
+</details>
+
 - [时间格式化-Moment.js][8]
 - [图片控制剪裁-Cropper.js][11]
 ### UI组件
