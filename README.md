@@ -37,16 +37,16 @@
         ├── api         # 用来放置接口
         ├── assets      # 静态资源文件
         ├── common      # 公共文件模块
+        ├── components  # 组件
         ├── main        # 主页模块
-        ├── login       # 登陆模块
+        ├── login       # 登陆注册模块
         ├── camera      # 拍错题模块
         ├── collect     # 收藏本模块
         ├── remember    # 记错题模块
         ├── map         # 知识图谱模块
         ├── brush       # 刷错题模块
-        ├── error       # 归纳本（错题统计）模块
-        ├── picture     # 拍错题模块
-        ├── message     # 消息模块
+        ├── error       # 归纳本模块
+        ├── message     # 互动模块
         ├── users       # 个人中心
             ├── pages               # 页面文件
             ├── modules             # 逻辑
