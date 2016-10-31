@@ -15,10 +15,11 @@
 - [单项数据流-Vuex][6]
 - [VueRouter和Vuex流同步-Vuex-router-sync][7]
 ### 功能组件
-<details>
-<summary>HTML 5</summary>
-This document teaches you everything you have to learn about HTML 5.
-</details>
+
+    <details>
+        <summary>HTML 5</summary>
+        This document teaches you everything you have to learn about HTML 5.
+    </details>
 
 - [时间格式化-Moment.js][8]
 - [图片控制剪裁-Cropper.js][11]
@@ -31,7 +32,7 @@ This document teaches you everything you have to learn about HTML 5.
 - [灯箱-PhotoSwipe][13]
  
 ## 文件夹结构
-
+   
     ├── build       # webpack编译配置
     ├── config      # webpack配置
     ├── dist        # 打包后文件（此目录放在HBuilder中）
