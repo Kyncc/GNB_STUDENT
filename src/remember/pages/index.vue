@@ -8,7 +8,7 @@
                 </a>
             </x-header>
         </div>
-
+						
         <div style="padding-top:46px;">
             <group title="必修一">
                 <cell title="5年高考三年模拟" link="/remember/1"></cell>
@@ -41,10 +41,9 @@ import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Panel,ViewBox,Group,Cell,Search} from 'vux'
 import { period_id,subject_id,token } from '../../common/getters'
-import '../index.less'
 import gnbChangeSub from '../../components/changesub/index.vue'
+import '../index.less'
 
- 
 export default {
   components:{
     XHeader,ViewBox,Panel,Group,Cell,Search,gnbChangeSub
@@ -65,7 +64,7 @@ export default {
   store,
   data(){
 		return {
-			visible:true
+			visible:false
 		}
 	},
   ready(){

@@ -17,8 +17,8 @@
         <checker-item value="0">女</checker-item>
       </checker>
     </cell>
-    <x-input title="年级" name="grade" value="高中" readonly></x-input>
-    <x-input title="版本" name="textbook" value="人教A版" readonly></x-input>
+    <popup-picker title="版本" :data="bookList" :columns="2" :value.sync="bookVal" show-name></popup-picker>
+    <popup-picker title="年级" :data="gradeList" :columns="2" :value.sync="gradeVal" show-name></popup-picker>
     <x-input title="学校" name="school" placeholder="请输入学校名称" :value.sync="school"></x-input>
   </group>
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="还未保存,确定返回吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
@@ -26,14 +26,14 @@
 </template>
 
 <script>
-import {Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm} from 'vux'
+import {Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm,PopupPicker} from 'vux'
 import {getUserInfo,updateUserInfo} from '../actions'
 import {fetchUserInfo,fetchToken} from '../getters'
 import * as _ from '../../config/whole.js'
 
 export default {
   components: {
-    Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm
+    Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm,PopupPicker
   },
   data() {
     return {
@@ -42,6 +42,61 @@ export default {
       name: '',
       school: '',
       show: false,
+      gradeVal:[],
+      bookList: [
+        {
+          name: '数学',
+          value: 'math',
+          parent: 0
+        }, {
+          name: '物理',
+          value: 'physical',
+          parent: 0
+        }, {
+          name: '化学',
+          value: 'chemistry',
+          parent: 0
+        }, {
+          name: '人教A版本',
+          value: 'mathRenJiaoA',
+          parent: 'math'
+        }, {
+          name: '人教版',
+          value: 'physicalRenJiao',
+          parent: 'physical'
+        }, {
+          name: '人教版',
+          value: 'chemistryRenJiao',
+          parent: 'chemistry'
+        }
+      ],
+      gradeList: [
+        {
+          name: '初中',
+          value: 'middle',
+          parent: 0
+        }, {
+          name: '高中',
+          value: 'high',
+          parent: 0
+        }, {
+          name: '七年级',
+          value: 'middle1',
+          parent: 'middle'
+        }, {
+          name: '八年级',
+          value: 'middle2',
+          parent: 'middle'
+        }, {
+          name: '九年级',
+          value: 'middle3',
+          parent: 'middle'
+        }, {
+          name: '高中',
+          value: 'high1',
+          parent: 'high'
+        }
+      ]  
     }
   },
   filters: {

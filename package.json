@@ -10,12 +10,14 @@
     "test": ""
   },
   "dependencies": {
+    "bulma": "^0.2.3",
     "cropperjs": "^0.8.1",
     "fastclick": "^1.0.6",
     "jroll": "^2.3.0",
     "mint-ui": "^1.0.1",
     "moment": "^2.15.0",
     "vue": "^1.0.21",
+    "vue-bulma-collapse": "^1.0.3",
     "vue-infinite-loading": "^1.1.1",
     "vue-lazyload": "^0.8.2",
     "vue-resource": "^0.9.3",
