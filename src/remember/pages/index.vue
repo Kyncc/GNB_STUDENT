@@ -64,7 +64,7 @@ export default {
   store,
   data(){
 		return {
-			visible:false
+			visible:true
 		}
 	},
   ready(){

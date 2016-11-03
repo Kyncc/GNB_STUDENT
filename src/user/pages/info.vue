@@ -18,7 +18,7 @@
       </checker>
     </cell>
     <popup-picker title="版本" :data="bookList" :columns="2" :value.sync="bookVal" show-name></popup-picker>
-    <popup-picker title="年级" :data="gradeList" :columns="2" :value.sync="gradeVal" show-name></popup-picker>
+    <popup-picker title="年级" :data="gradeList" :columns="1" :value.sync="gradeVal" show-name></popup-picker>
     <x-input title="学校" name="school" placeholder="请输入学校名称" :value.sync="school"></x-input>
   </group>
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="还未保存,确定返回吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
@@ -43,6 +43,7 @@ export default {
       school: '',
       show: false,
       gradeVal:[],
+      bookVal:[],
       bookList: [
         {
           name: '数学',
@@ -71,30 +72,23 @@ export default {
         }
       ],
       gradeList: [
-        {
-          name: '初中',
-          value: 'middle',
-          parent: 0
-        }, {
-          name: '高中',
-          value: 'high',
-          parent: 0
-        }, {
+         {
           name: '七年级',
           value: 'middle1',
-          parent: 'middle'
+          parent: 0
         }, {
           name: '八年级',
           value: 'middle2',
-          parent: 'middle'
+          parent: 0
         }, {
           name: '九年级',
           value: 'middle3',
-          parent: 'middle'
-        }, {
+          parent: 0
+        },
+        {
           name: '高中',
-          value: 'high1',
-          parent: 'high'
+          value: 'high',
+          parent: 0
         }
       ]  
     }

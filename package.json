@@ -10,7 +10,6 @@
     "test": ""
   },
   "dependencies": {
-    "bulma": "^0.2.3",
     "cropperjs": "^0.8.1",
     "fastclick": "^1.0.6",
     "jroll": "^2.3.0",

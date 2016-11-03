@@ -18,11 +18,11 @@
         <cell title="个人资料" link="/user/info/">
             <span class="icon icon-info" slot="icon"></span>
         </cell>
-        <cell title="我的教材" link="../user/textBook/">
+        <cell title="我的教材" link="../user/textbook/">
             <span class="icon icon-textbook" slot="icon"></span>
         </cell>
-        <cell title="我的习题册" link="../user/textBook/">
-            <span class="icon icon-textbook" slot="icon"></span>
+        <cell title="我的习题册" link="../user/workbook/">
+            <span class="icon icon-workbook" slot="icon"></span>
         </cell>
         <cell title="我的班级" link="/user/class/">
           <span class="icon icon-class" slot="icon"></span>

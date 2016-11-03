@@ -73,6 +73,10 @@ import userClassDetail from './user/pages/class/classDetail'
 import userClassAdd from './user/pages/class/addClass'
 //我的教材
 import userTextbook from './user/pages/textbook/index'
+import userTextbookAdd from './user/pages/textbook/add'
+//我的习题册
+import userWorkbook from './user/pages/workbook/index'
+import userWorkbookAdd from './user/pages/workbook/add'
 //插件
 import moment from 'moment'
 import FastClick from 'fastclick'
@@ -195,7 +199,11 @@ router.map({
   'user/class/detail/:id': { component: userClassDetail },
   'user/class/addClass': { component: userClassAdd },
   //我的教材
-  'user/textBook': { component: userTextbook }
+  'user/textbook': { component: userTextbook },
+  'user/textbook/add':{component:userTextbookAdd},
+  //我的习题册
+  'user/workbook': { component: userWorkbook },
+  'user/workbook/add':{component:userWorkbookAdd}
 })
 
 router.redirect({
