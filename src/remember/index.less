@@ -2,8 +2,45 @@
     .weui_cells_title{
         color:#4bb7aa;
     }
-    .weui_cell_bd>p{
-        // color:#607d8b
+    .weui_cell:before{border-top:1px dashed #333;}
+    .weui_cells:after, .weui_cells:before{
+        height:0px;position: relative;
+    }
+}
+
+.rememberSelect{
+    .indent1{
+        text-indent: 1em;
+    }
+    .indent2{
+        text-indent: 2em;
+    }
+    .indent3{
+        text-indent: 3em;
+    }
+    .sectionHeader{
+        background: #fff;text-align: center;
+        position: relative;
+        padding:5px 0;
+        margin-bottom:.1rem;
+        .with_arrow{
+            display: inline-block;
+            transform: rotate(315deg);
+            height: 6px;
+            width: 6px;
+            border-width: 2px 2px 0 0;
+            border-color: #C8C8CD;
+            border-style: solid;
+            position: absolute;
+            right:.5rem; 
+            top:20px;           
+        }
+    }
+    .weui_cells_title{
+        color:#4bb7aa;
+    }
+    .with_arrow{
+        display: none;
     }
     .weui_cell:before{border-top:1px dashed #333;}
     .weui_cells:after, .weui_cells:before{

@@ -30,7 +30,7 @@
                         </div>
                         <div class="flex-item right1px bottom1px" v-link="{ path: '/map'}">
                             <img src="../../assets/main/home_5.png" alt="" />
-                            <p >知识图谱</p>
+                            <p >成绩报告单</p>
                         </div>
                         <div class="flex-item bottom1px" v-link="{ path: '/brush'}">
                             <img src="../../assets/main/home_6.png" alt="" />

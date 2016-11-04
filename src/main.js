@@ -10,6 +10,7 @@ import Login from './login/pages/login'
 import agreement from './login/pages/agreement'
 import register from './login/pages/register'
 import setPassword from './login/pages/setPassword'
+import setInfo from './login/pages/setInfo'
 import forget from './login/pages/forget'
 import resetPassword from './login/pages/resetPassword'
 //首页
@@ -43,12 +44,16 @@ import collectExampleDetail from './collect/pages/exampleDetail'
 import messageClass from './message/pages/class'
 import messageCorrect from './message/pages/correct'
 import messageSystem from './message/pages/system'
-//知识图谱
-import map from './map/pages/index'
 //刷题型
 import brush from './brush/pages/index'
+//知识图谱
+import map from './map/pages/index'
+import mapDetail from './map/pages/detail'
 //记错题
 import remember from './remember/pages/index'
+import rememberSelect from './remember/pages/select'
+import rememberSection from './remember/pages/section'
+import rememberDetail from './remember/pages/detail'
 //个人中心
 import userResetPwd from './user/pages/resetPwd'
 import userInfo from './user/pages/info'
@@ -91,7 +96,7 @@ Vue.config.devtools = true
 FastClick.attach(document.body)
 
 //图片异步加载
-Vue.use(VueLazyload, {
+Vue.use(VueLazyload,{
   preLoad: 1.3,
   error: 'http://www.atool.org/placeholder.png?size=300x200&text=%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5&&bg=ccc&fg=fff',
   loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
@@ -123,6 +128,7 @@ router.map({
   //注册账户
   'register': { component: register },
   'register/password': { component: setPassword },
+  'register/info': { component: setInfo },
   //忘记密码
   'forget': { component: forget },
   'forget/password': { component: resetPassword },
@@ -172,8 +178,12 @@ router.map({
   'message/correct': { component: messageCorrect },
   //知识图谱
   'map': {component: map},
+  'map/detail/:sectionId': {component: mapDetail},
   //记错题
   'remember':{component: remember},
+  'remember/detail/:id': { component:  rememberDetail},
+  'remember/select/:bookId':{component: rememberSelect},
+  'remember/select/section/:bookId/:sectionId':{component: rememberSection},
   //刷题型
   'brush':{component: brush},
   //个人中心
@@ -228,18 +238,18 @@ router.beforeEach(function(transition) {
           router.replace('/login');
       }
     }
-  if (transition.to.path == '/register/password') {
-    if (store.state.register.mobile == '') {
-      console.log("禁止访问!");
-      router.replace('/register');
-    }
-  }
-  if (transition.to.path == '/forget/password') {
-    if (store.state.forget.mobile == '') {
-      console.log("禁止访问!");
-      router.replace('/forget');
-    }
-  }
+  // if (transition.to.path == '/register/password') {
+  //   if (store.state.register.mobile == '') {
+  //     console.log("禁止访问!");
+  //     router.replace('/register');
+  //   }
+  // }
+  // if (transition.to.path == '/forget/password') {
+  //   if (store.state.forget.mobile == '') {
+  //     console.log("禁止访问!");
+  //     router.replace('/forget');
+  //   }
+  // }
   transition.next();
 })
 

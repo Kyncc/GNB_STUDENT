@@ -81,6 +81,19 @@ export const resetPwd = ({ dispatch }, params) => {
   })
 }
 
+/*编辑用户信息*/
+export const setUserInfo = ({ dispatch }, params, success,wrong) => {
+  Api.updateUserInfo({
+    data: params,
+    ok: response => {
+        success&&success()
+    },
+    wrong: response => {
+        wrong&&wrong()
+    }
+  })
+}
+
 export const setHeadImg = ({ dispatch }, params) => {
     dispatch(types.SET_HEAD_IMG, params)
 }
