@@ -47,8 +47,8 @@ import messageSystem from './message/pages/system'
 //刷题型
 import brush from './brush/pages/index'
 //知识图谱
-import map from './map/pages/index'
-import mapDetail from './map/pages/detail'
+import report from './report/pages/index'
+import reportDetail from './report/pages/detail'
 //记错题
 import remember from './remember/pages/index'
 import rememberSelect from './remember/pages/select'
@@ -177,8 +177,8 @@ router.map({
   'message/system': { component: messageSystem },
   'message/correct': { component: messageCorrect },
   //知识图谱
-  'map': {component: map},
-  'map/detail/:sectionId': {component: mapDetail},
+  'report': {component: report},
+  'report/detail/:sectionId': {component: reportDetail},
   //记错题
   'remember':{component: remember},
   'remember/detail/:id': { component:  rememberDetail},

@@ -28,7 +28,7 @@
                             <img src="../../assets/main/home_3.png" alt="" />
                             <p >记错题</p>
                         </div>
-                        <div class="flex-item right1px bottom1px" v-link="{ path: '/map'}">
+                        <div class="flex-item right1px bottom1px" v-link="{ path: '/report'}">
                             <img src="../../assets/main/home_5.png" alt="" />
                             <p >成绩报告单</p>
                         </div>
