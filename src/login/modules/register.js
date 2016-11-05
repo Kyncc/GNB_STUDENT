@@ -7,8 +7,8 @@ const state = {
   mobile:'',
   code:'',
   version:{
-    math:{},
-    physics:{}
+    math:[{}],
+    physics:[{}]
   }
 }
 

@@ -4,7 +4,6 @@ import Global from './common/global'
 import register from './login/modules/register'
 import login from './login/modules/login'
 import forget from './login/modules/forget'
-import resetPassword from './login/modules/resetPassword'
 import comment from './common/modules/comment'
 import correct from './common/modules/correct'
 import collectAction from './common/modules/collect'
@@ -28,7 +27,6 @@ export default new Vuex.Store({
     login,
     register,
     forget,
-    resetPassword,
     index,
     //评注
     comment,

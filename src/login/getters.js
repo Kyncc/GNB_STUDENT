@@ -6,8 +6,6 @@ export const registerMobile = (state) => state.register.mobile
 
 
 
-
-
 /*手机号重置*/
 export const forgetMessageCode = (state) => state.forget.code
 export const forgetMobile = (state) => state.forget.mobile

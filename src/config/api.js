@@ -17,8 +17,14 @@ export const API_PATHS = {
   getCode: `${API_ENV}${API_VERSION}/student/getCode`,
   //登陆
   login: `${API_ENV}${API_VERSION}/student/login`,
+  /** 注册模块
+   *  addPwd:新增密码
+   *  addInfo:新增人员信息
+   */
   addPwd: `${API_ENV}${API_VERSION}/student/pwd/add`,
+  addInfo: `${API_ENV}${API_VERSION}/student/addUserInfo`,
   resetPwd: `${API_ENV}${API_VERSION}/student/pwd/resetByMobile`,
+  textbookVersion: `${API_ENV}${API_VERSION}/student/edition/byGrade`,
   //首页
   index: `${API_ENV}${API_VERSION}/student/index`,
   //收藏事件

@@ -19,6 +19,12 @@ export default {
   addPwd: (params) => {
     return http({ method: 'get', url: API_PATHS.addPwd, data: params.data, ok: params.ok, wrong: params.wrong });
   },
+  addUserInfo: (params) => {
+    return http({ method: 'post', url: API_PATHS.addInfo, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
+  getTextbookVer: (params) => {
+    return http({ method: 'get', url: API_PATHS.textbookVersion, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
   resetPwd: (params) => {
     return http({ method: 'get', url: API_PATHS.resetPwd, data: params.data, ok: params.ok, wrong: params.wrong });
   },

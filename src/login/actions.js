@@ -2,14 +2,6 @@ import Api from '../config/httpdispatch'
 import * as types from './mutationTypes'
 import * as _ from '../config/whole'
 
-import Vue from 'vue'
-import Router from 'vue-router'
-Vue.use(Router)
-
-const router = new Router();
-
-
-
 /*获取短信验证码(注册账号)*/
 export const getRegisterCode = ({ dispatch }, params) => {
   Api.getCode({
@@ -84,21 +76,19 @@ export const getForgetCode = ({ dispatch }, params) => {
 
 
 /*重置登陆密码*/
-export const resetPwd = ({ dispatch }, params) => {
+export const resetPwd = ({ dispatch }, params,success,wrong) => {
   Api.resetPwd({
       data:params,
       ok:response=>{
-        dispatch(types.RESET_PASSWORD_SUCCESS,response.data);
-        router.replace('/');
+        dispatch(types.RESET_PASSWORD_SUCCESS);
+        success&&success();
       },
       wrong:response=>{
-        dispatch(types.RESET_PASSWORD_ERROR,response.data);
+        wrong&&wrong();
         _.toast(response.data.msg);
       }
   })
 }
-
-
 
 export const setHeadImg = ({ dispatch }, params) => {
     dispatch(types.SET_HEAD_IMG, params)

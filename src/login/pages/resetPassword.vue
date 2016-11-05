@@ -64,7 +64,9 @@ export default {
         mobile:this.forgetMobile,
         pwd:this.password
       }
-      this.resetPwd(params);
+      this.resetPwd(params,()=>{
+        this.$router.replace('/');
+      });
     }
   },
   computed:{
