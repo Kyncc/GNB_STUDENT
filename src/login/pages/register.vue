@@ -1,7 +1,7 @@
 <template>
   <div class="register vux-scroller-header-box">
     <div style="height:46px;">
-			<x-header :left-options="{showBack: false,preventGoBack:true}" @on-click-back="_back" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">用户注册</x-header>
+			<x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">用户注册</x-header>
 		</div>
     <div class="icon">
       <img src="../../assets/login/icon.jpg">
@@ -15,9 +15,6 @@
         <x-button slot="right" :text="btnValue" type="primary" :disabled="disableMobile" style="width:118px;height:49px;border-radius:0;"  @click="_getCode"></x-button>
       </x-input>
     </group>
-    <!--<p class="agreement">
-      <input type="checkbox" v-model="agree" /> 我已经阅读并同意<a v-link="{ path: 'agreement' }">使用条款和隐私政策</a>
-    </p>-->
     <flexbox :gutter="0" wrap="wrap">
       <flexbox-item :span="1/20"></flexbox-item>
       <flexbox-item :span="18/20">
@@ -73,7 +70,7 @@ export default {
     },
     _next(){
        if(this.registerMessageCode == this.code){
-          this.$router.replace({path: 'register/info', registerMobile:this.mobile});
+          this.$router.replace({path: 'register/password', registerMobile:this.mobile});
        }else{
          this.code = '';
          _.toast('错误的验证码');

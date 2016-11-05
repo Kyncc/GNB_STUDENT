@@ -104,6 +104,15 @@ img[lazy=error] {
 .vux-toast{
     .weui_toast {
         top:85%;
+        max-width:8rem;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+    }
+    .weui_toast_text .weui_toast_content{
+        font-size:.8rem;
     }
 }
 /**

@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import Global from './common/global'
 import register from './login/modules/register'
 import login from './login/modules/login'
-import setPassword from './login/modules/setPassword'
 import forget from './login/modules/forget'
 import resetPassword from './login/modules/resetPassword'
 import comment from './common/modules/comment'
@@ -28,7 +27,6 @@ export default new Vuex.Store({
     Global,
     login,
     register,
-    setPassword,
     forget,
     resetPassword,
     index,

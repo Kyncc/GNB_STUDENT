@@ -7,7 +7,6 @@ import store from './store'
 import * as _ from './config/whole.js'
 //登陆、注册
 import Login from './login/pages/login'
-import agreement from './login/pages/agreement'
 import register from './login/pages/register'
 import setPassword from './login/pages/setPassword'
 import setInfo from './login/pages/setInfo'
@@ -123,8 +122,7 @@ Vue.http.interceptors.push((request, next) => {
 
 const router = new Router()
 router.map({
-  'login': { component: Login },
-  'agreement': { component: agreement },
+  '/': { component: Login },
   //注册账户
   'register': { component: register },
   'register/password': { component: setPassword },
@@ -230,28 +228,29 @@ router.redirect({
 
 sync(store, router)
 
-router.beforeEach(function(transition) {
-    if (transition.to.path == '/') {
-      if(localStorage.token){
-          router.replace('/main/index');
-      }else{
-          router.replace('/login');
-      }
-    }
-  // if (transition.to.path == '/register/password') {
-  //   if (store.state.register.mobile == '') {
-  //     console.log("禁止访问!");
-  //     router.replace('/register');
-  //   }
-  // }
-  // if (transition.to.path == '/forget/password') {
-  //   if (store.state.forget.mobile == '') {
-  //     console.log("禁止访问!");
-  //     router.replace('/forget');
-  //   }
-  // }
-  transition.next();
-})
+// router.beforeEach(function(transition) {
+//     if (transition.to.path == '/') {
+//       router.replace('/login');
+//       // if(localStorage.token){
+//       //     router.replace('/main/index');
+//       // }else{
+//       //     router.replace('/login');
+//       // }
+//     }
+//   // if (transition.to.path == '/register/password') {
+//   //   if (store.state.register.mobile == '') {
+//   //     console.log("禁止访问!");
+//   //     router.replace('/register');
+//   //   }
+//   // }
+//   // if (transition.to.path == '/forget/password') {
+//   //   if (store.state.forget.mobile == '') {
+//   //     console.log("禁止访问!");
+//   //     router.replace('/forget');
+//   //   }
+//   // }
+//   transition.next();
+// })
 
 
 

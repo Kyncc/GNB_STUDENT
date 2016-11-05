@@ -24,8 +24,8 @@
               <popup-picker title="数学" :data="mathList"  :value.sync="math" ></popup-picker>
             </group>
             
-            <div style="width:90%;margin:1rem auto;">
-              <x-button type="primary" @click="_complete" :disabled="disable">下一步</x-button>
+            <div style="width:90%;margin:1.5rem auto;">
+              <x-button type="primary" @click="_complete" :disabled="disable">完成</x-button>
             </div>
         </div>  
     </view-box>
