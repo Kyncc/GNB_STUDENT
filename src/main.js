@@ -176,7 +176,7 @@ router.map({
   'message/correct': { component: messageCorrect },
   //知识图谱
   'report': {component: report},
-  'report/detail/:sectionId': {component: reportDetail},
+  'report/detail/:chapterId': {component: reportDetail},
   //记错题
   'remember':{component: remember},
   'remember/detail/:id': { component:  rememberDetail},

@@ -67,6 +67,12 @@ export const API_PATHS = {
    errorMore:`${API_ENV}${API_VERSION}/student/error/more`,
    errorRecommend:`${API_ENV}${API_VERSION}/student/error/recommend`,
    errorRecommendPost:`${API_ENV}${API_VERSION}/student/error/recommendPost`,
+   /**成绩报告单
+   *  reportDetail:教材详细
+   *  reportChapter:教材章节列表
+   */
+    reportChapter:`${API_ENV}${API_VERSION}/student/report`,
+    reportDetail:`${API_ENV}${API_VERSION}/student/report/detail`,
    /**互动模块
    * msgSystem:系统消息
    * msgClass:班级消息

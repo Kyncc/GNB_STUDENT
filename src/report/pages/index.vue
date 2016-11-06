@@ -35,7 +35,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
-import { period_id,subject_id,token } from '../../common/getters'
+import { subject_id,token } from '../../common/getters'
+import {reportChapter} from '../getters'
+import {getReportChapter} from '../actions'
 import '../index.less'
 
 export default {
@@ -49,7 +51,7 @@ export default {
   },
   vuex: {
     getters: {
-        period_id,subject_id,token
+        subject_id,token
     },
     actions: {
 

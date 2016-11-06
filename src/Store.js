@@ -11,6 +11,7 @@ import index from './main/modules/index'
 import message from './message/modules/index'
 import camera from './camera/modules/index'
 import error from './error/modules/index'
+import report from './report/modules/index'
 import collect from './collect/modules/index'
 import info from './user/modules/info'
 import myClass from './user/modules/class'
@@ -45,7 +46,7 @@ export default new Vuex.Store({
     //归纳本
     error,
     //拍错题
-    camera
-
+    camera,
+    report
   }
 })

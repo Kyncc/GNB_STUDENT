@@ -7,30 +7,30 @@
         </div>
 
         <div style="padding-top:46px;">
-            <header class="sectionHeader">第一章集合的概念</header>
+            <header class="sectionHeader ellipsis">{{reportDetail.chapter_name}}</header>
             <div class="section">
                 <article class="difficultBlock">
                     <div><p class="per-35 tl" style="color:#487d68">难度等级</p><p class="per-21">1</p><p class="per-21">2</p><p class="per-21 ">3</p></div>
-                    <div><p class="per-35 tl" style="color:#487d68">记录题型</p><p class="per-21">50个</p><p class="per-21">60个</p><p class="per-21">60个</p></div>
-                    <div><p class="per-35 tl" style="color:#487d68">掌握程度</p><p class="per-21">72.5%</p><p class="per-21">72.5%</p><p class="per-21 ">72.5%</p></div>
+                    <div><p class="per-35 tl" style="color:#487d68">记录题型</p><p class="per-21">{{reportDetail.degree_level.level1_count}}个</p><p class="per-21">{{reportDetail.degree_level.level2_count}}个</p><p class="per-21">{{reportDetail.degree_level.level3_count}}个</p></div>
+                    <div><p class="per-35 tl" style="color:#487d68">掌握程度</p><p class="per-21">{{reportDetail.degree_level.level1_percentage}}</p><p class="per-21">{{reportDetail.degree_level.level2_percentage}}</p><p class="per-21 ">{{reportDetail.degree_level.level3_percentage}}</p></div>
                 </article>
 
                  <article class="recordBlock">
                     <header><h1 style="color:#487d68">记录状况</h1></header>
-                    <div><p class="per-35 tl">1~5次</p><p class="per-40 advice">继续加强练习</p><p class="per-25 tr">2个</p></div>
-                    <div><p class="per-35 tl">6~20次</p><p class="per-40 advice">继续加强练习</p><p class="per-25 tr">2个</p></div>
-                    <div><p class="per-35 tl">≥21次</p><p class="per-40 advice">继续加强练习</p><p class="per-25 tr">2个</p></div>
-                    <div><p class="per-35 tl">斩题数</p><p class="per-40 advice">继续加强练习</p><p class="per-25 tr">2个</p></div>
-                    <div><p class="per-35 tl">放弃数</p><p class="per-40 advice">继续加强练习</p><p class="per-25 tr">2个</p></div>
+                    <div><p class="per-35 tl">1~5次</p><p class="per-40 advice">急需加强练习</p><p class="per-25 tr">{{reportDetail.record_times.less_five_time}}个</p></div>
+                    <div><p class="per-35 tl">6~20次</p><p class="per-40 advice">适当增加练习</p><p class="per-25 tr">{{reportDetail.record_times.less_twenty_time}}个</p></div>
+                    <div><p class="per-35 tl">≥21次</p><p class="per-40 advice">无需加强练习</p><p class="per-25 tr">{{reportDetail.record_times.greater_twenty_time}}个</p></div>
+                    <div><p class="per-35 tl">斩题数</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.record_times.loose_time}}个</p></div>
+                    <div><p class="per-35 tl">放弃数</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.record_times.win_time}}个</p></div>
                 </article>
 
                 <article class="recordBlock">
                     <header><h1 style="color:#487d68">错误原因</h1></header>
-                    <div><p class="per-35 tl">知识型错误</p><p class="per-40 advice">继续加强练习</p><p class="per-25 tr">80%</p></div>
-                    <div><p class="per-35 tl">方法型错误</p><p class="per-40 advice">继续加强练习</p><p class="per-25 tr">48%</p></div>
-                    <div><p class="per-35 tl">审题型错误</p><p class="per-40 advice">继续加强练习</p><p class="per-25 tr">38%</p></div>
-                    <div><p class="per-35 tl">计算错误</p><p class="per-40 advice">继续加强练习</p><p class="per-25 tr">82%</p></div>
-                    <div><p class="per-35 tl">未记录错误</p><p class="per-40 advice">继续加强练习</p><p class="per-25 tr">28%</p></div>
+                    <div><p class="per-35 tl">知识型错误</p><p class="per-40 advice">概念定理不清</p><p class="per-25 tr">{{reportDetail.error_reason.error1}}</p></div>
+                    <div><p class="per-35 tl">方法型错误</p><p class="per-40 advice">应变能力不够</p><p class="per-25 tr">{{reportDetail.error_reason.error2}}</p></div>
+                    <div><p class="per-35 tl">审题型错误</p><p class="per-40 advice">思想不集中、粗心</p><p class="per-25 tr">{{reportDetail.error_reason.error3}}</p></div>
+                    <div><p class="per-35 tl">计算错误</p><p class="per-40 advice">答题不规范</p><p class="per-25 tr">{{reportDetail.error_reason.error4}}</p></div>
+                    <div><p class="per-35 tl">未记录错误</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.error_reason.error5}}</p></div>
                 </article>
             </div>
 
@@ -43,21 +43,23 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton} from 'vux'
-import { period_id,subject_id,token } from '../../common/getters'
+import { subject_id,token,chapterId } from '../../common/getters'
+import {reportDetail} from '../getters'
+import {getReportDetail} from '../actions'
 import '../index.less'
+
+
 
 export default {
   components: {
     XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton
   },
   methods: {
-	_back() {
-      this.$router.go('/main');
-    }
+	
   },
   vuex: {
     getters: {
-        period_id,subject_id,token
+        subject_id,token,reportDetail,chapterId
     },
     actions: {
 
