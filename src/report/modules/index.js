@@ -5,7 +5,54 @@ import {
 } from '../mutationTypes'
 
 const state = {
-    chapter:{},
+    chapter:[
+        {
+            "name": "必修一",
+            "textbook_id": 1,
+            "chapter_list": 
+            [
+                {
+                    "chapter_id": 75463,
+                    "name": "第一章"
+                },
+                {
+                    "chapter_id": 75463,
+                    "name": "第二章"
+                },
+                {
+                    "chapter_id": 75463,
+                    "name": "第三章"
+                },
+                {
+                    "chapter_id": 75463,
+                    "name": "第四章"
+                }
+            ],
+        },
+        {
+            "name": "必修一",
+            "textbook_id": 1,
+            "chapter_list": 
+            [
+                {
+                    "chapter_id": 75463,
+                    "name": "第一章"
+                },
+                {
+                    "chapter_id": 75463,
+                    "name": "第二章"
+                },
+                {
+                    "chapter_id": 75463,
+                    "name": "第三章"
+                },
+                {
+                    "chapter_id": 75463,
+                    "name": "第四章"
+                }
+            ],
+        }
+    ],
     detail:{
         "chapter_name":'第一章asdasdasasd',
         "degree_level":{

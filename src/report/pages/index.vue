@@ -7,25 +7,8 @@
         </div>
 
         <div style="padding-top:46px;">
-            <div class="section" >
-                <header class="sectionHeader" v-tap="_click()">必修1<span class="with_arrow"></span></header>
-                <group :ref=>
-                    <cell title="第1章" link="report/detail/1"></cell>
-                    <cell title="第2章" link="report/detail/2"></cell>
-                    <cell title="第3章" link="report/detail/3"></cell>
-                </group>
-            </div>
-
-            <div class="section">
-                <header class="sectionHeader">必修2<span class="with_arrow"></span></header>
-                <group>
-                    <cell title="第1章" link="report/detail/1"></cell>
-                    <cell title="第2章" link="report/detail/2"></cell>
-                    <cell title="第3章" link="report/detail/3"></cell>
-                </group>
-            </div>
+             <accordion :list="reportChapter" link="report/detail/"></accordion>
         </div>
-
 
     </view-box>
 </template>
@@ -34,15 +17,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
-import { XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
-import { subject_id,token } from '../../common/getters'
+import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
+import {subject_id,token } from '../../common/getters'
 import {reportChapter} from '../getters'
 import {getReportChapter} from '../actions'
+import accordion from '../../components/accordion'
 import '../index.less'
 
 export default {
   components: {
-    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell
+    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,accordion
   },
   methods: {
 	_back() {
@@ -51,13 +35,61 @@ export default {
   },
   vuex: {
     getters: {
-        subject_id,token
+        subject_id,token,reportChapter
     },
     actions: {
 
     }
   },
   store,
+   data(){
+        return {
+            list:[
+                {
+                    name:'必修',
+                    list:[
+                        {
+                            "chapter_id": 75463,
+                            "name": "第一章"
+                        },
+                        {
+                            "chapter_id": 75463,
+                            "name": "第二章"
+                        },
+                        {
+                            "chapter_id": 75463,
+                            "name": "第三章"
+                        },
+                        {
+                            "chapter_id": 75463,
+                            "name": "第四章"
+                        }
+                    ]
+                },
+                {
+                    name:'必修2',
+                    list:[
+                        {
+                            "chapter_id": 75463,
+                            "name": "第一章"
+                        },
+                        {
+                            "chapter_id": 75463,
+                            "name": "第二章"
+                        },
+                        {
+                            "chapter_id": 75463,
+                            "name": "第三章"
+                        },
+                        {
+                            "chapter_id": 75463,
+                            "name": "第四章"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
   ready(){
     
   }
