@@ -1,3 +1,4 @@
+/** @module color/mixer */
 /*用户信息*/
 export const fetchUserInfo = (state) => state.info
 /*token*/
@@ -25,3 +26,15 @@ export const fetchVersion = (state) => state.setting.version
 export const fetchMyClass = (state) => state.myClass.class
 export const fetchMyClassMate = (state) => state.myClass.classmate
 export const fetchMyClassSearchClass = (state) => state.myClass.searchClass
+
+
+/** 获取全部教材 */
+export const getAllTextbook = (state) => state.user.textbook.all
+/** 获取获取我的教材 */
+export const getMyTextbook = (state) => state.user.textbook.my
+/** 获取全部习题册 */
+export const getAllWorkbook = (state) => state.user.workbook.all
+/** 获取我的习题册 */
+export const getMyWorkbook = (state) => state.user.workbook.my
+/** 获取搜索习题册 */
+export const getSearchWorkbook = (state) => state.user.workbook.search

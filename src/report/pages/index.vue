@@ -33,7 +33,7 @@ export default {
       this.$router.go('/main');
     }
   },
-  vuex: {
+  vuex: { 
     getters: {
         subject_id,token,reportChapter
     },

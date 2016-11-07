@@ -14,6 +14,7 @@ import error from './error/modules/index'
 import report from './report/modules/index'
 import collect from './collect/modules/index'
 import info from './user/modules/info'
+import user from './user/modules/index'
 import myClass from './user/modules/class'
 import advice from './user/modules/advice.js'
 import friend from './user/modules/friend.js'
@@ -47,6 +48,7 @@ export default new Vuex.Store({
     error,
     //拍错题
     camera,
-    report
+    report,
+    user
   }
 })

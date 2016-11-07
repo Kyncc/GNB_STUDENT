@@ -10,6 +10,26 @@ export const GET_CLASS_LIST = 'GET_CLASS_LIST'
 export const GET_CLASSMATE_LIST = 'GET_CLASSMATE_LIST'
 export const POST_INTO_CLASS = 'POST_INTO_CLASS'
 export const GET_CLASS_BYCODE = 'GET_CLASS_BYCODE'
+
+/** 获取全部教材 */
+export const TEXTBOOK_GET_ALL = 'TEXTBOOK_GET_ALL'
+/** 获取我的教材 */
+export const TEXTBOOK_GET = 'TEXTBOOK_GET'
+/** 删除教材*/
+export const TEXTBOOK_DEL = 'TEXTBOOK_DEL'
+/** 增加教材 */
+export const TEXTBOOK_ADD = 'TEXTBOOK_ADD'
+/** 获取全部习题册 */
+export const WORKBOOK_GET_ALL = 'WORKBOOK_GET_ALL'
+/** 获取我的习题册 */
+export const WORKBOOK_GET = 'WORKBOOK_GET'
+/** 删除习题册 */
+export const WORKBOOK_DEL = 'WORKBOOK_DEL'
+/** 增加习题册 */
+export const WORKBOOK_ADD = 'WORKBOOK_ADD'
+/** 获取搜索习题册 */
+export const WORKBOOK_GET_SEARCH = 'WORKBOOK_GET_SEARCH'
+
 //反馈历史
 export const GET_ADVICE_LIST = 'GET_ADVICE_LIST'
 //受邀好友列表
