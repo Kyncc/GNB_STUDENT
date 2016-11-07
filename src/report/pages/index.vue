@@ -44,50 +44,7 @@ export default {
   store,
    data(){
         return {
-            list:[
-                {
-                    name:'必修',
-                    list:[
-                        {
-                            "chapter_id": 75463,
-                            "name": "第一章"
-                        },
-                        {
-                            "chapter_id": 75463,
-                            "name": "第二章"
-                        },
-                        {
-                            "chapter_id": 75463,
-                            "name": "第三章"
-                        },
-                        {
-                            "chapter_id": 75463,
-                            "name": "第四章"
-                        }
-                    ]
-                },
-                {
-                    name:'必修2',
-                    list:[
-                        {
-                            "chapter_id": 75463,
-                            "name": "第一章"
-                        },
-                        {
-                            "chapter_id": 75463,
-                            "name": "第二章"
-                        },
-                        {
-                            "chapter_id": 75463,
-                            "name": "第三章"
-                        },
-                        {
-                            "chapter_id": 75463,
-                            "name": "第四章"
-                        }
-                    ]
-                }
-            ]
+           
         }
     },
   ready(){
