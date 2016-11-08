@@ -2,7 +2,7 @@ import Api from '../../config/httpdispatch'
 import * as types from '../mutationTypes'
 import * as _ from '../../config/whole'
 
-/**我的习题册 */
+/**我的教材 */
 export const getTextbook = ({ dispatch }, params,success,wrong) => {
   Api.textbook({
     data: params,
@@ -17,7 +17,7 @@ export const getTextbook = ({ dispatch }, params,success,wrong) => {
   })
 }
 
-/**全部习题册 */
+/**全部教材 */
 export const getTextbookAll = ({ dispatch }, params,success,wrong) => {
   Api.textbookList({
     data: params,
@@ -32,7 +32,7 @@ export const getTextbookAll = ({ dispatch }, params,success,wrong) => {
   })
 }
 
-/**删除习题册 */
+/**删除教材 */
 export const delTextbook = ({ dispatch }, params,success,wrong) => {
   Api.textbookDel({
     data: params,
@@ -47,12 +47,13 @@ export const delTextbook = ({ dispatch }, params,success,wrong) => {
   })
 }
 
-/**增加习题册 */
+/**增加教材 */
 export const addTextbook = ({ dispatch }, params,success,wrong) => {
   Api.textbookAdd({
     data: params,
     ok: response => {
       dispatch(types.TEXTBOOK_ADD);
+      dispatch(types.TEXTBOOK_RELOAD);
       success&&success();
     },
     wrong: response => {
@@ -61,4 +62,5 @@ export const addTextbook = ({ dispatch }, params,success,wrong) => {
     }
   })
 }
+
 

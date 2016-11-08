@@ -23,6 +23,8 @@ export const TEXTBOOK_GET = 'TEXTBOOK_GET'
 export const TEXTBOOK_DEL = 'TEXTBOOK_DEL'
 /** 增加教材 */
 export const TEXTBOOK_ADD = 'TEXTBOOK_ADD'
+/** 教材数据更新 */
+export const TEXTBOOK_RELOAD = 'TEXTBOOK_RELOAD'
 /** 获取全部习题册 */
 export const WORKBOOK_GET_ALL = 'WORKBOOK_GET_ALL'
 /** 获取我的习题册 */
@@ -33,6 +35,8 @@ export const WORKBOOK_DEL = 'WORKBOOK_DEL'
 export const WORKBOOK_ADD = 'WORKBOOK_ADD'
 /** 获取搜索习题册 */
 export const WORKBOOK_GET_SEARCH = 'WORKBOOK_GET_SEARCH'
+/** 习题册数据更新 */
+export const WORKBOOK_RELOAD = 'WORKBOOK_RELOAD'
 
 //反馈历史
 export const GET_ADVICE_LIST = 'GET_ADVICE_LIST'

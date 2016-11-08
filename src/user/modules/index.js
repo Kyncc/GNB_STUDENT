@@ -2,8 +2,26 @@ import * as types from '../mutationTypes'
 
 const state = {
     textbook:{
-        all:[{}],
-        my:[{}]
+        all:[
+           {
+            "textbookId": 1,
+            "textbookName": "必修101"
+          },
+          {
+            "textbookId": 2,
+            "textbookName": "必修101"
+          }
+        ],
+        my:[
+          {
+            "textbookId": 1,
+            "textbookName": "必修101"
+          },
+          {
+            "textbookId": 2,
+            "textbookName": "必修101"
+          }
+        ]
     },
     workbook:{
         search:[{}],
@@ -14,12 +32,34 @@ const state = {
     textbookVersion:{}
 }
 
+// const state = {
+//     textbook:{
+//         all:[],
+//         my:[]
+//     },
+//     workbook:{
+//         search:[{}],
+//         all:[{}],
+//         my:[{}]
+//     },
+//     userinfo:{},
+//     textbookVersion:{}
+// }
+
+
+
 const mutations = {
   [types.TEXTBOOK_ADD](state, data) {
     state.textbook.all = data;
   },
-  [types.TEXTBOOK_GET_ALL](state, data) {
+  [types.TEXTBOOK_GET](state, data) {
      state.textbook.my = data;
+  },
+  [types.TEXTBOOK_RELOAD](state) {
+     state.textbook.my = {};
+  },
+  [types.TEXTBOOK_GET_ALL](state, data) {
+     state.textbook.all = data;
   },
   [types.WORKBOOK_GET](state, data) {
      state.workbook.my = data;

@@ -29,12 +29,12 @@ export const fetchMyClassSearchClass = (state) => state.myClass.searchClass
 
 
 /** 获取全部教材 */
-export const getAllTextbook = (state) => state.user.textbook.all
+export const AllTextbook = (state) => state.user.textbook.all
 /** 获取获取我的教材 */
-export const getMyTextbook = (state) => state.user.textbook.my
+export const MyTextbook = (state) => state.user.textbook.my
 /** 获取全部习题册 */
-export const getAllWorkbook = (state) => state.user.workbook.all
+export const AllWorkbook = (state) => state.user.workbook.all
 /** 获取我的习题册 */
-export const getMyWorkbook = (state) => state.user.workbook.my
+export const MyWorkbook = (state) => state.user.workbook.my
 /** 获取搜索习题册 */
-export const getSearchWorkbook = (state) => state.user.workbook.search
+export const SearchWorkbook = (state) => state.user.workbook.search
