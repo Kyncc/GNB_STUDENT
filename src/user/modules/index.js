@@ -9,7 +9,9 @@ const state = {
         search:[{}],
         all:[{}],
         my:[{}]
-    }
+    },
+    userinfo:{},
+    textbookVersion:{}
 }
 
 const mutations = {
@@ -27,6 +29,12 @@ const mutations = {
   },
   [types.WORKBOOK_GET_SEARCH](state, data) {
      state.workbook.all = data;
+  },
+  [types.USERINFO_GET](state, data) {
+     state.userinfo = data;
+  },
+  [types.USERINFO_TEXTBOOKVERSION](state, data) {
+     state.textbookVersion = data;
   }
 }
 

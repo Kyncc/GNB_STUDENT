@@ -83,7 +83,9 @@ export const API_PATHS = {
   msgClass:`${API_ENV}${API_VERSION}/student/message/class`,
   msgCorrect:`${API_ENV}${API_VERSION}/student/message/correct`,
   //获取用户信息
-  getUserInfo: `${API_ENV}${API_VERSION}/student/user/getUserInfo`,
+  userInfo: `${API_ENV}${API_VERSION}/student/user/getUserInfo`,
+  userInfoUpdate: `${API_ENV}${API_VERSION}/student/user/updateUserInfo`,
+  userInfoTextbookVersion: `${API_ENV}${API_VERSION}/student/edition/byGrade`,
   /**我的班级
    * myClassList:获取班级列表
    * myClassmateList:班级成员名单
@@ -94,6 +96,17 @@ export const API_PATHS = {
   myClassmateList: `${API_ENV}${API_VERSION}/student/class/myClassmateList`,
   myClassInto: `${API_ENV}${API_VERSION}/student/class/intoClass`,
   myClassSearch: `${API_ENV}${API_VERSION}/student/class/bindClass`,
+  //我的教材
+  userTextbook: `${API_ENV}${API_VERSION}/student/textbook`,
+  userTextbookAll: `${API_ENV}${API_VERSION}/student/textbook/list`,
+  userTextbookAdd: `${API_ENV}${API_VERSION}/student/textbook/add`,
+  userTextbookDel: `${API_ENV}${API_VERSION}/student/textbook/del`,
+  //习题册
+  userWorkbook: `${API_ENV}${API_VERSION}/student/workbook`,
+  userWorkbookAll: `${API_ENV}${API_VERSION}/student/workbook/list`,
+  userWorkbookAdd: `${API_ENV}${API_VERSION}/student/workbook/add`,
+  userWorkbookDel: `${API_ENV}${API_VERSION}/student/workbook/del`,
+  userWorkbookSearch: `${API_ENV}${API_VERSION}/student/workbook/search`,
   //编辑用户信息
   updateUserInfo: `${API_ENV}${API_VERSION}/student/user/updateUserInfo`,
   //修改密码

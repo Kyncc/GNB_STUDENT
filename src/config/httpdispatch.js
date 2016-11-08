@@ -127,6 +127,7 @@ export default {
   msgSystem: (params) => {
     return http({ method: 'get', url: API_PATHS.msgSystem, data: params.data, ok: params.ok, wrong: params.wrong });
   },
+  
   //获取用户信息
   getUserInfo: (params) => {
     return http({ method: 'get', url: API_PATHS.getUserInfo, data: params.data, ok: params.ok, wrong: params.wrong })
@@ -152,6 +153,42 @@ export default {
   },
   myClassSearch: (params) => {
     return http({ method: 'post', url: API_PATHS.myClassSearch, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /** 全部练习册*/
+  workbookList: (params) => {
+    return http({ method: 'get', url: API_PATHS.userWorkbookAll, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /** 我的练习册*/
+  workbook: (params) => {
+    return http({ method: 'get', url: API_PATHS.userWorkbook, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /** 增加练习册*/
+  workbookAdd: (params) => {
+    return http({ method: 'post', url: API_PATHS.userWorkbookAdd, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /** 删除练习册*/
+  workbookDel: (params) => {
+    return http({ method: 'post', url: API_PATHS.userTextbookDel, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /** 搜索练习册*/
+  workbookSearch: (params) => {
+    return http({ method: 'post', url: API_PATHS.userWorkbookSearch, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /** 全部教材*/
+  textbookList: (params) => {
+    return http({ method: 'get', url: API_PATHS.userTextbookAll, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /** 我的教材*/
+  textbook: (params) => {
+    return http({ method: 'get', url: API_PATHS.userTextbook, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /** 增加教材*/
+  textbookAdd: (params) => {
+    return http({ method: 'post', url: API_PATHS.userTextbookAdd, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /** 删除教材*/
+  textbookDel: (params) => {
+    return http({ method: 'post', url: API_PATHS.userTextbookDel, data: params.data, ok: params.ok, wrong: params.wrong })
   },
   //修改密码
   updatePwd: (params) => {
