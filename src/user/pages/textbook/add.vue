@@ -32,7 +32,7 @@ import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {token} from '../../../common/getters'
 import store from '../../../store' 
-import {getTextbookAll,addTextbook,getTextbook} from '../../actions/textbook'
+import {getTextbookAll,addTextbook} from '../../actions/textbook'
 import {AllTextbook} from '../../getters'
 
 import './index.less'
@@ -44,7 +44,8 @@ export default {
    data() {
     return {
       selectBookList:[],
-      textBookList:[{key: '1', value: '必修1'}, {key: '2', value: '必修2'}, {key: '3', value: '必修3'}],
+      textBookList:[]
+      // textBookList:[{key: '1', value: '必修1'}, {key: '2', value: '必修2'}, {key: '3', value: '必修3'}],
     }
   },
   vuex: {
@@ -57,9 +58,6 @@ export default {
 	},
 	store,
   methods: {
-    _back() {
-      this.$router.go('/main/user');
-    },
     _addTextBook(){
         this.addTextbook({
           token:this.token,   
@@ -84,6 +82,16 @@ export default {
       }else{
         this._addTextBook();
       }
+    }
+  },
+  watch:{
+    AllTextbook(){
+      this.AllTextbook.forEach((item, index)=> {
+          this.textBookList.push({
+              key: item.textbookId || '',
+              value: item.textbookName || ''
+          });
+      });
     }
   }
 }

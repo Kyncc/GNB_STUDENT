@@ -3,7 +3,7 @@ import * as types from '../mutationTypes'
 const state = {
     textbook:{
         all:[
-           {
+          {
             "textbookId": 1,
             "textbookName": "必修101"
           },
@@ -24,9 +24,9 @@ const state = {
         ]
     },
     workbook:{
-        search:[{}],
-        all:[{}],
-        my:[{}]
+        search:[],
+        all:[],
+        my:[]
     },
     userinfo:{},
     textbookVersion:{}
@@ -63,6 +63,9 @@ const mutations = {
   },
   [types.WORKBOOK_GET](state, data) {
      state.workbook.my = data;
+  },
+  [types.WOEKBOOK_RELOAD](state) {
+     state.workbook.my = {};
   },
   [types.WORKBOOK_GET_ALL](state, data) {
      state.workbook.all = data;

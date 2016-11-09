@@ -38,3 +38,5 @@ export const AllWorkbook = (state) => state.user.workbook.all
 export const MyWorkbook = (state) => state.user.workbook.my
 /** 获取搜索习题册 */
 export const SearchWorkbook = (state) => state.user.workbook.search
+/** 获取用户信息*/
+export const Userinfo = (state) => state.user.userinfo

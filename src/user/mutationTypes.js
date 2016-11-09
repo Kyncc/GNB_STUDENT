@@ -31,6 +31,8 @@ export const WORKBOOK_GET_ALL = 'WORKBOOK_GET_ALL'
 export const WORKBOOK_GET = 'WORKBOOK_GET'
 /** 删除习题册 */
 export const WORKBOOK_DEL = 'WORKBOOK_DEL'
+/** 习题册数据更新 */
+export const WORKBOOK_DRELOAD = 'WORKBOOK_DRELOAD'
 /** 增加习题册 */
 export const WORKBOOK_ADD = 'WORKBOOK_ADD'
 /** 获取搜索习题册 */

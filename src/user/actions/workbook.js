@@ -53,6 +53,7 @@ export const addWorkbook = ({ dispatch }, params,success,wrong) => {
     data: params,
     ok: response => {
       dispatch(types.WORKBOOK_ADD);
+      dispatch(types.WORKBOOK_DRELOAD);
       success&&success();
     },
     wrong: response => {
