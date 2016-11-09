@@ -33,7 +33,7 @@ export default {
       this.$router.go('/main');
     }
   },
-  vuex: { 
+  vuex: {
     getters: {
         subject_id,token,reportChapter
     },
@@ -44,11 +44,11 @@ export default {
   store,
    data(){
         return {
-           
+
         }
     },
   ready(){
-    
+
   }
 }
 </script>
