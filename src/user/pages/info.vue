@@ -1,25 +1,25 @@
 <template>
-<div class='info'>
+<div class='userinfo'>
   <x-header :left-options="{showBack: true,preventGoBack: true}"  @on-click-back="_back()">
     个人资料 
     <a slot="right" v-touch:tap="_complete">{{edit}}</a>
   </x-header>
 
-  <div v-show="edit=='编辑'">
+  <!--<div v-show="edit=='编辑'">
     <group title="基本资料">
-      <x-input title="姓名" name="username" :value.sync="fetchUserInfo.name" readonly></x-input>
-      <x-input title="性别" name="sex" value="女" v-show="fetchUserInfo.sex=='0'" readonly></x-input>
-      <x-input title="性别" name="sex" value="男" v-show="fetchUserInfo.sex=='1'" readonly></x-input>
-      <x-input title="年级" name="grade" value="高中" readonly></x-input>
-      <x-input title="学校" name="school" :value.sync="fetchUserInfo.school" readonly></x-input>
+      <x-input title="姓名" name="username" :value.sync="Userinfo.name" readonly></x-input>
+      <x-input title="性别" name="sex" value="女" v-show="Userinfo.sex=='0'"readonly></x-input>
+      <x-input title="性别" name="sex" value="男" v-show="Userinfo.sex=='1'" readonly></x-input>
+      <x-input title="年级" name="grade" :value.sync="grade" readonly></x-input>
+      <x-input title="学校" name="school" :value.sync="Userinfo.school" readonly></x-input>
     </group>
     <group title="版本选择">
-        <x-input title="物理" name="physics" value="人教A版" readonly></x-input>
-        <x-input title="物理" name="math" value="人教A版" readonly></x-input>
+        <x-input title="物理" name="physics" v-show="physicsShow" :value.sync="Userinfo.subject.physics.name ?Userinfo.subject.physics.name || ''" readonly></x-input>
+        <x-input title="物理" name="math" :value.sync="Userinfo.subject.math.name ?Userinfo.subject.math.name|| ''" readonly></x-input>
     </group>  
-  </div>
+  </div>-->
 
-  <div v-show="edit=='完成'">
+  <div v-show="edit=='编辑'">
     <group title="基本资料">
       <x-input title="姓名" name="username" placeholder="请输入姓名" is-type="china-name" :value.sync="name"></x-input>
       <cell title="性别">
@@ -32,8 +32,8 @@
       <x-input title="学校" name="school" placeholder="请输入学校名称" :value.sync="school"></x-input>
     </group>
     <group title="版本选择">
-        <x-input title="物理" name="physics" value="人教A版" readonly></x-input>
-        <x-input title="数学" name="math" value="人教A版" readonly></x-input>
+       <popup-picker title="物理" :data="physicsList" :columns="1" :value.sync="physicsVer"  show-name></popup-picker>
+       <popup-picker title="数学" :data="mathList" :columns="1" :value.sync="mathVer" show-name></popup-picker>
     </group>  
   </div>
 
@@ -45,7 +45,9 @@
 import {Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm,PopupPicker} from 'vux'
 import {getUserinfo,updateUserinfo,getTextbookVersion} from '../actions/info.js'
 import {token} from '../../common/getters'
-import {Userinfo} from '../getters'
+import {Userinfo,TextBookVer} from '../getters'
+import store from '../../store' 
+import './info.less' 
 import * as _ from '../../config/whole.js'
 
 export default {
@@ -54,7 +56,7 @@ export default {
   },
   vuex: {
 		getters: {
-			token,Userinfo
+			token,Userinfo,TextBookVer
 		},
 		actions: {
       getUserinfo,updateUserinfo,getTextbookVersion
@@ -64,65 +66,23 @@ export default {
   data() {
     return {
       edit: '编辑',
-      sex: '1',
-      name: '',
-      school: '',
       show: false,
+      sex:'',
+      name:'',
+      school:'',
+      grade:'',
+      physicsShow:false,
+      physicsVer:[],
+      physicsList:[],
+      mathVer:[],
+      mathList:[],
       gradeVal:[],
-      bookVal:[],
-      bookList: [
-        {
-          name: '数学',
-          value: 'math',
-          parent: 0
-        }, {
-          name: '物理',
-          value: 'physical',
-          parent: 0
-        }, {
-          name: '化学',
-          value: 'chemistry',
-          parent: 0
-        }, {
-          name: '人教A版本',
-          value: 'mathRenJiaoA',
-          parent: 'math'
-        }, {
-          name: '人教版',
-          value: 'physicalRenJiao',
-          parent: 'physical'
-        }, {
-          name: '人教版',
-          value: 'chemistryRenJiao',
-          parent: 'chemistry'
-        }
-      ],
       gradeList: [
-         {
-          name: '七年级',
-          value: 'middle1',
-          parent: 0
-        }, {
-          name: '八年级',
-          value: 'middle2',
-          parent: 0
-        }, {
-          name: '九年级',
-          value: 'middle3',
-          parent: 0
-        },
-        {
-          name: '高中',
-          value: 'high',
-          parent: 0
-        }
+         {name: '七年级',value: '7',parent: 0}, 
+         {name: '八年级',value: '8',parent: 0}, 
+         {name: '九年级',value: '9',parent: 0},
+         {name: '高中',value: '10',parent: 0}
       ]  
-    }
-  },
-  filters: {
-    'sexs' (val) {
-        console.log( val == "0")
-      return ( val == "0") ? '女' : '男'
     }
   },
   methods: {
@@ -146,12 +106,10 @@ export default {
     },
     _complete() {
       if (this.edit == '编辑') {
-        this.name = this.fetchUserInfo.name
-        this.sex = this.fetchUserInfo.sex
-        this.school = this.fetchUserInfo.school
         this.edit = '完成'
       } else if (this.edit == '完成') {
           if(this.name && this.school){
+
               this.updateUserInfo({
                 name: this.name,
                 sex: this.sex,
@@ -174,44 +132,61 @@ export default {
     }
   },
   ready() {
-    this.getUserInfo({
-      token: this.token
-    }, () => {
-      //判断是否为空
-      // if ((this.fetchUserInfo.grade == 0) && (this.fetchUserInfo.sex == 0) && (!this.fetchUserInfo.name) && (!this.fetchUserInfo.school)) {
-      //   this.edit = '完成'
-      // }
+    this.getUserinfo({token: this.token},() => {
+      
     })
+    
+    //getTextbookVersion
+  },
+  watch:{
+    /** 年级更改请求教材版本*/
+    gradeVal(){
+      this.grade = this.gradeVal[0];
+      this.getTextbookVersion({grade: this.grade},() => {
+      
+      })
+    },
+    Userinfo(){
+        this.name = this.Userinfo.name;
+        this.school = this.Userinfo.school;
+        this.sex = this.Userinfo.sex;
+        
+        if(this.Userinfo.grade == '7'){
+          this.grade = '七年级';
+        }else if(this.Userinfo.grade == '8'){
+          this.grade = '八年级';
+        }else if(this.Userinfo.grade == '9'){
+          this.grade = '九年级';
+        }else{
+          this.grade = '高中';
+        }
+    },
+    TextBookVer(){
+      this.physicsList = [];
+      this.mathList = [];
 
+      if(this.TextBookVer.physics){
+        this.TextBookVer.physics.forEach((item, index)=> {
+          this.physicsList.push({
+              value: item.editionId || '',
+              name: item.editionName || '',
+              parent:0
+          });
+        });
+      }
+      
+
+      this.TextBookVer.math.forEach((item, index)=> {
+          this.mathList.push({
+              value: item.editionId || '',
+              name: item.editionName || '',
+              parent:0
+          });
+      });
+
+
+
+    }
   }
 }
 </script>
-
-<style lang="less">
-.info {
-
-    .weui_cells {
-        margin-top: 0;
-    }
-    .vux-no-group-title {
-        margin-top: 0;
-    }
-    .weui_input {
-        text-align: right;
-    }
-    .demo2-item {
-        width: 1.5rem;
-        height: 1.5rem;
-        border: 1px solid #ccc;
-        display: inline-block;
-        border-radius: 50%;
-        line-height: 1.5rem;
-        text-align: center;
-    }
-    .demo2-item-selected {
-        border-color: #4bb7aa;
-        background-color: #4bb7aa;
-        color: #fff;
-    }
-}
-</style>

@@ -130,7 +130,7 @@ export default {
   
   //获取用户信息
   getUserInfo: (params) => {
-    return http({ method: 'get', url: API_PATHS.getUserInfo, data: params.data, ok: params.ok, wrong: params.wrong })
+    return http({ method: 'get', url: API_PATHS.userInfo, data: params.data, ok: params.ok, wrong: params.wrong })
   },
   //编辑用户信息
   updateUserInfo: (params) => {

@@ -4,8 +4,8 @@
       <x-header :left-options="{showBack: true}">
         添加数学教材
         <a slot="right" @click="_finish()">
-              完成
-          </a>
+           完成
+        </a>
       </x-header>
     </div>
     <div style="padding-top:46px;">
