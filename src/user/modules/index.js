@@ -29,7 +29,13 @@ const state = {
         my:[]
     },
     userinfo:{},
-    textbookVersion:{}
+    textbookVersion:{
+      subjectType:[],
+      subjectOptions:{
+        physics:[],
+        math:[]
+      }
+    }
 }
 
 // const state = {

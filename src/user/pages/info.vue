@@ -32,8 +32,10 @@
       <x-input title="学校" name="school" placeholder="请输入学校名称" :value.sync="school"></x-input>
     </group>
     <group title="版本选择">
-       <popup-picker title="物理" :data="physicsList" :columns="1" :value.sync="physicsVer"  show-name></popup-picker>
-       <popup-picker title="数学" :data="mathList" :columns="1" :value.sync="mathVer" show-name></popup-picker>
+       <popup-picker title="数学" :data="math.list" :columns="1" :value.sync="math.version" show-name></popup-picker>
+       <div v-show="physics.show">
+          <popup-picker title="物理" :data="physics.list" :columns="1" :value.sync="physics.version"  show-name></popup-picker>
+       </div>
     </group>  
   </div>
 
@@ -45,7 +47,7 @@
 import {Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm,PopupPicker} from 'vux'
 import {getUserinfo,updateUserinfo,getTextbookVersion} from '../actions/info.js'
 import {token} from '../../common/getters'
-import {Userinfo,TextBookVer} from '../getters'
+import {Userinfo,TextBookMathVer,TextBookPhysicsVer,GradeSubject,TextBookVer} from '../getters'
 import store from '../../store' 
 import './info.less' 
 import * as _ from '../../config/whole.js'
@@ -56,7 +58,7 @@ export default {
   },
   vuex: {
 		getters: {
-			token,Userinfo,TextBookVer
+			token,Userinfo,TextBookMathVer,TextBookPhysicsVer,GradeSubject,TextBookVer
 		},
 		actions: {
       getUserinfo,updateUserinfo,getTextbookVersion
@@ -71,11 +73,15 @@ export default {
       name:'',
       school:'',
       grade:'',
-      physicsShow:false,
-      physicsVer:[],
-      physicsList:[],
-      mathVer:[],
-      mathList:[],
+      physics:{
+        show:false,
+        version:[],
+        list:[]
+      },
+      math:{
+        version:[],
+        list:[]
+      },
       gradeVal:[],
       gradeList: [
          {name: '七年级',value: '7',parent: 0}, 
@@ -132,9 +138,7 @@ export default {
     }
   },
   ready() {
-    this.getUserinfo({token: this.token},() => {
-      
-    })
+    this.getUserinfo({token: this.token},() => {})
     
     //getTextbookVersion
   },
@@ -142,9 +146,7 @@ export default {
     /** 年级更改请求教材版本*/
     gradeVal(){
       this.grade = this.gradeVal[0];
-      this.getTextbookVersion({grade: this.grade},() => {
-      
-      })
+      this.getTextbookVersion({grade: this.grade},() => {})
     },
     Userinfo(){
         this.name = this.Userinfo.name;
@@ -162,24 +164,27 @@ export default {
         }
     },
     TextBookVer(){
-      this.physicsList = [];
-      this.mathList = [];
-
-      if(this.TextBookVer.physics){
-        this.TextBookVer.physics.forEach((item, index)=> {
-          this.physicsList.push({
-              value: item.editionId || '',
-              name: item.editionName || '',
+      this.physics.list = [];
+      this.math.list = [];
+      if(this.TextBookPhysicsVer){
+         this.physics.show = true;
+         this.TextBookPhysicsVer.forEach((item, index)=> {
+          this.physics.list.push({
+              value: item.id|| '',
+              name: item.name  || '',
               parent:0
           });
         });
+      }else{
+        this.physics.show = false;
       }
       
 
-      this.TextBookVer.math.forEach((item, index)=> {
-          this.mathList.push({
-              value: item.editionId || '',
-              name: item.editionName || '',
+      // console.log(this.TextBookMathVer);
+      this.TextBookMathVer.forEach((item, index)=> {
+          this.math.list.push({
+              value: item.id.toString() || '',
+              name: item.name.toString()  || '',
               parent:0
           });
       });

@@ -1,7 +1,8 @@
 import {
     GET_REPORT_DETAIL_SUCCESS,
     GET_REPORT_CHAPTER_SUCCESS,
-    REPORT_CHANGE_SUBJECT
+    REPORT_CHANGE_SUBJECT,
+    CHAPTER_STATE_CHANGE
 } from '../mutationTypes'
 
 const state = {
@@ -9,6 +10,7 @@ const state = {
         {
             "name": "必修一",
             "textbook_id": 1,
+            "checked":true,
             "chapter_list": 
             [
                 {
@@ -32,6 +34,7 @@ const state = {
         {
             "name": "必修一",
             "textbook_id": 1,
+            "checked":true,
             "chapter_list": 
             [
                 {
@@ -78,7 +81,7 @@ const state = {
             "win_time": 85750
         }
     },
-    currentSubId:'',
+    subjectId:''
 }
 
 const mutations = {
@@ -87,9 +90,13 @@ const mutations = {
   },
   [REPORT_CHANGE_SUBJECT](state,data){
       state.chapter = data.data;
+    //   state.subjectId = data.data.
   },
   [GET_REPORT_DETAIL_SUCCESS](state, data) {
       state.detail = data.data;
+  },
+  [CHAPTER_STATE_CHANGE](state,index){
+      state.chapter[index].checked = !state.chapter[index].checked
   }
 }
 

@@ -16,6 +16,12 @@ export const getReportChapter = ({ dispatch }, params, success,wrong) => {
   })
 }
 
+/**手风琴的打开关闭 */
+export const changeChapter = ({ dispatch },index) => {
+    dispatch(types.CHAPTER_STATE_CHANGE,index);
+}
+
+
 export const getReportDetail = ({ dispatch }, params, success,wrong) => {
   Api.reportDetail({
     data: params,
@@ -29,6 +35,7 @@ export const getReportDetail = ({ dispatch }, params, success,wrong) => {
     }
   })
 }
+
 
 export const changeSubject = ({ dispatch }, params, success,wrong) => {
   Api.reportChapter({

@@ -2,7 +2,7 @@
     <div class="container">
         <section class="ac-container">
             <div v-for="items in list" class="gnb-accordion">
-                <input :id="'ac-'+$index" name="accordion-1" type="checkbox" :checked="$index == '0'" />
+                <input :id="'ac-'+$index" name="accordion-1" type="checkbox" :checked="items.checked" @click="onClickBack($index)"/>
                 <label class="header" :for="'ac-'+$index">{{items.name}}<span class="with_arrow"></span></label>
                 <article class="ac-small">
                     <group>
@@ -23,6 +23,13 @@ export default {
     name:'accordion',
     components:{
         Cell,Group
+    },
+     methods:{
+        /** 点击科目提交的回调*/
+        onClickBack(index){
+            // console.log(index);
+            this.$emit('on-click-back',index);
+        }
     },
     props: ['list','link']
 }

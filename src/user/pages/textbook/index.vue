@@ -30,9 +30,9 @@
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {token} from '../../../common/getters'
-import store from '../../../store' 
 import {getTextbook} from '../../actions/textbook'
 import {MyTextbook} from '../../getters'
+import store from '../../../store' 
 
 export default {
   components: {

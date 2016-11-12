@@ -1,10 +1,10 @@
-<template >
+<template>
     <view-box v-ref:view-box class="rememberIndex">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
                 记错题
                 <a slot="right" @click="_change()">
-                    数学
+                    {{subjectName}}
                 </a>
             </x-header>
         </div>
@@ -30,7 +30,7 @@
             
         </div>
     </view-box>
-    <gnb-change-sub :visible.sync="visible"><gnb-change-sub>
+    <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="2" @on-click-back="_click"><gnb-change-sub>
     
 
 </template>
@@ -54,6 +54,9 @@ export default {
     },
     _change(){
         this.visible = true;
+    },
+    _click(item){
+        this.subjectName = item.value;
     }
   },
   vuex: {
@@ -67,9 +70,11 @@ export default {
   store,
   data(){
 		return {
-			visible:false
+			visible:false,
+            subjectList:['math','physics'],
+            subjectName:'数学'
 		}
-	},
+    },
   ready(){
     
   }

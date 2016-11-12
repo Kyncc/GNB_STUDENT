@@ -41,4 +41,8 @@ export const SearchWorkbook = (state) => state.user.workbook.search
 /** 获取用户信息*/
 export const Userinfo = (state) => state.user.userinfo
 /** 获取教材信息*/
-export const TextBookVer = (state) => state.user.textbookVersion
+export const TextBookVer  = (state) => state.user.textbookVersion.subjectOptions
+export const TextBookMathVer = (state) => state.user.textbookVersion.subjectOptions.math
+export const TextBookPhysicsVer = (state) => state.user.textbookVersion.subjectOptions.physics
+
+export const GradeSubject = (state) => state.user.textbookVersion.subjectType
