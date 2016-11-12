@@ -2,10 +2,11 @@ import {
     GET_REPORT_DETAIL_SUCCESS,
     GET_REPORT_CHAPTER_SUCCESS,
     REPORT_CHANGE_SUBJECT,
-    CHAPTER_STATE_CHANGE
+    CHAPTER_STATE_CHANGE,
+    REPORT_SCOLLER_HEIGHT
 } from '../mutationTypes'
 
-const state = {
+const mockstate = {
     chapter:[
         {
             "name": "必修一",
@@ -81,7 +82,15 @@ const state = {
             "win_time": 85750
         }
     },
-    subjectId:''
+    subjectId:'',
+    scoll:''
+}
+
+const state = {
+     chapter:[],
+     detail:{},
+     subjectId:'',
+     scoll:0
 }
 
 const mutations = {
@@ -91,6 +100,9 @@ const mutations = {
   [REPORT_CHANGE_SUBJECT](state,data){
       state.chapter = data.data;
     //   state.subjectId = data.data.
+  },
+  [REPORT_SCOLLER_HEIGHT](state,height){
+      state.scoll = height;
   },
   [GET_REPORT_DETAIL_SUCCESS](state, data) {
       state.detail = data.data;

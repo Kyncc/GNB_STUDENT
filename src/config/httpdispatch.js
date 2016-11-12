@@ -154,6 +154,14 @@ export default {
   myClassSearch: (params) => {
     return http({ method: 'post', url: API_PATHS.myClassSearch, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  /** 成绩报告单*/
+  report: (params) => {
+    return http({ method: 'get', url: API_PATHS.reportChapter, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /** 成绩报告单详细*/
+  reportDetail: (params) => {
+    return http({ method: 'get', url: API_PATHS.reportDetail, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
   /** 全部练习册*/
   workbookList: (params) => {
     return http({ method: 'get', url: API_PATHS.userWorkbookAll, data: params.data, ok: params.ok, wrong: params.wrong })
