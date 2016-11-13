@@ -1,0 +1,4 @@
+/** 获取我的习题册 */
+export const REMEMBER_WORKBOOK_GET = 'REMEMBER_WORKBOOK_GET'
+/** 获取习题册切换科目 */
+export const REMEMBER_SUBJECT_CHANGE = 'REMEMBER_SUBJECT_CHANGE'
