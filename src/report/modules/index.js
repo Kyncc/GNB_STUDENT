@@ -3,7 +3,8 @@ import {
     GET_REPORT_CHAPTER_SUCCESS,
     REPORT_CHANGE_SUBJECT,
     CHAPTER_STATE_CHANGE,
-    REPORT_SCOLLER_HEIGHT
+    REPORT_SCOLLER_HEIGHT,
+    CLEAR_REPORT_CHAPTER
 } from '../mutationTypes'
 
 const mockstate = {
@@ -89,7 +90,7 @@ const mockstate = {
 const state = {
      chapter:[],
      detail:{},
-     subjectId:'',
+     subjectId:'2',
      scoll:0
 }
 
@@ -97,9 +98,11 @@ const mutations = {
   [GET_REPORT_CHAPTER_SUCCESS](state, data) {
       state.chapter = data.data;
   },
-  [REPORT_CHANGE_SUBJECT](state,data){
-      state.chapter = data.data;
-    //   state.subjectId = data.data.
+  [REPORT_CHANGE_SUBJECT](state,id){
+      state.subjectId = id;
+  },
+  [CLEAR_REPORT_CHAPTER](state){
+      state.chapter = [];
   },
   [REPORT_SCOLLER_HEIGHT](state,height){
       state.scoll = height;

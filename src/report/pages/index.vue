@@ -11,19 +11,19 @@
         </div>
 
         <div style="padding-top:46px;height:100%">
-            <div id='wrapper' style="height:100%" >
-                <accordion :list="reportChapter" link="report/detail/" @on-click-back="_openChapter" ></accordion>
-            </div>
-             <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
+            <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
                 <span slot="no-results" style="color:#4bb7aa;">
                     <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
                     <p style="font-size:1rem;display:inline-block;">你还未做题呢~</p>
                 </span>
                 <span slot="no-more"></span>
             </infinite-loading>
+            <div id='wrapper' style="height:100%" >
+                <accordion :list="reportChapter" link="report/detail/" @on-click-back="_openChapter" ></accordion>
+            </div>
         </div>
         
-        <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="2" @on-click-back="_click"><gnb-change-sub>
+        <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="2" @on-click-back="_changeSubject"><gnb-change-sub>
     </view-box>
 </template>
 
@@ -35,9 +35,9 @@ import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
-import {subject_id,token } from '../../common/getters'
-import {reportChapter,reportScoll} from '../getters'
-import {getReport,changeChapter,setScoll} from '../actions'
+import {token } from '../../common/getters'
+import {reportChapter,reportScoll,reportSubjectId} from '../getters'
+import {getReport,changeChapter,setScoll,clearReport,setSubject} from '../actions'
 import gnbChangeSub from '../../components/changesub/index.vue'
 import accordion from '../../components/accordion'
 import '../index.less'
@@ -48,10 +48,10 @@ export default {
   },
   vuex: { 
     getters: {
-        subject_id,token,reportChapter,reportScoll
+        reportSubjectId,token,reportChapter,reportScoll
     },
     actions: {
-        changeChapter,getReport,setScoll
+        changeChapter,getReport,setScoll,setSubject
     }
   },
   store,
@@ -62,9 +62,12 @@ export default {
     _change(){
         this.visible = true;
     },
-    _click(item){
+    /** 切换科目*/
+    _changeSubject(item){
         this.subjectName = item.value;
         this.visible = false;
+        this.setSubject(item.id);       //更换科目
+        this._onInfinite();
     },
     _openChapter(index){
         this.changeChapter(index);
@@ -82,10 +85,11 @@ export default {
         }
         this.getReport({
             token:this.token,   
-            subject_id:'2'
+            subject_id:this.reportSubjectId
         },()=>{
             if(this.reportChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
+            this.jroll.refresh();
         });
     }   
   },
@@ -100,14 +104,10 @@ export default {
   ready(){
         let self = this;
         this.jroll = new JRoll("#wrapper");
-        // if(this.reportScoll){
-        //     this.jroll.scrollTo(0, -110, 0);
-        // }
-        // console.log(this.reportScoll);
-        this.jroll.scrollTo(0,this.reportScoll,0);
+        this.jroll.scrollTo(0,this.reportScoll,0);      //记录高度并滚动
         this.jroll.pulldown({
             refresh: function(complete) {
-                self.getReport({token:this.token,subject_id:'2'},()=>{
+                self.getReport({token:self.token,subject_id:self.reportSubjectId},()=>{
                     complete();
                     self.setScoll(0);
                 })
