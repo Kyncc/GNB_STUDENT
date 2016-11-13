@@ -89,7 +89,31 @@ const mockstate = {
 
 const state = {
      chapter:[],
-     detail:{},
+     detail:{
+        "chapter_name":'',
+        "degree_level":{
+            "level1_count": 635,
+            "level1_percentage": "61%",
+            "level2_count": 68,
+            "level2_percentage": "63%",
+            "level3_count": 800,
+            "level3_percentage": "67%"
+        },
+        "error_reason":{
+             "error1":"50%",   
+             "error2":"60%",
+             "error3":"70%",
+             "error4":"80%",
+             "error5":"90%"
+        },
+        "record_times": {
+            "greater_twenty_time": 24541,
+            "less_five_time": 86040,
+            "less_twenty_time": 54733,
+            "loose_time": 72707,
+            "win_time": 85750
+        }
+     },
      subjectId:'2',
      scoll:0
 }

@@ -135,3 +135,21 @@ export const postCameraSearch = ({ dispatch }, params,success) => {
 export const setCameraImg = ({ dispatch }, params) => {
     dispatch(types.SET_CAMERA_IMG, params)
 }
+
+
+/**浏览器高度 */
+export const setScoll = ({ dispatch },height) => {
+    dispatch(types.CAMERA_SCOLLER_HEIGHT,height);
+}
+
+/**清除拍照历史数据 */
+export const clearCameraHistory = ({ dispatch }) => {
+    dispatch(types.CLEAR_CAMERA_HISTORY);
+}
+
+/**更换拍照科目 */
+export const setSubject = ({ dispatch }, id) => {
+    dispatch(types.CAMERA_CHANGE_SUBJECT,id);
+    // dispatch(types.CLEAR_CAMERA_HISTORY);
+}
+

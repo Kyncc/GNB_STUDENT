@@ -1,26 +1,24 @@
 <template>
     <view-box v-ref:view-box class="cameraHistory">
+
       <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-        <x-header :left-options="{showBack: true}">拍题记录</x-header>
+        <x-header :left-options="{showBack: true}">拍题记录
+            <a slot="right" @click="_changeSub()" class="changeSub">{{subjectName}}<span class="with_arrow"></span></a>
+        </x-header>
       </div>
+
       <div style="margin-top:46px;" class="main">
         <flexbox class="list" v-for="item in cameraHistoryList" track-by="$index">
-          <flexbox-item :span="2/5">
-            <img class="previewer-demo-img"  v-lazy="item.compressPic" @click="_show($index)">
-          </flexbox-item>
-          <flexbox-item :span="3/5" style="position:relative">
-            <div v-touch:tap="_record(item.importantId,item.id)">
-                <div class="title ellipsis">{{{item.knowledge}}}</div>
-                  <div class="difficult">
-                    难度：{{item.difficult}}
-                  </div>
-                  <div class="time">{{{item.cameraTime | ymd}}} </div>
-              </div>
-              <p>
-                  <i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id,$index)"></i>
-              </p>
-            </flexbox-item>
-          </flexbox>
+            <div style="width:40%"><img class="previewer-demo-img"  v-lazy="item.compressPic" @click="_show($index)"></div>
+            <div style="position:relative;width:60%">
+                <div v-touch:tap="_record(item.importantId,item.id)">
+                    <div class="title ellipsis">{{{item.knowledge}}}</div>
+                    <div class="difficult">难度：{{item.difficult}}</div>
+                    <div class="time">{{{item.cameraTime | ymd}}}</div>
+                </div>
+                <p><i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id,$index)"></i></p>
+            </div>
+        </flexbox>
       </div>
 
       <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
@@ -32,7 +30,11 @@
       </infinite-loading>
 
     </view-box>
+    <!--照片墙-->
     <previewer :list="imgList" v-ref:previewer ></previewer>
+    <!--切换科目-->
+    <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="2" @on-click-back="_changeSubject"><gnb-change-sub>
+    <!--确认框-->
     <confirm :show.sync="clearShow" confirm-text="是" cancel-text="否" title="确定移除此题么?" @on-confirm="_delelte()"></confirm>
 
   </div>
@@ -41,55 +43,55 @@
 <script>
 import {XHeader,Panel,ViewBox,FlexboxItem,Flexbox,Previewer,Confirm} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
+import gnbChangeSub from '../../components/changesub/index.vue'
 import store from '../../store'
 import moment from 'moment'
 import { period_id,subject_id,token } from '../../common/getters'
-import { collectRemove,collectAdd } from '../../common/actions'
-import { cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage } from '../getters'
+import { collectRemove,collectAdd,setSubject } from '../../common/actions'
+import { cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage,cameraHistorySubjectId } from '../getters'
 import { getCameraHistoryIds,getCameraHistoryList,delCameraHistroy } from '../actions'
 import * as _ from '../../config/whole'
 
 export default {
   components: {
-    XHeader,Panel,ViewBox,FlexboxItem,Flexbox,Previewer,Confirm,InfiniteLoading,moment
+    XHeader,Panel,ViewBox,FlexboxItem,Flexbox,Previewer,Confirm,InfiniteLoading,moment,gnbChangeSub
   },
   vuex: {
       getters: {
           period_id,subject_id,token,
-          cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage
+          cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage,cameraHistorySubjectId
       },
       actions: {
-          getCameraHistoryIds,getCameraHistoryList,delCameraHistroy,collectRemove,collectAdd
+          getCameraHistoryIds,getCameraHistoryList,delCameraHistroy,collectRemove,setSubject
       }
   },
   store,
   methods: {
+    _changeSub(){
+        this.visible = true;
+    },
+    /** 切换科目*/
+    _changeSubject(item){
+        this.subjectName = item.value;
+        this.visible = false;
+        console.log(item.id);
+        this.setSubject(item.id);       //更换科目
+        // this._onInfinite();
+    },
+    /** 移除记录*/
     _remove(id,index) {
       this.clearShow = true;
       this.delPic.index = index;
       this.delPic.id = id;
     },
-    _collectAdd(id,index){
-        let self =  this;
-        this.collectAdd({
-            options:{
-                id:id,
-                period_id: self.period_id,
-                subject_id: self.subject_id
-            },
-            token: self.token,
-            type:'camera'
-        },()=>{
-            self.cameraHistoryList[index].collectTime = moment().unix();
-        });
-    },
+     /** 移除记录*/
     _removeCollect(id,index){
         let self =  this;
         this.collectRemove({
             options:{
                 id:id,
                 period_id:self.period_id,
-                subject_id:self.subject_id
+                subject_id:self.cameraHistorySubjectId
             },
             token:self.token,
             type:'camera'
@@ -117,8 +119,7 @@ export default {
                 currentPage:this.cameraHistoryCurrentPage,
                 token:this.token,
                 options:{
-                    period_id:this.period_id,
-                    subject_id:this.subject_id
+                    subject_id:this.cameraHistorySubjectId
                 }
             },(ids)=>{
                 this.$broadcast('$InfiniteLoading:loaded');
@@ -130,7 +131,7 @@ export default {
                     options:{
                         ids:ids,
                         period_id:this.period_id,
-                        subject_id:this.subject_id
+                        subject_id:this.cameraHistorySubjectId
                     },
                     token:this.token
                 };
@@ -144,7 +145,7 @@ export default {
           options:{
               id:this.delPic.id,
               period_id:this.period_id,
-              subject_id:this.subject_id
+              subject_id:this.cameraHistorySubjectId
           }
       },this.delPic.index,()=>{
           _.toast("删除成功");
@@ -154,6 +155,9 @@ export default {
   data() {
     return {
       clearShow: false,
+      visible:false,
+      subjectName:'数学',
+      subjectList:['math','physics'],
       //待删除的索引
       delPic:{
         index:'',

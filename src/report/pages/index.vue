@@ -11,13 +11,13 @@
         </div>
 
         <div style="padding-top:46px;height:100%">
-            <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
+            <!--<infinite-loading :on-infinite="_onInfinite" spinner="spiral">
                 <span slot="no-results" style="color:#4bb7aa;">
                     <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
                     <p style="font-size:1rem;display:inline-block;">你还未做题呢~</p>
                 </span>
                 <span slot="no-more"></span>
-            </infinite-loading>
+            </infinite-loading>-->
             <div id='wrapper' style="height:100%" >
                 <accordion :list="reportChapter" link="report/detail/" @on-click-back="_openChapter" ></accordion>
             </div>

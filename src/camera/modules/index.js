@@ -3,24 +3,21 @@ import {
   GET_CAMERA_HISTORYLIST_SUCCESS,
   DEL_CAMERA_HISTORYID_SUCCESS,
   CLEAR_CAMERA_HISTORY,
+  CAMERA_SCOLLER_HEIGHT,
+  CAMERA_CHANGE_SUBJECT,
 
   GET_CAMERA_RESULTIDS_SUCCESS,
-  GET_CAMERA_RESULTIDS_ERROR,
-
   GET_CAMERA_RESULTLIST_SUCCESS,
-  GET_CAMERA_RESULTLIST_ERROR,
   //获取拍错题下例题
   GET_CAMERA_HISTORYEXAMPLEID_SUCCESS,
-  GET_CAMERA_HISTORYEXAMPLEID_ERROR,
 
   POST_CAMERA_RESULTSEARCH_SUCCESS,
-  POST_CAMERA_RESULTSEARCH_ERROR,
 
   POST_CAMERA_EXAMPLE_SUCCESS,
-  POST_CAMERA_EXAMPLE_ERROR,
   SET_CAMERA_IMG,
   POST_CAMERA_SUCCESS,
-  POST_CAMERA_ERROR,
+
+  
 }from '../mutationTypes'
 
 
@@ -31,7 +28,8 @@ const state = {
       ids:[],
       list:[],
       totalPage:0,
-      currentPage:1
+      currentPage:1,
+      subjectId:''
     },
     //例题
     example:{
@@ -77,6 +75,12 @@ const mutations = {
     state.history.list = [];
     state.history.totalPage = 0;
     state.history.currentPage = 1;
+  },
+  [CAMERA_SCOLLER_HEIGHT](state,height){
+      state.scoll = height;
+  },
+  [CAMERA_CHANGE_SUBJECT](state,id){
+      state.history.subjectId = id;
   },
   [GET_CAMERA_RESULTIDS_SUCCESS](state , data){
     state.result.code = data.data.code;

@@ -7,7 +7,7 @@
         </div>
 
         <div style="padding-top:46px;">
-            <header class="sectionHeader ellipsis">{{reportDetail.chapter_name}}</header>
+            <!--<header class="sectionHeader ellipsis">{{reportDetail.chapter_name}}</header>-->
             <div class="section">
                 <!--<article class="difficultBlock">
                     <div><p class="per-35 tl" style="color:#487d68">难度等级</p><p class="per-21">1</p><p class="per-21">2</p><p class="per-21 ">3</p></div>
@@ -37,7 +37,7 @@
             <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
 				<span slot="no-results" style="color:#4bb7aa;">
 					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-					<p style="font-size:1rem;display:inline-block;">快去添加点教材吧~</p>
+					<p style="font-size:1rem;display:inline-block;">程序出了一点问题~</p>
 				</span>
 				<span slot="no-more"></span>
 			</infinite-loading>
@@ -51,12 +51,10 @@ import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import { subject_id,token,chapterId } from '../../common/getters'
-import {reportDetail} from '../getters'
+import {token,chapterId } from '../../common/getters'
+import {reportDetail,reportSubjectId} from '../getters'
 import {getReportDetail} from '../actions'
 import '../index.less'
-
-
 
 export default {
   components: {
@@ -64,7 +62,7 @@ export default {
   },
   vuex: {
     getters: {
-        subject_id,token,reportDetail,chapterId
+        reportSubjectId,token,reportDetail,chapterId
     },
     actions: {
         getReportDetail
@@ -73,22 +71,15 @@ export default {
   store,
   methods: {
     _onInfinite(){
-        // if(this.reportDetail.length != 0){
-        //     this.$broadcast('$InfiniteLoading:loaded');
-        //     this.$broadcast('$InfiniteLoading:complete');
-        //     return;
-        // }
         this.getReportDetail({
             token:this.token,   
-            chapter_id:this.chapterId
+            chapter_id:this.chapterId,
+            subject_id:this.reportSubjectId
         },()=>{
-            if(this.reportDetail.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+            if(this.reportDetail.chapter_name) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
         });
     }   
-  },
-  ready(){
-      
   }
 }
 </script>
