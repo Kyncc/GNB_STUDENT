@@ -5,7 +5,7 @@
                 选择章节
             </x-header>
         </div>
-						
+
         <div style="padding-top:46px;">
             <div>
                 <header class="sectionHeader">第一章 解三角形<span class="with_arrow"></span></header>
@@ -18,10 +18,10 @@
                     <cell title="第一课时" class="indent3" link="section/1/1"></cell>
                 </group>
             </div>
-            
+
         </div>
     </view-box>
-    
+
 
 </template>
 
@@ -38,7 +38,7 @@ export default {
     XHeader,ViewBox,Panel,Group,Cell
   },
   methods: {
-	
+
   },
   vuex: {
     getters:{
@@ -54,9 +54,7 @@ export default {
 		}
 	},
   ready(){
-    
+
   }
 }
 </script>
-
-

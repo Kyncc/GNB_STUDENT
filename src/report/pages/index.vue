@@ -46,7 +46,7 @@ export default {
   components: {
     XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,accordion,gnbChangeSub,InfiniteLoading
   },
-  vuex: { 
+  vuex: {
     getters: {
         reportSubjectId,token,reportChapter,reportScoll
     },
@@ -113,6 +113,6 @@ export default {
                 })
             }
         });
-  }
+    }
 }
 </script>
