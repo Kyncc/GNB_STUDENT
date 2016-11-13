@@ -13,6 +13,7 @@ import camera from './camera/modules/index'
 import error from './error/modules/index'
 import report from './report/modules/index'
 import collect from './collect/modules/index'
+import remember from './remember/modules/index'
 import info from './user/modules/info'
 import user from './user/modules/index'
 import myClass from './user/modules/class'
@@ -49,6 +50,7 @@ export default new Vuex.Store({
     //拍错题
     camera,
     report,
+    remember,
     user
   }
 })
