@@ -73,6 +73,10 @@ export const API_PATHS = {
    */
     reportChapter:`${API_ENV}${API_VERSION}/student/report`,
     reportDetail:`${API_ENV}${API_VERSION}/student/report/detail`,
+   /**记错题
+   *  rememberChapter:记错题章节列表
+   */
+   rememberChapter:`${API_ENV}${API_VERSION}/student/remember/chapter`,
    /**互动模块
    * msgSystem:系统消息
    * msgClass:班级消息

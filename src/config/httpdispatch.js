@@ -154,6 +154,10 @@ export default {
   myClassSearch: (params) => {
     return http({ method: 'post', url: API_PATHS.myClassSearch, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  /**记错题章节 */
+  rememberCharpter: (params) => {
+    return http({ method: 'get', url: API_PATHS.rememberChapter, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
   /** 成绩报告单*/
   report: (params) => {
     return http({ method: 'get', url: API_PATHS.reportChapter, data: params.data, ok: params.ok, wrong: params.wrong })

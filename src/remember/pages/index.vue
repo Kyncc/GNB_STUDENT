@@ -11,7 +11,7 @@
             <template v-for="item in rememberWorkbook">
                  <template v-if="item.textbook">
                     <group :title="item.textbook.textbookName">
-                        <cell v-for="workbook in item.textbook.list" :title="workbook.workbookName" :link="'/remember/select/'+workbook.workbookId"></cell>
+                        <cell v-for="workbook in item.textbook.list" :title="workbook.workbookName" :link="'/remember/workbook/'+workbook.workbookId"></cell>
                     </group>
                 </template>
             </template>
@@ -23,11 +23,10 @@
                 </span>
                 <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
             </infinite-loading>
-           
         </div>
     </view-box>
     <!--切换课程-->
-    <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="2" @on-click-back="_changeSubject"><gnb-change-sub>
+    <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="rememberSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
 </template>
 
 <script>
@@ -39,7 +38,6 @@ import InfiniteLoading from 'vue-infinite-loading'
 import {token} from '../../common/getters'
 import {rememberWorkbook,rememberSubjectId} from '../getters'
 import {getWorkbook,setSubject} from '../actions/remember'
-
 import gnbChangeSub from '../../components/changesub/index.vue'
 import '../index.less'
 
@@ -61,11 +59,13 @@ export default {
         this.visible = false;
     },
     _onInfinite(){
-        if(this.rememberWorkbook.length != 0){
+        //若没有数据则重新提交
+        if(this.rememberWorkbook.length != 0 && this.rememberWorkbook[0].textbook){
             this.$broadcast('$InfiniteLoading:loaded');
             this.$broadcast('$InfiniteLoading:complete');
             return;
         }
+
         this.getWorkbook({
             token:this.token,   
             subjectId:this.rememberSubjectId
@@ -87,9 +87,18 @@ export default {
   data(){
     return {
         visible:false,
-        subjectList:['math','physics'],
-        subjectName:'数学',
+        subjectList:['math','physics']
     }
+  },
+  computed:{
+       //初始化对课程名称的变化
+      subjectName(){
+        if(this.rememberSubjectId == 2){
+            return '数学';
+        }else{
+            return '物理';
+        }
+      }
   },
   watch:{
     /** 切换学科*/
@@ -97,6 +106,11 @@ export default {
         this.$nextTick(() => {
             this.$broadcast('$InfiniteLoading:reset');
         });
+        if(this.rememberSubjectId == 2){
+            this.subjectName = '数学'
+        }else{
+            this.subjectName = '物理'
+        }
     }
   }
 }
