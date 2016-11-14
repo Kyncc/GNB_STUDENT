@@ -9,11 +9,11 @@
 						
         <div style="padding-top:46px;">
             <template v-for="item in rememberWorkbook">
-                 <group :title="item.textbook.textbookName">
-                    <template v-for="workbook in item.textbook.list">
-                        <cell :title="workbook.workbookName" :link="'/remember/select/'+workbook.workbookId"></cell>
-                      </template>
-                </group>
+                 <template v-if="item.textbook">
+                    <group :title="item.textbook.textbookName">
+                        <cell v-for="workbook in item.textbook.list" :title="workbook.workbookName" :link="'/remember/select/'+workbook.workbookId"></cell>
+                    </group>
+                </template>
             </template>
             
             <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
 	_back() {
-      this.$router.go('/main');
+        this.$router.go('/main');
     },
     _changeSub(){
         this.visible = true;
@@ -59,21 +59,19 @@ export default {
         this.subjectName = item.value;
         this.setSubject(item.id);       //更换科目
         this.visible = false;
-        this._onInfinite();
     },
     _onInfinite(){
-        // if(this.rememberWorkbook.length != 0){
-        //     this.$broadcast('$InfiniteLoading:loaded');
-        //     this.$broadcast('$InfiniteLoading:complete');
-        //     return;
-        // }
+        if(this.rememberWorkbook.length != 0){
+            this.$broadcast('$InfiniteLoading:loaded');
+            this.$broadcast('$InfiniteLoading:complete');
+            return;
+        }
         this.getWorkbook({
             token:this.token,   
             subjectId:this.rememberSubjectId
         },()=>{
-            if(this.rememberWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+            if(this.rememberWorkbook[0].textbook) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
-            // this.jroll.refresh();
         });
     }   
   },
@@ -93,8 +91,13 @@ export default {
         subjectName:'数学',
     }
   },
-  ready(){
-    
+  watch:{
+    /** 切换学科*/
+    rememberSubjectId(){
+        this.$nextTick(() => {
+            this.$broadcast('$InfiniteLoading:reset');
+        });
+    }
   }
 }
 </script>
