@@ -1,5 +1,5 @@
 <template >
-    <view-box v-ref:view-box class="rememberSelect">
+    <view-box v-ref:view-box class="rememberChapter rememberSelect">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">
                 章节选择
@@ -10,14 +10,15 @@
             <template v-for="item in rememberChapter">
                 <template v-for="a in item">
                     <div v-for="aitem in a" style="margin-bottom:.5rem">
-                        <header class="sectionHeader">{{aitem.name}}<span class="with_arrow"></span></header>
+                        <header class="sectionHeader ellipsis">{{aitem.name}}</header>
+                        <!--<span class="with_arrow"></span>-->
                         <group>
                             <template v-for="b in aitem.b"> 
-                                <cell :title="b.name" :link="'chapter/'+b.id"></cell>
+                                <cell :title="b.name" :link="_isLink(b)" ></cell>
                                 <template v-for="c in b.c">
-                                    <cell :title="c.name" :link="'chapter/'+c.id"></cell>
+                                    <cell :title="c.name" :link="_isLink(c)"></cell>
                                     <template v-for="d in c.d">
-                                        <cell :title="d.name" :link="'chapter/'+d.id"></cell>
+                                        <cell :title="d.name" :link="_isLink(d)"></cell>
                                     </template>    
                                 </template>
                             </template>
@@ -63,7 +64,14 @@ export default {
   },
   store,
   methods:{
+      _isLink(item){
+          if(item.isLink == 'true'){
+            return 'chapter/'+item.id;
+          }
+          return 'javascript:;'
+      },
       _onInfinite(){
+        this._isFirst();
         this.getWorkbookChapter({
             token:this.token,   
             workbookId:this.wookbookId
@@ -71,7 +79,16 @@ export default {
             this.$broadcast('$InfiniteLoading:loaded');
             this.$broadcast('$InfiniteLoading:complete');
         });
-      }
+      },
+      /** 是否第一次*/
+     _isFirst(){
+        if(this.rememberChapter.length != 0 && this.rememberChapter[0].a){
+            this.$broadcast('$InfiniteLoading:loaded');
+            this.$broadcast('$InfiniteLoading:complete');
+            return;
+        }
+     } 
+
   }
 }
 </script>
