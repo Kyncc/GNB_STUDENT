@@ -50,8 +50,8 @@ import report from './report/pages/index'
 import reportDetail from './report/pages/detail'
 //记错题
 import remember from './remember/pages/index'
-import rememberSelect from './remember/pages/workbook'
-import rememberSection from './remember/pages/section'
+import rememberWorkbook from './remember/pages/workbook'
+import rememberChapter from './remember/pages/chapter'
 import rememberDetail from './remember/pages/detail'
 //个人中心
 import userResetPwd from './user/pages/resetPwd'
@@ -180,8 +180,8 @@ router.map({
   //记错题
   'remember':{component: remember},
   'remember/detail/:id': { component:  rememberDetail},
-  'remember/workbook/:bookId':{component: rememberSelect},
-  'remember/select/section/:bookId/:sectionId':{component: rememberSection},
+  'remember/workbook/:bookId':{component: rememberWorkbook},
+  'remember/workbook/chapter/:chapterId':{component: rememberChapter},
   //刷题型
   'brush':{component: brush},
   //个人中心

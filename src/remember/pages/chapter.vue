@@ -1,5 +1,5 @@
 <template >
-    <view-box v-ref:view-box class="rememberSelect">
+    <view-box v-ref:view-box class="rememberChapter">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">
                 第一课时
@@ -31,7 +31,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Panel,ViewBox,Group,Cell,XButton} from 'vux'
-import { period_id,subject_id,token } from '../../common/getters'
+import { token } from '../../common/getters'
 import '../index.less'
 
 export default {
@@ -43,81 +43,12 @@ export default {
   },
   vuex: {
     getters:{
-        period_id,subject_id,token
+        token
     },
     actions:{
 
     }
   },
-  store,
-  data(){
-		return {
-		}
-	},
-  ready(){
-
-  }
+  store
 }
 </script>
-<style lang="less" scoped>
-.rememberSelect{
-    p{
-        font-size:.8rem;
-        display: inline-block;
-        text-align: center;
-    }
-    .section{
-        .tl{
-            text-align: left;
-        }
-         .tr{
-            text-align: right;
-        }
-        article{
-            background:#fff; margin-top:.3rem;
-            padding:.3rem 0rem;
-            .point{
-                padding: 0 1rem;
-            }
-            header{
-                border-bottom:1px solid #ccc;
-                padding-bottom:.2rem;
-                h1{
-                    font-size:.8rem;font-weight: normal;
-                    width:35%;
-                    padding: 0 1rem;
-                    text-align: left;
-                }
-            }
-            div{
-                border-bottom: 1px dashed #ccc;
-                padding: .3rem 1rem;
-            }
-        }
-    }
-    .sectionHeader{
-        background: #fff;text-align: center;
-        position: relative;
-        padding:5px 0;
-    }
-    .per-20{
-        width:20%;
-    }
-    .per-21{
-        width:21.6%;
-    }
-    .per-25{
-        width:25%;
-    }
-    .per-35{
-        width:35%;
-    }
-    .per-40{
-        width:40%;
-    }
-    .per-60{
-        width:60%;
-    }
-}
-
-</style>

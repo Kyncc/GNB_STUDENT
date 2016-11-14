@@ -4,6 +4,7 @@ import * as _ from '../../config/whole'
 
 /**我的习题册 */
 export const getWorkbook = ({ dispatch }, params,success,wrong) => {
+  dispatch(types.REMEMBER_CHAPTER_CLEAR);
   Api.workbook({
     data: params,
     ok: response => {

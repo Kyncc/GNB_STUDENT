@@ -13,11 +13,11 @@
                         <header class="sectionHeader">{{aitem.name}}<span class="with_arrow"></span></header>
                         <group>
                             <template v-for="b in aitem.b"> 
-                                <cell :title="b.name" :link="'section/'+b.id"></cell>
+                                <cell :title="b.name" :link="'chapter/'+b.id"></cell>
                                 <template v-for="c in b.c">
-                                    <cell :title="c.name" :link="'section/'+c.id"></cell>
+                                    <cell :title="c.name" :link="'chapter/'+c.id"></cell>
                                     <template v-for="d in c.d">
-                                        <cell :title="d.name" :link="'section/'+d.id"></cell>
+                                        <cell :title="d.name" :link="'chapter/'+d.id"></cell>
                                     </template>    
                                 </template>
                             </template>
@@ -46,7 +46,7 @@ import { XHeader,Panel,ViewBox,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { token } from '../../common/getters'
 import {rememberChapter,wookbookId} from '../getters'
-import {getWorkbookChapter,delChapter} from '../actions/workbook'
+import {getWorkbookChapter} from '../actions/workbook'
 import '../index.less'
 
 export default {
@@ -58,7 +58,7 @@ export default {
         token,rememberChapter,wookbookId
     },
     actions:{
-        getWorkbookChapter,delChapter
+        getWorkbookChapter
     }
   },
   store,
@@ -72,9 +72,6 @@ export default {
             this.$broadcast('$InfiniteLoading:complete');
         });
       }
-  },
-  created(){
-     this.delChapter();
   }
 }
 </script>
