@@ -47,7 +47,7 @@ import { XHeader,Panel,ViewBox,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { token } from '../../common/getters'
 import {rememberChapter,wookbookId} from '../getters'
-import {getWorkbookChapter} from '../actions/workbook'
+import {getWorkbookChapter,delChapter} from '../actions/workbook'
 import '../index.less'
 
 export default {
@@ -59,7 +59,7 @@ export default {
         token,rememberChapter,wookbookId
     },
     actions:{
-        getWorkbookChapter
+        getWorkbookChapter,delChapter
     }
   },
   store,

@@ -33,3 +33,9 @@ export const workbookAdd = ({ dispatch }, params,success,wrong) => {
   })
 }
 
+/**全部练习册数据清空 */
+export const WorkbookAllDel = ({ dispatch }) => {
+  dispatch(types.REMEMBER_WORKBOOK_ALL_CLEAR);
+}
+
+

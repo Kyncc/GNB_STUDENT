@@ -8,47 +8,49 @@
              完成
          </a>
       </x-header>
+      <search @on-submit="_onSearch" :auto-fixed="false" placeholder="请输入习题册名"></search>
     </div>
 
-    <div style="padding-top:46px;">
+    <div style="padding-top:86px;">
 
-    <template v-for="item in rememberWorkbookAll.textbook">
-        <group :title="item.textbookName">
-            <checklist :options="item.list|covert" :value.sync="selectBookList" ></checklist>
-        </group>
-    </template>  
+        <template v-for="item in rememberWorkbookAll">
+            <group :title="item.textbookName">
+                <checklist :options="item.list|covert" :value.sync="selectBookList" ></checklist>
+            </group>
+        </template>  
 
-      <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
-        <span slot="no-results" style="color:#4bb7aa;">
-            <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-            <p style="font-size:1rem;display:inline-block;">无练习册可添加~</p>
-        </span>
-        <span slot="no-more"></span>
-      </infinite-loading>
+        <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
+            <span slot="no-results" style="color:#4bb7aa;">
+                <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+                <p style="font-size:1rem;display:inline-block;">无练习册可添加~</p>
+            </span>
+            <span slot="no-more"></span>
+        </infinite-loading>
+        
     </div>
 
   </view-box>
 </template>
 <script>
-import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist} from 'vux'
+import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,Search} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store' 
 import {token} from '../../common/getters'
-import {workbookAll,workbookAdd} from '../actions/add'
+import {workbookAll,workbookAdd,WorkbookAllDel} from '../actions/add'
 import * as _ from '../../config/whole.js'
 import {rememberWorkbookAll,rememberSubjectId} from '../getters'
 import '../index.less'
 
 export default {
   components: {
-    XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,InfiniteLoading
+    XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,InfiniteLoading,Search
   },
   vuex: {
     getters: {
         token,rememberWorkbookAll,rememberSubjectId
     },
     actions: {
-        workbookAll,workbookAdd
+        workbookAll,workbookAdd,WorkbookAllDel
     }
   },
    filters: {
@@ -72,10 +74,18 @@ export default {
    store,
    data() {
         return {
-            selectBookList:[]
+            selectBookList:[],
+            searchName:''
         }
   },
   methods: {
+        _onSearch(str){
+            this.searchName = str;
+            this.WorkbookAllDel();      //搜索需要清除数据
+            this.$nextTick(() => {
+                this.$broadcast('$InfiniteLoading:reset');
+            });
+        },
         _addTextBook(){
             _.busy();
             this.workbookAdd({
@@ -100,7 +110,8 @@ export default {
             this._isFirst();
             this.workbookAll({
                 token:this.token,   
-                subjectId:this.rememberSubjectId
+                subjectId:this.rememberSubjectId,
+                 workbookName:this.searchName
             },()=>{
                 if(this.rememberWorkbookAll.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
                 this.$broadcast('$InfiniteLoading:complete');

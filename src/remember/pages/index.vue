@@ -3,15 +3,15 @@
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
                 记错题
-                <a slot="right" @click="_changeSub()" class="changeSub">{{subjectName}}<span class="with_arrow"></span></a>
+                <a slot="right" @click="_changeSub()" class="changeSub">{{rememberSubjectId | subName}}<span class="with_arrow"></span></a>
             </x-header>
         </div>
 						
         <div style="padding-top:46px;">
             <template v-for="item in rememberWorkbook">
-                 <template v-if="item.textbook">
-                    <group :title="item.textbook.textbookName">
-                        <cell v-for="workbook in item.textbook.list" :title="workbook.workbookName" :link="'/remember/workbook/'+workbook.workbookId"></cell>
+                 <template v-if="item">
+                    <group :title="item.textbookName">
+                        <cell v-for="workbook in item.list" :title="workbook.workbookName" @click="_toChapter(workbook.workbookId)"></cell>
                     </group>
                 </template>
             </template>
@@ -26,7 +26,7 @@
         </div>
 
         <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-            <x-button style="width:100%;border-radius:0px;background:#fff;color:#000" type="primary" @click="_add">添加习题册</x-button>
+           <x-button style="width:100%;border-radius:0px;background:#fff;color:#000" type="primary" @click="_add">添加习题册</x-button>
         </tabbar>
 
     </view-box>
@@ -43,6 +43,8 @@ import InfiniteLoading from 'vue-infinite-loading'
 import {token} from '../../common/getters'
 import {rememberWorkbook,rememberSubjectId} from '../getters'
 import {getWorkbook,setSubject} from '../actions/remember'
+import {delChapter} from '../actions/workbook'
+import {WorkbookAllDel} from '../actions/add'
 import gnbChangeSub from '../../components/changesub/index.vue'
 import '../index.less'
 
@@ -50,11 +52,24 @@ export default {
   components:{
     XHeader,ViewBox,Panel,Group,Cell,Search,gnbChangeSub,InfiniteLoading,Tabbar,XButton
   },
+  filters: {
+    subName(id){
+        switch(id){
+            case '2':return '数学';
+            case '7':return '物理';
+        }
+    }    
+  },
   methods: {
-	_back() {
+    _toChapter(str){
+        this.delChapter();      //进去前清除章节数据
+        this.$router.go('/remember/workbook/'+str);
+    }, 
+	_back(){
         this.$router.go('/main');
     },
-    _add() {
+    _add(){
+        this.WorkbookAllDel();  //进去前清除所有练习册数据
         this.$router.go('/remember/add');
     },
     _changeSub(){
@@ -68,7 +83,7 @@ export default {
     },
     _onInfinite(){
         //若没有数据则重新提交
-        if(this.rememberWorkbook.length != 0 && this.rememberWorkbook[0].textbook){
+        if(this.rememberWorkbook.length != 0 ){
             this.$broadcast('$InfiniteLoading:loaded');
             this.$broadcast('$InfiniteLoading:complete');
             return;
@@ -78,7 +93,7 @@ export default {
             token:this.token,   
             subjectId:this.rememberSubjectId
         },()=>{
-            if(this.rememberWorkbook[0].textbook) {this.$broadcast('$InfiniteLoading:loaded');}
+            if(this.rememberWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
         });
     }   
@@ -88,25 +103,16 @@ export default {
         token,rememberWorkbook,rememberSubjectId
     },
     actions:{
-        getWorkbook,setSubject 
+        getWorkbook,setSubject,delChapter,WorkbookAllDel
     }
   },
   store,
   data(){
     return {
+        searchName:'',
         visible:false,
         subjectList:['math','physics']
     }
-  },
-  computed:{
-       //初始化对课程名称的变化
-      subjectName(){
-        if(this.rememberSubjectId == 2){
-            return '数学';
-        }else{
-            return '物理';
-        }
-      }
   },
   watch:{
     /** 切换学科*/
@@ -114,11 +120,6 @@ export default {
         this.$nextTick(() => {
             this.$broadcast('$InfiniteLoading:reset');
         });
-        if(this.rememberSubjectId == 2){
-            this.subjectName = '数学'
-        }else{
-            this.subjectName = '物理'
-        }
     }
   }
 }
