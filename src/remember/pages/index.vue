@@ -24,6 +24,11 @@
                 <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
             </infinite-loading>
         </div>
+
+        <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
+            <x-button style="width:100%;border-radius:0px;background:#fff;color:#000" type="primary" @click="_add">添加习题册</x-button>
+        </tabbar>
+
     </view-box>
     <!--切换课程-->
     <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="rememberSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
@@ -33,7 +38,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
-import {XHeader,Panel,ViewBox,Group,Cell,Search} from 'vux'
+import {XHeader,Panel,ViewBox,Group,Cell,Search,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {token} from '../../common/getters'
 import {rememberWorkbook,rememberSubjectId} from '../getters'
@@ -43,11 +48,14 @@ import '../index.less'
 
 export default {
   components:{
-    XHeader,ViewBox,Panel,Group,Cell,Search,gnbChangeSub,InfiniteLoading
+    XHeader,ViewBox,Panel,Group,Cell,Search,gnbChangeSub,InfiniteLoading,Tabbar,XButton
   },
   methods: {
 	_back() {
         this.$router.go('/main');
+    },
+    _add() {
+        this.$router.go('/remember/add');
     },
     _changeSub(){
         this.visible = true;

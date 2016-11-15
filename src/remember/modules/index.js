@@ -2,9 +2,9 @@ import * as types from '../mutationTypes'
 
 const state = {
     subjectId:'2',
-    my:[],
-    chapter:[],
-    all:[]
+    my:[],  
+    chapter:[], 
+    all:[]      
 }
 
 const mutations = {
@@ -20,6 +20,13 @@ const mutations = {
   },
   [types.REMEMBER_CHAPTER_CLEAR](state,data){
       state.chapter =  [];
+  },
+  [types.REMEMBER_WORKBOOK_ALL](state,data){
+      state.all =  data.data[0];
+  },
+  [types.REMEMBER_WORKBOOK_ADD](state){
+      state.all = [];   
+      state.my = [];
   }
 }
 

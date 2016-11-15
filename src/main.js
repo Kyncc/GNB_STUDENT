@@ -53,6 +53,7 @@ import remember from './remember/pages/index'
 import rememberWorkbook from './remember/pages/workbook'
 import rememberChapter from './remember/pages/chapter'
 import rememberDetail from './remember/pages/detail'
+import rememberAdd from './remember/pages/add'
 //个人中心
 import userResetPwd from './user/pages/resetPwd'
 import userInfo from './user/pages/info'
@@ -179,6 +180,7 @@ router.map({
   'report/detail/:chapterId': {component: reportDetail},
   //记错题
   'remember':{component: remember},
+  'remember/add':{component: rememberAdd},
   'remember/detail/:id': { component:  rememberDetail},
   'remember/workbook/:bookId':{component: rememberWorkbook},
   'remember/workbook/chapter/:chapterId':{component: rememberChapter},

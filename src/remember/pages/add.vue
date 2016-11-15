@@ -1,0 +1,111 @@
+<template>
+  <view-box v-ref:view-box class='rememberAdd'>
+
+    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+      <x-header :left-options="{showBack: true}">
+        添加{{rememberSubjectId|subName}}习题册
+        <a slot="right" @click="_addTextBook()" v-show="selectBookList.length != 0">
+             完成
+         </a>
+      </x-header>
+    </div>
+
+    <div style="padding-top:46px;">
+
+    <template v-for="item in rememberWorkbookAll.textbook">
+        <group :title="item.textbookName">
+            <checklist :options="item.list|covert" :value.sync="selectBookList" ></checklist>
+        </group>
+    </template>  
+
+      <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
+        <span slot="no-results" style="color:#4bb7aa;">
+            <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+            <p style="font-size:1rem;display:inline-block;">无练习册可添加~</p>
+        </span>
+        <span slot="no-more"></span>
+      </infinite-loading>
+    </div>
+
+  </view-box>
+</template>
+<script>
+import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist} from 'vux'
+import InfiniteLoading from 'vue-infinite-loading'
+import store from '../../store' 
+import {token} from '../../common/getters'
+import {workbookAll,workbookAdd} from '../actions/add'
+import * as _ from '../../config/whole.js'
+import {rememberWorkbookAll,rememberSubjectId} from '../getters'
+import '../index.less'
+
+export default {
+  components: {
+    XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,InfiniteLoading
+  },
+  vuex: {
+    getters: {
+        token,rememberWorkbookAll,rememberSubjectId
+    },
+    actions: {
+        workbookAll,workbookAdd
+    }
+  },
+   filters: {
+       covert(obj){
+            let newObj = [];
+            obj.forEach((item, index)=> {
+                newObj.push({
+                    key: item.workbookId || '',
+                    value: item.workbookName || ''
+                });
+            });
+           return newObj;
+       },
+       subName(id){
+            switch(id){
+                case '2':return '数学';
+                case '7':return '物理';
+            }
+       }    
+   },
+   store,
+   data() {
+        return {
+            selectBookList:[]
+        }
+  },
+  methods: {
+        _addTextBook(){
+            _.busy();
+            this.workbookAdd({
+                token:this.token,   
+                workbookId:this.selectBookList
+            },()=>{
+                _.leave();
+                _.toast('添加成功');
+                history.back();
+            },()=>{
+
+            })
+        },
+        _isFirst(){
+            if(this.rememberWorkbookAll.length != 0 ){
+                this.$broadcast('$InfiniteLoading:loaded');
+                this.$broadcast('$InfiniteLoading:complete');
+                return;
+            }
+        },
+        _onInfinite(){
+            this._isFirst();
+            this.workbookAll({
+                token:this.token,   
+                subjectId:this.rememberSubjectId
+            },()=>{
+                if(this.rememberWorkbookAll.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+                this.$broadcast('$InfiniteLoading:complete');
+            });
+        }
+    }
+}
+</script>
