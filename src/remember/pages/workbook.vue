@@ -14,11 +14,11 @@
                         <!--<span class="with_arrow"></span>-->
                         <group>
                             <template v-for="b in aitem.b"> 
-                                <cell :title="b.name" :link="_isLink(b)" ></cell>
+                                <cell :title="b.name" @click="_isLink(b)" ></cell>
                                 <template v-for="c in b.c">
-                                    <cell :title="c.name" :link="_isLink(c)"></cell>
+                                    <cell :title="c.name" @click="_isLink(c)"></cell>
                                     <template v-for="d in c.d">
-                                        <cell :title="d.name" :link="_isLink(d)"></cell>
+                                        <cell :title="d.name" @click="_isLink(d)"></cell>
                                     </template>    
                                 </template>
                             </template>
@@ -48,6 +48,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 import { token } from '../../common/getters'
 import {rememberChapter,wookbookId} from '../getters'
 import {getWorkbookChapter,delChapter} from '../actions/workbook'
+import {rememberExerciseClear} from '../actions/exercise'
 import '../index.less'
 
 export default {
@@ -59,16 +60,17 @@ export default {
         token,rememberChapter,wookbookId
     },
     actions:{
-        getWorkbookChapter,delChapter
+        getWorkbookChapter,delChapter,rememberExerciseClear
     }
   },
   store,
   methods:{
       _isLink(item){
           if(item.isLink == 'true'){
-            return 'chapter/'+item.id;
+            this.rememberExerciseClear();//进去前清空数据
+            this.$router.go('/remember/workbook/exercise/'+item.id);
           }
-          return 'javascript:;'
+          return;
       },
       _onInfinite(){
         this._isFirst();

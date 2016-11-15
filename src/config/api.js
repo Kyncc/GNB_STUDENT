@@ -77,6 +77,8 @@ export const API_PATHS = {
    *  rememberChapter:记错题章节列表
    */
    rememberChapter:`${API_ENV}${API_VERSION}/student/remember/chapter`,
+   rememberDetail:`${API_ENV}${API_VERSION}/student/remember/exercises`,
+   rememberDetailPost:`${API_ENV}${API_VERSION}/student/remember/submit`,
    /**互动模块
    * msgSystem:系统消息
    * msgClass:班级消息

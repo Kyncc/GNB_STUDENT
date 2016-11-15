@@ -3,8 +3,10 @@ import * as types from '../mutationTypes'
 const state = {
     subjectId:'2',
     my:[],  
+    all:[],
     chapter:[], 
-    all:[]      
+    exercise:[],
+    exemple:[]      
 }
 
 const mutations = {
@@ -33,6 +35,18 @@ const mutations = {
   [types.REMEMBER_WORKBOOK_ADD](state){
       state.all = [];   
       state.my = [];
+  },
+  [types.REMEMBER_EXERCISE](state,data){
+      state.exercise = data.data;
+  },
+  [types.REMEMBER_EXERCISE_CLEAR](state){
+      state.exercise = [];   
+  },
+  [types.REMEMBER_EXEMPLE](state,data){
+      state.detail = data.data;
+  },
+  [types.REMEMBER_EXEMPLE_CLEAR](state){
+      state.detail = [];   
   }
 }
 

@@ -158,6 +158,14 @@ export default {
   rememberCharpter: (params) => {
     return http({ method: 'get', url: API_PATHS.rememberChapter, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  /**记错题章节练习题 */
+  rememberExercise: (params) => {
+    return http({ method: 'get', url: API_PATHS.rememberDetail, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /**记错题章节练习题提交 */
+  rememberExercisePost: (params) => {
+    return http({ method: 'post', url: API_PATHS.rememberDetailPost, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
   /** 成绩报告单*/
   report: (params) => {
     return http({ method: 'get', url: API_PATHS.reportChapter, data: params.data, ok: params.ok, wrong: params.wrong })
