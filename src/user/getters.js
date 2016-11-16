@@ -32,6 +32,8 @@ export const fetchMyClassSearchClass = (state) => state.myClass.searchClass
 export const AllTextbook = (state) => state.user.textbook.all
 /** 获取获取我的教材 */
 export const MyTextbook = (state) => state.user.textbook.my
+export const textBookSubjectId = (state) => state.user.textbook.subjectId
+
 /** 获取全部习题册 */
 export const AllWorkbook = (state) => state.user.workbook.all
 /** 获取我的习题册 */

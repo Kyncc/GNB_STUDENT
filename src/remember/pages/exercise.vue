@@ -9,16 +9,30 @@
         <div style="padding-top:46px;">
             <template v-if="rememberExercise.chaper">
                 <header class="sectionHeader ellipsis">{{rememberExercise.chaper.name}}</header>
-                <template v-for="item in rememberExercise.nodes.a">
-                    <group :title="item.name">
-                        <cell v-for="itemB in item.b" :title="itemB.name">
-                            <p slot="value">
-                                 {{itemB.answer}}
-                                 <x-button mini plain type="primary" @click="_intoExample(itemB.id)">例题</x-button>
-                            </p>
-                        </cell>
-                    </group>
-                </template>
+                <template v-for="item in rememberExercise.a">
+                    <!--2级别练习册-->
+                    <template v-if="item.b[0].type == '1'">
+                        <group v-for="itemB in item.b" :title="itemB.name">
+                            <cell v-for="itemC in itemB.c" :title="itemC.name">
+                                <p slot="value">
+                                    {{itemC.answer}}
+                                    <x-button mini plain type="primary" @click="_intoExample(itemC.id)">例题</x-button>
+                                </p>
+                            </cell>
+                        </group>
+                    </template>
+                     <!--3级别练习册-->
+                    <template v-if="item.b[0].type == '2'">
+                        <group :title="item.name">
+                            <cell v-for="itemB in item.b" :title="itemB.name">
+                                <p slot="value">
+                                    {{itemB.answer}}
+                                    <x-button mini plain type="primary" @click="_intoExample(itemB.id)">例题</x-button>
+                                </p>
+                            </cell>
+                        </group>
+                    </template>
+                </template>   
                 <x-button v-if="!rememberExercise.isUsed" style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_post">提交</x-button>
             </template>
 
@@ -57,7 +71,7 @@ export default {
         token,rememberExercise,chapterId
     },
     actions:{
-        rememberExerciseGet,rememberExercisePost,rememberExerciseClear,rememberExampleClear
+        rememberExerciseGet,rememberExercisePost,rememberExerciseClear
     }
   },
   store,
@@ -65,7 +79,7 @@ export default {
       _onInfinite(){
         this.rememberExerciseGet({
             token:this.token,   
-            chapterId:this.chapterId,
+            chapterId:this.chapterId
         },()=>{
             if(this.rememberExercise.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');

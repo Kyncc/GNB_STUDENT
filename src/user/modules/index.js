@@ -1,71 +1,78 @@
 import * as types from '../mutationTypes'
 
+// const state = {
+//     textbook:{
+//         all:[
+//           {
+//             "textbookId": 1,
+//             "textbookName": "必修101"
+//           },
+//           {
+//             "textbookId": 2,
+//             "textbookName": "必修101"
+//           }
+//         ],
+//         my:[
+//           {
+//             "textbookId": 1,
+//             "textbookName": "必修101"
+//           },
+//           {
+//             "textbookId": 2,
+//             "textbookName": "必修101"
+//           }
+//         ]
+//     },
+//     workbook:{
+//         search:[],
+//         all:[],
+//         my:[]
+//     },
+//     userinfo:{},
+//     textbookVersion:{
+//       subjectType:[],
+//       subjectOptions:{
+//         physics:[],
+//         math:[]
+//       }
+//     }
+// }
+
 const state = {
     textbook:{
-        all:[
-          {
-            "textbookId": 1,
-            "textbookName": "必修101"
-          },
-          {
-            "textbookId": 2,
-            "textbookName": "必修101"
-          }
-        ],
-        my:[
-          {
-            "textbookId": 1,
-            "textbookName": "必修101"
-          },
-          {
-            "textbookId": 2,
-            "textbookName": "必修101"
-          }
-        ]
+        all:[],
+        my:[],
+        subjectId:'2'
     },
     workbook:{
         search:[],
         all:[],
-        my:[]
+        my:[],
+        subjectId:'2'
     },
     userinfo:{},
-    textbookVersion:{
-      subjectType:[],
-      subjectOptions:{
-        physics:[],
-        math:[]
-      }
-    }
+    textbookVersion:{}
 }
-
-// const state = {
-//     textbook:{
-//         all:[],
-//         my:[]
-//     },
-//     workbook:{
-//         search:[{}],
-//         all:[{}],
-//         my:[{}]
-//     },
-//     userinfo:{},
-//     textbookVersion:{}
-// }
 
 
 
 const mutations = {
   [types.TEXTBOOK_ADD](state, data) {
     state.textbook.all = data;
+    state.textbook.my = [];
   },
   [types.TEXTBOOK_GET](state, data) {
      state.textbook.my = data;
   },
   [types.TEXTBOOK_RELOAD](state) {
-     state.textbook.my = {};
+     state.textbook.my = [];
   },
   [types.TEXTBOOK_GET_ALL](state, data) {
      state.textbook.all = data;
+  },
+  [types.TEXTBOOK_SUBJECT_CHANGE](state, id) {
+     state.textbook.subjectId = id;
+     state.textbook.my = {};
   },
   [types.WORKBOOK_GET](state, data) {
      state.workbook.my = data;

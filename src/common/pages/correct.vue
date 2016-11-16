@@ -1,7 +1,9 @@
 <template>
 	<div class='errorCorrect  vux-scroller-header-box'>
 		<div style="height:46px;">
-			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">我要纠错<a slot="right" v-touch:tap="_commit">提交</a></x-header>
+			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">我要纠错
+                <a slot="right" v-touch:tap="_commit">提交</a>
+            </x-header>
 		</div>
         <div>
             <group title="纠错类型">

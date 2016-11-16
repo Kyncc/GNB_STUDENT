@@ -23,6 +23,12 @@ export const TEXTBOOK_GET = 'TEXTBOOK_GET'
 export const TEXTBOOK_DEL = 'TEXTBOOK_DEL'
 /** 增加教材 */
 export const TEXTBOOK_ADD = 'TEXTBOOK_ADD'
+/** 更改教材科目 */
+export const TEXTBOOK_SUBJECT_CHANGE = 'TEXTBOOK_SUBJECT_CHANGE'
+
+
+
+
 /** 教材数据更新 */
 export const TEXTBOOK_RELOAD = 'TEXTBOOK_RELOAD'
 /** 获取全部习题册 */

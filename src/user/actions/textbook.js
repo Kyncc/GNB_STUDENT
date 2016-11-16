@@ -16,6 +16,10 @@ export const getTextbook = ({ dispatch }, params,success,wrong) => {
     }
   })
 }
+/**更换科目 */
+export const setSubject = ({ dispatch }, id) => {
+    dispatch(types.TEXTBOOK_SUBJECT_CHANGE,id);
+}
 
 /**全部教材 */
 export const getTextbookAll = ({ dispatch }, params,success,wrong) => {
@@ -53,7 +57,6 @@ export const addTextbook = ({ dispatch }, params,success,wrong) => {
     data: params,
     ok: response => {
       dispatch(types.TEXTBOOK_ADD);
-      dispatch(types.TEXTBOOK_RELOAD);
       success&&success();
     },
     wrong: response => {

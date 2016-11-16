@@ -2,11 +2,13 @@
   <view-box v-ref:view-box class='textbookIndex'>
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
-        我的教材<a slot="right">科目</a>
+        我的教材
+        <a slot="right" @click="_changeSub()" class="changeSub">{{textBookSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
     </div>
 
     <div style="padding-top:46px;">
+
       <group>
         <cell v-for="item in MyTextbook" :title="item.textbookName"></cell>
       </group>
@@ -25,49 +27,90 @@
     </tabbar>
     
   </view-box>
+
+  <!--切换课程-->
+  <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="textBookSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
+
 </template>
 <script>
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {token} from '../../../common/getters'
-import {getTextbook} from '../../actions/textbook'
-import {MyTextbook} from '../../getters'
+import {getTextbook,setSubject} from '../../actions/textbook'
+import {MyTextbook,textBookSubjectId} from '../../getters'
 import store from '../../../store' 
+import gnbChangeSub from '../../../components/changesub/index.vue'
+
 
 export default {
   components: {
-    XHeader,XInput,Group,Selector,Cell,ViewBox,Tabbar,XButton,InfiniteLoading
+    XHeader,XInput,Group,Selector,Cell,ViewBox,Tabbar,XButton,InfiniteLoading,gnbChangeSub
+  },
+  filters: {
+    subName(id){
+        switch(id){
+            case '2':return '数学';
+            case '7':return '物理';
+        }
+    }    
   },
   vuex: {
 		getters: {
-			token,MyTextbook
+			token,MyTextbook,textBookSubjectId
 		},
 		actions: {
-      getTextbook
+      getTextbook,setSubject
 		}
 	},
 	store,
+  data(){
+    return {
+        visible:false,
+        subjectList:['math','physics']
+    }
+  },
   methods: {
+    /** 是否第一次*/
+     _isFirst(){
+        if(this.MyTextbook.length != 0){
+            this.$broadcast('$InfiniteLoading:loaded');
+            this.$broadcast('$InfiniteLoading:complete');
+            return;
+        }
+     }, 
     _back() {
-      this.$router.go('/main/user');
+        this.$router.go('/main/user');
     },
     _addTextBook(){
-      this.$router.go('add');
+        this.$router.go('add');
+    },
+    _changeSub(){
+        this.visible = true;
+    },
+    /** 切换科目*/
+    _changeSubject(item){
+        this.subjectName = item.value;
+        this.setSubject(item.id);       //更换科目
+        this.visible = false;
     },
     _onInfinite(){
-      if(this.MyTextbook.length != 0){
-          this.$broadcast('$InfiniteLoading:loaded');
-          this.$broadcast('$InfiniteLoading:complete');
-        return;
-      }
+      this._isFirst();
 			this.getTextbook({
 				token:this.token,   
-        subjectId:'2'
+        subjectId:this.textBookSubjectId
 			},()=>{
 					if(this.MyTextbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
           this.$broadcast('$InfiniteLoading:complete');
 			});
 		}
+  },
+  watch:{
+    /** 切换学科*/
+    textBookSubjectId(){
+        this.$nextTick(() => {
+            this.$broadcast('$InfiniteLoading:reset');
+        });
+    }
   }
 }
 </script>
