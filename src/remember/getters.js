@@ -9,3 +9,5 @@ export const rememberExample = (state) => state.remember.example
 export const wookbookId = (state) => state.route.params.bookId
 /** 获得章节ID*/
 export const chapterId = (state) => state.route.params.chapterId
+/** 获得章节ID*/
+export const exampleId = (state) => state.route.params.id

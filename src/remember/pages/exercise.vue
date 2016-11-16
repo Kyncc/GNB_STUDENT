@@ -57,7 +57,7 @@ export default {
         token,rememberExercise,chapterId
     },
     actions:{
-        rememberExerciseGet,rememberExercisePost,rememberExerciseClear
+        rememberExerciseGet,rememberExercisePost,rememberExerciseClear,rememberExampleClear
     }
   },
   store,

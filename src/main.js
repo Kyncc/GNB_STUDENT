@@ -222,6 +222,7 @@ router.redirect({
   '/collect/': '/collect/example',
   'camera/correct/:id':'/correct/:id',
   'collect/correct/:id':'/correct/:id',
+  'remember/correct/:id':'/correct/:id',
   'error/correct/:id':'/correct/:id',
   'camera/comment/:id':'/comment/:id',
   'collect/comment/:id':'/comment/:id',

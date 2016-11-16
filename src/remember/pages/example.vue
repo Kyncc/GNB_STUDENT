@@ -1,29 +1,21 @@
 <template>
-	<view-box v-ref:view-box class="collectDetail">
+	<view-box v-ref:view-box class="rememberExample">
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
 			<x-header :left-options="{showBack:true}">例题详情</x-header>
 		</div>
 
 		<div style="padding-top:46px;">
 			<!--内容-->
-			<div v-for="detail in list">
+			<div v-for="detail in rememberExample">
 				<div class="weui_panel weui_panel_access exerciseDetail" >
 					<div class="weui_panel_hd">
-						<flexbox :gutter="0" wrap="wrap">
-							<div style="width:25%">
-                                <flexbox-item style="color:#4bb7aa">题干</flexbox-item>
-                            </div>
-							<div style="width:25%">
-                                <flexbox-item style="text-align:right;" v-touch:tap="_remove">
-								    <span style="color:#666"><i class="icon iconfont icon-clear"></i>取消</span>
-							    </flexbox-item>
-                            </div>
-                            <div style="width:25%">
-                                <flexbox-item style="text-align:right" v-touch:tap="_correct">
-                                    <span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
-                                </flexbox-item>
-                            </div>
-						</flexbox>
+                        <p style="width:25%;color:#4bb7aa">题干</p>
+                        <p style="width:50%;text-align:right;" v-touch:tap="_collect(detail.collectTime)">
+                            <span style="color:#666"><i class="icon iconfont icon-collect"></i>{{detail.collectTime | collect}}</span>
+                        </p>
+                        <p style="width:25%;text-align:right" v-touch:tap="_correct"> 
+                            <span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
+                        </p>
 					</div>
 					<!--题目整体-->
 					<div class="weui_panel_bd">
@@ -47,13 +39,11 @@
 				<!--解析-->
 				<div class="weui_panel weui_panel_access exerciseDetail">
 					<div class="weui_panel_hd">
-						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="2/5" style="color:#4bb7aa">解析</flexbox-item>
-						</flexbox>
+                        <div style="color:#4bb7aa;width:25%">解析</div>
 					</div>
 					<!--解析主体-->
 					<div class="weui_panel_bd">
-						<div class="weui_media_bd weui_media_box ">
+						<div class="weui_media_bd weui_media_box">
 							<p class="weui_media_desc">
 								{{{* detail.answer }}}
 							</p>
@@ -73,85 +63,79 @@
 		</div>
 	</view-box>
 
-	<confirm :show.sync="show" confirm-text="是" cancel-text="否" title="确定将此题移除收藏么?" @on-confirm="_onAction()"></confirm>
 </template>
 
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
-import { token} from '../../common/getters'
-import InfiniteLoading from 'vue-infinite-loading'
-import {rememberExample,rememberSubjectId} from '../getters'
-import {rememberExampleGet,rememberExampleClear} from '../actions/example'
+import {rememberExampleGet,rememberExampleClear,collectAdd,collectRemove} from '../actions/example'
+import {rememberExample,rememberSubjectId,exampleId} from '../getters'
+import {token} from '../../common/getters'
 import store from '../../store'
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
 	components: {
-		XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
+        XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
 	},
+    created(){
+        this.rememberExampleClear();
+    },
+    filters: {
+        collect(state){
+            if(state == 0){
+                return '收藏';
+            }
+            return '取消';
+        }    
+    },
 	vuex: {
         getters: {
-            token,rememberExample,rememberSubjectId
+            token,rememberExample,rememberSubjectId,exampleId
         },
         actions: {
-            rememberExampleGet,rememberExampleClear
+            rememberExampleGet,rememberExampleClear,collectAdd,collectRemove
         }
     },
 	methods: {
 		_onInfinite(){
-			// let self = this;
-			// this.getCollectExampleList({
-			// 	options:{
-			// 		ids:[this.id],
-			// 		period_id:this.period_id,
-			// 		subject_id:this.subject_id
-			// 	},
-			// 	token:this.token
-			// },()=>{
-			// 		setTimeout(()=>{
-			// 			this.list = this.CollectExampleList;
-			// 			if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-			// 			this.$broadcast('$InfiniteLoading:complete');
-			// 		},300);
-			// 	}
-			// )
-		},
-		_remove(){
-			this.show = true
+			this.rememberExampleGet({
+				options:{
+					ids:[this.exampleId],
+					subject_id:this.rememberSubjectId,
+                    period_id:'3'
+				},
+				token:this.token
+			},()=>{
+                    if(this.rememberExample.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+                    this.$broadcast('$InfiniteLoading:complete');
+				}
+			)
 		},
 		_correct(){
-			this.$router.go('/collect/correct/'+this.id);
+			this.$router.go('/remember/correct/'+this.exampleId);
 		},
-		_back(){
-			this.$router.go('/collect/');
-		},
-		_removeCollect(){
-			// this.collectRemove({
-			// 	options:{
-			// 		id:this.id,
-			// 		period_id:this.period_id,
-			// 		subject_id:this.subject_id
-			// 	},
-			// 	token:this.token,
-			// 	type:'example'
-			// },()=>{
-			// 	setTimeout(()=>{
-			// 		history.back();
-			// 	},1000);
-			// });
-		},
-		_onAction(){
-			// this._removeCollect();
+		_collect(state){
+            let parma = {
+                options:{
+                    id:this.exampleId,
+                    period_id:'3',
+                    subject_id:this.rememberSubjectId
+                },
+                token:this.token,
+                type:'example'
+            }
+            if(state != 0){
+                //已收藏
+                this.collectRemove(parma);
+            }else{
+                //未收藏
+                this.collectAdd(parma);
+            }
 		}
 	},
     store,
-	data(){
-		return{
-			show: false,
-            list:[]
-		}
-	},
 	watch:{
-		id(){
+		exampleId(){
 			this.$nextTick(() => {
 				this.$broadcast('$InfiniteLoading:reset');
 			});

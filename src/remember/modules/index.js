@@ -6,7 +6,7 @@ const state = {
     all:[],
     chapter:[], 
     exercise:[],
-    exemple:[]      
+    example:[]      
 }
 
 const mutations = {
@@ -42,11 +42,17 @@ const mutations = {
   [types.REMEMBER_EXERCISE_CLEAR](state){
       state.exercise = [];   
   },
-  [types.REMEMBER_EXEMPLE](state,data){
-      state.exemple = data.data;
+  [types.REMEMBER_EXAMPLE](state,data){
+      state.example = data.data;
   },
-  [types.REMEMBER_EXEMPLE_CLEAR](state){
-      state.exemple = [];   
+  [types.REMEMBER_EXAMPLE_CLEAR](state){
+      state.example = [];   
+  },
+  [types.REMEMBER_EXAMPLE_COLLECT_ADD](state){
+      state.example[0].collectTime = 1;
+  },
+  [types.REMEMBER_EXAMPLE_COLLECT_REMOVE](state){
+      state.example[0].collectTime = 0;
   }
 }
 
