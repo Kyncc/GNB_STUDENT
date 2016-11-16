@@ -43,10 +43,10 @@ const mutations = {
       state.exercise = [];   
   },
   [types.REMEMBER_EXEMPLE](state,data){
-      state.detail = data.data;
+      state.exemple = data.data;
   },
   [types.REMEMBER_EXEMPLE_CLEAR](state){
-      state.detail = [];   
+      state.exemple = [];   
   }
 }
 

@@ -166,6 +166,10 @@ export default {
   rememberExercisePost: (params) => {
     return http({ method: 'post', url: API_PATHS.rememberDetailPost, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  /**记错题例题获得 */
+  rememberExampleGet: (params) => {
+      return http({ method: 'get', url: API_PATHS.rememberExample, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
   /** 成绩报告单*/
   report: (params) => {
     return http({ method: 'get', url: API_PATHS.reportChapter, data: params.data, ok: params.ok, wrong: params.wrong })

@@ -7,15 +7,19 @@
         </div>
 
         <div style="padding-top:46px;">
-            <header class="sectionHeader ellipsis">{{rememberExercise.chaper.name }}</header>
-            <template v-for="item in rememberExercise.nodes.a">
-                <group :title="item.name">
-                    <template v-for="itemB in item.b">
-                        <cell :title="itemB.name">
-                            <p slot="value"><a>{{itemB.id}}</a>1111</p>
+            <template v-if="rememberExercise.chaper">
+                <header class="sectionHeader ellipsis">{{rememberExercise.chaper.name}}</header>
+                <template v-for="item in rememberExercise.nodes.a">
+                    <group :title="item.name">
+                        <cell v-for="itemB in item.b" :title="itemB.name">
+                            <p slot="value">
+                                 {{itemB.answer}}
+                                 <x-button mini plain type="primary" @click="_intoExample(itemB.id)">例题</x-button>
+                            </p>
                         </cell>
-                    </template>
-                </group>
+                    </group>
+                </template>
+                <x-button v-if="!rememberExercise.isUsed" style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_post">提交</x-button>
             </template>
 
             <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
@@ -36,7 +40,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
-import { XHeader,Panel,ViewBox,Group,Cell,XButton} from 'vux'
+import { XHeader,Panel,ViewBox,Group,Cell,XButton,Checker, CheckerItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {rememberExerciseGet,rememberExercisePost,rememberExerciseClear} from '../actions/exercise'
 import {rememberExercise,chapterId} from '../getters'
@@ -46,7 +50,7 @@ import '../index.less'
 
 export default {
   components:{
-    XHeader,ViewBox,Panel,Group,Cell,XButton,InfiniteLoading
+    XHeader,ViewBox,Panel,Group,Cell,XButton,InfiniteLoading,Checker, CheckerItem
   },
   vuex: {
     getters:{
@@ -66,6 +70,12 @@ export default {
             if(this.rememberExercise.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
         });
+      },
+      _post(){
+
+      },
+      _intoExample(id){
+        this.$router.go('/remember/example/'+id);
       }
   },
   data () {
