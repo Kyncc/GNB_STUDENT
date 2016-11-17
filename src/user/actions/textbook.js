@@ -66,4 +66,9 @@ export const addTextbook = ({ dispatch }, params,success,wrong) => {
   })
 }
 
+/**全部教材数据清空 */
+export const textbookAllDel = ({ dispatch }) => {
+  dispatch(types.TEXTBOOK_RELOAD);
+}
+
 

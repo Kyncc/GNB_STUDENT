@@ -25,26 +25,23 @@ export const TEXTBOOK_DEL = 'TEXTBOOK_DEL'
 export const TEXTBOOK_ADD = 'TEXTBOOK_ADD'
 /** 更改教材科目 */
 export const TEXTBOOK_SUBJECT_CHANGE = 'TEXTBOOK_SUBJECT_CHANGE'
-
-
-
-
 /** 教材数据更新 */
 export const TEXTBOOK_RELOAD = 'TEXTBOOK_RELOAD'
+
 /** 获取全部习题册 */
 export const WORKBOOK_GET_ALL = 'WORKBOOK_GET_ALL'
 /** 获取我的习题册 */
 export const WORKBOOK_GET = 'WORKBOOK_GET'
 /** 删除习题册 */
 export const WORKBOOK_DEL = 'WORKBOOK_DEL'
-/** 习题册数据更新 */
-export const WORKBOOK_DRELOAD = 'WORKBOOK_DRELOAD'
 /** 增加习题册 */
 export const WORKBOOK_ADD = 'WORKBOOK_ADD'
-/** 获取搜索习题册 */
-export const WORKBOOK_GET_SEARCH = 'WORKBOOK_GET_SEARCH'
 /** 习题册数据更新 */
 export const WORKBOOK_RELOAD = 'WORKBOOK_RELOAD'
+/** 习题册更改教材科目 */
+export const WORKBOOK_SUBJECT_CHANGE = 'WORKBOOK_SUBJECT_CHANGE'
+
+
 
 //反馈历史
 export const GET_ADVICE_LIST = 'GET_ADVICE_LIST'

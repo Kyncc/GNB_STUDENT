@@ -9,7 +9,7 @@
 
     <div style="padding-top:46px;">
 
-      <group>
+      <group title="教材列表">
         <cell v-for="item in MyTextbook" :title="item.textbookName"></cell>
       </group>
 

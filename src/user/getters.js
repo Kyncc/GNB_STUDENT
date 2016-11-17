@@ -28,18 +28,15 @@ export const fetchMyClassMate = (state) => state.myClass.classmate
 export const fetchMyClassSearchClass = (state) => state.myClass.searchClass
 
 
-/** 获取全部教材 */
+/** 教材 */
 export const AllTextbook = (state) => state.user.textbook.all
-/** 获取获取我的教材 */
 export const MyTextbook = (state) => state.user.textbook.my
 export const textBookSubjectId = (state) => state.user.textbook.subjectId
-
-/** 获取全部习题册 */
+/** 习题册 */
 export const AllWorkbook = (state) => state.user.workbook.all
-/** 获取我的习题册 */
 export const MyWorkbook = (state) => state.user.workbook.my
-/** 获取搜索习题册 */
-export const SearchWorkbook = (state) => state.user.workbook.search
+export const workbookSubjectId = (state) => state.user.workbook.subjectId
+
 /** 获取用户信息*/
 export const Userinfo = (state) => state.user.userinfo
 /** 获取教材信息*/

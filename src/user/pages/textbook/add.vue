@@ -21,7 +21,6 @@
 				</span>
 				<span slot="no-more"></span>
 			</infinite-loading>
-
     </div>
   </view-box>
 </template>

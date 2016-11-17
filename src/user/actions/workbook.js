@@ -32,6 +32,12 @@ export const getWorkbookAll = ({ dispatch }, params,success,wrong) => {
   })
 }
 
+/**更换科目 */
+export const setSubject = ({ dispatch }, id) => {
+    dispatch(types.WORKBOOK_SUBJECT_CHANGE,id);
+}
+
+
 /**删除习题册 */
 export const delWorkbook = ({ dispatch }, params,success,wrong) => {
   Api.workbookDel({
@@ -53,7 +59,6 @@ export const addWorkbook = ({ dispatch }, params,success,wrong) => {
     data: params,
     ok: response => {
       dispatch(types.WORKBOOK_ADD);
-      dispatch(types.WORKBOOK_DRELOAD);
       success&&success();
     },
     wrong: response => {
@@ -63,17 +68,8 @@ export const addWorkbook = ({ dispatch }, params,success,wrong) => {
   })
 }
 
-/**搜索习题册 */
-export const searchWorkbook = ({ dispatch }, params,success,wrong) => {
-  Api.workbookSearch({
-    data: params,
-    ok: response => {
-      dispatch(types.WORKBOOK_GET_SEARCH);
-      success&&success();
-    },
-    wrong: response => {
-      wrong&&wrong();
-      _.toast(response.data.msg);
-    }
-  })
+/**全部练习册数据清空 */
+export const workbookAllDel = ({ dispatch }) => {
+  dispatch(types.WORKBOOK_RELOAD);
 }
+

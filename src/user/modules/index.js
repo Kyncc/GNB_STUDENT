@@ -45,7 +45,6 @@ const state = {
         subjectId:'2'
     },
     workbook:{
-        search:[],
         all:[],
         my:[],
         subjectId:'2'
@@ -72,20 +71,34 @@ const mutations = {
   },
   [types.TEXTBOOK_SUBJECT_CHANGE](state, id) {
      state.textbook.subjectId = id;
-     state.textbook.my = {};
+     state.textbook.my = [];
+     state.textbook.all = [];
+  },
+  [types.TEXTBOOK_RELOAD](state) {
+     state.textbook.my = [];
+     state.textbook.all = [];
+  },
+  [types.WORKBOOK_ADD](state, data) {
+    state.workbook.all = data;
+    state.workbook.my = [];
   },
   [types.WORKBOOK_GET](state, data) {
      state.workbook.my = data;
   },
-  [types.WOEKBOOK_RELOAD](state) {
-     state.workbook.my = {};
+  [types.WORKBOOK_RELOAD](state) {
+     state.workbook.my = [];
+     state.workbook.all = [];
   },
   [types.WORKBOOK_GET_ALL](state, data) {
      state.workbook.all = data;
   },
-  [types.WORKBOOK_GET_SEARCH](state, data) {
-     state.workbook.all = data;
+  [types.WORKBOOK_SUBJECT_CHANGE](state, id) {
+     state.workbook.subjectId = id;
+     state.workbook.my = [];
+     state.workbook.all = [];
   },
+
+
   [types.USERINFO_GET](state, data) {
      state.userinfo = data;
   },
