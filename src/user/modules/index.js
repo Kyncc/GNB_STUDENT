@@ -1,43 +1,5 @@
 import * as types from '../mutationTypes'
 
-// const state = {
-//     textbook:{
-//         all:[
-//           {
-//             "textbookId": 1,
-//             "textbookName": "必修101"
-//           },
-//           {
-//             "textbookId": 2,
-//             "textbookName": "必修101"
-//           }
-//         ],
-//         my:[
-//           {
-//             "textbookId": 1,
-//             "textbookName": "必修101"
-//           },
-//           {
-//             "textbookId": 2,
-//             "textbookName": "必修101"
-//           }
-//         ]
-//     },
-//     workbook:{
-//         search:[],
-//         all:[],
-//         my:[]
-//     },
-//     userinfo:{},
-//     textbookVersion:{
-//       subjectType:[],
-//       subjectOptions:{
-//         physics:[],
-//         math:[]
-//       }
-//     }
-// }
-
 const state = {
     textbook:{
         all:[],
@@ -50,7 +12,12 @@ const state = {
         subjectId:'2'
     },
     userinfo:{},
-    textbookVersion:{}
+    //学生教材版本
+    version:{
+      math:[],
+      physics:[]
+    },
+    subject:[]
 }
 
 
@@ -97,13 +64,17 @@ const mutations = {
      state.workbook.my = [];
      state.workbook.all = [];
   },
-
-
   [types.USERINFO_GET](state, data) {
      state.userinfo = data;
   },
   [types.USERINFO_TEXTBOOKVERSION](state, data) {
-     state.textbookVersion = data;
+     state.version.math = data.subjectOptions.math;
+     if(data.subjectOptions.physics){
+       state.version.physics = data.subjectOptions.physics;
+     }else{
+       state.version.physics = [];
+     }
+
   }
 }
 

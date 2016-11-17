@@ -94,7 +94,12 @@ export default {
         this.visible = false;
     },
     _onInfinite(){
-      this._isFirst();
+      if(this.MyTextbook.length != 0 ){
+            this.$broadcast('$InfiniteLoading:loaded');
+            this.$broadcast('$InfiniteLoading:complete');
+            return;
+      }
+
 			this.getTextbook({
 				token:this.token,   
         subjectId:this.textBookSubjectId

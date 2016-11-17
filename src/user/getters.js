@@ -40,8 +40,7 @@ export const workbookSubjectId = (state) => state.user.workbook.subjectId
 /** 获取用户信息*/
 export const Userinfo = (state) => state.user.userinfo
 /** 获取教材信息*/
-export const TextBookVer  = (state) => state.user.textbookVersion.subjectOptions
-export const TextBookMathVer = (state) => state.user.textbookVersion.subjectOptions.math
-export const TextBookPhysicsVer = (state) => state.user.textbookVersion.subjectOptions.physics
+export const TextBookMathVer  = (state) => state.user.version.math
+export const TextBookPhysicsVer = (state) => state.user.version.physics
 
-export const GradeSubject = (state) => state.user.textbookVersion.subjectType
+// export const GradeSubject = (state) => state.user.textbookVersion.subjectType

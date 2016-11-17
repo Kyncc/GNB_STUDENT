@@ -8,7 +8,7 @@
              完成
          </a>
       </x-header>
-      <search @on-submit="_onSearch" :value.sync="searchName" :auto-fixed="false" placeholder="请输入习题册名"></search>
+      <search @on-submit="_onSearch" @on-change="_onSearch" :value.sync="searchName" :auto-fixed="false" placeholder="请输入习题册名"></search>
     </div>
 
     <div style="padding-top:86px;">

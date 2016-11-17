@@ -8,7 +8,7 @@
              完成
          </a>
       </x-header>
-      <search @on-submit="_onSearch" :value.sync="searchName" :auto-fixed="false" placeholder="请输入习题册名"></search>
+      <search @on-submit="_onSearch"  @on-change="_onSearch" :value.sync="searchName" :auto-fixed="false" placeholder="请输入习题册名"></search>
     </div>
 
     <div style="padding-top:86px;">
@@ -41,7 +41,7 @@ import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,Search} fro
 import InfiniteLoading from 'vue-infinite-loading'
 import {token} from '../../../common/getters'
 import {AllWorkbook,workbookSubjectId} from '../../getters'
-import {getWorkbookAll,setSubject,WorkbookAllDel,addWorkbook} from '../../actions/workbook'
+import {getWorkbookAll,setSubject,workbookAllDel,addWorkbook} from '../../actions/workbook'
 import gnbChangeSub from '../../../components/changesub/index.vue'
 import * as _ from '../../../config/whole.js'
 import './index.less'
@@ -56,7 +56,7 @@ export default {
         token,AllWorkbook,workbookSubjectId
     },
     actions: {
-        getWorkbookAll,addWorkbook,WorkbookAllDel
+        getWorkbookAll,addWorkbook,workbookAllDel
     }
   },
    filters: {
@@ -87,7 +87,7 @@ export default {
   methods: {
         _onSearch(str){
             this.searchName = str;
-            this.WorkbookAllDel();      //搜索需要清除数据
+            this.workbookAllDel();      //搜索需要清除数据
             this.$nextTick(() => {
                 this.$broadcast('$InfiniteLoading:reset');
             });

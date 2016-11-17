@@ -1,7 +1,5 @@
 /** 获取用户信息 */
 export const USERINFO_GET = 'USERINFO_GET'
-/** 更新用户信息 */
-export const USERINFO_UPDATE = 'USERINFO_UPDATE'
 /** 获得教材 */
 export const USERINFO_TEXTBOOKVERSION = 'USERINFO_TEXTBOOKVERSION'
 /**我的班级

@@ -14,7 +14,8 @@ const state = {
     isVip:localStorage.getItem('isVip')?localStorage.getItem('isVip'):' ',
     balance:localStorage.getItem('balance')?localStorage.getItem('balance'):' ',
     numerical:localStorage.getItem('numerical')?localStorage.getItem('numerical'):' ',
-    token: localStorage.getItem('token')
+    // token: localStorage.getItem('token')
+    token:'2923de032ab45edd4f1897b58c0f5bcf'
   },
   msg:''
 }
