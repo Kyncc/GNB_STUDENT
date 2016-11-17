@@ -15,13 +15,14 @@
 
             <group title="基本资料">
               <x-input title="姓名" name="username" :value.sync="username" v-ref:username is-type="china-name"></x-input>
-              <popup-picker title="年级" :data="gradeList"  :value.sync="grade"></popup-picker>
+              <selector title="年级" :options="gradeList" :value.sync="grade" @on-change="_onChangeGrade"></selector>
               <x-input title="学校" name="school" :value.sync="school" v-ref:school ></x-input>
             </group>
 
             <group title="版本选择">
-              <popup-picker title="物理" :data="physicsList"  :value.sync="physics" ></popup-picker>
-              <popup-picker title="数学" :data="mathList"  :value.sync="math" ></popup-picker>
+                 <selector title="数学" :options="TextBookMathVer | covert" :value.sync="math" @on-change="_onChangeMath"></selector>
+                 <selector v-show="this.TextBookPhysicsVer.length != 0" title="物理" :options="TextBookPhysicsVer | covert " 
+                 :value.sync="physics" @on-change="_onChangePhysisc"></selector>
             </group>
             
             <div style="width:90%;margin:1.5rem auto;">
@@ -35,42 +36,58 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
-import { registerMobile } from '../getters'
-import { XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,XInput,Group,Cell,Confirm,PopupPicker} from 'vux'
+import { registerMobile,TextBookMathVer,TextBookPhysicsVer } from '../getters'
+import { getTextbookVersion,setUserInfo } from '../actions'
+import { XHeader,Panel,ViewBox,XButton,XInput,Group,Cell,Confirm,PopupPicker,Selector} from 'vux'
 import '../main.less'
 
 export default {
   components: {
-    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,XInput,Group,Cell,Confirm,PopupPicker
+    XHeader,ViewBox,Panel,XButton,XInput,Group,Cell,Confirm,PopupPicker,Selector
+  },
+  filters: {
+    covert(obj){
+        let newObj = [];
+        obj.forEach((item, index)=> {
+            newObj.push({
+                key: item.id.toString() || '',
+                value: item.name.toString() || ''
+            });
+        });
+        return newObj;
+    }
   },
   methods: {
+    _onChangeGrade(item){
+      this.grade = item;
+    },
+    _onChangeMath(item){
+      this.math = item;
+    },
+    _onChangePhysisc(item){
+      this.physics = item;
+    },
     _complete(){
-      let grade;
-      if(this.grade == '七年级'){
-          grade = 7;
-      }
-      else if(this.grade == '八年级'){
-          grade = 8;
-      }
-      else if(this.grade == '九年级'){
-          grade = 9;
-      }else{
-         grade = 0;
-      }
-      console.log(this.username+"\n");
-      console.log(this.school+"\n");
-      console.log(this.physics+"\n");
-      console.log(this.math+"\n");
-      console.log(grade+"\n");
-      this.$router.replace('password');
+      this.setUserInfo({
+        name: this.username,
+        school: this.school,
+        mobile:this.registerMobile,
+        subject: {
+          math:this.math,
+          physics:this.physics
+        },
+        grade: this.grade
+      }, () => {
+          this.$router.replace('/');
+      })
     }
   },
   vuex: {
     getters: {
-        registerMobile
+        registerMobile,TextBookMathVer,TextBookPhysicsVer
     },
     actions: {
-
+        getTextbookVersion,setUserInfo
     }
   },
   store,
@@ -79,24 +96,34 @@ export default {
       username:'',
       school:'',
       disable: true,
-      math:['人教版'],
-      mathList: [
-         ['人教版']
-      ],
-      physics:['人教A版'],
-      physicsList: [
-         ['人教A版']
-      ],
-      grade:['七年级'],
-      gradeList: [
-         ['七年级', '八年级', '九年级','高中']
-      ]  
+      math:'',
+      physics:'',
+      grade:'10',
+      gradeList: [{key: '7', value: '七年级'},{key: '8', value: '八年级'},{key: '9', value: '九年级'},{key: '10', value: '高中'}]
     }
   },
   computed:{
      disable(){
          return (this.$refs.username.valid && this.$refs.school.valid ? false : true);
      }
+  },
+  ready(){
+       this.getTextbookVersion({grade: this.grade},() => {})
+  },
+  watch:{
+    grade(){
+        this.getTextbookVersion({grade: this.grade},() => {})
+    },
+    TextBookMathVer(){
+      this.math = this.TextBookMathVer[0].id.toString();
+    },
+    TextBookPhysicsVer(){
+      if(this.TextBookPhysicsVer.length == 0){
+        this.physics = '';
+        return;
+      }
+      this.physics = this.TextBookPhysicsVer[0].id.toString();
+    }
   }
 }
 </script>

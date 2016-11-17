@@ -136,7 +136,7 @@ export default {
                 grade: this.grade,
                 token: this.token
               }, () => {
-                this.getUserInfo({
+                this.getUserinfo({
                   token: this.token
                 }, () => {
                     this.edit = '编辑'

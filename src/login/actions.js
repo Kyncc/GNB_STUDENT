@@ -32,13 +32,14 @@ export const addPwd = ({ dispatch }, params,success,wrong) => {
 
 /*设置用户信息*/
 export const setUserInfo = ({ dispatch }, params,success,wrong) => {
-  Api.updateUserInfo({
+  Api.addUserInfo({
     data: params,
     ok: response => {
         success&&success()
     },
     wrong: response => {
-        wrong&&wrong()
+        _.toast(response.data.msg);
+        wrong&&wrong();
     }
   })
 }
@@ -73,8 +74,6 @@ export const getForgetCode = ({ dispatch }, params) => {
 }
 
 
-
-
 /*重置登陆密码*/
 export const resetPwd = ({ dispatch }, params,success,wrong) => {
   Api.resetPwd({
@@ -90,6 +89,23 @@ export const resetPwd = ({ dispatch }, params,success,wrong) => {
   })
 }
 
+/**获得教材版本信息 */
+export const getTextbookVersion = ({ dispatch }, params,success,wrong) => {
+  Api.getTextbookVer({
+    data: params,
+    ok: response => {
+      dispatch(types.GET_TEXTBOOK_VERSION_SUCCESS, response.data.data);
+      success&&success();
+    },
+    wrong: response => {
+      wrong&&wrong();
+      _.toast(response.data.msg);
+    }
+  })
+}
+
 export const setHeadImg = ({ dispatch }, params) => {
     dispatch(types.SET_HEAD_IMG, params)
 }
+
+

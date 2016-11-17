@@ -217,7 +217,7 @@ router.map({
 })
 
 router.redirect({
-  '/':'/main',
+  // '/':'/main',
   '/main/': '/main/index',
   '/collect/': '/collect/example',
   'camera/correct/:id':'/correct/:id',

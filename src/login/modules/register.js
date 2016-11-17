@@ -7,8 +7,8 @@ const state = {
   mobile:'',
   code:'',
   version:{
-    math:[{}],
-    physics:[{}]
+    math:[],
+    physics:[]
   }
 }
 
@@ -18,8 +18,12 @@ const mutations = {
     state.code = data.data.code;
   },
   [GET_TEXTBOOK_VERSION_SUCCESS](state , data){
-    state.version.math = data.data.math;
-    state.version.physics = data.data.physics;
+    state.version.math = data.subjectOptions.math;
+     if(data.subjectOptions.physics){
+       state.version.physics = data.subjectOptions.physics;
+     }else{
+       state.version.physics = [];
+     }
   }
 }
 

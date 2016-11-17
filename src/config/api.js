@@ -22,7 +22,7 @@ export const API_PATHS = {
    *  addInfo:新增人员信息
    */
   addPwd: `${API_ENV}${API_VERSION}/student/pwd/add`,
-  addInfo: `${API_ENV}${API_VERSION}/student/addUserInfo`,
+  addInfo: `${API_ENV}${API_VERSION}/student/user/addUserInfo`,
   resetPwd: `${API_ENV}${API_VERSION}/student/pwd/resetByMobile`,
   textbookVersion: `${API_ENV}${API_VERSION}/student/edition/byGrade`,
   //首页
