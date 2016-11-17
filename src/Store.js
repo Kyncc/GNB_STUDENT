@@ -14,7 +14,6 @@ import error from './error/modules/index'
 import report from './report/modules/index'
 import collect from './collect/modules/index'
 import remember from './remember/modules/index'
-import info from './user/modules/info'
 import user from './user/modules/index'
 import myClass from './user/modules/class'
 import advice from './user/modules/advice.js'
@@ -37,7 +36,6 @@ export default new Vuex.Store({
     correct,
     collectAction,
     message,//互动
-    info,//个人资料
     myClass,//我的班级
     advice,//反馈
     friend,//受邀好友

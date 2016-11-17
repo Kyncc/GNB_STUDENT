@@ -43,8 +43,8 @@ import collectExampleDetail from './collect/pages/exampleDetail'
 import messageClass from './message/pages/class'
 import messageCorrect from './message/pages/correct'
 import messageSystem from './message/pages/system'
-//刷题型
-import brush from './brush/pages/index'
+//题型汇总
+
 //知识图谱
 import report from './report/pages/index'
 import reportDetail from './report/pages/detail'
@@ -184,8 +184,8 @@ router.map({
   'remember/example/:id': { component:  rememberExample},
   'remember/workbook/:bookId':{component: rememberWorkbook},
   'remember/workbook/exercise/:chapterId':{component: rememberExercise},
-  //刷题型
-  'brush':{component: brush},
+  //题型汇总
+  
   //个人中心
   'user/resetPwd': { component: userResetPwd },
   'user/info': { component: userInfo },
