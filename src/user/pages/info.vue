@@ -14,8 +14,8 @@
       <x-input title="学校" name="school" :value.sync="school" readonly></x-input>
     </group>
     <group title="版本选择">
-        <x-input title="物理" name="physics"  :value.sync="physics" readonly></x-input>
-        <x-input title="数序" name="math" :value.sync="math" readonly></x-input>
+        <x-input title="物理" name="physics"  :value.sync="physicsName" readonly></x-input>
+        <x-input title="数序" name="math" :value.sync="mathName" readonly></x-input>
     </group>  
   </div>
 
@@ -32,8 +32,8 @@
       <x-input title="学校" name="school" placeholder="请输入学校名称" :value.sync="school"></x-input>
     </group>
     <group title="版本选择">
-       <selector title="数学" :options="TextBookMathVer | covert" :value.sync="mathName" @on-change="_onChangeMath"></selector>
-       <selector title="物理" :options="TextBookPhysicsVer | covert " :value.sync="physicsName" @on-change="_onChangePhysisc"></selector>
+       <selector title="数学" :options="TextBookMathVer | covert" :value.sync="math" @on-change="_onChangeMath"></selector>
+       <selector title="物理" :options="TextBookPhysicsVer | covert " :value.sync="physics" @on-change="_onChangePhysisc"></selector>
     </group>  
   </div>
 
@@ -163,7 +163,7 @@ export default {
     },
     TextBookMathVer(){
       this.math = this.TextBookMathVer[0].id.toString();
-      this.mathName = this.TextBookMathVer[0].name;
+      // this.mathName = this.TextBookMathVer[0].name;
     },
     TextBookPhysicsVer(){
       if(this.TextBookPhysicsVer.length == 0){
@@ -171,13 +171,15 @@ export default {
         return;
       }
       this.physics = this.TextBookPhysicsVer[0].id.toString();
-      this.physicsName = this.TextBookPhysicsVer[0].name;
+      // this.physicsName = this.TextBookPhysicsVer[0].name;
     },
     Userinfo(){
         this.name = this.Userinfo.name;
         this.school = this.Userinfo.school;
         this.sex = this.Userinfo.sex;
         this.grade = this.Userinfo.grade;
+        this.mathName = this.Userinfo.subject.math.name;
+        this.physicsName = this.Userinfo.subject.physics.name;
     }
   }
 }

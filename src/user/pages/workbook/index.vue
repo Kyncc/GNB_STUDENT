@@ -31,7 +31,7 @@
 
     </view-box>
     <!--切换课程-->
-    <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="workbookSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
+    <gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="workbookSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
 </template>
 
 <script>
@@ -40,7 +40,7 @@ import Router from 'vue-router'
 import store from '../../../store'
 import {XHeader,Panel,ViewBox,Group,Cell,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token} from '../../../common/getters'
+import {token,userSubjectList} from '../../../common/getters'
 import {MyWorkbook,workbookSubjectId} from '../../getters'
 import {getWorkbook,setSubject} from '../../actions/workbook'
 import gnbChangeSub from '../../../components/changesub/index.vue'
@@ -93,7 +93,7 @@ export default {
   },
   vuex: {
     getters:{
-        token,MyWorkbook,workbookSubjectId
+        token,userSubjectList,MyWorkbook,workbookSubjectId
     },
     actions:{
         getWorkbook,setSubject
@@ -103,8 +103,7 @@ export default {
   data(){
     return {
         searchName:'',
-        visible:false,
-        subjectList:['math','physics']
+        visible:false
     }
   },
   watch:{

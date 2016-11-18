@@ -8,10 +8,10 @@ export const knowledgeId = (state) => state.route.params.knowledgeId
 export const chapterId = (state) => state.route.params.chapterId
 export const cameraId = (state) => state.route.params.cameraId
 
-export const token = (state) => state.login.userInfo.token
-export const userBalance = (state) => state.login.userInfo.balance
-export const userHeadImg = (state) => state.login.userInfo.headImg
-export const userIsVip = (state) => state.login.userInfo.isVip
-export const userName = (state) => state.login.userInfo.name
-export const userNumerical = (state) => state.login.userInfo.numerical
-
+export const token = (state) => state.userInfo.token
+export const userBalance = (state) => state.userInfo.balance
+export const userHeadImg = (state) => state.userInfo.headImg
+export const userIsVip = (state) => state.userInfo.isVip
+export const userName = (state) => state.userInfo.name
+export const userNumerical = (state) => state.userInfo.numerical
+export const userSubjectList = (state) => state.userInfo.subjectType

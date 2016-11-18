@@ -231,29 +231,17 @@ router.redirect({
 
 sync(store, router)
 
-// router.beforeEach(function(transition) {
-//     if (transition.to.path == '/') {
-//       router.replace('/login');
-//       // if(localStorage.token){
-//       //     router.replace('/main/index');
-//       // }else{
-//       //     router.replace('/login');
-//       // }
-//     }
-//   // if (transition.to.path == '/register/password') {
-//   //   if (store.state.register.mobile == '') {
-//   //     console.log("禁止访问!");
-//   //     router.replace('/register');
-//   //   }
-//   // }
-//   // if (transition.to.path == '/forget/password') {
-//   //   if (store.state.forget.mobile == '') {
-//   //     console.log("禁止访问!");
-//   //     router.replace('/forget');
-//   //   }
-//   // }
-//   transition.next();
-// })
+router.beforeEach(function(transition) {
+    if (transition.to.path == '/') {
+      // router.replace('/login');
+      if(localStorage.token){
+          router.replace('/main/index');
+      }else{
+          router.replace('/');
+      }
+    }
+    transition.next();
+})
 
 
 

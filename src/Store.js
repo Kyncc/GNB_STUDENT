@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Global from './common/global'
 import register from './login/modules/register'
-import login from './login/modules/login'
+import userInfo from './login/modules/login'
 import forget from './login/modules/forget'
 import comment from './common/modules/comment'
 import correct from './common/modules/correct'
@@ -26,7 +26,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     Global,
-    login,
+    userInfo,
     register,
     forget,
     index,

@@ -35,7 +35,7 @@ export default {
   },
   vuex: {
     getters: {
-      userInfo: userInfo
+      userInfo
     },
     actions: {
       login

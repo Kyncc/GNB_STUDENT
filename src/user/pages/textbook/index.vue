@@ -29,13 +29,13 @@
   </view-box>
 
   <!--切换课程-->
-  <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="textBookSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
+  <gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="textBookSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
 
 </template>
 <script>
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token} from '../../../common/getters'
+import {token,userSubjectList} from '../../../common/getters'
 import {getTextbook,setSubject} from '../../actions/textbook'
 import {MyTextbook,textBookSubjectId} from '../../getters'
 import store from '../../../store' 
@@ -56,7 +56,7 @@ export default {
   },
   vuex: {
 		getters: {
-			token,MyTextbook,textBookSubjectId
+			token,MyTextbook,textBookSubjectId,userSubjectList
 		},
 		actions: {
       getTextbook,setSubject
@@ -65,8 +65,7 @@ export default {
 	store,
   data(){
     return {
-        visible:false,
-        subjectList:['math','physics']
+        visible:false
     }
   },
   methods: {

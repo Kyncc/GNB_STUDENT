@@ -7,28 +7,26 @@ import {
 } from '../mutationTypes'
 
 const state = {
-  userInfo:{
     headImg:localStorage.getItem('headImg')?localStorage.getItem('headImg'):' ',
     mobile:localStorage.getItem('mobile')?localStorage.getItem('mobile'):' ',
     name:localStorage.getItem('name')?localStorage.getItem('name'):' ',
     isVip:localStorage.getItem('isVip')?localStorage.getItem('isVip'):' ',
     balance:localStorage.getItem('balance')?localStorage.getItem('balance'):' ',
     numerical:localStorage.getItem('numerical')?localStorage.getItem('numerical'):' ',
-    // token: localStorage.getItem('token')
-    token:'2923de032ab45edd4f1897b58c0f5bcf'
-  },
-  msg:''
+    subjectType:localStorage.getItem('subjectType')?localStorage.getItem('subjectType'):' ',
+    token: localStorage.getItem('token')
 }
 
 const mutations = {
   [GET_LOGIN_SUCCESS](state, data){
-    state.userInfo.headImg =data.data.headImg;
-    state.userInfo.mobile = data.data.mobile;
-    state.userInfo.name = data.data.name;
-    state.userInfo.token = data.data.token;
-    state.userInfo.isVip = data.data.isVip;
-    state.userInfo.balance = data.data.balance;
-    state.userInfo.numerical = data.data.numerical;
+    state.headImg =data.data.headImg;
+    state.mobile = data.data.mobile;
+    state.name = data.data.name;
+    state.token = data.data.token;
+    state.isVip = data.data.isVip;
+    state.balance = data.data.balance;
+    state.numerical = data.data.numerical;
+    state.subjectType = data.data.subjectType;
     localStorage.setItem('headImg',data.data.headImg);
     localStorage.setItem('mobile',data.data.mobile);
     localStorage.setItem('name',data.data.name);
@@ -36,13 +34,10 @@ const mutations = {
     localStorage.setItem('isVip',data.data.isVip);
     localStorage.setItem('balance',data.data.balance);
     localStorage.setItem('numerical',data.data.numerical);
-    //state.msg = data.msg;
-  },
-  [GET_LOGIN_FAILED](state , data){
-    state.msg = data.msg;
+    localStorage.setItem('subjectType',data.data.subjectType);
   },
   [SET_HEAD_IMG](state, data) {
-    state.userInfo.headImg = data;
+    state.headImg = data;
   }
 }
 
