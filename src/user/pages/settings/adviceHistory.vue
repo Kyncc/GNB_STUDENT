@@ -22,7 +22,7 @@
 
 <script>
 import {XHeader,XInput,Group,Scroller,Cell} from 'vux'
-import { adviceHistory } from '../../actions.js'
+import { adviceHistory } from '../../actions/advice'
 import { fetchHistory, fetchToken } from '../../getters.js'
 import * as _  from '../../../config/whole.js'
 

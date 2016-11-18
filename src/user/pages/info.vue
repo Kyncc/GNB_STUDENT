@@ -14,8 +14,8 @@
       <x-input title="学校" name="school" :value.sync="school" readonly></x-input>
     </group>
     <group title="版本选择">
-        <x-input title="物理" name="physics"  :value.sync="physicsName" readonly></x-input>
-        <x-input title="数序" name="math" :value.sync="mathName" readonly></x-input>
+        <x-input title="数学" name="math" :value.sync="mathName" readonly></x-input>
+        <x-input v-show="this.TextBookPhysicsVer.length != 0"title="物理" name="physics"  :value.sync="physicsName" readonly></x-input>
     </group>  
   </div>
 
@@ -33,7 +33,7 @@
     </group>
     <group title="版本选择">
        <selector title="数学" :options="TextBookMathVer | covert" :value.sync="math" @on-change="_onChangeMath"></selector>
-       <selector title="物理" :options="TextBookPhysicsVer | covert " :value.sync="physics" @on-change="_onChangePhysisc"></selector>
+       <selector title="物理"  v-show="this.TextBookPhysicsVer.length != 0" :options="TextBookPhysicsVer | covert " :value.sync="physics" @on-change="_onChangePhysisc"></selector>
     </group>  
   </div>
 
@@ -141,7 +141,6 @@ export default {
                 }, () => {
                     this.edit = '编辑'
                 })
-                _.toast('修改成功！');
               })
           }else{
               _.toast('请完善内容');
@@ -149,13 +148,20 @@ export default {
       }
     }
   },
+  created(){
+   
+  },
   ready() {
-    this.getUserinfo({token: this.token},() => {})
+    this.getUserinfo({token: this.token},() => {
+     
+    })
   },
   watch:{
     /** 年级更改请求教材版本*/
     grade(){
-      this.getTextbookVersion({grade: this.grade},() => {})
+      this.getTextbookVersion({grade: this.grade},() => {
+        
+      })
       if(this.grade == 7) this.gradeName = '七年级';
       if(this.grade == 8) this.gradeName = '八年级';
       if(this.grade == 9) this.gradeName = '九年级';
@@ -179,7 +185,11 @@ export default {
         this.sex = this.Userinfo.sex;
         this.grade = this.Userinfo.grade;
         this.mathName = this.Userinfo.subject.math.name;
+        if(!this.Userinfo.subject.physics){
+          return;
+        }
         this.physicsName = this.Userinfo.subject.physics.name;
+
     }
   }
 }

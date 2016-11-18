@@ -30,9 +30,6 @@ const mutations = {
   [types.TEXTBOOK_GET](state, data) {
      state.textbook.my = data;
   },
-  [types.TEXTBOOK_RELOAD](state) {
-     state.textbook.my = [];
-  },
   [types.TEXTBOOK_GET_ALL](state, data) {
      state.textbook.all = data;
   },
@@ -74,7 +71,6 @@ const mutations = {
      }else{
        state.version.physics = [];
      }
-
   }
 }
 

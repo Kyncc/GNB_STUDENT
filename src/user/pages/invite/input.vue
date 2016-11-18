@@ -13,7 +13,7 @@ import {XHeader,XInput,Group} from 'vux'
 import { bindInviteCode } from '../../actions.js'
 import {fetchToken} from '../../getters'
 import * as _  from '../../../config/whole.js'
-
+import './invite.less'
 
 export default {
 	components: {
@@ -47,14 +47,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="less">
-.codeInput{
-	.vux-header{
-		color:#fff;
-		background-color:#4bb7aa;
-	}
-	.weui_cells{margin-top:0;}
-	.vux-no-group-title{margin-top:0;}
-}
-</style>

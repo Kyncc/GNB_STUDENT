@@ -15,7 +15,7 @@
 <script>
 
 import {XHeader,XInput,Group,XTextarea,XButton} from 'vux'
-import { advice } from '../../actions.js'
+import { advice } from '../../actions/advice'
 import {fetchToken} from '../../getters'
 import * as _  from '../../../config/whole.js'
 

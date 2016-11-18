@@ -11,7 +11,9 @@
     <div style="padding-top:46px;">
 
       <group title="教材列表">
-        <checklist :options="AllTextbook | covert" :value.sync="selectBookList" ></checklist>
+        <template v-if="AllTextbook">
+          <checklist :options="AllTextbook|covert" :value.sync="selectBookList" ></checklist>
+        </template>
       </group>
 
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
@@ -41,6 +43,14 @@ export default {
   components: {
     XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,InfiniteLoading
   },
+  vuex: {
+		getters: {
+			token,AllTextbook,textBookSubjectId
+		},
+		actions: {
+      getTextbookAll,addTextbook
+		}
+	},
    filters: {
        covert(obj){
             let newObj = [];
@@ -64,27 +74,25 @@ export default {
       selectBookList:[]
     }
   },
-  vuex: {
-		getters: {
-			token,AllTextbook,textBookSubjectId
-		},
-		actions: {
-      getTextbookAll,addTextbook
-		}
-	},
 	store,
   methods: {
     _addTextBook(){
         _.busy();
         this.addTextbook({
           token:this.token,   
-          subjectId:this.textBookSubjectId,
           textbookId:this.selectBookList
 			  },()=>{
           _.leave();
           _.toast('添加成功');
           history.back();
         });
+    },
+    _isFirst(){
+        if(this.AllTextbook !='undefined' ){
+            this.$broadcast('$InfiniteLoading:loaded');
+            this.$broadcast('$InfiniteLoading:complete');
+            return;
+        }
     },
     _onInfinite(){
 			this.getTextbookAll({

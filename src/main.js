@@ -59,7 +59,6 @@ import userResetPwd from './user/pages/resetPwd'
 import userInfo from './user/pages/info'
 //个人中心-设置
 import userSettingsIndex from './user/pages/settings/index'
-import userSettingsAboutUs from './user/pages/settings/aboutUs'
 import userSettingsAdvice from './user/pages/settings/advice'
 import userSettingsAdviceHistory from './user/pages/settings/adviceHistory'
 //个人中心-邀请好友
@@ -191,7 +190,6 @@ router.map({
   'user/info': { component: userInfo },
   //设置
   'user/settings': { component: userSettingsIndex },
-  'user/settings/aboutUs': { component: userSettingsAboutUs },
   'user/settings/advice': { component: userSettingsAdvice },
   'user/settings/advice/history': { component: userSettingsAdviceHistory },
   //邀请好友

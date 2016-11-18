@@ -14,7 +14,7 @@
 <script>
 import {XHeader,XInput,Group,XButton} from 'vux'
 import {fetchToken} from '../getters.js'
-import {updatePwd} from '../actions.js'
+import {updatePwd} from '../actions/resetPwd'
 import * as _ from '../../config/whole.js'
 import './resetPwd.less'
 export default {
