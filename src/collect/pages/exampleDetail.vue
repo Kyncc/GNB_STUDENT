@@ -11,13 +11,13 @@
 				<div class="weui_panel weui_panel_access exerciseDetail" >
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="1/2" style="color:#4bb7aa">题干</flexbox-item>
-							<flexbox-item :span="1/4" style="text-align:right;" v-touch:tap="_remove">
+							<p style="width:25%;color:#4bb7aa">题干</p>
+							<p style="width:50%;text-align:right;" v-touch:tap="_remove">
 								<span style="color:#666"><i class="icon iconfont icon-clear"></i>取消</span>
-							</flexbox-item>
-							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct">
-								<span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
-							</flexbox-item>
+							</p>
+							<p style="width:25%;text-align:right" v-touch:tap="_correct"> 
+                            	<span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
+                        	</p>
 						</flexbox>
 					</div>
 					<!--题目整体-->

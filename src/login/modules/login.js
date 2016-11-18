@@ -13,7 +13,7 @@ const state = {
     isVip:localStorage.getItem('isVip')?localStorage.getItem('isVip'):' ',
     balance:localStorage.getItem('balance')?localStorage.getItem('balance'):' ',
     numerical:localStorage.getItem('numerical')?localStorage.getItem('numerical'):' ',
-    subjectType:localStorage.getItem('subjectType')?localStorage.getItem('subjectType'):' ',
+    subjectType:localStorage.getItem('subjectType')?localStorage.getItem('subjectType').split(","):' ',
     token: localStorage.getItem('token')
 }
 

@@ -6,3 +6,8 @@ export const CollectExampleIds  = (state) => state.collect.example.ids
 
 export const CollectCameraTotalPage  = (state) => state.collect.camera.totalPage 
 export const CollectExampleTotalPage  = (state) => state.collect.example.totalPage 
+
+export const CollectCameraCurrentPage  = (state) => state.collect.camera.current 
+export const CollectExampleCurrentPage  = (state) => state.collect.example.current 
+
+export const CollectSubjectId  = (state) => state.collect.subjectId 

@@ -7,53 +7,62 @@ export const getCollectExampleIds = ({ dispatch }, params,callback) => {
   Api.collectExampleIds({
       data:params,
       ok:response=>{
-        dispatch(types.GET_COLLECT_EXAMPLEIDS_SUCCESS,response.data);
+        dispatch(types.GET_COLLECT_EXAMPLEIDS,response.data);
         callback(response.data);
       },
       wrong:response=>{
-        dispatch(types.GET_COLLECT_EXAMPLEIDS_ERROR,response.data);
         _.toast(response.data.msg);
       }
   })
 }
 
-export const getCollectCameraIds = ({ dispatch }, params,callback) => {
+export const getCollectCameraIds = ({ dispatch }, params,success,wrong) => {
   Api.collectCameraIds({
       data:params,
       ok:response=>{
-        dispatch(types.GET_COLLECT_CAMERALEIDS_SUCCESS,response.data);
-         callback();
+        dispatch(types.GET_COLLECT_CAMERALEIDS,response.data);
+        success&&success();
       },
       wrong:response=>{
-        dispatch(types.GET_COLLECT_CAMERALEIDS_ERROR,response.data);
         _.toast(response.data.msg);
       }
   })
 }
 
-export const getCollectExampleList = ({ dispatch }, params,success) => {
+export const getCollectExampleList = ({ dispatch }, params,success,wrong) => {
   Api.exerciseList({
       data:params,
       ok:response=>{
-          dispatch(types.GET_COLLECT_EXAMPLELIST_SUCCESS,response.data);
+          dispatch(types.GET_COLLECT_EXAMPLELIST,response.data);
           success&&success();
       },
       wrong:response=>{
-        dispatch(types.GET_COLLECT_EXAMPLELIST_ERROR,response.data);
         _.toast(response.data.msg);
       }
   })
 }
 
-export const getCollectCameraList = ({ dispatch }, params) => {
+export const getCollectCameraList = ({ dispatch }, params,success,wrong) => {
   Api.cameraList({
       data:params,
       ok:response=>{
-        dispatch(types.GET_COLLECT_CAMERALELIST_SUCCESS,response.data);
+        dispatch(types.GET_COLLECT_CAMERALELIST,response.data);
+        success&&success();
       },
       wrong:response=>{
-        dispatch(types.GET_COLLECT_CAMERALELIST_ERROR,response.data);
         _.toast(response.data.msg);
       }
   })
+}
+
+/**更换科目 */
+export const setSubject = ({ dispatch }, id) => {
+    dispatch(types.COLLECT_SUBJECT_CHANGE,id);
+    dispatch(types.COLLECT_RELOAD);
+}
+
+
+/**清空收藏本 */
+export const clearCollect = ({ dispatch }) => {
+    dispatch(types.COLLECT_RELOAD);
 }

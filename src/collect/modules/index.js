@@ -1,65 +1,54 @@
-import {
-  GET_COLLECT_EXAMPLEIDS_SUCCESS,
-  GET_COLLECT_EXAMPLEIDS_ERROR,
-  GET_COLLECT_EXAMPLELIST_SUCCESS,
-  GET_COLLECT_EXAMPLELIST_ERROR,
-  GET_COLLECT_CAMERALEIDS_SUCCESS,
-  GET_COLLECT_CAMERALEIDS_ERROR,
-  GET_COLLECT_CAMERALELIST_SUCCESS,
-  GET_COLLECT_CAMERALELIST_ERROR
-}from '../mutationTypes'
+import * as types from '../mutationTypes'
 
 const state = {
     example:{
-      code:'',
       ids:[],
       list:[],
-      totalPage:'1',
-      msg:''
+      current:1,
+      totalPage:1,
+      scoll:0
     },
     camera:{
-      code:'',
       ids:[],
       list:[],
-      msg:'',
-      totalPage:'1',
-    }
+      current:1,
+      totalPage:1,
+      scoll:0
+    },
+    subjectId:'2'
 }
 
 const mutations = {
-  [GET_COLLECT_EXAMPLEIDS_SUCCESS](state , data){
-    state.example.code = data.data.code;
-    state.example.ids = data.data.ids;
+  [types.GET_COLLECT_EXAMPLEIDS](state , data){
+    state.example.ids = state.example.ids.concat(data.data.ids);
+    // state.example.ids = data.data.ids;
     state.example.totalPage = data.data.totalPage;
-    state.example.msg = data.msg;
   },
-  [GET_COLLECT_EXAMPLEIDS_ERROR](state, data){
-    state.example.msg = data.msg;
+  [types.GET_COLLECT_EXAMPLELIST](state , data){
+     state.example.list = state.example.list.concat(data.data);
+    // state.example.list = data.data;
   },
-  [GET_COLLECT_EXAMPLELIST_SUCCESS](state , data){
-    state.example.code = data.code;
-    state.example.list = data.data;
-    state.example.msg = data.msg;
-  },
-  [GET_COLLECT_EXAMPLELIST_ERROR](state, data){
-    state.example.msg = data.msg;
-  },
-  [GET_COLLECT_CAMERALEIDS_SUCCESS](state , data){
-    state.camera.code = data.data.code;
+  [types.GET_COLLECT_CAMERALEIDS](state , data){
     state.camera.ids = data.data.ids;
-    state.camera.msg = data.msg;
     state.camera.totalPage = data.data.totalPage;
   },
-  [GET_COLLECT_CAMERALEIDS_ERROR](state, data){
-    state.camera.msg = data.msg;
-  },
-  [GET_COLLECT_CAMERALELIST_SUCCESS](state , data){
-    state.camera.code = data.data.code;
+  [types.GET_COLLECT_CAMERALELIST](state , data){
     state.camera.list = data.data;
-    state.camera.msg = data.msg;
   },
-  [GET_COLLECT_CAMERALELIST_ERROR](state, data){
-    state.camera.msg = data.msg;
+  [types.COLLECT_SUBJECT_CHANGE](state, id){
+     state.subjectId = id;
+  },
+  [types.COLLECT_RELOAD](state){
+     state.example.ids = [];
+     state.example.list = [];
+     state.example.totalPage = 1;
+     state.example.current = 1;
+     state.example.scoll=0
+     state.camera.ids = [];
+     state.camera.list = [];
+     state.camera.totalPage = 1;
+     state.camera.current = 1;
+     state.camera.scoll=0
   }
 }
 
