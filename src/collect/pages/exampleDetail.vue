@@ -75,7 +75,7 @@ import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import { collectRemove } from '../../common/actions'
 import { getCollectExampleList } from '../actions'
 import { CollectExampleList } from '../getters'
-import { period_id,subject_id,token,id } from '../../common/getters'
+import { CollectSubjectId,token,id } from '../../common/getters'
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 
@@ -85,7 +85,7 @@ export default {
 	},
 	vuex: {
         getters: {
-            CollectExampleList,period_id,subject_id,token,id
+            CollectExampleList,CollectSubjectId,token,id
         },
         actions: {
             collectRemove,getCollectExampleList
@@ -97,8 +97,7 @@ export default {
 			this.getCollectExampleList({
 				options:{
 					ids:[this.id],
-					period_id:this.period_id,
-					subject_id:this.subject_id
+					subject_id:this.CollectSubjectId
 				},
 				token:this.token
 			},()=>{
@@ -123,8 +122,7 @@ export default {
 			this.collectRemove({
 				options:{
 					id:this.id,
-					period_id:this.period_id,
-					subject_id:this.subject_id
+					subject_id:this.CollectSubjectId
 				},
 				token:this.token,
 				type:'example'

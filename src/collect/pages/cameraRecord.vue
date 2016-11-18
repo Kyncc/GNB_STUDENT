@@ -11,16 +11,16 @@
 			<div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="2/4" style="color:#4bb7aa">题干</flexbox-item>
-						<flexbox-item :span="1/4" style="text-align:right;">
+						<p style="width:25%;color:#4bb7aa">题干</p>
+						<p style="width:25%;text-align:right;">
 							<template v-if="item.collectTime == '0' ? true:false">
 								<span style="color:#666" @click="_collectAdd(item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
 							</template>
 							<template v-if="item.collectTime != '0' ? true:false">
 								<span style="color:#666" @click="_removeCollect(item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消</span>
 							</template>
-						</flexbox-item>	
-                        <flexbox-item :span="1/4" style="text-align:right;color:#666" v-touch:tap="_comment(item.id)" ><i class="icon iconfont icon-error-login"></i>点评</flexbox-item>
+						</p>	
+                        <p style="width:25%;text-align:right;color:#666" v-touch:tap="_comment(item.id)" ><i class="icon iconfont icon-error-login"></i>点评</p>
 					</flexbox>				
 				</div>
 				<!--题目整体--> 
@@ -75,7 +75,7 @@ import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { collectRemove,collectAdd } from '../../common/actions'
 import { getCollectExampleList } from '../actions'
-import {period_id,subject_id,token,id } from '../../common/getters'
+import {CollectSubjectId,token,id } from '../../common/getters'
 import { CollectExampleList } from '../getters'
 import moment from 'moment'
 import store from '../../store'
@@ -87,7 +87,7 @@ export default {
 	store,
 	vuex: {
         getters: {
-            period_id,subject_id,token,id,CollectExampleList
+            CollectSubjectId,token,id,CollectExampleList
         },
         actions: {
             collectRemove,collectAdd,getCollectExampleList
@@ -98,8 +98,7 @@ export default {
 			this.collectAdd({
 				options:{
 					id:id,
-					period_id:this.period_id,
-					subject_id:this.subject_id
+					subject_id:this.CollectSubjectId
 				},
 				token:this.token,
 				type:'camera'
@@ -111,8 +110,7 @@ export default {
 			this.collectRemove({
 				options:{
 					id:id,
-					period_id:this.period_id,
-					subject_id:this.subject_id
+					subject_id:this.CollectSubjectId
 				},
 				token:this.token,
 				type:'camera'
@@ -124,8 +122,7 @@ export default {
 			let params = {
 				options:{
 					ids:[this.id],
-					period_id:this.period_id,
-					subject_id:this.subject_id
+					subject_id:this.CollectSubjectId
 				},
 				token:this.token
 			};

@@ -2,15 +2,18 @@
 <view-box v-ref:view-box class="errorIndex">
 
   <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-    <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">错题归纳</x-header>
+    <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
+        错题归纳
+        <a slot="right" @click="_changeSub()" class="changeSub">{{errorSubjectId | subName}}<span class="with_arrow"></span></a>
+    </x-header>
     <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
-      <flexbox-item :span="3/4">
-        <button-tab>
-          <button-tab-item v-touch:tap="_time('week')" selected>一周内</button-tab-item>
-          <button-tab-item v-touch:tap="_time('month')">一月内</button-tab-item>
-          <button-tab-item v-touch:tap="_time('all')">全部</button-tab-item>
-        </button-tab>
-      </flexbox-item>
+        <div style="width:75%">
+            <button-tab>
+                <button-tab-item v-touch:tap="_time('week')" selected>一周内</button-tab-item>
+                <button-tab-item v-touch:tap="_time('month')">一月内</button-tab-item>
+                <button-tab-item v-touch:tap="_time('all')">全部</button-tab-item>
+            </button-tab>
+        </div>
     </flexbox>
   </div>
 
@@ -49,29 +52,40 @@
   </div>
 
 </view-box>
+
+<gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="errorSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
 </template>
 
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
-import {period_id,subject_id,token} from '../../common/getters'
-import {errorIndexIds,errorIndexList,errorIndexTotalPage} from '../getters'
-import {getErrorIds,getErrorList} from '../actions'
+import gnbChangeSub from '../../components/changesub/index'
+import {token,userSubjectList} from '../../common/getters'
+import {errorIndexIds,errorIndexList,errorIndexTotalPage,errorSubjectId} from '../getters'
+import {getErrorIds,getErrorList,setSubject} from '../actions/index'
 import moment from 'moment'
 
 export default {
     components: {
-        XHeader,XButton,InfiniteLoading,
+        XHeader,XButton,InfiniteLoading,gnbChangeSub,
         Panel,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem
     },
     vuex: {
         getters: {
-            period_id,subject_id,token,errorIndexIds,errorIndexList,errorIndexTotalPage
+            errorSubjectId,token,errorIndexIds,errorIndexList,errorIndexTotalPage,userSubjectList
         },
         actions: {
-            getErrorIds,getErrorList
+            getErrorIds,getErrorList,setSubject
         }
+    },
+    filters: {
+      subName(id){
+          switch(id){
+              case '2':return '数学';
+              case '7':return '物理';
+          }
+      }    
     },
     methods: {
         _time(value) {
@@ -103,8 +117,7 @@ export default {
                 },
                 token: this.token,
                 options: {
-                    period_id: this.period_id,
-                    subject_id: this.subject_id
+                    subject_id: this.errorSubjectId
                 }
             },()=>{
                 setTimeout(()=>{
@@ -116,11 +129,21 @@ export default {
                     this.currentPage ++;
                 },1000);
             })
+        },
+        _changeSub(){
+                this.visible = true;
+        },
+        /** 切换科目*/
+        _changeSubject(item){
+            this.subjectName = item.value;
+            this.setSubject(item.id);       //更换科目
+            this.visible = false;
         }
     },
     store,
     data(){
         return{
+            visible:false,
             currentPage:1,
             list:[],
             totalPage:1,
@@ -136,8 +159,7 @@ export default {
             let params = {
                 options: {
                     ids: this.errorIndexIds,
-                    period_id: this.period_id,
-                    subject_id: this.subject_id
+                    subject_id: this.errorSubjectId
                 },
                 token: this.token
             };

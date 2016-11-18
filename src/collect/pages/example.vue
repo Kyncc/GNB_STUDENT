@@ -9,12 +9,12 @@
 
             <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
                 <div style="width:75%">
-                    <button-tab >
+                    <button-tab>
                         <button-tab-item selected>习题收藏</button-tab-item>
                         <button-tab-item v-touch:tap="_camera">错题收藏</button-tab-item>
-                    </button-tab >
-                </flexbox-item>
-              </div>
+                    </button-tab>
+                </div>
+            </flexbox>
         </div>
 
         <div style="padding-top:98px;">
