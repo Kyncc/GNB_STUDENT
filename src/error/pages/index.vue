@@ -53,7 +53,7 @@
 
 </view-box>
 
-<gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="errorSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
+<gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="errorSubjectId" @on-click-back="_changeSubject"></gnb-change-sub>
 </template>
 
 <script>
