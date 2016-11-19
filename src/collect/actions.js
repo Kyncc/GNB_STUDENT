@@ -3,12 +3,12 @@ import * as types from './mutationTypes'
 import * as _ from '../config/whole'
 
 
-export const getCollectExampleIds = ({ dispatch }, params,callback) => {
+export const getCollectExampleIds = ({ dispatch }, params,success) => {
   Api.collectExampleIds({
       data:params,
       ok:response=>{
         dispatch(types.GET_COLLECT_EXAMPLEIDS,response.data);
-        callback(response.data);
+        success&&success();
       },
       wrong:response=>{
         _.toast(response.data.msg);
@@ -71,7 +71,7 @@ export const getCollectExampleDetail = ({ dispatch }, params,success,wrong) => {
 
 /**获取收藏拍错题详情 */
 export const getCollectCameraDetail = ({ dispatch }, params,success,wrong) => {
-  Api.cameraList({
+  Api.exerciseList({
       data:params,
       ok:response=>{
           dispatch(types.GET_COLLECT_CAMERADETAIL,response.data);

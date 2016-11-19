@@ -5,7 +5,6 @@
 		</div>
 
 		<div style="padding-top:46px;">
-			
 			<!--内容-->
 			<div v-for="detail in list">
 				<div class="weui_panel weui_panel_access exerciseDetail" >
@@ -74,8 +73,8 @@
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import { collectRemove } from '../../common/actions'
 import { getCollectExampleDetail,clearCollect } from '../actions'
-import { CollectExampleDetail } from '../getters'
-import { CollectSubjectId,token,id } from '../../common/getters'
+import { CollectExampleDetail,CollectSubjectId } from '../getters'
+import { token,id } from '../../common/getters'
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 

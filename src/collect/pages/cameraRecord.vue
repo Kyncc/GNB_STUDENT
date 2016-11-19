@@ -12,7 +12,7 @@
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
 						<p style="width:25%;color:#4bb7aa">题干</p>
-						<p style="width:25%;text-align:right;">
+						<p style="width:50%;text-align:right;">
 							<template v-if="item.collectTime == '0' ? true:false">
 								<span style="color:#666" @click="_collectAdd(item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
 							</template>
@@ -74,9 +74,9 @@
 import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { collectRemove,collectAdd } from '../../common/actions'
-import { getCollectExampleList } from '../actions'
-import {CollectSubjectId,token,id } from '../../common/getters'
-import { CollectExampleList } from '../getters'
+import { getCollectCameraDetail } from '../actions'
+import { token,id } from '../../common/getters'
+import { CollectCameraDetail,CollectSubjectId } from '../getters'
 import moment from 'moment'
 import store from '../../store'
 
@@ -87,10 +87,10 @@ export default {
 	store,
 	vuex: {
         getters: {
-            CollectSubjectId,token,id,CollectExampleList
+            CollectSubjectId,token,id,CollectCameraDetail
         },
         actions: {
-            collectRemove,collectAdd,getCollectExampleList
+            collectRemove,collectAdd,getCollectCameraDetail
         }
     },
 	methods: {
@@ -101,7 +101,7 @@ export default {
 					subject_id:this.CollectSubjectId
 				},
 				token:this.token,
-				type:'camera'
+				type:'example'
 			},()=>{
 				this.list[0].collectTime = moment().unix();
 			});
@@ -113,7 +113,7 @@ export default {
 					subject_id:this.CollectSubjectId
 				},
 				token:this.token,
-				type:'camera'
+				type:'example'
 			},()=>{
 				this.list[0].collectTime = 0;
 			});
@@ -126,12 +126,10 @@ export default {
 				},
 				token:this.token
 			};
-			this.getCollectExampleList(params,()=>{
-				setTimeout(()=>{
-					this.list = this.CollectExampleList;
-					if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-					this.$broadcast('$InfiniteLoading:complete');
-				},300);
+			this.getCollectCameraDetail(params,()=>{
+				this.list = this.CollectCameraDetail;
+				if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+				this.$broadcast('$InfiniteLoading:complete');
 			});
 		},
 		_comment(id){

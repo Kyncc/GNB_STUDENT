@@ -16,30 +16,33 @@
     </div>
 
     <div style="padding-top:98px;" class="main">
-        <flexbox class="list" v-for="item in list">
-        <flexbox-item :span="2/5">
-          <img class="previewer-demo-img" v-lazy="item.compressPic" @click="_show($index)">
-        </flexbox-item>
-        <flexbox-item :span="3/5" style="position:relative">
-          <div v-touch:tap="_record(item.importantId,item.id)">
-              <div class="title">{{{item.knowledge}}}</div>
-                <div class="difficult">
-                  难度：{{item.difficult}}
-                </div>
-                <div class="time">{{{item.cameraTime | ymd}}} </div>
-            </div>
-            <i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id,$index)"></i>
-          </flexbox-item>
-        <flexbox>
+        <div class="list" v-for="item in CollectCameraList">
+          <div style="width:40%;display:inline-block;float:left;">
+            <img class="previewer-demo-img" v-lazy="item.compressPic" @click="_show($index)">
+          </div>
+
+          <div style="width:60%;display:inline-block;float:left;position:relative;top:20%;" >
+              <div v-touch:tap="_record(item.importantId,item.id)">
+                  <div class="title ellipsis">{{{item.knowledge}}}</div>
+                  <div class="difficult">难度：{{item.difficult}}</div>
+                  <div class="time">{{{item.cameraTime | ymd}}} </div>
+              </div>
+              <i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id,$index)"></i>
+              <!--<i class="icon iconfont icon-clear"  v-touch:tap="_remove(item.id,$index)"></i>-->
+          </div>
+        </div>
+
+        <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
+          <span slot="no-results" style="color:#4bb7aa;">
+              <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+              <p style="font-size:1rem;display:inline-block;">还没收藏习题~</p>
+          </span>
+          <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已加载全部收藏</span>
+        </infinite-loading>
+
     </div>
 
-    <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
-      <span slot="no-results" style="color:#4bb7aa;">
-            <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-            <p style="font-size:1rem;display:inline-block;">还没收藏习题~</p>
-        </span>
-        <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已加载全部收藏</span>
-    </infinite-loading>
+    
   </view-box>
 
   <previewer :list="imgList" v-ref:previewer ></previewer>
@@ -54,7 +57,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import gnbChangeSub from '../../components/changesub/index.vue'
 import {userSubjectList,token} from '../../common/getters'
-import {CollectCameraIds,CollectCameraList,CollectCameraTotalPage,CollectSubjectId} from '../getters'
+import {CollectCameraIds,CollectCameraList,CollectSubjectId,CollectCameraTotalPage,CollectCameraCurrentPage,CollectScoll} from '../getters'
 import { getCollectCameraIds, getCollectCameraList,setSubject,clearCollect} from '../actions'
 import { collectRemove } from '../../common/actions'
 import * as _ from '../../config/whole'
@@ -75,8 +78,8 @@ export default {
   },
   vuex: {
     getters: {
-      userSubjectList,token,CollectSubjectId,
-      CollectCameraIds, CollectCameraList,CollectCameraTotalPage
+      userSubjectList,token,
+      CollectCameraIds,CollectCameraList,CollectSubjectId,CollectCameraTotalPage,CollectCameraCurrentPage,CollectScoll
     },
     actions: {
       getCollectCameraIds, getCollectCameraList,collectRemove,setSubject,clearCollect
@@ -88,56 +91,49 @@ export default {
       this.$router.go(`/collect/camera/detail/${importantId}/${id}`);
     },
     _example() {
+      this.clearCollect();
       this.$router.replace(`/collect/example`);
     },
     _show(index) {
-      this.imgList[0].src = this.list[index].pic;
-      this.imgList[0].w = this.list[index].width;
-      this.imgList[0].h = this.list[index].height;
+      this.imgList[0].src = this.CollectCameraList[index].pic;
+      this.imgList[0].w = this.CollectCameraList[index].width;
+      this.imgList[0].h = this.CollectCameraList[index].height;
       this.$refs.previewer.show();
     },
     _remove(id,index) {
       this.show = true;
       this.delPic.index = index;
       this.delPic.id = id;
+      this._delete();
     },
     _back() {
       this.$router.go('/main');
     },
-    _delelte(){
+    _delete(){
        this.collectRemove({
         options:{
           id:this.delPic.id,
-          userSubjectList:this.userSubjectList
+          subject_id:this.CollectSubjectId
         },
 				token:this.token,
 				type:'camera'
       },()=>{
-          this.list.$remove(this.list[this.delPic.index]);
-          _.toast("已取消");
+          // this.list.$remove(this.list[this.delPic.index]);
+          _.toast("取消成功");
       });
     },
     _onInfinite() {
         this.getCollectCameraIds({
-          currentPage:this.currentPage,
+          currentPage:this.CollectCameraCurrentPage || [],
           token:this.token,
           options:{
-              userSubjectList:this.userSubjectList
+              subject_id:this.CollectSubjectId
           }
-      },()=>{
-          this.$broadcast('$InfiniteLoading:loaded');
-          setTimeout(()=>{
-              if(this.CollectCameraTotalPage <= this.currentPage){
-                  this.$broadcast('$InfiniteLoading:complete');
-                  return;
-              }
-              this.currentPage ++;
-          },300);
       })
     },
     _changeSub(){
-            this.visible = true;
-       },
+        this.visible = true;
+    },
     /** 切换科目*/
     _changeSubject(item){
         this.subjectName = item.value;
@@ -149,12 +145,10 @@ export default {
     return {
       visible:false,
       show: false,
-      currentPage: 1,
       delPic:{
         index:'',
         id:''
       },
-      list: [],
       imgList: [{
         src: '',
         w: '',
@@ -167,14 +161,23 @@ export default {
       let params = {
         options: {
           ids: this.CollectCameraIds,
-          subject_id: this.userSubjectList
+          subject_id: this.CollectSubjectId
         },
         token: this.token
       };
-      this.getCollectCameraList(params)
+      this.getCollectCameraList(params,()=>{
+          this.$broadcast('$InfiniteLoading:loaded');
+          if(this.CollectCameraCurrentPage  > this.CollectCameraTotalPage){
+              this.$broadcast('$InfiniteLoading:complete');
+              return;
+          }
+      })
     },
-    CollectCameraList() {
-      this.list = this.list.concat(this.CollectCameraList);
+    /** 切换学科*/
+    CollectSubjectId(){
+        this.$nextTick(() => {
+            this.$broadcast('$InfiniteLoading:reset');
+        });
     }
   }
 }

@@ -23,7 +23,7 @@
             </div>
         </div>
         
-        <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="2" @on-click-back="_changeSubject"><gnb-change-sub>
+        <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="2" @on-click-back="_changeSubject"></gnb-change-sub>
     </view-box>
 </template>
 
