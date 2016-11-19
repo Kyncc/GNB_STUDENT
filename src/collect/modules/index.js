@@ -4,29 +4,32 @@ const state = {
     example:{
       ids:[],
       list:[],
+      detail:[],
       current:1,
-      totalPage:1,
-      scoll:0
+      totalPage:1
     },
     camera:{
       ids:[],
       list:[],
+      detail:[],
       current:1,
       totalPage:1,
-      scoll:0
     },
+    scoll:0,
     subjectId:'2'
 }
 
 const mutations = {
   [types.GET_COLLECT_EXAMPLEIDS](state , data){
-    state.example.ids = state.example.ids.concat(data.data.ids);
-    // state.example.ids = data.data.ids;
+    state.example.ids = data.data.ids;
     state.example.totalPage = data.data.totalPage;
+    state.example.current++;
   },
   [types.GET_COLLECT_EXAMPLELIST](state , data){
      state.example.list = state.example.list.concat(data.data);
-    // state.example.list = data.data;
+  },
+  [types.GET_COLLECT_EXAMPLEDETAIL](state , data){
+     state.example.detail = data.data;
   },
   [types.GET_COLLECT_CAMERALEIDS](state , data){
     state.camera.ids = data.data.ids;
@@ -34,6 +37,15 @@ const mutations = {
   },
   [types.GET_COLLECT_CAMERALELIST](state , data){
     state.camera.list = data.data;
+  },
+  [types.GET_COLLECT_CAMERADETAIL](state , data){
+     state.camera.detail = data.data;
+  },
+  [types.GET_COLLECT_CAMERADETAIL](state , data){
+     state.camera.detail = data.data;
+  },
+  [types.COLLECT_SCOLL](height){
+     state.scoll = height;
   },
   [types.COLLECT_SUBJECT_CHANGE](state, id){
      state.subjectId = id;
@@ -43,12 +55,11 @@ const mutations = {
      state.example.list = [];
      state.example.totalPage = 1;
      state.example.current = 1;
-     state.example.scoll=0
+     state.scoll=0;
      state.camera.ids = [];
      state.camera.list = [];
      state.camera.totalPage = 1;
      state.camera.current = 1;
-     state.camera.scoll=0
   }
 }
 

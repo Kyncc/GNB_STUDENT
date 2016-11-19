@@ -1,67 +1,64 @@
 <template>
-    <view-box v-ref:view-box class="collect">
-
-        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-             <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()" >
-                 收藏本
-                <a slot="right" @click="_changeSub()" class="changeSub">{{CollectSubjectId | subName}}<span class="with_arrow"></span></a>
-            </x-header>
-
-            <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
-                <div style="width:75%">
-                    <button-tab>
-                        <button-tab-item selected>习题收藏</button-tab-item>
-                        <button-tab-item v-touch:tap="_camera">错题收藏</button-tab-item>
-                    </button-tab>
-                </div>
-            </flexbox>
+  <view-box v-ref:view-box class="collect">
+    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+      <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
+        收藏本
+        <a slot="right" @click="_changeSub()" class="changeSub">{{CollectSubjectId | subName}}<span class="with_arrow"></span></a>
+      </x-header>
+      <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
+        <div style="width:75%">
+          <button-tab>
+            <button-tab-item selected>习题收藏</button-tab-item>
+            <button-tab-item v-touch:tap="_camera">错题收藏</button-tab-item>
+          </button-tab>
         </div>
-
-        <div style="padding-top:98px;">
-            <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in CollectExampleList">
-                <div class="weui_panel_hd">
-                    {{{item.knowledge}}}
-                </div>
-                <div class="weui_panel_bd">
-                    <a class="weui_media_box weui_media_appmsg" href="#!/collect/example/detail/{{item.id}}">
-                        <div class="weui_media_bd">
-                            <p class="weui_media_desc">
-                            {{{item.content}}}
-                            </p>
-                        </div>
-                    </a>
-                    <div class="weui_panel_ft">
-                        <flexbox :gutter="0" wrap="wrap">
-                            <flexbox-item :span="1/2">收藏时间：{{item.collectTime | ymd}}</flexbox-item>
-                            <flexbox-item :span="1/4"></flexbox-item>
-                            <flexbox-item :span="1/4" style="text-align:right"> 难度：{{item.difficult}}</flexbox-item>
-                        </flexbox>
-                    </div>
-                </div>
+      </flexbox>
+    </div>
+    <div style="height:100%" id="scoller">
+      <!--空白间隔-->
+      <div style="height:86px;"></div>
+      <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in CollectExampleList">
+        <div class="weui_panel_hd">
+          {{{item.knowledge}}}
+        </div>
+        <div class="weui_panel_bd">
+          <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.id)">
+            <div class="weui_media_bd">
+              <p class="weui_media_desc">
+                {{{item.content}}}
+              </p>
             </div>
-            
-            <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
-               <span slot="no-results" style="color:#4bb7aa;">
-                    <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-                    <p style="font-size:1rem;display:inline-block;">还没收藏习题~</p>
-				</span>
-                <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已加载全部收藏</span>
-            </infinite-loading>
+          </a>
+          <div class="weui_panel_ft">
+            <flexbox :gutter="0" wrap="wrap">
+              <flexbox-item :span="1/2">收藏时间：{{item.collectTime | ymd}}</flexbox-item>
+              <flexbox-item :span="1/4"></flexbox-item>
+              <flexbox-item :span="1/4" style="text-align:right"> 难度：{{item.difficult}}</flexbox-item>
+            </flexbox>
+          </div>
         </div>
-        
-	</view-box>
-    <!--切换课程-->
-    <gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="CollectSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
+      </div>
+      <infinite-loading :on-infinite="_onInfinite" spinner="waveDots" style="height:60px">
+        <span slot="no-results" style="color:#4bb7aa;">
+            <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+            <p style="font-size:1rem;display:inline-block;">还没收藏习题~</p>
+        </span>
+        <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已加载全部收藏</span>
+      </infinite-loading>
+    </div>
+  </view-box>
+  <!--切换课程-->
+  <gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="CollectSubjectId" @on-click-back="_changeSubject">
+    <gnb-change-sub>
 </template>
-
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import gnbChangeSub from '../../components/changesub/index.vue'
 import { token,userSubjectList } from '../../common/getters'
-import { CollectExampleIds,CollectExampleList,CollectExampleTotalPage,CollectSubjectId } from '../getters'
-import { getCollectExampleIds,getCollectExampleList,setSubject,clearCollect } from '../actions'
+import { CollectExampleIds,CollectExampleList,CollectExampleTotalPage,CollectExampleCurrentPage,CollectSubjectId,CollectScoll } from '../getters'
+import { getCollectExampleIds,getCollectExampleList,setSubject,clearCollect,setScoll } from '../actions'
 
 export default {
     components: {
@@ -77,6 +74,10 @@ export default {
         }    
     },
     methods: {
+        _intoDetail(id){
+            // alert(document.documentElement.scrollTop);
+            this.$router.go(`/collect/example/detail/${id}`);
+        },
         _camera(){
             this.clearCollect();
             this.$router.replace(`/collect/camera`);
@@ -84,22 +85,26 @@ export default {
         _back(){
             this.$router.go('/main/');
         },
+        _isFirst(){
+            /*判断当前页面是否大于总页数 若大于则不在请求数据*/
+            if(Number(this.CollectExampleTotalPage) < Number(this.CollectExampleCurrentPage)){
+                 this.$broadcast('$InfiniteLoading:loaded');
+                 this.$broadcast('$InfiniteLoading:complete');
+                 return true;
+            }
+            return false;
+        },
         _onInfinite(){
+            if(this._isFirst()){
+                return;
+            }
+
             this.getCollectExampleIds({
-                currentPage:this.currentPage,
+                currentPage:this.CollectExampleCurrentPage,
                 token:this.token,
                 options:{
                     subject_id:this.CollectSubjectId
                 }
-            },()=>{
-                this.$broadcast('$InfiniteLoading:loaded');
-                setTimeout(()=>{
-                    if(this.totalPage <= this.currentPage){
-                        this.$broadcast('$InfiniteLoading:complete');
-                        return;
-                    }
-                    this.currentPage ++;
-                 },300);
             })
        },
        _changeSub(){
@@ -110,40 +115,40 @@ export default {
             this.subjectName = item.value;
             this.setSubject(item.id);       //更换科目
             this.visible = false;
-        },
+        }
     },
     vuex: {
         getters: {
             userSubjectList,token,
-            CollectExampleIds,CollectExampleList,CollectExampleTotalPage,CollectSubjectId
+            CollectExampleCurrentPage,CollectExampleIds,CollectExampleList,CollectExampleTotalPage,CollectSubjectId,CollectScoll
         },
         actions: {
             getCollectExampleIds,getCollectExampleList,clearCollect,
-            setSubject 
+            setSubject,setScoll 
         }
     },
     store,
     data(){
         return{
-            currentPage:1,
             visible:false
-        }
-    },
-    computed:{
-        totalPage(){
-            return this.CollectExampleTotalPage;
         }
     },
     watch:{
         CollectExampleIds(){
             let params = {
                 options:{
-                    ids:this.CollectExampleIds,
+                    ids:this.CollectExampleIds || [],
                     subject_id:this.CollectSubjectId
                 },
                 token:this.token
             };
-            this.getCollectExampleList(params)
+            this.getCollectExampleList(params,()=>{
+                this.$broadcast('$InfiniteLoading:loaded');
+                if(this.CollectExampleCurrentPage > this.CollectExampleTotalPage){
+                    this.$broadcast('$InfiniteLoading:complete');
+                    return;
+                }
+            });
         },
         /** 切换学科*/
         CollectSubjectId(){

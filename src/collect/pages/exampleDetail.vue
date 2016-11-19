@@ -73,8 +73,8 @@
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import { collectRemove } from '../../common/actions'
-import { getCollectExampleList } from '../actions'
-import { CollectExampleList } from '../getters'
+import { getCollectExampleDetail,clearCollect } from '../actions'
+import { CollectExampleDetail } from '../getters'
 import { CollectSubjectId,token,id } from '../../common/getters'
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
@@ -85,16 +85,16 @@ export default {
 	},
 	vuex: {
         getters: {
-            CollectExampleList,CollectSubjectId,token,id
+            CollectExampleDetail,CollectSubjectId,token,id
         },
         actions: {
-            collectRemove,getCollectExampleList
+            collectRemove,getCollectExampleDetail,clearCollect
         }
     },
 	methods: {
 		_onInfinite(){
 			let self = this;
-			this.getCollectExampleList({
+			this.getCollectExampleDetail({
 				options:{
 					ids:[this.id],
 					subject_id:this.CollectSubjectId
@@ -102,7 +102,7 @@ export default {
 				token:this.token
 			},()=>{
 					setTimeout(()=>{
-						this.list = this.CollectExampleList;
+						this.list = this.CollectExampleDetail;
 						if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
 						this.$broadcast('$InfiniteLoading:complete');
 					},300);
@@ -128,6 +128,7 @@ export default {
 				type:'example'
 			},()=>{
 				setTimeout(()=>{
+					this.clearCollect();
 					history.back();
 				},1000);
 			});

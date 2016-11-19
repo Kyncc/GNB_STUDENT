@@ -36,7 +36,7 @@
                             <img src="../../assets/main/home_6.png" alt="" />
                             <p >刷题型</p>
                         </div>
-                        <div class="flex-item right1px" @click='_warn()'>
+                        <!--<div class="flex-item right1px" @click='_warn()'>
                             <img src="../../assets/main/home_7.png"  />
                             <p class="disable">报听写</p>
                         </div>
@@ -47,7 +47,7 @@
                         <div class="flex-item" @click='_warn()'>
                             <img src="../../assets/main/home_9.png"  />
                             <p class="disable">在线练习</p>
-                        </div>
+                        </div>-->
                     </div>
                 </section>
             </div>

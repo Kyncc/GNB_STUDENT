@@ -69,7 +69,7 @@ export default {
             }
        }    
    },
-   data() {
+   data(){
     return {
       selectBookList:[]
     }
