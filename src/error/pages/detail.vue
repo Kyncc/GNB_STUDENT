@@ -86,10 +86,10 @@
 <script>
 import {Tabbar,TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import { collectRemove,collectAdd } from '../../common/actions'
-import { token,id } from '../../common/getters'
-import { errorIndexDetail,errorMoreIds,errorRecommendIds,errorListIds,errorSubjectId} from '../getters'
-import { getErrorList,getErrorMoreIds,getErrorListIds } from '../actions'
+import {collectRemove,collectAdd } from '../../common/actions'
+import {token,id } from '../../common/getters'
+import {errorIndexDetail,errorRecommendIds,errorMoreIds,errorListIds,errorSubjectId} from '../getters'
+import {getErrorList,getErrorListIds } from '../actions'
 import {getErrorDetail,getErrorRecommendIds}from '../actions/detail'
 import store from '../../store'
 import moment from 'moment'
@@ -103,13 +103,16 @@ export default {
 	store,
 	vuex: {
         getters: {
-            errorSubjectId,token,id,errorIndexDetail,errorMoreIds,errorRecommendIds,errorListIds
+            errorSubjectId,token,id,
+			errorIndexDetail,errorMoreIds,errorRecommendIds,errorListIds
         },
         actions: {
-            collectRemove,collectAdd,getErrorDetail,getErrorMoreIds,getErrorRecommendIds,getErrorListIds
+            collectRemove,collectAdd,
+			getErrorDetail,getErrorRecommendIds,getErrorListIds
         }
     },
 	methods: {
+		/** 更多错题*/
 		_errorList(){
 			_.toast("资源建设中");
 			return;	
@@ -128,7 +131,8 @@ export default {
 				}
 			});
 		},
-		_recommend(){ 	//相近例题IDS获取
+		/** 相近例题*/
+		_recommend(){ 	
 			this.getErrorRecommendIds({
 				knowledgeId:this.list[0].knowledgeId,
 				options:{

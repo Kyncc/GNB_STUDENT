@@ -20,9 +20,8 @@ const state = {
       detail:[]
     },
     recommend:{
-      ids:[],
-      list:[],
-      detail:[]
+      ids:[1,2,3,4,5],
+      list:[]
     },
     subjectId:'2'
 }

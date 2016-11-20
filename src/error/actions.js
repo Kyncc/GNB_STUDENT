@@ -2,19 +2,6 @@ import Api from '../config/httpdispatch'
 import * as types from './mutationTypes'
 import * as _ from '../config/whole'
 
-export const getErrorIds = ({ dispatch }, params, success) => {
-  Api.error({
-    data: params,
-    ok: response => {
-      dispatch(types.GET_ERROR_INDEXIDS, response.data);
-      success&&success();
-    },
-    wrong: response => {
-      _.toast(response.data.msg);
-    }
-  })
-}
-
 export const getErrorList = ({ dispatch }, params,success) => {
   Api.exerciseList({
     data: params,
@@ -28,18 +15,6 @@ export const getErrorList = ({ dispatch }, params,success) => {
   })
 }
 
-export const getErrorRecommendList = ({ dispatch }, params,success) => {
-  Api.exerciseList({
-    data: params,
-    ok: response => {
-      dispatch(types.GET_ERROR_RMDLIST, response.data);
-      success&&success();
-    },
-    wrong: response => {
-      _.toast(response.data.msg);
-    }
-  })
-}
 
 export const getErrorMoreList = ({ dispatch }, params,success) => {
   Api.exerciseList({
@@ -81,7 +56,6 @@ export const getErrorRecommendIds = ({ dispatch }, params, success,wrong) => {
 }
 
 
-
 export const getErrorListIds = ({ dispatch }, params, success,wrong) => {
   Api.errorList({
     data: params,
@@ -111,14 +85,3 @@ export const getErrorListList = ({ dispatch }, params, success,wrong) => {
 }
 
 
-export const postErrorRecommend = ({ dispatch }, params, success) => {
-  Api.errorRecommendPost({
-    data: params,
-    ok: response => {
-      success();
-    },
-    wrong: response => {
-      _.toast('提交失败');
-    }
-  })
-}
