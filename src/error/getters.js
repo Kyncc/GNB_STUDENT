@@ -1,5 +1,6 @@
 export const errorIndexIds  = (state) => state.error.index.ids
 export const errorIndexList  = (state) => state.error.index.list
+export const errorIndexTab  = (state) => state.error.index.selected
 export const errorIndexDetail  = (state) => state.error.index.detail
 export const errorIndexTotalPage  = (state) => state.error.index.totalPage
 export const errorIndexCurrentPage  = (state) => state.error.index.currentPage

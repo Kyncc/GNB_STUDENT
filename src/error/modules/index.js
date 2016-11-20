@@ -7,7 +7,8 @@ const state = {
       detail:[],
       currentPage:'1',
       totalPage:'1',
-      scoll:'0'
+      scoll:'0',
+      selected:'0'
     },
     more:{
       ids:[],
@@ -49,6 +50,9 @@ const mutations = {
   },
   [types.ERROR_INDEXDETAIL](state, data){
      state.index.detail = data.data;
+  },
+  [types.ERROR_TAB_CHANGE](state, type){
+     state.index.selected = type;
   },
   //更多例题
   [types.GET_ERROR_MOREIDS](state , data){

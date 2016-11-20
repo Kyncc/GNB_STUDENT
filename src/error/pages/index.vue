@@ -9,9 +9,9 @@
     <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
         <div style="width:75%">
             <button-tab>
-                <button-tab-item v-touch:tap="_time('week')" selected>一周内</button-tab-item>
-                <button-tab-item v-touch:tap="_time('month')">一月内</button-tab-item>
-                <button-tab-item v-touch:tap="_time('all')">全部</button-tab-item>
+                <button-tab-item v-touch:tap="_time('week')"  v-bind:selected="errorIndexTab == 0">一周内</button-tab-item>
+                <button-tab-item v-touch:tap="_time('month')" v-bind:selected="errorIndexTab == 1">一月内</button-tab-item>
+                <button-tab-item v-touch:tap="_time('all')" v-bind:selected="errorIndexTab == 2">全部</button-tab-item>
             </button-tab>
         </div>
     </flexbox>
@@ -62,8 +62,8 @@ import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import gnbChangeSub from '../../components/changesub/index'
 import {token,userSubjectList} from '../../common/getters'
-import {errorIndexIds,errorIndexList,errorIndexTotalPage,errorSubjectId,errorIndexCurrentPage} from '../getters'
-import {getErrorIds,getErrorList,setSubject,clearError} from '../actions/index'
+import {errorIndexIds,errorIndexList,errorIndexTotalPage,errorSubjectId,errorIndexCurrentPage,errorIndexTab} from '../getters'
+import {getErrorIds,getErrorList,setSubject,clearError,setTabTime} from '../actions/index'
 import moment from 'moment'
 
 export default {
@@ -73,10 +73,10 @@ export default {
     },
     vuex: {
         getters: {
-            errorSubjectId,token,errorIndexIds,errorIndexList,errorIndexTotalPage,userSubjectList,errorIndexCurrentPage
+            errorSubjectId,token,errorIndexIds,errorIndexList,errorIndexTotalPage,userSubjectList,errorIndexCurrentPage,errorIndexTab
         },
         actions: {
-            getErrorIds,getErrorList,setSubject,clearError
+            getErrorIds,getErrorList,setSubject,clearError,setTabTime
         }
     },
     filters: {
@@ -89,16 +89,28 @@ export default {
       }    
     },
     methods: {
+        _isFirst(){
+            /*判断当前页面是否大于总页数 若大于则不在请求数据*/
+            if(Number(this.errorIndexTotalPage) < Number(this.errorIndexCurrentPage)){
+                 this.$broadcast('$InfiniteLoading:loaded');
+                 this.$broadcast('$InfiniteLoading:complete');
+                 return true;
+            }
+            return false;
+        },
         _time(value) {
             if (value == 'week') {
                 this.endTime= moment().unix();
                 this.startTime = moment().add(-7, 'd').unix();
+                this.setTabTime(0);
             } else if (value == 'month') {
                 this.endTime = moment().unix();
                 this.startTime = moment().add(-1, 'M').unix();
+                this.setTabTime(1);
             } else {
                 this.endTime = moment().unix();
                 this.startTime = moment().add(-3, 'M').unix();
+                this.setTabTime(2);
             }
             this.clearError();
 			this.$nextTick(() => {
@@ -109,6 +121,10 @@ export default {
             this.$router.go('/main');
         },
         _onInfinite(){
+            if(this._isFirst()){
+                return;
+            }
+            
             this.getErrorIds({
                 currentPage:this.errorIndexCurrentPage,
                 between:{
