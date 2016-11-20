@@ -46,8 +46,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'

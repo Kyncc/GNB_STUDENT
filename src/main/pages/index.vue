@@ -34,7 +34,7 @@
                         </div>
                         <div class="flex-item bottom1px" v-link="{ path: '/brush'}">
                             <img src="../../assets/main/home_6.png" alt="" />
-                            <p >刷题型</p>
+                            <p >题型汇总</p>
                         </div>
                         <!--<div class="flex-item right1px" @click='_warn()'>
                             <img src="../../assets/main/home_7.png"  />

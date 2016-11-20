@@ -38,7 +38,6 @@ const state = {
     }
 }
 
-
 const mutations = {
   [types.GET_CAMERA_HISTORYIDS](state , data){
     state.history.ids = data.data.ids;

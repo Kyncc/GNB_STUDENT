@@ -1,12 +1,12 @@
 <template>
-	<view-box v-ref:view-box class="rememberExample">
+	<view-box v-ref:view-box class="brushExample">
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
 			<x-header :left-options="{showBack:true}">例题详情</x-header>
 		</div>
 
 		<div style="padding-top:46px;">
 			<!--内容-->
-			<div v-for="detail in rememberExample">
+			<div v-for="detail in brushExample">
 				<div class="weui_panel weui_panel_access exerciseDetail" >
 					<div class="weui_panel_hd">
                         <p style="width:25%;color:#4bb7aa">题干</p>
@@ -22,14 +22,14 @@
 						<!--题目-->
 						<div class="weui_media_bd weui_media_box">
 							<p class="weui_media_desc">
-								{{{* detail.content }}}
+								{{{ detail.content }}}
 							</p>
 						</div>
 						<!--选项-->
 						<template v-if=" detail.type == 1 ? true:false">
 							<div class="weui_media_bd weui_media_box options">
 								<p class="weui_media_desc" v-for="value in detail.tabs">
-									{{ $key }} : {{{* value }}}
+									{{ $key }} : {{{ value }}}
 								</p>
 							</div>
 						</template> 
@@ -45,7 +45,7 @@
 					<div class="weui_panel_bd">
 						<div class="weui_media_bd weui_media_box">
 							<p class="weui_media_desc">
-								{{{* detail.answer }}}
+								{{{ detail.answer }}}
 							</p>
 						</div>
 					</div>
@@ -67,8 +67,8 @@
 
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
-import {rememberExampleGet,rememberExampleClear,collectAdd,collectRemove} from '../actions/example'
-import {rememberExample,rememberSubjectId,exampleId} from '../getters'
+import {getBushExample,brushExampleClear,collectAdd,collectRemove} from '../actions/example'
+import {brushExample,brushSubjectId,exampleId} from '../getters'
 import {token} from '../../common/getters'
 import store from '../../store'
 import InfiniteLoading from 'vue-infinite-loading'
@@ -78,7 +78,7 @@ export default {
         XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
 	},
     created(){
-        this.rememberExampleClear();
+        this.brushExampleClear();
     },
     filters: {
         collect(state){
@@ -90,35 +90,34 @@ export default {
     },
 	vuex: {
         getters: {
-            token,rememberExample,rememberSubjectId,exampleId
+            token,brushExample,brushSubjectId,exampleId
         },
         actions: {
-            rememberExampleGet,rememberExampleClear,collectAdd,collectRemove
+           getBushExample,brushExampleClear,collectAdd,collectRemove
         }
     },
 	methods: {
 		_onInfinite(){
-			this.rememberExampleGet({
+			this.getBushExample({
 				options:{
 					ids:[this.exampleId],
-					subject_id:this.rememberSubjectId,
-                    period_id:'3'
+					subject_id:this.brushSubjectId
 				},
 				token:this.token
 			},()=>{
-                    if(this.rememberExample.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+                    if(this.brushExample.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
                     this.$broadcast('$InfiniteLoading:complete');
 				}
 			)
 		},
 		_correct(){
-			this.$router.go(`/remember/correct/${this.rememberSubjectId}/${this.exampleId}`);
+			this.$router.go(`/brush/correct/${this.brushSubjectId}/${this.exampleId}`);
 		},
 		_collect(state){
             let parma = {
                 options:{
                     id:this.exampleId,
-                    subject_id:this.rememberSubjectId
+                    subject_id:this.brushSubjectId
                 },
                 token:this.token,
                 type:'example'

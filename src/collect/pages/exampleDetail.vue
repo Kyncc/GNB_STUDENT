@@ -112,7 +112,7 @@ export default {
 			this.show = true
 		},
 		_correct(){
-			this.$router.go('/collect/correct/'+this.id);
+			this.$router.go(`/collect/correct/${this.CollectSubjectId}/${this.id}`);
 		},
 		_back(){
 			this.$router.go('/collect/');

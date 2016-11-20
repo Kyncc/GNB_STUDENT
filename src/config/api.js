@@ -73,6 +73,14 @@ export const API_PATHS = {
    */
     reportChapter:`${API_ENV}${API_VERSION}/student/report`,
     reportDetail:`${API_ENV}${API_VERSION}/student/report/detail`,
+    /**题型汇总
+   *  brush:首页
+   *  brushList:章节刷题
+   *  brushAction:斩题放弃
+   */
+    brush:`${API_ENV}${API_VERSION}/student/summary`,
+    brushList:`${API_ENV}${API_VERSION}/student/summary/list-exercises`,
+    brushAction:`${API_ENV}${API_VERSION}/student/summary/loose-win-exercise`,
    /**记错题
    *  rememberChapter:记错题章节列表
    */

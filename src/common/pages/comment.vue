@@ -34,7 +34,7 @@
 <script>
 import store from '../../store' 
 import { comment } from '../actions'
-import { period_id,subject_id,token } from '../getters'
+import { subject_id,token } from '../getters'
 import {XHeader,XButton,Checker, Flexbox,FlexboxItem,CheckerItem,Group,XTextarea} from 'vux'
 import * as _ from '../../config/whole'
 
@@ -45,7 +45,7 @@ export default {
 	},
     vuex: {
         getters: {
-            period_id,subject_id,token
+            subject_id,token
         },
         actions: {
             comment
@@ -61,7 +61,6 @@ export default {
             let params = {
                 options:{
                     id:Number(this.id),
-                    period_id:this.period_id,
                     subject_id:this.subject_id
                 },
                 data:{

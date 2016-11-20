@@ -33,7 +33,7 @@
 import {XHeader,XButton,Checker, Flexbox,FlexboxItem,CheckerItem,Group,XTextarea} from 'vux'
 import store from '../../store' 
 import { correct } from '../actions'
-import { period_id,subject_id,token } from '../getters'
+import { token } from '../getters'
 import * as _ from '../../config/whole'
 
 export default {
@@ -43,7 +43,7 @@ export default {
 	},
      vuex: {
         getters: {
-            period_id,subject_id,token
+            token
         },
         actions: {
             correct
@@ -59,8 +59,7 @@ export default {
 			 let params = {
                 options:{
                     id:Number(this.id),
-                    period_id:this.period_id,
-                    subject_id:this.subject_id
+                    subject_id:this.subejectId
                 },
                 data:{
                     content:this.content,
@@ -76,7 +75,8 @@ export default {
         return{
              type: [],
              content:'',
-             id:store.state.route.params.id
+             id:store.state.route.params.id,
+             subejectId:store.state.route.params.subjectId
         }
     }
 }

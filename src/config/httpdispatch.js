@@ -178,6 +178,10 @@ export default {
   reportDetail: (params) => {
     return http({ method: 'get', url: API_PATHS.reportDetail, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  /** 题型汇总*/
+  brush: (params) => {
+    return http({ method: 'get', url: API_PATHS.brush, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
   /** 全部练习册*/
   workbookList: (params) => {
     return http({ method: 'get', url: API_PATHS.userWorkbookAll, data: params.data, ok: params.ok, wrong: params.wrong })

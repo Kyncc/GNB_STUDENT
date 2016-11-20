@@ -44,7 +44,8 @@ import messageClass from './message/pages/class'
 import messageCorrect from './message/pages/correct'
 import messageSystem from './message/pages/system'
 //题型汇总
-
+import brush from './brush/pages/index'
+import brushExample from './brush/pages/example'
 //知识图谱
 import report from './report/pages/index'
 import reportDetail from './report/pages/detail'
@@ -131,7 +132,7 @@ router.map({
   'forget': { component: forget },
   'forget/password': { component: resetPassword },
   //纠错
-  'correct/:id':{component: correct},
+  'correct/:subjectId/:id':{component: correct},
   //评注
   'comment/:id':{component: comment},
   //主页
@@ -184,7 +185,9 @@ router.map({
   'remember/workbook/:bookId':{component: rememberWorkbook},
   'remember/workbook/exercise/:chapterId':{component: rememberExercise},
   //题型汇总
-  
+  'brush':{component: brush},
+  'brush/example/:id':{component: brushExample},
+//   'brush/list/:chapterId':{component: brushList},
   //个人中心
   'user/resetPwd': { component: userResetPwd },
   'user/info': { component: userInfo },
@@ -218,10 +221,11 @@ router.redirect({
   // '/':'/main',
   '/main/': '/main/index',
   '/collect/': '/collect/example',
-  'camera/correct/:id':'/correct/:id',
-  'collect/correct/:id':'/correct/:id',
-  'remember/correct/:id':'/correct/:id',
-  'error/correct/:id':'/correct/:id',
+  'camera/correct/:subjectId/:id':'/correct/:subjectId/:id',
+  'collect/correct/:subjectId/:id':'/correct/:subjectId/:id',
+  'remember/correct/:subjectId/:id':'/correct/:subjectId/:id',
+  'error/correct/:subjectId/:id':'/correct/:subjectId/:id',
+  'brush/correct/:subjectId/:id':'/correct/:subjectId/:id',
   'camera/comment/:id':'/comment/:id',
   'collect/comment/:id':'/comment/:id',
   'error/comment/:id':'/comment/:id'

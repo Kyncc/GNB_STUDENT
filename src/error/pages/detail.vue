@@ -136,7 +136,8 @@ export default {
 			this.getErrorRecommendIds({
 				knowledgeId:this.list[0].knowledgeId,
 				options:{
-					subject_id:this.errorSubjectId
+					subject_id:this.errorSubjectId,
+					type:'chapter',
 				},
 				token:this.token
 			},()=>{
@@ -148,7 +149,7 @@ export default {
 			});
 		},
 		_correct(){
-			this.$router.go('/error/correct/'+this.list[0].id);
+			this.$router.go(`/error/correct/${this.errorSubjectId}/${this.list[0].id}`);
 		},
 		_back() {
 			this.$router.go('/error');

@@ -12,6 +12,7 @@ import message from './message/modules/index'
 import camera from './camera/modules/index'
 import error from './error/modules/index'
 import report from './report/modules/index'
+import brush from './brush/modules/index'
 import collect from './collect/modules/index'
 import remember from './remember/modules/index'
 import user from './user/modules/index'
@@ -49,6 +50,7 @@ export default new Vuex.Store({
     camera,
     report,
     remember,
+    brush,
     user
   }
 })
