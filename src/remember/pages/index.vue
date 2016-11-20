@@ -26,26 +26,24 @@
         </div>
 
         <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-           <x-button style="width:100%;border-radius:0px;background:#fff;color:#000" type="primary" @click="_add">添加习题册</x-button>
+           <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #ccc" type="primary" @click="_add">添加习题册</x-button>
         </tabbar>
 
     </view-box>
     <!--切换课程-->
-    <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="rememberSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
+    <gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="rememberSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
 </template>
 
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import store from '../../store'
 import {XHeader,Panel,ViewBox,Group,Cell,Search,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token} from '../../common/getters'
+import {token,userSubjectList} from '../../common/getters'
 import {rememberWorkbook,rememberSubjectId} from '../getters'
 import {getWorkbook,setSubject} from '../actions/remember'
 import {delChapter} from '../actions/workbook'
 import {WorkbookAllDel} from '../actions/add'
-import gnbChangeSub from '../../components/changesub/index.vue'
+import gnbChangeSub from '../../components/changesub/index'
 import '../index.less'
 
 export default {
@@ -57,6 +55,7 @@ export default {
         switch(id){
             case '2':return '数学';
             case '7':return '物理';
+            case '8':return '化学';
         }
     }    
   },
@@ -80,6 +79,9 @@ export default {
         this.subjectName = item.value;
         this.setSubject(item.id);       //更换科目
         this.visible = false;
+        this.$nextTick(() => {
+            this.$broadcast('$InfiniteLoading:reset');
+        });
     },
     _onInfinite(){
         //若没有数据则重新提交
@@ -100,7 +102,8 @@ export default {
   },
   vuex: {
     getters:{
-        token,rememberWorkbook,rememberSubjectId
+        token,userSubjectList,
+        rememberWorkbook,rememberSubjectId
     },
     actions:{
         getWorkbook,setSubject,delChapter,WorkbookAllDel
@@ -109,17 +112,7 @@ export default {
   store,
   data(){
     return {
-        searchName:'',
-        visible:false,
-        subjectList:['math','physics']
-    }
-  },
-  watch:{
-    /** 切换学科*/
-    rememberSubjectId(){
-        this.$nextTick(() => {
-            this.$broadcast('$InfiniteLoading:reset');
-        });
+        visible:false
     }
   }
 }

@@ -7,7 +7,7 @@ export const getReport = ({ dispatch }, params, success,wrong) => {
   Api.report({
     data: params,
     ok: response => {
-       dispatch(types.GET_REPORT_CHAPTER_SUCCESS, response.data);
+       dispatch(types.GET_REPORT_CHAPTER, response.data);
        success&&success();
     },
     wrong: response => {
@@ -22,7 +22,7 @@ export const getReportDetail = ({ dispatch }, params, success,wrong) => {
   Api.reportDetail({
     data: params,
     ok: response => {
-       dispatch(types.GET_REPORT_DETAIL_SUCCESS, response.data);
+       dispatch(types.GET_REPORT_DETAIL, response.data);
        success&&success();
     },
     wrong: response => {

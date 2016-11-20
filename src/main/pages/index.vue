@@ -56,15 +56,18 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import JRoll from 'JRoll'
-import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem,ViewBox} from 'vux'
 import { collectCount,errorCount,cameraCount,swiper} from '../getters'
-import { period_id,subject_id,token } from '../../common/getters'
+import { subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
-import {shareReady} from '../../common/h5Plus/share.js';
+import {shareReady} from '../../common/h5Plus/share.js'
+import {clearReport} from '../../report/actions'
+import {clearError} from '../../error/actions/index'
+import {clearCollect} from '../../collect/actions'
+import {clearBrush} from '../../brush/actions/index'
+import {delChapter} from '../../remember/actions/workbook'
+
 import * as _ from '../../config/whole.js'
 import './main.less'
 
@@ -73,8 +76,6 @@ export default {
         XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem,ViewBox
     },
     methods: {
-        // _share(){
-        //shareReady()
         _warn(){
             _.toast('敬请期待')
         }
@@ -82,19 +83,25 @@ export default {
     vuex: {
         getters: {
             collectCount,errorCount,cameraCount,swiper,
-            period_id,subject_id,token
+            subject_id,token
         },
         actions: {
-            getStudentIndex
+            getStudentIndex,
+            clearError,clearReport,clearCollect,clearBrush,delChapter
         }
     },
     store,
     ready(){
-        let self = this
-        self.getStudentIndex({
+        //进首页一系列清空操作
+        this.clearError();
+        this.clearReport();
+        this.clearCollect();
+        this.clearBrush();
+        this.delChapter();
+
+        this.getStudentIndex({
             options:{
-                period_id:self.period_id,
-                subject_id:self.subject_id
+                subject_id:this.subject_id
             },
             token:localStorage.getItem('token')
         })
@@ -104,36 +111,3 @@ export default {
     }
 }
 </script>
-<style lang="less" scoped>
-.content{
-    .flex-wrap{
-        width:100%;
-        .flex-item{
-            background:#fff;
-            width:33.3333%;
-            box-sizing:border-box;
-            float:left;
-            img{
-                width:2rem;
-                height:2rem;
-                display:block;
-                margin:1rem auto 0.5rem auto;
-            }
-            p{
-                text-align:center;
-                font-size:0.8rem;
-                margin-bottom:0.5rem;
-            }
-        }
-
-        .right1px{
-            border-right:2px solid #edf2f1;
-        }
-        .bottom1px{
-            border-bottom:2px solid #edf2f1;
-        }
-
-    }
-}
-
-</style>

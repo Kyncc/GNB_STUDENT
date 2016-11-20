@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!--<a href="javascript:;">{{name}}</a>-->
         <mt-popup :visible.sync="visible" :subject="subject" :selected="selected" popup-transition="popup-fade" class="gnb-changeSub" >
             <template v-for="item in subjectList">
                 <p @click="onClickBack(item)" class="{{item.id  == selected ? 'active':''}}">{{item.value}}</p>
@@ -58,10 +57,8 @@ export default  {
         selected(){
             let selected = this.selected;
             this.subjectAllList.forEach((value, index)=>{
-                // console.log(value.id);
                 if(value.id == selected){
                     self.name = value.value
-                    console.log(value.value);
                 }
             });
         }
