@@ -18,7 +18,7 @@
   </div>
 
   <div style="padding-top:98px;">
-    <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
+    <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in errorIndexList">
       <div class="weui_panel_hd">
         <x-button type='primary' mini>参考例题</x-button>
         {{{item.knowledge}}}
@@ -46,7 +46,7 @@
             <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
             <p style="font-size:1rem;display:inline-block;">还没有归纳错题~</p>
         </span>
-        <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底啦~</span>
+        <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已加载全部~</span>
     </infinite-loading>
 
   </div>
@@ -62,8 +62,8 @@ import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import gnbChangeSub from '../../components/changesub/index'
 import {token,userSubjectList} from '../../common/getters'
-import {errorIndexIds,errorIndexList,errorIndexTotalPage,errorSubjectId} from '../getters'
-import {getErrorIds,getErrorList,setSubject} from '../actions/index'
+import {errorIndexIds,errorIndexList,errorIndexTotalPage,errorSubjectId,errorIndexCurrentPage} from '../getters'
+import {getErrorIds,getErrorList,setSubject,clearError} from '../actions/index'
 import moment from 'moment'
 
 export default {
@@ -73,10 +73,10 @@ export default {
     },
     vuex: {
         getters: {
-            errorSubjectId,token,errorIndexIds,errorIndexList,errorIndexTotalPage,userSubjectList
+            errorSubjectId,token,errorIndexIds,errorIndexList,errorIndexTotalPage,userSubjectList,errorIndexCurrentPage
         },
         actions: {
-            getErrorIds,getErrorList,setSubject
+            getErrorIds,getErrorList,setSubject,clearError
         }
     },
     filters: {
@@ -84,6 +84,7 @@ export default {
           switch(id){
               case '2':return '数学';
               case '7':return '物理';
+              case '9':return '化学';
           }
       }    
     },
@@ -99,8 +100,7 @@ export default {
                 this.endTime = moment().unix();
                 this.startTime = moment().add(-3, 'M').unix();
             }
-            this.list = [];
-            this.currentPage = 1;
+            this.clearError();
 			this.$nextTick(() => {
 				this.$broadcast('$InfiniteLoading:reset');
 			});
@@ -110,7 +110,7 @@ export default {
         },
         _onInfinite(){
             this.getErrorIds({
-                currentPage:this.currentPage,
+                currentPage:this.errorIndexCurrentPage,
                 between:{
                     start:this.startTime,
                     end:this.endTime
@@ -119,42 +119,30 @@ export default {
                 options: {
                     subject_id: this.errorSubjectId
                 }
-            },()=>{
-                setTimeout(()=>{
-                    this.$broadcast('$InfiniteLoading:loaded');
-                    if(this.errorIndexTotalPage <= this.currentPage){
-                        this.$broadcast('$InfiniteLoading:complete');
-                        return;
-                    }
-                    this.currentPage ++;
-                },1000);
             })
         },
         _changeSub(){
-                this.visible = true;
+            this.visible = true;
         },
         /** 切换科目*/
         _changeSubject(item){
             this.subjectName = item.value;
             this.setSubject(item.id);       //更换科目
             this.visible = false;
+            this.$nextTick(() => {
+                this.$broadcast('$InfiniteLoading:reset');
+            });
         }
     },
     store,
     data(){
         return{
             visible:false,
-            currentPage:1,
-            list:[],
-            totalPage:1,
             endTime:moment().unix(),
             startTime:moment().add(-7, 'd').unix()
         }
     },
     watch:{
-        totalPage() {
-            return this.errorIndexTotalPage;
-        },
         errorIndexIds() {
             let params = {
                 options: {
@@ -163,10 +151,15 @@ export default {
                 },
                 token: this.token
             };
-            this.getErrorList(params);
-        },
-        errorIndexList(){
-            this.list = this.list.concat(this.errorIndexList);
+            this.getErrorList(params,()=>{
+                setTimeout(()=>{
+                    this.$broadcast('$InfiniteLoading:loaded');
+                    if(this.errorIndexTotalPage <= this.errorIndexCurrentPage){
+                        this.$broadcast('$InfiniteLoading:complete');
+                        return;
+                    }
+                },300);
+            });
         }
     }
 }

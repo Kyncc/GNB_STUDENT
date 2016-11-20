@@ -11,16 +11,18 @@
 				<div class="weui_panel weui_panel_access exerciseDetail">
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="2/4" style="color:#4bb7aa">题干</flexbox-item>
-							<flexbox-item :span="1/4" style="text-align:right;">
+							<p style="width:25%;color:#4bb7aa">题干</p>
+							<p style="width:50%;text-align:right;">
 								<template v-if="detail.collectTime != '0' ? true:false">
 									<span @click="_removeCollect(detail.id)" style="color:#666;text-align:right" ><i class="icon iconfont icon-collect"></i>取消</span>
 								</template>
 								<template v-if="detail.collectTime == '0' ? true:false">
 									<span @click="_collectAdd(detail.id)" style="color:#666;text-align:right"><i class="icon iconfont icon-collect"></i>收藏</span>
 								</template>
-							</flexbox-item>
-							<flexbox-item :span="1/4" v-touch:tap="_correct"  style="color:#666;text-align:right"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
+							</p>
+							<p style="width:25%;text-align:right" v-touch:tap="_correct"> 
+								<i class="icon iconfont icon-error-login"></i>纠错
+							</p>
 						</flexbox>
 					</div>
 					<!--题目整体-->
@@ -64,17 +66,17 @@
 				<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
 				<p style="font-size:1rem;display:inline-block;">服务器出差了~</p>
 			</span>
-			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底了</span>
+			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
 		</infinite-loading>
 
         <tabbar class="vux-demo-tabbar bottom" icon-class="vux-center" slot="bottom">
             <flexbox :gutter="0" wrap="wrap">
-                <flexbox-item :span="1/2">
+                <p style="width:50%;text-align:center;">
                     <x-button mini type="primary" @click="_errorList" >对应错题</x-button>
-                </flexbox-item>
-                <flexbox-item :span="1/2">
+                </p>
+                <p style="width:50%;text-align:center;">
                     <x-button mini type="primary" @click="_recommend" >相近例题</x-button>
-                </flexbox-item>
+                </p>
             </flexbox>
         </tabbar>
 
@@ -82,12 +84,13 @@
 </template>
 
 <script>
-import {Tabbar, TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
+import {Tabbar,TabbarItem,XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { collectRemove,collectAdd } from '../../common/actions'
-import { period_id,subject_id,token,id } from '../../common/getters'
-import { errorIndexList,errorMoreIds,errorRecommendIds,errorListIds } from '../getters'
-import { getErrorList,getErrorMoreIds,getErrorRecommendIds,getErrorListIds } from '../actions'
+import { token,id } from '../../common/getters'
+import { errorIndexDetail,errorMoreIds,errorRecommendIds,errorListIds,errorSubjectId} from '../getters'
+import { getErrorList,getErrorMoreIds,getErrorListIds } from '../actions'
+import {getErrorDetail,getErrorRecommendIds}from '../actions/detail'
 import store from '../../store'
 import moment from 'moment'
 import * as _ from '../../config/whole'
@@ -100,21 +103,21 @@ export default {
 	store,
 	vuex: {
         getters: {
-            period_id,subject_id,token,id,errorIndexList,errorMoreIds,errorRecommendIds,errorListIds
+            errorSubjectId,token,id,errorIndexDetail,errorMoreIds,errorRecommendIds,errorListIds
         },
         actions: {
-            collectRemove,collectAdd,getErrorList,getErrorMoreIds,getErrorRecommendIds,getErrorListIds
+            collectRemove,collectAdd,getErrorDetail,getErrorMoreIds,getErrorRecommendIds,getErrorListIds
         }
     },
 	methods: {
-		_errorList(){	//错题列表IDS获取
-			// let self = this;
-			_.busy();
+		_errorList(){
+			_.toast("资源建设中");
+			return;	
+			//错题列表IDS获取
 			this.getErrorListIds({
 				knowledgeId:this.list[0].knowledgeId,
 				options:{
-					period_id:this.period_id,
-					subject_id:this.subject_id
+					subject_id:this.errorSubjectId
 				},
 				token:this.token
 			},()=>{
@@ -122,34 +125,22 @@ export default {
 					_.toast("暂无例题");
 				}else{
 					this.$router.go(`/error/list/${this.list[0].knowledgeId}`);
-					// self.$router.on('/error/list/'+self.list[0].knowledgeId);
 				}
-				_.leave();
-			},()=>{
-				_.toast("接口异常");
-				_.leave();
 			});
 		},
 		_recommend(){ 	//相近例题IDS获取
-			let self = this;
-			_.busy();
 			this.getErrorRecommendIds({
-				knowledgeId:self.list[0].knowledgeId,
+				knowledgeId:this.list[0].knowledgeId,
 				options:{
-					period_id:self.period_id,
-					subject_id:self.subject_id
+					subject_id:this.errorSubjectId
 				},
-				token:self.token
+				token:this.token
 			},()=>{
-				if(self.errorRecommendIds.length == 0){
+				if(this.errorRecommendIds.length == 0){
 					_.toast("暂无推荐");
 				}else{
-					self.$router.go('/error/recommend/'+self.list[0].knowledgeId);
+					this.$router.go('/error/recommend/'+this.list[0].knowledgeId);
 				}
-				_.leave();
-			},()=>{
-				_.toast("接口异常");
-				_.leave();
 			});
 		},
 		_correct(){
@@ -159,48 +150,41 @@ export default {
 			this.$router.go('/error');
 		},
 		_collectAdd(id){
-			let self =  this;
 			this.collectAdd({
 				options:{
-					id:self.id,
-					period_id:self.period_id,
-					subject_id:self.subject_id
+					id:this.id,
+					subject_id:this.errorSubjectId
 				},
-				token:self.token,
+				token:this.token,
 				type:'example'
 			},()=>{
-				self.list[0].collectTime = moment().unix();
+				this.list[0].collectTime = moment().unix();
 			});
 		},
 		_removeCollect(id){
-			let self =  this;
 			this.collectRemove({
 				options:{
-					id:self.id,
-					period_id:self.period_id,
-					subject_id:self.subject_id
+					id:this.id,
+					subject_id:this.errorSubjectId
 				},
-				token:self.token,
+				token:this.token,
 				type:'example'
 			},()=>{
-				self.list[0].collectTime = 0;
+				this.list[0].collectTime = 0;
 			});
 		},
 		_onInfinite(){
 			let params = {
 				options:{
 					ids:[this.id],
-					period_id:this.period_id,
-					subject_id:this.subject_id
+					subject_id:this.errorSubjectId
 				},
 				token:this.token
 			};
-			this.getErrorList(params,()=>{
-				setTimeout(()=>{
-					this.list = this.errorIndexList;
-					if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-					this.$broadcast('$InfiniteLoading:complete');
-				},300);
+			this.getErrorDetail(params,()=>{
+				this.list = this.errorIndexDetail;
+				if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+				this.$broadcast('$InfiniteLoading:complete');
 			});
 		}
 	},

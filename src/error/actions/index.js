@@ -25,6 +25,7 @@ export const getErrorList = ({ dispatch }, params,success) => {
       success&&success();
     },
     wrong: response => {
+      _.leave();
       _.toast(response.data.msg);
     }
   })

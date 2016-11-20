@@ -80,18 +80,7 @@ export const getErrorRecommendIds = ({ dispatch }, params, success,wrong) => {
   })
 }
 
-export const postErrorRecommend = ({ dispatch }, params, success) => {
-  Api.errorRecommendPost({
-    data: params,
-    ok: response => {
-      dispatch(types.POST_ERROR_RECOMMENDIDS, response.data);
-      success();
-    },
-    wrong: response => {
-      _.toast('提交失败');
-    }
-  })
-}
+
 
 export const getErrorListIds = ({ dispatch }, params, success,wrong) => {
   Api.errorList({
@@ -117,6 +106,19 @@ export const getErrorListList = ({ dispatch }, params, success,wrong) => {
     },
     wrong: response => {
       _.toast(response.data.msg);
+    }
+  })
+}
+
+
+export const postErrorRecommend = ({ dispatch }, params, success) => {
+  Api.errorRecommendPost({
+    data: params,
+    ok: response => {
+      success();
+    },
+    wrong: response => {
+      _.toast('提交失败');
     }
   })
 }

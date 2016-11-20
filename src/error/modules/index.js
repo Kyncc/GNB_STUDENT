@@ -4,20 +4,25 @@ const state = {
     index:{
       ids:[],
       list:[],
+      detail:[],
       currentPage:'1',
-      totalPage:'1'
+      totalPage:'1',
+      scoll:'0'
     },
     more:{
       ids:[],
-      list:[]
+      list:[],
+      detail:[]
     },
     list:{
       ids:[],
-      list:[]
+      list:[],
+      detail:[]
     },
     recommend:{
       ids:[],
-      list:[]
+      list:[],
+      detail:[]
     },
     subjectId:'2'
 }
@@ -30,16 +35,21 @@ const mutations = {
     state.index.totalPage = data.data.totalPage;
   },
   [types.GET_ERROR_INDEXLIST](state , data){
-    state.index.list = data.data;
+    state.index.list = state.index.list.concat(data.data);
+    state.index.currentPage++;
   },
   [types.ERROR_RELOAD](state){
     state.index.ids = [];
     state.index.list = [];
+    state.index.scoll = '0';
     state.index.currentPage = '1';
     state.index.totalPage = '1';
   },
   [types.ERROR_SUBJECT_CHANGE](state, id){
      state.subjectId = id;
+  },
+  [types.ERROR_INDEXDETAIL](state, data){
+     state.index.detail = data.data;
   },
   //更多例题
   [types.GET_ERROR_MOREIDS](state , data){
