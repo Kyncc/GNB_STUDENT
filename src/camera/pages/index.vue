@@ -14,8 +14,7 @@
             </div>
         </div>
         <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom" >
-            <!--<x-button style="width:40%;margin:3% 0 3% 7%;border-radius:5px;"  type="primary" v-touch:tap="getImage()">拍照</x-button>-->
-            <x-button style="width:100%;border-radius:0px;background:#fff;color:#000" type="primary" v-touch:tap="galleryImgs()">从相册选择</x-button>
+            <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #ccc" type="primary" v-touch:tap="galleryImgs()">从相册选择</x-button>
        </tabbar>
 </template>
 

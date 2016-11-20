@@ -28,11 +28,6 @@ export default {
 		_back(){
 			this.$router.go('/camera');
 		}
-	},
-	data(){
-		return{
-			
-		} 
 	}
 }
 </script>

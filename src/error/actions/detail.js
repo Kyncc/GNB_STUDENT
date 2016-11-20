@@ -16,7 +16,6 @@ export const getErrorDetail = ({ dispatch }, params,success) => {
   })
 }
 
-
 /**获取推荐例题 */
 export const getErrorRecommendList = ({ dispatch }, params,success) => {
   _.busy();

@@ -25,7 +25,6 @@ export const getErrorList = ({ dispatch }, params,success) => {
       success&&success();
     },
     wrong: response => {
-      _.leave();
       _.toast(response.data.msg);
     }
   })
@@ -34,13 +33,13 @@ export const getErrorList = ({ dispatch }, params,success) => {
 /**更换科目 */
 export const setSubject = ({ dispatch }, id) => {
     dispatch(types.ERROR_SUBJECT_CHANGE,id);
+    dispatch(types.ERROR_RELOAD);
 }
 
 /**更换时间选项 */
 export const setTabTime = ({ dispatch }, type) => {
     dispatch(types.ERROR_TAB_CHANGE,type);
 }
-
 
 
 /**清空错题本 */

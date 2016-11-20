@@ -17,7 +17,6 @@ export const getErrorRecommendList = ({ dispatch }, params,success) => {
   })
 }
 
-
 export const postErrorRecommend = ({ dispatch }, params, success) => {
   Api.errorRecommendPost({
     data: params,

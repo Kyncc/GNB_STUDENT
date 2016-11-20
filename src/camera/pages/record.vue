@@ -75,7 +75,7 @@ import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { collectRemove,collectAdd } from '../../common/actions'
 import { getCameraExample } from '../actions'
-import {period_id,subject_id,token,id,cameraId } from '../../common/getters'
+import { subject_id,token,id,cameraId } from '../../common/getters'
 import { cameraExampleList } from '../getters'
 import moment from 'moment'
 import store from '../../store'
@@ -88,7 +88,7 @@ export default {
 	store,
 	vuex: {
         getters: {
-            period_id,subject_id,token,id,cameraExampleList,cameraId
+            subject_id,token,id,cameraExampleList,cameraId
         },
         actions: {
             collectRemove,collectAdd,getCameraExample
@@ -99,7 +99,6 @@ export default {
 			this.collectAdd({
 				options:{
 					id:this.id,
-					period_id:this.period_id,
 					subject_id:this.subject_id
 				},
 				token:this.token,
@@ -112,7 +111,6 @@ export default {
 			this.collectRemove({
 				options:{
 					id:this.id,
-					period_id:this.period_id,
 					subject_id:this.subject_id
 				},
 				token:this.token,
@@ -125,7 +123,6 @@ export default {
 			let params = {
 				options:{
 					ids:[this.id],
-					period_id:this.period_id,
 					subject_id:this.subject_id
 				},
 				token:this.token

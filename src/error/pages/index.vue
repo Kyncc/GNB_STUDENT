@@ -174,7 +174,7 @@ export default {
                         this.$broadcast('$InfiniteLoading:complete');
                         return;
                     }
-                },300);
+                },500);
             });
         }
     }

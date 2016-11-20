@@ -156,7 +156,7 @@ router.map({
  'camera':{component: camera},
  'camera/history':{component: cameraHistory},
  'camera/photo':{component: cameraPhoto},
- 'camera/record/:id/:cameraId':{component: cameraRecord},
+ 'camera/record/:id':{component: cameraRecord},
  'camera/result/:id':{component: cameraResult},
  'camera/success':{component: cameraSuccess},
   //归纳本

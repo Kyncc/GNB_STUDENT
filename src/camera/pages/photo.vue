@@ -26,28 +26,27 @@ export default {
     },
     methods: {
         _next(){
-            let self = this
             _.busy()
-            self.getCameraResultIds({
-                file: self.cropper.getCroppedCanvas({width:640}).toDataURL('image/png'),
-                token: self.token,
+            this.getCameraResultIds({
+                file: this.cropper.getCroppedCanvas({width:640}).toDataURL('image/png'),
+                token: this.token,
                 options: {
-                    period_id: self.period_id,
-                    subject_id: self.subject_id
+                    period_id: this.period_id,
+                    subject_id: this.subject_id
                 }
             },()=>{
                 /*上传图片成功回调*/
-                // if(self.cameraResultIds.length){
-                //     self.$router.go('/camera/result/'+ self.cameraResultId)                    
+                // if(this.cameraResultIds.length){
+                //     this.$router.go('/camera/result/'+ this.cameraResultId)                    
                 // }else{
                 //     _.toast('沒有合适例题')
                 //     setTimeout(()=>{
-                //         self.$router.replace('/camera')
+                //         this.$router.replace('/camera')
                 //     },500)
                 // }
 
                 /*上传成功*/
-                self.$router.go('/camera/success');      
+                this.$router.go('/camera/success');      
             })
         }
     },
