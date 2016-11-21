@@ -127,7 +127,10 @@ export default {
          this.$router.replace('/remember/workbook/exercise/'+this.nextId);
       },
       _intoExample(id){
-          if(Number(id) == 0) return;
+          if(Number(id) == 0){
+            _.toast('暂无例题');
+            return;
+          } 
         this.$router.go('/remember/example/'+id);
       }
   },

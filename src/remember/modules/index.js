@@ -36,7 +36,6 @@ const mutations = {
       state.all = [];   
       state.my = [];
   },
-
   [types.REMEMBER_EXERCISE](state,data){
       state.exercise = data.data;
   },
@@ -46,7 +45,6 @@ const mutations = {
   [types.REMEMBER_EXERCISE_CHANGE](state,Pid,id){
       state.exercise.a[Pid].b[id].answer = !state.exercise.a[Pid].b[id].answer;   
   },
-
   [types.REMEMBER_EXAMPLE](state,data){
       state.example = data.data;
   },
