@@ -59,7 +59,6 @@
 				</span>
 				<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
 			</infinite-loading>
-
 		</div>
 	</view-box>
 
