@@ -24,7 +24,7 @@ import comment from './common/pages/comment'
 //拍错题
 import camera from './camera/pages/index'
 import cameraHistory from './camera/pages/history'
-import cameraRecord from './camera/pages/record'
+import cameraExample from './camera/pages/example'
 import cameraResult from './camera/pages/result'
 import cameraPhoto from './camera/pages/photo'
 import cameraSuccess from './camera/pages/success'
@@ -134,7 +134,7 @@ router.map({
   //纠错
   'correct/:subjectId/:id':{component: correct},
   //评注
-  'comment/:id':{component: comment},
+  'comment/:subjectId/:id':{component: comment},
   //主页
   'main/': {
     component: Main,
@@ -157,7 +157,7 @@ router.map({
  'camera':{component: camera},
  'camera/history':{component: cameraHistory},
  'camera/photo':{component: cameraPhoto},
- 'camera/record/:id':{component: cameraRecord},
+ 'camera/example/:cameraId/:exampleId':{component: cameraExample},
  'camera/result/:id':{component: cameraResult},
  'camera/success':{component: cameraSuccess},
   //归纳本
@@ -226,9 +226,9 @@ router.redirect({
   'remember/correct/:subjectId/:id':'/correct/:subjectId/:id',
   'error/correct/:subjectId/:id':'/correct/:subjectId/:id',
   'brush/correct/:subjectId/:id':'/correct/:subjectId/:id',
-  'camera/comment/:id':'/comment/:id',
-  'collect/comment/:id':'/comment/:id',
-  'error/comment/:id':'/comment/:id'
+  'camera/comment/:subjectId/:id':'/comment/:subjectId/:id',
+  'collect/comment/:subjectId/:id':'/comment/:subjectId/:id',
+  'error/comment/:subjectId/:id':'/comment/:subjectId/:id'
 });
 
 sync(store, router)

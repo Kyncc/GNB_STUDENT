@@ -13,11 +13,7 @@ const state = {
       scoll:'0'
     },
     //例题
-    example:{
-      code:'',
-      list:[],
-      msg:''
-    },
+    example:[],
     //搜题结果
     result:{
       code:'',
@@ -63,6 +59,20 @@ const mutations = {
   [types.CAMERA_CHANGE_SUBJECT](state,id){
       state.subjectId = id;
   },
+  //例题操作
+  [types.CAMERA_EXAMPLE](state , data){
+    state.example = data.data;
+  },
+  [types.CAMERA_EXAMPLE_CLEAR](state , data){
+    state.example = [];
+  },
+  [types.CAMERA_EXAMPLE_COLLECT_ADD](state){
+      state.example[0].collectTime = 1;
+  },
+  [types.CAMERA_EXAMPLE_COLLECT_REMOVE](state){
+      state.example[0].collectTime = 0;
+  },
+  //搜题结果
   [types.GET_CAMERA_RESULTIDS](state , data){
     state.result.code = data.data.code;
     state.result.ids = data.data.ids;
@@ -74,11 +84,7 @@ const mutations = {
     state.result.list = data.data;
     state.result.msg = data.msg;
   },
-  [types.GET_CAMERA_HISTORYEXAMPLEID](state , data){
-    state.example.code = data.code;
-    state.example.list = data.data;
-    state.example.msg = data.msg;
-  },
+  
   [types.POST_CAMERA_RESULTSEARCH](state , data){
     state.search.code = data.code;
     state.search.msg = data.msg;

@@ -23,7 +23,7 @@
     </div>
 
     <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-      <x-button style="width:100%;border-radius:0px;" @click="_addTextBook()">教材添加</x-button>
+      <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #ddd" type="primary" @click="_addTextBook()">教材添加</x-button>
     </tabbar>
     
   </view-box>
@@ -51,6 +51,7 @@ export default {
         switch(id){
             case '2':return '数学';
             case '7':return '物理';
+            case '8':return '化学';
         }
     }    
   },

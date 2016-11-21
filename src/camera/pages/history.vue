@@ -10,7 +10,7 @@
       <flexbox class="list" v-for="item in cameraHistoryList" track-by="$index">
         <div style="width:40%"><img class="previewer-demo-img" v-lazy="item.compressPic" @click="_show($index)"></div>
         <div style="position:relative;width:60%">
-          <div v-touch:tap="_record(item.id)">
+          <div v-touch:tap="_record(item.id,item.importantId)">
             <div class="title ellipsis">{{{item.knowledge}}}</div>
             <div class="difficult">难度：{{item.difficult}}</div>
             <div class="time">{{{item.cameraTime | ymd}}}</div>
@@ -59,7 +59,7 @@ export default {
             switch(id){
                 case '2':return '数学';
                 case '7':return '物理';
-                case '9':return '化学';
+                case '8':return '化学';
             }
         }    
     },
@@ -93,8 +93,8 @@ export default {
       this.delPic.id = id;
     },
     /** 参考例题*/
-    _record(id) {
-      this.$router.go(`/camera/record/${id}`);
+    _record(cameraId,exampleId) {
+      this.$router.go(`/camera/example/${cameraId}/${exampleId}`);
     },
     /** 灯箱*/
     _show(index) {

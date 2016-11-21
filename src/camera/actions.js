@@ -33,19 +33,7 @@ export const getCameraResultList = ({ dispatch }, params,success) => {
   })
 }
 
-//获取搜题例题
-export const getCameraExample = ({ dispatch }, params,success) => {
-  Api.exerciseList({
-      data:params,
-      ok:response=>{
-          dispatch(types.GET_CAMERA_HISTORYEXAMPLEID,response.data);
-          success&&success();
-      },
-      wrong:response=>{
-        _.toast(response.data.msg);
-      }
-  })
-}
+
 
 
 //移除拍错题
