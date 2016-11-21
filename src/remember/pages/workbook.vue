@@ -11,14 +11,13 @@
                 <template v-for="a in item">
                     <div v-for="aitem in a" style="margin-bottom:.5rem">
                         <header class="sectionHeader ellipsis">{{aitem.name}}</header>
-                        <!--<span class="with_arrow"></span>-->
                         <group>
                             <template v-for="b in aitem.b"> 
-                                <cell :title="b.name" @click="_isLink(b)" ></cell>
+                                <cell :title="_isLinkTitle(b)"  @click="_isLink(b)" ></cell>
                                 <template v-for="c in b.c">
-                                    <cell :title="c.name" @click="_isLink(c)"></cell>
+                                    <cell :title="_isLinkTitle(c)" class="indent1" @click="_isLink(c)"></cell>
                                     <template v-for="d in c.d">
-                                        <cell :title="d.name" @click="_isLink(d)"></cell>
+                                        <cell :title="_isLinkTitle(d)" class="indent2" @click="_isLink(d)"></cell>
                                     </template>    
                                 </template>
                             </template>
@@ -71,6 +70,12 @@ export default {
             this.$router.go('/remember/workbook/exercise/'+item.id);
           }
           return;
+      },
+      _isLinkTitle(item){
+          if(item.isLink == 'true' && item.isUsed == 'true'){
+              return  '✔ '+item.name
+          }
+          return (item.isLink == 'true' ? '✐  '+item.name:'♢  '+item.name);
       },
       _onInfinite(){
         this._isFirst();

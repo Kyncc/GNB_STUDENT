@@ -43,9 +43,9 @@
         ├── camera      # 拍错题模块
         ├── collect     # 收藏本模块
         ├── remember    # 记错题模块
-        ├── map         # 知识图谱模块
-        ├── brush       # 刷错题模块
-        ├── error       # 归纳本模块
+        ├── report      # 成绩报告单模块
+        ├── brush       # 题型汇总模块
+        ├── error       # 题型归纳
         ├── message     # 互动模块
         ├── users       # 个人中心
             ├── pages               # 页面文件

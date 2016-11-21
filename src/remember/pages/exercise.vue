@@ -8,7 +8,8 @@
 
         <div style="padding-top:46px;">
             <template v-if="rememberExercise.chaper">
-                <header class="sectionHeader ellipsis">{{rememberExercise.chaper.name}}</header>
+                <header class="sectionHeader">{{rememberExercise.chaper.name}}</header>
+                
                 <template v-for="item in rememberExercise.a">
                     <!--2级别练习册-->
                     <template v-if="item.b[0].type == '1'">
@@ -33,6 +34,7 @@
                         </group>
                     </template>
                 </template>   
+
                 <x-button v-if="!rememberExercise.isUsed" style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_post">提交</x-button>
             </template>
 
@@ -51,8 +53,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Panel,ViewBox,Group,Cell,XButton,Checker, CheckerItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
@@ -64,7 +64,7 @@ import '../index.less'
 
 export default {
   components:{
-    XHeader,ViewBox,Panel,Group,Cell,XButton,InfiniteLoading,Checker, CheckerItem
+        XHeader,ViewBox,Panel,Group,Cell,XButton,InfiniteLoading,Checker, CheckerItem
   },
   vuex: {
     getters:{

@@ -82,10 +82,7 @@ export default {
     },
     filters: {
         collect(state){
-            if(state == 0){
-                return '收藏';
-            }
-            return '取消';
+           return (state == 0 ? '收藏':'取消');
         }    
     },
 	vuex: {
@@ -120,15 +117,9 @@ export default {
                     subject_id:this.cameraHistorySubjectId
                 },
                 token:this.token,
-                type:'camera'
+                type:'example'
             }
-            if(state != 0){
-                //已收藏
-                this.collectRemove(parma);
-            }else{
-                //未收藏
-                this.collectAdd(parma);
-            }
+            (state != 0 ? this.collectRemove(parma):this.collectAdd(parma));
 		}
 	},
     store,

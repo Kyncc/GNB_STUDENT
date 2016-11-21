@@ -82,10 +82,7 @@ export default {
     },
     filters: {
         collect(state){
-            if(state == 0){
-                return '收藏';
-            }
-            return '取消';
+			return (state == 0 ? '收藏':'取消');
         }    
     },
 	vuex: {
@@ -101,8 +98,7 @@ export default {
 			this.rememberExampleGet({
 				options:{
 					ids:[this.exampleId],
-					subject_id:this.rememberSubjectId,
-                    period_id:'3'
+					subject_id:this.rememberSubjectId
 				},
 				token:this.token
 			},()=>{
@@ -123,13 +119,7 @@ export default {
                 token:this.token,
                 type:'example'
             }
-            if(state != 0){
-                //已收藏
-                this.collectRemove(parma);
-            }else{
-                //未收藏
-                this.collectAdd(parma);
-            }
+			(state != 0 ? this.collectRemove(parma):this.collectAdd(parma));
 		}
 	},
     store,
