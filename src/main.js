@@ -46,6 +46,7 @@ import messageSystem from './message/pages/system'
 //题型汇总
 import brush from './brush/pages/index'
 import brushExample from './brush/pages/example'
+import brushList from './brush/pages/list'
 //知识图谱
 import report from './report/pages/index'
 import reportDetail from './report/pages/detail'
@@ -187,7 +188,7 @@ router.map({
   //题型汇总
   'brush':{component: brush},
   'brush/example/:id':{component: brushExample},
-//   'brush/list/:chapterId':{component: brushList},
+  'brush/list/:chapterId':{component: brushList},
   //个人中心
   'user/resetPwd': { component: userResetPwd },
   'user/info': { component: userInfo },

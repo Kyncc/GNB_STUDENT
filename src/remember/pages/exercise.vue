@@ -127,6 +127,7 @@ export default {
          this.$router.replace('/remember/workbook/exercise/'+this.nextId);
       },
       _intoExample(id){
+          if(Number(id) == 0) return;
         this.$router.go('/remember/example/'+id);
       }
   },

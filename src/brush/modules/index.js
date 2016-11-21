@@ -37,6 +37,26 @@ const mutations = {
   [types.BRUSH_EXAMPLE](state,data){
       state.example = data.data;
   },
+  //刷题型列表
+  [types.BRUSH_LIST](state,data){
+    if(data.data.length == 0){return;}
+    state.list.current++;
+    state.list.totalPage = data.data.totalPage;
+    state.list.list = state.list.list.concat(data.data);
+  },
+  [types.BRUSH_LIST_CLEAR](state){
+    state.list.currentPage = 1;
+    state.list.totalPage=1;
+    state.list.list=[];
+    state.list.scoll=0;
+  },
+  [types.BRUSH_LIST_ACTION](state,index){
+      state.list.list.splice(index,1);
+  },
+  [types.BRUSH_LIST_SCOLLER](state,height){
+      state.list.scoll = height;
+  },
+
   [types.BRUSH_EXAMPLE_CLEAR](state){
       state.example = [];   
   },
