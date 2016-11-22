@@ -24,7 +24,7 @@
                 <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
                 <p style="font-size:1rem;display:inline-block;">还没拍题记录~</p>
             </span>
-        <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已加载全部记录</span>
+            <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已加载全部记录</span>
         </infinite-loading>
 
 

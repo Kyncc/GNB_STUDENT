@@ -50,9 +50,6 @@
                 </infinite-loading>
 
 
-
-            
-
         </div>
     </view-box>
 
