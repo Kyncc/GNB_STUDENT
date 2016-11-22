@@ -27,7 +27,7 @@
 <script>
 import {  XHeader,  Cell,  Group,  Alert,  Confirm} from 'vux'
 import './setting.less'
-import {  updateVersion, quitToken} from '../../actions.js'
+import {  updateVersion} from '../../actions/settings.js'
 import {  fetchVersion,  fetchToken} from '../../getters.js'
 
 export default {
@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-      version: '1.0.1',
+      version: '1.0.2',
       show: false,
       confirm: false,
       quit:false
@@ -48,7 +48,7 @@ export default {
   },
   vuex: {
     actions: {
-      updateVersion,quitToken
+      updateVersion
     },
     getters: {
       fetchVersion,
@@ -71,6 +71,7 @@ export default {
             localStorage.removeItem('isVip');
             localStorage.removeItem('balance');
             localStorage.removeItem('numerical');
+            localStorage.removeItem('subjectType');
             this.$router.replace('/');
         }
     },
@@ -120,32 +121,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less">
-body {
-    -webkit-touch-callout: none;
-}
-.settings {
-    .vux-header {
-        color: #fff;
-        background-color: #4bb7aa;
-    }
-    .weui_cells {
-        margin-top: 0;
-    }
-    .vux-no-group-title {
-        margin-top: 0;
-    }
-    .vux-header .vux-header-left,
-    .vux-header .vux-header-right {
-        font-size: 16px;
-    }
-    .vux-header .vux-header-left .vux-header-back:before {
-        border-color: #fff;
-    }
-    .vux-header .vux-header-title,
-    .vux-header h1 {
-        margin-left: 88px;
-    }
-}
-</style>

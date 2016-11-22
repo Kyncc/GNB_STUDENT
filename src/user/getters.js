@@ -4,7 +4,7 @@ export const fetchUserInfo = (state) => state.info
 /*token*/
 export const fetchToken = (state) => state.userInfo.token
 //获取反馈信息列表
-export const fetchHistory = (state) => state.advice.adviceList
+export const fetchHistory = (state) => state.user.settings.adviceList
 //受邀好友列表
 export const fetchInviteStudentList = (state) => state.friend.inviteStudentList
 //邀请码
@@ -16,7 +16,7 @@ export const fetchBilllList = (state) => state.member.myBillList
 //会员信息
 export const fetchMemberInfo = (state) => state.member.memberInfo
 //会员信息
-export const fetchVersion = (state) => state.setting.version
+export const fetchVersion = (state) => state.user.settings.appVersion
 /**我的班级
  * GET_CLASS_LIST:获取班级列表
  * classmGET_CLASSMATE_LISTate:班级成员名单

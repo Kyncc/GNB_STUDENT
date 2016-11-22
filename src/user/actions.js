@@ -3,7 +3,6 @@ import * as types from './mutationTypes'
 import * as _ from '../config/whole'
 
 
-
   //受邀同学
 export const getInviteStudentList = ({ dispatch }, params,success) => {
     Api.getInviteStudentList({
@@ -69,17 +68,7 @@ export const member = ({ dispatch }, params) => {
       wrong: response => {}
     })
   }
-  //检查版本
-export const updateVersion = ({ dispatch }, params, callback) => {
-  Api.updateVersion({
-    data: params,
-    ok: response => {
-      dispatch(types.GET_VERSION, response.data.data)
-      callback()
-    },
-    wrong: response => {}
-  })
-}
+
 //退出
 export const quitToken = ({ dispatch }, params, callback) => {
   Api.quitToken({

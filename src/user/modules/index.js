@@ -17,6 +17,10 @@ const state = {
       math:[],
       physics:[]
     },
+    settings:{
+      adviceList:[],
+      appVersion:''
+    },
     subject:[]
 }
 
@@ -71,7 +75,16 @@ const mutations = {
      }else{
        state.version.physics = [];
      }
+  },
+  //反馈历史
+  [types.GET_ADVICE_LIST](state, data) {
+    state.settings.adviceList = data;
+  },
+  //APP版本
+  [types.GET_VERSION](state, data) {
+    state.settings.appVersion = data
   }
+
 }
 
 export default {
