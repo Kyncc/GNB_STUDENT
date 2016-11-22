@@ -23,6 +23,7 @@
         color:#487d68;
         .with_arrow{
             display: inline-block;
+            transform: rotate(135deg);
             -webkit-transform: rotate(135deg);
             height: 6px;
             width: 6px;
@@ -32,7 +33,8 @@
             position: absolute;
             right:.5rem; 
             top:.7rem;
-            transition-duration: .2s;           
+            transition-duration: .2s;   
+            -webkit-transition-duration: .2s;           
         }
     }
 }
@@ -58,6 +60,7 @@
     color: #3d7489;
     .with_arrow{
         transform: rotate(315deg);
+        -webkit-transform: rotate(315deg);
     }
 }
 .ac-container label:hover:after,

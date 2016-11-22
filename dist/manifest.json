@@ -2,7 +2,7 @@
 	"@platforms": [
 		"android",
 		"iPhone",
-		"iPad"
+		""
 	],
 	"id": "H5B0E7680",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本-学生端",/*应用名称，程序桌面图标名称*/
@@ -89,7 +89,7 @@
 		},
 		"NativeObj": {
 			"description": "原生对象"
-		}
+		},"Share":{}
 	},
 	"plus": {
 		"splashscreen": {
@@ -100,7 +100,7 @@
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
 		"distribute": {
 			"plugins": {
-				"share": {
+				"share": {"qq":{"appid":"1105745340","description":"QQ分享"}
 
 				}
 			},
@@ -197,9 +197,7 @@
 		},
 		"idle": {
 			"resources": [
-				"fonts/mui.ttf",
-				"js/mui.js",
-				"css/mui.css"
+				
 			]
 		}
 	},

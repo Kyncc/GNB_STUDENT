@@ -7,47 +7,51 @@
         </div>
 
         <div style="padding-top:46px;">
-            <template v-if="rememberExercise.chaper">
-                <header class="sectionHeader">{{rememberExercise.chaper.name}}</header>
-                <template v-for="item in rememberExercise.a">
-                    <!--2级别练习册-->
-                    <!--<template v-if="item.b[0].type == '1'">
-                        <group v-for="itemB in item.b" :title="itemB.name">
-                            <cell v-for="itemC in itemB.c" :title="itemC.name">
-                                <p slot="value">
-                                    {{itemC.answer }}
-                                    <x-button mini plain type="primary" @click="_intoExample(itemC.id)">例题</x-button>
-                                </p>
-                            </cell>
-                        </group>
-                    </template>-->
-                     <!--3级别练习册-->
-                    <template v-if="item.b[0].type == '2'">
-                        <group :title="item.name">
-                            <cell v-for="itemB in item.b" :title="itemB.name">
-                                <div slot="value">
-                                    <section style="display:inline-block;" @click="_changeAnswer($parent.$index,$index)">
-                                        <span v-if="itemB.answer" class="checker">✔</span>
-                                        <span v-else class="checker error">✘</span>
-                                    </section>
-                                    <x-button mini plain type="primary" @click="_intoExample(itemB.id)">例题</x-button>
-                                </div>
-                            </cell>
-                        </group>
-                    </template>
-                </template>   
+                <template v-if="rememberExercise.chaper">
+                    <header class="sectionHeader">{{rememberExercise.chaper.name}}</header>
+                    <template v-for="item in rememberExercise.a">
+                        <!--2级别练习册-->
+                        <!--<template v-if="item.b[0].type == '1'">
+                            <group v-for="itemB in item.b" :title="itemB.name">
+                                <cell v-for="itemC in itemB.c" :title="itemC.name">
+                                    <p slot="value">
+                                        {{itemC.answer }}
+                                        <x-button mini plain type="primary" @click="_intoExample(itemC.id)">例题</x-button>
+                                    </p>
+                                </cell>
+                            </group>
+                        </template>-->
+                        <!--3级别练习册-->
+                        <template v-if="item.b[0].type == '2'">
+                            <group :title="item.name">
+                                <cell v-for="itemB in item.b" :title="itemB.name">
+                                    <div slot="value">
+                                        <section style="display:inline-block;" @click="_changeAnswer($parent.$index,$index)">
+                                            <span v-if="itemB.answer" class="checker">✔</span>
+                                            <span v-else class="checker error">✘</span>
+                                        </section>
+                                        <x-button mini plain type="primary" @click="_intoExample(itemB.id)">例题</x-button>
+                                    </div>
+                                </cell>
+                            </group>
+                        </template>
+                    </template>   
 
-                <x-button v-if="!rememberExercise.isUsed" style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_post">提交结果</x-button>
-                <x-button v-else style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_next()">下一章节</x-button>    
-            </template>
+                    <x-button v-if="!rememberExercise.isUsed" style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_post">提交结果</x-button>
+                    <x-button v-else style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_next()">下一章节</x-button>    
+                </template>
 
-            <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
-                <span slot="no-results" style="color:#4bb7aa;">
-                    <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-                    <p style="font-size:1rem;display:inline-block;">数据发生一点问题~</p>
-                </span>
-                <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
-            </infinite-loading>
+                <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
+                    <span slot="no-results" style="color:#4bb7aa;">
+                        <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+                        <p style="font-size:1rem;display:inline-block;">数据发生一点问题~</p>
+                    </span>
+                    <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
+                </infinite-loading>
+
+
+
+            
 
         </div>
     </view-box>
@@ -109,6 +113,7 @@ export default {
         },()=>{
             if(this.rememberExercise.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
+            this.$refs.my_scroller.resize();
         });
 
       },
@@ -146,6 +151,11 @@ export default {
       isUsed(){      //下一章节的ID
           return this.rememberExercise.isUsed;
       }
+  },
+  ready(){
+
+       
+
   }
 }
 </script>

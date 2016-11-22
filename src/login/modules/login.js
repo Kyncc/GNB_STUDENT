@@ -38,6 +38,7 @@ const mutations = {
   },
   [SET_HEAD_IMG](state, data) {
     state.headImg = data;
+    localStorage.setItem('headImg',data);
   }
 }
 
