@@ -111,7 +111,7 @@ export default {
 			this.$router.go(`/camera/comment/${this.cameraHistorySubjectId}/${this.cameraId}`);
 		},
 		_collect(state){
-            let parma = {
+            var parma = {
                 options:{
                     id:this.exampleId,
                     subject_id:this.cameraHistorySubjectId
@@ -119,7 +119,11 @@ export default {
                 token:this.token,
                 type:'example'
             }
-            (state != 0 ? this.collectRemove(parma):this.collectAdd(parma));
+			if(state == 0){
+				this.collectAdd(parma);
+			}else{
+				this.collectRemove(parma);
+			}
 		}
 	},
     store,
