@@ -12,27 +12,27 @@
                 </div>
                 <section class="content">
                     <div class="flex-wrap">
-                        <div class="flex-item right1px bottom1px tap-highlight" v-link="{ path: '/camera/'}">
+                        <div class="flex-item right1px bottom1px vux-tap-active" v-link="{ path: '/camera/'}">
                             <img src="../../assets/main/home_1.png"/>
                             <p>拍错题</p>
                         </div>
-                        <div class="flex-item right1px bottom1px tap-highlight" v-link="{ path: '/error/'}">
+                        <div class="flex-item right1px bottom1px vux-tap-active" v-link="{ path: '/error/'}">
                             <img src="../../assets/main/home_2.png" alt="" />
                             <p>错题归纳</p>
                         </div>
-                        <div class="flex-item bottom1px tap-highlight" v-link="{ path: '/collect/'}" >
+                        <div class="flex-item bottom1px vux-tap-active" v-link="{ path: '/collect/'}" >
                             <img src="../../assets/main/home_4.png" alt="" />
                             <p >收藏本</p>
                         </div>
-                        <div class="flex-item right1px bottom1px tap-highlight" v-link="{ path: '/remember'}">
+                        <div class="flex-item right1px bottom1px vux-tap-active" v-link="{ path: '/remember'}">
                             <img src="../../assets/main/home_3.png" alt="" />
                             <p >记错题</p>
                         </div>
-                        <div class="flex-item right1px bottom1px tap-highlight" v-link="{ path: '/report'}">
+                        <div class="flex-item right1px bottom1px vux-tap-active" v-link="{ path: '/report'}">
                             <img src="../../assets/main/home_5.png" alt="" />
                             <p >成绩报告单</p>
                         </div>
-                        <div class="flex-item bottom1px tap-highlight" v-link="{ path: '/brush'}">
+                        <div class="flex-item bottom1px vux-tap-active" v-link="{ path: '/brush'}">
                             <img src="../../assets/main/home_6.png" alt="" />
                             <p >题型汇总</p>
                         </div>

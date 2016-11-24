@@ -118,7 +118,11 @@ export default {
                 token:this.token,
                 type:'example'
             }
-			(state != 0 ? this.collectRemove(parma):this.collectAdd(parma));
+			if(state != 0){
+				this.collectRemove(parma);
+			}else{
+				this.collectAdd(parma);
+			}
 		}
 	},
     store,

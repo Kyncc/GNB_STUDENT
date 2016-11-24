@@ -13,11 +13,11 @@
                         <header class="sectionHeader ellipsis">{{aitem.name}}</header>
                         <group>
                             <template v-for="b in aitem.b"> 
-                                <cell :title="_isLinkTitle(b)"  @click="_isLink(b)" ></cell>
+                                <cell :title="_isLinkTitle(b)"  @click="_isLink(b)" link="javascript:;"></cell>
                                 <template v-for="c in b.c">
-                                    <cell :title="_isLinkTitle(c)" class="indent1" @click="_isLink(c)"></cell>
+                                    <cell :title="_isLinkTitle(c)" class="indent1" @click="_isLink(c)" link="javascript:;"></cell>
                                     <template v-for="d in c.d">
-                                        <cell :title="_isLinkTitle(d)" class="indent2" @click="_isLink(d)"></cell>
+                                        <cell :title="_isLinkTitle(d)" class="indent2" @click="_isLink(d)" link="javascript:;"></cell>
                                     </template>    
                                 </template>
                             </template>

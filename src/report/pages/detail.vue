@@ -31,7 +31,7 @@
                         <div><p class="per-35 tl">方法型错误</p><p class="per-40 advice">应变能力不够</p><p class="per-25 tr">{{reportDetail.error_reason.type2_count}}个</p></div>
                         <div><p class="per-35 tl">审题型错误</p><p class="per-40 advice">思想不集中、粗心</p><p class="per-25 tr">{{reportDetail.error_reason.type3_count}}个</p></div>
                         <div><p class="per-35 tl">计算错误</p><p class="per-40 advice">答题不规范</p><p class="per-25 tr">{{reportDetail.error_reason.type4_count}}个</p></div>
-                        <div><p class="per-35 tl">未记录错误</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.error_reason.type5_count}}个</p></div>
+                        <div><p class="per-35 tl">未记录错误</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.error_reason.type0_count}}个</p></div>
                     </article>
                 </div>
             </template>

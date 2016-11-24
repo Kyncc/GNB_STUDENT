@@ -11,7 +11,7 @@
             <template v-for="item in rememberWorkbook">
                  <template v-if="item">
                     <group :title="item.textbookName">
-                        <cell v-for="workbook in item.list" :title="workbook.workbookName" @click="_toChapter(workbook.workbookId)"></cell>
+                        <cell v-for="workbook in item.list" :title="workbook.workbookName" link="javascript:;" @click="_toChapter(workbook.workbookId)"></cell>
                     </group>
                 </template>
             </template>

@@ -18,7 +18,7 @@ import Cropper from 'Cropperjs'
 import * as _ from '../../config/whole.js'
 import { fetchCameraImg,cameraResultId,cameraResultIds } from '../getters.js'
 import { getCameraResultIds } from '../actions.js'
-import { token,period_id,subject_id } from '../../common/getters.js'
+import { token} from '../../common/getters.js'
 
 export default {
     components: {
@@ -29,11 +29,7 @@ export default {
             _.busy()
             this.getCameraResultIds({
                 file: this.cropper.getCroppedCanvas({width:640}).toDataURL('image/png'),
-                token: this.token,
-                options: {
-                    period_id: this.period_id,
-                    subject_id: this.subject_id
-                }
+                token: this.token
             },()=>{
                 /*上传图片成功回调*/
                 // if(this.cameraResultIds.length){
@@ -46,7 +42,7 @@ export default {
                 // }
 
                 /*上传成功*/
-                this.$router.go('/camera/success');      
+                this.$router.replace('/camera/success');      
             })
         }
     },
@@ -55,7 +51,7 @@ export default {
             getCameraResultIds
         },
         getters:{
-            fetchCameraImg,token,period_id,subject_id,cameraResultId,cameraResultIds
+            fetchCameraImg,token,cameraResultId,cameraResultIds
         }
     },
     data(){
