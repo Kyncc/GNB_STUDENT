@@ -47,6 +47,11 @@ export const clearReport = ({ dispatch }) => {
     dispatch(types.CLEAR_REPORT_CHAPTER);
 }
 
+/**清除报告单数据 */
+export const clearDetail = ({ dispatch }) => {
+    dispatch(types.CLEAR_REPORT_DETAIL);
+}
+
 /**更换科目 */
 export const setSubject = ({ dispatch }, id) => {
     dispatch(types.REPORT_CHANGE_SUBJECT,id);
