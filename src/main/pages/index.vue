@@ -12,11 +12,11 @@
                 </div>
                 <section class="content">
                     <div class="flex-wrap">
-                        <div class="flex-item right1px bottom1px vux-tap-active" v-link="{ path: '/camera/'}">
+                        <div class="flex-item right1px bottom1px vux-tap-active" v-link="{ path: '/camera'}">
                             <img src="../../assets/main/home_1.png"/>
                             <p>拍错题</p>
                         </div>
-                        <div class="flex-item right1px bottom1px vux-tap-active" v-link="{ path: '/error/'}">
+                        <div class="flex-item right1px bottom1px vux-tap-active" v-link="{ path: '/error'}">
                             <img src="../../assets/main/home_2.png" alt="" />
                             <p>错题归纳</p>
                         </div>

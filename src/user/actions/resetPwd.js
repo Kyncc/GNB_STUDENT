@@ -10,8 +10,17 @@ export const updatePwd = ({ dispatch }, params, success) => {
         ok: response => {
             _.leave();
             success&&success();
+            localStorage.removeItem('headImg');
+            localStorage.removeItem('mobile');
+            localStorage.removeItem('name');
+            localStorage.removeItem('token');
+            localStorage.removeItem('isVip');
+            localStorage.removeItem('balance');
+            localStorage.removeItem('numerical');
+            localStorage.removeItem('subjectType');
         },
         wrong: response => {
+            _.leave();
             _.toast(response.data.msg);
         }
     })

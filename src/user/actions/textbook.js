@@ -53,14 +53,17 @@ export const delTextbook = ({ dispatch }, params,success,wrong) => {
 
 /**增加教材 */
 export const addTextbook = ({ dispatch }, params,success,wrong) => {
+  _.busy();
   Api.textbookAdd({
     data: params,
     ok: response => {
       dispatch(types.TEXTBOOK_ADD);
+       _.leave();
       success&&success();
     },
     wrong: response => {
       wrong&&wrong();
+       _.leave();
       _.toast(response.data.msg);
     }
   })

@@ -66,6 +66,7 @@ export default {
             switch(id){
                 case '2':return '数学';
                 case '7':return '物理';
+                case '8':return '化学';
             }
        }    
    },
@@ -77,12 +78,10 @@ export default {
 	store,
   methods: {
     _addTextBook(){
-        _.busy();
         this.addTextbook({
           token:this.token,   
           textbookId:this.selectBookList
 			  },()=>{
-          _.leave();
           _.toast('添加成功');
           history.back();
         });

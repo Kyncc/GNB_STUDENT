@@ -20,7 +20,7 @@
 								<span style="color:#666" @click="_removeCollect(item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消</span>
 							</template>
 						</p>	
-                        <p style="width:25%;text-align:right;color:#666" v-touch:tap="_comment(item.id)" ><i class="icon iconfont icon-error-login"></i>点评</p>
+						<p style="width:25%;text-align:right;color:#666" v-touch:tap="_comment(item.id)" ><i class="icon iconfont icon-error-login"></i>点评</p>
 					</flexbox>				
 				</div>
 				<!--题目整体--> 

@@ -236,7 +236,6 @@ sync(store, router)
 
 router.beforeEach(function(transition) {
     if (transition.to.path == '/') {
-      // router.replace('/login');
       if(localStorage.token){
           router.replace('/main/index');
       }else{
@@ -251,6 +250,7 @@ router.beforeEach(function(transition) {
 function plusReady(){
   let first = null;
   plus.key.addEventListener("backbutton",function(){
+      //主界面上不返回上一级
       if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
           if (!first) {
               first = new Date().getTime();
@@ -263,7 +263,19 @@ function plusReady(){
                   plus.runtime.quit();
               }
           }
-      }else{
+      }
+      //模块首页的返回键进入主页
+      else if(store.state.route.path == '/camera' || store.state.route.path == '/error' || store.state.route.path == '/report' 
+         || store.state.route.path == '/brush' || store.state.route.path == '/collect/example' || store.state.route.path == '/remember'){
+             router.go('/main/index');
+      }
+      //正在加载不返回上一级
+      else if(store.state.Global.isLoading){
+          _.leave();
+          return;
+      }
+      //返回上一个访问页面
+      else{
           window.history.back();
       }
   });

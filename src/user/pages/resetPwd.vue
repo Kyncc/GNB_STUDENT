@@ -13,21 +13,17 @@
 
 <script>
 import {XHeader,XInput,Group,XButton} from 'vux'
-import {fetchToken} from '../getters.js'
+import {token} from '../../common/getters'
 import {updatePwd} from '../actions/resetPwd'
 import * as _ from '../../config/whole.js'
 import './resetPwd.less'
 export default {
   components: {
-    XHeader,
-    XInput,
-    Group,
-    XButton,
-    
+    XHeader,XInput,Group,XButton
   },
   vuex: {
     getters: {
-      fetchToken
+      token
     },
     actions: {
       updatePwd
@@ -49,12 +45,15 @@ export default {
             this.updatePwd({
               oldPwd: this.oldPwd,
               pwd: this.newPwd,
-              token: this.fetchToken
+              token: this.token
             },() => {
-                 _.toast('退出登陆生效');
+                 _.toast('修改成功');
+                 setTimeout(()=>{
+                    this.$router.replace('/');
+                 },1000);
             })
           } else {
-            _.toast("两次密码输入不一致");
+                _.toast("两次密码输入不一致");
           }
         }
     }

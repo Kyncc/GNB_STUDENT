@@ -1,5 +1,5 @@
 <template>
-    <div style="height:100%">
+    <div style="height:100%" class="Message">
         <x-header :left-options="{showBack: false}" class="vux-scroller-header">消息</x-header>
         <div id='wrapper' style="height:100%">
             <group>
@@ -51,6 +51,8 @@ import { token } from '../../common/getters'
 import { messageIndex } from '../../message/getters'
 import { getMessageIndex} from '../../message/actions'
 import * as _ from '../../config/whole'
+import './main.less'
+
 
 export default {
     components: {
@@ -101,8 +103,4 @@ export default {
     }
 }
 </script>
-<style>
-.homepage>.weui_tab>.weui_tab_bd.vux-fix-safari-overflow-scrolling>div{
-    height: 100%;
-}
-</style>
+

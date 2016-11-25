@@ -55,14 +55,17 @@ export const delWorkbook = ({ dispatch }, params,success,wrong) => {
 
 /**增加习题册 */
 export const addWorkbook = ({ dispatch }, params,success,wrong) => {
+  _.busy();
   Api.workbookAdd({
     data: params,
     ok: response => {
       dispatch(types.WORKBOOK_ADD);
+      _.leave();
       success&&success();
     },
     wrong: response => {
       wrong&&wrong();
+      _.leave();
       _.toast(response.data.msg);
     }
   })
