@@ -24,7 +24,7 @@
 import '../main.less'
 import {XInput,Group,XButton} from 'vux'
 import { login } from '../actions'
-import { userInfo } from '../getters'
+import { userInfo,registerMobile } from '../getters'
 import * as _ from '../../config/whole'
 
 export default {
@@ -35,7 +35,7 @@ export default {
   },
   vuex: {
     getters: {
-      userInfo
+      userInfo,registerMobile
     },
     actions: {
       login
@@ -44,7 +44,7 @@ export default {
   data(){
     return{
       disable: false,
-      mobile:'',
+      mobile:this.registerMobile,
       password:''
     }
   },
@@ -54,17 +54,10 @@ export default {
         mobile:this.mobile,
         pwd:this.password
       }
-      _.busy();
       this.login(params,()=>{
-          setTimeout(()=>{
-              _.leave();
-              this.$router.replace('/main');
-          },1000);
+          this.$router.replace('/main');
       },()=>{
-          setTimeout(()=>{
-              _.leave();
-              this.pwd = '';
-          },500);
+          this.pwd = '';
       });
     }
   },
