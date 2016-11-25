@@ -5,7 +5,6 @@
 				参考例题
 			</x-header>
 		</div>
-
 		<div style="padding-top:46px;">
 			<!--内容-->
 			<div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">

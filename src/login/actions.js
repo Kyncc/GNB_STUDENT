@@ -46,14 +46,17 @@ export const setUserInfo = ({ dispatch }, params,success,wrong) => {
 
 /*用户登陆*/
 export const login = ({ dispatch }, params,success,wrong) => {
+   _.busy();
   Api.login({
       data:params,
       ok:response=>{
         dispatch(types.GET_LOGIN_SUCCESS,response.data);
+        _.leave();
         success&&success();
       },
       wrong:response=>{
         wrong&&wrong();
+        _.leave();
         _.toast(response.data.msg);
       }
   })
