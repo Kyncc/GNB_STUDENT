@@ -50,16 +50,16 @@
                     <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
                 </infinite-loading>
 
-
         </div>
     </view-box>
 
+    <confirm :show.sync="showConfirm" confirm-text="确定" cancel-text="取消" title="确定提交练习结果？" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
 
 </template>
 
 <script>
 import store from '../../store'
-import { XHeader,Panel,ViewBox,Group,Cell,XButton,Checker, CheckerItem} from 'vux'
+import { XHeader,Panel,ViewBox,Group,Cell,XButton,Checker, CheckerItem,Confirm} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {rememberExerciseGet,rememberExercisePost,rememberExerciseClear,rememberExAnswerChange} from '../actions/exercise'
 import {rememberExercise,chapterId} from '../getters'
@@ -69,7 +69,7 @@ import '../index.less'
 
 export default {
   components:{
-        XHeader,ViewBox,Panel,Group,Cell,XButton,InfiniteLoading,Checker, CheckerItem
+        XHeader,ViewBox,Panel,Group,Cell,XButton,InfiniteLoading,Checker, CheckerItem,Confirm
   },
   vuex: {
     getters:{
@@ -98,6 +98,24 @@ export default {
                }
           }
       },
+      /** 提交信息*/
+      onAction(type) {
+            if(type=='确认'){
+                this._getAnswerList();
+                this.rememberExercisePost({
+                    token:this.token,   
+                    chapterId:this.chapterId,
+                    answer:this.answerList
+                },()=>{
+                    setTimeout(()=>{
+                        history.back();
+                    },500);
+                    //   this.$router.replace('/remember/workbook/exercise/'+this.nextId);
+                });
+            }else{
+                return
+            }
+        },
       _onInfinite(){
          if(this.rememberExercise.length != 0 && this.rememberExercise.a){
             this.$broadcast('$InfiniteLoading:loaded');
@@ -116,17 +134,7 @@ export default {
 
       },
       _post(){
-         this._getAnswerList();
-         this.rememberExercisePost({
-            token:this.token,   
-            chapterId:this.chapterId,
-            answer:this.answerList
-          },()=>{
-              setTimeout(()=>{
-                 history.back();
-              },500);
-            //   this.$router.replace('/remember/workbook/exercise/'+this.nextId);
-          });
+        this.showConfirm = true;
       },
       _next(){
          this.rememberExerciseClear();//进去前清空数据
@@ -143,7 +151,8 @@ export default {
   },
   data () {
     return {
-        answerList:[]         //答案的列表
+        answerList:[],         //答案的列表
+        showConfirm:false
     }
   },
   computed:{

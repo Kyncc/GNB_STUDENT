@@ -99,6 +99,13 @@ img[lazy=error] {
 }
 
 /**
+*   Vux-tabbar
+*/
+.weui_tabbar:before{
+    border-top: 1px solid #c5c5c5;
+}
+
+/**
 *   Vux-Toast
 */
 .vux-toast{
@@ -233,7 +240,7 @@ img[lazy=error] {
 .exerciseDetail{
     .weui_panel_hd{
         padding:8/20rem 15/20rem 8/20rem;
-        color:#000;
+        color:#666;
         font-size:16/20rem;
         Button{margin-right:.75/20rem;}
         text-overflow: ellipsis;
@@ -257,12 +264,18 @@ img[lazy=error] {
     .weui_panel_ft::after{display: none;}
 }
 
-
+/**
+*   textarea
+*/
+.weui_textarea{
+    font-size:.75rem;
+}
 /**
 *   纠错页面公共样式
 *   点评页面公共样式
 */
 .correctDetail,.commentDetail{
+    
     .select-item {
         width: 100/20rem;
         height: 30/20rem;

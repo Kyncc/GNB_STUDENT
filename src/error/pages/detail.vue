@@ -69,16 +69,16 @@
 			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
 		</infinite-loading>
 
-        <tabbar class="vux-demo-tabbar bottom" icon-class="vux-center" slot="bottom">
-            <flexbox :gutter="0" wrap="wrap">
-                <p style="width:50%;text-align:center;">
-                    <x-button mini type="primary" @click="_errorList" >对应错题</x-button>
-                </p>
-                <p style="width:50%;text-align:center;">
-                    <x-button mini type="primary" @click="_recommend" >相近例题</x-button>
-                </p>
-            </flexbox>
-        </tabbar>
+		<tabbar class="vux-demo-tabbar bottom" icon-class="vux-center" slot="bottom">
+				<flexbox :gutter="0" wrap="wrap">
+						<p style="width:50%;text-align:center;">
+								<x-button mini type="primary" @click="_errorList" >对应错题</x-button>
+						</p>
+						<p style="width:50%;text-align:center;">
+								<x-button mini type="primary" @click="_recommend" >相近例题</x-button>
+						</p>
+				</flexbox>
+		</tabbar>
 
 	</view-box>
 </template>

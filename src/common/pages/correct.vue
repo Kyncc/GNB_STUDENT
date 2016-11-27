@@ -51,10 +51,16 @@ export default {
     },
 	methods: {
 		_commit(){
-             if(!this.type[0] && this.type[0]!='0'){
+            if(!this.type[0] && this.type[0]!='0'){
                _.toast("请选择纠错类型");
                return;
             }
+
+            if(this.type[0] =='4' && this.content==''){
+                _.toast("请填写纠错内容");
+               return;
+            }
+
 
 			 let params = {
                 options:{
