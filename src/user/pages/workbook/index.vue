@@ -2,7 +2,7 @@
     <view-box v-ref:view-box class="rememberIndex">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}" @on-click-back="_back()">
-                我的练习册
+                我的习题册
                 <a slot="right" @click="_changeSub()" class="changeSub">{{workbookSubjectId | subName}}<span class="with_arrow"></span></a>
             </x-header>
         </div>

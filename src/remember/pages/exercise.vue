@@ -38,7 +38,8 @@
                     </template>   
 
                     <x-button v-if="!rememberExercise.isUsed" style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_post">提交结果</x-button>
-                    <x-button v-else style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_next()">下一章节</x-button>    
+                    <x-button v-else style="width:95%;margin-top:1rem;" type="primary" disabled>已提交</x-button>
+                        
                 </template>
 
                 <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
@@ -121,11 +122,15 @@ export default {
             chapterId:this.chapterId,
             answer:this.answerList
           },()=>{
-              this.$router.replace('/remember/workbook/exercise/'+this.nextId);
+              setTimeout(()=>{
+                 history.back();
+              },500);
+            //   this.$router.replace('/remember/workbook/exercise/'+this.nextId);
           });
       },
       _next(){
          this.rememberExerciseClear();//进去前清空数据
+        //  history.back();
          this.$router.replace('/remember/workbook/exercise/'+this.nextId);
       },
       _intoExample(id){

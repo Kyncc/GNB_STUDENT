@@ -51,7 +51,7 @@ export const login = ({ dispatch }, params,success,wrong) => {
       data:params,
       ok:response=>{
         dispatch(types.GET_LOGIN_SUCCESS,response.data);
-        _.leave();
+        // _.leave();
         success&&success();
       },
       wrong:response=>{

@@ -10,7 +10,7 @@
             <template v-for="item in rememberChapter">
                 <template v-for="a in item">
                     <div v-for="aitem in a" style="margin-bottom:.5rem">
-                        <header class="sectionHeader ellipsis">{{aitem.name}}</header>
+                        <header class="sectionHeader ellipsis" @click="_isLink(aitem)" >{{_isLinkTitle(aitem)}}</header>
                         <group>
                             <template v-for="b in aitem.b"> 
                                 <cell :title="_isLinkTitle(b)"  @click="_isLink(b)" link="javascript:;"></cell>

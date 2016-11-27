@@ -55,7 +55,10 @@ export default {
         pwd:this.password
       }
       this.login(params,()=>{
+        setTimeout(()=>{
+           _.leave();
           this.$router.replace('/main');
+        });
       },()=>{
           this.pwd = '';
       });
