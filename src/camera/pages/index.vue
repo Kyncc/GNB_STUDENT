@@ -14,7 +14,7 @@
             </div>
         </div>
         <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom" >
-            <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #ccc" type="primary" v-touch:tap="galleryImgs()">从相册选择</x-button>
+            <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #c5c5c5" type="primary" v-touch:tap="galleryImgs()">从相册选择</x-button>
        </tabbar>
 </template>
 

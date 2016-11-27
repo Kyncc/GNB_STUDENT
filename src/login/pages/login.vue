@@ -58,7 +58,7 @@ export default {
         setTimeout(()=>{
            _.leave();
           this.$router.replace('/main');
-        });
+        },500);
       },()=>{
           this.pwd = '';
       });

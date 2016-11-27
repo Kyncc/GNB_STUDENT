@@ -3,7 +3,7 @@
         <x-header :left-options="{showBack: true}">我的班级</x-header>
 
         <group>
-            <search  placeholder="请输入班级编号" @result-click="resultClick" @on-change="getResult" :results="results" :value.sync="value"></search>
+            <search  placeholder="请输入班级编号" @result-click="resultClick" :auto-fixed="false" @on-change="getResult" :results="results" ></search>
         </group>
 
         <group v-show="!value">
@@ -72,8 +72,7 @@ export default {
     },
     data(){
         return{
-            results: [],
-            value: ''
+            results: []
         }
     }
 }

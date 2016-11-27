@@ -46,7 +46,7 @@ import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabIte
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import { token } from '../../common/getters'
-import { brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll } from '../getters'
+import { brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll,brushListId} from '../getters'
 import { brushListClear,setScoll,getBushList,gushListAction } from '../actions/list'
 
 export default {
@@ -82,11 +82,10 @@ export default {
                 return;
             }
             this.getBushList({
-                currentPage:this.CollectExampleCurrentPage,
+                currentPage:this.brushListCurrentPage,
                 token:this.token,
-                options:{
-                    subject_id:this.brushSubjectId
-                }
+                chapter_id:this.brushListId,
+                subject_id:this.brushSubjectId
             },()=>{
                 this.$broadcast('$InfiniteLoading:loaded');
                 if(this.brushListCurrentPage  > this.brushListTotalPage){
@@ -98,10 +97,10 @@ export default {
     },
     vuex: {
         getters: {
-            token,brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll
+            token,brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll,brushListId
         },
         actions: {
-             brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll
+            brushListClear,setScoll,getBushList,gushListAction
         }
     },
     store
