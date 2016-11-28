@@ -55,13 +55,10 @@ export default {
                _.toast("请选择纠错类型");
                return;
             }
-
-            if(this.type[0] =='4' && this.content==''){
+            if(this.type.indexOf(4) >= 0 && this.content==''){
                 _.toast("请填写纠错内容");
                return;
             }
-
-
 			 let params = {
                 options:{
                     id:Number(this.id),

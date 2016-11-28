@@ -11,6 +11,8 @@ const state = {
          currentPage:1,
          totalPage:1,
          list:[],
+         count:'',
+         chapterName:'',
          scoll:0
      },
      subjectId:'2'
@@ -40,9 +42,11 @@ const mutations = {
   //刷题型列表
   [types.BRUSH_LIST](state,data){
     if(data.data.length == 0){return;}
-    state.list.current++;
+    state.list.currentPage++;
     state.list.totalPage = data.data.totalPage;
-    state.list.list = state.list.list.concat(data.data);
+    state.list.chapterName = data.data.chapterName;
+    state.list.count = data.data.recordSize;
+    state.list.list = state.list.list.concat(data.data.detail);
   },
   [types.BRUSH_LIST_CLEAR](state){
     state.list.currentPage = 1;
@@ -52,6 +56,7 @@ const mutations = {
   },
   [types.BRUSH_LIST_ACTION](state,index){
       state.list.list.splice(index,1);
+      state.list.count = Number(state.list.count)-1;
   },
   [types.BRUSH_LIST_SCOLLER](state,height){
       state.list.scoll = height;

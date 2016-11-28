@@ -94,9 +94,6 @@ export default {
         return {
 			visible:false
         }
-  },
-  ready(){
-        
   }
 }
 </script>

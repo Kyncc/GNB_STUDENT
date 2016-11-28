@@ -30,7 +30,7 @@
                                             <span v-if="itemB.answer" class="checker">✔</span>
                                             <span v-else class="checker error">✘</span>
                                         </section>
-                                        <x-button mini plain type="primary" @click="_intoExample(itemB.id)">例题</x-button>
+                                        <x-button mini plain type="primary" @click="_intoExample(itemB.eid)">例题</x-button>
                                     </div>
                                 </cell>
                             </group>

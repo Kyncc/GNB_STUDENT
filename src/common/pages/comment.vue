@@ -9,24 +9,24 @@
             <group title="点评类型">
                 <checker style="padding:.25rem .85rem 1rem;"
                     :value.sync="type"
-                    :max="5"
+                    :max="4"
                     type="checkbox"
                     default-item-class="select-item"
                     selected-item-class="select-item-selected"
                 >
-                        <checker-item :value="0">粗心</checker-item>
-                        <checker-item :value="1">概念不清</checker-item>
+                        <checker-item :value="0">知识型错误</checker-item>
+                        <checker-item :value="1">方法型错误</checker-item>
                         <checker-item :value="2">审题错误</checker-item>
-                        <checker-item :value="3">记忆错误</checker-item>
-                        <checker-item :value="4">理解错误</checker-item>
-                        <checker-item :value="5">计算错误</checker-item>
+                        <checker-item :value="3">计算错误</checker-item>
+                        <!--<checker-item :value="4">理解错误</checker-item>-->
+                        <!--<checker-item :value="5">计算错误</checker-item>
                         <checker-item :value="6">不会做</checker-item>
-                        <checker-item :value="7">其他</checker-item>
+                        <checker-item :value="7">其他</checker-item>-->
                 </checker>
             </group>
-            <group title="点评一下">
+            <!--<group title="点评一下">
                 <x-textarea :max="200" :rows="6"  :value.sync="content" placeholder="请简单描述点评内容" ></x-textarea>
-            </group>
+            </group>-->
         </div>
     </div>
 </template>

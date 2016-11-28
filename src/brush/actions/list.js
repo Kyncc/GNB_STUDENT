@@ -27,15 +27,18 @@ export const getBushList = ({ dispatch }, params,success) => {
 }
 
 /**刷题型动作 */
-export const gushListAction = ({ dispatch },params,success,index) => {
+export const bushListAction = ({ dispatch },params,success,index) => {
+    _.busy();
     Api.brushAction({
       data:params,
       ok:response=>{
           dispatch(types.BRUSH_LIST_ACTION,index);
           success&&success();
+          _.leave();
       },
       wrong:response=>{
-        _.toast(response.data.msg);
+          _.toast(response.data.msg);
+          _.leave();
       }
   })
 }
