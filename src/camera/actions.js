@@ -86,6 +86,12 @@ export const setScoll = ({ dispatch }, height) => {
 }
 
 
+/**清除数据 */
+export const cameraClear = ({ dispatch }) => {
+    dispatch(types.CLEAR_CAMERA_HISTORY);
+}
+
+
 //设置头像图片
 export const setCameraImg = ({ dispatch }, params) => {
     dispatch(types.SET_CAMERA_IMG, params)

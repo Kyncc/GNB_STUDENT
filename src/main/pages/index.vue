@@ -67,6 +67,7 @@ import {clearError} from '../../error/actions/index'
 import {clearCollect} from '../../collect/actions'
 import {clearBrush} from '../../brush/actions/index'
 import {delChapter} from '../../remember/actions/workbook'
+import {cameraClear} from '../../camera/actions'
 
 import * as _ from '../../config/whole.js'
 import './main.less'
@@ -87,7 +88,7 @@ export default {
         },
         actions: {
             getStudentIndex,
-            clearError,clearReport,clearCollect,clearBrush,delChapter
+            clearError,clearReport,clearCollect,clearBrush,delChapter,cameraClear
         }
     },
     store,
@@ -98,7 +99,7 @@ export default {
         this.clearCollect();
         this.clearBrush();
         this.delChapter();
-
+        this.cameraClear();
         this.getStudentIndex({
             options:{
                 subject_id:this.subject_id
