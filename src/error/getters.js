@@ -1,4 +1,5 @@
 export const errorIndexIds  = (state) => state.error.index.ids
+export const errorIndexScoll  = (state) => state.error.index.scoll
 export const errorIndexList  = (state) => state.error.index.list
 export const errorIndexTab  = (state) => state.error.index.selected
 export const errorIndexDetail  = (state) => state.error.index.detail

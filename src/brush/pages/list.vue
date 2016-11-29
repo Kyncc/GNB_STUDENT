@@ -79,6 +79,10 @@ export default {
                 token:this.token,
                 subject_id:item.subject_id,
                 status:type
+            },()=>{
+                this.$nextTick(() => {
+				    this.$broadcast('$InfiniteLoading:reset');
+			    });
             })
         },
         _isFirst(){

@@ -54,6 +54,9 @@ const mutations = {
   [types.ERROR_TAB_CHANGE](state, type){
      state.index.selected = type;
   },
+  [types.ERROR_SCOLL](state, height){
+     state.index.scoll = height;
+  },
   //更多例题
   [types.GET_ERROR_MOREIDS](state , data){
     state.more.ids = data.data.ids;

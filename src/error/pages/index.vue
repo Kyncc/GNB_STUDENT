@@ -24,7 +24,7 @@
         {{{item.knowledge}}}
       </div>
       <div class="weui_panel_bd">
-        <a class="weui_media_box weui_media_appmsg" href="#!/error/detail/{{item.id}}">
+        <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.id)">
           <div class="weui_media_bd">
             <p class="weui_media_desc">
               {{{item.content}}}
@@ -62,8 +62,8 @@ import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import gnbChangeSub from '../../components/changesub/index'
 import {token,userSubjectList} from '../../common/getters'
-import {errorIndexIds,errorIndexList,errorIndexTotalPage,errorSubjectId,errorIndexCurrentPage,errorIndexTab} from '../getters'
-import {getErrorIds,getErrorList,setSubject,clearError,setTabTime} from '../actions/index'
+import {errorIndexIds,errorIndexList,errorIndexTotalPage,errorSubjectId,errorIndexCurrentPage,errorIndexTab,errorIndexScoll} from '../getters'
+import {getErrorIds,getErrorList,setSubject,clearError,setTabTime,setScoll} from '../actions/index'
 import moment from 'moment'
 
 export default {
@@ -73,10 +73,13 @@ export default {
     },
     vuex: {
         getters: {
-            errorSubjectId,token,errorIndexIds,errorIndexList,errorIndexTotalPage,userSubjectList,errorIndexCurrentPage,errorIndexTab
+            errorSubjectId,token,
+            userSubjectList,
+            errorIndexIds,errorIndexList,errorIndexTotalPage,errorIndexCurrentPage,
+            errorIndexTab,errorIndexScoll
         },
         actions: {
-            getErrorIds,getErrorList,setSubject,clearError,setTabTime
+            getErrorIds,getErrorList,setSubject,clearError,setTabTime,setScoll
         }
     },
     filters: {
@@ -84,11 +87,16 @@ export default {
           switch(id){
               case '2':return '数学';
               case '7':return '物理';
-              case '9':return '化学';
+              case '8':return '化学';
           }
       }    
     },
     methods: {
+        _intoDetail(id){
+            //获取高度
+            this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
+            this.$router.go(`/error/detail/${id}`);
+        },
         _isFirst(){
             /*判断当前页面是否大于总页数 若大于则不在请求数据*/
             if(Number(this.errorIndexTotalPage) < Number(this.errorIndexCurrentPage)){
@@ -96,6 +104,7 @@ export default {
                  this.$broadcast('$InfiniteLoading:complete');
                  return true;
             }
+           
             return false;
         },
         _time(value) {
@@ -124,7 +133,6 @@ export default {
             if(this._isFirst()){
                 return;
             }
-            
             this.getErrorIds({
                 currentPage:this.errorIndexCurrentPage,
                 between:{
@@ -177,6 +185,11 @@ export default {
                 },500);
             });
         }
+    },
+    ready(){
+        this.$nextTick(()=>{
+            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.errorIndexScoll;
+        });
     }
 }
 </script>

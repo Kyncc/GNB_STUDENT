@@ -85,7 +85,7 @@ export const getCollectCameraDetail = ({ dispatch }, params,success,wrong) => {
 
 /**高度保存 */
 export const setScoll = ({ dispatch }, height) => {
-    dispatch(types.COLLECT_SCOLL,height);
+    dispatch(types.COLLECT_INDEX_SCOLL,height);
 }
 
 /**更换科目 */

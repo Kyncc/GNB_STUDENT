@@ -9,15 +9,13 @@
             <group title="点评类型">
                 <checker style="padding:.25rem .85rem 1rem;"
                     :value.sync="type"
-                    :max="4"
-                    type="checkbox"
                     default-item-class="select-item"
                     selected-item-class="select-item-selected"
                 >
                         <checker-item :value="0">知识型错误</checker-item>
                         <checker-item :value="1">方法型错误</checker-item>
-                        <checker-item :value="2">审题错误</checker-item>
-                        <checker-item :value="3">计算错误</checker-item>
+                        <checker-item :value="2">审题型错误</checker-item>
+                        <checker-item :value="3">计算型错误</checker-item>
                         <!--<checker-item :value="4">理解错误</checker-item>-->
                         <!--<checker-item :value="5">计算错误</checker-item>
                         <checker-item :value="6">不会做</checker-item>

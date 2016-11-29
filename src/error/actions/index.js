@@ -41,6 +41,10 @@ export const setTabTime = ({ dispatch }, type) => {
     dispatch(types.ERROR_TAB_CHANGE,type);
 }
 
+/**设置高度 */
+export const setScoll = ({ dispatch }, height) => {
+    dispatch(types.ERROR_SCOLL,height);
+}
 
 /**清空错题本 */
 export const clearError = ({ dispatch }) => {

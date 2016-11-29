@@ -2,6 +2,8 @@ export const cameraHistoryIds  = (state) => state.camera.history.ids
 export const cameraHistoryList  = (state) => state.camera.history.list
 export const cameraHistoryCurrentPage  = (state) => state.camera.history.currentPage
 export const cameraHistoryTotalPage  = (state) => state.camera.history.totalPage
+export const cameraHistoryScoll  = (state) => state.camera.history.scoll
+
 export const cameraHistorySubjectId  = (state) => state.camera.subjectId
 /** 获取例题*/
 export const cameraExample  = (state) => state.camera.example

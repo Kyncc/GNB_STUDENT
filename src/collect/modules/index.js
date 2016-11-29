@@ -44,7 +44,7 @@ const mutations = {
   [types.GET_COLLECT_CAMERADETAIL](state , data){
      state.camera.detail = data.data;
   },
-  [types.COLLECT_SCOLL](height){
+  [types.COLLECT_INDEX_SCOLL](state,height){
      state.scoll = height;
   },
   [types.COLLECT_SUBJECT_CHANGE](state, id){

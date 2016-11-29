@@ -46,8 +46,8 @@ import gnbChangeSub from '../../components/changesub/index.vue'
 import store from '../../store'
 import { token,userSubjectList } from '../../common/getters'
 import { collectRemove,collectAdd} from '../../common/actions'
-import { cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage,cameraHistorySubjectId } from '../getters'
-import { getCameraHistoryIds,getCameraHistoryList,delCameraHistroy,setSubject } from '../actions/history'
+import { cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage,cameraHistorySubjectId,cameraHistoryScoll } from '../getters'
+import { getCameraHistoryIds,getCameraHistoryList,delCameraHistroy,setSubject,setScoll } from '../actions/history'
 import * as _ from '../../config/whole'
 
 export default {
@@ -66,10 +66,10 @@ export default {
   vuex: {
       getters: {
           token,userSubjectList,
-          cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage,cameraHistorySubjectId
+          cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage,cameraHistorySubjectId,cameraHistoryScoll
       },
       actions: {
-          getCameraHistoryIds,getCameraHistoryList,delCameraHistroy,collectRemove,setSubject
+          getCameraHistoryIds,getCameraHistoryList,delCameraHistroy,collectRemove,setSubject,setScoll
       }
   },
   store,
@@ -94,6 +94,7 @@ export default {
     },
     /** 参考例题*/
     _record(cameraId,exampleId) {
+      this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
       this.$router.go(`/camera/example/${cameraId}/${exampleId}`);
     },
     /** 灯箱*/
@@ -168,6 +169,11 @@ export default {
           },300);
       })
     }
+  },
+  ready(){
+      this.$nextTick(()=>{
+          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.cameraHistoryScoll;
+      });
   }
 }
 </script>

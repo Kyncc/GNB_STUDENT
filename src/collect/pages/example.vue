@@ -14,7 +14,7 @@
         </div>
       </flexbox>
     </div>
-    <div style="height:100%" id="scoller">
+    <div style="height:100%">
       <!--空白间隔-->
       <div style="height:86px;"></div>
       <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in CollectExampleList">
@@ -69,12 +69,13 @@ export default {
             switch(id){
                 case '2':return '数学';
                 case '7':return '物理';
+                case '8':return '化学';
             }
         }    
     },
     methods: {
         _intoDetail(id){
-            // alert(document.documentElement.scrollTop);
+            this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
             this.$router.go(`/collect/example/detail/${id}`);
         },
         _camera(){
@@ -155,6 +156,11 @@ export default {
                 this.$broadcast('$InfiniteLoading:reset');
             });
         }
+    },
+    ready(){
+        this.$nextTick(()=>{
+            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.CollectScoll;
+        });
     }
 }
 </script>

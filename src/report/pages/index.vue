@@ -7,9 +7,8 @@
             </x-header>
         </div>
 
-        <div style="padding-top:46px;height:100%">
+        <div style="padding-top:46px">
             <accordion :list="reportChapter" link="report/detail/" @on-click-back="_openChapter" ></accordion>
-
             <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
                 <span slot="no-results" style="color:#4bb7aa;">
                     <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -24,8 +23,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import store from '../../store'
 import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
@@ -76,6 +73,7 @@ export default {
         });
     },
     _openChapter(index){
+         this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
          this.changeChapter(index);
     },
     _onInfinite(){
@@ -99,7 +97,9 @@ export default {
         }
     },
   ready(){
-        
+        this.$nextTick(()=>{
+            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
+        });
     }
 }
 </script>

@@ -58,7 +58,7 @@ import store from '../../store'
 import gnbChangeSub from '../../components/changesub/index.vue'
 import {userSubjectList,token} from '../../common/getters'
 import {CollectCameraIds,CollectCameraList,CollectSubjectId,CollectCameraTotalPage,CollectCameraCurrentPage,CollectScoll} from '../getters'
-import { getCollectCameraIds, getCollectCameraList,setSubject,clearCollect} from '../actions'
+import { getCollectCameraIds, getCollectCameraList,setSubject,clearCollect,setScoll} from '../actions'
 import { collectRemove } from '../../common/actions'
 import * as _ from '../../config/whole'
 import './collect.less'
@@ -73,6 +73,7 @@ export default {
           switch(id){
               case '2':return '数学';
               case '7':return '物理';
+              case '8':return '化学';
           }
       }    
   },
@@ -82,12 +83,13 @@ export default {
       CollectCameraIds,CollectCameraList,CollectSubjectId,CollectCameraTotalPage,CollectCameraCurrentPage,CollectScoll
     },
     actions: {
-      getCollectCameraIds, getCollectCameraList,collectRemove,setSubject,clearCollect
+      getCollectCameraIds, getCollectCameraList,collectRemove,setSubject,clearCollect,setScoll
     }
   },
   store,
   methods: {
     _record(importantId,id){
+      this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
       this.$router.go(`/collect/camera/detail/${importantId}/${id}`);
     },
     _example() {
@@ -179,6 +181,11 @@ export default {
             this.$broadcast('$InfiniteLoading:reset');
         });
     }
+  },
+  ready(){
+      this.$nextTick(()=>{
+          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.CollectScoll;
+      });
   }
 }
 </script>

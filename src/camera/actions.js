@@ -79,6 +79,13 @@ export const postCameraSearch = ({ dispatch }, params,success) => {
   })
 }
 
+
+/**设置高度 */
+export const setScoll = ({ dispatch }, height) => {
+    dispatch(types.CAMERA_SCOLLER_HEIGHT,height);
+}
+
+
 //设置头像图片
 export const setCameraImg = ({ dispatch }, params) => {
     dispatch(types.SET_CAMERA_IMG, params)

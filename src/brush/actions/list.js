@@ -37,6 +37,7 @@ export const bushListAction = ({ dispatch },params,success,index) => {
           _.leave();
       },
       wrong:response=>{
+          // dispatch(types.BRUSH_LIST_ACTION,index);
           _.toast(response.data.msg);
           _.leave();
       }
