@@ -73,7 +73,7 @@ export default {
         });
     },
     _openChapter(index){
-         this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
+         this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
          this.changeChapter(index);
     },
     _onInfinite(){

@@ -70,6 +70,7 @@ export default {
     methods: {
         _intoDetail(id){
             // alert(document.documentElement.scrollTop);
+            this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
             this.$router.go(`/brush/example/${id}`);
         },
         _brushAction(type,item){
@@ -120,6 +121,11 @@ export default {
             brushListClear,setScoll,getBushList,bushListAction
         }
     },
-    store
+    store,
+    ready(){
+        this.$nextTick(()=>{
+            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.brushListScoll;
+        });
+    }
 }
 </script>

@@ -16,21 +16,9 @@ const state = {
     example:[],
     //搜题结果
     result:{
-      code:'',
       id:'',
       ids:[],
-      list:[],
-      msg:'',
-    },
-    //设置例题
-    setExample:{
-      code:'',
-      msg:''
-    },
-    //提交人工搜索
-    search:{
-      code:'',
-      msg:''
+      list:[]
     }
 }
 
@@ -74,24 +62,13 @@ const mutations = {
   },
   //搜题结果
   [types.GET_CAMERA_RESULTIDS](state , data){
-    state.result.code = data.data.code;
     state.result.ids = data.data.ids;
     state.result.id = data.data.id;
-    state.result.msg = data.msg;
   },
   [types.GET_CAMERA_RESULTLIST](state , data){
     state.result.code = data.code;
     state.result.list = data.data;
     state.result.msg = data.msg;
-  },
-  
-  [types.POST_CAMERA_RESULTSEARCH](state , data){
-    state.search.code = data.code;
-    state.search.msg = data.msg;
-  },
-  [types.POST_CAMERA_EXAMPLE](state , data){
-    state.setExample.code = data.code;
-    state.setExample.msg = data.msg;
   },
   [types.SET_CAMERA_IMG](state, data){
     state.cameraImg = data;

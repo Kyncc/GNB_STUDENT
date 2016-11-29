@@ -42,6 +42,14 @@ export const rememberExerciseClear = ({ dispatch }) => {
   dispatch(types.REMEMBER_EXERCISE_CLEAR);
 }
 
+
+/**设置练习题高度 */
+export const setScoll = ({ dispatch }, height) => {
+    dispatch(types.REMEMBER_EXERCISE_SCROLL,height);
+}
+
+
+
 /**章节练习题答案变更 */
 export const rememberExAnswerChange = ({ dispatch },pid,id) => {
   dispatch(types.REMEMBER_EXERCISE_CHANGE,pid,id);

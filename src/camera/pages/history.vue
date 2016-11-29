@@ -8,7 +8,7 @@
 
     <div style="margin-top:46px;" class="main">
       <flexbox class="list" v-for="item in cameraHistoryList" track-by="$index">
-        <div style="width:40%"><img class="previewer-demo-img" v-lazy="item.compressPic" @click="_show($index)"></div>
+        <div style="width:40%"><img class="previewer-demo-img" v-lazy="item.compressPic" @click="_show($index)"/></div>
         <div style="position:relative;width:60%">
           <div v-touch:tap="_record(item.id,item.importantId)">
             <div class="title ellipsis">{{{item.knowledge}}}</div>
@@ -45,7 +45,6 @@ import InfiniteLoading from 'vue-infinite-loading'
 import gnbChangeSub from '../../components/changesub/index.vue'
 import store from '../../store'
 import { token,userSubjectList } from '../../common/getters'
-import { collectRemove,collectAdd} from '../../common/actions'
 import { cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage,cameraHistorySubjectId,cameraHistoryScoll } from '../getters'
 import { getCameraHistoryIds,getCameraHistoryList,delCameraHistroy,setSubject,setScoll } from '../actions/history'
 import * as _ from '../../config/whole'
@@ -54,22 +53,22 @@ export default {
   components: {
     XHeader,Panel,ViewBox,FlexboxItem,Flexbox,Previewer,Confirm,InfiniteLoading,gnbChangeSub
   },
-    filters: {
-        subName(id){
-            switch(id){
-                case '2':return '数学';
-                case '7':return '物理';
-                case '8':return '化学';
-            }
-        }    
-    },
+  filters: {
+      subName(id){
+          switch(id){
+              case '2':return '数学';
+              case '7':return '物理';
+              case '8':return '化学';
+          }
+      }    
+  },
   vuex: {
       getters: {
           token,userSubjectList,
           cameraHistoryIds,cameraHistoryList,cameraHistoryTotalPage,cameraHistoryCurrentPage,cameraHistorySubjectId,cameraHistoryScoll
       },
       actions: {
-          getCameraHistoryIds,getCameraHistoryList,delCameraHistroy,collectRemove,setSubject,setScoll
+          getCameraHistoryIds,getCameraHistoryList,delCameraHistroy,setSubject,setScoll
       }
   },
   store,

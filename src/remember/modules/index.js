@@ -5,7 +5,9 @@ const state = {
     my:[],  
     all:[],
     chapter:[], 
+    chapterScroll:0,
     exercise:[],
+    exerciseScroll:0,
     example:[]      
 }
 
@@ -17,6 +19,8 @@ const mutations = {
   [types.REMEMBER_SUBJECT_CHANGE](state,id){
       state.subjectId = id;
       state.my = [];
+      state.chapterScroll = 0;
+      state.exerciseScroll = 0;
       state.all = [];  
       state.chapter = [];
   },
@@ -25,6 +29,10 @@ const mutations = {
   },
   [types.REMEMBER_CHAPTER_CLEAR](state,data){
       state.chapter =  [];
+      state.chapterScroll = 0;
+  }, 
+  [types.REMEMBER_CHAPTER_SCROLL](state, height){
+     state.chapterScroll = height;
   },
   [types.REMEMBER_WORKBOOK_ALL](state,data){
       state.all =  data.data;
@@ -40,7 +48,11 @@ const mutations = {
       state.exercise = data.data;
   },
   [types.REMEMBER_EXERCISE_CLEAR](state){
-      state.exercise = [];   
+      state.exercise = [];
+      state.exerciseScroll = 0;    
+  },
+  [types.REMEMBER_EXERCISE_SCROLL](state, height){
+     state.exerciseScroll = height;
   },
   [types.REMEMBER_EXERCISE_CHANGE](state,Pid,id){
       state.exercise.a[Pid].b[id].answer = !state.exercise.a[Pid].b[id].answer;   

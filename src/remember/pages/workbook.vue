@@ -39,14 +39,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Panel,ViewBox,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { token } from '../../common/getters'
-import {rememberChapter,wookbookId} from '../getters'
-import {getWorkbookChapter,delChapter} from '../actions/workbook'
+import {rememberChapter,wookbookId,rememberChapterScroll} from '../getters'
+import {getWorkbookChapter,delChapter,setScoll} from '../actions/workbook'
 import {rememberExerciseClear} from '../actions/exercise'
 import '../index.less'
 
@@ -56,17 +54,19 @@ export default {
   },
   vuex: {
     getters:{
-        token,rememberChapter,wookbookId
+        token,rememberChapter,wookbookId,rememberChapterScroll
     },
     actions:{
-        getWorkbookChapter,delChapter,rememberExerciseClear
+        getWorkbookChapter,delChapter,rememberExerciseClear,setScoll
     }
   },
   store,
   methods:{
+
       _isLink(item){
           if(item.isLink == 'true'){
             this.rememberExerciseClear();//进去前清空数据
+            this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
             this.$router.go('/remember/workbook/exercise/'+item.id);
           }
           return;
@@ -96,6 +96,11 @@ export default {
         }
      } 
 
+  },
+  ready(){
+       this.$nextTick(()=>{
+            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.rememberChapterScroll;
+        });
   }
 }
 </script>

@@ -61,8 +61,8 @@
 import store from '../../store'
 import { XHeader,Panel,ViewBox,Group,Cell,XButton,Checker, CheckerItem,Confirm} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {rememberExerciseGet,rememberExercisePost,rememberExerciseClear,rememberExAnswerChange} from '../actions/exercise'
-import {rememberExercise,chapterId} from '../getters'
+import {rememberExerciseGet,rememberExercisePost,rememberExerciseClear,rememberExAnswerChange,setScoll} from '../actions/exercise'
+import {rememberExercise,chapterId,rememberExerciseScroll} from '../getters'
 import { token } from '../../common/getters'
 import * as _ from '../../config/whole.js'
 import '../index.less'
@@ -73,10 +73,10 @@ export default {
   },
   vuex: {
     getters:{
-        token,rememberExercise,chapterId
+        token,rememberExercise,chapterId,rememberExerciseScroll
     },
     actions:{
-        rememberExerciseGet,rememberExercisePost,rememberExerciseClear,rememberExAnswerChange
+        rememberExerciseGet,rememberExercisePost,rememberExerciseClear,rememberExAnswerChange,setScoll
     }
   },
   store,
@@ -145,8 +145,9 @@ export default {
           if(Number(id) == 0){
             _.toast('暂无例题');
             return;
-          } 
-        this.$router.go('/remember/example/'+id);
+          }
+          this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
+          this.$router.go('/remember/example/'+id);
       }
   },
   data () {
@@ -164,9 +165,9 @@ export default {
       }
   },
   ready(){
-
-       
-
+       this.$nextTick(()=>{
+            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.rememberExerciseScroll;
+        });
   }
 }
 </script>

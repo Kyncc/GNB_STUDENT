@@ -7,7 +7,7 @@
             </x-header>
         </div>
 
-        <div style="padding-top:46px;height:100%">
+        <div style="padding-top:46px;">
             <accordion :list="brushAll" link="brush/list/" @on-click-back="_openChapter" ></accordion>
             <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
                 <span slot="no-results" style="color:#4bb7aa;">
@@ -72,6 +72,7 @@ export default {
         });
     },
     _openChapter(index){
+        this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
         this.changeChapter(index);
     },
     _onInfinite(){
@@ -94,6 +95,11 @@ export default {
         return {
 			visible:false
         }
-  }
+  },
+  ready(){
+        this.$nextTick(()=>{
+            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.brushScoll;
+        });
+    }
 }
 </script>

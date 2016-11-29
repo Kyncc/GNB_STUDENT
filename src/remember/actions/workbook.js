@@ -16,6 +16,10 @@ export const getWorkbookChapter = ({ dispatch }, params,success,wrong) => {
     }
   })
 }
+/**章节设置高度 */
+export const setScoll = ({ dispatch }, height) => {
+    dispatch(types.REMEMBER_CHAPTER_SCROLL,height);
+}
 
 /**习题册章节数据清空 */
 export const delChapter = ({ dispatch }) => {
