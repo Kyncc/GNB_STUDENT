@@ -151,6 +151,13 @@ export default {
   },
   watch: {
     cameraHistoryIds(){
+
+      if(this.cameraHistoryIds.length == 0) {
+          this.$broadcast('$InfiniteLoading:loaded');
+          this.$broadcast('$InfiniteLoading:complete');
+          return;
+      };
+
       let params = {
         options: {
           ids: this.cameraHistoryIds,

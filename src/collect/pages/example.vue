@@ -135,6 +135,12 @@ export default {
     },
     watch:{
         CollectExampleIds(){
+            if(this.CollectExampleIds.length == 0) {
+                this.$broadcast('$InfiniteLoading:loaded');
+                this.$broadcast('$InfiniteLoading:complete');
+                return;
+            }
+
             let params = {
                 options:{
                     ids:this.CollectExampleIds || [],

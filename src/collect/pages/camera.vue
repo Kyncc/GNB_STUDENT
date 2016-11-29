@@ -125,7 +125,7 @@ export default {
       });
     },
     _onInfinite() {
-        this.getCollectCameraIds({
+      this.getCollectCameraIds({
           currentPage:this.CollectCameraCurrentPage || [],
           token:this.token,
           options:{
@@ -160,6 +160,12 @@ export default {
   },
   watch: {
     CollectCameraIds() {
+      if(this.CollectCameraIds.length == 0)  {
+          this.$broadcast('$InfiniteLoading:loaded');
+          this.$broadcast('$InfiniteLoading:complete');
+          return;
+      };
+
       let params = {
         options: {
           ids: this.CollectCameraIds,

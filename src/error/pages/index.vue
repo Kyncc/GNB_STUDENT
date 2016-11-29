@@ -168,6 +168,13 @@ export default {
     },
     watch:{
         errorIndexIds() {
+
+            if(this.errorIndexIds.length == 0) {
+                this.$broadcast('$InfiniteLoading:loaded');
+                this.$broadcast('$InfiniteLoading:complete');
+                return;
+            };
+
             let params = {
                 options: {
                     ids: this.errorIndexIds,
