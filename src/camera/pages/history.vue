@@ -150,7 +150,7 @@ export default {
     }
   },
   watch: {
-    cameraHistoryIds() {
+    cameraHistoryIds(){
       let params = {
         options: {
           ids: this.cameraHistoryIds,

@@ -42,7 +42,7 @@ const mutations = {
     state.history.scoll = 0;
   },
   [types.CAMERA_SCOLLER_HEIGHT](state,height){
-      state.scoll = height;
+      state.history.scoll = height;
   },
   [types.CAMERA_CHANGE_SUBJECT](state,id){
       state.subjectId = id;

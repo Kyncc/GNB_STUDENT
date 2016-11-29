@@ -178,7 +178,7 @@ export default {
             this.getErrorList(params,()=>{
                 setTimeout(()=>{
                     this.$broadcast('$InfiniteLoading:loaded');
-                    if(this.errorIndexTotalPage <= this.errorIndexCurrentPage){
+                    if(this.errorIndexTotalPage < this.errorIndexCurrentPage){
                         this.$broadcast('$InfiniteLoading:complete');
                         return;
                     }
