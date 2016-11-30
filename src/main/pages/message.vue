@@ -1,7 +1,7 @@
 <template>
     <div style="height:100%" class="Message">
         <x-header :left-options="{showBack: false}" class="vux-scroller-header">消息</x-header>
-        <div id='wrapper' style="height:100%">
+        <div id='wrapper' style="padding-bottom:100px;">
             <group>
                 <cell title="班级消息" link="../message/class" :inline-desc='messageIndex.classMsgNew' >
                     <div class="tap-highlight" v-bind:class="{'vux-reddot':messageIndex.hasNewClassMsg}" slot="icon" style="margin-right:.5em;" >

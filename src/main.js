@@ -247,6 +247,9 @@ router.beforeEach(function(transition) {
 
 
 
+
+
+
 function plusReady(){
   let first = null;
   plus.key.addEventListener("backbutton",function(){
