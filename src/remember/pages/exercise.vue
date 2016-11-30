@@ -87,14 +87,16 @@ export default {
       },
       /**获取答案*/
       _getAnswerList(){
-          this.answerList = [];
+          this.answerListId = [];
+          this.answerListAnswer = [];
           if(!this.rememberExercise.a){
               return;
           }
           let array = this.rememberExercise.a;
           for(let i = 0; i< array.length ; i++){
                for(let j = 0;j< array[i].b.length;j++){
-                  this.answerList.push(array[i].b[j].answer);
+                  this.answerListId.push(array[i].b[j].id);
+                  this.answerListAnswer.push(array[i].b[j].answer);
                }
           }
       },
@@ -105,7 +107,8 @@ export default {
                 this.rememberExercisePost({
                     token:this.token,   
                     chapterId:this.chapterId,
-                    answer:this.answerList
+                    answerId:this.answerListId,
+                    answer:this.answerListAnswer
                 },()=>{
                     setTimeout(()=>{
                         history.back();
@@ -152,7 +155,8 @@ export default {
   },
   data () {
     return {
-        answerList:[],         //答案的列表
+        answerListId:[],         //答案的列表
+        answerListAnswer:[],         //答案的列表
         showConfirm:false
     }
   },

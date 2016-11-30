@@ -28,6 +28,7 @@ import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import {token,userSubjectList } from '../../common/getters'
 import {brushSubjectId,brushAll,brushScoll} from '../getters'
 import {getBrush,changeChapter,setScoll,clearBrush,setSubject} from '../actions'
+import { brushListClear } from '../actions/list'
 import gnbChangeSub from '../../components/changesub/index'
 import accordion from '../../components/accordion'
 import '../index.less'
@@ -42,7 +43,8 @@ export default {
         brushSubjectId,brushAll,brushScoll
     },
     actions: {
-        getBrush,changeChapter,setScoll,clearBrush,setSubject
+        getBrush,changeChapter,setScoll,clearBrush,setSubject,
+        brushListClear
     }
   },
     filters: {
@@ -72,6 +74,7 @@ export default {
         });
     },
     _openChapter(index){
+        this.brushListClear();
         this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
         this.changeChapter(index);
     },
