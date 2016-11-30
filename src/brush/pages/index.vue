@@ -74,7 +74,7 @@ export default {
         });
     },
     _openChapter(index){
-        this.brushListClear();
+        
         this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
         this.changeChapter(index);
     },
@@ -100,6 +100,7 @@ export default {
         }
   },
   ready(){
+        this.brushListClear();
         this.$nextTick(()=>{
             document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.brushScoll;
         });

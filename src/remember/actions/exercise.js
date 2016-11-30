@@ -51,6 +51,6 @@ export const setScoll = ({ dispatch }, height) => {
 
 
 /**章节练习题答案变更 */
-export const rememberExAnswerChange = ({ dispatch },pid,id) => {
-  dispatch(types.REMEMBER_EXERCISE_CHANGE,pid,id);
+export const rememberExAnswerChange = ({ dispatch },pid,id,type) => {
+  dispatch(types.REMEMBER_EXERCISE_CHANGE,pid,id,type);
 }

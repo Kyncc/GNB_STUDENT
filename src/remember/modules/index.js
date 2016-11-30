@@ -28,8 +28,11 @@ const mutations = {
       state.chapter =  data.data;
   },
   [types.REMEMBER_CHAPTER_CLEAR](state,data){
-      state.chapter =  [];
+      state.my = [];
       state.chapterScroll = 0;
+      state.exerciseScroll = 0;
+      state.all = [];  
+      state.chapter =  [];
   }, 
   [types.REMEMBER_CHAPTER_SCROLL](state, height){
      state.chapterScroll = height;
@@ -54,8 +57,12 @@ const mutations = {
   [types.REMEMBER_EXERCISE_SCROLL](state, height){
      state.exerciseScroll = height;
   },
-  [types.REMEMBER_EXERCISE_CHANGE](state,Pid,id){
-      state.exercise.a[Pid].b[id].answer = !state.exercise.a[Pid].b[id].answer;   
+  [types.REMEMBER_EXERCISE_CHANGE](state,Pid,id,type){
+      if(type == '1'){
+        state.exercise.a[0].b[Pid].c[id].answer = !state.exercise.a[0].b[Pid].c[id].answer;   
+      }else{
+        state.exercise.a[Pid].b[id].answer = !state.exercise.a[Pid].b[id].answer;   
+      }
   },
   [types.REMEMBER_EXAMPLE](state,data){
       state.example = data.data;

@@ -11,22 +11,25 @@
                     <header class="sectionHeader">{{rememberExercise.chaper.name}}</header>
                     <template v-for="item in rememberExercise.a">
                         <!--2级别练习册-->
-                        <!--<template v-if="item.b[0].type == '1'">
+                        <template v-if="item.b[0].type == '1'">
                             <group v-for="itemB in item.b" :title="itemB.name">
                                 <cell v-for="itemC in itemB.c" :title="itemC.name">
                                     <p slot="value">
-                                        {{itemC.answer }}
-                                        <x-button mini plain type="primary" @click="_intoExample(itemC.id)">例题</x-button>
+                                        <section style="display:inline-block;" @click="_changeAnswer($parent.$index,$index,1)">
+                                            <span v-if="itemC.answer" class="checker">✔</span>
+                                            <span v-else class="checker error">✘</span>
+                                        </section>
+                                        <x-button mini plain type="primary" @click="_intoExample(itemC.eid)">例题</x-button>
                                     </p>
                                 </cell>
                             </group>
-                        </template>-->
+                        </template>
                         <!--3级别练习册-->
                         <template v-if="item.b[0].type == '2'">
                             <group :title="item.name">
                                 <cell v-for="itemB in item.b" :title="itemB.name">
                                     <div slot="value">
-                                        <section style="display:inline-block;" @click="_changeAnswer($parent.$index,$index)">
+                                        <section style="display:inline-block;" @click="_changeAnswer($parent.$index,$index,2)">
                                             <span v-if="itemB.answer" class="checker">✔</span>
                                             <span v-else class="checker error">✘</span>
                                         </section>
@@ -81,9 +84,11 @@ export default {
   },
   store,
   methods: {
-      _changeAnswer(parentIndex,index){
+      
+      _changeAnswer(parentIndex,index,type){
           if(this.isUsed) return;
-          this.rememberExAnswerChange(parentIndex,index);
+          this.workbookType = type;
+          this.rememberExAnswerChange(parentIndex,index,type);
       },
       /**获取答案*/
       _getAnswerList(){
@@ -92,18 +97,33 @@ export default {
           if(!this.rememberExercise.a){
               return;
           }
-          let array = this.rememberExercise.a;
-          for(let i = 0; i< array.length ; i++){
-               for(let j = 0;j< array[i].b.length;j++){
-                  this.answerListId.push(array[i].b[j].id);
-                  this.answerListAnswer.push(array[i].b[j].answer);
-               }
-          }
+       
+        if(this.workbookType == '1'){
+            //三级练习册嵌套
+            let array = this.rememberExercise.a[0].b;
+            for(let i = 0; i< array.length ; i++){
+                for(let j = 0;j< array[i].c.length;j++){
+                    this.answerListId.push(array[i].c[j].id);
+                    this.answerListAnswer.push(array[i].c[j].answer);
+                }
+            }
+        }else{
+            //二级练习册嵌套
+            let array = this.rememberExercise.a;
+            for(let i = 0; i< array.length ; i++){
+                for(let j = 0;j< array[i].b.length;j++){
+                    this.answerListId.push(array[i].b[j].id);
+                    this.answerListAnswer.push(array[i].b[j].answer);
+                }
+            }
+        }
+
       },
       /** 提交信息*/
       onAction(type) {
             if(type=='确认'){
                 this._getAnswerList();
+                // return;
                 this.rememberExercisePost({
                     token:this.token,   
                     chapterId:this.chapterId,
@@ -157,7 +177,8 @@ export default {
     return {
         answerListId:[],         //答案的列表
         answerListAnswer:[],         //答案的列表
-        showConfirm:false
+        showConfirm:false,
+        workbookType:''
     }
   },
   computed:{

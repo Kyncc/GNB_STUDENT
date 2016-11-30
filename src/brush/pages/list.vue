@@ -16,7 +16,7 @@
                 <div class="weui_panel_bd">
                     <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.excercise_id)">
                         <div class="weui_media_bd">
-                            <p class="exampl_title">参考例题<b>难度：{{item.master_degree}}</b></p>
+                            <p class="exampl_title">参考例题<b>难度：{{item.degree}}</b></p>
                             <p class="weui_media_desc">
                                 {{{item.stem}}}
                             </p>
