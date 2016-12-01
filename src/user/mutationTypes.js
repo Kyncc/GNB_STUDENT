@@ -2,16 +2,17 @@
 export const USERINFO_GET = 'USERINFO_GET'
 /** 获得教材 */
 export const USERINFO_TEXTBOOKVERSION = 'USERINFO_TEXTBOOKVERSION'
-/**我的班级
- * GET_CLASS_LIST:获取班级列表
- * classmGET_CLASSMATE_LISTate:班级成员名单
- * POST_INTO_CLASS:加入班级
- * GET_CLASS_BYCODE:根据代码搜索班级
- */
-export const GET_CLASS_LIST = 'GET_CLASS_LIST'
-export const GET_CLASSMATE_LIST = 'GET_CLASSMATE_LIST'
-export const POST_INTO_CLASS = 'POST_INTO_CLASS'
-export const GET_CLASS_BYCODE = 'GET_CLASS_BYCODE'
+
+
+/** 获取全部班级 */
+export const CLASS_MY_GET = 'CLASS_MY_GET'
+/** 获取班级同学 */
+export const CLASS_MYCLASSMATE_GET = 'CLASS_MYCLASSMATE_GET'
+/** 获取搜索班级 */
+export const CLASS_SEARCH = 'CLASS_SEARCH'
+/** 加入班级 */
+export const CLASS_ADD = 'CLASS_ADD'
+
 
 /** 获取全部教材 */
 export const TEXTBOOK_GET_ALL = 'TEXTBOOK_GET_ALL'

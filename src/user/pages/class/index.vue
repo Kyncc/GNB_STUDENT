@@ -1,103 +1,79 @@
 <template>
     <view-box v-ref:view-box class='myClass'>
-        <x-header :left-options="{showBack: true}">我的班级</x-header>
 
-        <group>
-            <search  placeholder="请输入班级编号" @result-click="resultClick" :auto-fixed="false" @on-change="getResult" :results="results" ></search>
-        </group>
+        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+            <x-header :left-options="{showBack: true}">
+                我的班级
+            </x-header>
+        </div>
 
-        <group v-show="!value">
-            <template  v-for="item in fetchMyClass" >
-                <cell :title="item.name" :link="'/user/class/detail/'+item.classCode"> </cell>
-            </template>
-        </group>
+         <div style="padding-top:46px;">
+            <group> 
+                <template v-for="item in ClassMy">
+                   <cell :title="item.name" :link="'/user/class/detail/'+item.classCode"> </cell>
+                </template>
+            </group>
 
-        <infinite-loading :on-infinite="_onInfinite" spinner="default">
-            <span slot="no-results" style="color:#4bb7aa;">
-                <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-                <p style="font-size:1rem;display:inline-block;">您还未加入任何班级~</p>
-            </span>
-        </infinite-loading>
+            <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
+                <span slot="no-results" style="color:#4bb7aa;">
+                    <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+                    <p style="font-size:1rem;display:inline-block;">您还未加入班级~</p>
+                </span>
+                <span slot="no-more"></span>
+            </infinite-loading>
+        </div>
+
+        <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
+            <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #ddd" type="primary" @click="_addClass()">加入班级</x-button>
+        </tabbar>
+
+        
     </view-box>
 </template>
 
 <script>
 import './myClass.less'
 import InfiniteLoading from 'vue-infinite-loading'
-import {XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox} from 'vux'
-import {getMyClass,getMyClassSearchClass,postMyClassInto} from '../../actions/class'
-import {fetchMyClass,fetchToken,fetchMyClassSearchClass} from '../../getters'
+import {XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox,Tabbar,XButton} from 'vux'
+import {getMyClass} from '../../actions/class'
+import {token} from '../../../common/getters'
+import {ClassMy} from '../../getters'
 
 export default {
     components: {
-        XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox,InfiniteLoading
+        XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox,InfiniteLoading,Tabbar,XButton
     },
-    vuex: {
+    vuex:{
         getters: {
-            fetchMyClass,             //加入班级
-            fetchToken,
-            fetchMyClassSearchClass
+            ClassMy,token             
         },
         actions: {
-            getMyClass,getMyClassSearchClass,postMyClassInto
+            getMyClass
         }
     },
     methods: {
-        resultClick (item) {
-            this.postMyClassInto({classCode:item.code,token:this.fetchToken},()=>{
-                console.log("添加成功")
-            },()=>{
-                console.log("添加失败")
-            })
-        },
-        getResult (val) {
-            let self = this
-            self.results= []
-            this.getMyClassSearchClass({classCode:self.value,token:self.fetchToken},()=>{
-                console.log("查询成功"+self.value)
-                if(self.fetchMyClassSearchClass.name){
-                    self.results.push({title:self.fetchMyClassSearchClass.name,code:self.fetchMyClassSearchClass.classCode})
-                }
-            })
+        /** 是否第一次*/
+        _isFirst(){
+            if(this.ClassMy.name){
+                this.$broadcast('$InfiniteLoading:loaded');
+                this.$broadcast('$InfiniteLoading:complete');
+                return true;
+            }
+            return false;
+        }, 
+        _addClass(){
+            this.$router.go('/user/class/add');
         },
         _onInfinite(){
-            console.log(this.fetchMyClass);
+            if(this._isFirst()) return;
             this.getMyClass({
-                token:this.fetchToken
+                token:this.token
             },()=>{
-                if(this.fetchMyClass.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+                if(this.ClassMy.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
                 this.$broadcast('$InfiniteLoading:complete');
             });
-        }
-    },
-    data(){
-        return{
-            results: []
         }
     }
 }
 
 </script>
-<style lang="less" >
-.myClass{
-    .infinite-status-prompt{
-        display: none;
-    }
-    .weui_search_inner .weui_search_input{
-        height:1.6rem;
-        .weui_search_inner .weui_search_input{
-            line-height:1.6rem;
-        }
-
-        .weui_search_text span{
-            font-size:16px;
-        }
-    }
-    .weui_search_text{
-        padding-top:4px;
-    }
-    .weui_search_inner .weui_icon_search{
-        top:2px;
-    }
-}
-</style>

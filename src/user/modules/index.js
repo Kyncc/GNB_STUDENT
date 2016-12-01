@@ -21,12 +21,18 @@ const state = {
       adviceList:[],
       appVersion:''
     },
+    class:{
+      my:[],
+      classmate:{},
+      searchClass:[]
+    },
     subject:[]
 }
 
 
 
 const mutations = {
+  //教材
   [types.TEXTBOOK_ADD](state, data) {
     state.textbook.all = data;
     state.textbook.my = [];
@@ -46,6 +52,21 @@ const mutations = {
      state.textbook.my = [];
      state.textbook.all = [];
   },
+  //我的班级
+  [types.CLASS_MY_GET](state,data) {
+     state.class.my = data;
+  },
+  [types.CLASS_MYCLASSMATE_GET](state,data) {
+     state.class.classmate = data[0];
+  },
+  [types.CLASS_SEARCH](state,data) {
+     state.class.searchClass = data;
+  },
+  [types.CLASS_ADD](state) {
+     state.class.my = [];
+  },
+
+  //练习册
   [types.WORKBOOK_ADD](state, data) {
     state.workbook.all = data;
     state.workbook.my = [];
@@ -84,6 +105,7 @@ const mutations = {
   [types.GET_VERSION](state, data) {
     state.settings.appVersion = data
   }
+
 
 }
 

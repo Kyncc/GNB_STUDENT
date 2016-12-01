@@ -13,7 +13,7 @@ import brush from './brush/modules/index'
 import collect from './collect/modules/index'
 import remember from './remember/modules/index'
 import user from './user/modules/index'
-import myClass from './user/modules/class'
+//需要重构
 import friend from './user/modules/friend.js'
 import member from './user/modules/member.js'
 
@@ -27,7 +27,6 @@ export default new Vuex.Store({
     forget,
     index,
     message,//互动
-    myClass,//我的班级
     friend,//受邀好友
     member,
     //收藏本

@@ -130,6 +130,10 @@ export default {
               id:this.delPic.id,
               subject_id:this.cameraHistorySubjectId
           }
+      },()=>{
+          this.$nextTick(() => {
+				    this.$broadcast('$InfiniteLoading:reset');
+			    });
       });
     }
   },
@@ -151,7 +155,6 @@ export default {
   },
   watch: {
     cameraHistoryIds(){
-
       if(this.cameraHistoryIds.length == 0) {
           this.$broadcast('$InfiniteLoading:loaded');
           this.$broadcast('$InfiniteLoading:complete');

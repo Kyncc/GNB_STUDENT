@@ -7,7 +7,7 @@ export const getMyClass = ({ dispatch }, params,success,wrong) => {
   Api.myClassList({
     data: params,
     ok: response => {
-      dispatch(types.GET_CLASS_LIST, response.data.data);
+      dispatch(types.CLASS_MY_GET, response.data.data);
       success&&success();
     },
     wrong: response => {
@@ -22,7 +22,7 @@ export const getMyClassmateList = ({ dispatch }, params,success,wrong) => {
   Api.myClassmateList({
     data: params,
     ok: response => {
-      dispatch(types.GET_CLASSMATE_LIST, response.data.data);
+      dispatch(types.CLASS_MYCLASSMATE_GET, response.data.data);
        success&&success();
     },
     wrong: response => {
@@ -37,7 +37,7 @@ export const getMyClassSearchClass = ({ dispatch }, params,success,wrong) => {
   Api.myClassSearch({
     data: params,
     ok: response => {
-      dispatch(types.GET_CLASS_BYCODE, response.data.data);
+      dispatch(types.CLASS_SEARCH, response.data.data);
       success&&success();
     },
     wrong: response => {
@@ -52,7 +52,7 @@ export const postMyClassInto = ({ dispatch }, params,success,wrong) => {
   Api.myClassInto({
     data: params,
     ok: response => {
-      dispatch(types.POST_INTO_CLASS);
+      dispatch(types.CLASS_ADD);
       success&&success();
     },
     wrong: response => {

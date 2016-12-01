@@ -75,8 +75,8 @@ import userMemberRecharge from './user/pages/member/recharge'
 import userMemberMyBill from './user/pages/member/myBill'
 //我的班级
 import userClassIndex from './user/pages/class/index'
-import userClassDetail from './user/pages/class/classDetail'
-import userClassAdd from './user/pages/class/addClass'
+import userClassmate from './user/pages/class/classmate'
+import userClassAdd from './user/pages/class/add'
 //我的教材
 import userTextbook from './user/pages/textbook/index'
 import userTextbookAdd from './user/pages/textbook/add'
@@ -208,8 +208,8 @@ router.map({
   'user/member/rule':{ component: userMemberRule}, //积分规则
   //我的班级
   'user/class': { component: userClassIndex },
-  'user/class/detail/:id': { component: userClassDetail },
-  'user/class/addClass': { component: userClassAdd },
+  'user/class/detail/:id': { component: userClassmate },
+  'user/class/add': { component: userClassAdd },
   //我的教材
   'user/textbook': { component: userTextbook },
   'user/textbook/add':{component:userTextbookAdd},

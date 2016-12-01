@@ -34,8 +34,6 @@
 <script>
 
 
-import Vue from 'vue'
-import Router from 'vue-router'
 import store from '../../../store'
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,Search} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
