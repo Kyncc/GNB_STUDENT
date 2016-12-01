@@ -9,8 +9,8 @@
     <div style="padding-top:46px;">
         <template v-if="ClassMyClassmate">
           <group title="我的老师">
-            <cell :title="ClassMyClassmate.teacher.name">
-                <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="item.teacher.headImg">
+            <cell v-if="ClassMyClassmate.teacher" :title="ClassMyClassmate.teacher.name">
+                <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="ClassMyClassmate.teacher.headImg">
             </cell>
           </group>
           <group title="我的同学">

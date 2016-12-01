@@ -9,7 +9,7 @@
     <div>
       <div class="info">
         <img class="defaultimg" v-lazy="fetchHeadImg" v-touch:tap="_upload"/>
-        <p class="phone">&nbsp;{{fetchPhone}}&nbsp;</p>
+        <p class="phone">&nbsp;{{fetchName.length == 0 ? fetchPhone:fetchName}}&nbsp;</p>
         <div class="upload" v-touch:tap="_upload">
           上传头像
         </div>
@@ -47,7 +47,7 @@
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from '../../config/whole.js'
-import { fetchPhone, fetchHeadImg } from '../getters.js'
+import { fetchPhone, fetchHeadImg,fetchName } from '../getters.js'
 import { setHeadPhoto } from '../actions.js'
 import { workbookAllDel } from '../../user/actions/workbook'
 import { textbookAllDel } from '../../user/actions/textbook'
@@ -58,7 +58,7 @@ export default {
     },
     vuex:{
         getters:{
-            fetchPhone,
+            fetchPhone,fetchName,
             fetchHeadImg
         },
         actions:{

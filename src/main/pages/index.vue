@@ -58,7 +58,7 @@
 <script>
 import store from '../../store'
 import { XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem,ViewBox} from 'vux'
-import { collectCount,errorCount,cameraCount,swiper} from '../getters'
+import { swiper} from '../getters'
 import { subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
 import {shareReady} from '../../common/h5Plus/share.js'
@@ -83,7 +83,7 @@ export default {
     },
     vuex: {
         getters: {
-            collectCount,errorCount,cameraCount,swiper,
+            swiper,
             subject_id,token
         },
         actions: {

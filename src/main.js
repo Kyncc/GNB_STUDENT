@@ -99,7 +99,7 @@ FastClick.attach(document.body)
 //图片异步加载
 Vue.use(VueLazyload,{
   preLoad: 1.3,
-  error: 'http://www.atool.org/placeholder.png?size=300x200&text=%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5&&bg=ccc&fg=fff',
+  error: 'http://www.chinasanbao.com/new/upload/headimg/headimg.png',
   loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
 })
 

@@ -1,13 +1,8 @@
-/*用户信息*/
-export const fetchUserInfo = (state) => state.info
 /*token*/
 export const fetchToken = (state) => state.userInfo.token
 //获取反馈信息列表
 export const fetchHistory = (state) => state.user.settings.adviceList
-//受邀好友列表
-export const fetchInviteStudentList = (state) => state.friend.inviteStudentList
-//邀请码
-export const fetchInviteCode = (state) => state.friend.inviteCode
+
 //我的积分
 export const fetchNumericalList = (state) => state.member.numericalList
 //我的积分
@@ -34,7 +29,8 @@ export const textBookSubjectId = (state) => state.user.textbook.subjectId
 export const AllWorkbook = (state) => state.user.workbook.all
 export const MyWorkbook = (state) => state.user.workbook.my
 export const workbookSubjectId = (state) => state.user.workbook.subjectId
+/** 邀请 */
+export const inviteCode = (state) => state.user.invite.code
+export const inviteStatus = (state) => state.user.invite.status
+export const inviteStudentList = (state) => state.user.invite.list
 
-
-
-// export const GradeSubject = (state) => state.user.textbookVersion.subjectType

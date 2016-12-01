@@ -26,6 +26,11 @@ const state = {
       classmate:{},
       searchClass:[]
     },
+    invite:{
+      code:'',
+      status:'',
+      list:[]
+    },
     subject:[]
 }
 
@@ -86,6 +91,16 @@ const mutations = {
      state.workbook.my = [];
      state.workbook.all = [];
   },
+
+  //邀请
+  [types.INVITE_STUDENT_LIST](state, data) {
+    state.invite.list = data
+  },
+  [types.INVITE](state, data) {
+    state.invite.code = data.inviteCode
+    state.invite.status = data.isInvited
+  },
+
   [types.USERINFO_GET](state, data) {
      state.userinfo = data;
   },

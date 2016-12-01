@@ -5,11 +5,19 @@
 		</div>
 
 		<div style="padding-top:46px;">
-			<cell v-for="item in list" :title="item.name">
-				<img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="item.headImg">
-			</cell>
-			<infinite-loading :on-infinite="onInfinite" >
-				<span slot="no-results"></span>
+
+			<group>
+				<cell v-for="item in inviteStudentList" :title="item.name">
+					<img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="item.headImg">
+				</cell>
+			</group>
+
+			<infinite-loading :on-infinite="_onInfinite" spinner="spiral">
+					<span slot="no-results" style="color:#4bb7aa;">
+							<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+							<p style="font-size:1rem;display:inline-block;">快来邀请更多好友吧~</p>
+					</span>
+					<span slot="no-more"></span>
 			</infinite-loading>
 		</div>
 	</view-box>
@@ -17,8 +25,9 @@
 
 <script>
 import {XHeader,XInput,Group,Cell,ViewBox} from 'vux'
-import {getInviteStudentList } from '../../actions.js'
-import {fetchToken,fetchInviteStudentList} from '../../getters'
+import {getInviteStudentList } from '../../actions/invite'
+import {token} from '../../../common/getters'
+import {inviteStudentList} from '../../getters'
 import * as _ from '../../../config/whole.js'
 import InfiniteLoading from 'vue-infinite-loading'
 import './invite.less'
@@ -32,28 +41,19 @@ export default {
 			getInviteStudentList
 		},
 		getters:{
-			fetchToken,
-			fetchInviteStudentList
+			token,
+			inviteStudentList
 		}
 	},
-	data(){
-		return {
-			list: []
-		}
-	},
-
 	methods: {
-        onInfinite(){
-			setTimeout(() => {
-		        const temp = [];
-				this.list = this.fetchInviteStudentList
-		       	this.$broadcast('$InfiniteLoading:complete');
-			}, 500);
-
-       }
-	},
-	ready(){
-		this.getInviteStudentList({token:this.fetchToken})
+		_onInfinite(){
+				this.getInviteStudentList({
+						token:this.token
+				},()=>{
+						if(this.inviteStudentList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+						this.$broadcast('$InfiniteLoading:complete');
+				});
+		}
 	}
 }
 </script>
