@@ -4,7 +4,7 @@
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
         添加{{rememberSubjectId|subName}}习题册
-        <a slot="right" @click="_addTextBook()" v-show="selectBookList.length != 0">
+        <a slot="right" @click="_addWorkBook()" v-show="selectBookList.length != 0">
              完成
          </a>
       </x-header>
@@ -21,8 +21,8 @@
 
         <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
             <span slot="no-results" style="color:#4bb7aa;">
-                <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-                <p style="font-size:1rem;display:inline-block;">请先添加教材~</p>
+                <i class="icon iconfont " style="font-size:1.5rem;margin-right:.2rem"></i>
+                <p style="font-size:1rem;display:inline-block;" @click="_addTextBook()"> 点我先添加教材</p>
             </span>
             <span slot="no-more"></span>
         </infinite-loading>
@@ -68,6 +68,7 @@ export default {
             switch(id){
                 case '2':return '数学';
                 case '7':return '物理';
+                case '8':return '化学';
             }
        }    
    },
@@ -79,6 +80,9 @@ export default {
         }
   },
   methods: {
+        _addTextBook(){
+            this.$router.go(`/user/textbook/add`);
+        },
         _onSearch(str){
             this.searchName = str;
             this.WorkbookAllDel();      //搜索需要清除数据
@@ -86,7 +90,7 @@ export default {
                 this.$broadcast('$InfiniteLoading:reset');
             });
         },
-        _addTextBook(){
+        _addWorkBook(){
             _.busy();
             this.workbookAdd({
                 token:this.token,   

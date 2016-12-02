@@ -52,20 +52,10 @@ export default {
         }
     },
     methods: {
-        /** 是否第一次*/
-        _isFirst(){
-            if(this.ClassMy.name){
-                this.$broadcast('$InfiniteLoading:loaded');
-                this.$broadcast('$InfiniteLoading:complete');
-                return true;
-            }
-            return false;
-        }, 
         _addClass(){
             this.$router.go('/user/class/add');
         },
         _onInfinite(){
-            if(this._isFirst()) return;
             this.getMyClass({
                 token:this.token
             },()=>{
