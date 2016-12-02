@@ -7,6 +7,7 @@
             </x-header>
         </div>
 
+
         <div style="margin-top:46px;" >
             <div class="img">
                 <i class="icon iconfont icon-camera"  v-touch:tap="getImage()"></i>
