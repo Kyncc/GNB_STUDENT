@@ -4,10 +4,10 @@
 		"iPhone",
 		""
 	],
-	"id": "H5B0E7680",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"id": "H55E5EFFB",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本-学生端",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "1.0.1",/*应用版本名称*/
+		"name": "1.0.2",/*应用版本名称*/
 		"code": "83"
 	},
 	"description": "",/*应用描述信息*/
@@ -161,7 +161,7 @@
 			},
 			"splashscreen": {
 				"ios": {
-					"iphone": {},
+					"iphone": {"retina55":"unpackage/res/start/1080x1882.png","retina47":"unpackage/res/start/750x1334.png","retina40":"unpackage/res/start/640x1136.png","retina35":"unpackage/res/start/640x960.png"},
 					"ipad": {
 						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
 						"portrait-retina": "",/*iPad高分屏竖屏图片，分辨率：1536x2008*/

@@ -115,7 +115,7 @@ export default {
             this.workbookAll({
                 token:this.token,   
                 subjectId:this.rememberSubjectId,
-                 workbookName:this.searchName
+                workbookName:this.searchName
             },()=>{
                 if(this.rememberWorkbookAll.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
                 this.$broadcast('$InfiniteLoading:complete');
