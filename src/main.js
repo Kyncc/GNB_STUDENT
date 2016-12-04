@@ -122,6 +122,16 @@ Vue.http.interceptors.push((request, next) => {
     });
 })
 
+//判断系统
+var ua = navigator.userAgent.toLowerCase();
+const commit = store.commit || store.dispatch
+if (/iphone|ipad|ipod/.test(ua)) {
+     commit('SET_SYSTEM', 'IOS')
+} else if (/android/.test(ua)) {
+     commit('SET_SYSTEM', 'Android')
+}
+
+
 const router = new Router()
 router.map({
   '/': { component: Login },

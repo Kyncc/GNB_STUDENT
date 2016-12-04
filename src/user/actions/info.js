@@ -5,12 +5,12 @@ import * as _ from '../../config/whole'
 
 /**我的信息 */
 export const getUserinfo = ({ dispatch }, params,success,wrong) => {
-   _.busy();
+  //  _.busy();
   Api.getUserInfo({
     data: params,
     ok: response => {
       dispatch(types.USERINFO_GET, response.data.data);
-       _.leave();
+      //  _.leave();
       success&&success();
     },
     wrong: response => {

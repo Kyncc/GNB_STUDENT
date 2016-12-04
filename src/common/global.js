@@ -1,17 +1,25 @@
 import {
   GET_TOAST_MESSAGE,
   GET_TOAST_SHOW,
-  GET_LOADING
+  GET_LOADING,
+  SET_SYSTEM
 } from './mutationTypes'
 
 const state = {
     toastMsg:'',
     toastShow:false,
     isLoading:false,
-    period_id:3,
-    subject_id:2
+    subject_id:2,
+    system:''
 }
 
+    // var ua = navigator.userAgent.toLowerCase();	
+    // if (/iphone|ipad|ipod/.test(ua)) {
+    //       alert("iphone");		
+    // } else if (/android/.test(ua)) {
+    //       alert("android");	
+    // }
+  
 const mutations = {
     GET_TOAST_MESSAGE (state, msg) {
       state.toastMsg = msg
@@ -21,6 +29,9 @@ const mutations = {
     },
     GET_LOADING (state, status) {
       state.isLoading = status
+    },
+    SET_SYSTEM (state, type) {
+      state.system = type
     }
 }
 

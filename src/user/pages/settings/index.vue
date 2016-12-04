@@ -28,7 +28,8 @@
 import {  XHeader,  Cell,  Group,  Alert,  Confirm} from 'vux'
 import './setting.less'
 import {  updateVersion} from '../../actions/settings.js'
-import {  fetchVersion,  fetchToken} from '../../getters.js'
+import {  fetchVersion} from '../../getters.js'
+import {  system,token} from '../../../common/getters.js'
 
 export default {
   components: {
@@ -52,7 +53,7 @@ export default {
     },
     getters: {
       fetchVersion,
-      fetchToken
+      system,token
     }
   },
   methods: {
@@ -76,6 +77,10 @@ export default {
         }
     },
     onAction(type) {
+      if(this.system == 'IOS' && type == '确认'){
+        window.location.href = "itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id391945719?mt=8";
+        return;
+      }
       if (type == '确认') {
         let start = true;
         let dtask = plus.downloader.createDownload("http://www.chinasanbao.com/app/com.sanbao.guinaben.student.apk", {}, (d, status)=> {
@@ -116,6 +121,10 @@ export default {
       window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
     },
     _openStore() {
+      if(this.system == 'IOS' ){
+         window.location.href = "itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id391945719?mt=8"; 
+         return; 
+      }
       window.location.href = "market://details?id=com.sanbao.guinaben.student";
     }
   }

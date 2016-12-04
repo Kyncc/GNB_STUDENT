@@ -2,7 +2,7 @@
 <view-box v-ref:view-box class='user vux-scroller-header-box'>
   <div style="height:46px;">
     <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">个人中心
-        <a slot="right" v-touch:tap="_quit">退出</a>
+        <a slot="right" v-touch:tap="_quit" v-show="system != 'IOS'">退出</a>
     </x-header>
   </div>
   <scroller lock-x v-ref:scroller height="-47px">
@@ -47,12 +47,13 @@
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from '../../config/whole.js'
-import {token} from '../../common/getters'
-import {Userinfo} from '../../user/getters'
 import {getUserinfo} from '../../user/actions/info'
 import { setHeadPhoto } from '../actions.js'
 import { workbookAllDel } from '../../user/actions/workbook'
 import { textbookAllDel } from '../../user/actions/textbook'
+import {token,system} from '../../common/getters'
+import {fetchHeadImg} from '../getters'
+import {Userinfo} from '../../user/getters'
 
 export default {
     components: {
@@ -60,9 +61,8 @@ export default {
     },
     vuex:{
         getters:{
-            token,Userinfo
-            // fetchPhone,fetchName,
-            // fetchHeadImg
+            token,Userinfo,system,
+            fetchHeadImg
         },
         actions:{
             setHeadPhoto,workbookAllDel,textbookAllDel,getUserinfo

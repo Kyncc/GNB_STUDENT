@@ -149,12 +149,7 @@ export default {
     }
   },
   created(){
-   
-  },
-  ready() {
-    this.getUserinfo({token: this.token},() => {
-     
-    })
+    this.getUserinfo({token: this.token});
   },
   watch:{
     /** 年级更改请求教材版本*/

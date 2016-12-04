@@ -9,8 +9,6 @@ export const fetchNumericalList = (state) => state.member.numericalList
 export const fetchBilllList = (state) => state.member.myBillList
 //会员信息
 export const fetchMemberInfo = (state) => state.member.memberInfo
-//会员信息
-export const fetchVersion = (state) => state.user.settings.appVersion
 
 /** 获取用户信息*/
 export const Userinfo = (state) => state.user.userinfo
@@ -33,4 +31,5 @@ export const workbookSubjectId = (state) => state.user.workbook.subjectId
 export const inviteCode = (state) => state.user.invite.code
 export const inviteStatus = (state) => state.user.invite.status
 export const inviteStudentList = (state) => state.user.invite.list
-
+/** 当前版本 */
+export const fetchVersion = (state) => state.user.settings.appVersion

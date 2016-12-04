@@ -3,6 +3,8 @@ export const toastShow = (state) => state.Global.toastShow
 export const isLoading = (state) => state.Global.isLoading
 export const period_id = (state) => state.Global.period_id
 export const subject_id = (state) => state.Global.subject_id
+export const system = (state) => state.Global.system
+
 export const id = (state) => state.route.params.id
 export const knowledgeId = (state) => state.route.params.knowledgeId
 export const chapterId = (state) => state.route.params.chapterId
