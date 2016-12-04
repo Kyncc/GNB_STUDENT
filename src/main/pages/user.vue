@@ -47,7 +47,6 @@
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from '../../config/whole.js'
-// import { fetchPhone, fetchHeadImg,fetchName } from '../getters.js'
 import {token} from '../../common/getters'
 import {Userinfo} from '../../user/getters'
 import {getUserinfo} from '../../user/actions/info'
