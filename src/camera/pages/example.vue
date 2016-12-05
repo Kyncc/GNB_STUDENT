@@ -14,7 +14,7 @@
                             <span style="color:#666"><i class="icon iconfont icon-collect"></i>{{detail.collectTime | collect}}</span>
                         </p>
                         <p style="width:25%;text-align:right" v-touch:tap="_correct"> 
-                            <span style="color:#666"><i class="icon iconfont icon-comment"></i>纠错</span>
+                            <span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
                         </p>
 					</div>
 					<!--题目整体-->

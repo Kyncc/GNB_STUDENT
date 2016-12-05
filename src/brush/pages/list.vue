@@ -3,7 +3,7 @@
   <view-box v-ref:view-box class="brushList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">记录题型</x-header>
-      <header v-if="brushList" class="sectionHeader"><p class="ellipsis">{{brushList.chapterName}}</p><font class="ellipsis">共<b>{{brushList.count}}</b>题目</font></header>
+      <header v-if="brushList" class="sectionHeader"><p class="ellipsis">{{brushList.chapterName}}</p><font class="ellipsis">共<b>{{brushList.count}}</b>个题型</font></header>
     </div>
 
       <!--空白间隔-->
@@ -16,7 +16,7 @@
                 <div class="weui_panel_bd">
                     <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.excercise_id)">
                         <div class="weui_media_bd">
-                            <p class="exampl_title">参考例题<b>难度：{{item.degree}}</b></p>
+                            <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>
                             <p class="weui_media_desc">
                                 {{{item.stem}}}
                             </p>
