@@ -50,7 +50,7 @@ export default {
 					content:this.content,
 					contact:this.contact
 				},()=>{
-					this.$router.go('advice/history')
+					this.$router.go('advice/history');
 				})
 			}else{
 				_.toast("请完善内容")

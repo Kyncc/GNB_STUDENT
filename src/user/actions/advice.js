@@ -5,11 +5,9 @@ import * as _ from '../../config/whole'
 
 //反馈
 export const advice = ({ dispatch }, params, success) => {
-    _.busy();
     Api.advice({
         data: params,
         ok: response => {
-            _.leave();
             success&&success()
         },
         wrong: response => {}

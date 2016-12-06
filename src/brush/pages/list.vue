@@ -48,7 +48,7 @@ import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabIte
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import { token } from '../../common/getters'
-import { brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll,brushListId} from '../getters'
+import { brushList,brushSubjectId,brushListScoll,brushListId,brushListOffset} from '../getters'
 import { brushListClear,setScoll,getBushList,bushListAction } from '../actions/list'
 import '../index.less'
 
@@ -69,7 +69,6 @@ export default {
     },
     methods: {
         _intoDetail(id){
-            // alert(document.documentElement.scrollTop);
             this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
             this.$router.go(`/brush/example/${id}`);
         },
@@ -86,36 +85,32 @@ export default {
 			    });
             })
         },
-        _isFirst(){
-            /*判断当前页面是否大于总页数 若大于则不在请求数据*/
-            if(Number(this.brushListTotalPage) < Number(this.brushListCurrentPage)){
-                 this.$broadcast('$InfiniteLoading:loaded');
-                 this.$broadcast('$InfiniteLoading:complete');
-                 return true;
-            }
-            return false;
-        },
         _onInfinite(){
-            if(this._isFirst()){
+            if(this.brushList.list.length != 0 && (this.brushList.list.length == this.brushList.count)){
+                this.$broadcast('$InfiniteLoading:loaded');
+                this.$broadcast('$InfiniteLoading:complete');
                 return;
             }
+            
             this.getBushList({
-                currentPage:this.brushListCurrentPage,
                 token:this.token,
                 chapter_id:this.brushListId,
-                subject_id:this.brushSubjectId
-            },()=>{
+                subject_id:this.brushSubjectId,
+                offset:this.brushListOffset
+            },(res)=>{
                 this.$broadcast('$InfiniteLoading:loaded');
-                if(this.brushListCurrentPage  > this.brushListTotalPage){
+                let length = Number(res.data.data.detail.length);
+                if(length  < 5){
                     this.$broadcast('$InfiniteLoading:complete');
                     return;
                 }
             })
+
        }
     },
     vuex: {
         getters: {
-            token,brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll,brushListId
+            token,brushList,brushSubjectId,brushListScoll,brushListId,brushListOffset
         },
         actions: {
             brushListClear,setScoll,getBushList,bushListAction

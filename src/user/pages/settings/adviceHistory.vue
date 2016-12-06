@@ -53,8 +53,7 @@ export default {
 	 methods: {
 		 _onInfinite(){
 			this.adviceHistory({
-				token:this.fetchToken,   
-				chapterId:this.chapterId
+				token:this.fetchToken 
 			},()=>{
 				if(this.fetchHistory.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
 				this.$broadcast('$InfiniteLoading:complete');

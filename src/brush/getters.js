@@ -7,6 +7,5 @@ export const exampleId = (state) => state.route.params.id
 
 export const brushList = (state) => state.brush.list
 export const brushListScoll = (state) => state.brush.list.scoll
-export const brushListCurrentPage = (state) => state.brush.list.currentPage
-export const brushListTotalPage = (state) => state.brush.list.totalPage
+export const brushListOffset = (state) => state.brush.list.offset
 export const brushListId = (state) => state.route.params.chapterId

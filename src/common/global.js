@@ -9,7 +9,6 @@ const state = {
     toastMsg:'',
     toastShow:false,
     isLoading:false,
-    subject_id:2,
     system:''
 }
 

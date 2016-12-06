@@ -16,7 +16,6 @@ import {XHeader,XInput,Group,XButton} from 'vux'
 import {token} from '../../common/getters'
 import {updatePwd} from '../actions/resetPwd'
 import * as _ from '../../config/whole.js'
-import './resetPwd.less'
 export default {
   components: {
     XHeader,XInput,Group,XButton

@@ -18,7 +18,7 @@ export const getBushList = ({ dispatch }, params,success) => {
       data:params,
       ok:response=>{
           dispatch(types.BRUSH_LIST,response.data);
-          success&&success();
+          success&&success(response);
       },
       wrong:response=>{
         _.toast(response.data.msg);
