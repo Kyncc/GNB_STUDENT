@@ -86,12 +86,13 @@ export default {
             })
         },
         _onInfinite(){
+            //如果剩余题目数量等于数量 则表示加载完毕
             if(this.brushList.list.length != 0 && (this.brushList.list.length == this.brushList.count)){
                 this.$broadcast('$InfiniteLoading:loaded');
                 this.$broadcast('$InfiniteLoading:complete');
                 return;
             }
-            
+
             this.getBushList({
                 token:this.token,
                 chapter_id:this.brushListId,
@@ -100,12 +101,12 @@ export default {
             },(res)=>{
                 this.$broadcast('$InfiniteLoading:loaded');
                 let length = Number(res.data.data.detail.length);
+                // 
                 if(length  < 5){
                     this.$broadcast('$InfiniteLoading:complete');
                     return;
                 }
             })
-
        }
     },
     vuex: {
