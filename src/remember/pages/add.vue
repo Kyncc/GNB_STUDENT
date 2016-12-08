@@ -11,7 +11,7 @@
       <search @on-submit="_onSearch" @on-change="_onSearch" :value.sync="searchName" :auto-fixed="false" placeholder="请输入习题册名"></search>
     </div>
 
-    <div style="padding-top:86px;">
+    <div style="padding-top:86px;"> 
 
         <template v-for="item in rememberWorkbookAll">
             <group :title="item.textbookName">
@@ -74,10 +74,10 @@ export default {
    },
    store,
    data() {
-        return {
-            selectBookList:[],
-            searchName:''
-        }
+    return {
+        selectBookList:[],
+        searchName:''
+    }
   },
   methods: {
         _addTextBook(){
@@ -99,8 +99,6 @@ export default {
                 _.leave();
                 _.toast('添加成功');
                 history.back();
-            },()=>{
-
             })
         },
         _isFirst(){
