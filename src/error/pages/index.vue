@@ -9,8 +9,8 @@
     <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
         <div style="width:75%">
             <button-tab>
-                <button-tab-item v-touch:tap="_time('week')"  v-bind:selected="errorIndexTab == 0">一周内</button-tab-item>
-                <button-tab-item v-touch:tap="_time('month')" v-bind:selected="errorIndexTab == 1">一月内</button-tab-item>
+                <button-tab-item v-touch:tap="_time('day')"  v-bind:selected="errorIndexTab == 0">一天内</button-tab-item>
+                <button-tab-item v-touch:tap="_time('week')" v-bind:selected="errorIndexTab == 1">一周内</button-tab-item>
                 <button-tab-item v-touch:tap="_time('all')" v-bind:selected="errorIndexTab == 2">全部</button-tab-item>
             </button-tab>
         </div>
@@ -108,10 +108,16 @@ export default {
             return false;
         },
         _time(value) {
-            if (value == 'week') {
+            
+            if (value == 'day') {
+                this.endTime= moment().unix();
+                this.startTime = moment().add(-1, 'd').unix();
+                this.setTabTime(0);
+            }
+            else if (value == 'week') {
                 this.endTime= moment().unix();
                 this.startTime = moment().add(-7, 'd').unix();
-                this.setTabTime(0);
+                this.setTabTime(1);
             } else if (value == 'month') {
                 this.endTime = moment().unix();
                 this.startTime = moment().add(-1, 'M').unix();

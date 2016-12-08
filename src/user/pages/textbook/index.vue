@@ -23,7 +23,7 @@
     </div>
 
     <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-      <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #ddd" type="primary" @click="_addTextBook()">教材添加</x-button>
+      <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #ddd" type="primary" @click="_addTextBook()">添加教材</x-button>
     </tabbar>
     
   </view-box>
@@ -40,7 +40,6 @@ import {getTextbook,setSubject} from '../../actions/textbook'
 import {MyTextbook,textBookSubjectId} from '../../getters'
 import store from '../../../store' 
 import gnbChangeSub from '../../../components/changesub/index.vue'
-
 
 export default {
   components: {

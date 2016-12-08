@@ -81,7 +81,7 @@ export default {
   },
   methods: {
         _addTextBook(){
-            this.$router.go(`/user/textbook/add`);
+            this.$router.go(`/remember/textbook/add/${this.rememberSubjectId}`);
         },
         _onSearch(str){
             this.searchName = str;

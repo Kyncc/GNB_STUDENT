@@ -56,6 +56,7 @@ import rememberWorkbook from './remember/pages/workbook'
 import rememberExercise from './remember/pages/exercise'
 import rememberExample from './remember/pages/example'
 import rememberAdd from './remember/pages/add'
+import rememberTextBookAdd from './user/pages/textbook/fromWorkbookAdd'
 //个人中心
 import userResetPwd from './user/pages/resetPwd'
 import userInfo from './user/pages/info'
@@ -80,6 +81,7 @@ import userClassAdd from './user/pages/class/add'
 //我的教材
 import userTextbook from './user/pages/textbook/index'
 import userTextbookAdd from './user/pages/textbook/add'
+
 //我的习题册
 import userWorkbook from './user/pages/workbook/index'
 import userWorkbookAdd from './user/pages/workbook/add'
@@ -195,6 +197,7 @@ router.map({
   'remember/example/:id': { component:  rememberExample},
   'remember/workbook/:bookId':{component: rememberWorkbook},
   'remember/workbook/exercise/:chapterId':{component: rememberExercise},
+  'remember/textbook/add/:subjectId':{component:rememberTextBookAdd},
   //题型汇总
   'brush':{component: brush},
   'brush/example/:id':{component: brushExample},
@@ -223,6 +226,7 @@ router.map({
   //我的教材
   'user/textbook': { component: userTextbook },
   'user/textbook/add':{component:userTextbookAdd},
+
   //我的习题册
   'user/workbook': { component: userWorkbook },
   'user/workbook/add':{component:userWorkbookAdd}

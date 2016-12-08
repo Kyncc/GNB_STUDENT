@@ -23,6 +23,7 @@ export const ClassSearch = (state) => state.user.class.searchClass
 export const AllTextbook = (state) => state.user.textbook.all
 export const MyTextbook = (state) => state.user.textbook.my
 export const textBookSubjectId = (state) => state.user.textbook.subjectId
+export const addSubjectId = (state) => state.route.params.subjectId
 /** 习题册 */
 export const AllWorkbook = (state) => state.user.workbook.all
 export const MyWorkbook = (state) => state.user.workbook.my

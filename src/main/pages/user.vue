@@ -27,9 +27,9 @@
         <cell title="我的班级" link="/user/class/">
           <span class="icon icon-class" slot="icon"></span>
         </cell>
-        <cell title="邀请好友" link="/user/invite/">
+        <!--<cell title="邀请好友" link="/user/invite/">
           <span class="icon icon-invite" slot="icon"></span>
-        </cell>
+        </cell>-->
         <cell title="设置" link="/user/settings/">
           <span class="icon icon-settings" slot="icon"></span>
         </cell>

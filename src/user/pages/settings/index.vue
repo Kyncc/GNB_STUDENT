@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import {  XHeader,  Cell,  Group,  Alert,  Confirm} from 'vux'
+import {XHeader,  Cell,  Group,  Alert,  Confirm} from 'vux'
 import './setting.less'
-import {  updateVersion} from '../../actions/settings.js'
-import {  fetchVersion} from '../../getters.js'
-import {  system,token} from '../../../common/getters.js'
+import {updateVersion} from '../../actions/settings.js'
+import {fetchVersion} from '../../getters.js'
+import {system,token} from '../../../common/getters.js'
 
 export default {
   components: {
@@ -108,12 +108,7 @@ export default {
         }
       }
     },
-    _update() {
-      if(this.system == 'IOS' ){
-         window.location.href = "itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id391945719?mt=8"; 
-         return; 
-      }
-      
+    _update() {      
       this.updateVersion({
         token: this.fetchToken
       }, () => {
