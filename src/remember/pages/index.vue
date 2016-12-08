@@ -26,7 +26,7 @@
         </div>
 
         <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-           <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #e5e5e5" type="primary" @click="_add">添加习题册</x-button>
+           <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #d9d9d9" type="primary" @click="_add">添加习题册</x-button>
         </tabbar>
 
     </view-box>

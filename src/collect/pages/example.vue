@@ -5,18 +5,17 @@
         收藏本
         <a slot="right" @click="_changeSub()" class="changeSub">{{CollectSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
-      <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
+      <!--<flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
         <div style="width:75%">
           <button-tab>
             <button-tab-item selected>习题收藏</button-tab-item>
             <button-tab-item v-touch:tap="_camera">错题收藏</button-tab-item>
           </button-tab>
         </div>
-      </flexbox>
+      </flexbox>-->
     </div>
-    <div style="height:100%">
+    <div style="padding-top:46px;">
       <!--空白间隔-->
-      <div style="height:86px;"></div>
       <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in CollectExampleList">
         <div class="weui_panel_hd">
           {{{item.knowledge}}}
