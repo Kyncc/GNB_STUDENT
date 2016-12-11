@@ -14,6 +14,15 @@ const state = {
          scoll:0,
          offset:''
      },
+     typeList:{
+         type:'',       //1斩题列表，2放弃列表
+         list:[],
+         count:0,
+         scoll:0,
+         chapterName:'',
+         currentPage:1,
+         totalPage:1
+     },
      subjectId:'2'
 }
 
@@ -59,6 +68,25 @@ const mutations = {
   },
   [types.BRUSH_LIST_SCOLLER](state,height){
       state.list.scoll = height;
+  },
+  [types.BRUSH_TYPE_LIST](state,data){
+    state.typeList.list = state.typeList.list.concat(data.data);
+    state.typeList.currentPage++;
+    state.typeList.count = data.recordSize;
+    state.typeList.totalPage=data.totalPage;
+    state.typeList.chapterName = data.chapterName;
+  },
+  [types.BRUSH_TYPE_LIST_SCOLLER](state,height){
+    state.typeList.scoll = height;
+  },
+  [types.BRUSH_TYPE_CHANGE](state,type){
+    state.typeList.type = type;
+    state.typeList.list = [];
+    state.typeList.scoll = 0;
+    state.typeList.currentPage = 1;
+    state.typeList.count = '';
+    state.typeList.totalPage=1;
+    state.typeList.chapterName = '';
   },
   [types.BRUSH_EXAMPLE_CLEAR](state){
       state.example = [];   

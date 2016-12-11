@@ -186,6 +186,10 @@ export default {
   brushList: (params) => {
     return http({ method: 'get', url: API_PATHS.brushList, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  /** 题型汇总放弃或斩题列表*/
+  brushTypeList: (params) => {
+    return http({ method: 'get', url: API_PATHS.brushTypeList, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
   /** 题型汇总题目列表*/
   brushAction: (params) => {
     return http({ method: 'get', url: API_PATHS.brushAction, data: params.data, ok: params.ok, wrong: params.wrong })

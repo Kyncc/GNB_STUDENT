@@ -47,6 +47,7 @@ import messageSystem from './message/pages/system'
 import brush from './brush/pages/index'
 import brushExample from './brush/pages/example'
 import brushList from './brush/pages/list'
+import brushTypeList from './brush/pages/typeList'
 //知识图谱
 import report from './report/pages/index'
 import reportDetail from './report/pages/detail'
@@ -202,6 +203,7 @@ router.map({
   'brush':{component: brush},
   'brush/example/:id':{component: brushExample},
   'brush/list/:chapterId':{component: brushList},
+  'brush/typeList/:chapterId':{component: brushTypeList},
   //个人中心
   'user/resetPwd': { component: userResetPwd },
   'user/info': { component: userInfo },

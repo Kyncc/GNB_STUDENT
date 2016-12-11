@@ -1,6 +1,6 @@
 // api env
 const mock = 'http://rap.taobao.org/rap.plugin.js?projectId=6273';
-const server = 'http://122.114.55.74:8070';
+const server = 'http://www.guinaben.com:8070';
 const version = '/v1';
 
 // http dispatch code
@@ -11,7 +11,7 @@ export const UNAUTHORIZED_CODE = 401;
 export const API_ENV = `${server}`;
 export const API_VERSION = `${version}`;
 
-// api path map
+// api path map;
 export const API_PATHS = {
   //短信
   getCode: `${API_ENV}${API_VERSION}/student/getCode`,
@@ -81,6 +81,7 @@ export const API_PATHS = {
     brush:`${API_ENV}${API_VERSION}/student/summary`,
     brushList:`${API_ENV}${API_VERSION}/student/summary/list-exercises`,
     brushAction:`${API_ENV}${API_VERSION}/student/summary/loose-win-exercise`,
+    brushTypeList:`${API_ENV}${API_VERSION}/student/summary/list-exercises-member`,
    /**记错题
    *  rememberChapter:记错题章节列表
    */

@@ -24,3 +24,10 @@ export const BRUSH_LIST_CLEAR= 'BRUSH_LIST_CLEAR'
 export const BRUSH_LIST_ACTION= 'BRUSH_LIST_ACTION'
 /** 刷题型列表高度 */
 export const BRUSH_LIST_SCOLLER= 'BRUSH_LIST_SCOLLER'
+
+/** 刷题型斩题或放弃 */
+export const BRUSH_TYPE_LIST= 'BRUSH_TYPE_LIST'
+/** 斩题或放弃列表切换 */
+export const BRUSH_TYPE_CHANGE= 'BRUSH_TYPE_CHANGE'
+/** 斩题或放弃列表高度 */
+export const BRUSH_TYPE_LIST_SCOLLER = 'BRUSH_TYPE_LIST_SCOLLER'

@@ -2,7 +2,12 @@
 
   <view-box v-ref:view-box class="brushList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}">记录题型</x-header>
+        <x-header :left-options="{showBack: true}">
+            记录题型
+            <a slot="right" @click="_changeType()">
+                <i class="icon iconfont icon-suoyoukuanxiaodian1" style="font-size:20px;"></i>
+            </a>
+        </x-header>
       <header v-if="brushList" class="sectionHeader"><p class="ellipsis">{{brushList.chapterName}}</p><font class="ellipsis">共<b>{{brushList.count}}</b>个题型</font></header>
     </div>
 
@@ -38,6 +43,11 @@
             <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">已加载全部</span>
         </infinite-loading>
 
+        <Popup :visible.sync="visible"  popup-transition="popup-fade" class="gnb-changeSub">
+            <p @click="_intoTypeList('1')" >斩题列表</p>
+            <p @click="_intoTypeList('2')" >放弃列表</p>
+        </Popup>
+        
     </div>
   </view-box>
 
@@ -46,28 +56,30 @@
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
+import { Popup } from 'mint-ui'
 import store from '../../store'
 import { token } from '../../common/getters'
 import { brushList,brushSubjectId,brushListScoll,brushListId,brushListOffset} from '../getters'
 import { brushListClear,setScoll,getBushList,bushListAction } from '../actions/list'
+import { changeType } from '../actions/typeList'
+
 import '../index.less'
 
 
 export default {
     components: {
         XHeader,XButton,InfiniteLoading,
-        Panel,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem
-    },
-    filters: {
-        subName(id){
-            switch(id){
-                case '2':return '数学';
-                case '7':return '物理';
-                case '8':return '化学';
-            }
-        }    
+        Panel,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem,
+        Popup
     },
     methods: {
+        _changeType(){
+            this.visible = true;
+        },
+        _intoTypeList(type){
+            this.changeType(type);
+            this.$router.go(`/brush/typeList/${this.brushListId}`);
+        },
         _intoDetail(id){
             this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
             this.$router.go(`/brush/example/${id}`);
@@ -114,7 +126,12 @@ export default {
             token,brushList,brushSubjectId,brushListScoll,brushListId,brushListOffset
         },
         actions: {
-            brushListClear,setScoll,getBushList,bushListAction
+            brushListClear,setScoll,getBushList,bushListAction,changeType
+        }
+    },
+    data(){
+        return{
+            visible:false
         }
     },
     store,
