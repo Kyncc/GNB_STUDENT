@@ -1,27 +1,27 @@
 <template>
-<div class='settings'>
-  <x-header :left-options="{showBack: true}">设置</x-header>
-  <group>
-    <cell title="应用评分" link="javascript:;" v-touch:tap="_openStore">
-      <span class="demo-icon" slot="icon"></span>
-    </cell>
-    <cell title="意见反馈" link="advice">
-      <span class="demo-icon" slot="icon"></span>
-    </cell>
-    <cell title="退出登录" v-touch:tap="_quitlogin"  link="javascript:void(0);">
-      <span class="demo-icon" slot="icon"></span>
-    </cell>
-     <cell title="清除缓存" v-touch:tap="_clear">
-      <span class="demo-icon" slot="icon"></span>
-    </cell>
-    <cell title="检查更新" :value="'当前版本号:V'+ version" v-touch:tap="_update">
-      <span class="demo-icon" slot="icon"></span>
-    </cell>
-  </group>
-  <alert :show.sync="show" title="清除缓存成功"></alert>
-  <confirm :show.sync="confirm" confirm-text="确定" cancel-text="取消" title="发现新版本是否更新" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
-  <confirm :show.sync="quit" confirm-text="确定" cancel-text="取消" title="是否退出登录" @on-confirm="_quit('确认')" @on-cancel="_quit('取消')"></confirm>
-</div>
+  <div class='settings'>
+    <x-header :left-options="{showBack: true}">设置</x-header>
+    <group>
+      <cell title="应用评分" link="javascript:;" v-show="(system == 'IOS'? false:true)" v-touch:tap="_openStore">
+        <span class="demo-icon" slot="icon"></span>
+      </cell>
+      <cell title="意见反馈" link="advice">
+        <span class="demo-icon" slot="icon"></span>
+      </cell>
+      <cell title="退出登录" v-touch:tap="_quitlogin"  v-show="(system == 'IOS'? false:true)" link="javascript:void(0);">
+        <span class="demo-icon" slot="icon"></span>
+      </cell>
+      <cell title="清除缓存" v-touch:tap="_clear" v-show="(system == 'IOS'? false:true)">
+        <span class="demo-icon" slot="icon"></span>
+      </cell>
+      <cell title="检查更新" :value="'当前版本号:V'+ version" v-show="(system == 'IOS'? false:true)" v-touch:tap="_update">
+        <span class="demo-icon" slot="icon"></span>
+      </cell>
+    </group>
+    <alert :show.sync="show" title="清除缓存成功"></alert>
+    <confirm :show.sync="confirm" confirm-text="确定" cancel-text="取消" title="发现新版本是否更新" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
+    <confirm :show.sync="quit" confirm-text="确定" cancel-text="取消" title="是否退出登录" @on-confirm="_quit('确认')" @on-cancel="_quit('取消')"></confirm>
+  </div>
 </template>
 
 <script>

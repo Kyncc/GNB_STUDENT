@@ -4,9 +4,9 @@
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
         <x-header :left-options="{showBack: true}">
             记录题型
-            <a slot="right" @click="_changeType()">
+            <!--<a slot="right" @click="_changeType()">
                 <i class="icon iconfont icon-suoyoukuanxiaodian1" style="font-size:20px;"></i>
-            </a>
+            </a>-->
         </x-header>
       <header v-if="brushList" class="sectionHeader"><p class="ellipsis">{{brushList.chapterName}}</p><font class="ellipsis">共<b>{{brushList.count}}</b>个题型</font></header>
     </div>
