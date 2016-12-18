@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      version: '1.0.2',
+      version: '1.2.0',
       show: false,
       confirm: false,
       quit:false
