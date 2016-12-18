@@ -8,7 +8,7 @@
       <cell title="意见反馈" link="advice">
         <span class="demo-icon" slot="icon"></span>
       </cell>
-      <cell title="退出登录" v-touch:tap="_quitlogin"  v-show="(system == 'IOS'? false:true)" link="javascript:void(0);">
+      <cell title="退出登录" v-touch:tap="_quitlogin"  link="javascript:void(0);">
         <span class="demo-icon" slot="icon"></span>
       </cell>
       <cell title="清除缓存" v-touch:tap="_clear" v-show="(system == 'IOS'? false:true)">

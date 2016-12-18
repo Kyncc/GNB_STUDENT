@@ -13,7 +13,7 @@
 }
 
 .icon-comment:before { content: "\e60c"; }
-.icon-correct1:before { content: "\e60f"; }
+.icon-correct:before { content: "\e60f"; }
 .icon-plus:before { content: "\e60e"; }
 .icon-closezhuanhuan:before { content: "\e60d"; }
 .icon-home:before { content: "\e601"; }
