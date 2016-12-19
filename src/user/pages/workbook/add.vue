@@ -22,7 +22,7 @@
         <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
             <span slot="no-results" style="color:#4bb7aa;">
                 <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
-                <p style="font-size:1rem;display:inline-block;"  @click="_addTextBook()" >点我先添加教材</p>
+                <p style="font-size:1rem;display:inline-block;"  @click="_addTextBook()">{{(searchName.length == 0 ? '点我先添加教材':'查询无结果')}}</p>
             </span>
             <span slot="no-more"></span>
         </infinite-loading>
@@ -83,9 +83,14 @@ export default {
             searchName:''
         }
   },
+  created(){
+     this.workbookAllDel();      //搜索需要清除数据
+  },
   methods: {
         _addTextBook(){
-            this.$router.go(`/user/textbook/add`);
+            if(searchName.length == 0){
+                this.$router.go(`/user/textbook/add`);
+            }
         },
         _onSearch(str){
             this.searchName = str;
@@ -103,19 +108,11 @@ export default {
                 history.back();
             })
         },
-        _isFirst(){
-            if(this.AllWorkbook.length != 0 ){
-                this.$broadcast('$InfiniteLoading:loaded');
-                this.$broadcast('$InfiniteLoading:complete');
-                return;
-            }
-        },
         _onInfinite(){
-            this._isFirst();
             this.getWorkbookAll({
                 token:this.token,   
                 subjectId:this.workbookSubjectId,
-                 workbookName:this.searchName
+                workbookName:this.searchName
             },()=>{
                 if(this.AllWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
                 this.$broadcast('$InfiniteLoading:complete');

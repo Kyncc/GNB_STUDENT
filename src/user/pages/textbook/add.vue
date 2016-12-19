@@ -87,13 +87,17 @@ export default {
         });
     },
     _isFirst(){
-        if(this.AllTextbook !='undefined' ){
+        if(this.AllTextbook.length != 0 ){
             this.$broadcast('$InfiniteLoading:loaded');
             this.$broadcast('$InfiniteLoading:complete');
-            return;
+            return true;
         }
+        return false;
     },
     _onInfinite(){
+      if(this._isFirst()){
+        return; 
+      }
 			this.getTextbookAll({
 				token:this.token,   
         subjectId:this.textBookSubjectId

@@ -38,8 +38,8 @@ const state = {
 
 const mutations = {
   //教材
-  [types.TEXTBOOK_ADD](state, data) {
-    state.textbook.all = data;
+  [types.TEXTBOOK_ADD](state) {
+    state.textbook.all = [];
     state.textbook.my = [];
   },
   [types.TEXTBOOK_GET](state, data) {
@@ -73,7 +73,7 @@ const mutations = {
 
   //练习册
   [types.WORKBOOK_ADD](state, data) {
-    state.workbook.all = data;
+    state.workbook.all = [];
     state.workbook.my = [];
   },
   [types.WORKBOOK_GET](state, data) {

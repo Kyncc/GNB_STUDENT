@@ -56,6 +56,11 @@ export default {
             this.$router.go('/user/class/add');
         },
         _onInfinite(){
+            if(this.ClassMy.length != 0){
+                 this.$broadcast('$InfiniteLoading:loaded');
+                 this.$broadcast('$InfiniteLoading:complete');
+                 return ;
+            }
             this.getMyClass({
                 token:this.token
             },()=>{
