@@ -10,3 +10,4 @@ selenium-debug.log
 test/unit/coverage
 test/e2e/reports
 dist/unpackage/.confirmed_dependencies
+
