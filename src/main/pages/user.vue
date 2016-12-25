@@ -39,8 +39,6 @@ import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from '../../config/whole.js'
 import {getUserinfo} from '../../user/actions/info'
 import { setHeadPhoto } from '../actions.js'
-import { workbookAllDel } from '../../user/actions/workbook'
-import { textbookAllDel } from '../../user/actions/textbook'
 import {token,system} from '../../common/getters'
 import {fetchHeadImg} from '../getters'
 import {Userinfo} from '../../user/getters'
@@ -55,7 +53,7 @@ export default {
             fetchHeadImg
         },
         actions:{
-            setHeadPhoto,workbookAllDel,textbookAllDel,getUserinfo
+            setHeadPhoto,getUserinfo
         }
     },
     created(){
@@ -119,8 +117,5 @@ export default {
         this.$nextTick(() => {
             this.$refs.scroller.reset()
         });
-        /*进入前数据清空*/
-        this.workbookAllDel();
-        this.textbookAllDel();
     }
 }

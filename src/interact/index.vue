@@ -1,9 +1,9 @@
 <template>
-  <div style="height:100%" class="interact ">
+  <div style="height:100%" class="interact">
     <x-header :left-options="{showBack: false}" class="vux-scroller-header">互动</x-header>
-    <div id='wrapper' style="padding-bottom:100px;">
+    <div id='wrapper' style="padding-bottom:10rem;">
       <div>
-        <group style="padding-bottom:15px;">
+        <group style="padding:.5rem 0;">
           <cell title="班级消息" link="../interact/class/">
             <span class="icon iconfont icon-class" v-bind:class="{'vux-reddot':interactIndex.hasNewClassMsg}"  style="color:#1296DB" slot="icon"></span>
           </cell>
@@ -67,7 +67,7 @@ export default {
             }, 1000)
         },
         _refresh(){
-            this.getInteractIndex({"token":localStorage.getItem('token')},()=>{
+            this.getInteractIndex({"token":this.token},()=>{
                 _.toast('刷新成功');
             });
         }
@@ -80,11 +80,11 @@ export default {
     },
     ready(){
         let self = this
-        self.getInteractIndex({"token":localStorage.getItem('token')});
+        this.getInteractIndex({"token":this.token});
         var jroll = new JRoll("#wrapper");
         jroll.pulldown({
             refresh: function(complete) {
-                self.getInteractIndex({"token":localStorage.getItem('token')},()=>{
+                self.getInteractIndex({"token":this.token},()=>{
                     complete();
                 });
             }

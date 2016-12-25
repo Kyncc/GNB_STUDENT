@@ -8,12 +8,13 @@ import index from './main/modules/index'
 import interact from './interact/store'
 import camera from './camera/modules/index'
 import error from './error/modules/index'
-import report from './report/modules/index'
+
 import brush from './brush/modules/index'
 import collect from './collect/modules/index'
 import remember from './remember/modules/index'
 
 import workbook from './bag/workbook/store'
+import report from './bag/report/store'
 
 import user from './user/modules/index'
 //需要重构

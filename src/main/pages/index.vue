@@ -62,7 +62,6 @@ import { swiper} from '../getters'
 import { subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
 import {shareReady} from '../../common/h5Plus/share.js'
-import {clearReport} from '../../report/actions'
 import {clearError} from '../../error/actions/index'
 import {clearCollect} from '../../collect/actions'
 import {clearBrush} from '../../brush/actions/index'
@@ -88,14 +87,13 @@ export default {
         },
         actions: {
             getStudentIndex,
-            clearError,clearReport,clearCollect,clearBrush,delChapter,cameraClear
+            clearError,clearCollect,clearBrush,delChapter,cameraClear
         }
     },
     store,
     ready(){
         //进首页一系列清空操作
         this.clearError();
-        this.clearReport();
         this.clearCollect();
         this.clearBrush();
         this.delChapter();

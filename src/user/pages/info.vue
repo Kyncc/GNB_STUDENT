@@ -46,7 +46,6 @@ import {Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm,PopupPicker,Select
 import {getUserinfo,updateUserinfo,getTextbookVersion} from '../actions/info'
 import {token} from '../../common/getters'
 import {Userinfo,TextBookMathVer,TextBookPhysicsVer} from '../getters'
-import store from '../../store' 
 import './info.less' 
 import * as _ from '../../config/whole.js'
 
@@ -55,14 +54,13 @@ export default {
     Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm,PopupPicker,Selector
   },
   vuex: {
-		getters: {
-			token,Userinfo,TextBookMathVer,TextBookPhysicsVer
-		},
-		actions: {
+    getters: {
+      token,Userinfo,TextBookMathVer,TextBookPhysicsVer
+    },
+    actions: {
       getUserinfo,updateUserinfo,getTextbookVersion
-		}
-	},
-	store,
+    }
+  },
   filters: {
        covert(obj){
             let newObj = [];
@@ -107,14 +105,14 @@ export default {
             this.show = true
         }else if(this.edit = '编辑'){
             setTimeout(() => {
-               this.$router.go('/main/user')
+               this.$router.go('/user')
            }, 500)
         }
     },
     onAction(type) {
         if(type=='确认'){
             setTimeout(() => {
-               this.$router.go('/main/user')
+               this.$router.go('/user')
            }, 500)
         }else{
             return

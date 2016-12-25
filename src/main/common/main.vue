@@ -2,7 +2,7 @@
   <div style="height:100%;" >
      <view-box v-ref:view-box>
        <div>
-          <router-view></router-view>
+          <router-view keep-alive></router-view>
        </div>
        <tabbar slot="bottom" class="homepage">
           <tabbar-item link="index" :selected="indexState">
@@ -18,7 +18,7 @@
             <span slot="label">互动</span>
           </tabbar-item>
           <tabbar-item link="user" :selected="userState">
-               <i slot="icon" class="icon iconfont icon-user"></i>
+            <i slot="icon" class="icon iconfont icon-user"></i>
             <span slot="label">我的</span>
           </tabbar-item>
         </tabbar>
