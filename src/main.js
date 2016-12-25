@@ -14,9 +14,10 @@ import forget from './login/pages/forget'
 import resetPassword from './login/pages/resetPassword'
 //首页
 import Main from './main/common/main'
-import User from './main/pages/user'
-import Message from './main/pages/message'
 import Index from './main/pages/index'
+import User from './main/pages/user'
+import Bag from './main/pages/bag'
+import Message from './main/pages/message'
 import Photo from './main/pages/photo.vue'
 //题目评注、纠错
 import correct from './common/pages/correct'
@@ -59,10 +60,10 @@ import rememberExample from './remember/pages/example'
 import rememberAdd from './remember/pages/add'
 import rememberTextBookAdd from './user/pages/textbook/fromWorkbookAdd'
 //个人中心
-import userResetPwd from './user/pages/resetPwd'
 import userInfo from './user/pages/info'
 //个人中心-设置
 import userSettingsIndex from './user/pages/settings/index'
+import userSettingsResetPwd from './user/pages/settings/resetPwd'
 import userSettingsAdvice from './user/pages/settings/advice'
 import userSettingsAdviceHistory from './user/pages/settings/adviceHistory'
 //个人中心-邀请好友
@@ -161,6 +162,9 @@ router.map({
       },
       'index/': {
         component: Index
+      },
+      'bag/': {
+        component: Bag
       }
     }
   },
@@ -205,10 +209,10 @@ router.map({
   'brush/list/:chapterId':{component: brushList},
   'brush/typeList/:chapterId':{component: brushTypeList},
   //个人中心
-  'user/resetPwd': { component: userResetPwd },
   'user/info': { component: userInfo },
   //设置
   'user/settings': { component: userSettingsIndex },
+  'user/settings/resetPwd': { component: userSettingsResetPwd },
   'user/settings/advice': { component: userSettingsAdvice },
   'user/settings/advice/history': { component: userSettingsAdviceHistory },
   //邀请好友
@@ -228,7 +232,6 @@ router.map({
   //我的教材
   'user/textbook': { component: userTextbook },
   'user/textbook/add':{component:userTextbookAdd},
-
   //我的习题册
   'user/workbook': { component: userWorkbook },
   'user/workbook/add':{component:userWorkbookAdd}

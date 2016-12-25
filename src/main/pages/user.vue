@@ -14,27 +14,17 @@
           上传头像
         </div>
       </div>
-      <group style="padding-bottom:100px;">
+      <group style="padding-bottom:10px;">
         <cell title="个人资料" link="/user/info/">
-            <span class="icon icon-info" slot="icon"></span>
-        </cell>
-        <cell title="我的教材" link="../user/textbook/">
-            <span class="icon icon-textbook" slot="icon"></span>
-        </cell>
-        <cell title="我的习题册" link="../user/workbook/">
-            <span class="icon icon-workbook" slot="icon"></span>
+            <span class="icon iconfont icon-userInfo" style="color:#5ECFE7" slot="icon"></span>
         </cell>
         <cell title="我的班级" link="/user/class/">
-          <span class="icon icon-class" slot="icon"></span>
+          <span class="icon iconfont icon-hat" style="color:#73D179" slot="icon"></span>
         </cell>
-        <!--<cell title="邀请好友" link="/user/invite/">
-          <span class="icon icon-invite" slot="icon"></span>
-        </cell>-->
+      </group>
+      <group>
         <cell title="设置" link="/user/settings/">
-          <span class="icon icon-settings" slot="icon"></span>
-        </cell>
-        <cell title="修改密码" link="/user/resetPwd/">
-          <span class="icon icon-resetPwd" slot="icon"></span>
+          <span class="icon iconfont icon-settingfull" style="color:#1296DB"  slot="icon"></span>
         </cell>
       </group>
     </div>
@@ -85,24 +75,24 @@ export default {
         getImage(){
             let self  = this
             let cmr = plus.camera.getCamera();
-			cmr.captureImage(function(p) {
-				plus.io.resolveLocalFileSystemURL(p, function(entry) {
-					self.setHeadPhoto(entry.toLocalURL())
+            cmr.captureImage(function(p) {
+                plus.io.resolveLocalFileSystemURL(p, function(entry) {
+                    self.setHeadPhoto(entry.toLocalURL())
                     self.$router.go('/main/user/photo');
-				})
-			});
+                })
+            });
         },
         galleryImgs(){
             let self = this
             plus.gallery.pick(function(e) {
                 self.setHeadPhoto(e.files[0])
                 self.$router.go('/main/user/photo');
-			}, function(e) {
+            }, function(e) {
                  _.toast("取消选择图片")
-			}, {
-				filter: "image",
-				multiple: true
-			});
+            }, {
+                filter: "image",
+                multiple: true
+            });
         },
         _upload(){
             this.showsheet = true

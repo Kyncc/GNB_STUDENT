@@ -12,21 +12,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 .icon-comment:before { content: "\e60c"; }
 .icon-correct:before { content: "\e60f"; }
 .icon-plus:before { content: "\e60e"; }
 .icon-closezhuanhuan:before { content: "\e60d"; }
-.icon-home:before { content: "\e601"; }
-.icon-31wode:before { content: "\e602"; }
-.icon-tishi:before { content: "\e608"; }
+.icon-book:before { content: "\e647"; }
+.icon-wechat:before { content: "\e602"; }
+.icon-book1:before { content: "\e607"; }
+.icon-practice:before { content: "\e60a"; }
 .icon-share:before { content: "\e609"; }
 .icon-collect:before { content: "\e60b"; }
 .icon-clear:before { content: "\e605"; }
 .icon-error:before { content: "\e610"; }
-.icon-flag:before { content: "\e60a"; }
 .icon-camera:before { content: "\e606"; }
-.icon-hudong:before { content: "\e607"; }
+.icon-box:before { content: "\e644"; }
+.icon-comment2:before { content: "\e90a"; }
 .icon-error-login:before { content: "\e603"; }
-.icon-collect:before { content: "\e604"; }
+.icon-user:before { content: "\e629"; }
+.icon-qq:before { content: "\e648"; }
+.icon-collect1:before { content: "\e604"; }
+.icon-correct2:before { content: "\e680"; }
+.icon-filterclear:before { content: "\e6b7"; }
+.icon-settingfull:before { content: "\e638"; }
 .icon-comiiszanwushuju:before { content: "\e600"; }
-.icon-suoyoukuanxiaodian1:before { content: "\e613"; }
+.icon-info:before { content: "\e608"; }
+.icon-bag:before { content: "\e611"; }
+.icon-userInfo:before { content: "\e601"; }
+.icon-hat:before { content: "\e6b6"; }
+.icon-pie-chart:before { content: "\e7a7"; }
+.icon-textbook:before { content: "\e61f"; }

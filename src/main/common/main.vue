@@ -1,20 +1,24 @@
 <template>
-  <div style="height:100%;" class="homepage">
+  <div style="height:100%;" >
      <view-box v-ref:view-box>
        <div>
           <router-view></router-view>
        </div>
-       <tabbar slot="bottom">
+       <tabbar slot="bottom" class="homepage">
           <tabbar-item link="index" :selected="indexState">
-            <i slot="icon" class="icon iconfont icon-home"></i>
-            <span slot="label">主页</span>
+            <i slot="icon" class="icon iconfont icon-book"></i>
+            <span slot="label">刷题</span>
+          </tabbar-item>
+          <tabbar-item link="bag" :selected="bagState">
+            <i slot="icon" class="icon iconfont icon-bag"></i>
+            <span slot="label">书包</span>
           </tabbar-item>
           <tabbar-item link="message" :selected="messageState">
-            <i slot="icon" class="icon iconfont icon-hudong"></i>
+            <i slot="icon" class="icon iconfont icon-comment2"></i>
             <span slot="label">互动</span>
           </tabbar-item>
           <tabbar-item link="user" :selected="userState">
-               <i slot="icon" class="icon iconfont icon-31wode"></i>
+               <i slot="icon" class="icon iconfont icon-user"></i>
             <span slot="label">我的</span>
           </tabbar-item>
         </tabbar>
@@ -35,7 +39,8 @@ export default {
      return{
           indexState: (store.state.route.path.indexOf('index') != -1 ? true:false),
           messageState: (store.state.route.path.indexOf('message') != -1 ? true:false),
-          userState: (store.state.route.path.indexOf('user') != -1 ? true:false)
+          userState: (store.state.route.path.indexOf('user') != -1 ? true:false),
+          bagState: (store.state.route.path.indexOf('bag') != -1 ? true:false)
       }
   }
 }
@@ -49,7 +54,7 @@ export default {
      .weui_tabbar_label{color:#4bb7aa}
    }
    .weui_tabbar_item {padding:3px 0 0;}
-   .iconfont{font-size:28px;color:#999;position:relative;top:-7px;left:-3px;}
+   .iconfont{font-size:23px;color:#999;}
    .weui_tabbar_label{font-size:14px;margin-top:2px;}
 }
 </style>
