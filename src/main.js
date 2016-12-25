@@ -16,8 +16,8 @@ import resetPassword from './login/pages/resetPassword'
 import Main from './main/common/main'
 import Index from './main/pages/index'
 import User from './main/pages/user'
-import Bag from './main/pages/bag'
-import Message from './main/pages/message'
+
+
 import Photo from './main/pages/photo.vue'
 //题目评注、纠错
 import correct from './common/pages/correct'
@@ -35,23 +35,18 @@ import errorList from './error/pages/list'
 import errorDetail from './error/pages/detail'
 import errorMore from './error/pages/more'
 import errorRecommend from './error/pages/recommend'
-//收藏本
-import collectExample from './collect/pages/example'
-import collectCamera from './collect/pages/camera'
-import collectCameraDetail from './collect/pages/cameraRecord'
-import collectExampleDetail from './collect/pages/exampleDetail'
-//通知
-import messageClass from './message/pages/class'
-import messageCorrect from './message/pages/correct'
-import messageSystem from './message/pages/system'
+
+//互动
+import interact from './interact/index'
+import interactClass from './interact/pages/class'
+import interactCorrect from './interact/pages/correct'
+import interactSystem from './interact/pages/system'
 //题型汇总
 import brush from './brush/pages/index'
 import brushExample from './brush/pages/example'
 import brushList from './brush/pages/list'
 import brushTypeList from './brush/pages/typeList'
-//知识图谱
-import report from './report/pages/index'
-import reportDetail from './report/pages/detail'
+
 //记错题
 import remember from './remember/pages/index'
 import rememberWorkbook from './remember/pages/workbook'
@@ -80,13 +75,25 @@ import userMemberMyBill from './user/pages/member/myBill'
 import userClassIndex from './user/pages/class/index'
 import userClassmate from './user/pages/class/classmate'
 import userClassAdd from './user/pages/class/add'
-//我的教材
+/**
+ * 书包
+ */
+import Bag from './bag/bag'
+//书包-我的习题册
+import bagWorkbook from './bag/workbook/pages/index'
+// import bagWorkbookAdd from './bag/workbook/pages/add'
+//书包-我的教材
 import userTextbook from './user/pages/textbook/index'
 import userTextbookAdd from './user/pages/textbook/add'
+//书包-收藏本
+import collectExample from './collect/pages/example'
+import collectCamera from './collect/pages/camera'
+import collectCameraDetail from './collect/pages/cameraRecord'
+import collectExampleDetail from './collect/pages/exampleDetail'
+//知识图谱
+import report from './report/pages/index'
+import reportDetail from './report/pages/detail'
 
-//我的习题册
-import userWorkbook from './user/pages/workbook/index'
-import userWorkbookAdd from './user/pages/workbook/add'
 //插件
 import moment from 'moment'
 import FastClick from 'fastclick'
@@ -138,7 +145,7 @@ if (/iphone|ipad|ipod/.test(ua)) {
 
 const router = new Router()
 router.map({
-  '/': { component: Login },
+  '/login': { component: Login },
   //注册账户
   'register': { component: register },
   'register/password': { component: setPassword },
@@ -151,14 +158,14 @@ router.map({
   //评注
   'comment/:subjectId/:id':{component: comment},
   //主页
-  'main/': {
+  '/': {
     component: Main,
     subRoutes: {
       'user/': {
         component: User
       },
-      'message/': {
-        component: Message
+      'interact/': {
+        component: interact
       },
       'index/': {
         component: Index
@@ -190,9 +197,9 @@ router.map({
   'collect/camera/detail/:id/:cameraId': {component: collectCameraDetail},
   'collect/example/detail/:id': {component: collectExampleDetail},
   //消息
-  'message/class': { component: messageClass },
-  'message/system': { component: messageSystem },
-  'message/correct': { component: messageCorrect },
+  'interact/class': { component: interactClass },
+  'interact/system': { component: interactSystem },
+  'interact/correct': { component: interactCorrect },
   //知识图谱
   'report': {component: report},
   'report/detail/:chapterId': {component: reportDetail},
@@ -229,17 +236,20 @@ router.map({
   'user/class': { component: userClassIndex },
   'user/class/detail/:id': { component: userClassmate },
   'user/class/add': { component: userClassAdd },
+
   //我的教材
   'user/textbook': { component: userTextbook },
   'user/textbook/add':{component:userTextbookAdd},
+  /**
+   * 书包模块
+   */
   //我的习题册
-  'user/workbook': { component: userWorkbook },
-  'user/workbook/add':{component:userWorkbookAdd}
+  'bag/workbook': { component: bagWorkbook },
+//   'bag/workbook/add':{component:bagWorkbookAdd}
 })
 
 router.redirect({
   // '/':'/main',
-  '/main/': '/main/index',
   '/collect/': '/collect/example',
   'camera/correct/:subjectId/:id':'/correct/:subjectId/:id',
   'collect/correct/:subjectId/:id':'/correct/:subjectId/:id',
@@ -256,9 +266,9 @@ sync(store, router)
 router.beforeEach(function(transition) {
     if (transition.to.path == '/') {
       if(localStorage.token){
-          router.replace('/main/index');
+          router.replace('/index');
       }else{
-          router.replace('/');
+          router.replace('/login');
       }
     }
     transition.next();
@@ -273,7 +283,7 @@ function plusReady(){
   let first = null;
   plus.key.addEventListener("backbutton",function(){
       //主界面上不返回上一级
-      if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
+      if(store.state.route.path == '/main/index' || store.state.route.path =='/main/interact' || store.state.route.path =='/main/user'){
           if (!first) {
               first = new Date().getTime();
               _.toast('再按一次退出')

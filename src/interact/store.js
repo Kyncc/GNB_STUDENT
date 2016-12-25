@@ -1,13 +1,4 @@
-import {
-  GET_MESSAGE_HOME_SUCCESS,
-  GET_MESSAGE_HOME_ERROR,
-  GET_MESSAGE_SYSTEM_SUCCESS,
-  GET_MESSAGE_SYSTEM_ERROR,
-  GET_MESSAGE_CORRECT_SUCCESS,
-  GET_MESSAGE_CORRECT_ERROR,
-  GET_MESSAGE_CLASS_SUCCESS,
-  GET_MESSAGE_CLASS_ERROR
-}from '../mutationTypes'
+import * as types from './mutationTypes'
 
 const state = {
     index:{
@@ -38,7 +29,7 @@ const state = {
 }
 
 const mutations = {
-  [GET_MESSAGE_HOME_SUCCESS](state , data){
+  [types.GET_INTERACT_HOME_SUCCESS](state , data){
     state.index.code = data.data.code;
     state.index.hasNewClassMsg = data.data.hasNewClassMsg;
     state.index.hasNewCorretMsg = data.data.hasNewCorretMsg;
@@ -48,32 +39,32 @@ const mutations = {
     state.index.systemMsgNew = data.data.systemMsgNew;
     state.index.msg = data.msg;
   },
-  [GET_MESSAGE_HOME_ERROR](state , data){
+  [types.GET_INTERACT_HOME_ERROR](state , data){
     state.index.code = data.data.code;
     state.index.msg = data.msg;
   },
-  [GET_MESSAGE_SYSTEM_SUCCESS](state , data){
+  [types.GET_INTERACT_SYSTEM_SUCCESS](state , data){
     state.system.code = data.data.code;
     state.system.list = data.data;
     state.system.msg = data.msg;
   },
-  [GET_MESSAGE_SYSTEM_ERROR](state, data){
+  [types.GET_INTERACT_SYSTEM_ERROR](state, data){
     state.system.msg = data.msg;
   },
-  [GET_MESSAGE_CORRECT_SUCCESS](state , data){
+  [types.GET_INTERACT_CORRECT_SUCCESS](state , data){
     state.correct.code = data.data.code;
     state.correct.list = data.data;
     state.correct.msg = data.msg;
   },
- [GET_MESSAGE_CORRECT_ERROR](state, data){
+  [types.GET_INTERACT_CORRECT_ERROR](state, data){
     state.correct.msg = data.msg;
   },
-  [GET_MESSAGE_CLASS_SUCCESS](state , data){
+  [types.GET_INTERACT_CLASS_SUCCESS](state , data){
     state.class.code = data.data.code;
     state.class.list = data.data;
     state.class.msg = data.msg;
   },
-  [GET_MESSAGE_CLASS_ERROR](state, data){
+  [types.GET_INTERACT_CLASS_ERROR](state, data){
     state.class.msg = data.msg;
   }
 }

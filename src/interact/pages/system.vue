@@ -1,16 +1,16 @@
 <template>
-	<view-box v-ref:view-box class="messageClass">
+	<view-box v-ref:view-box class="interactSystem">
 		 <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">班级消息</x-header>
+            <x-header :left-options="{showBack: true}">系统消息</x-header>
         </div>
-		<div style="padding-top:46px;" class="messageSection">
+		<div style="padding-top:46px;" class="interactSection">
 			<section v-for="item in list">
 				<h3>{{item.time | ymd}}</h3>
 				<article>
 					{{item.content}}
 				</article>
 			</section>
-
+			
 			<infinite-loading :on-infinite="onInfinite" spinner="spiral">
 				<span slot="no-results" style="color:#4bb7aa;">
 					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -23,10 +23,10 @@
 </template>
 <script>
 import {XHeader,ViewBox} from 'vux'
-import { token } from '../../common/getters'
-import { getMessageClass } from '../actions'
-import { messageClassList } from '../getters'
 import store from '../../store' 
+import { token } from '../../common/getters'
+import { getInteractSystem } from '../actions'
+import { interactSystemList } from '../getters'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -35,10 +35,10 @@ export default {
 	},
 	vuex: {
 		getters: {
-			token,messageClassList
+			token,interactSystemList
 		},
 		actions: {
-			getMessageClass
+			getInteractSystem
 		}
 	},
 	store,
@@ -50,11 +50,11 @@ export default {
 	methods: {
 		onInfinite(){
 			let self = this;
-			this.getMessageClass({
+			this.getInteractSystem({
 				"token":this.token
 			},()=>{
 				setTimeout(()=>{
-					self.list = self.messageClassList;
+					self.list = self.interactSystemList;
 					if(self.list.length != 0) {self.$broadcast('$InfiniteLoading:loaded');}
 					self.$broadcast('$InfiniteLoading:complete');
 				},300);

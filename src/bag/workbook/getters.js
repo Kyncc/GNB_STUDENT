@@ -1,4 +1,3 @@
-/** 习题册 */
-export const AllWorkbook = (state) => state.user.workbook.all
-export const MyWorkbook = (state) => state.user.workbook.my
-export const workbookSubjectId = (state) => state.user.workbook.subjectId
+export const AllWorkbook = (state) => state.workbook.all
+export const MyWorkbook = (state) => state.workbook.my
+export const workbookSubjectId = (state) => state.workbook.subjectId

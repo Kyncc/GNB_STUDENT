@@ -1,9 +1,9 @@
 <template>
-	<view-box v-ref:view-box class="messageCorrect">
+	<view-box v-ref:view-box class="interactCorrect">
 		 <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">纠错消息</x-header>
         </div>
-		<div style="padding-top:46px;" class="messageSection">
+		<div style="padding-top:46px;" class="interactSection">
 			<section v-for="item in list">
 				<h3>{{item.time | ymd}}</h3>
 				<article>
@@ -25,8 +25,8 @@
 import {XHeader,ViewBox} from 'vux'
 import store from '../../store' 
 import { token } from '../../common/getters'
-import { getMessageCorrect } from '../actions'
-import { messageCorrectList } from '../getters'
+import { getInteractCorrect } from '../actions'
+import { interactCorrectList } from '../getters'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -35,10 +35,10 @@ export default {
 	},
 	vuex: {
 		getters: {
-			token,messageCorrectList
+			token,interactCorrectList
 		},
 		actions: {
-			getMessageCorrect
+			getInteractCorrect
 		}
 	},
 	store,
@@ -50,11 +50,11 @@ export default {
 	methods: {
 		onInfinite(){
 			let self = this;
-			this.getMessageCorrect({
+			this.getInteractCorrect({
 				"token":this.token
 			},()=>{
 				setTimeout(()=>{
-					self.list = self.messageCorrectList;
+					self.list = self.interactCorrectList;
 					if(self.list.length != 0) {self.$broadcast('$InfiniteLoading:loaded');}
 					self.$broadcast('$InfiniteLoading:complete');
 				},300);

@@ -5,13 +5,16 @@ import register from './login/modules/register'
 import userInfo from './login/modules/login'
 import forget from './login/modules/forget'
 import index from './main/modules/index'
-import message from './message/modules/index'
+import interact from './interact/store'
 import camera from './camera/modules/index'
 import error from './error/modules/index'
 import report from './report/modules/index'
 import brush from './brush/modules/index'
 import collect from './collect/modules/index'
 import remember from './remember/modules/index'
+
+import workbook from './bag/workbook/store'
+
 import user from './user/modules/index'
 //需要重构
 import member from './user/modules/member.js'
@@ -25,7 +28,7 @@ export default new Vuex.Store({
     register,
     forget,
     index,
-    message,//互动
+    interact,//互动
     member,
     //收藏本
     collect,
@@ -36,6 +39,10 @@ export default new Vuex.Store({
     report,
     remember,
     brush,
-    user
+    user,
+
+
+
+    workbook
   }
 })

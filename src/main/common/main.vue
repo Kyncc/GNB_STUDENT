@@ -6,14 +6,14 @@
        </div>
        <tabbar slot="bottom" class="homepage">
           <tabbar-item link="index" :selected="indexState">
-            <i slot="icon" class="icon iconfont icon-book"></i>
+            <i slot="icon" class="icon iconfont icon-brush"></i>
             <span slot="label">刷题</span>
           </tabbar-item>
           <tabbar-item link="bag" :selected="bagState">
             <i slot="icon" class="icon iconfont icon-bag"></i>
             <span slot="label">书包</span>
           </tabbar-item>
-          <tabbar-item link="message" :selected="messageState">
+          <tabbar-item link="interact" :selected="interactState">
             <i slot="icon" class="icon iconfont icon-comment2"></i>
             <span slot="label">互动</span>
           </tabbar-item>
@@ -38,7 +38,7 @@ export default {
   data(){
      return{
           indexState: (store.state.route.path.indexOf('index') != -1 ? true:false),
-          messageState: (store.state.route.path.indexOf('message') != -1 ? true:false),
+          interactState: (store.state.route.path.indexOf('interact') != -1 ? true:false),
           userState: (store.state.route.path.indexOf('user') != -1 ? true:false),
           bagState: (store.state.route.path.indexOf('bag') != -1 ? true:false)
       }
