@@ -84,53 +84,51 @@ export default {
     },
     filters: {
       subName(id){
-          switch(id){
-              case '2':return '数学';
-              case '7':return '物理';
-              case '8':return '化学';
-          }
-      }    
+        switch(id){
+            case '2':return '数学';
+            case '7':return '物理';
+            case '8':return '化学';
+        }
+      }
     },
     methods: {
         _intoDetail(id){
-            //获取高度
-            this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
-            this.$router.go(`/error/detail/${id}`);
+          //获取高度
+          this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
+          this.$router.go(`/error/detail/${id}`);
         },
         _isFirst(){
-            /*判断当前页面是否大于总页数 若大于则不在请求数据*/
-            if(Number(this.errorIndexTotalPage) < Number(this.errorIndexCurrentPage)){
-                 this.$broadcast('$InfiniteLoading:loaded');
-                 this.$broadcast('$InfiniteLoading:complete');
-                 return true;
-            }
-           
-            return false;
+          /*判断当前页面是否大于总页数 若大于则不在请求数据*/
+          if(Number(this.errorIndexTotalPage) < Number(this.errorIndexCurrentPage)){
+                this.$broadcast('$InfiniteLoading:loaded');
+                this.$broadcast('$InfiniteLoading:complete');
+                return true;
+          }
+          return false;
         },
         _time(value) {
-            
-            if (value == 'day') {
-                this.endTime= moment().unix();
-                this.startTime = moment().add(-1, 'd').unix();
-                this.setTabTime(0);
-            }
-            else if (value == 'week') {
-                this.endTime= moment().unix();
-                this.startTime = moment().add(-7, 'd').unix();
-                this.setTabTime(1);
-            } else if (value == 'month') {
-                this.endTime = moment().unix();
-                this.startTime = moment().add(-1, 'M').unix();
-                this.setTabTime(1);
-            } else {
-                this.endTime = moment().unix();
-                this.startTime = moment().add(-3, 'M').unix();
-                this.setTabTime(2);
-            }
-            this.clearError();
-			this.$nextTick(() => {
-				this.$broadcast('$InfiniteLoading:reset');
-			});
+          if (value == 'day') {
+              this.endTime= moment().unix();
+              this.startTime = moment().add(-1, 'd').unix();
+              this.setTabTime(0);
+          }
+          else if (value == 'week') {
+              this.endTime= moment().unix();
+              this.startTime = moment().add(-7, 'd').unix();
+              this.setTabTime(1);
+          } else if (value == 'month') {
+              this.endTime = moment().unix();
+              this.startTime = moment().add(-1, 'M').unix();
+              this.setTabTime(1);
+          } else {
+              this.endTime = moment().unix();
+              this.startTime = moment().add(-3, 'M').unix();
+              this.setTabTime(2);
+          }
+          this.clearError();
+          this.$nextTick(() => {
+            this.$broadcast('$InfiniteLoading:reset');
+          });
         },
         _back() {
             this.$router.go('/main');
@@ -174,13 +172,11 @@ export default {
     },
     watch:{
         errorIndexIds() {
-
             if(this.errorIndexIds.length == 0) {
                 this.$broadcast('$InfiniteLoading:loaded');
                 this.$broadcast('$InfiniteLoading:complete');
                 return;
             };
-
             let params = {
                 options: {
                     ids: this.errorIndexIds,
