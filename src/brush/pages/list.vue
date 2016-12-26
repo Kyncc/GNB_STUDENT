@@ -57,7 +57,6 @@
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { Popup } from 'mint-ui'
-import store from '../../store'
 import { token } from '../../common/getters'
 import { brushList,brushSubjectId,brushListScoll,brushListId,brushListOffset} from '../getters'
 import { brushListClear,setScoll,getBushList,bushListAction } from '../actions/list'
@@ -93,8 +92,8 @@ export default {
                 status:type
             },()=>{
                 this.$nextTick(() => {
-				    this.$broadcast('$InfiniteLoading:reset');
-			    });
+                    this.$broadcast('$InfiniteLoading:reset');
+                });
             })
         },
         _onInfinite(){
@@ -134,7 +133,6 @@ export default {
             visible:false
         }
     },
-    store,
     ready(){
         this.$nextTick(()=>{
             document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.brushListScoll;

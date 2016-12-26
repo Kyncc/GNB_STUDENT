@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import store from '../../store'
 import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import {token,userSubjectList } from '../../common/getters'
@@ -56,7 +55,6 @@ export default {
             }
         }    
     },
-  store,
   methods: {
 	_back() {
         this.$router.go('/main');

@@ -93,7 +93,6 @@ export default {
             if(this._isFirst()){
                 return;
             }
-
             this.getCollectExampleIds({
                 currentPage:this.CollectExampleCurrentPage,
                 token:this.token,

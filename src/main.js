@@ -25,18 +25,18 @@ import Photo from './main/pages/photo.vue'
 import correct from './common/pages/correct'
 import comment from './common/pages/comment'
 //拍错题
-import camera from './camera/pages/index'
-import cameraHistory from './camera/pages/history'
-import cameraExample from './camera/pages/example'
-import cameraResult from './camera/pages/result'
-import cameraPhoto from './camera/pages/photo'
-import cameraSuccess from './camera/pages/success'
-//归纳本
-import error from './error/pages/index'
-import errorList from './error/pages/list'
-import errorDetail from './error/pages/detail'
-import errorMore from './error/pages/more'
-import errorRecommend from './error/pages/recommend'
+// import camera from './camera/pages/index'
+// import cameraHistory from './camera/pages/history'
+// import cameraExample from './camera/pages/example'
+// import cameraResult from './camera/pages/result'
+// import cameraPhoto from './camera/pages/photo'
+// import cameraSuccess from './camera/pages/success'
+//归纳错题
+// import error from './error/pages/index'
+// import errorList from './error/pages/list'
+// import errorDetail from './error/pages/detail'
+// import errorMore from './error/pages/more'
+// import errorRecommend from './error/pages/recommend'
 
 //互动
 import interact from './interact/index'
@@ -48,7 +48,6 @@ import brush from './brush/pages/index'
 import brushExample from './brush/pages/example'
 import brushList from './brush/pages/list'
 import brushTypeList from './brush/pages/typeList'
-
 //记错题
 import remember from './remember/pages/index'
 import rememberWorkbook from './remember/pages/workbook'
@@ -93,6 +92,12 @@ import bagTextbookAdd from './bag/textbook/pages/add'
 //书包-收藏本
 import bagCollectExample from './bag/collect/pages/example'
 import bagCollectExampleDetail from './bag/collect/pages/exampleDetail'
+//书包-弃题本
+import bagPass from './bag/pass/pages/layout'
+import bagPassChapter from './bag/pass/pages/chapter'
+import bagPassList from './bag/pass/pages/list'
+import bagPassExample from './bag/pass/pages/example'
+
 /**
  * 拍错题收藏
  * import collectCamera from './collect/pages/camera'
@@ -201,40 +206,40 @@ router.map({
     component: Photo
   },
   //拍错题
-  'camera': {
-    component: camera
-  },
-  'camera/history': {
-    component: cameraHistory
-  },
-  'camera/photo': {
-    component: cameraPhoto
-  },
-  'camera/example/:cameraId/:exampleId': {
-    component: cameraExample
-  },
-  'camera/result/:id': {
-    component: cameraResult
-  },
-  'camera/success': {
-    component: cameraSuccess
-  },
-  //归纳本
-  'error': {
-    component: error
-  },
-  'error/detail/:id': {
-    component: errorDetail
-  },
-  'error/list/:knowledgeId': {
-    component: errorList
-  },
-  'error/more/:knowledgeId/:id': {
-    component: errorMore
-  },
-  'error/recommend/:knowledgeId': {
-    component: errorRecommend
-  },
+  // 'camera': {
+  //   component: camera
+  // },
+  // 'camera/history': {
+  //   component: cameraHistory
+  // },
+  // 'camera/photo': {
+  //   component: cameraPhoto
+  // },
+  // 'camera/example/:cameraId/:exampleId': {
+  //   component: cameraExample
+  // },
+  // 'camera/result/:id': {
+  //   component: cameraResult
+  // },
+  // 'camera/success': {
+  //   component: cameraSuccess
+  // },
+  // //归纳本
+  // 'error': {
+  //   component: error
+  // },
+  // 'error/detail/:id': {
+  //   component: errorDetail
+  // },
+  // 'error/list/:knowledgeId': {
+  //   component: errorList
+  // },
+  // 'error/more/:knowledgeId/:id': {
+  //   component: errorMore
+  // },
+  // 'error/recommend/:knowledgeId': {
+  //   component: errorRecommend
+  // },
   //消息
   'interact/class': {
     component: interactClass
@@ -306,21 +311,22 @@ router.map({
     component: userCodeInput
   },
   //我的会员
-  'user/member': {
-    component: userMemberIndex
-  },
-  'user/member/points': {
-    component: userMemberPoints
-  }, //我的积分
-  'user/member/recharge': {
-    component: userMemberRecharge
-  }, //充值
-  'user/member/myBill': {
-    component: userMemberMyBill
-  }, //我的账单
-  'user/member/rule': {
-    component: userMemberRule
-  }, //积分规则
+  // 'user/member': {
+  //   component: userMemberIndex
+  // },
+  // 'user/member/points': {
+  //   component: userMemberPoints
+  // }, //我的积分
+  // 'user/member/recharge': {
+  //   component: userMemberRecharge
+  // }, //充值
+  // 'user/member/myBill': {
+  //   component: userMemberMyBill
+  // }, //我的账单
+  // 'user/member/rule': {
+  //   component: userMemberRule
+  // },
+   //积分规则
   //我的班级
   'user/class': {
     component: userClassIndex
@@ -331,7 +337,6 @@ router.map({
   'user/class/add': {
     component: userClassAdd
   },
-
   /**
    * 书包模块
    */
@@ -363,6 +368,27 @@ router.map({
   'bag/collect/example/detail/:id': {
     component: bagCollectExampleDetail
   },
+  //弃题本
+  'bag/pass': {
+    component: bagPass,
+    subRoutes: {
+      '/': {
+        component: bagPassChapter
+      },
+      '/list/:id': {
+        component: bagPassList
+      },
+      '/example/:subjectId/:id': {
+        component: bagPassExample
+      }
+    },
+  }
+  // 'bag/pass/example': {
+  //   component: bagCollectExample
+  // },
+  // 'bag/collect/example/detail/:id': {
+  //   component: bagCollectExampleDetail
+  // },
   // 'collect/camera': {
   //   component: collectCamera
   // },
@@ -380,7 +406,6 @@ router.redirect({
   'error/correct/:subjectId/:id': '/correct/:subjectId/:id',
   'brush/correct/:subjectId/:id': '/correct/:subjectId/:id',
   'camera/comment/:subjectId/:id': '/comment/:subjectId/:id',
-  'collect/comment/:subjectId/:id': '/comment/:subjectId/:id',
   'error/comment/:subjectId/:id': '/comment/:subjectId/:id'
 });
 
@@ -399,14 +424,11 @@ router.beforeEach(function (transition) {
 
 
 
-
-
-
 function plusReady() {
   let first = null;
-  plus.key.addEventListener("backbutton", function () {
+  plus.key.addEventListener("backbutton",  () => {
     //主界面上不返回上一级
-    if (store.state.route.path == '/main/index' || store.state.route.path == '/main/interact' || store.state.route.path == '/main/user') {
+    if (store.state.route.path == '/index' || store.state.route.path == '/bag' || store.state.route.path == '/interact' || store.state.route.path == '/user') {
       if (!first) {
         first = new Date().getTime();
         _.toast('再按一次退出')
@@ -419,11 +441,11 @@ function plusReady() {
         }
       }
     }
-    //模块首页的返回键进入主页
-    else if (store.state.route.path == '/camera' || store.state.route.path == '/error' || store.state.route.path == '/report' ||
-      store.state.route.path == '/brush' || store.state.route.path == '/collect/example' || store.state.route.path == '/remember') {
-      router.go('/main/index');
-    }
+    // 模块首页的返回键进入主页
+    // else if (
+    //   store.state.route.path == '/index' || store.state.route.path == '/bag' || store.state.route.path == '/user' || store.state.route.path == '/interact') {
+    //   router.go('/main/index');
+    // }
     //正在加载不返回上一级
     else if (store.state.Global.isLoading) {
       _.leave();

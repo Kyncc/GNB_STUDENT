@@ -17,6 +17,7 @@ import workbook from './bag/workbook/store'
 import textbook from './bag/textbook/store'
 import report from './bag/report/store'
 import collect from './bag/collect/store'
+import pass from './bag/pass/store'
 
 import user from './user/modules/index'
 //需要重构
@@ -43,7 +44,7 @@ export default new Vuex.Store({
     remember,
     brush,
     user,
-
+    pass,
 
     textbook,
     workbook

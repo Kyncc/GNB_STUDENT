@@ -27,7 +27,6 @@ export default {
      methods:{
         /** 点击科目提交的回调*/
         onClickBack(index){
-            // console.log(index);
             this.$emit('on-click-back',index);
         }
     },
