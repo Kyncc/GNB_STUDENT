@@ -77,13 +77,11 @@ import { getCollectCameraDetail } from '../actions'
 import { token,id } from '../../common/getters'
 import { CollectCameraDetail,CollectSubjectId } from '../getters'
 import moment from 'moment'
-import store from '../../store'
 
 export default {
 	components: {
 		XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group,InfiniteLoading
 	},
-	store,
 	vuex: {
         getters: {
             CollectSubjectId,token,id,CollectCameraDetail

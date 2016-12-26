@@ -63,11 +63,9 @@ import { subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
 import {shareReady} from '../../common/h5Plus/share.js'
 import {clearError} from '../../error/actions/index'
-import {clearCollect} from '../../collect/actions'
 import {clearBrush} from '../../brush/actions/index'
 import {delChapter} from '../../remember/actions/workbook'
 import {cameraClear} from '../../camera/actions'
-
 import * as _ from '../../config/whole.js'
 import './main.less'
 
@@ -87,14 +85,13 @@ export default {
         },
         actions: {
             getStudentIndex,
-            clearError,clearCollect,clearBrush,delChapter,cameraClear
+            clearError,clearBrush,delChapter,cameraClear
         }
     },
     store,
     ready(){
         //进首页一系列清空操作
         this.clearError();
-        this.clearCollect();
         this.clearBrush();
         this.delChapter();
         this.cameraClear();

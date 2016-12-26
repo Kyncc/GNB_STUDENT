@@ -1,6 +1,6 @@
 import Api from '../../config/httpdispatch'
-import * as types from '../mutationTypes'
 import * as _ from '../../config/whole'
+import * as types from './mutationTypes'
 
 /**我的教材 */
 export const getTextbook = ({ dispatch }, params,success,wrong) => {

@@ -1,4 +1,4 @@
-import * as types from '../mutationTypes'
+import * as types from './mutationTypes'
 
 const state = {
     example:{

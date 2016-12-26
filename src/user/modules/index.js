@@ -1,16 +1,6 @@
 import * as types from '../mutationTypes'
 
 const state = {
-    textbook:{
-        all:[],
-        my:[],
-        subjectId:'2'
-    },
-    workbook:{
-        all:[],
-        my:[],
-        subjectId:'2'
-    },
     userinfo:{},
     //学生教材版本
     version:{
@@ -37,26 +27,6 @@ const state = {
 
 
 const mutations = {
-  //教材
-  [types.TEXTBOOK_ADD](state) {
-    state.textbook.all = [];
-    state.textbook.my = [];
-  },
-  [types.TEXTBOOK_GET](state, data) {
-     state.textbook.my = data;
-  },
-  [types.TEXTBOOK_GET_ALL](state, data) {
-     state.textbook.all = data;
-  },
-  [types.TEXTBOOK_SUBJECT_CHANGE](state, id) {
-     state.textbook.subjectId = id;
-     state.textbook.my = [];
-     state.textbook.all = [];
-  },
-  [types.TEXTBOOK_RELOAD](state) {
-     state.textbook.my = [];
-     state.textbook.all = [];
-  },
   //我的班级
   [types.CLASS_MY_GET](state,data) {
      state.class.my = data;
@@ -70,28 +40,6 @@ const mutations = {
   [types.CLASS_ADD](state) {
      state.class.my = [];
   },
-
-  //练习册
-  [types.WORKBOOK_ADD](state, data) {
-    state.workbook.all = [];
-    state.workbook.my = [];
-  },
-  [types.WORKBOOK_GET](state, data) {
-     state.workbook.my = data;
-  },
-  [types.WORKBOOK_RELOAD](state) {
-     state.workbook.my = [];
-     state.workbook.all = [];
-  },
-  [types.WORKBOOK_GET_ALL](state, data) {
-     state.workbook.all = data;
-  },
-  [types.WORKBOOK_SUBJECT_CHANGE](state, id) {
-     state.workbook.subjectId = id;
-     state.workbook.my = [];
-     state.workbook.all = [];
-  },
-
   //邀请
   [types.INVITE_STUDENT_LIST](state, data) {
     state.invite.list = data
@@ -100,7 +48,6 @@ const mutations = {
     state.invite.code = data.inviteCode
     state.invite.status = data.isInvited
   },
-
   [types.USERINFO_GET](state, data) {
      state.userinfo = data;
   },
@@ -120,8 +67,6 @@ const mutations = {
   [types.GET_VERSION](state, data) {
     state.settings.appVersion = data
   }
-
-
 }
 
 export default {

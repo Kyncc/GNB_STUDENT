@@ -1,7 +1,7 @@
 <template>
   <view-box v-ref:view-box class='textbookIndex'>
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
+      <x-header :left-options="{showBack: true}">
         我的教材
         <a slot="right" @click="_changeSub()" class="changeSub">{{textBookSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
@@ -36,9 +36,8 @@
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {token,userSubjectList} from '../../../common/getters'
-import {getTextbook,setSubject} from '../../actions/textbook'
-import {MyTextbook,textBookSubjectId} from '../../getters'
-import store from '../../../store' 
+import {getTextbook,setSubject} from '../actions'
+import {MyTextbook,textBookSubjectId} from '../getters'
 import gnbChangeSub from '../../../components/changesub/index.vue'
 
 export default {
@@ -62,7 +61,6 @@ export default {
       getTextbook,setSubject
 		}
 	},
-	store,
   data(){
     return {
         visible:false
@@ -77,9 +75,6 @@ export default {
             return;
         }
      }, 
-    _back() {
-        this.$router.go('/main/user');
-    },
     _addTextBook(){
         this.$router.go('add');
     },

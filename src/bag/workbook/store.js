@@ -8,23 +8,23 @@ const state = {
 
 const mutations = {
   [types.WORKBOOK_ADD](state, data) {
-    state.workbook.all = [];
-    state.workbook.my = [];
+    state.all = [];
+    state.my = [];
   },
   [types.WORKBOOK_GET](state, data) {
-     state.workbook.my = data;
+     state.my = data;
   },
   [types.WORKBOOK_RELOAD](state) {
-     state.workbook.my = [];
-     state.workbook.all = [];
+     state.my = [];
+     state.all = [];
   },
   [types.WORKBOOK_GET_ALL](state, data) {
-     state.workbook.all = data;
+     state.all = data;
   },
   [types.WORKBOOK_SUBJECT_CHANGE](state, id) {
-     state.workbook.subjectId = id;
-     state.workbook.my = [];
-     state.workbook.all = [];
+     state.subjectId = id;
+     state.my = [];
+     state.all = [];
   }
 }
 

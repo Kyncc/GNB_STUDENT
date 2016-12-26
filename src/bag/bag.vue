@@ -19,7 +19,7 @@
         <cell title="弃题本" link="bag/pass/">
           <span class="icon iconfont icon-filterclear" style="color:#FFDFB0" slot="icon"></span>
         </cell>
-        <cell title="收藏本" link="bag/collect/">
+        <cell title="收藏本" link="bag/collect/example">
           <span class="icon iconfont icon-box" style="color:#6DC6FF" slot="icon"></span>
         </cell>
       </group>

@@ -1,7 +1,7 @@
 <template>
   <view-box v-ref:view-box class="collect">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
+      <x-header :left-options="{showBack: true}" >
         收藏本
         <a slot="right" @click="_changeSub()" class="changeSub">{{CollectSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
@@ -50,11 +50,10 @@
   <gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="CollectSubjectId" @on-click-back="_changeSubject"></gnb-change-sub>
 </template>
 <script>
-import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import store from '../../store'
-import gnbChangeSub from '../../components/changesub/index.vue'
-import { token,userSubjectList } from '../../common/getters'
+import gnbChangeSub from '../../../components/changesub/index.vue'
+import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
+import { token,userSubjectList } from '../../../common/getters'
 import { CollectExampleIds,CollectExampleList,CollectExampleTotalPage,CollectExampleCurrentPage,CollectSubjectId,CollectScoll } from '../getters'
 import { getCollectExampleIds,getCollectExampleList,setSubject,clearCollect,setScoll } from '../actions'
 
@@ -75,14 +74,11 @@ export default {
     methods: {
         _intoDetail(id){
             this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
-            this.$router.go(`/collect/example/detail/${id}`);
+            this.$router.go(`/bag/collect/example/detail/${id}`);
         },
         _camera(){
             this.clearCollect();
             this.$router.replace(`/collect/camera`);
-        },
-        _back(){
-            this.$router.go('/main/');
         },
         _isFirst(){
             /*判断当前页面是否大于总页数 若大于则不在请求数据*/
@@ -126,7 +122,6 @@ export default {
             setSubject,setScoll 
         }
     },
-    store,
     data(){
         return{
             visible:false

@@ -54,7 +54,6 @@
 <script>
 import {XHeader,Panel,ViewBox,FlexboxItem,Flexbox,Previewer,Confirm,ButtonTab,ButtonTabItem,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import store from '../../store'
 import gnbChangeSub from '../../components/changesub/index.vue'
 import {userSubjectList,token} from '../../common/getters'
 import {CollectCameraIds,CollectCameraList,CollectSubjectId,CollectCameraTotalPage,CollectCameraCurrentPage,CollectScoll} from '../getters'
@@ -86,7 +85,6 @@ export default {
       getCollectCameraIds, getCollectCameraList,collectRemove,setSubject,clearCollect,setScoll
     }
   },
-  store,
   methods: {
     _record(importantId,id){
       this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);

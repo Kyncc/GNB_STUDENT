@@ -55,7 +55,7 @@ import rememberWorkbook from './remember/pages/workbook'
 import rememberExercise from './remember/pages/exercise'
 import rememberExample from './remember/pages/example'
 import rememberAdd from './remember/pages/add'
-import rememberTextBookAdd from './user/pages/textbook/fromWorkbookAdd'
+import rememberTextBookAdd from './bag/textbook/pages/fromWorkbookAdd'
 //个人中心
 import userInfo from './user/pages/info'
 //个人中心-设置
@@ -83,19 +83,21 @@ import userClassAdd from './user/pages/class/add'
 import Bag from './bag/bag'
 //书包-我的习题册
 import bagWorkbook from './bag/workbook/pages/index'
-// import bagWorkbookAdd from './bag/workbook/pages/add'
-//知识图谱
+import bagWorkbookAdd from './bag/workbook/pages/add'
+//书包-知识图谱
 import bagReport from './bag/report/pages/index'
 import bagReportDetail from './bag/report/pages/detail'
-
 //书包-我的教材
-import userTextbook from './user/pages/textbook/index'
-import userTextbookAdd from './user/pages/textbook/add'
+import bagTextbook from './bag/textbook/pages/index'
+import bagTextbookAdd from './bag/textbook/pages/add'
 //书包-收藏本
-import collectExample from './collect/pages/example'
-import collectCamera from './collect/pages/camera'
-import collectCameraDetail from './collect/pages/cameraRecord'
-import collectExampleDetail from './collect/pages/exampleDetail'
+import bagCollectExample from './bag/collect/pages/example'
+import bagCollectExampleDetail from './bag/collect/pages/exampleDetail'
+/**
+ * 拍错题收藏
+ * import collectCamera from './collect/pages/camera'
+ * import collectCameraDetail from './collect/pages/cameraRecord'
+ */
 
 
 //插件
@@ -112,7 +114,7 @@ Vue.config.devtools = true
 FastClick.attach(document.body)
 
 //图片异步加载
-Vue.use(VueLazyload, {
+Vue.use(VueLazyload,{
   preLoad: 1.3,
   error: 'http://www.chinasanbao.com/new/upload/headimg/headimg.png',
   loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
@@ -233,19 +235,6 @@ router.map({
   'error/recommend/:knowledgeId': {
     component: errorRecommend
   },
-  //收藏本
-  'collect/example': {
-    component: collectExample
-  },
-  'collect/camera': {
-    component: collectCamera
-  },
-  'collect/camera/detail/:id/:cameraId': {
-    component: collectCameraDetail
-  },
-  'collect/example/detail/:id': {
-    component: collectExampleDetail
-  },
   //消息
   'interact/class': {
     component: interactClass
@@ -343,13 +332,6 @@ router.map({
     component: userClassAdd
   },
 
-  //我的教材
-  'user/textbook': {
-    component: userTextbook
-  },
-  'user/textbook/add': {
-    component: userTextbookAdd
-  },
   /**
    * 书包模块
    */
@@ -360,18 +342,40 @@ router.map({
   'bag/report/detail/:chapterId': {
     component: bagReportDetail
   },
+  //我的教材
+  'bag/textbook': {
+    component: bagTextbook
+  },
+  'bag/textbook/add': {
+    component: bagTextbookAdd
+  },
   //我的习题册
   'bag/workbook': {
     component: bagWorkbook
   },
-  //   'bag/workbook/add':{component:bagWorkbookAdd}
+  'bag/workbook/add':{
+    component:bagWorkbookAdd
+  },
+  //收藏本
+  'bag/collect/example': {
+    component: bagCollectExample
+  },
+  'bag/collect/example/detail/:id': {
+    component: bagCollectExampleDetail
+  },
+  // 'collect/camera': {
+  //   component: collectCamera
+  // },
+  // 'collect/camera/detail/:id/:cameraId': {
+  //   component: collectCameraDetail
+  // }
+
+
 })
 
 router.redirect({
   // '/':'/main',
-  '/collect/': '/collect/example',
   'camera/correct/:subjectId/:id': '/correct/:subjectId/:id',
-  'collect/correct/:subjectId/:id': '/correct/:subjectId/:id',
   'remember/correct/:subjectId/:id': '/correct/:subjectId/:id',
   'error/correct/:subjectId/:id': '/correct/:subjectId/:id',
   'brush/correct/:subjectId/:id': '/correct/:subjectId/:id',

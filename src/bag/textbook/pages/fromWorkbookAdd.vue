@@ -33,10 +33,9 @@
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {token} from '../../../common/getters'
-import store from '../../../store' 
 import * as _ from '../../../config/whole.js'
-import {getTextbookAll,addTextbook} from '../../actions/textbook'
-import {AllTextbook,addSubjectId} from '../../getters'
+import {getTextbookAll,addTextbook} from '../actions'
+import {AllTextbook,addSubjectId} from '../getters'
 import './index.less'
 
 export default {
@@ -75,7 +74,6 @@ export default {
       selectBookList:[]
     }
   },
-	store,
   methods: {
     _addTextBook(){
         this.addTextbook({
