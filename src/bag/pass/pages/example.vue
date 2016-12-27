@@ -67,17 +67,14 @@
 
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
-import {getPassExample,passExampleClear,collectAdd,collectRemove} from '../actions/example'
-import {passExample,passSubjectId,exampleId} from '../getters'
-import {token} from '../../../common/getters'
+import {getPassExample,collectAdd,collectRemove} from '../actions/example'
+import {passExample,passSubjectId} from '../getters'
+import {token,id} from '../../../common/getters'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   components: {
     XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
-  },
-  created(){
-    this.passExampleClear();
   },
   filters: {
     collect(state){
@@ -89,17 +86,17 @@ export default {
   },
   vuex: {
     getters: {
-      token,passExample,passSubjectId,exampleId
+      token,passExample,passSubjectId,id
     },
     actions: {
-       getPassExample,passExampleClear,collectAdd,collectRemove
+       getPassExample,collectAdd,collectRemove
     }
   },
   methods: {
     _onInfinite(){
       this.getPassExample({
         options:{
-          ids:[this.exampleId],
+          ids:[this.id],
           subject_id:this.passSubjectId
         },
         token:this.token
@@ -110,12 +107,12 @@ export default {
       )
     },
     _correct(){
-      this.$router.go(`/pass/correct/${this.passSubjectId}/${this.exampleId}`);
+      this.$router.go(`/correct/${this.passSubjectId}/${this.id}`);
     },
     _collect(state){
       let parma = {
         options:{
-          id:this.exampleId,
+          id:this.id,
           subject_id:this.passSubjectId
         },
         token:this.token,
@@ -131,7 +128,10 @@ export default {
     }
   },
   watch:{
-    exampleId(){
+    id(){
+      if(this.id == undefined){
+          return;
+      }
       this.$nextTick(() => {
         this.$broadcast('$InfiniteLoading:reset');
       });

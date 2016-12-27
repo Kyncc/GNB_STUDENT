@@ -26,9 +26,11 @@ import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import gnbChangeSub from '../../../components/changesub/index'
 import accordion from '../../../components/accordion'
+
 import {token,userSubjectList} from '../../../common/getters'
 import {passChapter,passScoll,passSubjectId} from '../getters'
 import {getPass,changeChapter,setScoll,setSubject} from '../actions/chapter'
+import {passListClear} from '../actions/list'
 
 
 export default {
@@ -41,7 +43,7 @@ export default {
       passChapter,passScoll,passSubjectId
     },
     actions: {
-      getPass,changeChapter,setScoll,setSubject
+      getPass,changeChapter,setScoll,setSubject,passListClear
     }
   },
   filters: {

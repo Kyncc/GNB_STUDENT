@@ -14,11 +14,11 @@ export const setScoll = ({ dispatch },height) => {
 
 /**获取弃题列表 */
 export const getPassList = ({ dispatch }, params, success) => {
-  Api.brushTypeList({
+  Api.brushList({
     data: params,
     ok: response => {
       dispatch(types.PASS_LIST, response.data);
-      success&&success();
+      success&&success(response);
     },
     wrong: response => {
       _.toast(response.data.msg);

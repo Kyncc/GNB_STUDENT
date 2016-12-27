@@ -7,12 +7,11 @@ const state = {
     scoll: 0
   },
   list: {
-    list: [],
-    count: 0,
-    scoll: 0,
-    chapterName: '',
-    currentPage: 1,
-    totalPage: 1
+    list:[],
+    count:0,
+    chapterName:'',
+    scoll:0,
+    offset:''
   },
   subjectId: '2'
 }
@@ -35,19 +34,18 @@ const mutations = {
     state.index.list[index].checked = !state.index.list[index].checked
   },
   [types.PASS_LIST](state, data) {
-    state.list.count = data.data.count;
+    if(data.data.length == 0){return;}
     state.list.chapterName = data.data.chapterName;
-    state.list.totalPage = data.data.totalPage;
-    state.list.list = state.list.list.concat(data.data.list);
-    state.list.currentPage++;
+    state.list.count = data.data.recordSize;
+    state.list.offset = data.data.offset;
+    state.list.list = state.list.list.concat(data.data.detail);
   },
   [types.PASS_LIST_CLEAR](state) {
     state.list.list = [];
-    state.list.currentPage = 1;
-    state.list.totalPage = 1
-    state.list.count = 0;
-    state.list.chapterName = '';
-    state.list.scoll = 0;
+    state.list.count=0;
+    state.list.chapterName='',
+    state.list.scoll=0;
+    state.list.offset = '';
   },
   [types.PASS_LIST_SCOLLER](state, height) {
     state.list.scoll = height;

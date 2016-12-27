@@ -373,13 +373,16 @@ router.map({
     component: bagPass,
     subRoutes: {
       '/': {
-        component: bagPassChapter
+        component: bagPassChapter,
+        name:'passChapter'
       },
-      '/list/:id': {
-        component: bagPassList
+      '/list/:chapterId': {
+        component: bagPassList,
+        name:'passList'
       },
       '/example/:subjectId/:id': {
-        component: bagPassExample
+        component: bagPassExample,
+        name:'passExample'
       }
     },
   }

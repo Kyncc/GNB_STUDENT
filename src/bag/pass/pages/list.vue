@@ -24,6 +24,11 @@
                     </div>
                 </a>
             </div>
+             <div class="abandon">
+                <span >撤回</span>
+                <span >放弃</span>
+            </div>
+
           </div>
       </template>
       <infinite-loading :on-infinite="_onInfinite" spinner="waveDots" style="height:60px">
@@ -41,8 +46,8 @@
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token,id} from '../../../common/getters'
-import {passSubjectId,passListScoll,passListCurrentPage,passListTotalPage,passList} from '../getters'
+import {token,chapterId} from '../../../common/getters'
+import {passSubjectId,passListScoll,passListOffset,passList} from '../getters'
 import {setScoll,getPassList,passListClear } from '../actions/list'
 import '../index.less'
 
@@ -57,8 +62,8 @@ export default {
             this.$router.go(`../example/${this.passSubjectId}/${id}`);
         },
         _isFirst(){
-            /*判断当前页面是否大于总页数 若大于则不在请求数据*/
-            if(Number(this.passListTotalPage) < Number(this.passListCurrentPage)){
+             //如果剩余题目数量等于数量 则表示加载完毕
+            if(this.passList.list.length != 0 && (this.passList.list.length == this.passList.count)){
                 this.$broadcast('$InfiniteLoading:loaded');
                 this.$broadcast('$InfiniteLoading:complete');
                 return true;
@@ -66,45 +71,43 @@ export default {
             return false;
         },
          _onInfinite(){
-            if(this._isFirst()){
-                return;
-            }
+            if(this._isFirst()){return}
             this.getPassList({
-                currentPage:this.passListCurrentPage,
-                status:2,
+                // status:2,
                 token:this.token,
-                chapter_id:this.id,
+                chapter_id:this.chapterId,
                 subject_id:this.passSubjectId,
-            },()=>{
+                offset:this.passListOffset
+            },(res)=>{
                 this.$broadcast('$InfiniteLoading:loaded');
-                if(this.passListCurrentPage > this.passListTotaslPage){
+                let length = Number(res.data.data.detail.length);
+                if(length  < 5){
                     this.$broadcast('$InfiniteLoading:complete');
                     return;
                 }
             })
         },
+        
     },
     vuex: {
         getters: {
-            token,id,
-            passList,passSubjectId,passListScoll,passListCurrentPage,passListTotalPage
+            token,chapterId,
+            passList,passSubjectId,passListScoll,passListOffset
         },
         actions: {
-          setScoll,getPassList,passListClear
+            setScoll,getPassList,passListClear
         }
     },
     watch:{
-      id(){
-        if(id){return}
-        else{
-          alert(1);
+        chapterId(){
+            if(this.chapterId == undefined){
+                return;
+            }
+            this._onInfinite();
+            this.$nextTick(()=>{
+                document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.passListScoll;
+            });
         }
-      }
-    },
-    ready(){
-        this.$nextTick(()=>{
-            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.passListScoll;
-        });
     }
 }
 </script>
