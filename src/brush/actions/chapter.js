@@ -1,9 +1,9 @@
 import Api from '../../config/httpdispatch'
-import * as types from '../mutationTypes'
 import * as _ from '../../config/whole'
+import * as types from '../mutationTypes'
 
 /**获取章节数据 */
-export const getBrush = ({ dispatch }, params, success,wrong) => {
+export const getBrush = ({ dispatch }, params, success) => {
   Api.brush({
     data: params,
     ok: response => {
@@ -12,7 +12,6 @@ export const getBrush = ({ dispatch }, params, success,wrong) => {
     },
     wrong: response => {
         _.toast(response.data.msg);
-        wrong&&wrong();
     }
   })
 }
@@ -37,4 +36,3 @@ export const setSubject = ({ dispatch }, id) => {
     dispatch(types.BRUSH_CHANGE_SUBJECT,id);
     dispatch(types.BRUSH_CLEAR);
 }
-

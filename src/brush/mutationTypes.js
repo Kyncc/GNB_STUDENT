@@ -1,33 +1,26 @@
 /**下拉框展现*/
 export const BRUSH_STATE_CHANGE = 'BRUSH_STATE_CHANGE'
-/**滚动条高度*/
+  /**首页章节滚动条高度*/
 export const BRUSH_SCOLLER = 'BRUSH_SCOLLER_HEIGHT'
-/** 获取刷题型首页*/
+  /** 获取刷题首页*/
 export const BRUSH_ALL = 'BRUSH_ALL'
-/** 清空刷题型*/
+  /** 清空刷题*/
 export const BRUSH_CLEAR = 'BRUSH_CLEAR'
-/** 更换科目*/
+  /** 更换科目*/
 export const BRUSH_CHANGE_SUBJECT = 'BRUSH_CHANGE_SUBJECT'
-/** 例题查看 */
-export const BRUSH_EXAMPLE= 'BRUSH_EXAMPLE'
-/** 清空例题 */
-export const BRUSH_EXAMPLE_CLEAR = 'BRUSH_EXAMPLE_CLEAR'
-/** 例题收藏 */
-export const BRUSH_EXAMPLE_COLLECT_ADD = 'BRUSH_EXAMPLE_COLLECT_ADD'
-/** 例题取消 */
-export const BRUSH_EXAMPLE_COLLECT_REMOVE = 'BRUSH_EXAMPLE_COLLECT_REMOVE'
-/** 刷题型列表 */
-export const BRUSH_LIST= 'BRUSH_LIST'
-/** 清除刷题型列表 */
-export const BRUSH_LIST_CLEAR= 'BRUSH_LIST_CLEAR'
-/** 刷题型动作 */
-export const BRUSH_LIST_ACTION= 'BRUSH_LIST_ACTION'
-/** 刷题型列表高度 */
-export const BRUSH_LIST_SCOLLER= 'BRUSH_LIST_SCOLLER'
 
-/** 刷题型斩题或放弃 */
-export const BRUSH_TYPE_LIST= 'BRUSH_TYPE_LIST'
-/** 斩题或放弃列表切换 */
-export const BRUSH_TYPE_CHANGE= 'BRUSH_TYPE_CHANGE'
-/** 斩题或放弃列表高度 */
-export const BRUSH_TYPE_LIST_SCOLLER = 'BRUSH_TYPE_LIST_SCOLLER'
+  /** 刷题列表 */
+export const BRUSH_LIST = 'BRUSH_LIST'
+  /** 清除刷题列表 */
+export const BRUSH_LIST_CLEAR = 'BRUSH_LIST_CLEAR'
+  /** 刷题列表高度 */
+export const BRUSH_LIST_SCOLLER = 'BRUSH_LIST_SCOLLER'
+
+  /** 例题查看*/
+export const BRUSH_EXAMPLE = 'BRUSH_EXAMPLE'
+  /** 例题清除*/
+export const BRUSH_EXAMPLE_CLEAR = 'BRUSH_EXAMPLE_CLEAR'
+  /** 例题收藏增加*/
+export const BRUSH_EXAMPLE_COLLECT_ADD = 'BRUSH_EXAMPLE_COLLECT_ADD'
+  /** 例题收藏取消*/
+export const BRUSH_EXAMPLE_COLLECT_REMOVE = 'BRUSH_EXAMPLE_COLLECT_REMOVE'

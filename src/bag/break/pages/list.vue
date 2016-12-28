@@ -1,16 +1,16 @@
 <template>
-  <view-box v-ref:view-box class="brushList">
+  <view-box v-ref:view-box class="breakList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}" >弃题列表</x-header>
-      <header v-if="brushList" class="sectionHeader">
-          <p class="ellipsis">{{brushList.chapterName}}</p>
-          <font class="ellipsis">共<b>{{brushList.count}}</b>个题型</font>
+      <x-header :left-options="{showBack: true}" >斩题列表</x-header>
+      <header v-if="breakList" class="sectionHeader">
+          <p class="ellipsis">{{breakList.chapterName}}</p>
+          <font class="ellipsis">共<b>{{breakList.count}}</b>个题型</font>
        </header>
     </div>
     <!--空白间隔-->
     <div style="padding-top:80px;">
-      <template v-if="brushList">
-        <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in brushList.list">
+      <template v-if="breakList">
+        <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in breakList.list">
             <div class="weui_panel_hd">
                 {{{item.chapter_name}}}
             </div>
@@ -46,9 +46,9 @@
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token,chapterId} from '../../common/getters'
-import {brushSubjectId,brushListScoll,brushListOffset,brushList} from '../getters'
-import {setScoll,getBrushList,brushListClear } from '../actions/list'
+import {token,chapterId} from '../../../common/getters'
+import {breakSubjectId,breakListScoll,breakListOffset,breakList} from '../getters'
+import {setScoll,getBreakList,breakListClear } from '../actions/list'
 import '../index.less'
 
 export default {
@@ -59,11 +59,11 @@ export default {
     methods: {
         _intoDetail(id){
             this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
-            this.$router.go(`../example/${this.brushSubjectId}/${id}`);
+            this.$router.go(`../example/${this.breakSubjectId}/${id}`);
         },
         _isFirst(){
              //如果剩余题目数量等于数量 则表示加载完毕
-            if(this.brushList.list.length != 0 && (this.brushList.list.length == this.brushList.count)){
+            if(this.breakList.list.length != 0 && (this.breakList.list.length == this.breakList.count)){
                 this.$broadcast('$InfiniteLoading:loaded');
                 this.$broadcast('$InfiniteLoading:complete');
                 return true;
@@ -72,12 +72,12 @@ export default {
         },
          _onInfinite(){
             if(this._isFirst()){return}
-            this.getBrushList({
+            this.getBreakList({
                 // status:2,
                 token:this.token,
                 chapter_id:this.chapterId,
-                subject_id:this.brushSubjectId,
-                offset:this.brushListOffset
+                subject_id:this.breakSubjectId,
+                offset:this.breakListOffset
             },(res)=>{
                 this.$broadcast('$InfiniteLoading:loaded');
                 let length = Number(res.data.data.detail.length);
@@ -92,10 +92,10 @@ export default {
     vuex: {
         getters: {
             token,chapterId,
-            brushList,brushSubjectId,brushListScoll,brushListOffset
+            breakList,breakSubjectId,breakListScoll,breakListOffset
         },
         actions: {
-            setScoll,getBrushList,brushListClear
+            setScoll,getBreakList,breakListClear
         }
     },
     watch:{
@@ -105,7 +105,7 @@ export default {
             }
             this._onInfinite();
             this.$nextTick(()=>{
-                document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.brushListScoll;
+                document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.breakListScoll;
             });
         }
     }

@@ -32,7 +32,7 @@
                             <img src="../../assets/main/home_5.png" alt="" />
                             <p >成绩报告单</p>
                         </div>
-                        <div class="flex-item bottom1px vux-tap-active" v-link="{ path: '/brush'}">
+                        <div class="flex-item bottom1px vux-tap-active" v-link="{ path: '/brush/'}">
                             <img src="../../assets/main/home_6.png" alt="" />
                             <p >题型汇总</p>
                         </div>
@@ -63,7 +63,6 @@ import { subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
 import {shareReady} from '../../common/h5Plus/share.js'
 import {clearError} from '../../error/actions/index'
-import {clearBrush} from '../../brush/actions/index'
 import {delChapter} from '../../remember/actions/workbook'
 import {cameraClear} from '../../camera/actions'
 import * as _ from '../../config/whole.js'
@@ -85,14 +84,13 @@ export default {
         },
         actions: {
             getStudentIndex,
-            clearError,clearBrush,delChapter,cameraClear
+            clearError,delChapter,cameraClear
         }
     },
     store,
     ready(){
         //进首页一系列清空操作
         this.clearError();
-        this.clearBrush();
         this.delChapter();
         this.cameraClear();
         this.getStudentIndex({

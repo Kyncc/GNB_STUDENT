@@ -9,19 +9,20 @@ import interact from './interact/store'
 import camera from './camera/modules/index'
 import error from './error/modules/index'
 
-import brush from './brush/modules/index'
 
 import remember from './remember/modules/index'
 
+import brush from './brush/store'
 import workbook from './bag/workbook/store'
 import textbook from './bag/textbook/store'
 import report from './bag/report/store'
 import collect from './bag/collect/store'
 import pass from './bag/pass/store'
+import breakList from './bag/break/store'
 
 import user from './user/modules/index'
 //需要重构
-import member from './user/modules/member.js'
+// import member from './user/modules/member.js'
 
 
 Vue.use(Vuex)
@@ -33,7 +34,7 @@ export default new Vuex.Store({
     forget,
     index,
     interact,//互动
-    member,
+    // member,
     //收藏本
     collect,
     //归纳本
@@ -45,7 +46,7 @@ export default new Vuex.Store({
     brush,
     user,
     pass,
-
+    break:breakList,
     textbook,
     workbook
   }

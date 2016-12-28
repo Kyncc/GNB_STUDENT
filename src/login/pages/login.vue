@@ -57,7 +57,7 @@ export default {
       this.login(params,()=>{
         setTimeout(()=>{
            _.leave();
-          this.$router.replace('/main');
+          this.$router.replace('/index');
         },500);
       },()=>{
           this.pwd = '';

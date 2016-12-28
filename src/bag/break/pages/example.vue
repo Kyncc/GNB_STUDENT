@@ -1,12 +1,12 @@
 <template>
-  <view-box v-ref:view-box class="brushExample">
+  <view-box v-ref:view-box class="breakExample">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
       <x-header :left-options="{showBack:true}">例题详情</x-header>
     </div>
 
     <div style="padding-top:46px;">
       <!--内容-->
-      <div v-for="detail in brushExample">
+      <div v-for="detail in breakExample">
         <div class="weui_panel weui_panel_access exerciseDetail" >
           <div class="weui_panel_hd">
             <p style="width:25%;color:#4bb7aa">题干</p>
@@ -67,9 +67,9 @@
 
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
-import {getBrushExample,collectAdd,collectRemove} from '../actions/example'
-import {brushExample,brushSubjectId} from '../getters'
-import {token,id} from '../../common/getters'
+import {getBreakExample,collectAdd,collectRemove} from '../actions/example'
+import {breakExample,breakSubjectId} from '../getters'
+import {token,id} from '../../../common/getters'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -86,34 +86,34 @@ export default {
   },
   vuex: {
     getters: {
-      token,brushExample,brushSubjectId,id
+      token,breakExample,breakSubjectId,id
     },
     actions: {
-       getBrushExample,collectAdd,collectRemove
+       getBreakExample,collectAdd,collectRemove
     }
   },
   methods: {
     _onInfinite(){
-      this.getBrushExample({
+      this.getBreakExample({
         options:{
           ids:[this.id],
-          subject_id:this.brushSubjectId
+          subject_id:this.breakSubjectId
         },
         token:this.token
       },()=>{
-          if(this.brushExample.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+          if(this.breakExample.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
           this.$broadcast('$InfiniteLoading:complete');
         }
       )
     },
     _correct(){
-      this.$router.go(`/correct/${this.brushSubjectId}/${this.id}`);
+      this.$router.go(`/correct/${this.breakSubjectId}/${this.id}`);
     },
     _collect(state){
       let parma = {
         options:{
           id:this.id,
-          subject_id:this.brushSubjectId
+          subject_id:this.breakSubjectId
         },
         token:this.token,
         type:'example'
