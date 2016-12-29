@@ -1,9 +1,8 @@
 <template >
     <view-box v-ref:view-box class="rememberChapter rememberSelect">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">
-                章节选择
-            </x-header>
+            <x-header :left-options="{showBack: true}">章节选择</x-header>
+            
         </div>
 
         <div style="padding-top:46px;">
@@ -39,7 +38,6 @@
 </template>
 
 <script>
-import store from '../../store'
 import { XHeader,Panel,ViewBox,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { token } from '../../common/getters'
@@ -60,9 +58,7 @@ export default {
         getWorkbookChapter,delChapter,rememberExerciseClear,setScoll
     }
   },
-  store,
   methods:{
-
       _isLink(item){
           if(item.isLink == 'true'){
             this.rememberExerciseClear();//进去前清空数据

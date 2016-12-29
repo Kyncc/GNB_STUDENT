@@ -1,9 +1,7 @@
 <template >
     <view-box v-ref:view-box class="rememberExercise">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">
-               章节练习
-            </x-header>
+            <x-header :left-options="{showBack: true}">章节练习</x-header>
         </div>
 
         <div style="padding-top:46px;">
@@ -19,7 +17,7 @@
                                             <i  v-if="itemC.answer" class="icon iconfont exampleIcon icon-correct"></i>
                                             <i  v-else class="icon iconfont icon-error exampleIcon"></i>
                                         </section>
-                                        <x-button mini plain type="primary" @click="_intoExample(itemC.eid)">例题</x-button>
+                                        <!--<x-button mini plain type="primary" @click="_intoExample(itemC.eid)">例题</x-button>-->
                                     </p>
                                 </cell>
                             </group>
@@ -33,7 +31,7 @@
                                             <i v-if="itemB.answer" class="icon iconfont exampleIcon icon-correct"></i>
                                             <i v-else class="icon iconfont icon-error exampleIcon"></i>
                                         </section>
-                                        <x-button mini plain type="primary" @click="_intoExample(itemB.eid)">例题</x-button>
+                                        <!--<x-button mini plain type="primary" @click="_intoExample(itemB.eid)">例题</x-button>-->
                                     </div>
                                 </cell>
                             </group>
@@ -61,7 +59,6 @@
 </template>
 
 <script>
-import store from '../../store'
 import { XHeader,Panel,ViewBox,Group,Cell,XButton,Checker, CheckerItem,Confirm} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {rememberExerciseGet,rememberExercisePost,rememberExerciseClear,rememberExAnswerChange,setScoll} from '../actions/exercise'
@@ -82,9 +79,7 @@ export default {
         rememberExerciseGet,rememberExercisePost,rememberExerciseClear,rememberExAnswerChange,setScoll
     }
   },
-  store,
   methods: {
-      
       _changeAnswer(parentIndex,index,type){
           if(this.isUsed) return;
           this.workbookType = type;

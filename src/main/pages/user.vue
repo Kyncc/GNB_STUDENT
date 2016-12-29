@@ -5,6 +5,7 @@
         <a slot="right" v-touch:tap="_quit" v-show="system != 'IOS'">退出</a>
     </x-header>
   </div>
+
   <scroller lock-x v-ref:scroller height="-47px">
     <div>
       <div class="info">
@@ -29,6 +30,7 @@
       </group>
     </div>
   </scroller>
+  
   <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
   <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出归纳本吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
 </view-box>

@@ -9,6 +9,7 @@ export const id = (state) => state.route.params.id
 export const knowledgeId = (state) => state.route.params.knowledgeId
 export const chapterId = (state) => state.route.params.chapterId
 export const cameraId = (state) => state.route.params.cameraId
+export const path = (state) => state.route.path
 
 export const token = (state) => state.userInfo.token
 export const userBalance = (state) => state.userInfo.balance

@@ -1,7 +1,7 @@
 <template>
   <view-box v-ref:view-box class="brushList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}" >弃题列表</x-header>
+      <x-header :left-options="{showBack: true}" >刷题列表</x-header>
       <header v-if="brushList" class="sectionHeader">
           <p class="ellipsis">{{brushList.chapterName}}</p>
           <font class="ellipsis">共<b>{{brushList.count}}</b>个题型</font>

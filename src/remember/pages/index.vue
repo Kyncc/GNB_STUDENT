@@ -1,7 +1,7 @@
 <template>
     <view-box v-ref:view-box class="rememberIndex">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
+            <x-header :left-options="{showBack: true}" >
                 记错题
                 <a slot="right" @click="_changeSub()" class="changeSub">{{rememberSubjectId | subName}}<span class="with_arrow"></span></a>
             </x-header>
@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import store from '../../store'
 import {XHeader,Panel,ViewBox,Group,Cell,Search,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {token,userSubjectList} from '../../common/getters'
@@ -64,9 +63,6 @@ export default {
         this.delChapter();      //进去前清除章节数据
         this.$router.go('/remember/workbook/'+str);
     }, 
-	_back(){
-        this.$router.go('/main');
-    },
     _add(){
         this.WorkbookAllDel();  //进去前清除所有练习册数据
         this.$router.go('/remember/add');
@@ -109,7 +105,6 @@ export default {
         getWorkbook,setSubject,delChapter,WorkbookAllDel
     }
   },
-  store,
   data(){
     return {
         visible:false

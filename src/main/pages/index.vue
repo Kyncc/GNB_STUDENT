@@ -1,6 +1,6 @@
 <template>
     <view-box v-ref:view-box class="mainIndex">
-        <div style="position:fixed;left:0;top:0;width:100%;z-index:2016" slot="header">
+        <div  slot="header" style="position:fixed;left:0;top:0;width:100%;z-index:2016" >
             <x-header :left-options="{showBack: false}">归纳本</x-header>
         </div>
 

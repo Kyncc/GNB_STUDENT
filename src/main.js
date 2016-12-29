@@ -449,44 +449,32 @@ router.beforeEach(function (transition) {
 
 
 
-function plusReady() {
-  let first = null;
-  plus.key.addEventListener("backbutton",() => {
-    //主界面上不返回上一级
-    if (store.state.route.path == '/index' || store.state.route.path == '/bag' || store.state.route.path == '/interact' || store.state.route.path == '/user') {
-      if (!first) {
-        first = new Date().getTime();
-        _.toast('再按一次退出')
-        setTimeout(function () {
-          first = null;
-        }, 1000);
-      } else {
-        if (new Date().getTime() - first < 1000) {
-          plus.runtime.quit();
+function plusReady(){
+    let first = null;
+    plus.key.addEventListener("backbutton",function(){
+        if(store.state.route.path == '/interact' || store.state.route.path == '/index' || store.state.route.path =='/user' || store.state.route.path =='/bag'){
+            if (!first) {
+                first = new Date().getTime();
+                _.toast('再按一次退出')
+                setTimeout(function() {
+                    first = null;
+                }, 1000);
+            } else {
+                if (new Date().getTime() - first < 1000) {
+                    plus.runtime.quit();
+                }
+            }
+        }else{
+            window.history.back();
         }
-      }
-    }
-    // 模块首页的返回键进入主页
-    // else if (
-    //   store.state.route.path == '/index' || store.state.route.path == '/bag' || store.state.route.path == '/user' || store.state.route.path == '/interact') {
-    //   router.go('/main/index');
-    // }
-    //正在加载不返回上一级
-    else if (store.state.Global.isLoading) {
-      _.leave();
-      return;
-    }
-    //返回上一个访问页面
-    else {
-      window.history.back();
-    }
-  });
+    });
+    
 }
 
-if (window.plus) {
-  plusReady();
-} else {
-  document.addEventListener("plusready", plusReady, false);
+if(window.plus){
+    plusReady();
+}else{
+    document.addEventListener("plusready",plusReady,false);
 }
 
 router.start(App, '#App')

@@ -1,30 +1,27 @@
 <template>
-  <div style="height:100%;" >
-       <router-view keep-alive></router-view>
-       <tabbar slot="bottom" class="homepage">
-          <tabbar-item link="index" :selected="indexState">
-            <i slot="icon" class="icon iconfont icon-brush"></i>
-            <span slot="label">刷题</span>
-          </tabbar-item>
-          <tabbar-item link="bag" :selected="bagState">
-            <i slot="icon" class="icon iconfont icon-bag"></i>
-            <span slot="label">书包</span>
-          </tabbar-item>
-          <tabbar-item link="interact" :selected="interactState">
-            <i slot="icon" class="icon iconfont icon-comment2"></i>
-            <span slot="label">互动</span>
-          </tabbar-item>
-          <tabbar-item link="user" :selected="userState">
-            <i slot="icon" class="icon iconfont icon-user"></i>
-            <span slot="label">我的</span>
-          </tabbar-item>
-        </tabbar>
-      </view-box>
-  </div>
+  <router-view keep-alive></router-view>
+  <tabbar slot="bottom" class="homepage">
+    <tabbar-item link="index" :selected="indexState">
+      <i slot="icon" class="icon iconfont icon-brush"></i>
+      <span slot="label">刷题</span>
+    </tabbar-item>
+    <tabbar-item link="bag" :selected="bagState">
+      <i slot="icon" class="icon iconfont icon-bag"></i>
+      <span slot="label">书包</span>
+    </tabbar-item>
+    <tabbar-item link="interact" :selected="interactState">
+      <i slot="icon" class="icon iconfont icon-comment2"></i>
+      <span slot="label">互动</span>
+    </tabbar-item>
+    <tabbar-item link="user" :selected="userState">
+      <i slot="icon" class="icon iconfont icon-user"></i>
+      <span slot="label">我的</span>
+    </tabbar-item>
+  </tabbar>
 </template>
 <script>
 import { Tabbar, TabbarItem,ViewBox } from 'vux'
-import store from '../../store' 
+import { path } from '../../common/getters'
 
 export default {
   components: {
@@ -32,19 +29,37 @@ export default {
     TabbarItem,
     ViewBox
   },
+  vuex: {
+    getters:{path},
+    actions:{}
+  },
   data(){
      return{
-          indexState: (store.state.route.path.indexOf('index') != -1 ? true:false),
-          interactState: (store.state.route.path.indexOf('interact') != -1 ? true:false),
-          userState: (store.state.route.path.indexOf('user') != -1 ? true:false),
-          bagState: (store.state.route.path.indexOf('bag') != -1 ? true:false)
+          indexState:(this.path.indexOf('index') >= 0 ? true : false),
+          interactState:(this.path.indexOf('interact') >= 0 ? true : false),
+          userState:(this.path.indexOf('user') >= 0 ? true : false),
+          bagState:(this.path.indexOf('bag') >= 0 ? true : false)
       }
+  },
+  watch:{
+    path(){
+      this.indexState = this.interactState = this.userState = this.bagState = false;
+      if(this.path.indexOf('index') >= 0 ){
+          this.indexState = true;
+      }else if(this.path.indexOf('interact') >= 0 ){
+          this.interactState = true;
+      }else if(this.path.indexOf('user') >= 0 ){
+          this.userState = true;
+      }else if(this.path.indexOf('bag') >= 0 ){
+          this.bagState = true;
+      }
+    }
   }
 }
 
 </script>
 
-<style lang="less">
+<style lang="less" >
 .homepage{
    .weui_bar_item_on{
      .iconfont{color:#4bb7aa}
