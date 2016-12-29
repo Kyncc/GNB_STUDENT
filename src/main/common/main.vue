@@ -1,9 +1,6 @@
 <template>
   <div style="height:100%;" >
-     <view-box v-ref:view-box>
-       <div>
-          <router-view keep-alive></router-view>
-       </div>
+       <router-view keep-alive></router-view>
        <tabbar slot="bottom" class="homepage">
           <tabbar-item link="index" :selected="indexState">
             <i slot="icon" class="icon iconfont icon-brush"></i>

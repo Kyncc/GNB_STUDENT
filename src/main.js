@@ -18,9 +18,7 @@ import resetPassword from './login/pages/resetPassword'
 import Main from './main/common/main'
 import Index from './main/pages/index'
 import User from './main/pages/user'
-
-
-import Photo from './main/pages/photo.vue'
+import Photo from './main/pages/photo'
 //题目评注、纠错
 import correct from './common/pages/correct'
 import comment from './common/pages/comment'
@@ -432,7 +430,6 @@ router.redirect({
   'camera/correct/:subjectId/:id': '/correct/:subjectId/:id',
   'remember/correct/:subjectId/:id': '/correct/:subjectId/:id',
   'error/correct/:subjectId/:id': '/correct/:subjectId/:id',
-  'brush/correct/:subjectId/:id': '/correct/:subjectId/:id',
   'camera/comment/:subjectId/:id': '/comment/:subjectId/:id',
   'error/comment/:subjectId/:id': '/comment/:subjectId/:id'
 });

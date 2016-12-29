@@ -9,7 +9,6 @@ import interact from './interact/store'
 import camera from './camera/modules/index'
 import error from './error/modules/index'
 
-
 import remember from './remember/modules/index'
 
 import brush from './brush/store'

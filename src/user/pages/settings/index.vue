@@ -8,13 +8,13 @@
       <cell title="意见反馈" link="advice">
         <span class="demo-icon" slot="icon"></span>
       </cell>
-      <cell title="清除缓存" v-touch:tap="_clear" v-show="(system == 'IOS'? false:true)">
-        <span class="demo-icon" slot="icon"></span>
-      </cell>
       <cell title="修改密码" link="resetPwd">
         <span class="demo-icon" slot="icon"></span>
       </cell>
       <cell title="检查更新" :value="'当前版本号:V'+ version" v-show="(system == 'IOS'? false:true)" v-touch:tap="_update">
+        <span class="demo-icon" slot="icon"></span>
+      </cell>
+      <cell title="清除缓存" v-touch:tap="_clear" v-show="(system == 'IOS'? false:true)">
         <span class="demo-icon" slot="icon"></span>
       </cell>
       <cell title="退出登录" v-touch:tap="_quitlogin"  link="javascript:void(0);">

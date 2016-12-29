@@ -1,6 +1,4 @@
 /*首页*/
-export const swiper = (state) => state.index.swiper
-
 export const fetchName = (state) => state.userInfo.name
 export const fetchPhone = (state) => state.userInfo.mobile
 export const fetchHeadImg = (state) => state.userInfo.headImg
