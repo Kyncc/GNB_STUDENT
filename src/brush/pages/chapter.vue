@@ -57,7 +57,6 @@ export default {
   },
   methods: {
   _toDetail(){
-
     return `list/`;
   },
   _changeSub(){

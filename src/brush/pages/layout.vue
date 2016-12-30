@@ -5,6 +5,7 @@
 <script>
 import {brushListClear} from '../actions/list'
 import {brushExampleClear} from '../actions/example'
+import './index.less'
 
 export default {
   vuex: {

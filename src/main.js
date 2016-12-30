@@ -16,12 +16,17 @@ import forget from './login/pages/forget'
 import resetPassword from './login/pages/resetPassword'
 //首页
 import Main from './main/common/main'
-import Index from './main/pages/index'
 import User from './main/pages/user'
 import Photo from './main/pages/photo'
 //题目评注、纠错
 import correct from './common/pages/correct'
 import comment from './common/pages/comment'
+
+
+
+import Index from './index/layout'
+import home from './index/index'
+
 //拍错题
 // import camera from './camera/pages/index'
 // import cameraHistory from './camera/pages/history'
@@ -44,6 +49,7 @@ import interactSystem from './interact/pages/system'
 //记错题
 import remember from './remember/pages/index'
 import rememberWorkbook from './remember/pages/workbook'
+import rememberWorkbookByPage from './remember/pages/page'
 import rememberExercise from './remember/pages/exercise'
 import rememberExample from './remember/pages/example'
 import rememberAdd from './remember/pages/add'
@@ -70,14 +76,19 @@ import userClassIndex from './user/pages/class/index'
 import userClassmate from './user/pages/class/classmate'
 import userClassAdd from './user/pages/class/add'
 //刷题型
-import brush from './brush/pages/layout'
-import brushChapter from './brush/pages/chapter'
-import brushList from './brush/pages/list'
-import brushExample from './brush/pages/example'
+import brush from './brush/router'
+
+// import brush from './brush/pages/layout'
+// import brushChapter from './brush/pages/chapter'
+// import brushList from './brush/pages/list'
+// import brushExample from './brush/pages/example'
+
+
 /**
  * 书包
  */
-import Bag from './bag/bag'
+import Bag from './bag/layout'
+import BagIndex from './bag/index'
 //书包-我的习题册
 import bagWorkbook from './bag/workbook/pages/index'
 import bagWorkbookAdd from './bag/workbook/pages/add'
@@ -119,7 +130,7 @@ Vue.config.devtools = true
 FastClick.attach(document.body)
 
 //图片异步加载
-Vue.use(VueLazyload,{
+Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: 'http://www.chinasanbao.com/new/upload/headimg/headimg.png',
   loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
@@ -194,15 +205,124 @@ router.map({
       'interact/': {
         component: interact
       },
-      'index/': {
-        component: Index
+      'index': {
+        component: Index,
+        subRoutes: {
+          '/':{
+            component: home,
+           },
+           ...brush,
+          // 'brush': {
+          //   component: brush,
+          //   subRoutes: {
+          //     '/': {
+          //       component: brushChapter,
+          //       name: 'brushChapter'
+          //     },
+          //     '/list/:chapterId': {
+          //       component: brushList,
+          //       name: 'brushList'
+          //     },
+          //     '/example/:subjectId/:id': {
+          //       component: brushExample,
+          //       name: 'brushExample'
+          //     }
+          //   },
+          // },
+        //记错题
+          'remember': {
+            component: remember
+          },
+          'remember/add': {
+            component: rememberAdd
+          },
+          'remember/example/:id': {
+            component: rememberExample
+          },
+          'remember/workbook/:bookId': {
+            component: rememberWorkbook
+          },
+          'remember/workbook/byPage/:bookId': {
+            component: rememberWorkbookByPage
+          },
+          'remember/workbook/exercise/:chapterId': {
+            component: rememberExercise
+          },
+          'remember/textbook/add/:subjectId': {
+            component: rememberTextBookAdd
+          },
+
+
+
+
+
+        }
       },
-      'bag/': {
-        component: Bag
+      
+      'bag': {
+        component: Bag,
+        subRoutes: {
+          '/': {
+            component: BagIndex,
+          },
+          '/report': {
+            component: bagReport
+          },
+          '/report/detail/:chapterId': {
+            component: bagReportDetail
+          },
+
+          '/pass': {
+            component: bagPass,
+            subRoutes: {
+              '/': {
+                component: bagPassChapter,
+                name: 'passChapter'
+              },
+              '/list/:chapterId': {
+                component: bagPassList,
+                name: 'passList'
+              },
+              '/example/:subjectId/:id': {
+                component: bagPassExample,
+                name: 'passExample'
+              }
+            },
+          },
+
+          '/break': {
+              component: bagBreak,
+              subRoutes: {
+                '/': {
+                  component: bagBreakChapter,
+                  name: 'breakChapter'
+                },
+                '/list/:chapterId': {
+                  component: bagBreakList,
+                  name: 'breakList'
+                },
+                '/example/:subjectId/:id': {
+                  component: bagBreakExample,
+                  name: 'breakExample'
+                }
+              },
+          },
+
+          //收藏本
+          'collect/example': {
+            component: bagCollectExample
+          },
+          'collect/example/detail/:id': {
+            component: bagCollectExampleDetail
+          },
+
+
+
+        }
       }
     }
   },
-  'main/user/photo': {
+  'user/photo': {
     component: Photo
   },
   //拍错题
@@ -251,43 +371,6 @@ router.map({
     component: interactCorrect
   },
 
-  //记错题
-  'remember': {
-    component: remember
-  },
-  'remember/add': {
-    component: rememberAdd
-  },
-  'remember/example/:id': {
-    component: rememberExample
-  },
-  'remember/workbook/:bookId': {
-    component: rememberWorkbook
-  },
-  'remember/workbook/exercise/:chapterId': {
-    component: rememberExercise
-  },
-  'remember/textbook/add/:subjectId': {
-    component: rememberTextBookAdd
-  },
-  //刷题本
-  'brush': {
-    component: brush,
-    subRoutes: {
-      '/': {
-        component: brushChapter,
-        name:'brushChapter'
-      },
-      '/list/:chapterId': {
-        component: brushList,
-        name:'brushList'
-      },
-      '/example/:subjectId/:id': {
-        component: brushExample,
-        name:'brushExample'
-      }
-    },
-  },
   //个人中心
   'user/info': {
     component: userInfo
@@ -331,7 +414,7 @@ router.map({
   // 'user/member/rule': {
   //   component: userMemberRule
   // },
-   //积分规则
+  //积分规则
   //我的班级
   'user/class': {
     component: userClassIndex
@@ -345,13 +428,7 @@ router.map({
   /**
    * 书包模块
    */
-  //知识图谱
-  'bag/report': {
-    component: bagReport
-  },
-  'bag/report/detail/:chapterId': {
-    component: bagReportDetail
-  },
+
   //我的教材
   'bag/textbook': {
     component: bagTextbook
@@ -363,8 +440,8 @@ router.map({
   'bag/workbook': {
     component: bagWorkbook
   },
-  'bag/workbook/add':{
-    component:bagWorkbookAdd
+  'bag/workbook/add': {
+    component: bagWorkbookAdd
   },
   //收藏本
   'bag/collect/example': {
@@ -373,42 +450,8 @@ router.map({
   'bag/collect/example/detail/:id': {
     component: bagCollectExampleDetail
   },
-  //弃题本
-  'bag/pass': {
-    component: bagPass,
-    subRoutes: {
-      '/': {
-        component: bagPassChapter,
-        name:'passChapter'
-      },
-      '/list/:chapterId': {
-        component: bagPassList,
-        name:'passList'
-      },
-      '/example/:subjectId/:id': {
-        component: bagPassExample,
-        name:'passExample'
-      }
-    },
-  },
-    //斩题本
-  'bag/break': {
-    component: bagBreak,
-    subRoutes: {
-      '/': {
-        component: bagBreakChapter,
-        name:'breakChapter'
-      },
-      '/list/:chapterId': {
-        component: bagBreakList,
-        name:'breakList'
-      },
-      '/example/:subjectId/:id': {
-        component: bagBreakExample,
-        name:'breakExample'
-      }
-    },
-  }
+
+
   // 'bag/pass/example': {
   //   component: bagCollectExample
   // },
@@ -449,32 +492,32 @@ router.beforeEach(function (transition) {
 
 
 
-function plusReady(){
-    let first = null;
-    plus.key.addEventListener("backbutton",function(){
-        if(store.state.route.path == '/interact' || store.state.route.path == '/index' || store.state.route.path =='/user' || store.state.route.path =='/bag'){
-            if (!first) {
-                first = new Date().getTime();
-                _.toast('再按一次退出')
-                setTimeout(function() {
-                    first = null;
-                }, 1000);
-            } else {
-                if (new Date().getTime() - first < 1000) {
-                    plus.runtime.quit();
-                }
-            }
-        }else{
-            window.history.back();
+function plusReady() {
+  let first = null;
+  plus.key.addEventListener("backbutton", function () {
+    if (store.state.route.path == '/interact' || store.state.route.path == '/index' || store.state.route.path == '/user' || store.state.route.path == '/bag') {
+      if (!first) {
+        first = new Date().getTime();
+        _.toast('再按一次退出')
+        setTimeout(function () {
+          first = null;
+        }, 1000);
+      } else {
+        if (new Date().getTime() - first < 1000) {
+          plus.runtime.quit();
         }
-    });
-    
+      }
+    } else {
+      window.history.back();
+    }
+  });
+
 }
 
-if(window.plus){
-    plusReady();
-}else{
-    document.addEventListener("plusready",plusReady,false);
+if (window.plus) {
+  plusReady();
+} else {
+  document.addEventListener("plusready", plusReady, false);
 }
 
 router.start(App, '#App')

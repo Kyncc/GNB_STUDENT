@@ -1,6 +1,6 @@
 <template>
   <router-view keep-alive></router-view>
-  <tabbar slot="bottom" class="homepage">
+  <tabbar slot="bottom" class="homepage" v-show="isRoot">
     <tabbar-item link="index" :selected="indexState">
       <i slot="icon" class="icon iconfont icon-brush"></i>
       <span slot="label">刷题</span>
@@ -35,6 +35,7 @@ export default {
   },
   data(){
      return{
+          isRoot:true,
           indexState:(this.path.indexOf('index') >= 0 ? true : false),
           interactState:(this.path.indexOf('interact') >= 0 ? true : false),
           userState:(this.path.indexOf('user') >= 0 ? true : false),
@@ -43,15 +44,17 @@ export default {
   },
   watch:{
     path(){
-      this.indexState = this.interactState = this.userState = this.bagState = false;
-      if(this.path.indexOf('index') >= 0 ){
-          this.indexState = true;
-      }else if(this.path.indexOf('interact') >= 0 ){
-          this.interactState = true;
-      }else if(this.path.indexOf('user') >= 0 ){
-          this.userState = true;
-      }else if(this.path.indexOf('bag') >= 0 ){
-          this.bagState = true;
+      //判断是否在首页显示下面标签
+      this.indexState = this.interactState = this.userState = this.bagState = this.isRoot = false;
+
+      if(this.path == '/index'){
+          this.isRoot = this.indexState = true;
+      }else if(this.path == '/interact'){
+          this.isRoot = this.interactState = true;
+      }else if(this.path == '/user'){
+          this.isRoot = this.userState = true;
+      }else if(this.path == '/bag'){
+          this.isRoot = this.bagState = true;
       }
     }
   }

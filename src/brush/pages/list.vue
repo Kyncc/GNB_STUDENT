@@ -49,7 +49,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 import {token,chapterId} from '../../common/getters'
 import {brushSubjectId,brushListScoll,brushListOffset,brushList} from '../getters'
 import {setScoll,getBrushList,brushListClear } from '../actions/list'
-import '../index.less'
+
 
 export default {
     components: {

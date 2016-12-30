@@ -2,40 +2,54 @@ import * as types from '../mutationTypes'
 
 const state = {
     subjectId:'2',
-    my:[],  
-    all:[],
-    chapter:[], 
+    my:[],              //我的练习册
+    all:[],             //全部练习册
+    page:[],            //练习册页码
+    pageScroll:0,
+    chapter:[],         //练习册章节
     chapterScroll:0,
-    exercise:[],
+    exercise:[],        //练习记错
     exerciseScroll:0,
-    example:[]      
+    example:[]         
 }
 
 const mutations = {
-  [types.REMEMBER_WORKBOOK_GET](state, data) {
-      state.my = data.data;
-      state.chapter =  [];
-  },
   [types.REMEMBER_SUBJECT_CHANGE](state,id){
       state.subjectId = id;
+      state.page = [];
       state.my = [];
+      state.pageScroll = 0;
       state.chapterScroll = 0;
       state.exerciseScroll = 0;
       state.all = [];  
       state.chapter = [];
   },
+
   [types.REMEMBER_CHAPTER_GET](state,data){
       state.chapter =  data.data;
   },
   [types.REMEMBER_CHAPTER_CLEAR](state,data){
-      state.my = [];
       state.chapterScroll = 0;
-      state.exerciseScroll = 0;
-      state.all = [];  
       state.chapter =  [];
   }, 
   [types.REMEMBER_CHAPTER_SCROLL](state, height){
      state.chapterScroll = height;
+  },
+  
+  [types.REMEMBER_PAGE_GET](state,data){
+      state.page =  data.data;
+  },
+  [types.REMEMBER_PAGE_CLEAR](state,data){
+      state.pageScroll = 0;
+      state.page =  [];
+  }, 
+  [types.REMEMBER_PAGE_SCROLL](state, height){
+     state.pageScroll = height;
+  },
+  
+  [types.REMEMBER_WORKBOOK_GET](state, data) {
+      state.my = data.data;
+      state.chapter =  [];
   },
   [types.REMEMBER_WORKBOOK_ALL](state,data){
       state.all =  data.data;
@@ -47,6 +61,7 @@ const mutations = {
       state.all = [];   
       state.my = [];
   },
+
   [types.REMEMBER_EXERCISE](state,data){
       state.exercise = data.data;
   },
@@ -64,6 +79,7 @@ const mutations = {
         state.exercise.a[Pid].b[id].answer = !state.exercise.a[Pid].b[id].answer;   
       }
   },
+
   [types.REMEMBER_EXAMPLE](state,data){
       state.example = data.data;
   },
@@ -76,6 +92,8 @@ const mutations = {
   [types.REMEMBER_EXAMPLE_COLLECT_REMOVE](state){
       state.example[0].collectTime = 0;
   }
+
+
 }
 
 export default {

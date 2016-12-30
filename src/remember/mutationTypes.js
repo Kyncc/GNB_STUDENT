@@ -10,22 +10,35 @@ export const REMEMBER_WORKBOOK_ALL = 'REMEMBER_WORKBOOK_ALL'
 export const REMEMBER_WORKBOOK_ALL_CLEAR = 'REMEMBER_WORKBOOK_ALL_CLEAR'
 /** 获取习题册切换科目 */
 export const REMEMBER_SUBJECT_CHANGE = 'REMEMBER_SUBJECT_CHANGE'
+
 /** 获取习题册章节 */
 export const REMEMBER_CHAPTER_GET = 'REMEMBER_CHAPTER_GET'
 /** 清除章节数据 */
 export const REMEMBER_CHAPTER_CLEAR = 'REMEMBER_CHAPTER_CLEAR'
 /** 设置章节高度 */
 export const REMEMBER_CHAPTER_SCROLL = 'REMEMBER_CHAPTER_SCROLL'
-/** 获取章节练习题 */
+
+/** 获取习题册页码 */
+export const REMEMBER_PAGE_GET = 'REMEMBER_PAGE_GET'
+/** 获取习题册页码下拉 */
+export const REMEMBER_PAGE_CHANGE = 'REMEMBER_PAGE_CHANGE'
+/** 清除习题册页码数据 */
+export const REMEMBER_PAGE_CLEAR = 'REMEMBER_PAGE_CLEAR'
+/** 设置习题册页码高度 */
+export const REMEMBER_PAGE_SCROLL = 'REMEMBER_PAGE_SCROLL'
+
+/** 获取练习题 */
 export const REMEMBER_EXERCISE= 'REMEMBER_EXERCISE'
-/** 章节练习题更改答案 */
+/** 练习题更改答案 */
 export const REMEMBER_EXERCISE_CHANGE= 'REMEMBER_EXERCISE_CHANGE'
-/** 提交章节练习题 */
+/** 提交练习题 */
 export const REMEMBER_EXERCISE_POST= 'REMEMBER_EXERCISE_POST'
-/** 清空章节练习题 */
+/** 清空练习题 */
 export const REMEMBER_EXERCISE_CLEAR = 'REMEMBER_EXERCISE_CLEAR'
 /** 设置练习题高度 */
 export const REMEMBER_EXERCISE_SCROLL = 'REMEMBER_EXERCISE_SCROLL'
+
+
 /** 例题查看 */
 export const REMEMBER_EXAMPLE= 'REMEMBER_EXAMPLE'
 /** 清空例题 */

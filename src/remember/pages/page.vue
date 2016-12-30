@@ -3,32 +3,14 @@
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">章节选择
                 <a slot="right" @click="_changeType()" class="changeSub">
-                    按章节
+                    按页码
                     <span class="with_arrow"></span>
                 </a>
             </x-header>
         </div>
 
         <div style="padding-top:46px;">
-            <template v-for="item in rememberChapter">
-                <template v-for="a in item">
-                    <div v-for="aitem in a" style="margin-bottom:.5rem">
-                        <header class="sectionHeader ellipsis" @click="_isLink(aitem)" >{{_isLinkTitle(aitem)}}</header>
-                        <group>
-                            <template v-for="b in aitem.b"> 
-                                <cell :title="_isLinkTitle(b)"  @click="_isLink(b)" link="javascript:;"></cell>
-                                <template v-for="c in b.c">
-                                    <cell :title="_isLinkTitle(c)" class="indent1" @click="_isLink(c)" link="javascript:;"></cell>
-                                    <template v-for="d in c.d">
-                                        <cell :title="_isLinkTitle(d)" class="indent2" @click="_isLink(d)" link="javascript:;"></cell>
-                                    </template>    
-                                </template>
-                            </template>
-                        </group>
-                    </div>
-                </template>
-            </template>
-
+            1231231
             <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
                 <span slot="no-results" style="color:#4bb7aa;">
                     <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -38,8 +20,8 @@
             </infinite-loading>
 
             <Popup :visible.sync="visible"  popup-transition="popup-fade" class="gnb-changeSub">
-                <p class="active">按章节</p>
-                <p @click="_intoPage()">按页码</p>
+                <p @click="_intoPage()">按章节</p>
+                <p class="active">按页码</p>
             </Popup>
 
         </div>
@@ -75,12 +57,12 @@ export default {
         }
     },
   methods:{
-       _intoPage(){
-           this.$router.replace(`/remember/workbook/byPage/${this.wookbookId}`);
+        _intoPage(){
+           this.$router.replace(`/remember/workbook/${this.wookbookId}`);
        },
-       _changeType(){
+        _changeType(){
             this.visible = true;
-       },
+        },
       _isLink(item){
           if(item.isLink == 'true'){
             this.rememberExerciseClear();//进去前清空数据
