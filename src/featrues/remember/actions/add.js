@@ -1,6 +1,6 @@
-import Api from '../../config/httpdispatch'
+import Api from '../../../config/httpdispatch'
 import * as types from '../mutationTypes'
-import * as _ from '../../config/whole'
+import * as _ from '../../../config/whole'
 
 
 /**获取全部练习册 */

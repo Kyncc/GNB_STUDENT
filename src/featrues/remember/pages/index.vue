@@ -37,12 +37,12 @@
 <script>
 import {XHeader,Panel,ViewBox,Group,Cell,Search,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token,userSubjectList} from '../../common/getters'
+import {token,userSubjectList} from '../../../common/getters'
 import {rememberWorkbook,rememberSubjectId} from '../getters'
 import {getWorkbook,setSubject} from '../actions/remember'
 import {delChapter} from '../actions/workbook'
 import {WorkbookAllDel} from '../actions/add'
-import gnbChangeSub from '../../components/changesub/index'
+import gnbChangeSub from '../../../components/changesub/index'
 import './index.less'
 
 export default {

@@ -45,31 +45,3 @@ export const correct = ({ dispatch }, params) => {
       }
   })
 }
-
-//收藏
-export const collectAdd = ({ dispatch }, params,callback) => {
-  Api.collectAdd({
-      data:params,
-      ok:response=>{
-        _.toast('收藏成功');
-        callback();
-      },
-      wrong:response=>{
-        _.toast(response.data.msg);
-      }
-  })
-}
-
-//取消收藏
-export const collectRemove = ({ dispatch }, params,callback) => {
-  Api.collectRemove({
-      data:params,
-      ok:response=>{
-         _.toast('取消成功');
-         callback();
-      },
-      wrong:response=>{
-        _.toast(response.data.msg);
-      }
-  })
-}

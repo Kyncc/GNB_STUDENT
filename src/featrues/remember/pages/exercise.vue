@@ -63,8 +63,8 @@ import { XHeader,Panel,ViewBox,Group,Cell,XButton,Checker, CheckerItem,Confirm} 
 import InfiniteLoading from 'vue-infinite-loading'
 import {rememberExerciseGet,rememberExercisePost,rememberExerciseClear,rememberExAnswerChange,setScoll} from '../actions/exercise'
 import {rememberExercise,chapterId,rememberExerciseScroll} from '../getters'
-import { token } from '../../common/getters'
-import * as _ from '../../config/whole.js'
+import { token } from '../../../common/getters'
+import * as _ from '../../../config/whole.js'
 import './index.less'
 
 export default {

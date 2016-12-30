@@ -34,10 +34,9 @@
 <script>
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,Search} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import store from '../../store' 
-import {token} from '../../common/getters'
+import {token} from '../../../common/getters'
 import {workbookAll,workbookAdd,WorkbookAllDel} from '../actions/add'
-import * as _ from '../../config/whole.js'
+import * as _ from '../../../config/whole.js'
 import {rememberWorkbookAll,rememberSubjectId} from '../getters'
 import './index.less'
 
@@ -72,7 +71,6 @@ export default {
             }
        }    
    },
-   store,
    data() {
     return {
         selectBookList:[],

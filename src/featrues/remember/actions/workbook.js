@@ -1,6 +1,6 @@
-import Api from '../../config/httpdispatch'
+import Api from '../../../config/httpdispatch'
 import * as types from '../mutationTypes'
-import * as _ from '../../config/whole'
+import * as _ from '../../../config/whole'
 
 /**习题册获取章节 */
 export const getWorkbookChapter = ({ dispatch }, params,success,wrong) => {

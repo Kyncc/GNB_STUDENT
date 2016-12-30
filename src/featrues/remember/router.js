@@ -4,7 +4,7 @@ import rememberWorkbookByPage from './pages/page'
 import rememberExercise from './pages/exercise'
 import rememberExample from './pages/example'
 import rememberAdd from './pages/add'
-import rememberTextBookAdd from '../featrues/textbook/pages/fromWorkbookAdd'
+import rememberTextBookAdd from '../textbook/pages/fromWorkbookAdd'
 
 export default  {
     'remember': {

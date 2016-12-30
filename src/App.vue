@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import store from './store'
 import './common/common.less'
 import {Loading,Toast} from 'vux'
 import {toastMsg,toastShow,isLoading} from './common/getters'
@@ -17,7 +16,6 @@ export default {
   components: {
    Loading,Toast
   },
-  store,
   vuex: {
     getters: {
       toastMsg,

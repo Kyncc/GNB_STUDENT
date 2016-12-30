@@ -51,7 +51,7 @@ import { XHeader,Panel,ViewBox,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { Popup } from 'mint-ui'
 
-import { token } from '../../common/getters'
+import { token } from '../../../common/getters'
 import {rememberChapter,wookbookId,rememberChapterScroll} from '../getters'
 import {getWorkbookChapter,delChapter,setScoll} from '../actions/workbook'
 import {rememberExerciseClear} from '../actions/exercise'
