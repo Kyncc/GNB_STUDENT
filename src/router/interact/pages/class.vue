@@ -1,7 +1,7 @@
 <template>
-	<view-box v-ref:view-box class="interactCorrect">
+	<view-box v-ref:view-box class="interactClass">
 		 <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">纠错消息</x-header>
+            <x-header :left-options="{showBack: true}">班级消息</x-header>
         </div>
 		<div style="padding-top:46px;" class="interactSection">
 			<section v-for="item in list">
@@ -16,17 +16,16 @@
 					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
 					<p style="font-size:1rem;display:inline-block;">暂无消息~</p>
 				</span>
-				<span slot="no-more" ></span>
+				<span slot="no-more"></span>
 			</infinite-loading>
 		</div>
 	</view-box>
 </template>
 <script>
 import {XHeader,ViewBox} from 'vux'
-import store from '../../store' 
-import { token } from '../../common/getters'
-import { getInteractCorrect } from '../actions'
-import { interactCorrectList } from '../getters'
+import { token } from '../../../common/getters'
+import { getInteractClass } from '../actions'
+import { interactClassList } from '../getters'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -35,13 +34,12 @@ export default {
 	},
 	vuex: {
 		getters: {
-			token,interactCorrectList
+			token,interactClassList
 		},
 		actions: {
-			getInteractCorrect
+			getInteractClass
 		}
 	},
-	store,
 	data(){
 		return {
 			list: []
@@ -50,11 +48,11 @@ export default {
 	methods: {
 		onInfinite(){
 			let self = this;
-			this.getInteractCorrect({
+			this.getInteractClass({
 				"token":this.token
 			},()=>{
 				setTimeout(()=>{
-					self.list = self.interactCorrectList;
+					self.list = self.interactClassList;
 					if(self.list.length != 0) {self.$broadcast('$InfiniteLoading:loaded');}
 					self.$broadcast('$InfiniteLoading:complete');
 				},300);

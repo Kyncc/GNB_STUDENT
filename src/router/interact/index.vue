@@ -27,7 +27,7 @@
 
     <dialog :show.sync="show" class="dialog-demo" @click="show=false">
         <div class="img-box">
-            <img src="../assets/main/ewm.jpg" style="max-width:100%">
+            <img src="../../assets/main/ewm.jpg" style="max-width:100%">
         </div>
         <span class="vux-close">截屛到微信中识别二维码</span>
     </dialog>
@@ -36,12 +36,12 @@
 
 <script>
 import JRoll from 'jroll'
-import '../common/pulldown.js'
+import '../../common/pulldown.js'
 import {XHeader,Group,Scroller,Cell,Spinner,Dialog} from 'vux'
-import { token } from '../common/getters'
+import { token } from '../../common/getters'
 import { interactIndex } from './getters'
 import { getInteractIndex} from './actions'
-import * as _ from '../config/whole'
+import * as _ from '../../config/whole'
 import './index.less'
 
 export default {

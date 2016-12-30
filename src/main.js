@@ -26,10 +26,10 @@ import index from './router/index/router'
 //书包模块
 import bag from './router/bag/router'
 //互动
-import interact from './interact/index'
-import interactClass from './interact/pages/class'
-import interactCorrect from './interact/pages/correct'
-import interactSystem from './interact/pages/system'
+import interact from './router/interact/index'
+import interactClass from './router/interact/pages/class'
+import interactCorrect from './router/interact/pages/correct'
+import interactSystem from './router/interact/pages/system'
 //个人中心
 import userInfo from './user/pages/info'
 //个人中心-设置
