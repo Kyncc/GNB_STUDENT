@@ -3,17 +3,17 @@
 
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
-        添加{{rememberSubjectId|subName}}习题册
-        <a slot="right" @click="_addWorkBook()" v-show="selectBookList.length != 0">
+        添加{{workbookSubjectId|subName}}习题册
+        <a slot="right" @click="_addWorkbook()" v-show="selectBookList.length != 0">
              完成
          </a>
       </x-header>
-      <search @on-submit="_onSearch" @on-change="_onSearch" :value.sync="searchName" :auto-fixed="false" placeholder="请输入习题册名"></search>
+      <search @on-submit="_onSearch"  @on-change="_onSearch" :value.sync="searchName" :auto-fixed="false" placeholder="请输入习题册名"></search>
     </div>
 
-    <div style="padding-top:86px;"> 
+    <div style="padding-top:86px;">
 
-        <template v-for="item in rememberWorkbookAll">
+        <template v-for="item in AllWorkbook">
             <group :title="item.textbookName">
                 <checklist :options="item.list|covert" :value.sync="selectBookList" ></checklist>
             </group>
@@ -21,8 +21,8 @@
 
         <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
             <span slot="no-results" style="color:#4bb7aa;">
-                <i class="icon iconfont " style="font-size:1.5rem;margin-right:.2rem"></i>
-                <p style="font-size:1rem;display:inline-block;" @click="_addTextBook()"> 点我先添加教材</p>
+                <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
+                <p style="font-size:1rem;display:inline-block;"  @click="_addTextBook()">{{(searchName.length == 0 ? '点我先添加教材':'查询无结果')}}</p>
             </span>
             <span slot="no-more"></span>
         </infinite-loading>
@@ -32,14 +32,17 @@
   </view-box>
 </template>
 <script>
+
+
+import store from '../../../store'
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,Search} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import store from '../../store' 
-import {token} from '../../common/getters'
-import {workbookAll,workbookAdd,WorkbookAllDel} from '../actions/add'
-import * as _ from '../../config/whole.js'
-import {rememberWorkbookAll,rememberSubjectId} from '../getters'
-import './index.less'
+import {token} from '../../../common/getters'
+import {AllWorkbook,workbookSubjectId} from '../getters'
+import {getWorkbookAll,setSubject,workbookAllDel,addWorkbook} from '../actions'
+import gnbChangeSub from '../../../components/changesub/index.vue'
+import * as _ from '../../../config/whole.js'
+
 
 export default {
   components: {
@@ -47,10 +50,10 @@ export default {
   },
   vuex: {
     getters: {
-        token,rememberWorkbookAll,rememberSubjectId
+        token,AllWorkbook,workbookSubjectId
     },
     actions: {
-        workbookAll,workbookAdd,WorkbookAllDel
+        getWorkbookAll,addWorkbook,workbookAllDel
     }
   },
    filters: {
@@ -74,48 +77,43 @@ export default {
    },
    store,
    data() {
-    return {
-        selectBookList:[],
-        searchName:''
-    }
+        return {
+            selectBookList:[],
+            searchName:''
+        }
+  },
+  created(){
+     this.workbookAllDel();      //搜索需要清除数据
   },
   methods: {
         _addTextBook(){
-            this.$router.go(`/remember/textbook/add/${this.rememberSubjectId}`);
+            if(searchName.length == 0){
+                this.$router.go(`/user/textbook/add`);
+            }
         },
         _onSearch(str){
             this.searchName = str;
-            this.WorkbookAllDel();      //搜索需要清除数据
+            this.workbookAllDel();      //搜索需要清除数据
             this.$nextTick(() => {
                 this.$broadcast('$InfiniteLoading:reset');
             });
         },
-        _addWorkBook(){
-            _.busy();
-            this.workbookAdd({
+        _addWorkbook(){
+            this.addWorkbook({
                 token:this.token,   
                 workbookId:this.selectBookList
             },()=>{
-                _.leave();
                 _.toast('添加成功');
                 history.back();
             })
         },
-        _isFirst(){
-            if(this.rememberWorkbookAll.length != 0 ){
-                this.$broadcast('$InfiniteLoading:loaded');
-                this.$broadcast('$InfiniteLoading:complete');
-                return;
-            }
-        },
         _onInfinite(){
-            this._isFirst();
-            this.workbookAll({
+            this.getWorkbookAll({
                 token:this.token,   
-                subjectId:this.rememberSubjectId,
+                subjectId:this.workbookSubjectId,
                 workbookName:this.searchName
             },()=>{
-                if(this.rememberWorkbookAll.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+                if(this.AllWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
                 this.$broadcast('$InfiniteLoading:complete');
             });
         }

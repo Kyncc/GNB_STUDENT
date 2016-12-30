@@ -43,7 +43,7 @@ import {getWorkbook,setSubject} from '../actions/remember'
 import {delChapter} from '../actions/workbook'
 import {WorkbookAllDel} from '../actions/add'
 import gnbChangeSub from '../../components/changesub/index'
-import '../index.less'
+import './index.less'
 
 export default {
   components:{

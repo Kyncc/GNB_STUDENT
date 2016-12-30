@@ -21,39 +21,15 @@ import Photo from './main/pages/photo'
 //题目评注、纠错
 import correct from './common/pages/correct'
 import comment from './common/pages/comment'
-
-
-
-import Index from './index/layout'
-import home from './index/index'
-
-//拍错题
-// import camera from './camera/pages/index'
-// import cameraHistory from './camera/pages/history'
-// import cameraExample from './camera/pages/example'
-// import cameraResult from './camera/pages/result'
-// import cameraPhoto from './camera/pages/photo'
-// import cameraSuccess from './camera/pages/success'
-//归纳错题
-// import error from './error/pages/index'
-// import errorList from './error/pages/list'
-// import errorDetail from './error/pages/detail'
-// import errorMore from './error/pages/more'
-// import errorRecommend from './error/pages/recommend'
-
+//首页模块
+import index from './router/index/router'
+//书包模块
+import bag from './router/bag/router'
 //互动
 import interact from './interact/index'
 import interactClass from './interact/pages/class'
 import interactCorrect from './interact/pages/correct'
 import interactSystem from './interact/pages/system'
-//记错题
-import remember from './remember/pages/index'
-import rememberWorkbook from './remember/pages/workbook'
-import rememberWorkbookByPage from './remember/pages/page'
-import rememberExercise from './remember/pages/exercise'
-import rememberExample from './remember/pages/example'
-import rememberAdd from './remember/pages/add'
-import rememberTextBookAdd from './bag/textbook/pages/fromWorkbookAdd'
 //个人中心
 import userInfo from './user/pages/info'
 //个人中心-设置
@@ -65,57 +41,10 @@ import userSettingsAdviceHistory from './user/pages/settings/adviceHistory'
 import userInviteIndex from './user/pages/invite/index'
 import userInviteFriend from './user/pages/invite/friend'
 import userCodeInput from './user/pages/invite/input'
-//我的会员
-import userMemberIndex from './user/pages/member/index'
-import userMemberPoints from './user/pages/member/points'
-import userMemberRule from './user/pages/member/rule'
-import userMemberRecharge from './user/pages/member/recharge'
-import userMemberMyBill from './user/pages/member/myBill'
 //我的班级
 import userClassIndex from './user/pages/class/index'
 import userClassmate from './user/pages/class/classmate'
 import userClassAdd from './user/pages/class/add'
-//刷题型
-import brush from './brush/router'
-
-// import brush from './brush/pages/layout'
-// import brushChapter from './brush/pages/chapter'
-// import brushList from './brush/pages/list'
-// import brushExample from './brush/pages/example'
-
-
-/**
- * 书包
- */
-import Bag from './bag/layout'
-import BagIndex from './bag/index'
-//书包-我的习题册
-import bagWorkbook from './bag/workbook/pages/index'
-import bagWorkbookAdd from './bag/workbook/pages/add'
-//书包-知识图谱
-import bagReport from './bag/report/pages/index'
-import bagReportDetail from './bag/report/pages/detail'
-//书包-我的教材
-import bagTextbook from './bag/textbook/pages/index'
-import bagTextbookAdd from './bag/textbook/pages/add'
-//书包-收藏本
-import bagCollectExample from './bag/collect/pages/example'
-import bagCollectExampleDetail from './bag/collect/pages/exampleDetail'
-//书包-弃题本
-import bagPass from './bag/pass/pages/layout'
-import bagPassChapter from './bag/pass/pages/chapter'
-import bagPassList from './bag/pass/pages/list'
-import bagPassExample from './bag/pass/pages/example'
-//书包-斩题本
-import bagBreak from './bag/break/pages/layout'
-import bagBreakChapter from './bag/break/pages/chapter'
-import bagBreakList from './bag/break/pages/list'
-import bagBreakExample from './bag/break/pages/example'
-/**
- * 拍错题收藏
- * import collectCamera from './collect/pages/camera'
- * import collectCameraDetail from './collect/pages/cameraRecord'
- */
 //插件
 import moment from 'moment'
 import FastClick from 'fastclick'
@@ -164,7 +93,6 @@ if (/iphone|ipad|ipod/.test(ua)) {
   commit('SET_SYSTEM', 'Android')
 }
 
-
 const router = new Router()
 router.map({
   '/login': {
@@ -205,161 +133,13 @@ router.map({
       'interact/': {
         component: interact
       },
-      'index': {
-        component: Index,
-        subRoutes: {
-          '/':{
-            component: home,
-           },
-           ...brush,
-          // 'brush': {
-          //   component: brush,
-          //   subRoutes: {
-          //     '/': {
-          //       component: brushChapter,
-          //       name: 'brushChapter'
-          //     },
-          //     '/list/:chapterId': {
-          //       component: brushList,
-          //       name: 'brushList'
-          //     },
-          //     '/example/:subjectId/:id': {
-          //       component: brushExample,
-          //       name: 'brushExample'
-          //     }
-          //   },
-          // },
-        //记错题
-          'remember': {
-            component: remember
-          },
-          'remember/add': {
-            component: rememberAdd
-          },
-          'remember/example/:id': {
-            component: rememberExample
-          },
-          'remember/workbook/:bookId': {
-            component: rememberWorkbook
-          },
-          'remember/workbook/byPage/:bookId': {
-            component: rememberWorkbookByPage
-          },
-          'remember/workbook/exercise/:chapterId': {
-            component: rememberExercise
-          },
-          'remember/textbook/add/:subjectId': {
-            component: rememberTextBookAdd
-          },
-
-
-
-
-
-        }
-      },
-      
-      'bag': {
-        component: Bag,
-        subRoutes: {
-          '/': {
-            component: BagIndex,
-          },
-          '/report': {
-            component: bagReport
-          },
-          '/report/detail/:chapterId': {
-            component: bagReportDetail
-          },
-
-          '/pass': {
-            component: bagPass,
-            subRoutes: {
-              '/': {
-                component: bagPassChapter,
-                name: 'passChapter'
-              },
-              '/list/:chapterId': {
-                component: bagPassList,
-                name: 'passList'
-              },
-              '/example/:subjectId/:id': {
-                component: bagPassExample,
-                name: 'passExample'
-              }
-            },
-          },
-
-          '/break': {
-              component: bagBreak,
-              subRoutes: {
-                '/': {
-                  component: bagBreakChapter,
-                  name: 'breakChapter'
-                },
-                '/list/:chapterId': {
-                  component: bagBreakList,
-                  name: 'breakList'
-                },
-                '/example/:subjectId/:id': {
-                  component: bagBreakExample,
-                  name: 'breakExample'
-                }
-              },
-          },
-
-          //收藏本
-          'collect/example': {
-            component: bagCollectExample
-          },
-          'collect/example/detail/:id': {
-            component: bagCollectExampleDetail
-          },
-
-
-
-        }
-      }
+      ...index,
+      ...bag,
     }
   },
   'user/photo': {
     component: Photo
   },
-  //拍错题
-  // 'camera': {
-  //   component: camera
-  // },
-  // 'camera/history': {
-  //   component: cameraHistory
-  // },
-  // 'camera/photo': {
-  //   component: cameraPhoto
-  // },
-  // 'camera/example/:cameraId/:exampleId': {
-  //   component: cameraExample
-  // },
-  // 'camera/result/:id': {
-  //   component: cameraResult
-  // },
-  // 'camera/success': {
-  //   component: cameraSuccess
-  // },
-  // //归纳本
-  // 'error': {
-  //   component: error
-  // },
-  // 'error/detail/:id': {
-  //   component: errorDetail
-  // },
-  // 'error/list/:knowledgeId': {
-  //   component: errorList
-  // },
-  // 'error/more/:knowledgeId/:id': {
-  //   component: errorMore
-  // },
-  // 'error/recommend/:knowledgeId': {
-  //   component: errorRecommend
-  // },
   //消息
   'interact/class': {
     component: interactClass
@@ -398,23 +178,6 @@ router.map({
   'user/invite/input': {
     component: userCodeInput
   },
-  //我的会员
-  // 'user/member': {
-  //   component: userMemberIndex
-  // },
-  // 'user/member/points': {
-  //   component: userMemberPoints
-  // }, //我的积分
-  // 'user/member/recharge': {
-  //   component: userMemberRecharge
-  // }, //充值
-  // 'user/member/myBill': {
-  //   component: userMemberMyBill
-  // }, //我的账单
-  // 'user/member/rule': {
-  //   component: userMemberRule
-  // },
-  //积分规则
   //我的班级
   'user/class': {
     component: userClassIndex
@@ -425,56 +188,10 @@ router.map({
   'user/class/add': {
     component: userClassAdd
   },
-  /**
-   * 书包模块
-   */
-
-  //我的教材
-  'bag/textbook': {
-    component: bagTextbook
-  },
-  'bag/textbook/add': {
-    component: bagTextbookAdd
-  },
-  //我的习题册
-  'bag/workbook': {
-    component: bagWorkbook
-  },
-  'bag/workbook/add': {
-    component: bagWorkbookAdd
-  },
-  //收藏本
-  'bag/collect/example': {
-    component: bagCollectExample
-  },
-  'bag/collect/example/detail/:id': {
-    component: bagCollectExampleDetail
-  },
-
-
-  // 'bag/pass/example': {
-  //   component: bagCollectExample
-  // },
-  // 'bag/collect/example/detail/:id': {
-  //   component: bagCollectExampleDetail
-  // },
-  // 'collect/camera': {
-  //   component: collectCamera
-  // },
-  // 'collect/camera/detail/:id/:cameraId': {
-  //   component: collectCameraDetail
-  // }
-
-
 })
 
 router.redirect({
-  // '/':'/main',
-  'camera/correct/:subjectId/:id': '/correct/:subjectId/:id',
   'remember/correct/:subjectId/:id': '/correct/:subjectId/:id',
-  'error/correct/:subjectId/:id': '/correct/:subjectId/:id',
-  'camera/comment/:subjectId/:id': '/comment/:subjectId/:id',
-  'error/comment/:subjectId/:id': '/comment/:subjectId/:id'
 });
 
 sync(store, router)

@@ -65,7 +65,7 @@ import {rememberExerciseGet,rememberExercisePost,rememberExerciseClear,rememberE
 import {rememberExercise,chapterId,rememberExerciseScroll} from '../getters'
 import { token } from '../../common/getters'
 import * as _ from '../../config/whole.js'
-import '../index.less'
+import './index.less'
 
 export default {
   components:{

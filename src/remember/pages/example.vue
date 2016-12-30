@@ -69,7 +69,6 @@ import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import {rememberExampleGet,rememberExampleClear,collectAdd,collectRemove} from '../actions/example'
 import {rememberExample,rememberSubjectId,exampleId} from '../getters'
 import {token} from '../../common/getters'
-import store from '../../store'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -125,7 +124,6 @@ export default {
 			}
 		}
 	},
-    store,
 	watch:{
 		exampleId(){
 			this.$nextTick(() => {

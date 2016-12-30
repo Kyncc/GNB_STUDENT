@@ -6,20 +6,19 @@ import userInfo from './login/modules/login'
 import forget from './login/modules/forget'
 import index from './main/modules/index'
 import interact from './interact/store'
-import camera from './camera/modules/index'
-import error from './error/modules/index'
-
+// import camera from './camera/modules/index'
+// import error from './error/modules/index'
 import remember from './remember/modules/index'
-
-import brush from './brush/store'
-import workbook from './bag/workbook/store'
-import textbook from './bag/textbook/store'
-import report from './bag/report/store'
-import collect from './bag/collect/store'
-import pass from './bag/pass/store'
-import breakList from './bag/break/store'
-
 import user from './user/modules/index'
+
+import brush from './featrues/brush/store'
+import pass from './featrues/pass/store'
+import breakList from './featrues/break/store'
+import workbook from './featrues/workbook/store'
+import textbook from './featrues/textbook/store'
+import report from './featrues/report/store'
+import collect from './featrues/collect/store'
+
 //需要重构
 // import member from './user/modules/member.js'
 
@@ -36,10 +35,6 @@ export default new Vuex.Store({
     // member,
     //收藏本
     collect,
-    //归纳本
-    error,
-    //拍错题
-    camera,
     report,
     remember,
     brush,

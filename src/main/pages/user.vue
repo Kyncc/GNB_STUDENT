@@ -44,6 +44,7 @@ import { setHeadPhoto } from '../actions.js'
 import {token,system} from '../../common/getters'
 import {fetchHeadImg} from '../getters'
 import {Userinfo} from '../../user/getters'
+import './main.less'
 
 export default {
     components: {

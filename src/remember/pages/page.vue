@@ -37,7 +37,7 @@ import { token } from '../../common/getters'
 import {rememberChapter,wookbookId,rememberChapterScroll} from '../getters'
 import {getWorkbookChapter,delChapter,setScoll} from '../actions/workbook'
 import {rememberExerciseClear} from '../actions/exercise'
-import '../index.less'
+import './index.less'
 
 export default {
   components:{
