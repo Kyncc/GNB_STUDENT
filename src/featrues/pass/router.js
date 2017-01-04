@@ -19,6 +19,6 @@ export default {
                 component: example,
                 name: 'passExample'
             }
-        },
+        }
     }
 }

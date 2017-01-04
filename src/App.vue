@@ -7,15 +7,17 @@
 </template>
 
 <script>
-import './common/common.less'
+import store from './store'
 import {Loading,Toast} from 'vux'
 import {toastMsg,toastShow,isLoading} from './common/getters'
+import './common/common.less'
 import * as actions from './common/actions'
 
 export default {
   components: {
    Loading,Toast
   },
+  store,
   vuex: {
     getters: {
       toastMsg,

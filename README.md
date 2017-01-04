@@ -29,7 +29,7 @@
     ├── build       # webpack编译配置
     ├── config      # webpack配置
     ├── dist        # 打包后文件（此目录放在HBuilder中）
-    ├── App.vue     # 入口页面
+    ├── app.vue     # 入口页面
     ├── main.js     # 入口JS
     ├── store.js    # Store
     ├── index.html  # html模版
@@ -38,20 +38,24 @@
         ├── assets      # 静态资源文件
         ├── common      # 公共文件模块
         ├── components  # 组件
-        ├── main        # 主页模块
+        ├── router      # 整体路由
+            ├── user        # 个人中心
+            ├── bag         # 书包
+            ├── index       # 首页
+            ├── interact    # 互动
         ├── login       # 登陆注册模块
-        ├── camera      # 拍错题模块
-        ├── collect     # 收藏本模块
-        ├── remember    # 记错题模块
-        ├── report      # 成绩报告单模块
-        ├── brush       # 题型汇总模块
-        ├── error       # 题型归纳
-        ├── message     # 互动模块
-        ├── users       # 个人中心
-            ├── pages               # 页面文件
-            ├── modules             # 逻辑
-            ├── action.js           # action
-            └── mutatuinTypes.js    # mutatuinTypes
+        ├── features    # 功能模块
+            ├── camera      # 拍错题模块
+            ├── collect     # 收藏本模块
+            ├── remember    # 记错题模块
+            ├── report      # 成绩报告单模块
+            ├── brush       # 题型汇总模块
+            ├── error       # 题型归纳
+            ├── break       # 斩题列表
+            ├── pass        # 弃题列表
+            ├── brush       # 刷错题
+            ├── textbook    # 我的教材
+            ├── workbook    # 我的练习册
 
 
 ## 安装
