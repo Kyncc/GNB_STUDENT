@@ -16,7 +16,7 @@
         </group>
         <group>
           <cell title="参与归纳本讨论群"  link="javascript:;"  @v-touch:tap="_openQQ">
-            <span class="icon iconfont icon-qq" v-bind:class="{'vux-reddot':interactIndex.hasNewClassMsg}"  style="color:#1296DB" slot="icon"></span>
+            <span class="icon iconfont icon-qq1" v-bind:class="{'vux-reddot':interactIndex.hasNewClassMsg}"  style="color:#1296DB" slot="icon"></span>
           </cell>
           <cell title="关注我们的公众号" link="javascript:;"  @click="show=true">
             <span class="icon iconfont icon-wechat" v-bind:class="{'vux-reddot':interactIndex.hasNewClassMsg}"  style="color:#1FDD00" slot="icon"></span>
