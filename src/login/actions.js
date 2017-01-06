@@ -2,7 +2,8 @@ import Api from '../config/httpdispatch'
 import * as types from './mutationTypes'
 import * as _ from '../config/whole'
 
-/*获取短信验证码(注册账号)*/
+
+/** 获取短信验证码(注册账号)*/
 export const getRegisterCode = ({ dispatch }, params) => {
   Api.getCode({
       data:params,
@@ -15,7 +16,7 @@ export const getRegisterCode = ({ dispatch }, params) => {
   })
 }
 
-/*设置登陆密码(注册账号)*/
+/** 设置登陆密码(注册账号)*/
 export const addPwd = ({ dispatch }, params,success,wrong) => {
   Api.addPwd({
       data:params,
@@ -30,7 +31,7 @@ export const addPwd = ({ dispatch }, params,success,wrong) => {
   })
 }
 
-/*设置用户信息*/
+/** 设置用户信息*/
 export const setUserInfo = ({ dispatch }, params,success,wrong) => {
   Api.addUserInfo({
     data: params,
@@ -44,26 +45,10 @@ export const setUserInfo = ({ dispatch }, params,success,wrong) => {
   })
 }
 
-/*用户登陆*/
-export const login = ({ dispatch }, params,success,wrong) => {
-   _.busy();
-  Api.login({
-      data:params,
-      ok:response=>{
-        dispatch(types.GET_LOGIN_SUCCESS,response.data);
-        // _.leave();
-        success&&success();
-      },
-      wrong:response=>{
-        wrong&&wrong();
-        _.leave();
-        _.toast(response.data.msg);
-      }
-  })
-}
 
 
-/*获取短信验证码(忘记密码)*/
+
+/** 获取短信验证码(忘记密码)*/
 export const getForgetCode = ({ dispatch }, params) => {
   Api.getCode({
       data:params,
@@ -77,7 +62,7 @@ export const getForgetCode = ({ dispatch }, params) => {
 }
 
 
-/*重置登陆密码*/
+/** 重置登陆密码*/
 export const resetPwd = ({ dispatch }, params,success,wrong) => {
   Api.resetPwd({
       data:params,
@@ -92,7 +77,7 @@ export const resetPwd = ({ dispatch }, params,success,wrong) => {
   })
 }
 
-/**获得教材版本信息 */
+/** *获得教材版本信息 */
 export const getTextbookVersion = ({ dispatch }, params,success,wrong) => {
   Api.getTextbookVer({
     data: params,

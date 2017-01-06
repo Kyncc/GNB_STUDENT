@@ -10,11 +10,11 @@ import {
 Vue.use(VueResource)
 
 export default {
-  getCode: (params) => {
-    return http({ method: 'get', url: API_PATHS.getCode, data: params.data, ok: params.ok, wrong: params.wrong });
-  },
   login: (params) => {
-    return http({ method: 'get', url: API_PATHS.login, data: params.data, ok: params.ok, wrong: params.wrong });
+    return http({ method: 'post', url: API_PATHS.token, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
+  registerCode: (params) => {
+    return http({ method: 'get', url: API_PATHS.resgisterCode, data: params.data, ok: params.ok, wrong: params.wrong });
   },
   addPwd: (params) => {
     return http({ method: 'get', url: API_PATHS.addPwd, data: params.data, ok: params.ok, wrong: params.wrong });
@@ -25,12 +25,15 @@ export default {
   getTextbookVer: (params) => {
     return http({ method: 'get', url: API_PATHS.textbookVersion, data: params.data, ok: params.ok, wrong: params.wrong });
   },
+  resetCode: (params) => {
+    return http({ method: 'get', url: API_PATHS.resetCode, data: params.data, ok: params.ok, wrong: params.wrong });
+  },
   resetPwd: (params) => {
     return http({ method: 'get', url: API_PATHS.resetPwd, data: params.data, ok: params.ok, wrong: params.wrong });
   },
-  //首页
-  index: (params) => {
-    return http({ method: 'get', url: API_PATHS.index, data: params.data, ok: params.ok, wrong: params.wrong });
+  //获取用户信息
+  getUserInfo: (params) => {
+    return http({ method: 'get', url: API_PATHS.userInfo, data: params.data, ok: params.ok, wrong: params.wrong })
   },
   //添加收藏
   collectAdd: (params) => {
@@ -128,10 +131,7 @@ export default {
     return http({ method: 'get', url: API_PATHS.msgSystem, data: params.data, ok: params.ok, wrong: params.wrong });
   },
   
-  //获取用户信息
-  getUserInfo: (params) => {
-    return http({ method: 'get', url: API_PATHS.userInfo, data: params.data, ok: params.ok, wrong: params.wrong })
-  },
+
   //编辑用户信息
   updateUserInfo: (params) => {
     return http({ method: 'post', url: API_PATHS.updateUserInfo, data: params.data, ok: params.ok, wrong: params.wrong })

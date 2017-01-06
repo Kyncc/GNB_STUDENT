@@ -13,21 +13,16 @@
       <x-input type="password" placeholder="新密码" keyboard="text" :value.sync="password" v-ref:password :min="6" :max="18"></x-input>
       <x-input type="password" placeholder="再次确认密码" keyboard="text" :value.sync="passwordAgain" v-ref:passwordagain :equal-with="password"></x-input>
     </group>
-    <flexbox :gutter="0" wrap="wrap">
-      <flexbox-item :span="1/20"></flexbox-item>
-      <flexbox-item :span="18/20">
-        <group>
-           <x-button type="primary" @click="_complete" :disabled="disable">下一步</x-button>
-        </group>
-      </flexbox-item>
-      <flexbox-item :span="1/20"></flexbox-item>
+    <div>
+        <x-button type="primary" @click="_complete" :disabled="disable" style="width:90%">下一步</x-button>
+    </div>
     </flexbox>
   </div>
 </template>
 
 <script>
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader} from 'vux'
-import { addPwd } from '../actions'
+import { addPwd } from '../actions/register'
 import { registerMobile } from '../getters'
 import * as _ from '../../config/whole.js'
 
@@ -36,8 +31,6 @@ export default {
      XInput,
      Group,
      XButton,
-     FlexboxItem,
-     Flexbox,
      XHeader
   }, 
   vuex: {

@@ -15,7 +15,7 @@ import setInfo from './login/pages/setInfo'
 import forget from './login/pages/forget'
 import resetPassword from './login/pages/resetPassword'
 //首页
-import Main from './main/common/main'
+import Layout from './main/pages/layout'
 import User from './main/pages/user'
 import Photo from './main/pages/photo'
 //题目评注、纠错
@@ -125,7 +125,7 @@ router.map({
   },
   //主页
   '/': {
-    component: Main,
+    component: Layout,
     subRoutes: {
       'user/': {
         component: User
@@ -150,7 +150,6 @@ router.map({
   'interact/correct': {
     component: interactCorrect
   },
-
   //个人中心
   'user/info': {
     component: userInfo

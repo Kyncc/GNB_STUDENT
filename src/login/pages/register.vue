@@ -15,41 +15,31 @@
         <x-button slot="right" :text="btnValue" type="primary" :disabled="disableMobile" style="width:118px;height:49px;border-radius:0;"  @click="_getCode"></x-button>
       </x-input>
     </group>
-    <flexbox :gutter="0" wrap="wrap">
-      <flexbox-item :span="1/20"></flexbox-item>
-      <flexbox-item :span="18/20">
-        <group>
-           <x-button type="primary"  :disabled="disableNext" @click="_next">下一步</x-button>
-        </group>
-      </flexbox-item>
-      <flexbox-item :span="1/20"></flexbox-item>
-    </flexbox>
+    <div>
+      <x-button type="primary"  :disabled="disableNext" @click="_next" style="width:90%">下一步</x-button>
+    </div>
   </div>
+
+  <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="已注册教师身份,确定清除数据" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
 </template>
 
 <script>
 import '../main.less'
-import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Cell} from 'vux'
-import { getRegisterCode } from '../actions'
-import { registerMessageCode,registerMobile } from '../getters'
+import {XInput,Group,XButton,XHeader,Cell,Confirm} from 'vux'
+import { getRegisterCode } from '../actions/register'
+import { registerMessageCode,registerMobile,registerTeacher} from '../getters'
 import * as _ from '../../config/whole.js'
 
 export default {
   components: {
-     XInput,
-     Group,
-     XButton,
-     FlexboxItem,
-     Flexbox,
-     XHeader,
-     Cell
+    XInput,Group,XButton,XHeader,Cell,Confirm
   },
   data(){
     return{
+      show: false,
       disableMobile: true,
       disableNext:true,
       currentDown:false,
-      agree:true,
       mobile:'',
       code:'',
       btnValue:'获取验证码'
@@ -57,20 +47,25 @@ export default {
   },
   vuex: {
     getters: {
-      registerMessageCode,
-      registerMobile
+      registerMessageCode,registerTeacher,registerMobile
     },
     actions: {
       getRegisterCode
     }
   },
   methods:{
+     onAction(type) {
+        if(type=='确认'){
+            this.$router.replace({path: 'register/password',registerMobile:this.mobile});
+        }
+        return
+    },
     _back(){
         this.$router.replace('/');
     },
     _next(){
        if(this.registerMessageCode == this.code){
-          this.$router.replace({path: 'register/password', registerMobile:this.mobile});
+          this.$router.replace({path: 'register/password',registerMobile:this.mobile});
        }else{
          this.code = '';
          _.toast('错误的验证码');
@@ -92,21 +87,22 @@ export default {
               _this.currentDown = false;
             };
         },1000);
-        let params = {
-            mobile: this.mobile,
-            type:1
-        }
-        this.getRegisterCode(params);
+        let params = {mobile: this.mobile}
+        
+        this.getRegisterCode(params,()=>{
+            this.show = this.registerTeacher  
+        });
+
+
+        
     }
-  },
-  watch:{
   },
   computed: {
      disableMobile(){
          return (this.$refs.mobile.valid && !this.currentDown ? false : true);
      },
      disableNext(){
-         return  (this.$refs.mobile.valid && this.$refs.code.valid && this.agree ? false : true);
+         return  (this.$refs.mobile.valid && this.$refs.code.valid  ? false : true);
      }
   }
 }

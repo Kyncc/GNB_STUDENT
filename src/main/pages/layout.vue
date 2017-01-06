@@ -21,17 +21,16 @@
 </template>
 <script>
 import { Tabbar, TabbarItem,ViewBox } from 'vux'
-import { path } from '../../common/getters'
+import { path,token,userMobile } from '../../common/getters'
+import { getUserInfo } from '../actions'
 
 export default {
   components: {
-    Tabbar,
-    TabbarItem,
-    ViewBox
+    Tabbar,TabbarItem, ViewBox
   },
   vuex: {
-    getters:{path},
-    actions:{}
+    getters:{path,token,userMobile},
+    actions:{getUserInfo}
   },
   data(){
      return{
@@ -41,6 +40,9 @@ export default {
           userState:(this.path.indexOf('user') >= 0 ? true : false),
           bagState:(this.path.indexOf('bag') >= 0 ? true : false)
       }
+  },
+  created(){
+      ( this.userMobile.length ==0 ? this.getUserInfo({token: this.token}) : '' )
   },
   watch:{
     path(){

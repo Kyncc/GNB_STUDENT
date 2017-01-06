@@ -2,13 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Global from './common/global'
 import register from './login/modules/register'
-import userInfo from './login/modules/login'
+import login from './login/modules/login'
 import forget from './login/modules/forget'
-import index from './main/modules/index'
 import interact from './router/interact/store'
+import userinfo from './main/store'
+import user from './user/modules/index'
 // import camera from './camera/modules/index'
 // import error from './error/modules/index'
-import user from './user/modules/index'
 import remember from './featrues/remember/store'
 import brush from './featrues/brush/store'
 import pass from './featrues/pass/store'
@@ -26,11 +26,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     Global,
-    userInfo,
+    login,
     register,
     forget,
-    index,
     interact,//互动
+    userinfo,
     // member,
     //收藏本
     collect,

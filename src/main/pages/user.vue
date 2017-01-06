@@ -9,8 +9,8 @@
   <scroller lock-x v-ref:scroller height="-47px">
     <div>
       <div class="info">
-        <img class="defaultimg" v-lazy="fetchHeadImg" v-touch:tap="_upload"/>
-        <p class="phone">&nbsp;{{Userinfo.name ? Userinfo.name:Userinfo.mobile}}&nbsp;</p>
+        <img class="defaultimg" :src="userHeadImg" v-touch:tap="_upload"/>
+        <p class="phone">&nbsp;{{userName ? userName:userMobile}}&nbsp;</p>
         <div class="upload" v-touch:tap="_upload">
           上传头像
         </div>
@@ -39,11 +39,8 @@
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from '../../config/whole.js'
-import {getUserinfo} from '../../user/actions/info'
-import { setHeadPhoto } from '../actions.js'
-import {token,system} from '../../common/getters'
-import {fetchHeadImg} from '../getters'
-import {Userinfo} from '../../user/getters'
+import {setHeadPhoto } from '../actions.js'
+import {token,system,userName,userHeadImg,userMobile} from '../../common/getters'
 import './main.less'
 
 export default {
@@ -52,15 +49,11 @@ export default {
     },
     vuex:{
         getters:{
-            token,Userinfo,system,
-            fetchHeadImg
+           token,system,userName,userHeadImg,userMobile
         },
         actions:{
-            setHeadPhoto,getUserinfo
+            setHeadPhoto
         }
-    },
-    created(){
-        this.getUserinfo({token: this.token},() => {})
     },
     methods: {
         onAction(type) {

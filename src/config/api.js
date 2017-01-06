@@ -11,20 +11,27 @@ export const UNAUTHORIZED_CODE = 401;
 export const API_ENV = `${server}`;
 export const API_VERSION = `${version}`;
 
-// api path map;
 export const API_PATHS = {
-  //短信
-  getCode: `${API_ENV}${API_VERSION}/student/getCode`,
   //登陆
-  login: `${API_ENV}${API_VERSION}/student/login`,
+  token:`${API_ENV}/v2/student/user/getToken`,
   /** 注册模块
+   *  resgisterCode:注册验证码
    *  addPwd:新增密码
    *  addInfo:新增人员信息
    */
-  addPwd: `${API_ENV}${API_VERSION}/student/pwd/add`,
-  addInfo: `${API_ENV}${API_VERSION}/student/user/addUserInfo`,
-  resetPwd: `${API_ENV}${API_VERSION}/student/pwd/resetByMobile`,
+  resgisterCode: `${API_ENV}/v2/student/register/code`,
+  addInfo: `${API_ENV}/v2/student/user/addUserInfo`,
   textbookVersion: `${API_ENV}${API_VERSION}/student/edition/byGrade`,
+  addPwd: `${API_ENV}/v2/student/pwd/add`,
+   /** 重置模块
+   *  resetPwd:重置验证码
+   *  addInfo:新增人员信息
+   */
+  resetCode: `${API_ENV}/v2/student/pwd/reset`,
+  resetPwd: `${API_ENV}/v2/student/pwd/update`,
+
+
+
   //首页
   index: `${API_ENV}${API_VERSION}/student/index`,
   //收藏事件
@@ -99,7 +106,7 @@ export const API_PATHS = {
   msgClass:`${API_ENV}${API_VERSION}/student/message/class`,
   msgCorrect:`${API_ENV}${API_VERSION}/student/message/correct`,
   //获取用户信息
-  userInfo: `${API_ENV}${API_VERSION}/student/user/getUserInfo`,
+  userInfo: `${API_ENV}/v2/student/user/getUserInfo`,
   userInfoUpdate: `${API_ENV}${API_VERSION}/student/user/updateUserInfo`,
   userInfoTextbookVersion: `${API_ENV}${API_VERSION}/student/edition/byGrade`,
   /**我的班级

@@ -89,16 +89,16 @@ export default {
     },
     _onInfinite(){
       if(this.MyTextbook.length != 0 ){
-            this.$broadcast('$InfiniteLoading:loaded');
-            this.$broadcast('$InfiniteLoading:complete');
-            return;
+          this.$broadcast('$InfiniteLoading:loaded');
+          this.$broadcast('$InfiniteLoading:complete');
+          return;
       }
 
 			this.getTextbook({
 				token:this.token,   
         subjectId:this.textBookSubjectId
 			},()=>{
-					if(this.MyTextbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+					// if(this.MyTextbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
           this.$broadcast('$InfiniteLoading:complete');
 			});
 		}

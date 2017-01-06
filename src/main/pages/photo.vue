@@ -26,13 +26,12 @@ export default {
     methods: {
         _img(){
             let self = this
-            _.busy();
+            
             self.postHeadImg({
                 file:self.cropper.getCroppedCanvas({width:140,height:140}).toDataURL('image/png'),
                 token:self.fetchToken
             },(data)=>{
                 _.toast("上传成功");
-                // console.log(data.data.headImg);
                 self.setHeadImg(data.headImg);
                 setTimeout(()=>{
                     self.$router.replace('/user');
@@ -51,7 +50,6 @@ export default {
     data(){
         return{
            cropper:'',
-           //jpgData:''
         }
     },
     ready(){

@@ -11,7 +11,7 @@
       <x-input name="password" placeholder="密码" type="password" :value.sync="password" :min="6" :max="18" v-ref:password ></x-input>
     </group>
     <div class="btnWapper">
-      <x-button :disabled="disable" @click='_login' type="primary" >登录</x-button>
+      <x-button :disabled="disable" @click='_login' type="primary">登录</x-button>
       <div class="link">
         <a v-link="{ path: 'forget',replace: true}" class="resetPwd">登录遇到问题?</a>
         <a v-link="{ path: 'register',replace: true }" class="register">新用户注册</a>
@@ -21,17 +21,15 @@
 </template>
 
 <script>
-import '../main.less'
 import {XInput,Group,XButton} from 'vux'
-import { login } from '../actions'
+import { login } from '../actions/login.js'
 import { userInfo,registerMobile } from '../getters'
 import * as _ from '../../config/whole'
+import '../main.less'
 
 export default {
   components: {
-     XInput,
-     Group,
-     XButton
+     XInput,Group, XButton
   },
   vuex: {
     getters: {
@@ -55,10 +53,7 @@ export default {
         pwd:this.password
       }
       this.login(params,()=>{
-        setTimeout(()=>{
-           _.leave();
           this.$router.replace('/index');
-        },500);
       },()=>{
           this.pwd = '';
       });
