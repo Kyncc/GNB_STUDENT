@@ -2,7 +2,14 @@
   <view-box v-ref:view-box class="reportStudent">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
-        选择章节
+        <div class="header_title_select">
+          <select v-model="textbookId">
+            <template v-for="text in userTextbook['math']">
+              <option  v-bind:value="text.id">{{text.name}}</option>
+            </template>
+          </select>
+          <span class="header_title_select_arrow"></span>
+        </div>
         <a slot="right" @click="_changeSub" class="changeSub">{{brushSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
     </div>
@@ -27,7 +34,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 import gnbChangeSub from '../../../components/changesub/index'
 import accordion from '../../../components/accordion'
 
-import {token,userSubjectList} from '../../../common/getters'
+import {token,userSubjectList,userTextbook} from '../../../common/getters'
 import {brushChapter,brushScoll,brushSubjectId} from '../getters'
 import {getBrush,changeChapter,setScoll,setSubject} from '../actions/chapter'
 import {brushListClear} from '../actions/list'
@@ -39,7 +46,7 @@ export default {
   },
   vuex: {
     getters: {
-      token,userSubjectList,
+      token,userSubjectList,userTextbook,
       brushChapter,brushScoll,brushSubjectId
     },
     actions: {
@@ -93,6 +100,7 @@ export default {
    data(){
     return {
       visible:false,
+      textbookId:this.userTextbook['math'][0]
     }
   },
   ready(){

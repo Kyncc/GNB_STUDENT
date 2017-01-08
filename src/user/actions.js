@@ -2,22 +2,17 @@ import Api from '../config/httpdispatch'
 import * as types from './mutationTypes'
 import * as _ from '../config/whole'
 
-
-
   //我的积分
 export const numerical = ({ dispatch }, params,callback) => {
-    Api.numerical({
-      data: params,
-      ok: response => {
-        dispatch(types.GET_NUMERICAL_LIST, response.data.data)
-        callback()
-      },
-      wrong: response => {
-
-        
-      }
-    })
-  }
+  Api.numerical({
+    data: params,
+    ok: response => {
+      dispatch(types.GET_NUMERICAL_LIST, response.data.data)
+      callback()
+    },
+    wrong: response => {}
+  })
+}
   //我的账单
 export const payList = ({ dispatch }, params) => {
     Api.payList({

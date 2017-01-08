@@ -4,6 +4,7 @@ const state = {
   example: [],
   index: {
     list: [],
+    textBookId:0,
     scoll: 0
   },
   list: {
