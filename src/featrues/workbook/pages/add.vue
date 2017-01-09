@@ -34,7 +34,6 @@
 <script>
 
 
-import store from '../../../store'
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,Search} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {token} from '../../../common/getters'
@@ -75,12 +74,11 @@ export default {
             }
        }    
    },
-   store,
    data() {
-        return {
-            selectBookList:[],
-            searchName:''
-        }
+    return {
+        selectBookList:[],
+        searchName:''
+    }
   },
   created(){
      this.workbookAllDel();      //搜索需要清除数据

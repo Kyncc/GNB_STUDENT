@@ -29,9 +29,6 @@ export const API_PATHS = {
    */
   resetCode: `${API_ENV}/v2/student/pwd/reset`,
   resetPwd: `${API_ENV}/v2/student/pwd/update`,
-
-
-
   //首页
   index: `${API_ENV}${API_VERSION}/student/index`,
   //收藏事件

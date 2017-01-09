@@ -36,6 +36,7 @@ import accordion from '../../../components/accordion'
 
 import {token,userSubjectList,userTextbook} from '../../../common/getters'
 import {brushChapter,brushScoll,brushSubjectId} from '../getters'
+
 import {getBrush,changeChapter,setScoll,setSubject} from '../actions/chapter'
 import {brushListClear} from '../actions/list'
 
@@ -63,39 +64,39 @@ export default {
     }
   },
   methods: {
-  _toDetail(){
-    return `list/`;
-  },
-  _changeSub(){
-    this.visible = true;
-  },
-  /** 切换科目*/
-  _changeSubject(item){
-    this.subjectName = item.value;
-    this.visible = false;
-    this.setSubject(item.id);       //更换科目
-    this.$nextTick(() => {
-      this.$broadcast('$InfiniteLoading:reset');
-    });
-  },
-  _openChapter(index){
-     this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
-     this.changeChapter(index);
-  },
-  _onInfinite(){
-    if(this.brushChapter.length != 0){
-      this.$broadcast('$InfiniteLoading:loaded');
-      this.$broadcast('$InfiniteLoading:complete');
-      return;
+    _toDetail(){
+      return `list/`;
+    },
+    _changeSub(){
+      this.visible = true;
+    },
+    /** 切换科目*/
+    _changeSubject(item){
+      this.subjectName = item.value;
+      this.visible = false;
+      this.setSubject(item.id);       //更换科目
+      this.$nextTick(() => {
+        this.$broadcast('$InfiniteLoading:reset');
+      });
+    },
+    _openChapter(index){
+      this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.changeChapter(index);
+    },
+    _onInfinite(){
+      if(this.brushChapter.length != 0){
+        this.$broadcast('$InfiniteLoading:loaded');
+        this.$broadcast('$InfiniteLoading:complete');
+        return;
+      }
+      this.getBrush({
+        token:this.token,
+        textbook_id:'200'
+      },()=>{
+        if(this.brushChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+        this.$broadcast('$InfiniteLoading:complete');
+      });
     }
-    this.getBrush({
-      token:this.token,
-      subject_id:this.brushSubjectId
-    },()=>{
-      if(this.brushChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-      this.$broadcast('$InfiniteLoading:complete');
-    });
-  }
   },
    data(){
     return {
