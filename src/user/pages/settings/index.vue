@@ -68,14 +68,7 @@ export default {
     },
     _quit(type) {
         if(type=='确认'){
-            localStorage.removeItem('headImg');
-            localStorage.removeItem('mobile');
-            localStorage.removeItem('name');
             localStorage.removeItem('token');
-            localStorage.removeItem('isVip');
-            localStorage.removeItem('balance');
-            localStorage.removeItem('numerical');
-            localStorage.removeItem('subjectType');
             this.$router.replace('/');
         }
     },

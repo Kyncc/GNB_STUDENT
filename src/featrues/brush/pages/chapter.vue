@@ -2,14 +2,7 @@
   <view-box v-ref:view-box class="reportStudent">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
-        <div class="header_title_select">
-          <select v-model="textbookId">
-            <template v-for="text in userTextbook['math']">
-              <option  v-bind:value="text.id">{{text.name}}</option>
-            </template>
-          </select>
-          <span class="header_title_select_arrow"></span>
-        </div>
+        <change-text-book :value.sync="textbookId" :user-textbook="userTextbook" :subject-id="brushSubjectId" ></change-text-book>
         <a slot="right" @click="_changeSub" class="changeSub">{{brushSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
     </div>
@@ -31,19 +24,21 @@
 <script>
 import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import gnbChangeSub from '../../../components/changesub/index'
-import accordion from '../../../components/accordion'
+import {gnbChangeSub,accordion,changeTextBook} from 'components'
 
 import {token,userSubjectList,userTextbook} from '../../../common/getters'
 import {brushChapter,brushScoll,brushSubjectId} from '../getters'
 
-import {getBrush,changeChapter,setScoll,setSubject} from '../actions/chapter'
+import {getBrush,changeChapter,setScoll,setSubject,clearBrush} from '../actions/chapter'
 import {brushListClear} from '../actions/list'
 
 
 export default {
   components: {
-    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,accordion,gnbChangeSub,InfiniteLoading
+    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,
+    accordion,
+    gnbChangeSub,changeTextBook,
+    InfiniteLoading
   },
   vuex: {
     getters: {
@@ -51,7 +46,7 @@ export default {
       brushChapter,brushScoll,brushSubjectId
     },
     actions: {
-      getBrush,changeChapter,setScoll,setSubject,brushListClear
+      getBrush,changeChapter,setScoll,setSubject,brushListClear,clearBrush
     }
   },
   filters: {
@@ -84,14 +79,9 @@ export default {
       this.changeChapter(index);
     },
     _onInfinite(){
-      if(this.brushChapter.length != 0){
-        this.$broadcast('$InfiniteLoading:loaded');
-        this.$broadcast('$InfiniteLoading:complete');
-        return;
-      }
       this.getBrush({
         token:this.token,
-        textbook_id:'200'
+        textbook_id:this.textbookId
       },()=>{
         if(this.brushChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
         this.$broadcast('$InfiniteLoading:complete');
@@ -101,13 +91,19 @@ export default {
    data(){
     return {
       visible:false,
-      textbookId:this.userTextbook['math'][0]
+      textbookId:this.userTextbook['math'][0].id
     }
   },
-  ready(){
-    this.$nextTick(()=>{
-      document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
-    });
+  // ready(){
+  //   this.$nextTick(()=>{
+  //     document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
+  //   });
+  // },
+  watch: {
+    textbookId(){
+        this.clearBrush();
+        this.$broadcast('$InfiniteLoading:reset');
+    }
   }
 }
 </script>

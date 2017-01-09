@@ -13,7 +13,8 @@ export const numerical = ({ dispatch }, params,callback) => {
     wrong: response => {}
   })
 }
-  //我的账单
+
+//我的账单
 export const payList = ({ dispatch }, params) => {
     Api.payList({
       data: params,

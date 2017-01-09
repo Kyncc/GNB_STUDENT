@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import store from '../../../store'
 import InfiniteLoading from 'vue-infinite-loading'
 import {ClassSearch} from '../../getters.js'
 import { token } from '../../../common/getters.js'
@@ -52,7 +51,6 @@ export default {
         getMyClassSearchClass,postMyClassInto
     }
   },
-  store,
   data(){
     return {
         searchCode:''

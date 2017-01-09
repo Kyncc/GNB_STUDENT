@@ -32,23 +32,9 @@ export default {
     getters:{path,token,userMobile},
     actions:{getUserInfo}
   },
-  data(){
-     return{
-          isRoot:true,
-          indexState:(this.path.indexOf('index') >= 0 ? true : false),
-          interactState:(this.path.indexOf('interact') >= 0 ? true : false),
-          userState:(this.path.indexOf('user') >= 0 ? true : false),
-          bagState:(this.path.indexOf('bag') >= 0 ? true : false)
-      }
-  },
-  created(){
-      ( this.userMobile.length ==0 ? this.getUserInfo({token: this.token}) : '' )
-  },
-  watch:{
-    path(){
-      //判断是否在首页显示下面标签
+  methods: {
+    _checkMain(){
       this.indexState = this.interactState = this.userState = this.bagState = this.isRoot = false;
-
       if(this.path == '/index'){
           this.isRoot = this.indexState = true;
       }else if(this.path == '/interact'){
@@ -58,6 +44,27 @@ export default {
       }else if(this.path == '/bag'){
           this.isRoot = this.bagState = true;
       }
+    }
+  },
+  data(){
+     return{
+          isRoot:true,
+          indexState:(this.path.indexOf('index') >= 0 ? true : false),
+          interactState:(this.path.indexOf('interact') >= 0 ? true : false),
+          userState:(this.path.indexOf('user') >= 0 ? true : false),
+          bagState:(this.path.indexOf('bag') >= 0 ? true : false)
+      }
+  },
+  ready(){
+    this._checkMain();
+  },
+  created(){
+      ( this.userMobile.length ==0 ? this.getUserInfo({token: this.token}) : '' )
+  },
+  watch:{
+    path(){
+      //判断是否在首页显示下面标签
+      this._checkMain();
     }
   }
 }

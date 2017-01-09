@@ -6,7 +6,7 @@
                 <label class="header" :for="'ac-'+$index">{{items.name}}<span class="with_arrow"></span></label>
                 <article class="ac-small">
                     <group>
-                        <cell v-for="item in items.chapter_list" :title="item.name" :link="link+item.chapter_id"></cell>
+                        <cell v-for="item in items.sub_chapter_list" :title="item.name" :link="link+item.chapter_id"></cell>
                     </group>
                 </article>
             </div>
