@@ -24,14 +24,14 @@
             <!--题目-->
             <div class="weui_media_bd weui_media_box">
               <p class="weui_media_desc">
-                {{{* detail.content }}}
+                {{{ detail.content }}}
               </p>
             </div>
             <!--选项-->
             <template v-if=" detail.type == 1 ? true:false">
               <div class="weui_media_bd weui_media_box options">
                 <p class="weui_media_desc" v-for="value in detail.tabs">
-                  {{ $key }} : {{{* value }}}
+                  {{ $key }} : {{{value}}}
                 </p>
               </div>
             </template> 
@@ -49,7 +49,7 @@
           <div class="weui_panel_bd">
             <div class="weui_media_bd weui_media_box ">
               <p class="weui_media_desc">
-                {{{* detail.answer }}}
+                {{{detail.answer }}}
               </p>
             </div>
           </div>
@@ -82,16 +82,15 @@ export default {
     XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
   },
   vuex: {
-        getters: {
-            CollectExampleDetail,CollectSubjectId,token,id
-        },
-        actions: {
-            collectRemove,getCollectExampleDetail,clearCollect
-        }
+    getters: {
+        CollectExampleDetail,CollectSubjectId,token,id
     },
+    actions: {
+        collectRemove,getCollectExampleDetail,clearCollect
+    }
+  },
   methods: {
     _onInfinite(){
-      let self = this;
       this.getCollectExampleDetail({
         options:{
           ids:[this.id],

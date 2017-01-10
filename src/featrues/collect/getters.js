@@ -14,4 +14,4 @@ export const CollectCameraCurrentPage  = (state) => state.collect.camera.current
 export const CollectExampleCurrentPage  = (state) => state.collect.example.current 
 
 export const CollectSubjectId  = (state) => state.collect.subjectId
-export const CollectScoll  = (state) => state.collect.scoll  
+export const CollectReset  = (state) => state.collect.isReset  

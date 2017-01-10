@@ -2,25 +2,11 @@ import Api from '../../config/httpdispatch'
 import * as _ from '../../config/whole'
 import * as types from './mutationTypes'
 
-
 export const getCollectExampleIds = ({ dispatch }, params,success) => {
   Api.collectExampleIds({
       data:params,
       ok:response=>{
-        dispatch(types.GET_COLLECT_EXAMPLEIDS,response.data);
-        success&&success();
-      },
-      wrong:response=>{
-        _.toast(response.data.msg);
-      }
-  })
-}
-
-export const getCollectCameraIds = ({ dispatch }, params,success,wrong) => {
-  Api.collectCameraIds({
-      data:params,
-      ok:response=>{
-        dispatch(types.GET_COLLECT_CAMERALEIDS,response.data);
+        dispatch(types.COLLECT_EXAMPLEIDS,response.data);
         success&&success();
       },
       wrong:response=>{
@@ -33,21 +19,8 @@ export const getCollectExampleList = ({ dispatch }, params,success,wrong) => {
   Api.exerciseList({
       data:params,
       ok:response=>{
-          dispatch(types.GET_COLLECT_EXAMPLELIST,response.data);
+          dispatch(types.COLLECT_EXAMPLELIST,response.data);
           success&&success();
-      },
-      wrong:response=>{
-        _.toast(response.data.msg);
-      }
-  })
-}
-
-export const getCollectCameraList = ({ dispatch }, params,success,wrong) => {
-  Api.cameraList({
-      data:params,
-      ok:response=>{
-        dispatch(types.GET_COLLECT_CAMERALELIST,response.data);
-        success&&success();
       },
       wrong:response=>{
         _.toast(response.data.msg);
@@ -60,7 +33,7 @@ export const getCollectExampleDetail = ({ dispatch }, params,success,wrong) => {
   Api.exerciseList({
       data:params,
       ok:response=>{
-          dispatch(types.GET_COLLECT_EXAMPLEDETAIL,response.data);
+          dispatch(types.COLLECT_EXAMPLEDETAIL,response.data);
           success&&success();
       },
       wrong:response=>{
@@ -69,19 +42,6 @@ export const getCollectExampleDetail = ({ dispatch }, params,success,wrong) => {
   })
 }
 
-/**获取收藏拍错题详情 */
-export const getCollectCameraDetail = ({ dispatch }, params,success,wrong) => {
-  Api.exerciseList({
-      data:params,
-      ok:response=>{
-          dispatch(types.GET_COLLECT_CAMERADETAIL,response.data);
-          success&&success();
-      },
-      wrong:response=>{
-        _.toast(response.data.msg);
-      }
-  })
-}
 
 /**高度保存 */
 export const setScoll = ({ dispatch }, height) => {
