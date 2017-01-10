@@ -21,7 +21,7 @@ export const addPwd = ({ dispatch }, params,success,wrong) => {
   Api.addPwd({
       data:params,
       ok:response=>{
-        dispatch(types.SET_PASSWORD);
+        dispatch(types.SET_PASSWORD,response.data);
         success&&success();
       },
       wrong:response=>{

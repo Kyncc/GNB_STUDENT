@@ -1,8 +1,7 @@
 <template>
 <div class='userinfo'>
   <x-header :left-options="{showBack: true,preventGoBack: true}"  @on-click-back="_back()">
-    个人资料 
-    <a slot="right" v-touch:tap="_complete">{{edit}}</a>
+    个人资料<a slot="right" v-touch:tap="_complete">{{edit}}</a>
   </x-header>
 
   <div v-show="edit=='编辑'">
@@ -14,8 +13,8 @@
       <x-input title="学校" name="school" :value.sync="school" readonly></x-input>
     </group>
     <group title="版本选择">
-        <x-input title="数学" name="math" :value.sync="mathName" readonly></x-input>
-        <x-input v-show="this.TextBookPhysicsVer.length != 0"title="物理" name="physics"  :value.sync="physicsName" readonly></x-input>
+      <x-input title="数学" name="math" :value.sync="mathName" readonly></x-input>
+      <x-input v-show="this.TextBookPhysicsVer.length != 0" title="物理" name="physics"  :value.sync="physicsName" readonly></x-input>
     </group>  
   </div>
 
@@ -44,10 +43,11 @@
 <script>
 import {Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm,PopupPicker,Selector} from 'vux'
 import {getUserinfo,updateUserinfo,getTextbookVersion} from '../actions/info'
+import { getUserInfo } from '../../main/actions'
 import {token} from '../../common/getters'
 import {Userinfo,TextBookMathVer,TextBookPhysicsVer} from '../getters'
-import './info.less' 
 import * as _ from '../../config/whole.js'
+import './info.less' 
 
 export default {
   components: {
@@ -58,20 +58,20 @@ export default {
       token,Userinfo,TextBookMathVer,TextBookPhysicsVer
     },
     actions: {
-      getUserinfo,updateUserinfo,getTextbookVersion
+      getUserinfo,updateUserinfo,getTextbookVersion,getUserInfo
     }
   },
   filters: {
-       covert(obj){
-            let newObj = [];
-            obj.forEach((item, index)=> {
-                newObj.push({
-                    key: item.id.toString() || '',
-                    value: item.name.toString() || ''
-                });
+    covert(obj){
+        let newObj = [];
+        obj.forEach((item, index)=> {
+            newObj.push({
+                key: item.id.toString() || '',
+                value: item.name.toString() || ''
             });
-           return newObj;
-       }
+        });
+        return newObj;
+    }
   },
   data() {
     return {
@@ -134,11 +134,8 @@ export default {
                 grade: this.grade,
                 token: this.token
               }, () => {
-                this.getUserinfo({
-                  token: this.token
-                }, () => {
-                    this.edit = '编辑'
-                })
+                this.getUserinfo({token: this.token}, () => {this.edit = '编辑' });
+                this.getUserInfo({token: this.token});    //外部信息更改
               })
           }else{
               _.toast('请完善内容');
@@ -152,9 +149,7 @@ export default {
   watch:{
     /** 年级更改请求教材版本*/
     grade(){
-      this.getTextbookVersion({grade: this.grade},() => {
-        
-      })
+      this.getTextbookVersion({grade: this.grade},() => {})
       if(this.grade == 7) this.gradeName = '七年级';
       if(this.grade == 8) this.gradeName = '八年级';
       if(this.grade == 9) this.gradeName = '九年级';
@@ -182,7 +177,6 @@ export default {
           return;
         }
         this.physicsName = this.Userinfo.subject.physics.name;
-
     }
   }
 }

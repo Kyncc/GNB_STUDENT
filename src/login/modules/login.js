@@ -9,10 +9,6 @@ const mutations = {
     state.token = data.token;
     localStorage.setItem('token',data.token);
   },
-  [types.LOGIN](state, data){
-    state.token = data.token;
-    localStorage.setItem('token',data.token);
-  },
   [types.SET_PASSWORD](state, data){
     state.token = data.token;
     localStorage.setItem('token',data.token);

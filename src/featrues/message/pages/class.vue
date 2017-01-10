@@ -1,9 +1,9 @@
 <template>
-  <view-box v-ref:view-box class="interactClass">
+  <view-box v-ref:view-box class="messageClass">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">班级消息</x-header>
     </div>
-    <div style="padding-top:46px;" class="interactSection">
+    <div style="padding-top:46px;" class="messageSection">
       <section v-for="item in list">
         <h3>{{item.time | ymd}}</h3>
         <article>
@@ -24,8 +24,8 @@
 <script>
 import {XHeader,ViewBox} from 'vux'
 import { token } from '../../../common/getters'
-import { getInteractClass } from '../actions'
-import { interactClassList } from '../getters'
+import { getMessageClass } from '../actions'
+import { messageClassList } from '../getters'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -34,10 +34,10 @@ export default {
   },
   vuex: {
     getters: {
-      token,interactClassList
+      token,messageClassList
     },
     actions: {
-      getInteractClass
+      getMessageClass
     }
   },
   data(){
@@ -47,10 +47,10 @@ export default {
   },
   methods: {
     onInfinite(){
-      this.getInteractClass({
+      this.getMessageClass({
         "token":this.token
       },()=>{
-          this.list = this.interactClassList;
+          this.list = this.messageClassList;
           if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
           this.$broadcast('$InfiniteLoading:complete');
       });

@@ -26,10 +26,7 @@ import index from './router/index/router'
 //书包模块
 import bag from './router/bag/router'
 //互动
-import interact from './router/interact/index'
-import interactClass from './router/interact/pages/class'
-import interactCorrect from './router/interact/pages/correct'
-import interactSystem from './router/interact/pages/system'
+import interact from './router/interact/router'
 //个人中心
 import userInfo from './user/pages/info'
 //个人中心-设置
@@ -95,7 +92,7 @@ if (/iphone|ipad|ipod/.test(ua)) {
 
 const router = new Router()
 router.map({
-  '/login': {
+  'login': {
     component: Login
   },
   //注册账户
@@ -130,25 +127,13 @@ router.map({
       'user/': {
         component: User
       },
-      'interact/': {
-        component: interact
-      },
+      ...interact,
       ...index,
       ...bag,
     }
   },
   'user/photo': {
     component: Photo
-  },
-  //消息
-  'interact/class': {
-    component: interactClass
-  },
-  'interact/system': {
-    component: interactSystem
-  },
-  'interact/correct': {
-    component: interactCorrect
   },
   //个人中心
   'user/info': {

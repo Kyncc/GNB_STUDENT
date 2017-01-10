@@ -1,4 +1,8 @@
 import Api from '../../config/httpdispatch'
+
+import {GET_INFO} from '../../main/mutationTypes'
+
+
 import * as types from '../mutationTypes'
 import * as _ from '../../config/whole'
 
@@ -10,6 +14,7 @@ export const getUserinfo = ({ dispatch }, params,success,wrong) => {
     data: params,
     ok: response => {
       dispatch(types.USERINFO_GET, response.data.data);
+
       //  _.leave();
       success&&success();
     },

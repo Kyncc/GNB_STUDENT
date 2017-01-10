@@ -25,10 +25,9 @@
                 </a>
             </div>
              <div class="abandon">
-                <span >撤回</span>
-                <span >放弃</span>
+                <span>撤回</span>
+                <span>放弃</span>
             </div>
-
           </div>
       </template>
       <infinite-loading :on-infinite="_onInfinite" spinner="waveDots" style="height:60px">

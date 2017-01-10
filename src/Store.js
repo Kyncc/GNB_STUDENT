@@ -17,7 +17,7 @@ import workbook from './featrues/workbook/store'
 import textbook from './featrues/textbook/store'
 import report from './featrues/report/store'
 import collect from './featrues/collect/store'
-
+import message from './featrues/message/store'
 //需要重构
 // import member from './user/modules/member.js'
 
@@ -41,6 +41,7 @@ export default new Vuex.Store({
     pass,
     break:breakList,
     textbook,
-    workbook
+    workbook,
+    message
   }
 })
