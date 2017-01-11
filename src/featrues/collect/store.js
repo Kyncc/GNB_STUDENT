@@ -15,6 +15,7 @@ const state = {
 
 const mutations = {
   [types.COLLECT_EXAMPLEIDS](state , data){
+    state.example.isReset = false;
     state.example.ids = data.data.ids;
     state.example.totalPage = data.data.totalPage;
   },
@@ -38,7 +39,7 @@ const mutations = {
     state.example.list = [];
     state.example.totalPage = 1;
     state.example.current = 1;
-    state.example.isReset = false;
+    state.example.isReset = true;
   }
 }
 

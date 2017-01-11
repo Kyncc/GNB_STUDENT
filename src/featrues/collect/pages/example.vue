@@ -5,14 +5,6 @@
         收藏本
         <a slot="right" @click="_changeSub()" class="changeSub">{{CollectSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
-      <!--<flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
-        <div style="width:75%">
-          <button-tab>
-            <button-tab-item selected>习题收藏</button-tab-item>
-            <button-tab-item v-touch:tap="_camera">错题收藏</button-tab-item>
-          </button-tab>
-        </div>
-      </flexbox>-->
     </div>
     <div style="padding-top:46px;">
       <!--空白间隔-->
@@ -53,8 +45,8 @@
 import InfiniteLoading from 'vue-infinite-loading'
 import gnbChangeSub from '../../../components/changesub/index.vue'
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
-import { token,userSubjectList } from '../../../common/getters'
-import { CollectExampleIds,CollectExampleList,CollectExampleTotalPage,CollectExampleCurrentPage,CollectSubjectId,CollectScoll } from '../getters'
+import { token,userSubjectList,path } from '../../../common/getters'
+import { CollectExampleIds,CollectExampleList,CollectExampleTotalPage,CollectExampleCurrentPage,CollectSubjectId,CollectScoll,CollectReset } from '../getters'
 import { getCollectExampleIds,getCollectExampleList,setSubject,clearCollect,setScoll } from '../actions'
 
 export default {
@@ -113,8 +105,8 @@ export default {
     },
     vuex: {
         getters: {
-            userSubjectList,token,
-            CollectExampleCurrentPage,CollectExampleIds,CollectExampleList,CollectExampleTotalPage,CollectSubjectId,CollectScoll
+            userSubjectList,token,path,
+            CollectExampleCurrentPage,CollectExampleIds,CollectExampleList,CollectExampleTotalPage,CollectSubjectId,CollectScoll,CollectReset
         },
         actions: {
             getCollectExampleIds,getCollectExampleList,clearCollect,
@@ -149,17 +141,18 @@ export default {
                 }
             });
         },
-        /** 切换学科*/
+        //切换学科
         CollectSubjectId(){
             this.$nextTick(() => {
                 this.$broadcast('$InfiniteLoading:reset');
             });
+        },
+        path(){
+            if(this.path == '/bag/collect/example'){
+              if(this.CollectReset) this.$broadcast('$InfiniteLoading:reset');  //重置
+              else document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.CollectScoll; //更改高度
+            }
         }
-    },
-    ready(){
-        this.$nextTick(()=>{
-            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.CollectScoll;
-        });
     }
 }
 </script>

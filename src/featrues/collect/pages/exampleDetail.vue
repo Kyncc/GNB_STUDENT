@@ -72,9 +72,9 @@
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import { collectRemove } from '../../../common/actions'
 import { token,id } from '../../../common/getters'
-import { getCollectExampleDetail,clearCollect } from '../actions'
+import {clearCollect} from '../actions'
+import { getCollectExampleDetail,collectRemove } from '../actions/examples'
 import { CollectExampleDetail,CollectSubjectId } from '../getters'
 
 export default {

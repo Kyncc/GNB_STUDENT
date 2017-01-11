@@ -9,26 +9,25 @@
       </x-header>
     </div>
     <div style="padding-top:46px;">
-
+ 
       <group title="教材列表">
         <template v-if="AllTextbook">
-          <checklist :options="AllTextbook|covert" :value.sync="selectBookList" ></checklist>
+          <checklist :options="AllTextbook|covert" :value.sync="selectBookList"></checklist>
         </template>
       </group>
 
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
-				<span slot="no-results" style="color:#4bb7aa;">
-					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-					<p style="font-size:1rem;display:inline-block;">已无教材可以添加~</p>
-				</span>
-				<span slot="no-more"></span>
-			</infinite-loading>
+        <span slot="no-results" style="color:#4bb7aa;">
+          <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+          <p style="font-size:1rem;display:inline-block;">已无教材可以添加~</p>
+        </span>
+        <span slot="no-more"></span>
+      </infinite-loading>
       
     </div>
   </view-box>
 </template>
 <script>
-
 
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
@@ -43,13 +42,13 @@ export default {
     XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,InfiniteLoading
   },
   vuex: {
-		getters: {
-			token,AllTextbook,textBookSubjectId
-		},
-		actions: {
+    getters: {
+      token,AllTextbook,textBookSubjectId
+    },
+    actions: {
       getTextbookAll,addTextbook
-		}
-	},
+    }
+  },
    filters: {
        covert(obj){
             let newObj = [];
@@ -79,7 +78,7 @@ export default {
         this.addTextbook({
           token:this.token,   
           textbookId:this.selectBookList
-			  },()=>{
+        },()=>{
           _.toast('添加成功');
           history.back();
         });
@@ -96,14 +95,14 @@ export default {
       if(this._isFirst()){
         return; 
       }
-			this.getTextbookAll({
-				token:this.token,   
+      this.getTextbookAll({
+        token:this.token,   
         subjectId:this.textBookSubjectId
-			},()=>{
-					if(this.AllTextbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+      },()=>{
+          if(this.AllTextbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
           this.$broadcast('$InfiniteLoading:complete');
-			});
-		}
+      });
+    }
   }
 }
 </script>

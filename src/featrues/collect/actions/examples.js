@@ -21,7 +21,7 @@ export const collectRemove = ({ dispatch },params,success) => {
   Api.collectRemove({
     data:params,
     ok:response=>{
-      dispatch(types.COLLECT_EXAMPLE_COLLECT_REMOVE);
+      // dispatch(types.COLLECT_EXAMPLE_COLLECT_REMOVE);
       success&&success();
       _.toast('取消收藏成功');
     },

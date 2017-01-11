@@ -22,7 +22,7 @@
         <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
             <span slot="no-results" style="color:#4bb7aa;">
                 <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
-                <p style="font-size:1rem;display:inline-block;"  @click="_addTextBook()">{{(searchName.length == 0 ? '点我先添加教材':'查询无结果')}}</p>
+                <p style="font-size:1rem;display:inline-block;"  @click="_addTextBook()">{{(searchName.length == 0 ? '暂无更多习题册':'查询无结果')}}</p>
             </span>
             <span slot="no-more"></span>
         </infinite-loading>
@@ -56,65 +56,65 @@ export default {
     }
   },
    filters: {
-       covert(obj){
-            let newObj = [];
-            obj.forEach((item, index)=> {
-                newObj.push({
-                    key: item.workbookId || '',
-                    value: item.workbookName || ''
-                });
-            });
-           return newObj;
-       },
-       subName(id){
-            switch(id){
-                case '2':return '数学';
-                case '7':return '物理';
-                case '8':return '化学';
-            }
-       }    
+    covert(obj){
+      let newObj = [];
+      obj.forEach((item, index)=> {
+          newObj.push({
+              key: item.workbookId || '',
+              value: item.workbookName || ''
+          });
+      });
+      return newObj;
+    },
+    subName(id){
+      switch(id){
+        case '2':return '数学';
+        case '7':return '物理';
+        case '8':return '化学';
+      }
+    }
    },
    data() {
     return {
-        selectBookList:[],
-        searchName:''
+      selectBookList:[],
+      searchName:''
     }
   },
   created(){
      this.workbookAllDel();      //搜索需要清除数据
   },
   methods: {
-        _addTextBook(){
-            if(searchName.length == 0){
-                this.$router.go(`/user/textbook/add`);
-            }
-        },
-        _onSearch(str){
-            this.searchName = str;
-            this.workbookAllDel();      //搜索需要清除数据
-            this.$nextTick(() => {
-                this.$broadcast('$InfiniteLoading:reset');
-            });
-        },
-        _addWorkbook(){
-            this.addWorkbook({
-                token:this.token,   
-                workbookId:this.selectBookList
-            },()=>{
-                _.toast('添加成功');
-                history.back();
-            })
-        },
-        _onInfinite(){
-            this.getWorkbookAll({
-                token:this.token,   
-                subjectId:this.workbookSubjectId,
-                workbookName:this.searchName
-            },()=>{
-                if(this.AllWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-                this.$broadcast('$InfiniteLoading:complete');
-            });
-        }
+    _addTextBook(){
+      if(this.searchName.length == 0){
+        this.$router.go(`/bag/textbook/add`);
+      }
+    },
+    _onSearch(str){
+      this.searchName = str;
+      this.workbookAllDel();      //搜索需要清除数据
+      this.$nextTick(() => {
+          this.$broadcast('$InfiniteLoading:reset');
+      });
+    },
+    _addWorkbook(){
+      this.addWorkbook({
+          token:this.token,   
+          workbookId:this.selectBookList
+      },()=>{
+          _.toast('添加成功');
+          history.back();
+      })
+    },
+    _onInfinite(){
+      this.getWorkbookAll({
+          token:this.token,   
+          subjectId:this.workbookSubjectId,
+          workbookName:this.searchName
+      },()=>{
+          if(this.AllWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+          this.$broadcast('$InfiniteLoading:complete');
+      });
     }
+  }
 }
 </script>

@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import store from '../../../store'
 import {XHeader,Panel,ViewBox,Group,Cell,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {token,userSubjectList} from '../../../common/getters'
@@ -53,7 +52,7 @@ export default {
             case '2':return '数学';
             case '7':return '物理';
         }
-    }    
+    }
   },
   methods: {
     _add(){
@@ -77,7 +76,7 @@ export default {
         }
 
         this.getWorkbook({
-            token:this.token,   
+            token:this.token,
             subjectId:this.workbookSubjectId
         },()=>{
             if(this.MyWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
@@ -93,7 +92,6 @@ export default {
         getWorkbook,setSubject
     }
   },
-  store,
   data(){
     return {
         searchName:'',

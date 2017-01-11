@@ -14,12 +14,12 @@
       </group>
 
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
-				<span slot="no-results" style="color:#4bb7aa;">
-					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-					<p style="font-size:1rem;display:inline-block;">快去添加点教材吧~</p>
-				</span>
-				<span slot="no-more"></span>
-			</infinite-loading>
+        <span slot="no-results" style="color:#4bb7aa;">
+          <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+          <p style="font-size:1rem;display:inline-block;">快去添加点教材吧~</p>
+        </span>
+        <span slot="no-more"></span>
+      </infinite-loading>
     </div>
 
     <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
@@ -37,6 +37,8 @@ import {XHeader,XInput,Group,Selector,Cell,ViewBox,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {token,userSubjectList} from '../../../common/getters'
 import {getTextbook,setSubject} from '../actions'
+import {getUserInfo} from '../../../main/actions'
+
 import {MyTextbook,textBookSubjectId} from '../getters'
 import gnbChangeSub from '../../../components/changesub/index.vue'
 
@@ -46,21 +48,21 @@ export default {
   },
   filters: {
     subName(id){
-        switch(id){
-            case '2':return '数学';
-            case '7':return '物理';
-            case '8':return '化学';
-        }
-    }    
+      switch(id){
+        case '2':return '数学';
+        case '7':return '物理';
+        case '8':return '化学';
+      }
+    }
   },
   vuex: {
-		getters: {
-			token,MyTextbook,textBookSubjectId,userSubjectList
-		},
-		actions: {
-      getTextbook,setSubject
-		}
-	},
+    getters: {
+      token,MyTextbook,textBookSubjectId,userSubjectList
+    },
+    actions: {
+      getTextbook,setSubject,getUserInfo
+    }
+  },
   data(){
     return {
         visible:false
@@ -94,21 +96,23 @@ export default {
           return;
       }
 
-			this.getTextbook({
-				token:this.token,   
+      this.getTextbook({
+        token:this.token,   
         subjectId:this.textBookSubjectId
-			},()=>{
-					if(this.MyTextbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-          this.$broadcast('$InfiniteLoading:complete');
-			});
-		}
+      },()=>{
+        if(this.MyTextbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+        this.$broadcast('$InfiniteLoading:complete');
+      });
+
+      this.getUserInfo({token:this.token})
+    }
   },
   watch:{
     /** 切换学科*/
     textBookSubjectId(){
-        this.$nextTick(() => {
-            this.$broadcast('$InfiniteLoading:reset');
-        });
+      this.$nextTick(() => {
+        this.$broadcast('$InfiniteLoading:reset');
+      });
     }
   }
 }
