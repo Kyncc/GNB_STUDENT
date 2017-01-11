@@ -1,10 +1,10 @@
 <template>
   <view-box v-ref:view-box class="passList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}" >弃题列表</x-header>
+      <x-header :left-options="{showBack: true}">弃题列表</x-header>
       <header v-if="passList" class="sectionHeader">
-          <p class="ellipsis">{{passList.chapterName}}</p>
-          <font class="ellipsis">共<b>{{passList.count}}</b>个题型</font>
+        <p class="ellipsis">{{passList.chapterName}}</p>
+        <font class="ellipsis">共<b>{{passList.count}}</b>个题型</font>
        </header>
     </div>
     <!--空白间隔-->
@@ -24,12 +24,7 @@
                     </div>
                 </a>
             </div>
-             <div class="abandon">
-                <span >撤回</span>
-                <span >放弃</span>
-            </div>
-
-          </div>
+        </div>
       </template>
       <infinite-loading :on-infinite="_onInfinite" spinner="waveDots" style="height:60px">
           <span slot="no-results" style="color:#4bb7aa;">

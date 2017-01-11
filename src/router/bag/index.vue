@@ -6,7 +6,7 @@
   <scroller lock-x v-ref:scroller height="-47px">
     <div>
       <group style="padding:10px 0;">
-        <cell title="成绩报告单" link="bag/report/">
+        <cell title="知识图谱" link="bag/report/">
           <span class="icon iconfont icon-pie-chart" style="color:#794BB8" slot="icon"></span>
         </cell>
       </group>

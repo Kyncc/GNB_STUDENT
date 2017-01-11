@@ -15,7 +15,7 @@
                 {{{item.chapter_name}}}
             </div>
             <div class="weui_panel_bd">
-                <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.excercise_id)">
+                <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.exercises_id)">
                     <div class="weui_media_bd">
                         <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>
                         <p class="weui_media_desc">
@@ -23,10 +23,6 @@
                         </p>
                     </div>
                 </a>
-            </div>
-             <div class="abandon">
-                <span >撤回</span>
-                <span >放弃</span>
             </div>
 
           </div>

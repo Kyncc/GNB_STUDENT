@@ -77,7 +77,7 @@ export const API_PATHS = {
    */
     reportChapter:`${API_ENV}${API_VERSION}/student/report`,
     reportDetail:`${API_ENV}${API_VERSION}/student/report/detail`,
-    /**题型汇总
+  /**题型汇总
    *  brush:首页
    *  brushList:章节刷题
    *  brushAction:斩题放弃

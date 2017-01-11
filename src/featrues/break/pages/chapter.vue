@@ -2,7 +2,7 @@
   <view-box v-ref:view-box class="reportStudent">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
-        选择章节
+        <change-text-book :value.sync="textbookId" :user-textbook="userTextbook" :subject-id="breakSubjectId"></change-text-book>
         <a slot="right" @click="_changeSub" class="changeSub">{{breakSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
     </div>
@@ -24,26 +24,25 @@
 <script>
 import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import gnbChangeSub from '../../../components/changesub/index'
-import accordion from '../../../components/accordion'
-
-import {token,userSubjectList} from '../../../common/getters'
+import {gnbChangeSub,accordion,changeTextBook} from 'components'
+import {token,userSubjectList,userTextbook,path} from '../../../common/getters'
 import {breakChapter,breakScoll,breakSubjectId} from '../getters'
-import {getBreak,changeChapter,setScoll,setSubject} from '../actions/chapter'
+import {getBreak,changeChapter,setScoll,setSubject,clearBreak} from '../actions/chapter'
 import {breakListClear} from '../actions/list'
 
 
 export default {
   components: {
-    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,accordion,gnbChangeSub,InfiniteLoading
+    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,InfiniteLoading,
+    gnbChangeSub,accordion,changeTextBook
   },
   vuex: {
     getters: {
-      token,userSubjectList,
+      token,userSubjectList,userTextbook,
       breakChapter,breakScoll,breakSubjectId
     },
     actions: {
-      getBreak,changeChapter,setScoll,setSubject,breakListClear
+      getBreak,changeChapter,setScoll,setSubject,breakListClear,clearBreak
     }
   },
   filters: {
@@ -57,7 +56,6 @@ export default {
   },
   methods: {
   _toDetail(){
-
     return `list/`;
   },
   _changeSub(){
@@ -84,7 +82,7 @@ export default {
     }
     this.getBreak({
       token:this.token,
-      subject_id:this.breakSubjectId
+      textbook_id:this.textbookId
     },()=>{
       if(this.breakChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
       this.$broadcast('$InfiniteLoading:complete');
@@ -94,12 +92,14 @@ export default {
    data(){
     return {
       visible:false,
+      textbookId:this.userTextbook['math'][0].id
     }
   },
-  ready(){
-    this.$nextTick(()=>{
-      document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
-    });
+  watch: {
+    textbookId(){
+      this.clearBreak();
+      this.$broadcast('$InfiniteLoading:reset');
+    }
   }
 }
 </script>

@@ -2,7 +2,7 @@
   <view-box v-ref:view-box class="reportIndex">
       <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
           <x-header :left-options="{showBack: true}" >
-              成绩报告单
+              知识图谱
               <a slot="right" @click="_changeSub()" class="changeSub">{{reportSubjectId | subName}}<span class="with_arrow"></span></a>
           </x-header>
       </div>
@@ -28,6 +28,7 @@ import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import {token,userSubjectList } from '../../../common/getters'
 import {reportChapter,reportScoll,reportSubjectId} from '../getters'
 import {getReport,changeChapter,setScoll,clearReport,setSubject} from '../actions'
+
 import gnbChangeSub from '../../../components/changesub/index'
 import accordion from '../../../components/accordion'
 
@@ -83,7 +84,7 @@ export default {
           if(this.reportChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
           this.$broadcast('$InfiniteLoading:complete');
       });
-    }   
+    }
   },
   data(){
     return {
