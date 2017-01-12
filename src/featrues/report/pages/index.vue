@@ -23,7 +23,7 @@
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,ViewBox} from 'vux'
-import {token,userSubjectList } from '../../../common/getters'
+import {token,userSubjectList,path } from '../../../common/getters'
 import {reportChapter,reportScoll,reportSubjectId} from '../getters'
 import {getReport,changeChapter,setScoll,clearReport,setSubject,clearDetail} from '../actions'
 import {gnbChangeSub,accordionReport} from 'components'
@@ -34,7 +34,7 @@ export default {
   },
   vuex: {
     getters: {
-      token,userSubjectList,
+      token,userSubjectList,path,
       reportSubjectId,reportChapter,reportScoll
     },
     actions: {
@@ -63,20 +63,14 @@ export default {
       this.subjectName = item.value;
       this.visible = false;
       this.setSubject(item.id);       //更换科目
-      this.$nextTick(() => {
-          this.$broadcast('$InfiniteLoading:reset');
-      });
+      this.$broadcast('$InfiniteLoading:reset');
     },
+    //打开结点
     _openChapter(index){
       this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
       this.changeChapter(index);
     },
     _onInfinite(){
-      if(this.reportChapter.length != 0){
-        this.$broadcast('$InfiniteLoading:loaded');
-        this.$broadcast('$InfiniteLoading:complete');
-        return;
-      }
       this.getReport({
         token:this.token,
         subject_id:this.reportSubjectId
@@ -84,10 +78,6 @@ export default {
         if(this.reportChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
         this.$broadcast('$InfiniteLoading:complete');
       });
-    },
-    path(){
-      
-      
     }
   },
   data(){
@@ -95,10 +85,12 @@ export default {
       visible:false,
     }
   },
-  ready(){
-    this.$nextTick(()=>{
+  watch:{
+     path(){
+      if(this.path == '/bag/report/'){
         document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
-    });
+      }
+    }
   }
 }
 </script>

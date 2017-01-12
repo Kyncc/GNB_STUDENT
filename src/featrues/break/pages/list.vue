@@ -42,10 +42,11 @@
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token,chapterId} from '../../../common/getters'
+import {token,chapterId,path} from '../../../common/getters'
 import {breakSubjectId,breakListScoll,breakListOffset,breakList} from '../getters'
 import {setScoll,getBreakList,breakListClear } from '../actions/list'
-
+import {passExampleClear } from '../actions/example'
+import './index.less'
 
 export default {
     components: {
@@ -54,7 +55,8 @@ export default {
     },
     methods: {
         _intoDetail(id){
-            this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+            this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
+            this.passExampleClear();
             this.$router.go(`../example/${this.breakSubjectId}/${id}`);
         },
         _isFirst(){
@@ -87,11 +89,11 @@ export default {
     },
     vuex: {
         getters: {
-            token,chapterId,
+            token,chapterId,path,
             breakList,breakSubjectId,breakListScoll,breakListOffset
         },
         actions: {
-            setScoll,getBreakList,breakListClear
+            setScoll,getBreakList,breakListClear,passExampleClear
         }
     },
     watch:{

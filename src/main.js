@@ -112,10 +112,7 @@ router.map({
   'forget/password': {
     component: resetPassword
   },
-  //纠错
-  'correct/:subjectId/:id': {
-    component: correct
-  },
+ 
   //评注
   'comment/:subjectId/:id': {
     component: comment
@@ -126,6 +123,9 @@ router.map({
     subRoutes: {
       'user/': {
         component: User
+      },
+      'correct/:subjectId/:id': {
+        component: correct
       },
       ...interact,
       ...index,
@@ -152,16 +152,16 @@ router.map({
   'user/settings/advice/history': {
     component: userSettingsAdviceHistory
   },
-  //邀请好友
-  'user/invite': {
-    component: userInviteIndex
-  },
-  'user/invite/friend': {
-    component: userInviteFriend
-  },
-  'user/invite/input': {
-    component: userCodeInput
-  },
+  // //邀请好友
+  // 'user/invite': {
+  //   component: userInviteIndex
+  // },
+  // 'user/invite/friend': {
+  //   component: userInviteFriend
+  // },
+  // 'user/invite/input': {
+  //   component: userCodeInput
+  // },
   //我的班级
   'user/class': {
     component: userClassIndex

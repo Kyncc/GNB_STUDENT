@@ -29,10 +29,10 @@
 
 <script>
 import {XHeader,  Cell,  Group,  Alert,  Confirm} from 'vux'
-import './setting.less'
 import {updateVersion} from '../../actions/settings.js'
 import {fetchVersion} from '../../getters.js'
 import {system,token} from '../../../common/getters.js'
+import './setting.less'
 
 export default {
   components: {

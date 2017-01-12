@@ -1,5 +1,5 @@
 /*token*/
-export const fetchToken = (state) => state.userInfo.token
+export const fetchToken = (state) => state.login.token
 //获取反馈信息列表
 export const fetchHistory = (state) => state.user.settings.adviceList
 

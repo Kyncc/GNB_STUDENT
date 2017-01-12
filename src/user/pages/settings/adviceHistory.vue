@@ -34,7 +34,8 @@
 import {XHeader,XInput,Group,Cell,ViewBox} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { adviceHistory } from '../../actions/advice'
-import { fetchHistory, fetchToken } from '../../getters.js'
+import { fetchHistory } from '../../getters.js'
+import {token} from '../../../common/getters'
 import * as _  from '../../../config/whole.js'
 
 export default {
@@ -47,13 +48,13 @@ export default {
 		},
 		getters:{
 			fetchHistory,
-			fetchToken
+			token
 		}
 	},
 	 methods: {
 		 _onInfinite(){
 			this.adviceHistory({
-				token:this.fetchToken 
+				token:this.token 
 			},()=>{
 				if(this.fetchHistory.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
 				this.$broadcast('$InfiniteLoading:complete');

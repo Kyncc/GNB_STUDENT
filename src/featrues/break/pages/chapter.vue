@@ -8,7 +8,7 @@
     </div>
 
     <div style="padding-top:46px">
-      <accordion :list="breakChapter" :link="_toDetail()" @on-click-back="_openChapter"></accordion>
+      <accordion :list="breakChapter" @on-click-chapter="_toDetail" @on-click-open="_openChapter"></accordion>
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -30,7 +30,6 @@ import {breakChapter,breakScoll,breakSubjectId} from '../getters'
 import {getBreak,changeChapter,setScoll,setSubject,clearBreak} from '../actions/chapter'
 import {breakListClear} from '../actions/list'
 
-
 export default {
   components: {
     XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,InfiniteLoading,
@@ -38,7 +37,7 @@ export default {
   },
   vuex: {
     getters: {
-      token,userSubjectList,userTextbook,
+      token,userSubjectList,userTextbook,path,
       breakChapter,breakScoll,breakSubjectId
     },
     actions: {
@@ -55,41 +54,36 @@ export default {
     }
   },
   methods: {
-  _toDetail(){
-    return `list/`;
-  },
-  _changeSub(){
-    this.visible = true;
-  },
-  /** 切换科目*/
-  _changeSubject(item){
-    this.subjectName = item.value;
-    this.visible = false;
-    this.setSubject(item.id);       //更换科目
-    this.$nextTick(() => {
+    _toDetail(index){
+      this.breakListClear();
+      this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.$router.go(`list/${index}`);
+    },
+    _changeSub(){
+      this.visible = true;
+    },
+    /** 切换科目*/
+    _changeSubject(item){
+      this.visible = false;
+      this.subjectName = item.value;
+      this.setSubject(item.id);       //更换科目
       this.$broadcast('$InfiniteLoading:reset');
-    });
-  },
-  _openChapter(index){
-     this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
-     this.changeChapter(index);
-  },
-  _onInfinite(){
-    if(this.breakChapter.length != 0){
-      this.$broadcast('$InfiniteLoading:loaded');
-      this.$broadcast('$InfiniteLoading:complete');
-      return;
+    },
+    _openChapter(index){
+      this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.changeChapter(index);
+    },
+    _onInfinite(){
+      this.getBreak({
+        token:this.token,
+        textbook_id:this.textbookId
+      },()=>{
+        if(this.breakChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+        this.$broadcast('$InfiniteLoading:complete');
+      });
     }
-    this.getBreak({
-      token:this.token,
-      textbook_id:this.textbookId
-    },()=>{
-      if(this.breakChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-      this.$broadcast('$InfiniteLoading:complete');
-    });
-  }
   },
-   data(){
+  data(){
     return {
       visible:false,
       textbookId:this.userTextbook['math'][0].id
@@ -99,6 +93,11 @@ export default {
     textbookId(){
       this.clearBreak();
       this.$broadcast('$InfiniteLoading:reset');
+    },
+    path(){
+      if(this.path == '/bag/break/'){
+         document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.breakScoll; //更改高度
+      }
     }
   }
 }

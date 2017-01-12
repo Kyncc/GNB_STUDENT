@@ -2,11 +2,11 @@
     <div class="container">
         <section class="ac-container">
             <div v-for="items in list" class="gnb-accordion">
-                <input :id="'ac-'+$index" name="accordion-1" type="checkbox" :checked="items.checked" @click="onClickBack($index)"/>
+                <input :id="'ac-'+$index" name="accordion-1" type="checkbox" :checked="items.checked" @click="onClickOpen($index)"/>
                 <label class="header" :for="'ac-'+$index">{{items.name}}<span class="with_arrow"></span></label>
                 <article class="ac-small">
                     <group>
-                        <cell v-for="item in items.sub_chapter_list" :title="item.name" :link="link+item.chapter_id"></cell>
+                        <cell v-for="item in items.sub_chapter_list" :title="item.name" @click="onClickChapter(item.chapter_id)"></cell>
                     </group>
                 </article>
             </div>
@@ -26,8 +26,11 @@ export default {
     },
      methods:{
         /** 点击科目提交的回调*/
-        onClickBack(index){
-            this.$emit('on-click-back',index);
+        onClickOpen(index){
+            this.$emit('on-click-open',index);
+        },
+        onClickChapter(index){
+            this.$emit('on-click-chapter',index);
         }
     },
     props: ['list','link']

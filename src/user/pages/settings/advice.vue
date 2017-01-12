@@ -16,7 +16,7 @@
 
 import {XHeader,XInput,Group,XTextarea,XButton} from 'vux'
 import { advice } from '../../actions/advice'
-import {fetchToken} from '../../getters'
+import {token} from '../../../common/getters'
 import * as _  from '../../../config/whole.js'
 
 export default {
@@ -35,7 +35,7 @@ export default {
 			advice
 		},
 		getters:{
-			fetchToken
+			token
 		}
 	},
 	methods: {

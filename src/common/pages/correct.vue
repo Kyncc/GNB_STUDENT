@@ -1,5 +1,5 @@
 <template>
-	<div class='errorCorrect  vux-scroller-header-box'>
+	<div class='correctDetail  vux-scroller-header-box'>
 		<div style="height:46px;">
 			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">我要纠错
                 <a slot="right" v-touch:tap="_commit">提交</a>
@@ -33,7 +33,7 @@
 import {XHeader,XButton,Checker, Flexbox,FlexboxItem,CheckerItem,Group,XTextarea} from 'vux'
 import store from '../../store' 
 import { correct } from '../actions'
-import { token } from '../getters'
+import { token,path } from '../getters'
 import * as _ from '../../config/whole'
 
 export default {
@@ -43,7 +43,7 @@ export default {
 	},
      vuex: {
         getters: {
-            token
+            token,path
         },
         actions: {
             correct
@@ -80,6 +80,14 @@ export default {
              content:'',
              id:store.state.route.params.id,
              subejectId:store.state.route.params.subjectId
+        }
+    },
+    watch: {
+        path(){
+            if(this.path.indexOf('/correct') >=0 ){
+                this.type = [];
+                this.content = '';
+            }
         }
     }
 }
