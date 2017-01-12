@@ -15,7 +15,7 @@
                 {{{item.chapter_name}}}
             </div>
             <div class="weui_panel_bd">
-                <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.excercise_id)">
+                <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.exercises_id)">
                     <div class="weui_media_bd">
                         <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>
                         <p class="weui_media_desc">
@@ -41,10 +41,11 @@
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token,chapterId} from '../../../common/getters'
-import {passSubjectId,passListScoll,passListOffset,passList} from '../getters'
+import {token,chapterId,path} from '../../../common/getters'
+import {passSubjectId,passListScoll,passListOffset,passList,passListIsReset} from '../getters'
 import {setScoll,getPassList,passListClear } from '../actions/list'
-
+import {passExampleClear } from '../actions/example'
+import './index.less'
 
 export default {
     components: {
@@ -53,22 +54,13 @@ export default {
     },
     methods: {
         _intoDetail(id){
-            this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+            this.passExampleClear();
+            this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
             this.$router.go(`../example/${this.passSubjectId}/${id}`);
         },
-        _isFirst(){
-             //如果剩余题目数量等于数量 则表示加载完毕
-            if(this.passList.list.length != 0 && (this.passList.list.length == this.passList.count)){
-                this.$broadcast('$InfiniteLoading:loaded');
-                this.$broadcast('$InfiniteLoading:complete');
-                return true;
-            }
-            return false;
-        },
          _onInfinite(){
-            if(this._isFirst()){return}
             this.getPassList({
-                // status:2,
+                status:2,
                 token:this.token,
                 chapter_id:this.chapterId,
                 subject_id:this.passSubjectId,
@@ -86,22 +78,19 @@ export default {
     },
     vuex: {
         getters: {
-            token,chapterId,
-            passList,passSubjectId,passListScoll,passListOffset
+            token,chapterId,path,
+            passList,passSubjectId,passListScoll,passListOffset,passListIsReset
         },
         actions: {
-            setScoll,getPassList,passListClear
+            setScoll,getPassList,passListClear,passExampleClear
         }
     },
     watch:{
-        chapterId(){
-            if(this.chapterId == undefined){
-                return;
+        path(){
+            if(this.path.indexOf('/bag/pass/list/') >=0 ){
+                if(this.passListIsReset) { this.$broadcast('$InfiniteLoading:reset');}
+                else{document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.passListScoll;}
             }
-            this._onInfinite();
-            this.$nextTick(()=>{
-                document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.passListScoll;
-            });
         }
     }
 }

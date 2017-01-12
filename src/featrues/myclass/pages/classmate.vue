@@ -35,8 +35,8 @@
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
 import {token,id} from '../../../common/getters'
-import {ClassMyClassmate} from '../../getters'
-import {getMyClassmateList} from '../../actions/class'
+import {ClassMyClassmate} from '../getters'
+import {getMyClassmateList} from '../actions/class'
 import {XHeader,Cell,Group,ViewBox} from 'vux'
 import './myClass.less'
 export default {

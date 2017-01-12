@@ -7,25 +7,25 @@ import rememberAdd from './pages/add'
 import rememberTextBookAdd from '../textbook/pages/fromWorkbookAdd'
 
 export default  {
-    'remember': {
-      component: remember
-    },
-    'remember/add': {
-      component: rememberAdd
-    },
-    'remember/example/:id': {
-      component: rememberExample
-    },
-    'remember/workbook/:bookId': {
-      component: rememberWorkbook
-    },
-    'remember/workbook/byPage/:bookId': {
-      component: rememberWorkbookByPage
-    },
-    'remember/workbook/exercise/:chapterId': {
-      component: rememberExercise
-    },
-    'remember/textbook/add/:subjectId': {
-      component: rememberTextBookAdd
-    }
+  'remember': {
+    component: remember
+  },
+  'remember/add': {
+    component: rememberAdd
+  },
+  'remember/example/:id': {
+    component: rememberExample
+  },
+  'remember/workbook/:bookId': {
+    component: rememberWorkbook
+  },
+  'remember/workbook/byPage/:bookId': {
+    component: rememberWorkbookByPage
+  },
+  'remember/workbook/exercise/:chapterId': {
+    component: rememberExercise
+  },
+  'remember/textbook/add/:subjectId': {
+    component: rememberTextBookAdd
+  }
 }

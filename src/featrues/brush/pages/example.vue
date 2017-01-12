@@ -11,7 +11,7 @@
           <div class="weui_panel_hd">
             <p style="width:25%;color:#4bb7aa">题干</p>
             <p style="width:50%;text-align:right;" v-touch:tap="_collect(detail.collectTime)">
-              <span style="color:#666"><i class="icon iconfont icon-collect"></i>{{detail.collectTime | collect}}</span>
+              <span style="color:#666"><i class="icon iconfont icon-collect"></i>{{( detail.collectTime == 0 ?  '收藏' :  '取消' )}}</span>
             </p>
             <p style="width:25%;text-align:right" v-touch:tap="_correct"> 
               <span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
@@ -69,24 +69,16 @@
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import {getBrushExample,collectAdd,collectRemove} from '../actions/example'
 import {brushExample,brushSubjectId} from '../getters'
-import {token,id} from '../../../common/getters'
+import {token,id,path} from '../../../common/getters'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   components: {
     XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
   },
-  filters: {
-    collect(state){
-      if(state == 0){
-        return '收藏';
-      }
-      return '取消';
-    }    
-  },
   vuex: {
     getters: {
-      token,brushExample,brushSubjectId,id
+      token,brushExample,brushSubjectId,id,path
     },
     actions: {
        getBrushExample,collectAdd,collectRemove
@@ -128,13 +120,12 @@ export default {
     }
   },
   watch:{
-    id(){
-      if(this.id == undefined){
-          return;
+    path(){
+      if(this.path.indexOf('/index/brush/example/') >=0 ){
+        this.$nextTick(() => {
+          this.$broadcast('$InfiniteLoading:reset');
+        });
       }
-      this.$nextTick(() => {
-        this.$broadcast('$InfiniteLoading:reset');
-      });
     }
   }
 }

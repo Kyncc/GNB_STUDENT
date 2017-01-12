@@ -18,7 +18,7 @@ export const getBreakExample = ({ dispatch }, params,success) => {
 }
 
 /**清空例题 */
-export const passExampleClear = ({ dispatch }) => {
+export const breakExampleClear = ({ dispatch }) => {
   dispatch(types.BREAK_EXAMPLE_CLEAR);
 }
 

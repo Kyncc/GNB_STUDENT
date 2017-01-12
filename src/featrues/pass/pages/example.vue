@@ -11,7 +11,7 @@
           <div class="weui_panel_hd">
             <p style="width:25%;color:#4bb7aa">题干</p>
             <p style="width:50%;text-align:right;" v-touch:tap="_collect(detail.collectTime)">
-              <span style="color:#666"><i class="icon iconfont icon-collect"></i>{{detail.collectTime | collect}}</span>
+              <span style="color:#666"><i class="icon iconfont icon-collect"></i>{{( detail.collectTime == 0 ?  '收藏' :  '取消' )}}</span>
             </p>
             <p style="width:25%;text-align:right" v-touch:tap="_correct"> 
               <span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
@@ -69,7 +69,7 @@
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import {getPassExample,collectAdd,collectRemove} from '../actions/example'
 import {passExample,passSubjectId} from '../getters'
-import {token,id} from '../../../common/getters'
+import {token,id,path} from '../../../common/getters'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -86,7 +86,7 @@ export default {
   },
   vuex: {
     getters: {
-      token,passExample,passSubjectId,id
+      token,passExample,passSubjectId,id,path
     },
     actions: {
        getPassExample,collectAdd,collectRemove
@@ -128,13 +128,12 @@ export default {
     }
   },
   watch:{
-    id(){
-      if(this.id == undefined){
-          return;
+    path(){
+      if(this.path.indexOf('/bag/pass/example/') >=0 ){
+        this.$nextTick(() => {
+          this.$broadcast('$InfiniteLoading:reset');
+        });
       }
-      this.$nextTick(() => {
-        this.$broadcast('$InfiniteLoading:reset');
-      });
     }
   }
 }

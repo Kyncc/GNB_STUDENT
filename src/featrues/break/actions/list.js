@@ -14,7 +14,7 @@ export const setScoll = ({ dispatch },height) => {
 
 /**获取弃题列表 */
 export const getBreakList = ({ dispatch }, params, success) => {
-  Api.brushList({
+  Api.brushTypeList({
     data: params,
     ok: response => {
       dispatch(types.BREAK_LIST, response.data);

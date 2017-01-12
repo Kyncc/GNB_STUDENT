@@ -81,11 +81,12 @@ export const API_PATHS = {
    *  brush:首页
    *  brushList:章节刷题
    *  brushAction:斩题放弃
+   * brushTypeList:斩题或放弃列表
    */
     brush:`${API_ENV}${API_VERSION}/student/summary`,
     brushList:`${API_ENV}${API_VERSION}/student/summary/list-exercises`,
     brushAction:`${API_ENV}${API_VERSION}/student/summary/loose-win-exercise`,
-    brushTypeList:`${API_ENV}${API_VERSION}/student/summary/list-exercises-member`,
+    brushTypeList:`${API_ENV}${API_VERSION}/student/summary/list-loose-win-exercise`,
    /**记错题
    *  rememberChapter:记错题章节列表
    */

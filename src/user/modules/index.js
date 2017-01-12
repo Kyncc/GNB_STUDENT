@@ -7,15 +7,6 @@ const state = {
       math:[],
       physics:[]
     },
-    settings:{
-      adviceList:[],
-      appVersion:''
-    },
-    class:{
-      my:[],
-      classmate:{},
-      searchClass:[]
-    },
     invite:{
       code:'',
       status:'',
@@ -27,19 +18,6 @@ const state = {
 
 
 const mutations = {
-  //我的班级
-  [types.CLASS_MY_GET](state,data) {
-     state.class.my = data;
-  },
-  [types.CLASS_MYCLASSMATE_GET](state,data) {
-     state.class.classmate = data[0];
-  },
-  [types.CLASS_SEARCH](state,data) {
-     state.class.searchClass = data;
-  },
-  [types.CLASS_ADD](state) {
-     state.class.my = [];
-  },
   //邀请
   [types.INVITE_STUDENT_LIST](state, data) {
     state.invite.list = data
@@ -58,14 +36,6 @@ const mutations = {
      }else{
        state.version.physics = [];
      }
-  },
-  //反馈历史
-  [types.GET_ADVICE_LIST](state, data) {
-    state.settings.adviceList = data;
-  },
-  //APP版本
-  [types.GET_VERSION](state, data) {
-    state.settings.appVersion = data
   }
 }
 

@@ -33,9 +33,9 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
-import {ClassSearch} from '../../getters.js'
+import {ClassSearch} from '../getters.js'
 import { token } from '../../../common/getters.js'
-import { getMyClassSearchClass,postMyClassInto } from '../../actions/class.js'
+import { getMyClassSearchClass,postMyClassInto } from '../actions/class.js'
 import {XHeader,XButton,Cell,Group, Alert,Flexbox,FlexboxItem,Search, ViewBox} from 'vux'
 import './myClass.less'
 

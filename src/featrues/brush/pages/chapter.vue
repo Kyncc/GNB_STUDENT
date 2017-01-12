@@ -1,4 +1,4 @@
-<template >
+<template>
   <view-box v-ref:view-box class="reportStudent">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
@@ -8,7 +8,7 @@
     </div>
 
     <div style="padding-top:46px">
-      <accordion :list="brushChapter" :link="_toDetail()" @on-click-back="_openChapter"></accordion>
+      <accordion :list="brushChapter" @on-click-chapter="_toDetail" @on-click-open="_openChapter"></accordion>
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -26,7 +26,7 @@ import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {gnbChangeSub,accordion,changeTextBook} from 'components'
 
-import {token,userSubjectList,userTextbook} from '../../../common/getters'
+import {token,userSubjectList,userTextbook,path} from '../../../common/getters'
 import {brushChapter,brushScoll,brushSubjectId} from '../getters'
 
 import {getBrush,changeChapter,setScoll,setSubject,clearBrush} from '../actions/chapter'
@@ -42,7 +42,7 @@ export default {
   },
   vuex: {
     getters: {
-      token,userSubjectList,userTextbook,
+      token,userSubjectList,userTextbook,path,
       brushChapter,brushScoll,brushSubjectId
     },
     actions: {
@@ -59,8 +59,10 @@ export default {
     }
   },
   methods: {
-    _toDetail(){
-      return `list/`;
+    _toDetail(index){
+      this.brushListClear();
+      this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.$router.go(`list/${index}`);
     },
     _changeSub(){
       this.visible = true;
@@ -70,9 +72,7 @@ export default {
       this.subjectName = item.value;
       this.visible = false;
       this.setSubject(item.id);       //更换科目
-      this.$nextTick(() => {
-        this.$broadcast('$InfiniteLoading:reset');
-      });
+      this.$broadcast('$InfiniteLoading:reset');
     },
     _openChapter(index){
       this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
@@ -94,15 +94,15 @@ export default {
       textbookId:this.userTextbook['math'][0].id
     }
   },
-  // ready(){
-  //   this.$nextTick(()=>{
-  //     document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
-  //   });
-  // },
   watch: {
     textbookId(){
-        this.clearBrush();
-        this.$broadcast('$InfiniteLoading:reset');
+      this.clearBrush();
+      this.$broadcast('$InfiniteLoading:reset');
+    },
+    path(){
+      if(this.path == '/index/brush/'){
+         document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.breakScoll; //更改高度
+      }
     }
   }
 }

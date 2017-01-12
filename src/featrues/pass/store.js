@@ -9,6 +9,7 @@ const state = {
   list: {
     list:[],
     count:0,
+    isReset:true,
     chapterName:'',
     scoll:0,
     offset:''
@@ -36,11 +37,13 @@ const mutations = {
   [types.PASS_LIST](state, data) {
     if(data.data.length == 0){return;}
     state.list.chapterName = data.data.chapterName;
+    state.list.isReset = false;
     state.list.count = data.data.recordSize;
     state.list.offset = data.data.offset;
     state.list.list = state.list.list.concat(data.data.detail);
   },
   [types.PASS_LIST_CLEAR](state) {
+    state.list.isReset = true;
     state.list.list = [];
     state.list.count=0;
     state.list.chapterName='',

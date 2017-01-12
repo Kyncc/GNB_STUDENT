@@ -14,7 +14,7 @@
 <script>
 import {XHeader,XInput,Group,XButton} from 'vux'
 import {token} from '../../../common/getters'
-import {updatePwd} from '../../actions/resetPwd'
+import {updatePwd} from '../actions/resetPwd'
 import * as _ from '../../../config/whole.js'
 export default {
   components: {

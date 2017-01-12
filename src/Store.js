@@ -7,8 +7,7 @@ import forget from './login/modules/forget'
 import interact from './router/interact/store'
 import userinfo from './main/store'
 import user from './user/modules/index'
-// import camera from './camera/modules/index'
-// import error from './error/modules/index'
+
 import remember from './featrues/remember/store'
 import brush from './featrues/brush/store'
 import pass from './featrues/pass/store'
@@ -18,9 +17,12 @@ import textbook from './featrues/textbook/store'
 import report from './featrues/report/store'
 import collect from './featrues/collect/store'
 import message from './featrues/message/store'
+import settings from './featrues/settings/store'
+import myClass from './featrues/myClass/store'
 //需要重构
+// import camera from './camera/modules/index'
+// import error from './error/modules/index'
 // import member from './user/modules/member.js'
-
 
 Vue.use(Vuex)
 export default new Vuex.Store({
@@ -42,6 +44,8 @@ export default new Vuex.Store({
     break:breakList,
     textbook,
     workbook,
-    message
+    settings,
+    message,
+    myClass
   }
 })

@@ -28,20 +28,13 @@ import bag from './router/bag/router'
 //互动
 import interact from './router/interact/router'
 //个人中心
+import user from './router/user/router'
+//个人中心
 import userInfo from './user/pages/info'
-//个人中心-设置
-import userSettingsIndex from './user/pages/settings/index'
-import userSettingsResetPwd from './user/pages/settings/resetPwd'
-import userSettingsAdvice from './user/pages/settings/advice'
-import userSettingsAdviceHistory from './user/pages/settings/adviceHistory'
 //个人中心-邀请好友
 import userInviteIndex from './user/pages/invite/index'
 import userInviteFriend from './user/pages/invite/friend'
 import userCodeInput from './user/pages/invite/input'
-//我的班级
-import userClassIndex from './user/pages/class/index'
-import userClassmate from './user/pages/class/classmate'
-import userClassAdd from './user/pages/class/add'
 //插件
 import moment from 'moment'
 import FastClick from 'fastclick'
@@ -112,7 +105,6 @@ router.map({
   'forget/password': {
     component: resetPassword
   },
- 
   //评注
   'comment/:subjectId/:id': {
     component: comment
@@ -121,36 +113,22 @@ router.map({
   '/': {
     component: Layout,
     subRoutes: {
-      'user/': {
-        component: User
-      },
       'correct/:subjectId/:id': {
         component: correct
       },
+      ...user,
       ...interact,
       ...index,
       ...bag,
+
     }
   },
-  'user/photo': {
-    component: Photo
-  },
+  // 'user/photo': {
+  //   component: Photo
+  // },
   //个人中心
   'user/info': {
     component: userInfo
-  },
-  //设置
-  'user/settings': {
-    component: userSettingsIndex
-  },
-  'user/settings/resetPwd': {
-    component: userSettingsResetPwd
-  },
-  'user/settings/advice': {
-    component: userSettingsAdvice
-  },
-  'user/settings/advice/history': {
-    component: userSettingsAdviceHistory
   },
   // //邀请好友
   // 'user/invite': {
@@ -162,16 +140,6 @@ router.map({
   // 'user/invite/input': {
   //   component: userCodeInput
   // },
-  //我的班级
-  'user/class': {
-    component: userClassIndex
-  },
-  'user/class/detail/:id': {
-    component: userClassmate
-  },
-  'user/class/add': {
-    component: userClassAdd
-  },
 })
 
 router.redirect({
@@ -190,8 +158,6 @@ router.beforeEach(function (transition) {
   }
   transition.next();
 })
-
-
 
 function plusReady() {
   let first = null;
@@ -212,7 +178,6 @@ function plusReady() {
       window.history.back();
     }
   });
-
 }
 
 if (window.plus) {

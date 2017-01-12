@@ -8,7 +8,7 @@
     </div>
 
     <div style="padding-top:46px">
-      <accordion :list="passChapter" :link="_toDetail()" @on-click-back="_openChapter"></accordion>
+      <accordion :list="passChapter" @on-click-chapter="_toDetail" @on-click-open="_openChapter"></accordion>
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -54,8 +54,10 @@ export default {
     }
   },
   methods: {
-    _toDetail(){
-      return `list/`;
+     _toDetail(index){
+      this.passListClear();
+      this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.$router.go(`list/${index}`);
     },
     _changeSub(){
       this.visible = true;
@@ -65,20 +67,13 @@ export default {
       this.subjectName = item.value;
       this.visible = false;
       this.setSubject(item.id);       //更换科目
-      this.$nextTick(() => {
-        this.$broadcast('$InfiniteLoading:reset');
-      });
+      this.$broadcast('$InfiniteLoading:reset');
     },
     _openChapter(index){
       this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
       this.changeChapter(index);
     },
     _onInfinite(){
-      if(this.passChapter.length != 0){
-        this.$broadcast('$InfiniteLoading:loaded');
-        this.$broadcast('$InfiniteLoading:complete');
-        return;
-      }
       this.getPass({
         token:this.token,
         textbook_id:this.textbookId
@@ -94,15 +89,15 @@ export default {
       textbookId:this.userTextbook['math'][0].id
     }
   },
-  ready(){
-    this.$nextTick(()=>{
-      document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
-    });
-  },
   watch: {
     textbookId(){
       this.clearPass();
       this.$broadcast('$InfiniteLoading:reset');
+    },
+    path(){
+      if(this.path == '/bag/pass/'){
+         document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.passScoll; //更改高度
+      }
     }
   }
 }

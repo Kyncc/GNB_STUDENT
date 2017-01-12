@@ -4,12 +4,12 @@ const state = {
   example: [],
   index: {
     list: [],
-    textBookId:0,
     scoll: 0
   },
   list: {
     list:[],
     count:0,
+    isReset:true,
     chapterName:'',
     scoll:0,
     offset:''
@@ -36,12 +36,14 @@ const mutations = {
   },
   [types.BRUSH_LIST](state, data) {
     if(data.data.length == 0){return;}
+    state.list.isReset = false;
     state.list.chapterName = data.data.chapterName;
     state.list.count = data.data.recordSize;
     state.list.offset = data.data.offset;
     state.list.list = state.list.list.concat(data.data.detail);
   },
   [types.BRUSH_LIST_CLEAR](state) {
+    state.list.isReset = true;
     state.list.list = [];
     state.list.count=0;
     state.list.chapterName='',

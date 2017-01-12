@@ -35,9 +35,9 @@
 import './myClass.less'
 import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox,Tabbar,XButton} from 'vux'
-import {getMyClass} from '../../actions/class'
+import {getMyClass} from '../actions/class'
 import {token} from '../../../common/getters'
-import {ClassMy} from '../../getters'
+import {ClassMy} from '../getters'
 
 export default {
     components: {
@@ -53,7 +53,7 @@ export default {
     },
     methods: {
         _addClass(){
-            this.$router.go('/user/class/add');
+            this.$router.go('class/add');
         },
         _onInfinite(){
             if(this.ClassMy.length != 0){
