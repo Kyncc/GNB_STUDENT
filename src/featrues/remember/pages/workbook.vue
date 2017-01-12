@@ -76,7 +76,7 @@ export default {
     },
   methods:{
        _intoPage(){
-           this.$router.replace(`/remember/workbook/byPage/${this.wookbookId}`);
+           this.$router.replace(`byPage/${this.wookbookId}`);
        },
        _changeType(){
             this.visible = true;
@@ -85,7 +85,7 @@ export default {
           if(item.isLink == 'true'){
             this.rememberExerciseClear();//进去前清空数据
             this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
-            this.$router.go('/remember/workbook/exercise/'+item.id);
+            this.$router.go('exercise/'+item.id);
           }
           return;
       },

@@ -106,7 +106,7 @@ export default {
             )
         },
         _correct(){
-            this.$router.go(`/remember/correct/${this.rememberSubjectId}/${this.exampleId}`);
+            this.$router.go(`/correct/${this.rememberSubjectId}/${this.exampleId}`);
         },
         _collect(state){
             let parma = {

@@ -3,8 +3,7 @@
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">章节选择
                 <a slot="right" @click="_changeType()" class="changeSub">
-                    按页码
-                    <span class="with_arrow"></span>
+                    按页码<span class="with_arrow"></span>
                 </a>
             </x-header>
         </div>
@@ -32,7 +31,6 @@
 import { XHeader,Panel,ViewBox,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { Popup } from 'mint-ui'
-
 import { token } from '../../../common/getters'
 import {rememberChapter,wookbookId,rememberChapterScroll} from '../getters'
 import {getWorkbookChapter,delChapter,setScoll} from '../actions/workbook'
@@ -58,7 +56,7 @@ export default {
     },
   methods:{
         _intoPage(){
-           this.$router.replace(`/remember/workbook/${this.wookbookId}`);
+           this.$router.replace(`../${this.wookbookId}`);
        },
         _changeType(){
             this.visible = true;
@@ -67,7 +65,7 @@ export default {
           if(item.isLink == 'true'){
             this.rememberExerciseClear();//进去前清空数据
             this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
-            this.$router.go('/remember/workbook/exercise/'+item.id);
+            this.$router.go('exercise/'+item.id);
           }
           return;
       },
@@ -101,9 +99,9 @@ export default {
 
   },
   ready(){
-       this.$nextTick(()=>{
-            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.rememberChapterScroll;
-        });
+    this.$nextTick(()=>{
+        document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.rememberChapterScroll;
+    });
   }
 }
 </script>

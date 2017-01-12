@@ -61,7 +61,8 @@
             ├── brush       # 刷错题
             ├── textbook    # 我的教材
             ├── workbook    # 我的练习册
-
+            ├── settings    # 设置
+            ├── myClass     # 我的班级
 
 ## 安装
 
@@ -87,4 +88,3 @@
   [12]: https://github.com/hilongjw/vue-lazyload
   [13]: https://github.com/dimsemenov/PhotoSwipe
   [14]: https://github.com/ElemeFE/mint-ui/tree/1.x
-  

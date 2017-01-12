@@ -105,22 +105,22 @@ router.map({
   'forget/password': {
     component: resetPassword
   },
-  //评注
-  'comment/:subjectId/:id': {
-    component: comment
-  },
   //主页
   '/': {
     component: Layout,
     subRoutes: {
+      //纠错
       'correct/:subjectId/:id': {
         component: correct
+      },
+      //评注
+      'comment/:subjectId/:id': {
+        component: comment
       },
       ...user,
       ...interact,
       ...index,
       ...bag,
-
     }
   },
   // 'user/photo': {
@@ -141,10 +141,6 @@ router.map({
   //   component: userCodeInput
   // },
 })
-
-router.redirect({
-  'remember/correct/:subjectId/:id': '/correct/:subjectId/:id',
-});
 
 sync(store, router)
 

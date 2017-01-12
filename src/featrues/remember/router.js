@@ -1,31 +1,37 @@
-import remember from './pages/index'
-import rememberWorkbook from './pages/workbook'
-import rememberWorkbookByPage from './pages/page'
-import rememberExercise from './pages/exercise'
-import rememberExample from './pages/example'
-import rememberAdd from './pages/add'
-import rememberTextBookAdd from '../textbook/pages/fromWorkbookAdd'
+import layout from './pages/layout'
+import index from './pages/index'
+import workbook from './pages/workbook'
+import workbookByPage from './pages/page'
+import exercise from './pages/exercise'
+import example from './pages/example'
+import add from './pages/add'
+import TextBookAdd from '../textbook/pages/fromWorkbookAdd'
 
 export default  {
   'remember': {
-    component: remember
-  },
-  'remember/add': {
-    component: rememberAdd
-  },
-  'remember/example/:id': {
-    component: rememberExample
-  },
-  'remember/workbook/:bookId': {
-    component: rememberWorkbook
-  },
-  'remember/workbook/byPage/:bookId': {
-    component: rememberWorkbookByPage
-  },
-  'remember/workbook/exercise/:chapterId': {
-    component: rememberExercise
-  },
-  'remember/textbook/add/:subjectId': {
-    component: rememberTextBookAdd
+    component: layout,
+    subRoutes: {
+      '/': {
+        component: index
+      },
+      'add': {
+        component: add
+      },
+      'example/:id': {
+        component: example
+      },
+      'workbook/:bookId': {
+        component: workbook
+      },
+      'workbook/byPage/:bookId': {
+        component: workbookByPage
+      },
+      'workbook/exercise/:chapterId': {
+        component: exercise
+      },
+      'textbook/add/:subjectId': {
+        component: TextBookAdd
+      }
+    }
   }
 }

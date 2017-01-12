@@ -12,13 +12,6 @@ const state = {
     system:''
 }
 
-    // var ua = navigator.userAgent.toLowerCase();	
-    // if (/iphone|ipad|ipod/.test(ua)) {
-    //       alert("iphone");		
-    // } else if (/android/.test(ua)) {
-    //       alert("android");	
-    // }
-  
 const mutations = {
     GET_TOAST_MESSAGE (state, msg) {
       state.toastMsg = msg

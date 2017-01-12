@@ -5,28 +5,35 @@
     </div>
 
     <div style="padding-top:46px;">
-      <template v-if="reportDetail.length != 0">
+      <template v-if="reportDetail.chapter">
         <header class="sectionHeader">{{reportDetail.chapter.name}}</header>
         <div class="section">
           <article class="difficultBlock">
             <div>
-              <p class="per-35 tl" style="color:#487d68">难度等级</p>
-              <p class="per-21">1</p>
-              <p class="per-21">2</p>
-              <p class="per-21">3</p>
+              <p class="per-30 tl" style="color:#487d68">难度等级</p>
+              <p class="per-20">1</p>
+              <p class="per-20">2</p>
+              <p class="per-20">3</p>
             </div>
             <div>
-              <p class="per-35 tl" style="color:#487d68">题型总数</p>
-              <p class="per-21">{{reportDetail.degree_level.level1_count}}个</p>
-              <p class="per-21">{{reportDetail.degree_level.level2_count}}个</p>
-              <p class="per-21">{{reportDetail.degree_level.level3_count}}个</p>
+              <p class="per-30 tl" style="color:#487d68">题型总数</p>
+              <p class="per-20">{{reportDetail.degree_level.level1_count}}个</p>
+              <p class="per-20">{{reportDetail.degree_level.level2_count}}个</p>
+              <p class="per-20">{{reportDetail.degree_level.level3_count}}个</p>
             </div>
           </article>
 
           <article class="recordBlock">
-            <header><h1 style="color:#487d68">记录状况</h1></header>
-            <div><p class="per-35 tl">习题册名称</p><p class="per-40 advice">急需加强练习</p><p class="per-25 tr">{{reportDetail.record_times.less_five_time}}个</p></div>
-            <div><p class="per-35 tl">6~20次</p><p class="per-40 advice">适当增加练习</p><p class="per-25 tr">{{reportDetail.record_times.less_twenty_time}}个</p></div>
+              <header>
+                <p class="per-40 tl" style="color:#487d68">习题册名称</p>
+                <p class="per-25 tr" style="color:#487d68">错题数量</p>
+                <p class="per-25 tr" style="color:#487d68">记录数量</p>
+              </header>
+              <div v-for="item in reportDetail.workbook" >
+                <p class="per-40 tl ellipsis" style="padding-top:.3rem;">{{item.workbook_name}}</p>
+                <p class="per-25 tr" style="display: inline-block">{{item.error_count}}</p>
+                <p class="per-25 tr" style="display: inline-block">{{item.total_count}}</p>
+              </div>
           </article>
 
         </div>
@@ -46,9 +53,10 @@
 <script>
 import { XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token,chapterId } from '../../../common/getters'
+import {token,chapterId,path } from '../../../common/getters'
 import {reportDetail,reportSubjectId} from '../getters'
 import {getReportDetail,clearDetail} from '../actions'
+import './index.less'
 
 export default {
   components: {
@@ -56,7 +64,7 @@ export default {
   },
   vuex: {
     getters: {
-      reportSubjectId,token,reportDetail,chapterId
+      reportSubjectId,token,reportDetail,chapterId,path
     },
     actions: {
       getReportDetail,clearDetail
@@ -75,10 +83,10 @@ export default {
     }
   },
   watch: {
-    chapterId(){
-      this.$nextTick(() => {
+    path(){
+      if(this.path.indexOf("/bag/report/detail/") >=0 ){
         this.$broadcast('$InfiniteLoading:reset');
-      });
+      }
     }
   }
 }

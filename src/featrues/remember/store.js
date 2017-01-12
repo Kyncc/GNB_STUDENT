@@ -24,7 +24,6 @@ const mutations = {
       state.all = [];  
       state.chapter = [];
   },
-
   [types.REMEMBER_CHAPTER_GET](state,data){
       state.chapter =  data.data;
   },
