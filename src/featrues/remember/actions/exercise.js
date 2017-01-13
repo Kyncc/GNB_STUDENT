@@ -25,6 +25,7 @@ export const rememberExercisePost = ({ dispatch }, params,success,wrong) => {
     data: params,
     ok: response => {
       dispatch(types.REMEMBER_CHAPTER_CLEAR);
+      dispatch(types.REMEMBER_PAGE_CLEAR);
       _.leave();
       _.toast('提交成功');
       success&&success();

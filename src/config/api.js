@@ -91,6 +91,7 @@ export const API_PATHS = {
    *  rememberChapter:记错题章节列表
    */
    rememberChapter:`${API_ENV}${API_VERSION}/student/remember/chapter`,
+   rememberByPage:`${API_ENV}${API_VERSION}/student/remember/pages`,
    rememberDetail:`${API_ENV}${API_VERSION}/student/remember/exercises`,
    rememberDetailPost:`${API_ENV}${API_VERSION}/student/remember/submit`,
    rememberExample: `${API_ENV}${API_VERSION}/student/exerciseList`,

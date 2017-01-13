@@ -158,6 +158,10 @@ export default {
   rememberCharpter: (params) => {
     return http({ method: 'get', url: API_PATHS.rememberChapter, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+   /**记错题页码 */
+  rememberPage: (params) => {
+    return http({ method: 'get', url: API_PATHS.rememberByPage, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
   /**记错题章节练习题 */
   rememberExercise: (params) => {
     return http({ method: 'get', url: API_PATHS.rememberDetail, data: params.data, ok: params.ok, wrong: params.wrong })

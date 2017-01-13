@@ -1,5 +1,5 @@
 <template >
-    <view-box v-ref:view-box class="rememberChapter rememberSelect">
+    <view-box v-ref:view-box class="rememberPager rememberSelect">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">章节选择
                 <a slot="right" @click="_changeType()" class="changeSub">
@@ -9,16 +9,16 @@
         </div>
 
         <div style="padding-top:46px;">
-            1231231
+            <accordion-page :list="rememberPager" @on-click-open="_openChapter" @on-click-chapter="_intoChapter"></accordion-page>
             <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
                 <span slot="no-results" style="color:#4bb7aa;">
                     <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-                    <p style="font-size:1rem;display:inline-block;">你还未添加习题册呢~</p>
+                    <p style="font-size:1rem;display:inline-block;">服务异常~</p>
                 </span>
                 <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
             </infinite-loading>
 
-            <Popup :visible.sync="visible"  popup-transition="popup-fade" class="gnb-changeSub">
+            <Popup :visible.sync="visible" popup-transition="popup-fade" class="gnb-changeSub">
                 <p @click="_intoPage()">按章节</p>
                 <p class="active">按页码</p>
             </Popup>
@@ -32,21 +32,22 @@ import { XHeader,Panel,ViewBox,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { Popup } from 'mint-ui'
 import { token } from '../../../common/getters'
-import {rememberChapter,wookbookId,rememberChapterScroll} from '../getters'
-import {getWorkbookChapter,delChapter,setScoll} from '../actions/workbook'
+import {rememberPager,wookbookId,rememberPagerScroll} from '../getters'
+import {getWorkbookPage,delChapter,setScoll} from '../actions/byPage'
 import {rememberExerciseClear} from '../actions/exercise'
+import {accordionPage} from 'components'
 import './index.less'
 
 export default {
   components:{
-    XHeader,ViewBox,Panel,Group,Cell,InfiniteLoading,Popup
+    XHeader,ViewBox,Panel,Group,Cell,InfiniteLoading,Popup,accordionPage
   },
   vuex: {
     getters:{
-        token,rememberChapter,wookbookId,rememberChapterScroll
+        token,rememberPager,wookbookId,rememberPagerScroll
     },
     actions:{
-        getWorkbookChapter,delChapter,rememberExerciseClear,setScoll
+        getWorkbookPage,delChapter,rememberExerciseClear,setScoll
     }
   },
     data(){
@@ -61,25 +62,19 @@ export default {
         _changeType(){
             this.visible = true;
         },
-      _isLink(item){
-          if(item.isLink == 'true'){
+        _openChapter(){
+
+        },
+        _intoChapter(id){
             this.rememberExerciseClear();//进去前清空数据
             this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
-            this.$router.go('exercise/'+item.id);
-          }
-          return;
-      },
-      _isLinkTitle(item){
-          if(item.isLink == 'true' && item.isUsed == 'true'){
-              return  '✔ '+item.name
-          }
-          return (item.isLink == 'true' ? '✐  '+item.name:'♢  '+item.name);
-      },
+            this.$router.go(`../exercise/${id}`);
+        },
       _onInfinite(){
         if(this._isFirst()){
             return;
         }
-        this.getWorkbookChapter({
+        this.getWorkbookPage({
             token:this.token,   
             workbookId:this.wookbookId
         },()=>{
@@ -89,7 +84,7 @@ export default {
       },
       /** 是否第一次*/
      _isFirst(){
-        if(this.rememberChapter.length != 0 && this.rememberChapter[0].a){
+        if(this.rememberPager.length != 0 && this.rememberPager.workBookName){
             this.$broadcast('$InfiniteLoading:loaded');
             this.$broadcast('$InfiniteLoading:complete');
             return true;
@@ -100,7 +95,7 @@ export default {
   },
   ready(){
     this.$nextTick(()=>{
-        document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.rememberChapterScroll;
+        document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.rememberPagerScroll;
     });
   }
 }

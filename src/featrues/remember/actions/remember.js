@@ -22,3 +22,11 @@ export const getWorkbook = ({ dispatch }, params,success,wrong) => {
 export const setSubject = ({ dispatch }, id) => {
     dispatch(types.REMEMBER_SUBJECT_CHANGE,id);
 }
+
+
+/**清楚页数和章节的数据 */
+export const delChapter = ({ dispatch }) => {
+    dispatch(types.REMEMBER_PAGE_CLEAR);
+    dispatch(types.REMEMBER_CHAPTER_CLEAR);
+}
+

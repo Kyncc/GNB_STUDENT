@@ -146,7 +146,6 @@ export default {
         },()=>{
             if(this.rememberExercise.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
-            this.$refs.my_scroller.resize();
         });
 
       },

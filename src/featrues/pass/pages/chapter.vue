@@ -96,6 +96,7 @@ export default {
     },
     path(){
       if(this.path == '/bag/pass/'){
+         if(this.passChapter.length == 0){this.$broadcast('$InfiniteLoading:reset');}
          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.passScoll; //更改高度
       }
     }

@@ -7,7 +7,7 @@ import example from './pages/example'
 import add from './pages/add'
 import TextBookAdd from '../textbook/pages/fromWorkbookAdd'
 
-export default  {
+export default {
   'remember': {
     component: layout,
     subRoutes: {

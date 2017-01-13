@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueTouch from 'vue-touch'
-import {
-  sync
-} from 'vuex-router-sync'
+import {sync} from 'vuex-router-sync'
 import App from './app'
 import store from './store'
 import * as _ from './config/whole.js'
@@ -14,13 +12,11 @@ import setPassword from './login/pages/setPassword'
 import setInfo from './login/pages/setInfo'
 import forget from './login/pages/forget'
 import resetPassword from './login/pages/resetPassword'
-//首页
-import Layout from './main/pages/layout'
-import User from './main/pages/user'
-import Photo from './main/pages/photo'
 //题目评注、纠错
 import correct from './common/pages/correct'
 import comment from './common/pages/comment'
+//首页
+import Layout from './main/pages/layout'
 //首页模块
 import index from './router/index/router'
 //书包模块
@@ -29,8 +25,6 @@ import bag from './router/bag/router'
 import interact from './router/interact/router'
 //个人中心
 import user from './router/user/router'
-//个人中心
-import userInfo from './user/pages/info'
 //个人中心-邀请好友
 import userInviteIndex from './user/pages/invite/index'
 import userInviteFriend from './user/pages/invite/friend'
@@ -122,24 +116,7 @@ router.map({
       ...index,
       ...bag,
     }
-  },
-  // 'user/photo': {
-  //   component: Photo
-  // },
-  //个人中心
-  'user/info': {
-    component: userInfo
-  },
-  // //邀请好友
-  // 'user/invite': {
-  //   component: userInviteIndex
-  // },
-  // 'user/invite/friend': {
-  //   component: userInviteFriend
-  // },
-  // 'user/invite/input': {
-  //   component: userCodeInput
-  // },
+  }
 })
 
 sync(store, router)

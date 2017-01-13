@@ -12,7 +12,7 @@
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">还未做题呢~</p>
+          <p style="font-size:1rem;display:inline-block;">您还未添加教材</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
@@ -101,7 +101,10 @@ export default {
     },
     path(){
       if(this.path == '/index/brush/'){
-         document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.breakScoll; //更改高度
+         if(this.brushChapter.length == 0){this.$broadcast('$InfiniteLoading:reset')}
+         else{
+            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.brushScoll; //更改高度
+         }
       }
     }
   }
