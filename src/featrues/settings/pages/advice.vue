@@ -45,7 +45,7 @@ export default {
     _submit(){
       if(this.title && this.content && this.contact){
         this.advice({
-          token:this.fetchToken,
+          token:this.token,
           title:this.title,
           content:this.content,
           contact:this.contact
