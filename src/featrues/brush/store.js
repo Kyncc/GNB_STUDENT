@@ -53,6 +53,10 @@ const mutations = {
   [types.BRUSH_LIST_SCOLLER](state, height) {
     state.list.scoll = height;
   },
+  [types.BRUSH_ACTION](state, index) {
+    state.list.count = --state.list.count;
+    state.list.list.splice(index, 1)
+  },
   [types.BRUSH_EXAMPLE](state, data) {
     state.example = data.data;
   },

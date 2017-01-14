@@ -15,6 +15,8 @@ export const BRUSH_LIST = 'BRUSH_LIST'
 export const BRUSH_LIST_CLEAR = 'BRUSH_LIST_CLEAR'
   /** 刷题列表高度 */
 export const BRUSH_LIST_SCOLLER = 'BRUSH_LIST_SCOLLER'
+/** 刷题动作*/
+export const BRUSH_ACTION ='BRUSH_ACTION'
 
   /** 例题查看*/
 export const BRUSH_EXAMPLE = 'BRUSH_EXAMPLE'
