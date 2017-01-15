@@ -71,7 +71,7 @@ export default {
     },
     _onInfinite(){
       this.getBreakList({
-        status:2,
+        status:1,
         token:this.token,
         chapter_id:this.chapterId,
         subject_id:this.breakSubjectId,
