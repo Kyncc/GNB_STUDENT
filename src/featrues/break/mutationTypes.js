@@ -13,6 +13,8 @@ export const BREAK_CHANGE_SUBJECT = 'BREAK_CHANGE_SUBJECT'
 export const BREAK_LIST = 'BREAK_LIST'
   /** 清除弃题列表 */
 export const BREAK_LIST_CLEAR = 'BREAK_LIST_CLEAR'
+  /** 清除弃题撤回 */
+export const BREAK_LIST_BACK = 'BREAK_LIST_BACK'
   /** 弃题列表高度 */
 export const BREAK_LIST_SCOLLER = 'BREAK_LIST_SCOLLER'
 

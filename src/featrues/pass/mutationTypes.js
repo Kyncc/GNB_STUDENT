@@ -15,6 +15,8 @@ export const PASS_LIST = 'PASS_LIST'
 export const PASS_LIST_CLEAR = 'PASS_LIST_CLEAR'
   /** 弃题列表高度 */
 export const PASS_LIST_SCOLLER = 'PASS_LIST_SCOLLER'
+  /** 弃题列表动作 */
+export const PASS_LIST_BACK = 'PASS_LIST_BACK' 
 
   /** 例题查看*/
 export const PASS_EXAMPLE = 'PASS_EXAMPLE'

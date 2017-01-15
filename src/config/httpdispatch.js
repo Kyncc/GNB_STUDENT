@@ -194,9 +194,13 @@ export default {
   brushTypeList: (params) => {
     return http({ method: 'get', url: API_PATHS.brushTypeList, data: params.data, ok: params.ok, wrong: params.wrong })
   },
-  /** 题型汇总题目列表*/
+  /** 题型汇总斩断、放弃*/
   brushAction: (params) => {
     return http({ method: 'get', url: API_PATHS.brushAction, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  /** 斩断、放弃撤回*/
+  brushActionBack: (params) => {
+    return http({ method: 'get', url: API_PATHS.brushActionBack, data: params.data, ok: params.ok, wrong: params.wrong })
   },
   /** 全部练习册*/
   workbookList: (params) => {

@@ -77,15 +77,17 @@ export const API_PATHS = {
    */
     reportChapter:`${API_ENV}${API_VERSION}/student/report`,
     reportDetail:`${API_ENV}${API_VERSION}/student/report/detail`,
-  /**题型汇总
-   *  brush:首页
-   *  brushList:章节刷题
-   *  brushAction:斩题放弃
-   * brushTypeList:斩题或放弃列表
-   */
+    /**题型汇总
+     *  brush:首页
+     *  brushList:章节刷题
+     *  brushAction:斩题放弃
+     *  brushActionBack:斩题放弃题目撤回
+     *  brushTypeList:斩题或放弃列表
+     */
     brush:`${API_ENV}${API_VERSION}/student/summary`,
     brushList:`${API_ENV}${API_VERSION}/student/summary/list-exercises`,
     brushAction:`${API_ENV}${API_VERSION}/student/summary/loose-win-exercise`,
+    brushActionBack:`${API_ENV}${API_VERSION}/student/summary/delete-loose-win-exercise`,
     brushTypeList:`${API_ENV}${API_VERSION}/student/summary/list-loose-win-exercise`,
    /**记错题
    *  rememberChapter:记错题章节列表

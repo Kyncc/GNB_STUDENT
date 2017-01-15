@@ -40,7 +40,7 @@ const mutations = {
     state.list.chapterName = data.data.chapterName;
     state.list.count = data.data.recordSize;
     state.list.offset = data.data.offset;
-    state.list.list = state.list.list.concat(data.data.detail);
+    state.list.list = state.list.list.concat(data.data.list);
   },
   [types.BREAK_LIST_CLEAR](state) {
     state.list.isReset = true;
@@ -49,6 +49,10 @@ const mutations = {
     state.list.chapterName='',
     state.list.scoll=0;
     state.list.offset = '';
+  },
+  [types.BREAK_LIST_BACK](state, index) {
+    state.list.count = --state.list.count;
+    state.list.list.splice(index, 1);
   },
   [types.BREAK_LIST_SCOLLER](state, height) {
     state.list.scoll = height;

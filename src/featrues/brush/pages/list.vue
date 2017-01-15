@@ -25,8 +25,8 @@
             </a>
           </div>
         <div class="abandon">
-          <span @click="_abandon('back',item.exercises_id,$index)">撤回</span>
-          <span @click="_abandon('drop',item.exercises_id,$index)">放弃</span>
+          <span @click="_abandon('back',item.exercises_id,$index)">斩题</span>
+          <span @click="_abandon('drop',item.exercises_id,$index)">弃题</span>
         </div>
       </div>
     </template>
@@ -48,7 +48,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 import {token,chapterId,path} from '../../../common/getters'
 import {brushSubjectId,brushListScoll,brushListOffset,brushList,brushListIsReset} from '../getters'
 import {setScoll,getBrushList,brushListClear,brushAction} from '../actions/list'
-import {brushExampleClear } from '../actions/example'
+import {brushExampleClear} from '../actions/example'
 import './index.less'
 
 export default {
@@ -71,7 +71,7 @@ export default {
       },(res)=>{
         this.$broadcast('$InfiniteLoading:loaded');
         let length = Number(res.data.data.detail.length);
-        if(length  < 5){
+        if(length  < 10){
           this.$broadcast('$InfiniteLoading:complete');
           return;
         }

@@ -12,6 +12,21 @@ export const setScoll = ({ dispatch },height) => {
   dispatch(types.PASS_LIST_SCOLLER,height);
 }
 
+
+/**斩弃题动作 */
+export const brushActionBack = ({ dispatch }, params, success) => {
+  Api.brushActionBack({
+    data: params,
+    ok: response => {
+      dispatch(types.PASS_LIST_BACK, response.data);
+      success&&success(response);
+    },
+    wrong: response => {
+      _.toast(response.data.msg);
+    }
+  })
+}
+
 /**获取弃题列表 */
 export const getPassList = ({ dispatch }, params, success) => {
   Api.brushTypeList({
