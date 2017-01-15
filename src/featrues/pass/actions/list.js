@@ -14,7 +14,7 @@ export const setScoll = ({ dispatch },height) => {
 
 
 /**斩弃题动作 */
-export const brushActionBack = ({ dispatch }, params, success) => {
+export const passActionBack = ({ dispatch }, params, success) => {
   Api.brushActionBack({
     data: params,
     ok: response => {

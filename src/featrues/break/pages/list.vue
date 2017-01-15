@@ -25,7 +25,7 @@
           </a>
         </div>
         <div class="abandon">
-          <span @click="_abandon('back',item.excercise_id,$index)">撤回</span>
+          <span @click="_abandon(item.loose_win_excercise_id,$index)">撤回</span>
         </div>
       </div>
     </template>
@@ -46,7 +46,7 @@ import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabIte
 import InfiniteLoading from 'vue-infinite-loading'
 import {token,chapterId,path} from '../../../common/getters'
 import {breakSubjectId,breakListScoll,breakListOffset,breakList,breakListIsReset} from '../getters'
-import {setScoll,getBreakList,breakListClear } from '../actions/list'
+import {setScoll,getBreakList,breakListClear,breakActionBack } from '../actions/list'
 import {breakExampleClear } from '../actions/example'
 import './index.less'
 
@@ -61,9 +61,13 @@ export default {
       this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
       this.$router.go(`../example/${this.breakSubjectId}/${id}`);
     },
-    _abandon(type,id,index){
-      
-        console.log(type,id,index)
+    _abandon(id,index){
+      let parm = {
+        "loose_win_excercise_id":id,
+        "token":this.token,
+        "subject_id":this.breakSubjectId
+      }
+      this.breakActionBack(parm,index);
     },
     _onInfinite(){
       this.getBreakList({
@@ -74,7 +78,7 @@ export default {
         offset:this.breakListOffset
       },(res)=>{
         this.$broadcast('$InfiniteLoading:loaded');
-        let length = Number(res.data.data.detail.length);
+        let length = Number(res.data.data.list.length);
         if(length  < 5){
           this.$broadcast('$InfiniteLoading:complete');
           return;
@@ -88,7 +92,7 @@ export default {
       breakList,breakSubjectId,breakListScoll,breakListOffset,breakListIsReset
     },
     actions: {
-      setScoll,getBreakList,breakListClear,breakExampleClear
+      setScoll,getBreakList,breakListClear,breakExampleClear,breakActionBack
     }
   },
   watch:{

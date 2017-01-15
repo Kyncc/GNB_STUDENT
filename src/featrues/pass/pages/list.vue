@@ -15,7 +15,7 @@
                 {{{item.chapter_name}}}
             </div>
             <div class="weui_panel_bd">
-                <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.exercises_id)">
+                <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.excercise_id)">
                     <div class="weui_media_bd">
                         <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>
                         <p class="weui_media_desc">
@@ -23,6 +23,9 @@
                         </p>
                     </div>
                 </a>
+            </div>
+            <div class="abandon">
+                <span @click="_abandon(item.loose_win_excercise_id,$index)">撤回</span>
             </div>
         </div>
       </template>
@@ -43,7 +46,7 @@ import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabIte
 import InfiniteLoading from 'vue-infinite-loading'
 import {token,chapterId,path} from '../../../common/getters'
 import {passSubjectId,passListScoll,passListOffset,passList,passListIsReset} from '../getters'
-import {setScoll,getPassList,passListClear } from '../actions/list'
+import {setScoll,getPassList,passListClear,passActionBack } from '../actions/list'
 import {passExampleClear } from '../actions/example'
 import './index.less'
 
@@ -67,14 +70,21 @@ export default {
                 offset:this.passListOffset
             },(res)=>{
                 this.$broadcast('$InfiniteLoading:loaded');
-                let length = Number(res.data.data.detail.length);
+                let length = Number(res.data.data.list.length);
                 if(length  < 5){
                     this.$broadcast('$InfiniteLoading:complete');
                     return;
                 }
             })
         },
-        
+        _abandon(id,index){
+            let parm = {
+                "loose_win_excercise_id":id,
+                "token":this.token,
+                "subject_id":this.passSubjectId
+            }
+            this.passActionBack(parm,index);
+        }
     },
     vuex: {
         getters: {
@@ -82,7 +92,7 @@ export default {
             passList,passSubjectId,passListScoll,passListOffset,passListIsReset
         },
         actions: {
-            setScoll,getPassList,passListClear,passExampleClear
+            setScoll,getPassList,passListClear,passExampleClear,passActionBack  
         }
     },
     watch:{
