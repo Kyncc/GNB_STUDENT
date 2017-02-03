@@ -8,14 +8,14 @@
     </div>
     <div style="padding-top:46px;">
       <!--空白间隔-->
-      <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in CollectExampleList">
+      <div class="weui_panel weui_panel_access exerciseExampleList " v-for="item in CollectExampleList">
         <div class="weui_panel_hd">
           {{{item.knowledge}}}
         </div>
         <div class="weui_panel_bd">
           <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.id)">
             <div class="weui_media_bd">
-              <p class="weui_media_desc">
+              <p class="weui_media_desc exerciseDetail">
                 {{{item.content}}}
               </p>
             </div>

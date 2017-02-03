@@ -14,7 +14,7 @@
           <div class="weui_panel_hd">
             {{{item.chapter_name}}}
           </div>
-          <div class="weui_panel_bd">
+          <div class="weui_panel_bd exerciseDetail">
             <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.exercises_id)">
               <div class="weui_media_bd">
                 <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>

@@ -156,7 +156,10 @@ function plusReady() {
 if (window.plus) {
   plusReady();
 } else {
+
   document.addEventListener("plusready", plusReady, false);
+
+  
 }
 
 router.start(App, '#App')
