@@ -61,7 +61,7 @@ export default {
   methods: {
     _toChapter(str){
         this.delChapter();      //进去前清除章节数据
-        this.$router.go('workbook/'+str);
+        this.$router.go('workbook/byPage/'+str);
     }, 
     _add(){
         this.WorkbookAllDel();  //进去前清除所有练习册数据

@@ -40,3 +40,7 @@ export const getMessageCorrect = ({ dispatch }, params,success) => {
       }
   })
 }
+
+export const clearMessage = ({ dispatch }) => {
+  dispatch(types.MESSAGE_CLEAR);
+}

@@ -1,3 +1,3 @@
 /*获取消息状态*/
-export const GET_INTERACT_HOME_SUCCESS = 'GET_INTERACT_HOME_SUCCESS'
+export const INTERACT_HOME = 'INTERACT_HOME'
 

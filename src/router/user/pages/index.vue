@@ -2,7 +2,6 @@
   <view-box v-ref:view-box class='user vux-scroller-header-box'>
     <div style="height:46px;">
       <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">个人中心
-        <a slot="right" v-touch:tap="_quit" v-show="system != 'IOS'">退出</a>
       </x-header>
     </div>
 
@@ -27,11 +26,15 @@
           <cell title="设置" link="/user/settings/">
             <span class="icon iconfont icon-settingfull" style="color:#1296DB"  slot="icon"></span>
           </cell>
+          <cell title="检查更新" @click="_update" is-link>
+            <div v-if="isUpdate" class="badge-value" slot="value" class="vux-center-v" style="display:inline-block">
+              <badge text="新版本"></badge>
+            </div>
+            <span class="icon iconfont icon-update" style="color:#ABC97C;" slot="icon"></span>
+          </cell>
         </group>
       </div>
     </scroller>
-    
-    <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
     <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出归纳本吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
   </view-box>
 </template>
@@ -40,7 +43,7 @@
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from '../../../config/whole'
 import {setHeadPhoto} from '../actions/photo'
-import {token,system,userName,userHeadImg,userMobile} from '../../../common/getters'
+import {token,system,userName,userHeadImg,userMobile,appVersion} from '../../../common/getters'
 import './index.less'
 
 export default {
@@ -49,23 +52,13 @@ export default {
   },
   vuex:{
     getters:{
-       token,system,userName,userHeadImg,userMobile
+       token,system,userName,userHeadImg,userMobile,appVersion
     },
     actions:{
       setHeadPhoto
     }
   },
   methods: {
-    onAction(type) {
-      if(type=='确认'){
-        plus.runtime.quit()
-      }else{
-        return
-      }
-    },
-    _quit(){
-      this.show = true
-    },
     getImage(){
       let self  = this
       let cmr = plus.camera.getCamera();

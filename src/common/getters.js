@@ -12,6 +12,7 @@ export const path = (state) => state.route.path
 
 /**用户信息提取*/
 export const token = (state) => state.login.token
+export const appVersion = (state) => state.userinfo.version
 export const userName = (state) => state.userinfo.name
 export const userMobile = (state) => state.userinfo.mobile
 export const userHeadImg = (state) => state.userinfo.headImg

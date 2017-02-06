@@ -41,9 +41,9 @@ export default {
 
 <style scoped>
 .select-item{
-    width: 4.5rem;
-    height: 1.5rem;
-    line-height: 1.5rem;
+    width: 5.3rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
     text-align: center;
     border-radius: 3px;
     color: #4bb7aa;

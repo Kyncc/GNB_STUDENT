@@ -47,8 +47,8 @@ import { getUserInfo } from '../../main/actions'
 import {token} from '../../common/getters'
 import {Userinfo,TextBookMathVer,TextBookPhysicsVer} from '../getters'
 import * as _ from '../../config/whole.js'
-import './info.less' 
-
+import './info.less'
+ 
 export default {
   components: {
     Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm,PopupPicker,Selector

@@ -15,10 +15,10 @@
           </cell>
         </group>
         <group>
-          <cell title="参与归纳本讨论群"  is-link  @click="_openQQ">
+          <cell title="参与归纳本讨论群"    @click="_openQQ">
             <span class="icon iconfont icon-qq1"   style="color:#1296DB" slot="icon"></span>
           </cell>
-          <cell title="关注我们的公众号" is-link  @click="show=true">
+          <cell title="关注我们的公众号"   @click="show=true">
             <span class="icon iconfont icon-wechat"  style="color:#1FDD00" slot="icon"></span>
           </cell>
         </group>
@@ -41,6 +41,7 @@ import {XHeader,Group,Scroller,Cell,Spinner,Dialog} from 'vux'
 import { token } from '../../../common/getters'
 import { interactIndex } from '../getters'
 import { getInteractIndex} from '../actions'
+import { clearMessage} from '../../../featrues/message/actions'
 import * as _ from '../../../config/whole'
 import './index.less'
 
@@ -48,12 +49,18 @@ export default {
     components: {
         XHeader,Scroller,Group,Cell,Spinner,Dialog
     },
+    route: {
+        data:function(transition){
+            this.clearMessage();
+            this.getInteractIndex({"token":this.token});
+        }
+    },
     vuex: {
         getters: {
             token,interactIndex
         },
         actions: {
-            getInteractIndex
+            getInteractIndex,clearMessage
         }
     },
     methods: {

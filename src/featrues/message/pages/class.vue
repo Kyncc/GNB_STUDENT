@@ -4,7 +4,7 @@
       <x-header :left-options="{showBack: true}">班级消息</x-header>
     </div>
     <div style="padding-top:46px;" class="messageSection">
-      <section v-for="item in list">
+      <section v-for="item in messageClassList">
         <h3>{{item.time | ymd}}</h3>
         <article>
           {{item.content}}
@@ -32,6 +32,13 @@ export default {
   components: {
     XHeader,ViewBox,InfiniteLoading
   },
+   route: {
+    data:function(transition){
+      this.$nextTick(() => {
+        this.$broadcast('$InfiniteLoading:reset');
+      });
+    }
+  },
   vuex: {
     getters: {
       token,messageClassList
@@ -40,18 +47,12 @@ export default {
       getMessageClass
     }
   },
-  data(){
-    return {
-      list: []
-    }
-  },
   methods: {
     onInfinite(){
       this.getMessageClass({
         "token":this.token
       },()=>{
-          this.list = this.messageClassList;
-          if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+          if(this.messageClassList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
           this.$broadcast('$InfiniteLoading:complete');
       });
     }

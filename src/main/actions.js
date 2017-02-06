@@ -23,19 +23,3 @@ export const getUserInfo = ({ dispatch }, params, success,wrong) => {
     }
   })
 }
-
-/*编辑头像*/
-export const postHeadImg = ({ dispatch }, params, success,wrong) => {
-  _.busy();
-  Api.headImg({
-    data: params,
-    ok: response => {
-        success(response.data.data);
-        _.leave();
-    },
-    wrong: response => {
-        _.toast(response.data.msg);
-        _.leave();
-    }
-  })
-}

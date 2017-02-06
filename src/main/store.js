@@ -7,6 +7,7 @@ const state = {
   name:'',
   school:'',
   sex	:'',
+  version:'',
   subject	:[],
   subjectType:[],
   textbook:{},
@@ -20,12 +21,10 @@ const mutations = {
     state.name = data.data.name;
     state.school = data.data.school;
     state.sex = data.data.sex;
+    state.version = data.data.version;
     state.subject = data.data.subject;
     state.subjectType = data.data.subjectType;
     state.textbook = data.data.textbook[0];
-  },
-  [types.SET_USER_PHOTO](state, data) {
-    state.headImg = data;
   }
 }
 

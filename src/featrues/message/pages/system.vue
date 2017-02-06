@@ -4,7 +4,7 @@
         <x-header :left-options="{showBack: true}">系统消息</x-header>
     </div>
     <div style="padding-top:46px;" class="messageSection">
-      <section v-for="item in list">
+      <section v-for="item in messageSystemList">
         <h3>{{item.time | ymd}}</h3>
         <article>
           {{item.content}}
@@ -32,6 +32,13 @@ export default {
   components: {
     XHeader,ViewBox,InfiniteLoading
   },
+   route: {
+    data:function(transition){
+      this.$nextTick(() => {
+        this.$broadcast('$InfiniteLoading:reset');
+      });
+    }
+  },
   vuex: {
     getters: {
       token,messageSystemList
@@ -40,22 +47,13 @@ export default {
       getMessageSystem
     }
   },
-  data(){
-    return {
-      list: []
-    }
-  },
   methods: {
     onInfinite(){
-      let self = this;
       this.getMessageSystem({
         "token":this.token
       },()=>{
-        setTimeout(()=>{
-          self.list = self.messageSystemList;
-          if(self.list.length != 0) {self.$broadcast('$InfiniteLoading:loaded');}
-          self.$broadcast('$InfiniteLoading:complete');
-        },300);
+          if(this.messageSystemList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+          this.$broadcast('$InfiniteLoading:complete');
       });
     }
   }

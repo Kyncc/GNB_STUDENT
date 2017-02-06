@@ -6,7 +6,7 @@ export const getInteractIndex = ({ dispatch }, params,scuess) => {
   Api.msg({
     data:params,
     ok:response=>{
-      dispatch(types.GET_INTERACT_HOME_SUCCESS,response.data);
+      dispatch(types.INTERACT_HOME,response.data);
       scuess&&scuess();
     },
     wrong:response=>{

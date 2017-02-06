@@ -7,7 +7,7 @@
         <div style="padding-top:46px">
             <div>
                 <a class="brush" v-link="{ path: 'index/brush/'}"></a>
-            </div>     
+            </div>
             <div>
                 <x-button type='primary' v-link="{ path: 'index/remember/'}" mini class="rememberBtn">记错题</x-button>
             </div>

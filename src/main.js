@@ -132,34 +132,27 @@ router.beforeEach(function (transition) {
   transition.next();
 })
 
-function plusReady() {
-  let first = null;
-  plus.key.addEventListener("backbutton", function () {
-    if (store.state.route.path == '/interact' || store.state.route.path == '/index' || store.state.route.path == '/user' || store.state.route.path == '/bag') {
-      if (!first) {
-        first = new Date().getTime();
-        _.toast('再按一次退出')
-        setTimeout(function () {
-          first = null;
-        }, 1000);
-      } else {
-        if (new Date().getTime() - first < 1000) {
-          plus.runtime.quit();
-        }
+
+/*在首页 或者loading启动的时候,返回键失效
+* 其他页面则直接返回上一页
+*/
+document.addEventListener('plusready', function(){
+  setInterval(function(){
+    plus.key.addEventListener('backbutton',function(){
+      if(
+        store.state.route.path == '/login' || 
+        store.state.route.path == '/interact' || 
+        store.state.route.path == '/index' || 
+        store.state.route.path =='/user' || 
+        store.state.route.path =='/bag' ||
+        store.state.tools.isLoading
+      ){
+        return;
       }
-    } else {
-      window.history.back();
-    }
-  });
-}
+      history.back();
+    },false);
+  },500)
+});
 
-if (window.plus) {
-  plusReady();
-} else {
-
-  document.addEventListener("plusready", plusReady, false);
-
-  
-}
 
 router.start(App, '#App')
