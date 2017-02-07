@@ -58,7 +58,7 @@ export default {
     _quit(type) {
         if(type=='确认'){
           this.cover = true;
-            this.getRegisterCode({
+          this.getRegisterCode({
               cover:this.cover,
               mobile: this.mobile
           })

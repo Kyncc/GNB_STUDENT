@@ -2,115 +2,85 @@ import axios from 'config/http'
 import * as types from './mutationTypes'
 import * as _ from 'config/whole'
 
-
-/**获取练习册数据 */
-export const getWorkbookStu = ({state,rootState,commit},params) => {
-  console.log(state.subjectId);
+/**我的习题册 */
+export const getWorkbook = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/workbook/student',
+      url: 'workbook',
       params: {
         "token":rootState.login.token,
-        "studentId":rootState.route.params.studentId,
         "subjectId":state.subjectId
       }
     })
     .then((response) => {
-      commit(types.WORKBOOK_STU,response.data.data)
+      commit(types.WORKBOOK_GET,response.data);
       resolve(response);
     })
-  });
-}
-/**练习册数据清空 */
-export const workbookStuClear = ({ commit }) => {
-  commit(types.WORKBOOK_STU_CLEAR);
-}
-/**切换科目 */
-export const workbookStuSetSubject = ({ commit },id) => {
-  commit(types.WORKBOOK_STU_SUBJECT_CHANGE,id);
-  commit(types.WORKBOOK_STU_CLEAR);
+  })
 }
 
-
-/**获取练习册数据 */
-export const getWorkbookStuPage = ({rootState,commit}) => {
-  
+/**全部习题册 */
+export const getWorkbookAll = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/workbook/student/page',
+      url: 'workbook/list',
       params: {
         "token":rootState.login.token,
-        "studentId":rootState.route.params.studentId,
-        "workbookId":rootState.route.params.workbookId
+        "subjectId":state.subjectId,
+        "workbookName":this.params.name
       }
     })
     .then((response) => {
-      commit(types.WORKBOOK_STU_PAGE,response.data.data)
+      commit(types.WORKBOOK_GET_ALL,response.data);
       resolve(response);
     })
-  });
-}
-/**页码数据清空 */
-export const workbookStuPageClear = ({ commit }) => {
-  commit(types.WORKBOOK_STU_PAGE_CLEAR);
-}
-/**页码高度设置 */
-export const setWorkbookStuPageScroll = ({ commit },height) => {
-  commit(types.WORKBOOK_STU_PAGE_SCROLL,height);
+  })
 }
 
+/**更换科目 */
+export const setWorkBookSubject = ({ commit }, id) => {
+  commit(types.WORKBOOK_SUBJECT_CHANGE,id);
+}
 
-/**获取练习册章节数据 */
-export const getWorkbookStuChapter = ({state,rootState,commit}) => {
+/**全部练习册数据清空 */
+export const workbookAllDel = ({ commit }) => {
+  commit(types.WORKBOOK_RELOAD);
+}
+
+/**删除习题册 */
+export const delWorkbook = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
-      method:'get',
-      url: 'teacher/workbook/student/chapter',
+      method:'post',
+      url: 'workbook/del',
       params: {
         "token":rootState.login.token,
-        "studentId":rootState.route.params.studentId,
-        "workbookId":rootState.route.params.workbookId
+        "workbookId":params.id,
       }
     })
     .then((response) => {
-      commit(types.WORKBOOK_STU_CHAPTER,response.data.data)
+      commit(types.WORKBOOK_RELOAD);
       resolve(response);
     })
-  });
-}
-/**章节数据清空 */
-export const workbookStuChapterClear = ({ commit }) => {
-  commit(types.WORKBOOK_STU_CHAPTER_CLEAR);
-}
-/**章节高度设置 */
-export const setWorkbookStuChapterScroll = ({ commit },height) => {
-  commit(types.WORKBOOK_STU_CHAPTER_SCROLL,height);
+  })
 }
 
-
-/**获取练习册章节数据 */
-export const getWorkbookStuExercise = ({state,rootState,commit}) => {
+/**增加习题册 */
+export const addWorkbook = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
-      method:'get',
-      url: 'teacher/workbook/student/exercise',
+      method:'post',
+      url: 'workbook/add',
       params: {
         "token":rootState.login.token,
-        "studentId":rootState.route.params.studentId,
-        "chapterId":rootState.route.params.chapterId
+        "workbookId":params.id,
       }
     })
     .then((response) => {
-      commit(types.WORKBOOK_STU_EXERCISE,response.data.data)
+      commit(types.WORKBOOK_RELOAD);
       resolve(response);
     })
-  });
+  })
 }
-/** 练习数据清空 */
-export const workbookStuExerciseClear = ({ commit }) => {
-  commit(types.WORKBOOK_STU_EXERCISE_CLEAR);
-}
-
-

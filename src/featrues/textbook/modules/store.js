@@ -1,13 +1,14 @@
 import * as types from './mutationTypes'
+import * as getters from './getters'
+import * as actions from './actions'
 
-const state = {    
-    all:[],
-    my:[],
-    subjectId:'2' 
+const state = {
+  all:[],
+  my:[],
+  subjectId:'2' 
 }
 
 const mutations = {
-  //教材
   [types.TEXTBOOK_ADD](state) {
     state.all = [];
     state.my = [];
@@ -31,5 +32,7 @@ const mutations = {
 
 export default {
   state,
-  mutations
+  mutations,
+  getters,
+  actions
 }

@@ -1,24 +1,19 @@
 <template>
   <view-box v-ref:view-box class='rememberAdd'>
-
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
         添加{{workbookSubjectId|subName}}习题册
-        <a slot="right" @click="_addWorkbook()" v-show="selectBookList.length != 0">
-             完成
-         </a>
+        <a slot="right" @click="_addWorkbook()" v-show="selectBookList.length != 0">完成</a>
       </x-header>
       <search @on-submit="_onSearch"  @on-change="_onSearch" :value.sync="searchName" :auto-fixed="false" placeholder="请输入习题册名"></search>
     </div>
 
     <div style="padding-top:86px;">
-
         <template v-for="item in AllWorkbook">
             <group :title="item.textbookName">
                 <checklist :options="item.list|covert" :value.sync="selectBookList" ></checklist>
             </group>
-        </template>  
-
+        </template>
         <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
             <span slot="no-results" style="color:#4bb7aa;">
                 <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -26,7 +21,6 @@
             </span>
             <span slot="no-more"></span>
         </infinite-loading>
-        
     </div>
 
   </view-box>
@@ -40,7 +34,6 @@ import {token} from '../../../common/getters'
 import {AllWorkbook,workbookSubjectId} from '../getters'
 import {getWorkbookAll,setSubject,workbookAllDel,addWorkbook} from '../actions'
 import gnbChangeSub from '../../../components/changesub/index.vue'
-import * as _ from '../../../config/whole.js'
 
 
 export default {
@@ -86,7 +79,7 @@ export default {
   methods: {
     _addTextBook(){
       if(this.searchName.length == 0){
-        this.$router.go(`/bag/textbook/add`);
+        this.$router.go(`add`);
       }
     },
     _onSearch(str){
@@ -98,19 +91,18 @@ export default {
     },
     _addWorkbook(){
       this.addWorkbook({
-          token:this.token,   
-          workbookId:this.selectBookList
-      },()=>{
+          id:this.selectBookList
+      })
+      .then(()=>{
           _.toast('添加成功');
           history.back();
       })
     },
     _onInfinite(){
       this.getWorkbookAll({
-          token:this.token,   
-          subjectId:this.workbookSubjectId,
-          workbookName:this.searchName
-      },()=>{
+          "workbookName":this.searchName
+      })
+      .then(()=>{
           if(this.AllWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
           this.$broadcast('$InfiniteLoading:complete');
       });

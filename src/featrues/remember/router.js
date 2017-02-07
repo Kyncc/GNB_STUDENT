@@ -1,37 +1,32 @@
 import layout from './pages/layout'
 import index from './pages/index'
-import workbook from './pages/workbook'
-import workbookByPage from './pages/page'
+import chapter from './pages/chapter'
+import page from './pages/page'
 import exercise from './pages/exercise'
-import example from './pages/example'
-import add from './pages/add'
-import TextBookAdd from '../textbook/pages/fromWorkbookAdd'
+import modules from './modules/store'
+import store from 'src/store'
 
 export default {
-  'remember': {
+  'workbookByStu': {
     component: layout,
     subRoutes: {
-      '/': {
+      '/:code/:studentId': {
         component: index
       },
-      'add': {
-        component: add
+      'chapter/:studentId/:workbookId': {
+        component: chapter
       },
-      'example/:id': {
-        component: example
+      'page/:studentId/:workbookId': {
+        component: page
       },
-      'workbook/:bookId': {
-        component: workbook
-      },
-      'workbook/byPage/:bookId': {
-        component: workbookByPage
-      },
-      'workbook/exercise/:chapterId': {
+      'exercise/:studentId/:chapterId': {
         component: exercise
-      },
-      'textbook/add/:subjectId': {
-        component: TextBookAdd
       }
     }
   }
 }
+
+
+store.registerModule('rememberStudent', {
+  ...modules
+});
