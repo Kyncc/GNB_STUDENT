@@ -2,7 +2,6 @@
   <view-box v-ref:view-box class="breakList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">斩题列表
-         <a slot="right" @click="_intoBan"><i class="icon iconfont icon-ban" style="font-size:22px"></i></a>
       </x-header>
       <header v-if="breakList" class="sectionHeader">
         <p class="ellipsis">{{breakList.chapterName}}</p>
@@ -34,7 +33,7 @@
       <infinite-loading :on-infinite="_onInfinite" spinner="waveDots" style="height:60px">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">您没有错题~</p>
+          <p style="font-size:1rem;display:inline-block;">还未刷题~</p>
         </span>
         <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">已加载全部</span>
       </infinite-loading>
@@ -71,9 +70,6 @@ export default {
   },
   methods: {
     ...mapActions(['getBreakList','setBreakListScroll']),
-    _intoBan(){
-      history.go(-2);
-    },
     _intoDetail(id){
       this.setBreakListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
       this.$router.go(`/example/${this.breakSubjectId}/${id}`);
@@ -91,7 +87,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['breakList','breakListIsReset','breakSubjectId','breakListScroll','Params'])
+    ...mapGetters(['breakList','breakListIsReset','breakSubjectId','breakListScroll'])
   }
 }
 </script>

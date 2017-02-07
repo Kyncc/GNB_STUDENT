@@ -8,10 +8,10 @@ export default  {
   'report': {
     component: layout,
     subRoutes: {
-      '/:code/:studentId': {
+      '/': {
         component: index,
       },
-      '/detail/:studentId/:chapterId': {
+      '/detail/:chapterId': {
         component: detail
       }
     }

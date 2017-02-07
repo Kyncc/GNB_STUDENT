@@ -11,9 +11,10 @@ axios.defaults.baseURL = 'http://www.guinaben.com:8070/student/';
 axios.interceptors.request.use((config) => {
   if(config.method  === 'post'){
     config.data = qs.stringify(config.data,{arrayFormat:'brackets'});
-  }else if(config.method  === 'get'){
-    config.params = qs.stringify(config.data,{arrayFormat:'brackets'});
   }
+  // else if(config.method  === 'get'){
+  //   config.params = qs.stringify(config.params,{arrayFormat:'brackets'});
+  // }
   return config;
 },(error) =>{
    _.toast("错误的传参");

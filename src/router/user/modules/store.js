@@ -3,28 +3,28 @@ import * as actions from './actions'
 import * as getters from './getters'
 
 const state = {
-  class:[],
   headImg:'',
   name:'',
   school:'',
   sex:'', 
-  subjectId:'',
   mobile:'',
   subjectType:[],
+  textbook:[],
+  subject:[],
   version:'',
   bufferImg:'https://fengyuanchen.github.io/cropperjs/images/picture.jpg'
 }
 
 const mutations = {
   [types.USERINFO](state , data){
-    state.class = data.data.classes;
+    state.textbook = data.data.textbook[0];
     state.headImg = data.data.headImg;
     state.name = data.data.name;
     state.mobile = data.data.mobile;
     state.school = data.data.school;
     state.sex = data.data.sex;
     state.version = data.data.version;
-    state.subjectId = data.data.subjectId;
+    state.subject = data.data.subject;
     state.subjectType = data.data.subjectType;
   },
   [types.UPLOAD_USER_PHOTO](state,data){

@@ -2,30 +2,30 @@
   <view-box v-ref:view-box class="reportStudent">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
-         <change-text-book :value.sync="textbookId" :user-textbook="Student.textbook" :subject-id="passSubjectId"></change-text-book>
-         <a slot="right" @click="_changeSub" class="changeSub">{{passSubjectId | subName}}<span class="with_arrow"></span></a>
+         <change-text-book :value.sync="textbookId" :user-textbook="User.textbook" :subject-id="breakSubjectId"></change-text-book>
+         <a slot="right" @click="_changeSub" class="changeSub">{{breakSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
     </div>
 
     <div style="padding-top:46px">
-      <accordion :list="passChapter" @on-click-chapter="_toDetail" @on-click-open="_openChapter"></accordion>
+      <accordion :list="breakChapter" @on-click-chapter="_toDetail" @on-click-open="_openChapter"></accordion>
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">该同学还未添加教材~</p>
+          <p style="font-size:1rem;display:inline-block;">您还未添加教材~</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
     </div>
   </view-box>
-  <gnb-change-sub :visible.sync="visible" :selected="passSubjectId" :subject="Student.subjectType" @on-click-back="_changeSubject"></gnb-change-sub>
+  <gnb-change-sub :visible.sync="visible" :selected="breakSubjectId" :subject="User.subjectType" @on-click-back="_changeSubject"></gnb-change-sub>
 </template>
 
 <script>
 import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {gnbChangeSub,accordion,changeTextBook} from 'components'
-import { mapActions,mapGetters} from 'vuex'
+import { mapActions,mapGetters  } from 'vuex'
 export default {
   components: {
     XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,InfiniteLoading,
@@ -36,7 +36,7 @@ export default {
       /**
       * 标志为reset则重置，否则加载上次高度
       */
-      if(this.passIsReset){
+      if(this.breakIsReset){
         this.$nextTick(() => {
           this.$broadcast('$InfiniteLoading:reset');
         })
@@ -57,11 +57,11 @@ export default {
     }
   },
   methods: {
-     ...mapActions(['getPass','passChangeChapter','setPassScroll','setPassSubject','clearPass','passListClear']),
+     ...mapActions(['getBreak','breakChangeChapter','setBreakScroll','setBreakSubject','clearBreak','breakListClear']),
      _toDetail(chapterId){
-      this.setPassScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
-      this.passListClear();
-      this.$router.go(`../list/${this.Params.studentId}/${chapterId}`);
+      this.setBreakScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.breakListClear();
+      this.$router.go(`list/${chapterId}`);
     },
     _changeSub(){
       this.visible = true;
@@ -70,26 +70,25 @@ export default {
     _changeSubject(item){
       this.subjectName = item.value;
       this.visible = false;
-      this.setPassSubject(item.id);       //更换科目
+      this.setBreakSubject(item.id);       //更换科目
       this.$broadcast('$InfiniteLoading:reset');
     },
     _openChapter(index){
-      this.setPassScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
-
-      this.passChangeChapter(index);
+      this.setBreakScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.breakChangeChapter(index);
     },
     _onInfinite(){
-      this.getPass({
+      this.getBreak({
         "textbook_id":this.textbookId
       })
       .then(()=>{
-        if(this.passChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+        if(this.breakChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
         this.$broadcast('$InfiniteLoading:complete');
       })
     }
   },
   created () {
-    this.textbookId = this.Student.textbook['math'][0].id;
+    this.textbookId = this.User.textbook['math'][0].id;
   },
   data(){
     return {
@@ -98,11 +97,11 @@ export default {
     }
   },
 	computed:{
-    ...mapGetters(['passScroll','passChapter','Student','passSubjectId','passIsReset','Params'])
+    ...mapGetters(['breakScroll','breakChapter','User','breakSubjectId','breakIsReset'])
 	},
   watch: {
     textbookId(){
-      this.clearPass();
+      this.clearBreak();
       this.$broadcast('$InfiniteLoading:reset');
     }
   }

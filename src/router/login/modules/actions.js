@@ -75,7 +75,6 @@ export const getTextbookVersion = ({ commit },params) => {
         resolve(response);
     })
   });
-
 }
 
 /**获取短信验证码(忘记密码)*/

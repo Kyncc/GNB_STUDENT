@@ -16,7 +16,7 @@
       </infinite-loading>
     </div>
   </view-box>
-  <gnb-change-sub :visible.sync="visible" :subject="Student.subjectType" :selected="reportSubjectId" @on-click-back="_changeSubject"></gnb-change-sub>
+  <gnb-change-sub :visible.sync="visible" :subject="User.subjectType" :selected="reportSubjectId" @on-click-back="_changeSubject"></gnb-change-sub>
 </template>
 
 <script>
@@ -62,13 +62,13 @@ export default {
     _intoChapter(index){
       this.setReportScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
       this.clearReportDetail();
-      this.$router.go(`../detail/${this.Params.studentId}/${index}`);
+      this.$router.go(`detail/${index}`);
     },
     //切换科目
     _changeSubject(item){
       this.subjectName = item.value;
       this.visible = false;
-      this.setReportSubject(item.id);      
+      this.setReportSubject(item.id);
       this.$broadcast('$InfiniteLoading:reset');
     },
     //打开节点
@@ -90,7 +90,7 @@ export default {
     }
   },
 	computed:{
-    ...mapGetters(['reportChapter','reportSubjectId','Student','reportScoll','reportReset','Params'])
+    ...mapGetters(['reportChapter','reportSubjectId','reportScoll','reportReset','User'])
 	}
 }
 </script>

@@ -7,10 +7,9 @@ export const getPass = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/summary',
+      url: 'summary',
       params: {
         "textbook_id":params.textbook_id,
-        "student_id":rootState.route.params.studentId,
         "token":rootState.login.token
       }
     })
@@ -47,11 +46,10 @@ export const getPassList = ({ state,rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/summary/list-loose-win-exercise',
+      url: 'summary/list-loose-win-exercise',
       params: {
         "status":2,
         "token":rootState.login.token,
-        "student_id":rootState.route.params.studentId,
         "chapter_id":rootState.route.params.chapterId,
         "subject_id":state.subjectId,
         "offset":state.list.offset
