@@ -10,7 +10,10 @@
         <div class="weui_panel weui_panel_access exerciseDetail" >
           <div class="weui_panel_hd">
             <p style="width:25%;color:#4bb7aa">题干</p>
-            <p style="width:75%;text-align:right" @click="_correct"> 
+            <p style="width:50%;text-align:right" @click="_collect(detail.collectTime)"> 
+              <span style="color:#666"><i class="icon iconfont icon-error-login"></i>收藏</span>
+            </p>
+            <p style="width:25%;text-align:right" @click="_correct"> 
               <span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
             </p>
           </div>
@@ -93,6 +96,15 @@ export default {
     },
     _correct(){
       this.$router.go(`/correct/${this.Params.subjectId}/${this.Params.id}`);
+    },
+    _collect(state){
+      if(state != 0){
+        //已收藏
+        this.collectRemove(parma);
+      }else{
+        //未收藏
+        this.collectAdd(parma);
+      }
     }
   },
 	computed:{

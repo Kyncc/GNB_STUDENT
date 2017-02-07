@@ -10,7 +10,6 @@ export const postCorrect = ({ rootState,commit }, params) => {
       data: {
         "token":rootState.login.token,
         "id":rootState.route.params.id,
-        "subject_id":rootState.route.params.subjectId,
         "content":params.content,
         "type":params.type
       }

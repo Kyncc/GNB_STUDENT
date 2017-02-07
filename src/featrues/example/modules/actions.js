@@ -11,7 +11,6 @@ export const getExample = ({ rootState,commit }) => {
       params: {
         "ids":[rootState.route.params.id],
         "subject_id":rootState.route.params.subjectId,
-        "studentId":rootState.route.params.studentId,
         "token":rootState.login.token,
       }
     })
@@ -19,7 +18,53 @@ export const getExample = ({ rootState,commit }) => {
       commit(types.EXAMPLE,response.data.data);
       resolve(response);
     })
-  });
+  })
+}
+
+/**取消例题收藏 */
+export const collectRemove = ({ rootState,commit }) => {
+   return new Promise((resolve, reject)=> { 
+      axios({
+        method:'get',
+        url: 'collect/remove',
+        params: {
+          "options":{
+            "id":rootState.route.params.id,
+            "subject_id":rootState.route.params.subjectId
+          },
+          "token":rootState.login.token,
+          "type":'example'
+        }
+      })
+      .then((response) => {
+         _.toast('取消收藏成功');
+        commit(types.COLLECT_REMOVE);
+        resolve(response);
+      })
+  })
+}
+
+/**例题收藏 */
+export const collectAdd = ({ rootState,commit }) => {
+   return new Promise((resolve, reject)=> { 
+      axios({
+        method:'get',
+        url: 'collect/add',
+        params: {
+          "options":{
+            "id":rootState.route.params.id,
+            "subject_id":rootState.route.params.subjectId
+          },
+          "token":rootState.login.token,
+          "type":'example'
+        }
+      })
+      .then((response) => {
+        _.toast('收藏成功');
+        commit(types.COLLECT_REMOVE);
+        resolve(response);
+      })
+  })
 }
 
 /**清空例题 */
