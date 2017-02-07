@@ -1,132 +1,67 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import VueTouch from 'vue-touch'
-import {sync} from 'vuex-router-sync'
+import 'babel-polyfill'
+import { sync } from 'vuex-router-sync'
 import App from './app'
 import store from './store'
-import * as _ from './config/whole.js'
-//登陆、注册
-import Login from './login/pages/login'
-import register from './login/pages/register'
-import setPassword from './login/pages/setPassword'
-import setInfo from './login/pages/setInfo'
-import forget from './login/pages/forget'
-import resetPassword from './login/pages/resetPassword'
-//题目评注、纠错
-import correct from './common/pages/correct'
-import comment from './common/pages/comment'
-//首页
-import Layout from './main/pages/layout'
-//首页模块
-import index from './router/index/router'
-//书包模块
-import bag from './router/bag/router'
-//互动
-import interact from './router/interact/router'
-//个人中心
-import user from './router/user/router'
-//个人中心-邀请好友
-import userInviteIndex from './user/pages/invite/index'
-import userInviteFriend from './user/pages/invite/friend'
-import userCodeInput from './user/pages/invite/input'
+import * as _ from 'config/whole.js'
+
+import Login from './router/login/router'
+import Correct from './featrues/correct/router'
+import Example from './featrues/example/router'
+
+import Layout from './router/layout'
+import User from './router/user/router'
+import Index from './router/index/router'
+import Bag from './router/bag/router'
+import Interact from './router/interact/router'
 //插件
 import moment from 'moment'
 import FastClick from 'fastclick'
-import VueLazyload from 'vue-lazyload'
-
-import '../node_modules/cropperjs/dist/cropper.min.css'
+// import VueLazyload from 'vue-lazyload'
 
 Vue.use(Router)
-Vue.use(VueTouch)
 
 Vue.config.devtools = true
 FastClick.attach(document.body)
 
 //图片异步加载
-Vue.use(VueLazyload, {
-  preLoad: 1.3,
-  error: 'http://www.chinasanbao.com/new/upload/headimg/headimg.png',
-  loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
-})
+// Vue.use(VueLazyload,{
+//   preLoad: 1.3,
+//   error: 'http://www.chinasanbao.com/new/upload/headimg/headimg.png',
+//   loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
+// })
 
 //格式化时间
-Vue.filter('ymd', function (value) {
+Vue.filter('ymd', function(value) {
   return moment.unix(value).format('YYYY-MM-DD');
 });
 
-//请求超时
-Vue.http.interceptors.push((request, next) => {
-  var timeout;
-  if (request._timeout) {
-    timeout = setTimeout(() => {
-      if (request.onTimeout) request.onTimeout(request)
-      request.abort()
-    }, request._timeout);
-  }
-  next((response) => {
-    clearTimeout(timeout);
-  });
-})
-
-//判断系统
-var ua = navigator.userAgent.toLowerCase();
-const commit = store.commit || store.dispatch
-if (/iphone|ipad|ipod/.test(ua)) {
-  commit('SET_SYSTEM', 'IOS')
-} else if (/android/.test(ua)) {
-  commit('SET_SYSTEM', 'Android')
-}
-
 const router = new Router()
 router.map({
-  'login': {
-    component: Login
-  },
-  //注册账户
-  'register': {
-    component: register
-  },
-  'register/password': {
-    component: setPassword
-  },
-  'register/info': {
-    component: setInfo
-  },
-  //忘记密码
-  'forget': {
-    component: forget
-  },
-  'forget/password': {
-    component: resetPassword
-  },
-  //主页
-  '/': {
+  ...Login,
+  ...Correct,
+  ...Example,
+  'main': {
     component: Layout,
     subRoutes: {
-      //纠错
-      'correct/:subjectId/:id': {
-        component: correct
-      },
-      //评注
-      'comment/:subjectId/:id': {
-        component: comment
-      },
-      ...user,
-      ...interact,
-      ...index,
-      ...bag,
+      ...Index,
+      ...User,
+      ...Bag,
+      ...Interact
     }
   }
 })
 
+//讲路由和store同步
 sync(store, router)
 
-router.beforeEach(function (transition) {
+router.beforeEach(function(transition) {
   if (transition.to.path == '/') {
-    if (localStorage.token) {
-      router.replace('/index');
-    } else {
-      router.replace('/login');
+    if(localStorage.token){
+        router.replace('/main/index');
+    }else{
+        router.replace('/login');
     }
   }
   transition.next();
@@ -141,10 +76,10 @@ document.addEventListener('plusready', function(){
     plus.key.addEventListener('backbutton',function(){
       if(
         store.state.route.path == '/login' || 
-        store.state.route.path == '/interact' || 
-        store.state.route.path == '/index' || 
-        store.state.route.path =='/user' || 
-        store.state.route.path =='/bag' ||
+        store.state.route.path == '/main/index' || 
+        store.state.route.path == '/main/bag' || 
+        store.state.route.path =='/main/interact' || 
+        store.state.route.path =='/main/user' ||
         store.state.tools.isLoading
       ){
         return;
@@ -153,6 +88,5 @@ document.addEventListener('plusready', function(){
     },false);
   },500)
 });
-
-
+    
 router.start(App, '#App')

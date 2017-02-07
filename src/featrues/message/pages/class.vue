@@ -1,7 +1,7 @@
 <template>
-  <view-box v-ref:view-box class="messageClass">
+  <view-box v-ref:view-box class="messageSystem">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}">班级消息</x-header>
+        <x-header :left-options="{showBack: true}">班级消息</x-header>
     </div>
     <div style="padding-top:46px;" class="messageSection">
       <section v-for="item in messageClassList">
@@ -10,7 +10,7 @@
           {{item.content}}
         </article>
       </section>
-
+      
       <infinite-loading :on-infinite="onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -23,39 +23,32 @@
 </template>
 <script>
 import {XHeader,ViewBox} from 'vux'
-import { token } from '../../../common/getters'
-import { getMessageClass } from '../actions'
-import { messageClassList } from '../getters'
 import InfiniteLoading from 'vue-infinite-loading'
+import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
     XHeader,ViewBox,InfiniteLoading
   },
-   route: {
+  route: {
     data:function(transition){
       this.$nextTick(() => {
         this.$broadcast('$InfiniteLoading:reset');
       });
     }
   },
-  vuex: {
-    getters: {
-      token,messageClassList
-    },
-    actions: {
-      getMessageClass
+  methods: {
+    ...mapActions(['getMessageClass']),
+    onInfinite(){
+      this.getMessageClass()
+      .then(()=>{
+        if(this.messageClassList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+        this.$broadcast('$InfiniteLoading:complete');
+      })
     }
   },
-  methods: {
-    onInfinite(){
-      this.getMessageClass({
-        "token":this.token
-      },()=>{
-          if(this.messageClassList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-          this.$broadcast('$InfiniteLoading:complete');
-      });
-    }
+  computed:{
+    ...mapGetters(['messageClassList'])
   }
 }
 </script>

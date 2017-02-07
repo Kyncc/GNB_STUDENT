@@ -4,23 +4,23 @@ import store from '../store'
 *   页面正在请求
 */
 export function busy(){
-    store.dispatch('GET_LOADING', true);
+    store.dispatch('isLoading', true);
 }
 
 /** 
 *   页面请求结束
 */
 export function leave(){
-    store.dispatch('GET_LOADING', false);
+    store.dispatch('isLoading', false);
 }
 
 /** 
 *   Toast公共方法
 */
 export function toast(str){
-    store.dispatch('GET_TOAST_SHOW', true); 
-    store.dispatch('GET_TOAST_MESSAGE',str);
+    store.dispatch('toastShow', true); 
+    store.dispatch('toastMsg',str);
     setTimeout(()=>{
-        store.dispatch('GET_TOAST_SHOW', false); 
-    },1200); 
+        store.dispatch('toastShow', false); 
+    },1500); 
 }
