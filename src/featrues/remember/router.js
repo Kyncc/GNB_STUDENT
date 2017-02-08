@@ -7,19 +7,19 @@ import modules from './modules/store'
 import store from 'src/store'
 
 export default {
-  'workbookByStu': {
+  'remember': {
     component: layout,
     subRoutes: {
       '/': {
         component: index
       },
-      'chapter/:workbookId': {
+      '/chapter/:workbookId': {
         component: chapter
       },
-      'page/:workbookId': {
+      '/page/:workbookId': {
         component: page
       },
-      'exercise/:chapterId': {
+      '/exercise/:chapterId': {
         component: exercise
       }
     }

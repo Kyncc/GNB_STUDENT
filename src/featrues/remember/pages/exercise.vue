@@ -13,7 +13,7 @@
               <group v-for="itemB in item.b" :title="itemB.name">
                 <cell v-for="itemC in itemB.c" :title="itemC.name">
                   <p slot="value">
-                    <section style="display:inline-block;" >
+                    <section style="display:inline-block;" @click="_changeAnswer($parent.$index,$index,1)">
                       <i v-if="itemC.answer" class="icon iconfont exampleIcon icon-correct"></i>
                       <i v-else class="icon iconfont icon-error exampleIcon"></i>
                     </section>
@@ -27,9 +27,9 @@
               <group :title="item.name">
                 <cell v-for="itemB in item.b" :title="itemB.name">
                   <div slot="value">
-                    <section style="display:inline-block;" >
-                      <i v-if="itemB.answer" class="icon iconfont exampleIcon icon-correct"></i>
-                      <i v-else class="icon iconfont icon-error exampleIcon"></i>
+                     <section style="display:inline-block;" @click="_changeAnswer($parent.$index,$index,2)">
+                      <i  v-if="itemB.answer" class="icon iconfont exampleIcon icon-correct"></i>
+                      <i  v-else class="icon iconfont icon-error exampleIcon"></i>
                     </section>
                     <!--<x-button mini plain type="primary" @click="_intoExample(itemB.eid)">例题</x-button>-->
                   </div>
@@ -37,6 +37,9 @@
               </group>
             </template>
           </template>
+
+           <x-button v-if="!Exercise.isUsed" style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_post">提交结果</x-button>
+           <x-button v-else style="width:95%;margin-top:1rem;" type="primary" disabled>已提交</x-button>
 
         </template>
 
@@ -47,6 +50,7 @@
           </span>
           <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
         </infinite-loading>
+    <confirm :show.sync="showConfirm" confirm-text="确定" cancel-text="取消" title="确定提交练习结果？" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
 
     </div>
   </view-box>
@@ -73,7 +77,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getWorkbookStuExercise']),
+    ...mapActions(['getWorkbookStuExercise','setWorkbookStuExersciseScroll','WorkbookExercisePost','workbookStuExAnswerChange']),
     /**获取答案*/
     _getAnswerList(){
       this.answerListId = [];
@@ -108,26 +112,61 @@ export default {
         this.$broadcast('$InfiniteLoading:complete');
       });
     },
+    /** 提交信息*/
+    onAction(type) {
+      if(type=='确认'){
+          this._getAnswerList();
+          this.WorkbookExercisePost({
+              answerId:this.answerListId,
+              answer:this.answerListAnswer
+          }).then(()=>{
+              setTimeout(()=>{
+                  history.back();
+              },500);
+          });
+      }else{
+          return
+      }
+    },
+    //进入例题
     _intoExample(id){
       if(Number(id) == 0){
         _.toast('暂无例题');
         return;
       }
-      // this.setScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
-      this.$router.go('/example/'+id);
-    }
+      // this.setWorkbookStuExersciseScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
+      // this.$router.go(`/example/${id}/${this.workbookStuSubject}`);
+    },
+    //答案变动更新store
+    _changeAnswer(parentIndex,index,type){
+      if(this.isUsed) return;
+      this.workbookType = type;
+      this.workbookStuExAnswerChange({
+        "pid":parentIndex,
+        "id":index,
+        "type":type
+      });
+    },
+    //提交警告窗口
+    _post(){
+        this.showConfirm = true;
+    },
   },
   data(){
     return {
       answerListId:[],         //答案的列表
       answerListAnswer:[],         //答案的列表
-      workbookType:''
+      workbookType:'',
+      showConfirm:false
     }
   },
   computed:{
-    ...mapGetters(['workbookStuExercise']),
+    ...mapGetters(['workbookStuExercise','workbookStuSubject']),
     Exercise(){
       return this.workbookStuExercise.list;
+    },
+    isUsed(){      //下一章节的ID
+      return this.workbookStuExercise.list.isUsed;
     }
 	}
 }
