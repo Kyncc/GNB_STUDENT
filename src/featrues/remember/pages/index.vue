@@ -27,7 +27,7 @@
 
   </view-box>
   <!--切换课程-->
-  <gnb-change-sub :visible.sync="visible" :subject="Student.subjectType" :selected="workbookStuSubject" @on-click-back="_changeSubject"><gnb-change-sub>
+  <gnb-change-sub :visible.sync="visible" :subject="User.subjectType" :selected="workbookStuSubject" @on-click-back="_changeSubject"><gnb-change-sub>
 </template>
 
 <script>
@@ -63,7 +63,7 @@ export default {
     _toChapter(id){
       this.workbookStuChapterClear();      //进去前清除章节数据
       this.workbookStuPageClear();      //进去前清除页码数据
-      this.$router.go(`../page/${this.Params.studentId}/${id}`);
+      this.$router.go(`page/${id}`);
     }, 
     _changeSub(){
       this.visible = true;
@@ -91,7 +91,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['workbookStu','workbookStuSubject','Params','Student']),
+    ...mapGetters(['workbookStu','workbookStuSubject','Params','User']),
     stuWorkBook(){
       return this.workbookStu.list;
     }

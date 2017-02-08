@@ -83,7 +83,7 @@ export default {
     ...mapActions(['getWorkbookStuChapter','setWorkbookStuChapterScroll','workbookStuExerciseClear']),
     _intoPage(){
       this.visible = false;
-      this.$router.replace(`../../page/${this.Params.studentId}/${this.Params.workbookId}`);
+      this.$router.replace(`../../page/${this.Params.workbookId}`);
     },
     _changeType(){
       this.visible = true;
@@ -96,7 +96,7 @@ export default {
       if(item.isLink == 'true'){
         this.workbookStuExerciseClear();//进去前清空数据
         this.setWorkbookStuChapterScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
-        this.$router.go(`../../exercise/${this.Params.studentId}/${item.id}`);
+        this.$router.go(`../../exercise/${item.id}`);
       }
       return;
     },

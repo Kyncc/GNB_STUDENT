@@ -8,7 +8,7 @@
       </div>
           
       <div style="padding-top:46px;">
-          <template v-for="item in MyWorkbook">
+          <template v-for="item in workbookMy.list">
                 <template v-if="item">
                   <group :title="item.textbookName">
                       <cell v-for="workbook in item.list" :title="workbook.workbookName"></cell>
@@ -31,16 +31,14 @@
 
   </view-box>
   <!--切换课程-->
-  <gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="workbookSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
+  <gnb-change-sub :visible.sync="visible" :subject="User.subjectType" :selected="workbookSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
 </template>
 
 <script>
 import {XHeader,Panel,ViewBox,Group,Cell,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token,userSubjectList} from '../../../common/getters'
-import {MyWorkbook,workbookSubjectId} from '../getters'
-import {getWorkbook,setSubject} from '../actions.js'
-import gnbChangeSub from '../../../components/changesub/index.vue'
+import {gnbChangeSub} from 'components'
+import { mapActions,mapGetters  } from 'vuex'
 
 export default {
   components:{
@@ -51,10 +49,21 @@ export default {
         switch(id){
             case '2':return '数学';
             case '7':return '物理';
+            case '8':return '化学';
         }
     }
   },
+  route:{
+    data:function(transition){
+      if(this.workbookMy.isReset && this.workbookMy.list.length == 0){
+        this.$nextTick(() => {
+          this.$broadcast('$InfiniteLoading:reset');
+        });
+      }
+    }
+  },
   methods: {
+    ...mapActions(['getWorkbook','setWorkBookSubject']),
     _add(){
         this.$router.go('add');
     },
@@ -64,33 +73,19 @@ export default {
     /** 切换科目*/
     _changeSubject(item){
         this.subjectName = item.value;
-        this.setSubject(item.id);       //更换科目
+        this.setWorkBookSubject(item.id);       //更换科目
+        this.$broadcast('$InfiniteLoading:reset');
         this.visible = false;
     },
     _onInfinite(){
-        //若没有数据则重新提交
-        if(this.MyWorkbook.length != 0 ){
-            this.$broadcast('$InfiniteLoading:loaded');
-            this.$broadcast('$InfiniteLoading:complete');
-            return;
-        }
-
         this.getWorkbook({
-            token:this.token,
-            subjectId:this.workbookSubjectId
-        },()=>{
-            if(this.MyWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+            token:this.token
+        })
+        .then((response)=>{
+            if(this.workbookMy.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
         });
     }   
-  },
-  vuex: {
-    getters:{
-        token,userSubjectList,MyWorkbook,workbookSubjectId
-    },
-    actions:{
-        getWorkbook,setSubject
-    }
   },
   data(){
     return {
@@ -98,13 +93,8 @@ export default {
         visible:false
     }
   },
-  watch:{
-    /** 切换学科*/
-    workbookSubjectId(){
-        this.$nextTick(() => {
-            this.$broadcast('$InfiniteLoading:reset');
-        });
-    }
+  computed:{
+    ...mapGetters(['User','workbookSubjectId','workbookMy'])
   }
 }
 </script>

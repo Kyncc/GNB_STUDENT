@@ -4,14 +4,4 @@
 
 <script>
 import './index.less'
-
-export default {
-  vuex: {
-    getters: {},
-    actions: {}
-  },
-  ready(){
-
-  }
-}
 </script>

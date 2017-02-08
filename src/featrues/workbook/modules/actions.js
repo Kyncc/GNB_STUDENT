@@ -3,7 +3,7 @@ import * as types from './mutationTypes'
 import * as _ from 'config/whole'
 
 /**我的习题册 */
-export const getWorkbook = ({ rootState,commit },params) => {
+export const getWorkbook = ({ rootState,commit,state },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
@@ -14,14 +14,14 @@ export const getWorkbook = ({ rootState,commit },params) => {
       }
     })
     .then((response) => {
-      commit(types.WORKBOOK_GET,response.data);
+      commit(types.WORKBOOK_GET,response.data.data);
       resolve(response);
     })
   })
 }
 
 /**全部习题册 */
-export const getWorkbookAll = ({ rootState,commit },params) => {
+export const getWorkbookAll = ({ rootState,commit,state },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
@@ -29,11 +29,11 @@ export const getWorkbookAll = ({ rootState,commit },params) => {
       params: {
         "token":rootState.login.token,
         "subjectId":state.subjectId,
-        "workbookName":this.params.name
+        "workbookName":params.workbookName
       }
     })
     .then((response) => {
-      commit(types.WORKBOOK_GET_ALL,response.data);
+      commit(types.WORKBOOK_ALL,response.data.data);
       resolve(response);
     })
   })
@@ -45,8 +45,8 @@ export const setWorkBookSubject = ({ commit }, id) => {
 }
 
 /**全部练习册数据清空 */
-export const workbookAllDel = ({ commit }) => {
-  commit(types.WORKBOOK_RELOAD);
+export const workbookAllClear = ({ commit }) => {
+  commit(types.WORKBOOK_ALL_CLEAR);
 }
 
 /**删除习题册 */

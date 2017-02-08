@@ -19,7 +19,7 @@ export const getWorkbookPage = ({ dispatch }, params,success,wrong) => {
 
 /**章节设置高度 */
 export const setScoll = ({ dispatch }, height) => {
-    dispatch(types.REMEMBER_PAGE_SCROLL,height);
+  dispatch(types.REMEMBER_PAGE_SCROLL,height);
 }
 
 /**习题册章节数据清空 */

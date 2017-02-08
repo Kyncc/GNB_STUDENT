@@ -1,5 +1,5 @@
 /** 获取全部教材 */
-export const TEXTBOOK_GET_ALL = 'TEXTBOOK_GET_ALL'
+export const TEXTBOOK_ALL = 'TEXTBOOK_ALL'
 /** 获取我的教材 */
 export const TEXTBOOK_GET = 'TEXTBOOK_GET'
 /** 删除教材*/

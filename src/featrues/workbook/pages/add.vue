@@ -9,7 +9,7 @@
     </div>
 
     <div style="padding-top:86px;">
-        <template v-for="item in AllWorkbook">
+        <template v-for="item in workbookAll.list">
             <group :title="item.textbookName">
                 <checklist :options="item.list|covert" :value.sync="selectBookList" ></checklist>
             </group>
@@ -30,23 +30,13 @@
 
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,Search} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token} from '../../../common/getters'
-import {AllWorkbook,workbookSubjectId} from '../getters'
-import {getWorkbookAll,setSubject,workbookAllDel,addWorkbook} from '../actions'
-import gnbChangeSub from '../../../components/changesub/index.vue'
-
+import {gnbChangeSub} from 'components'
+import { mapActions,mapGetters  } from 'vuex'
+import * as _ from 'config/whole'
 
 export default {
   components: {
     XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,InfiniteLoading,Search
-  },
-  vuex: {
-    getters: {
-        token,AllWorkbook,workbookSubjectId
-    },
-    actions: {
-        getWorkbookAll,addWorkbook,workbookAllDel
-    }
   },
    filters: {
     covert(obj){
@@ -73,10 +63,19 @@ export default {
       searchName:''
     }
   },
-  created(){
-     this.workbookAllDel();      //搜索需要清除数据
+  route:{
+    data:function(transition){
+      if(this.workbookAll.isReset){
+        this.$nextTick(() => {
+          this.$broadcast('$InfiniteLoading:reset');
+        });
+      }
+      this.selectBookList = [];
+      this.searchName = '';
+    }
   },
   methods: {
+    ...mapActions(['addWorkbook','workbookAllClear','getWorkbookAll']),
     _addTextBook(){
       if(this.searchName.length == 0){
         this.$router.go(`add`);
@@ -84,14 +83,14 @@ export default {
     },
     _onSearch(str){
       this.searchName = str;
-      this.workbookAllDel();      //搜索需要清除数据
+      this.workbookAllClear();      //搜索需要清除数据
       this.$nextTick(() => {
           this.$broadcast('$InfiniteLoading:reset');
       });
     },
     _addWorkbook(){
       this.addWorkbook({
-          id:this.selectBookList
+        id:this.selectBookList
       })
       .then(()=>{
           _.toast('添加成功');
@@ -103,10 +102,13 @@ export default {
           "workbookName":this.searchName
       })
       .then(()=>{
-          if(this.AllWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+          if(this.workbookAll.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
           this.$broadcast('$InfiniteLoading:complete');
       });
     }
+  },
+  computed:{
+    ...mapGetters(['workbookSubjectId','workbookAll'])
   }
 }
 </script>
