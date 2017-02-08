@@ -1,24 +1,23 @@
-import brush from './pages/layout'
-import brushChapter from './pages/chapter'
-import brushList from './pages/list'
-import brushExample from './pages/example'
+import layout from './pages/layout'
+import index from './pages/index'
+import list from './pages/list'
+import modules from './modules/store'
+import store from 'src/store'
 
-export default  {
-    'brush': {
-      component: brush,
-      subRoutes: {
-        '/': {
-          component: brushChapter,
-          name: 'brushChapter'
-        },
-        '/list/:chapterId': {
-          component: brushList,
-          name: 'brushList'
-        },
-        '/example/:subjectId/:id': {
-          component: brushExample,
-          name: 'brushExample'
-        }
+export default{
+  'brush': {
+    component: layout,
+    subRoutes: {
+      '/': {
+        component: index
       },
+      '/list/:chapterId': {
+        component: list
+      }
     }
+  }
 }
+
+store.registerModule('brush', {
+  ...modules
+});

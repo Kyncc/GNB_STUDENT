@@ -11,7 +11,7 @@
           <div class="weui_panel_hd">
             <p style="width:25%;color:#4bb7aa">题干</p>
             <p style="width:50%;text-align:right" @click="_collect(detail.collectTime)"> 
-              <span style="color:#666"><i class="icon iconfont icon-error-login"></i>收藏</span>
+              <span style="color:#666"><i class="icon iconfont icon-collect"></i>{{( detail.collectTime == 0 ?  '收藏' :  '取消' )}}</span>
             </p>
             <p style="width:25%;text-align:right" @click="_correct"> 
               <span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
@@ -82,7 +82,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getExample','exampleClear']),
+    ...mapActions(['getExample','exampleClear','collectRemove','collectAdd']),
     _onInfinite(){
       this.getExample()
       .then(()=>{
@@ -98,12 +98,12 @@ export default {
       this.$router.go(`/correct/${this.Params.subjectId}/${this.Params.id}`);
     },
     _collect(state){
-      if(state != 0){
+      if(Number(state) != 0){
         //已收藏
-        this.collectRemove(parma);
+        this.collectRemove();
       }else{
         //未收藏
-        this.collectAdd(parma);
+        this.collectAdd();
       }
     }
   },

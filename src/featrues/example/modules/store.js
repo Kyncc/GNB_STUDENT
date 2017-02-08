@@ -19,10 +19,10 @@ const mutations = {
     state.example = [];
   },
   [types.COLLECT_ADD](state) {
-    state.example.collectTime = 1;
+    state.example[0].collectTime = "1";
   },
   [types.COLLECT_REMOVE](state) {
-    state.example.collectTime = 0;
+    state.example[0].collectTime = "0";
   }
 }
 

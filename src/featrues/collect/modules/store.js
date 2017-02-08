@@ -4,7 +4,6 @@ const state = {
   example:{
     ids:[],
     list:[],
-    detail:[],
     current:1,
     totalPage:1,
     isReset:true
@@ -23,9 +22,6 @@ const mutations = {
     if(data.data.length == 0){return;}
     state.example.current++;
     state.example.list = state.example.list.concat(data.data);
-  },
-  [types.COLLECT_EXAMPLEDETAIL](state , data){
-    state.example.detail = data.data;
   },
   [types.COLLECT_INDEX_SCOLL](state,height){
     state.scoll = height;

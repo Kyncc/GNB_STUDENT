@@ -1,6 +1,7 @@
 import layout from './pages/layout'
 import index from './pages/index'
-// import workbookByClass from '../../features/workbookByClass/router'
+import brush from '../../featrues/brush/router'
+import remember from '../../featrues/remember/router'
 
 
 export default {
@@ -8,7 +9,8 @@ export default {
     component: layout,
     subRoutes: {
       '/':{component: index},
-      // ...workbookByClass
+      ...brush,
+      ...remember
     }
   }
 }

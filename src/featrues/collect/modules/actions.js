@@ -2,6 +2,34 @@ import axios from 'config/http'
 import * as types from './mutationTypes'
 import * as _ from 'config/whole'
 
+
+
+
+
+/**获取章节数据 */
+export const getCollectExampleIds = ({ rootState,commit },params) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'get',
+      url: 'summary',
+      params: {
+        "textbook_id":params.textbook_id,
+        "token":rootState.login.token
+      }
+    })
+    .then((response) => {
+      commit(types.BREAK,response.data);
+      resolve(response);
+    })
+  });
+}
+
+
+
+
+
+
+
 export const getCollectExampleIds = ({ commit }, params,success) => {
   Api.collectExampleIds({
     data:params,
@@ -31,12 +59,12 @@ export const getCollectExampleList = ({ commit }, params,success,wrong) => {
 
 
 /**高度保存 */
-export const setScoll = ({ commit }, height) => {
+export const setCollectScoll = ({ commit }, height) => {
   commit(types.COLLECT_INDEX_SCOLL,height);
 }
 
 /**更换科目 */
-export const setSubject = ({ commit }, id) => {
+export const setCollectSubject = ({ commit }, id) => {
   commit(types.COLLECT_SUBJECT_CHANGE,id);
   commit(types.COLLECT_RELOAD);
 }

@@ -3,13 +3,12 @@
     <div slot="header" style="position:fixed;left:0;top:0;width:100%;z-index:2016" >
       <x-header :left-options="{showBack: false}">归纳本</x-header>
     </div>
-
     <div style="padding-top:46px">
       <div>
-        <a class="brush" v-link="{ path: 'classes/select?type=workbookByStu'}"></a>
+        <a class="brush" v-link="{ path: 'index/brush/'}"></a>
       </div>
       <div>
-        <x-button type='primary' v-link="{ path: 'index/workbookByClass/'}" mini class="rememberBtn">记错题</x-button>
+        <x-button type='primary' v-link="{ path: 'index/remember/'}" mini class="rememberBtn">记错题</x-button>
       </div>
     </div>
   </view-box>

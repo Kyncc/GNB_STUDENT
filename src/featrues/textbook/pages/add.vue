@@ -3,13 +3,10 @@
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
         添加{{textBookSubjectId|subName}}教材
-        <a slot="right" @click="_addTextBook()" v-show="selectBookList.length != 0">
-             完成
-        </a>
+        <a slot="right" @click="_addTextBook()" v-show="selectBookList.length != 0">完成</a>
       </x-header>
     </div>
     <div style="padding-top:46px;">
- 
       <group title="教材列表">
         <template v-if="textbookAll.list">
           <checklist :options="textbookAll.list|covert" :value.sync="selectBookList"></checklist>
@@ -23,7 +20,6 @@
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
-      
     </div>
   </view-box>
 </template>

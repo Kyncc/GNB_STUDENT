@@ -25,9 +25,9 @@ export const getExample = ({ rootState,commit }) => {
 export const collectRemove = ({ rootState,commit }) => {
    return new Promise((resolve, reject)=> { 
       axios({
-        method:'get',
+        method:'post',
         url: 'collect/remove',
-        params: {
+        data: {
           "options":{
             "id":rootState.route.params.id,
             "subject_id":rootState.route.params.subjectId
@@ -48,9 +48,9 @@ export const collectRemove = ({ rootState,commit }) => {
 export const collectAdd = ({ rootState,commit }) => {
    return new Promise((resolve, reject)=> { 
       axios({
-        method:'get',
+        method:'post',
         url: 'collect/add',
-        params: {
+        data: {
           "options":{
             "id":rootState.route.params.id,
             "subject_id":rootState.route.params.subjectId
@@ -61,7 +61,7 @@ export const collectAdd = ({ rootState,commit }) => {
       })
       .then((response) => {
         _.toast('收藏成功');
-        commit(types.COLLECT_REMOVE);
+        commit(types.COLLECT_ADD);
         resolve(response);
       })
   })

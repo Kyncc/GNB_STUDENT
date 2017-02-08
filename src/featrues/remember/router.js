@@ -10,16 +10,16 @@ export default {
   'workbookByStu': {
     component: layout,
     subRoutes: {
-      '/:code/:studentId': {
+      '/': {
         component: index
       },
-      'chapter/:studentId/:workbookId': {
+      'chapter/:workbookId': {
         component: chapter
       },
-      'page/:studentId/:workbookId': {
+      'page/:workbookId': {
         component: page
       },
-      'exercise/:studentId/:chapterId': {
+      'exercise/:chapterId': {
         component: exercise
       }
     }
@@ -27,6 +27,6 @@ export default {
 }
 
 
-store.registerModule('rememberStudent', {
+store.registerModule('remember', {
   ...modules
 });
