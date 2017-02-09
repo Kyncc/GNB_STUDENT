@@ -10,13 +10,13 @@
         <template v-if="ClassMyClassmate">
           <group title="我的老师">
             <cell v-if="ClassMyClassmate.teacher" :title="ClassMyClassmate.teacher.name">
-                <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="ClassMyClassmate.teacher.headImg">
+                <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" :src="ClassMyClassmate.teacher.headImg">
             </cell>
           </group>
           <group title="我的同学">
               <template v-for="student in ClassMyClassmate.students">
                 <cell :title="student.name">
-                    <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="student.headImg">
+                    <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" :src="student.headImg">
                 </cell>
               </template>
           </group>
@@ -34,37 +34,34 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
-import {token,id} from '../../../common/getters'
-import {ClassMyClassmate} from '../getters'
-import {getMyClassmateList} from '../actions/class'
 import {XHeader,Cell,Group,ViewBox} from 'vux'
-import './myClass.less'
+import { mapActions,mapGetters } from 'vuex'
+
 export default {
   components: {
-    XHeader,
-    Cell,
-    Group,
-    ViewBox,InfiniteLoading
+    XHeader,Cell,Group,ViewBox,InfiniteLoading
   },
-  vuex: {
-      getters: {
-        token,id,ClassMyClassmate
-      },
-      actions: {
-        getMyClassmateList
-      }
+  route: {
+    data:function(transition){
+      this.$nextTick(() => {
+        this.$broadcast('$InfiniteLoading:reset');
+      });
+    }
   },
   methods: {
+    ...mapActions(['getMyClassmateList']),
     _onInfinite(){
-			let params = {
-        classCode:this.id,
-				token:this.token
-			};
-      this.getMyClassmateList(params,()=>{
+      this.getMyClassmateList({
+        "classCode":this.id,
+      })
+      .then(()=>{
           this.$broadcast('$InfiniteLoading:loaded');
-					this.$broadcast('$InfiniteLoading:complete');
-			});
+          this.$broadcast('$InfiniteLoading:complete');
+      });
     }
+  },
+  computed:{
+    ...mapGetters(['ClassMyClassmate'])
   }
 }
 </script>

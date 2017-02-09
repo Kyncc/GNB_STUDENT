@@ -37,12 +37,12 @@ const mutations = {
     state.token = data.token;
     localStorage.setItem('token',data.token);
   },
-  [types.TEXTBOOK_VERSION](state , data){
-    state.version.math = data.subjectOptions.math;
+  [types.TEXTBOOK_VERSION_ALL](state , data){
+    state.register.version.math = data.subjectOptions.math;
      if(data.subjectOptions.physics){
-       state.version.physics = data.subjectOptions.physics;
+       state.register.version.physics = data.subjectOptions.physics;
      }else{
-       state.version.physics = [];
+       state.register.version.physics = [];
      }
   }
 }

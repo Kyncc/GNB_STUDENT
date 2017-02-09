@@ -28,9 +28,9 @@ export const getUserInfo = ({ rootState,commit }) => {
 export const setUserInfo = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
-      method: 'get',
+      method: 'post',
       url: 'user/updateUserInfo',
-      params: {
+      data: {
         ...params,
         token:rootState.login.token
       }

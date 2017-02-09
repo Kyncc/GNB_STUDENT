@@ -72,7 +72,7 @@ export const getTextbookVersion = ({ commit },params) => {
       }
     })
     .then((response) => {
-        commit(types.TEXTBOOK_VERSION,response.data);
+        commit(types.TEXTBOOK_VERSION_ALL,response.data.data);
         _.leave();
         resolve(response);
     })

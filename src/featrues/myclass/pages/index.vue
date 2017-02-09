@@ -10,7 +10,7 @@
      <div style="padding-top:46px;">
       <group>
         <template v-for="item in ClassMy">
-           <cell :title="item.name" :link="'/user/class/detail/'+item.classCode"> </cell>
+           <cell :title="item.name" :link="'detail/'+item.classCode"> </cell>
         </template>
       </group>
 
@@ -27,48 +27,43 @@
       <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #d9d9d9" type="primary" @click="_addClass()">加入班级</x-button>
     </tabbar>
 
-
   </view-box>
 </template>
 
 <script>
-import './myClass.less'
 import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox,Tabbar,XButton} from 'vux'
-import {getMyClass} from '../actions/class'
-import {token} from '../../../common/getters'
-import {ClassMy} from '../getters'
+import { mapActions,mapGetters } from 'vuex'
+
 
 export default {
   components: {
     XHeader,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox,InfiniteLoading,Tabbar,XButton
   },
-  vuex:{
-    getters: {
-      ClassMy,token
-    },
-    actions: {
-      getMyClass
+  route: {
+    data:function(transition){
+      this.$nextTick(() => {
+        this.$broadcast('$InfiniteLoading:reset');
+      });
     }
   },
   methods: {
+    ...mapActions(['getMyClass']),
     _addClass(){
       this.$router.go('add');
     },
     _onInfinite(){
-      if(this.ClassMy.length != 0){
-         this.$broadcast('$InfiniteLoading:loaded');
-         this.$broadcast('$InfiniteLoading:complete');
-         return ;
-      }
       this.getMyClass({
         token:this.token
-      },()=>{
+      })
+      .then(()=>{
         if(this.ClassMy.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
         this.$broadcast('$InfiniteLoading:complete');
       });
     }
+  },
+  computed:{
+    ...mapGetters(['ClassMy'])
   }
 }
-
 </script>

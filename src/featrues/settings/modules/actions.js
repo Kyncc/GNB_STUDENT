@@ -25,7 +25,6 @@ export const updatePwd = ({ rootState,commit },params) => {
   });
 }
 
-
 /** 提交反馈*/
 export const updateAdvice = ({ rootState,commit }, params) => {
   return new Promise((resolve,reject)=> { 
@@ -61,8 +60,22 @@ export const adviceHistory = ({ rootState,commit }, params) => {
   });
 }
 
-
-
+/** *获得教材版本信息 */
+export const getTextbookAllVersion = ({ commit },params) => {
+   return new Promise((resolve, reject)=> { 
+    axios({
+      method:'get',
+      url: 'edition/byGrade',
+      params: {
+        grade:params.grade
+      }
+    })
+    .then((response) => {
+        commit(types.TEXTBOOK_ALL_VERSION,response.data.data);
+        resolve(response);
+    })
+  });
+}
 
 
 

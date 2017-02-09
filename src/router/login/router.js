@@ -5,8 +5,6 @@ import forget from './pages/forget'
 import info from './pages/info'
 import resetPassword from './pages/resetPassword'
 import setPassword from './pages/setPassword'
-import modules from './modules/store'
-import store from 'src/store'
 
 export default {
   '/': {
@@ -34,6 +32,3 @@ export default {
   }
 }
 
-store.registerModule('login', {
-  ...modules
-});
