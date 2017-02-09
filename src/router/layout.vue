@@ -38,13 +38,13 @@ export default {
       //   this.$router.go('/main/bag/textbook/add?type=new');
       // }
     })
-    // .catch((error) => {
-    //   if(window.plus) {
-    //     setTimeout(()=>{
-    //       plus.navigator.closeSplashscreen(); //关闭等待
-    //     },500)
-    //   }
-    // })
+    .catch((error) => {
+      if(window.plus) {
+        setTimeout(()=>{
+          plus.navigator.closeSplashscreen(); //关闭等待
+        },500)
+      }
+    })
   },
   computed:{
      ...mapGetters(['path','User']),

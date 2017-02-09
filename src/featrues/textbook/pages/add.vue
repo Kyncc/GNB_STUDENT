@@ -75,7 +75,7 @@ export default {
         textbookId:this.selectBookList
       })
       .then(()=>{
-        this.$router.go("/main/bag/textbook/")
+        history.back();
       });
     },
     _onInfinite(){
