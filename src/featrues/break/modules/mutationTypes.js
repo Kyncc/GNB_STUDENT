@@ -1,7 +1,7 @@
 /**下拉框展现*/
 export const BREAK_STATE_CHANGE = 'BREAK_STATE_CHANGE'
   /**首页章节滚动条高度*/
-export const BREAK_SCOLLER = 'BREAK_SCOLLER_HEIGHT'
+export const BREAK_SCOLLER = 'BREAK_SCOLLER'
   /** 获取弃题首页*/
 export const BREAK = 'BREAK'
   /** 清空弃题*/

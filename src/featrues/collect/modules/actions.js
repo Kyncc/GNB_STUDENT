@@ -25,11 +25,6 @@ export const getCollectExampleIds = ({ rootState,commit },params) => {
 }
 
 
-
-
-
-
-
 export const getCollectExampleIds = ({ commit }, params,success) => {
   Api.collectExampleIds({
     data:params,

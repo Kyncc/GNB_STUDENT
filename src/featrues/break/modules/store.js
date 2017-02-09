@@ -54,6 +54,10 @@ const mutations = {
     state.list.scroll = 0;
     state.list.offset = '';
   },
+  [types.BREAK_LIST_BACK](state, index) {
+    state.list.count = --state.list.count;
+    state.list.list.splice(index, 1);
+  },
   [types.BREAK_LIST_SCOLLER](state, height) {
     state.list.scroll = height;
   }

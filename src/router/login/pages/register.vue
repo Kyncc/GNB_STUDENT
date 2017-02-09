@@ -98,7 +98,7 @@ export default {
         //如果是已教师，则同意清空师账户后在发送接口获取验证码
         this.getRegisterCode(params)
         .then((response) => {
-            if(response.data.data.isStudent){
+            if(response.data.data.isTeacher){
               this.confirmShow = true;
             }else{
               _.toast("注册码已发送");

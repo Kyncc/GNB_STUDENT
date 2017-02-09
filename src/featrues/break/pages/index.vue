@@ -11,8 +11,8 @@
       <accordion :list="breakChapter" @on-click-chapter="_toDetail" @on-click-open="_openChapter"></accordion>
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
-          <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">您还未添加教材~</p>
+          <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
+          <p style="font-size:1rem;display:inline-block;">请先去书包中添加教材吧~</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
@@ -42,7 +42,7 @@ export default {
         })
       }else{
         this.$nextTick(() => {
-          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScroll;
+          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.breakScroll;
         })
       }
     }

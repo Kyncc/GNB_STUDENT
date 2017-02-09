@@ -100,6 +100,24 @@ export const getForgetCode = ({ commit },params) => {
   });
 }
 
+
+/**新建用户信息*/
+export const setNewUserInfo = ({ rootState,commit },params) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method: 'post',
+      url: 'user/addUserInfo',
+      data: {
+        ...params,
+      }
+    })
+    .then((response) => {
+      resolve(response);
+    })
+  });
+}
+
+
 /**重置登陆密码*/
 export const resetPwd = ({ commit },params) => {
   return new Promise((resolve, reject)=> { 

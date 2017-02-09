@@ -76,9 +76,3 @@ export const getTextbookAllVersion = ({ commit },params) => {
     })
   });
 }
-
-
-
-
-
-

@@ -8,8 +8,8 @@
     <div v-show="edit=='编辑'">
       <group title="基本资料">
         <cell title="姓名" :value="User.name"></cell>
-        <cell title="性别" :value="(User.sex=='0' ?'女':'男')"></cell>
-        <cell title="年级" :value="gradeName"></cell>
+        <cell title="性别" :value="(User.sex == '0' ? '女':'男')"></cell>
+        <cell title="年级" :value="User.grade | gradeName"></cell>
         <cell title="学校" :value="User.school"></cell>
       </group>
       <group title="教材版本">
@@ -72,6 +72,14 @@ export default {
             });
         });
         return newObj;
+    },
+    gradeName(grade){
+      switch(grade){
+        case '7' : return '七年级';
+        case '8' : return '八年级';
+        case '9' : return '九年级';
+        case '10' : return '高中';
+      }
     }
   },
   created(){
@@ -135,7 +143,7 @@ export default {
   },
   watch: {
     grade(){
-     this.getTextbookAllVersion({grade: this.grade})
+      this.getTextbookAllVersion({grade: this.grade})
      .then((res)=>{
         this.math = this.textBookAllVersion.math[0].id.toString();
         (
@@ -147,15 +155,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['User','textBookAllVersion']),
-    gradeName(){
-      switch(this.grade){
-        case '7' : return '七年级';
-        case '8' : return '八年级';
-        case '9' : return '九年级';
-        case '10' : return '高中';
-      }
-    }
+    ...mapGetters(['User','textBookAllVersion'])
   }
 }
 </script>

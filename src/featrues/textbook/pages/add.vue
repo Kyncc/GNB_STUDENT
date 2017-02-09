@@ -75,7 +75,7 @@ export default {
         textbookId:this.selectBookList
       })
       .then(()=>{
-        history.back();
+        this.$router.go("/main/bag/textbook/")
       });
     },
     _onInfinite(){
@@ -87,7 +87,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['textBookSubjectId','textbookAll'])
+    ...mapGetters(['textBookSubjectId','textbookAll','Query'])
   }
 }
 </script>

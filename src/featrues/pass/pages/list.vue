@@ -69,7 +69,14 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getPassList','setPassListScroll']),
+    ...mapActions(['getPassList','setPassListScroll','passAction']),
+    //撤回动作
+    _abandon(id,index){
+      this.passAction({
+        "id":id,
+        "index":index
+      });
+    },
     _intoDetail(id){
       this.setPassListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
       this.$router.go(`/example/${this.passSubjectId}/${id}`);

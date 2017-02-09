@@ -7,14 +7,11 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 axios.defaults.baseURL = 'http://www.guinaben.com:8070/student/';
 // axios.defaults.baseURL = 'http://192.168.1.129:8383';
 
-//POST,GET传参序列化
+//POST传参序列化
 axios.interceptors.request.use((config) => {
   if(config.method  === 'post'){
     config.data = qs.stringify(config.data,{arrayFormat:'brackets'});
   }
-  // else if(config.method  === 'get'){
-  //   config.params = qs.stringify(config.params,{arrayFormat:'brackets'});
-  // }
   return config;
 },(error) =>{
    _.toast("错误的传参");

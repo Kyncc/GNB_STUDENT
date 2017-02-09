@@ -12,7 +12,7 @@
         <cell title="弃题本" link="bag/pass/">
           <span class="icon iconfont icon-lajitong16" style="color:#ffb660" slot="icon"></span>
         </cell>
-        <cell title="收藏本" link="bag/collect/example">
+        <cell title="收藏本" link="bag/collect/">
           <span class="icon iconfont icon-box" style="color:#6DC6FF" slot="icon"></span>
         </cell>
       </group>

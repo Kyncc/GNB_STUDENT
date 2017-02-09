@@ -69,7 +69,14 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getBreakList','setBreakListScroll']),
+    ...mapActions(['getBreakList','setBreakListScroll','breakAction']),
+      //撤回动作
+    _abandon(id,index){
+      this.breakAction({
+        "id":id,
+        "index":index
+      });
+    },
     _intoDetail(id){
       this.setBreakListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
       this.$router.go(`/example/${this.breakSubjectId}/${id}`);

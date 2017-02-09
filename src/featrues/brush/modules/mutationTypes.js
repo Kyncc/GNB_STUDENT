@@ -1,7 +1,7 @@
 /**下拉框展现*/
 export const BRUSH_STATE_CHANGE = 'BRUSH_STATE_CHANGE'
 /**首页章节滚动条高度*/
-export const BRUSH_SCOLLER = 'BRUSH_SCOLLER_HEIGHT'
+export const BRUSH_SCOLLER = 'BRUSH_SCOLLER'
 /** 获取刷题首页*/
 export const BRUSH = 'BRUSH'
 /** 清空刷题*/

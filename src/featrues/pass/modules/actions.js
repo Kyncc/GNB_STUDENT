@@ -62,6 +62,25 @@ export const getPassList = ({ state,rootState,commit }, params) => {
   });
 }
 
+/**弃题列表撤回 */
+export const passAction = ({ state,rootState,commit }, params) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'get',
+      url: 'summary/delete-loose-win-exercise',
+      params: {
+        "loose_win_excercise_id":params.id,
+        "token":rootState.login.token,
+        "subject_id":state.subjectId
+      }
+    })
+    .then((response) => {
+      commit(types.PASS_LIST_BACK,params.index);
+      resolve(response);
+    })
+  });
+}
+
 /**清空列表 */
 export const passListClear = ({ commit }) => {
   commit(types.PASS_LIST_CLEAR);

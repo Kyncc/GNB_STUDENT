@@ -15,7 +15,7 @@
 
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
-          <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+          <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
           <p style="font-size:1rem;display:inline-block;">快去添加点教材吧~</p>
         </span>
         <span slot="no-more"></span>
@@ -86,7 +86,7 @@ export default {
     _onInfinite(){
       this.getTextbook()
       .then(()=>{
-        if(this.textbookMy.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+        if(this.textbookMy.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
         this.$broadcast('$InfiniteLoading:complete');
       });
     }

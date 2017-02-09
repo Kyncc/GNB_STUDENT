@@ -10,7 +10,7 @@
       <accordion-report :list="reportChapter" @on-click-open="_openChapter" @on-click-chapter="_intoChapter"></accordion-report>
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
-          <p style="font-size:1rem;display:inline-block;">您还未添加教材~</p>
+          <p style="font-size:1rem;display:inline-block;">您还未练习哦~</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>

@@ -18,27 +18,32 @@
       
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
-          <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">该同学尚未练习~</p>
+          <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
+          <p style="font-size:1rem;display:inline-block;">快去书包中添加习题册吧~</p>
         </span>
         <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
       </infinite-loading>
     </div>
 
+    <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
+      <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #d9d9d9" type="primary" @click="_add">我的习题册</x-button>
+    </tabbar>
+
   </view-box>
+
   <!--切换课程-->
   <gnb-change-sub :visible.sync="visible" :subject="User.subjectType" :selected="workbookStuSubject" @on-click-back="_changeSubject"><gnb-change-sub>
 </template>
 
 <script>
-import {XHeader,Panel,ViewBox,Group,Cell,XButton} from 'vux'
+import {XHeader,Panel,ViewBox,Group,Cell,XButton,Tabbar} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {gnbChangeSub} from 'components'
 import { mapActions,mapGetters} from 'vuex'
 
 export default {
   components:{
-    XHeader,ViewBox,Panel,Group,Cell,gnbChangeSub,InfiniteLoading,XButton
+    XHeader,ViewBox,Panel,Group,Cell,gnbChangeSub,InfiniteLoading,XButton,Tabbar
   },
   filters: {
     subName(id){
@@ -67,6 +72,11 @@ export default {
     }, 
     _changeSub(){
       this.visible = true;
+    },
+    //进入练习册管理
+    _add(){
+      this.workbookStuClear();
+      this.$router.go('/main/bag/workbook/');
     },
     /** 切换科目*/
     _changeSubject(item){

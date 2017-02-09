@@ -22,7 +22,7 @@ export const getExample = ({ rootState,commit }) => {
 }
 
 /**取消例题收藏 */
-export const collectRemove = ({ rootState,commit }) => {
+export const collectRemove = ({ rootState,commit,dispatch }) => {
    return new Promise((resolve, reject)=> { 
       axios({
         method:'post',
@@ -39,13 +39,14 @@ export const collectRemove = ({ rootState,commit }) => {
       .then((response) => {
          _.toast('取消收藏成功');
         commit(types.COLLECT_REMOVE);
+        dispatch("clearCollect");
         resolve(response);
       })
   })
 }
 
 /**例题收藏 */
-export const collectAdd = ({ rootState,commit }) => {
+export const collectAdd = ({ rootState,commit,dispatch }) => {
    return new Promise((resolve, reject)=> { 
       axios({
         method:'post',
@@ -62,6 +63,7 @@ export const collectAdd = ({ rootState,commit }) => {
       .then((response) => {
         _.toast('收藏成功');
         commit(types.COLLECT_ADD);
+        dispatch("clearCollect");
         resolve(response);
       })
   })

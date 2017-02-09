@@ -31,10 +31,23 @@ export default {
     ...mapActions(['getUserInfo'])
   },
   created(){
-    this.getUserInfo();
+    this.getUserInfo()
+    .then(()=>{
+      //&& this.User.textbook.physics.length == 0
+      // if(this.User.textbook.math[0].id == '0' ){
+      //   this.$router.go('/main/bag/textbook/add?type=new');
+      // }
+    })
+    // .catch((error) => {
+    //   if(window.plus) {
+    //     setTimeout(()=>{
+    //       plus.navigator.closeSplashscreen(); //关闭等待
+    //     },500)
+    //   }
+    // })
   },
   computed:{
-     ...mapGetters(['path']),
+     ...mapGetters(['path','User']),
      isRoot(){
        return (this.indexState || this.bagState || this.userState || this.interactState? true : false);
      },

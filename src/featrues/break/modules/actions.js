@@ -59,12 +59,12 @@ export const getBreakList = ({ state,rootState,commit }, params) => {
       commit(types.BREAK_LIST,response.data.data);
       resolve(response);
     })
-  });
+  })
 }
 
 
-/**斩弃题动作 */
-export const breakActionBack =({ state,rootState,commit }, params) => {
+/**弃题列表撤回 */
+export const breakAction = ({ state,rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
@@ -76,10 +76,10 @@ export const breakActionBack =({ state,rootState,commit }, params) => {
       }
     })
     .then((response) => {
-      commit(types.BREAK_LIST_BACK,response.data.data);
+      commit(types.BREAK_LIST_BACK,params.index);
       resolve(response);
     })
-  });
+  })
 }
 
 /**清空列表 */
