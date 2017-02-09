@@ -1,24 +1,24 @@
 import layout from './pages/layout'
-import chapter from './pages/chapter'
+import index from './pages/index'
 import list from './pages/list'
-import example from './pages/example'
+import modules from './modules/store'
+import store from 'src/store'
 
 export default {
-    '/pass': {
-        component: layout,
-        subRoutes: {
-            '/': {
-                component: chapter,
-                name: 'passChapter'
-            },
-            '/list/:chapterId': {
-                component: list,
-                name: 'passList'
-            },
-            '/example/:subjectId/:id': {
-                component: example,
-                name: 'passExample'
-            }
-        }
+  '/pass': {
+    component: layout,
+    subRoutes: {
+      '/': {
+        component: index,
+      },
+      '/list/:chapterId': {
+          component: list,
+      }
     }
+  }
 }
+
+
+store.registerModule('pass', {
+  ...modules
+});

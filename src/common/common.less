@@ -23,7 +23,8 @@ img {
   max-width: 100%;
 }
 
-@import '../assets/iconfont.css';
+@import 'iconfont.css';
+@import 'vux.css';
 @import 'zyb.css';
 .iconfont {
   position: relative;
@@ -83,7 +84,9 @@ img[lazy=error] {
   opacity: 1;
 }
 
-
+.weui_tabbar_item.weui_bar_item_on .weui_tabbar_label {
+  color: #4bb7aa;
+}
 /**
 *   反馈历史、作业消息历史、班级消息历史、纠错消息历史、意见反馈历史、系统消息历史
 */
@@ -306,30 +309,28 @@ img[lazy=error] {
 
 .exerciseExampleList {
   .weui_panel_hd {
-    padding: 0.4rem 0.75rem 0.2rem;
-    color: #000;
-    font-size: 0.8rem;
+    padding: 8/20rem 15/20rem 8/20rem;
+    color: #666;
+    font-size: 16/20rem;
     Button {
-      margin-right: .75em;
+      margin-right: .75/20rem;
     }
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
   }
-  .weui_panel_ft {
-    padding: 5/20rem 15/20rem;
+  .options {
+    .weui_media_desc {
+      padding: .5rem .3rem;
+    }
   }
   .weui_media_box {
-    padding: 15/20rem;
+    padding: 15/40rem;
     .weui_media_desc {
-      -webkit-line-clamp: 5;
+      -webkit-line-clamp: 100;
       font-size: .8rem;
       color: #666;
-      img {
-        display: inline-block;
-      }
     }
   }
   .weui_panel_ft::after {
@@ -435,7 +436,13 @@ img[lazy=error] {
   font-size: .9rem;
 }
 
-.icon-collect,
+.icon-collect
+{
+  color: #ff9800;
+  margin-right: .2rem;
+  font-size: 1rem;
+  top: -1px;
+}
 .icon-error-login {
   color: #ff9800;
   margin-right: .2rem;

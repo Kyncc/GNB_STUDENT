@@ -1,17 +1,19 @@
 import layout from './pages/layout'
 import index from './pages/example'
-import detail from './pages/exampleDetail'
+import modules from './modules/store'
+import store from 'src/store'
 
 export default  {
-    'collect': {
-      component: layout,
-      subRoutes: {
-        '/example': {
-          component: index,
-        },
-        '/example/detail/:id': {
-          component: detail
-        }
+  'collect': {
+    component: layout,
+    subRoutes: {
+      '/': {
+        component: index,
       }
     }
+  }
 }
+
+store.registerModule('collect', {
+  ...modules
+});

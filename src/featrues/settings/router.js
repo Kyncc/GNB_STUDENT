@@ -1,25 +1,36 @@
 import layout from './pages/layout'
-import Index from './pages/index'
-import ResetPwd from './pages/resetPwd'
-import Advice from './pages/advice'
-import AdviceHistory from './pages/adviceHistory'
+import index from './pages/index'
+import info from './pages/info'
+import resetPwd from './pages/resetPwd'
+import advice from './pages/advice'
+import adviceList from './pages/adviceHistory'
+import modules from './modules/store'
+import store from 'src/store'
 
-export default  {
+export default {
   'settings': {
     component: layout,
     subRoutes: {
       '/': {
-        component: Index,
+        component: index,
       },
-      'resetPwd': {
-        component: ResetPwd
+      '/info': {
+        component: info,
       },
-      'advice': {
-        component: Advice
+      '/resetPwd': {
+        component: resetPwd,
       },
-      'advice/history': {
-        component: AdviceHistory
+      '/advice': {
+        component: advice,
+      },
+      '/adviceList': {
+        component: adviceList
       }
     }
   }
 }
+
+
+store.registerModule('settings', {
+  ...modules
+});

@@ -53,41 +53,31 @@
 <script>
 import { XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token,chapterId,path } from '../../../common/getters'
-import {reportDetail,reportSubjectId} from '../getters'
-import {getReportDetail,clearDetail} from '../actions'
-import './index.less'
+import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
     XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,InfiniteLoading
   },
-  vuex: {
-    getters: {
-      reportSubjectId,token,reportDetail,chapterId,path
-    },
-    actions: {
-      getReportDetail,clearDetail
+  route: {
+    data:function(transition){
+      this.$nextTick(() => {
+        this.$broadcast('$InfiniteLoading:reset');
+      });
     }
   },
   methods: {
+    ...mapActions(['getReportDetail']),
     _onInfinite(){
-      this.getReportDetail({
-        token:this.token,
-        chapter_id:this.chapterId,
-        subject_id:this.reportSubjectId
-      },()=>{
+      this.getReportDetail()
+      .then(()=>{
         this.$broadcast('$InfiniteLoading:loaded');
         this.$broadcast('$InfiniteLoading:complete');
       });
     }
   },
-  watch: {
-    path(){
-      if(this.path.indexOf("/bag/report/detail/") >=0 ){
-        this.$broadcast('$InfiniteLoading:reset');
-      }
-    }
-  }
+	computed:{
+    ...mapGetters(['reportDetail'])
+	}
 }
 </script>

@@ -1,11 +1,10 @@
 import layout from './pages/layout'
 import index from './pages/index'
-import workbook from './pages/workbook'
-import workbookByPage from './pages/page'
+import chapter from './pages/chapter'
+import page from './pages/page'
 import exercise from './pages/exercise'
-import example from './pages/example'
-import add from './pages/add'
-import TextBookAdd from '../textbook/pages/fromWorkbookAdd'
+import modules from './modules/store'
+import store from 'src/store'
 
 export default {
   'remember': {
@@ -14,24 +13,20 @@ export default {
       '/': {
         component: index
       },
-      'add': {
-        component: add
+      '/chapter/:workbookId': {
+        component: chapter
       },
-      'example/:id': {
-        component: example
+      '/page/:workbookId': {
+        component: page
       },
-      'workbook/:bookId': {
-        component: workbook
-      },
-      'workbook/byPage/:bookId': {
-        component: workbookByPage
-      },
-      'workbook/exercise/:chapterId': {
+      '/exercise/:chapterId': {
         component: exercise
-      },
-      'textbook/add/:subjectId': {
-        component: TextBookAdd
       }
     }
   }
 }
+
+
+store.registerModule('remember', {
+  ...modules
+});

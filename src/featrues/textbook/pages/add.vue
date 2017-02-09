@@ -3,27 +3,23 @@
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
         添加{{textBookSubjectId|subName}}教材
-        <a slot="right" @click="_addTextBook()" v-show="selectBookList.length != 0">
-             完成
-        </a>
+        <a slot="right" @click="_addTextBook()" v-show="selectBookList.length != 0">完成</a>
       </x-header>
     </div>
     <div style="padding-top:46px;">
- 
       <group title="教材列表">
-        <template v-if="AllTextbook">
-          <checklist :options="AllTextbook|covert" :value.sync="selectBookList"></checklist>
+        <template v-if="textbookAll.list">
+          <checklist :options="textbookAll.list|covert" :value.sync="selectBookList"></checklist>
         </template>
       </group>
 
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">已无教材可以添加~</p>
+          <p style="font-size:1rem;display:inline-block;">已无教材可添加~</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
-      
     </div>
   </view-box>
 </template>
@@ -31,24 +27,23 @@
 
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token} from '../../../common/getters'
-import * as _ from '../../../config/whole.js'
-import {getTextbookAll,addTextbook} from '../actions'
-import {AllTextbook,textBookSubjectId} from '../getters'
-import './index.less'
+import { mapActions,mapGetters  } from 'vuex'
 
 export default {
   components: {
     XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,InfiniteLoading
   },
-  vuex: {
-    getters: {
-      token,AllTextbook,textBookSubjectId
-    },
-    actions: {
-      getTextbookAll,addTextbook
-    }
-  },
+  route:{
+      data:function(transition){
+        if(this.textbookAll.isReset){
+          this.$nextTick(() => {
+            this.$broadcast('$InfiniteLoading:reset');
+          });
+        }
+        this.selectBookList = [];
+        this.searchName = '';
+      }
+   },
    filters: {
        covert(obj){
             let newObj = [];
@@ -66,7 +61,7 @@ export default {
                 case '7':return '物理';
                 case '8':return '化学';
             }
-       }    
+       }
    },
    data(){
     return {
@@ -74,35 +69,25 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['addTextbook','getTextbookAll']),
     _addTextBook(){
-        this.addTextbook({
-          token:this.token,   
-          textbookId:this.selectBookList
-        },()=>{
-          _.toast('添加成功');
-          history.back();
-        });
-    },
-    _isFirst(){
-        if(this.AllTextbook.length != 0 ){
-            this.$broadcast('$InfiniteLoading:loaded');
-            this.$broadcast('$InfiniteLoading:complete');
-            return true;
-        }
-        return false;
+      this.addTextbook({
+        textbookId:this.selectBookList
+      })
+      .then(()=>{
+        history.back();
+      });
     },
     _onInfinite(){
-      if(this._isFirst()){
-        return; 
-      }
-      this.getTextbookAll({
-        token:this.token,   
-        subjectId:this.textBookSubjectId
-      },()=>{
-          if(this.AllTextbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+      this.getTextbookAll()
+      .then((response)=>{
+          if(this.textbookAll.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
           this.$broadcast('$InfiniteLoading:complete');
       });
     }
+  },
+  computed:{
+    ...mapGetters(['textBookSubjectId','textbookAll','Query'])
   }
 }
 </script>

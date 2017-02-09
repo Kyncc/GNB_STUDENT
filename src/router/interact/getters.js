@@ -1,1 +1,0 @@
-export const interactIndex  = (state) => state.interact.index

@@ -1,7 +1,7 @@
 <template>
   <view-box v-ref:view-box class="messageSystem">
-     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-        <x-header :left-options="{showBack: true}">系统消息</x-header>
+    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+      <x-header :left-options="{showBack: true}">系统消息</x-header>
     </div>
     <div style="padding-top:46px;" class="messageSection">
       <section v-for="item in messageSystemList">
@@ -23,39 +23,32 @@
 </template>
 <script>
 import {XHeader,ViewBox} from 'vux'
-import { token } from '../../../common/getters'
-import { getMessageSystem } from '../actions'
-import { messageSystemList } from '../getters'
 import InfiniteLoading from 'vue-infinite-loading'
+import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
     XHeader,ViewBox,InfiniteLoading
   },
-   route: {
+  route: {
     data:function(transition){
       this.$nextTick(() => {
         this.$broadcast('$InfiniteLoading:reset');
       });
     }
   },
-  vuex: {
-    getters: {
-      token,messageSystemList
-    },
-    actions: {
-      getMessageSystem
+  methods: {
+    ...mapActions(['getMessageSystem']),
+    onInfinite(){
+      this.getMessageSystem()
+      .then(()=>{
+        if(this.messageSystemList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+        this.$broadcast('$InfiniteLoading:complete');
+      })
     }
   },
-  methods: {
-    onInfinite(){
-      this.getMessageSystem({
-        "token":this.token
-      },()=>{
-          if(this.messageSystemList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-          this.$broadcast('$InfiniteLoading:complete');
-      });
-    }
+  computed:{
+    ...mapGetters(['messageSystemList'])
   }
 }
 </script>

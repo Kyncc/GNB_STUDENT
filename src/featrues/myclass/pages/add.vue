@@ -24,32 +24,19 @@
                 </span>
                 <span slot="no-more"></span>
             </infinite-loading>
-
         </div>
-
         
     </view-box >
 </template>
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
-import {ClassSearch} from '../getters.js'
-import { token } from '../../../common/getters.js'
-import { getMyClassSearchClass,postMyClassInto } from '../actions/class.js'
 import {XHeader,XButton,Cell,Group, Alert,Flexbox,FlexboxItem,Search, ViewBox} from 'vux'
-import './myClass.less'
+import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
         XHeader,XButton,Cell,Group, Alert,Flexbox,FlexboxItem,Search, ViewBox,InfiniteLoading
-  },
-  vuex:{
-    getters:{
-        ClassSearch,token
-    },
-    actions:{
-        getMyClassSearchClass,postMyClassInto
-    }
   },
   data(){
     return {
@@ -57,6 +44,7 @@ export default {
     }
   },
   methods:{
+      ...mapActions(['getMyClassSearchClass','postMyClassInto']),
     _onSearch(str){
         this.searchCode = str;
         this.$nextTick(() => {
@@ -65,22 +53,25 @@ export default {
     },
     _addClass(code){
         this.postMyClassInto({
-            classCode:code,   
-            token:this.token
-        },()=>{
+            "classCode":code,
+        })
+        .then(()=>{
             _.toast('申请成功');
             history.back();
-        })
+        });
     },
     _onInfinite(){
         this.getMyClassSearchClass({
-            token:this.token,   
-            classCode:this.searchCode,
-        },()=>{
+            "classCode":this.searchCode,
+        })
+        .then(()=>{
             if(this.ClassSearch.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
         });
     }
+  },
+  computed:{
+    ...mapGetters(['ClassSearch'])
   }
 }
 </script>

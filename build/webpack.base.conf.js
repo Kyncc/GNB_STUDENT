@@ -19,7 +19,7 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
-	    'vux-components': 'vux/src/components/'
+	    'config': path.resolve(__dirname, '../src/config')
     }
   },
   resolveLoader: {
@@ -70,7 +70,7 @@ module.exports = {
   vue: {
     loaders: utils.cssLoaders(),
     autoprefixer: {
-      browsers: ['last 4 versions']
+      browsers: ['> 5%','iOS 7','iOS 8','iOS 9']
     }
   }
 }

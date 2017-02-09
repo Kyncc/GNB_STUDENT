@@ -1,7 +1,7 @@
 <template>
   <div class='resetPwd'>
     <x-header :left-options="{showBack: true}">修改密码
-      <a slot="right" v-touch:tap="_complete" v-show="newPwd && repeatPwd && oldPwd">完成</a>
+      <a slot="right" @click="_complete" v-show="newPwd && repeatPwd && oldPwd">完成</a>
     </x-header>
     <group>
       <x-input type="password" name="oldPwd" placeholder="请输入旧密码" keyboard="text" :value.sync="oldPwd" v-ref:oldPwd :min="6" :max="18"></x-input>
@@ -13,20 +13,12 @@
 
 <script>
 import {XHeader,XInput,Group,XButton} from 'vux'
-import {token} from '../../../common/getters'
-import {updatePwd} from '../actions/resetPwd'
-import * as _ from '../../../config/whole.js'
+import * as _ from 'config/whole.js'
+import { mapActions } from 'vuex'
+
 export default {
   components: {
     XHeader,XInput,Group,XButton
-  },
-  vuex: {
-    getters: {
-      token
-    },
-    actions: {
-      updatePwd
-    }
   },
   data() {
     return {
@@ -36,25 +28,29 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['updatePwd']),
     _complete() {
-        if (this.oldPwd == this.newPwd){
-          _.toast("不可与旧密码一致")
+      if (this.oldPwd == this.newPwd){
+        _.toast("不可与旧密码一致")
+      } else {
+        if (this.newPwd == this.repeatPwd){
+          this.updatePwd({
+            oldPwd: this.oldPwd,
+            pwd: this.newPwd,
+          }).then(() => {
+            _.toast('修改成功');
+            setTimeout(()=>{
+              try{
+                plus.runtime.restart(); //重启应用
+              }catch(e){
+                this.$router.go('/login');
+              }
+            },500);
+          })
         } else {
-          if (this.newPwd == this.repeatPwd){
-            this.updatePwd({
-              oldPwd: this.oldPwd,
-              pwd: this.newPwd,
-              token: this.token
-            },() => {
-                 _.toast('修改成功');
-                 setTimeout(()=>{
-                    this.$router.replace('/');
-                 },1000);
-            })
-          } else {
-                _.toast("两次密码输入不一致");
-          }
+          _.toast("两次密码输入不一致");
         }
+      }
     }
   },
   computed: {

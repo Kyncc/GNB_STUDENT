@@ -10,12 +10,12 @@
     <div style="padding-top:46px;">
 
       <group title="教材列表">
-        <cell v-for="item in MyTextbook" :title="item.textbookName"></cell>
+        <cell v-for="item in textbookMy.list" :title="item.textbookName"></cell>
       </group>
 
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
-          <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+          <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
           <p style="font-size:1rem;display:inline-block;">快去添加点教材吧~</p>
         </span>
         <span slot="no-more"></span>
@@ -29,22 +29,28 @@
   </view-box>
 
   <!--切换课程-->
-  <gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="textBookSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
+  <gnb-change-sub :visible.sync="visible" :subject="User.subjectType" :selected="textBookSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
 
 </template>
 <script>
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token,userSubjectList} from '../../../common/getters'
-import {getTextbook,setSubject} from '../actions'
-import {getUserInfo} from '../../../main/actions'
+import {gnbChangeSub} from 'components'
+import { mapActions,mapGetters  } from 'vuex'
 
-import {MyTextbook,textBookSubjectId} from '../getters'
-import gnbChangeSub from '../../../components/changesub/index.vue'
 
 export default {
   components: {
     XHeader,XInput,Group,Selector,Cell,ViewBox,Tabbar,XButton,InfiniteLoading,gnbChangeSub
+  },
+   route:{
+    data:function(transition){
+      if(this.textbookMy.isReset && this.textbookMy.list.length == 0){
+        this.$nextTick(() => {
+          this.$broadcast('$InfiniteLoading:reset');
+        });
+      }
+    }
   },
   filters: {
     subName(id){
@@ -55,28 +61,13 @@ export default {
       }
     }
   },
-  vuex: {
-    getters: {
-      token,MyTextbook,textBookSubjectId,userSubjectList
-    },
-    actions: {
-      getTextbook,setSubject,getUserInfo
-    }
-  },
   data(){
     return {
         visible:false
     }
   },
   methods: {
-    /** 是否第一次*/
-     _isFirst(){
-        if(this.MyTextbook.length != 0){
-            this.$broadcast('$InfiniteLoading:loaded');
-            this.$broadcast('$InfiniteLoading:complete');
-            return;
-        }
-     }, 
+    ...mapActions(['getTextbook','setTextbookSubject']),
     _addTextBook(){
         this.$router.go('add');
     },
@@ -86,34 +77,22 @@ export default {
     /** 切换科目*/
     _changeSubject(item){
         this.subjectName = item.value;
-        this.setSubject(item.id);       //更换科目
+        this.setTextbookSubject(item.id);       //更换科目
+        this.$nextTick(() => {
+          this.$broadcast('$InfiniteLoading:reset');
+        });
         this.visible = false;
     },
     _onInfinite(){
-      if(this.MyTextbook.length != 0 ){
-          this.$broadcast('$InfiniteLoading:loaded');
-          this.$broadcast('$InfiniteLoading:complete');
-          return;
-      }
-
-      this.getTextbook({
-        token:this.token,   
-        subjectId:this.textBookSubjectId
-      },()=>{
-        if(this.MyTextbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+      this.getTextbook()
+      .then(()=>{
+        if(this.textbookMy.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
         this.$broadcast('$InfiniteLoading:complete');
       });
-
-      this.getUserInfo({token:this.token})
     }
   },
-  watch:{
-    /** 切换学科*/
-    textBookSubjectId(){
-      this.$nextTick(() => {
-        this.$broadcast('$InfiniteLoading:reset');
-      });
-    }
+  computed:{
+    ...mapGetters(['User','textBookSubjectId','textbookMy'])
   }
 }
 </script>

@@ -1,7 +1,8 @@
-import layout from './layout'
-import index from './index'
+import layout from './pages/layout'
+import index from './pages/index'
 import brush from '../../featrues/brush/router'
 import remember from '../../featrues/remember/router'
+
 
 export default {
   'index': {
@@ -9,7 +10,7 @@ export default {
     subRoutes: {
       '/':{component: index},
       ...brush,
-      ...remember,
+      ...remember
     }
   }
 }

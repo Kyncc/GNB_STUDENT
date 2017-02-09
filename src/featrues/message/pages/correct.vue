@@ -1,8 +1,8 @@
 <template>
   <view-box v-ref:view-box class="messageCorrect">
      <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">纠错消息</x-header>
-        </div>
+          <x-header :left-options="{showBack: true}">纠错消息</x-header>
+      </div>
     <div style="padding-top:46px;" class="messageSection">
       <section v-for="item in messageCorrectList">
         <h3>{{item.time | ymd}}</h3>
@@ -23,39 +23,33 @@
 </template>
 <script>
 import {XHeader,ViewBox} from 'vux'
-import { token } from '../../../common/getters'
-import { getMessageCorrect } from '../actions'
-import { messageCorrectList } from '../getters'
 import InfiniteLoading from 'vue-infinite-loading'
+import { mapActions,mapGetters } from 'vuex'
+
 
 export default {
   components: {
     XHeader,ViewBox,InfiniteLoading
   },
-   route: {
+  route: {
     data:function(transition){
       this.$nextTick(() => {
         this.$broadcast('$InfiniteLoading:reset');
       });
     }
   },
-  vuex: {
-    getters: {
-      token,messageCorrectList
-    },
-    actions: {
-      getMessageCorrect
-    }
-  },
   methods: {
+    ...mapActions(['getMessageCorrect']),
     onInfinite(){
-      this.getMessageCorrect({
-        "token":this.token
-      },()=>{
-          if(this.messageCorrectList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-          this.$broadcast('$InfiniteLoading:complete');
+      this.getMessageCorrect()
+      .then(()=>{
+        if(this.messageCorrectList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+        this.$broadcast('$InfiniteLoading:complete');
       });
     }
+  },
+  computed:{
+    ...mapGetters(['messageCorrectList'])
   }
 }
 </script>
