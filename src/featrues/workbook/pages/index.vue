@@ -42,16 +42,7 @@ import { mapActions,mapGetters  } from 'vuex'
 
 export default {
   components:{
-  XHeader,ViewBox,Panel,Group,Cell,gnbChangeSub,InfiniteLoading,Tabbar,XButton
-  },
-  filters: {
-  subName(id){
-    switch(id){
-      case '2':return '数学';
-      case '7':return '物理';
-      case '8':return '化学';
-    }
-  }
+    XHeader,ViewBox,Panel,Group,Cell,gnbChangeSub,InfiniteLoading,Tabbar,XButton
   },
   route:{
     data:function(transition){

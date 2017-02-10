@@ -45,15 +45,6 @@ export default {
   components:{
     XHeader,ViewBox,Panel,Group,Cell,gnbChangeSub,InfiniteLoading,XButton,Tabbar
   },
-  filters: {
-    subName(id){
-      switch(id){
-        case '2':return '数学';
-        case '7':return '物理';
-        case '8':return '化学';
-      }
-    }    
-  },
   route: {
     data:function(transition){
       if(this.workbookStu.isReset){

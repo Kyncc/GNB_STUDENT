@@ -21,7 +21,6 @@ import FastClick from 'fastclick'
 // import VueLazyload from 'vue-lazyload'
 
 Vue.use(Router)
-
 Vue.config.devtools = true
 FastClick.attach(document.body)
 
@@ -33,9 +32,19 @@ FastClick.attach(document.body)
 // })
 
 //格式化时间
-Vue.filter('ymd', function(value) {
+Vue.filter('ymd',(value)=>{
   return moment.unix(value).format('YYYY-MM-DD');
 });
+
+//课程ID的转换
+Vue.filter('subName', (id) => {
+  switch(id){
+    case '2':return '数学';
+    case '7':return '物理';
+    case '8':return '化学';
+  }
+});
+
 
 const router = new Router()
 router.map({

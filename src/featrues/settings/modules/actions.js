@@ -5,7 +5,7 @@ import * as _ from 'config/whole'
 /** 修改密码*/
 export const updatePwd = ({ rootState,commit },params) => {
   _.busy();
-  return new Promise((resolve, reject)=> { 
+  return new Promise((resolve, reject)=> {
     axios({
       method:'post',
       url: 'user/updatePwd',
@@ -27,7 +27,7 @@ export const updatePwd = ({ rootState,commit },params) => {
 
 /** 提交反馈*/
 export const updateAdvice = ({ rootState,commit }, params) => {
-  return new Promise((resolve,reject)=> { 
+  return new Promise((resolve,reject)=> {
     axios({
       method:'post',
       url: 'user/advice',
@@ -44,14 +44,11 @@ export const updateAdvice = ({ rootState,commit }, params) => {
 }
 
 /** 反馈列表*/
-export const adviceHistory = ({ rootState,commit }, params) => {
-  return new Promise((resolve, reject)=> { 
+export const adviceHistory = ({ rootState,commit }) => {
+  return new Promise((resolve, reject)=> {
     axios({
       method:'get',
-      url: 'user/adviceHistory',
-      params: {
-        "token":rootState.login.token,
-      }
+      url: 'user/adviceHistory'
     })
     .then((response) => {
         commit(types.ADVICE_LIST, response.data.data);
@@ -62,7 +59,7 @@ export const adviceHistory = ({ rootState,commit }, params) => {
 
 /** *获得教材版本信息 */
 export const getTextbookAllVersion = ({ commit },params) => {
-   return new Promise((resolve, reject)=> { 
+   return new Promise((resolve, reject)=> {
     axios({
       method:'get',
       url: 'edition/byGrade',

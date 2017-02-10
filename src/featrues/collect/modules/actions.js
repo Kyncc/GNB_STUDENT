@@ -3,59 +3,28 @@ import * as types from './mutationTypes'
 import * as _ from 'config/whole'
 
 
-
-
-
-/**获取章节数据 */
-export const getCollectExampleIds = ({ rootState,commit },params) => {
+/**获取收藏例题ID */
+export const getCollect = ({ rootState,commit,state },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'summary',
+      url: 'collect/example',
       params: {
-        "textbook_id":params.textbook_id,
-        "token":rootState.login.token
+        "token":rootState.login.token,
+        "subject_id":state.subjectId,
+        "offset":state.example.offset
       }
     })
     .then((response) => {
-      commit(types.BREAK,response.data);
+      commit(types.COLLECT_LIST,response.data.data);
       resolve(response);
     })
-  });
-}
-
-
-export const getCollectExampleIds = ({ commit }, params,success) => {
-  Api.collectExampleIds({
-    data:params,
-    ok:response=>{
-      commit(types.COLLECT_EXAMPLEIDS,response.data);
-        success&&success();
-    },
-    wrong:response=>{
-      _.toast(response.data.msg);
-    }
   })
 }
-
-export const getCollectExampleList = ({ commit }, params,success,wrong) => {
-  Api.exerciseList({
-    data:params,
-    ok:response=>{
-      commit(types.COLLECT_EXAMPLELIST,response.data);
-      success&&success();
-    },
-    wrong:response=>{
-      _.toast(response.data.msg);
-    }
-  })
-}
-
-
 
 /**高度保存 */
-export const setCollectScoll = ({ commit }, height) => {
-  commit(types.COLLECT_INDEX_SCOLL,height);
+export const setCollectScroll = ({ commit }, height) => {
+  commit(types.COLLECT_SCROLL,height);
 }
 
 /**更换科目 */

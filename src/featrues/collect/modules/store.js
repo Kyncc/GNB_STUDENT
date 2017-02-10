@@ -1,45 +1,41 @@
 import * as types from './mutationTypes'
+import * as getters from './getters'
+import * as actions from './actions'
 
 const state = {
   example:{
-    ids:[],
     list:[],
-    current:1,
-    totalPage:1,
-    isReset:true
+    isReset:true,
+    offset:''
   },
-  scoll:0,
+  scroll:0,
   subjectId:'2'
 }
 
 const mutations = {
-  [types.COLLECT_EXAMPLEIDS](state , data){
+  [types.COLLECT_LIST](state , data){
+    if(data.length == 0){return;}
     state.example.isReset = false;
-    state.example.ids = data.data.ids;
-    state.example.totalPage = data.data.totalPage;
+    state.example.offset = data.offset;
+    state.example.list = state.example.list.concat(data.list);
   },
-  [types.COLLECT_EXAMPLELIST](state , data){
-    if(data.data.length == 0){return;}
-    state.example.current++;
-    state.example.list = state.example.list.concat(data.data);
-  },
-  [types.COLLECT_INDEX_SCOLL](state,height){
-    state.scoll = height;
+  [types.COLLECT_SCROLL](state,height){
+    state.scroll = height;
   },
   [types.COLLECT_SUBJECT_CHANGE](state, id){
     state.subjectId = id;
   },
   [types.COLLECT_RELOAD](state){
-    state.scoll = 0;
-    state.example.ids = [];
+    state.scroll = 0;
     state.example.list = [];
-    state.example.totalPage = 1;
-    state.example.current = 1;
+    state.example.offset = '';
     state.example.isReset = true;
   }
 }
 
 export default {
   state,
-  mutations
+  mutations,
+  getters,
+  actions
 }

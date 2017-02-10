@@ -12,7 +12,7 @@
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">快去书包中添加教材吧~</p>
+          <p style="font-size:1rem;display:inline-block;" @click="_intoTextbook">点我先添加教材吧~</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
@@ -47,17 +47,11 @@ export default {
       }
     }
   },
-  filters: {
-    subName(id){
-      switch(id){
-        case '2':return '数学';
-        case '7':return '物理';
-        case '8':return '化学';
-      }
-    }
-  },
   methods: {
      ...mapActions(['getBrush','brushChangeChapter','setBrushScroll','setBrushSubject','clearBrush','brushListClear']),
+     _intoTextbook(){
+       this.$router.go(`/main/bag/textbook/add`);
+     },
      _toDetail(chapterId){
       this.setBrushScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
       this.brushListClear();

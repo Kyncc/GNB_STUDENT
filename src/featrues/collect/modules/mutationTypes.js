@@ -1,14 +1,8 @@
-/** 获取拍错题列表ID*/
-export const COLLECT_EXAMPLEIDS = 'COLLECT_EXAMPLEIDS'
-/** 获取习题详情*/
-export const COLLECT_EXAMPLEDETAIL = 'COLLECT_EXAMPLEDETAIL'
-/** 获取拍错题数据*/
-export const COLLECT_EXAMPLELIST = 'COLLECT_EXAMPLELIST'
+/** 获取例题数据*/
+export const COLLECT_LIST = 'COLLECT_LIST'
 /** 收藏本课程切换*/
 export const COLLECT_SUBJECT_CHANGE = 'COLLECT_SUBJECT_CHANGE'
 /** 收藏本滚动*/
-export const COLLECT_INDEX_SCOLL = 'COLLECT_INDEX_SCOLL'
+export const COLLECT_SCROLL = 'COLLECT_SCROLL'
 /** 收藏本数据清空*/
 export const COLLECT_RELOAD = 'COLLECT_RELOAD'
-  /** 例题收藏取消*/
-export const COLLECT_EXAMPLE_COLLECT_REMOVE = 'COLLECT_EXAMPLE_COLLECT_REMOVE'
