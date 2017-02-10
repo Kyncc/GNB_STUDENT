@@ -92,7 +92,7 @@
 	"plus": {
 		"splashscreen": {
 			"autoclose": false,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
-			"waiting": true
+			"waiting": false
 		},
 		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
@@ -101,9 +101,9 @@
 				"statics": {
 					"umeng": {
 						"appkey_ios": "584125476e27a40bc4000e49",
-						"channelid_ios": "123",
+						"channelid_ios": "2.0",
 						"appkey_android": "5833f42d8630f57e24001bc5",
-						"channelid_android": "123"
+						"channelid_android": "2.0"
 					}
 				},
 				"share": {}
