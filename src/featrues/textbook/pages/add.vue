@@ -41,7 +41,13 @@ export default {
           });
         }
         this.selectBookList = [];
-        this.searchName = '';
+        //根据query切换需要添加科目的教材
+        if(this.Query.subjectId.length != 0 ){
+          this.setTextbookSubject(this.Query.subjectId);
+          this.$nextTick(() => {
+            this.$broadcast('$InfiniteLoading:reset');
+          });
+        }
       }
    },
    filters: {
@@ -54,13 +60,6 @@ export default {
                 });
             });
            return newObj;
-       },
-       subName(id){
-            switch(id){
-                case '2':return '数学';
-                case '7':return '物理';
-                case '8':return '化学';
-            }
        }
    },
    data(){
@@ -69,7 +68,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['addTextbook','getTextbookAll']),
+    ...mapActions(['addTextbook','getTextbookAll','setTextbookSubject']),
     _addTextBook(){
       this.addTextbook({
         textbookId:this.selectBookList

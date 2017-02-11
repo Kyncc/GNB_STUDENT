@@ -19,7 +19,7 @@
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">快去书包中添加习题册吧~</p>
+          <p style="font-size:1rem;display:inline-block;" @click="_add">快去添加习题册吧~</p>
         </span>
         <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
       </infinite-loading>
@@ -67,7 +67,7 @@ export default {
     //进入练习册管理
     _add(){
       this.workbookStuClear();
-      this.$router.go('/main/bag/workbook/');
+      this.$router.go(`/main/bag/workbook/add?subjectId=${this.workbookStuSubject}`);
     },
     /** 切换科目*/
     _changeSubject(item){
@@ -95,6 +95,15 @@ export default {
     ...mapGetters(['workbookStu','workbookStuSubject','Params','User']),
     stuWorkBook(){
       return this.workbookStu.list;
+    },
+    notice(){
+      if(this.User.textbook['math'].id === '0'){
+        return '点我添加教材';
+      }else{
+        return '点我添加练习册';
+      }
+
+
     }
 	}
 }

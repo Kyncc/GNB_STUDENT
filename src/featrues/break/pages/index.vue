@@ -50,7 +50,7 @@ export default {
   methods: {
      ...mapActions(['getBreak','breakChangeChapter','setBreakScroll','setBreakSubject','clearBreak','breakListClear']),
      _intoTextbook(){
-       this.$router.go(`/main/bag/textbook/add`);
+       this.$router.go(`/main/bag/textbook/add?subjectId=${this.breakSubjectId}`);
      },
      _toDetail(chapterId){
       this.setBreakScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);

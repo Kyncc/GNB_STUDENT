@@ -50,7 +50,7 @@ export default {
   methods: {
      ...mapActions(['getBrush','brushChangeChapter','setBrushScroll','setBrushSubject','clearBrush','brushListClear']),
      _intoTextbook(){
-       this.$router.go(`/main/bag/textbook/add`);
+        this.$router.go(`/main/bag/textbook/add?subjectId=${this.brushSubjectId}`);
      },
      _toDetail(chapterId){
       this.setBrushScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);

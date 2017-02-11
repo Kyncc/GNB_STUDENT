@@ -56,7 +56,7 @@ export default {
   methods: {
   ...mapActions(['getWorkbook','setWorkBookSubject']),
     _add(){
-      this.$router.go('add');
+      this.$router.go(`add?subjectId=${this.workbookSubjectId}`);
     },
     _changeSub(){
       this.visible = true;

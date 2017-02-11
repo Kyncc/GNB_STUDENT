@@ -72,10 +72,18 @@ export default {
       }
       this.selectBookList = [];
       this.searchName = '';
+      //根据query切换需要添加科目的教材
+      if(this.Query.subjectId.length != 0 ){
+        this.setWorkBookSubject(this.Query.subjectId);
+        this.$nextTick(() => {
+          this.$broadcast('$InfiniteLoading:reset');
+        });
+      }
+
     }
   },
   methods: {
-    ...mapActions(['addWorkbook','workbookAllClear','getWorkbookAll']),
+    ...mapActions(['addWorkbook','workbookAllClear','getWorkbookAll','setWorkBookSubject']),
     _addTextBook(){
       if(this.searchName.length == 0){
         this.$router.go(`add`);
@@ -108,7 +116,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['workbookSubjectId','workbookAll'])
+    ...mapGetters(['workbookSubjectId','workbookAll','Query'])
   }
 }
 </script>

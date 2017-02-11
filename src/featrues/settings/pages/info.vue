@@ -72,14 +72,6 @@ export default {
             });
         });
         return newObj;
-    },
-    gradeName(grade){
-      switch(grade){
-        case '7' : return '七年级';
-        case '8' : return '八年级';
-        case '9' : return '九年级';
-        case '10' : return '高中';
-      }
     }
   },
   created(){
@@ -103,16 +95,14 @@ export default {
       if (this.edit == '完成'){
         this.show = true
       }else if(this.edit = '编辑'){
-        setTimeout(() => {
-          this.$router.go('/main/user')
-        }, 500)
+        this.$router.go('/main/user')
       }
     },
     onAction(type) {
       if(type=='确认'){
         setTimeout(() => {
           this.$router.go('/main/user')
-        }, 500)
+        },300)
       }
     },
     _complete() {

@@ -18,9 +18,6 @@ const actions = {
 } 
 
 const getters = {
-  token: (state,getters,rootState) => {
-    return rootState.token
-  },
   path:(state,getters,rootState) => {
     return rootState.route.path
   },

@@ -60,7 +60,7 @@ export default {
   methods: {
     ...mapActions(['getTextbook','setTextbookSubject']),
     _addTextBook(){
-        this.$router.go('add');
+         this.$router.go(`add?subjectId=${this.textBookSubjectId}`);
     },
     _changeSub(){
         this.visible = true;

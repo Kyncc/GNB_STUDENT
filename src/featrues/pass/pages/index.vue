@@ -50,7 +50,7 @@ export default {
   methods: {
      ...mapActions(['getPass','passChangeChapter','setPassScroll','setPassSubject','clearPass','passListClear']),
       _intoTextbook(){
-       this.$router.go(`/main/bag/textbook/add`);
+        this.$router.go(`/main/bag/textbook/add?subjectId=${this.passSubjectId}`);
      },
      _toDetail(chapterId){
       this.setPassScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
