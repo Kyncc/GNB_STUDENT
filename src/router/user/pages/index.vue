@@ -87,11 +87,11 @@ export default {
               return;
             }
             let start = true;
-            let dtask = plus.downloader.createDownload("http://www.chinasanbao.com/app/com.sanbao.guinaben.student.apk", {}, (d, status)=> {
+            let dtask = plus.downloader.createDownload(`http://www.guinaben.com/app/com.sanbao.guinaben.${this.android_version}.student.apk`, {}, (d, status)=> {
               if (status == 200) {
                 console.log('下载完成：' + d.filename);
                 plus.ui.toast('下载完成：' + d.filename);
-                void plus.runtime.install('_downloads/com.sanbao.guinaben.student.apk');
+                void plus.runtime.install(`_downloads/com.sanbao.guinaben.${this.android_version}.student.apk`);
               } else {
                 console.log('下载失败：' + status);
                 plus.ui.toast('下载失败：' + status);
@@ -140,14 +140,24 @@ export default {
     userImg(){
       return this.User.headImg;
     },
-    version(){
+    android_version(){
       return this.User.version;
     },
+    ios_version(){
+       return this.User.ios_version;
+    },
     isUpdate(){
-      if(this.version == '2.0.0'){
-        return false;
-      }
-      return true
+      if(this.System == 'IOS'){
+        if(this.ios_version == '2.0.0'){
+          return false;
+        }
+        return true;
+      }else{
+         if(this.android_version == '2.0.1'){
+          return false;
+        }
+        return true;
+      } 
     }
   }
 }

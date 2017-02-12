@@ -13,6 +13,7 @@ const state = {
   textbook:[],
   subject:[],
   version:'',
+  ios_version:'',
   bufferImg:''
 }
 
@@ -26,6 +27,7 @@ const mutations = {
     state.sex = data.data.sex;
     state.grade = data.data.grade;
     state.version = data.data.version;
+    state.ios_version = data.data.ios_version;
     state.subject = data.data.subject;
     state.subjectType = data.data.subjectType;
   },

@@ -45,6 +45,15 @@ Vue.filter('subName', (id) => {
   }
 });
 
+//年级的转换
+Vue.filter('gradeName',(id) => {
+  switch(id){
+    case '10':return '高中';
+    case '9':return '九年级';
+    case '8':return '八年级';
+    case '7':return '七年级';
+  }
+});
 
 const router = new Router()
 router.map({
