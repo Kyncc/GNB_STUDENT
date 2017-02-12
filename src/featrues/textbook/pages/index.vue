@@ -2,28 +2,28 @@
   <view-box v-ref:view-box class='textbookIndex'>
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
-        我的教材
+        我的课本
         <a slot="right" @click="_changeSub()" class="changeSub">{{textBookSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
     </div>
 
     <div style="padding-top:46px;">
 
-      <group title="教材列表">
+      <group title="课本列表">
         <cell v-for="item in textbookMy.list" :title="item.textbookName"></cell>
       </group>
 
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">快去添加点教材吧~</p>
+          <p style="font-size:1rem;display:inline-block;">快去添加点课本吧~</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
     </div>
 
     <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-      <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #d9d9d9" type="primary" @click="_addTextBook()">添加教材</x-button>
+      <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #d9d9d9" type="primary" @click="_addTextBook()">添加课本</x-button>
     </tabbar>
     
   </view-box>

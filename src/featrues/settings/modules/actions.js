@@ -48,7 +48,10 @@ export const adviceHistory = ({ rootState,commit }) => {
   return new Promise((resolve, reject)=> {
     axios({
       method:'get',
-      url: 'user/adviceHistory'
+      url: 'user/adviceHistory',
+      params:{
+        "token":rootState.login.token,
+      }
     })
     .then((response) => {
         commit(types.ADVICE_LIST, response.data.data);
@@ -57,7 +60,7 @@ export const adviceHistory = ({ rootState,commit }) => {
   });
 }
 
-/** *获得教材版本信息 */
+/** *获得课本版本信息 */
 export const getTextbookAllVersion = ({ commit },params) => {
    return new Promise((resolve, reject)=> {
     axios({

@@ -24,7 +24,7 @@
       </group>
 
       <group >
-        <cell title="我的教材" link="bag/textbook/">
+        <cell title="我的课本" link="bag/textbook/">
           <span class="icon iconfont icon-book2" style="color:#FF546B"  slot="icon"></span>
         </cell>
         <cell title="我的习题册" link="bag/workbook/">

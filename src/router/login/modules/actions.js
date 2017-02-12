@@ -60,7 +60,7 @@ export const login = ({ commit },params) => {
   });
 }
 
-/** *获得教材版本信息 */
+/** *获得课本版本信息 */
 export const getTextbookVersion = ({ commit },params) => {
    _.busy();
    return new Promise((resolve, reject)=> { 

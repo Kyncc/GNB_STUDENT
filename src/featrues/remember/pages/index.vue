@@ -98,7 +98,7 @@ export default {
     },
     notice(){
       if(this.User.textbook['math'].id === '0'){
-        return '点我添加教材';
+        return '点我添加课本';
       }else{
         return '点我添加练习册';
       }

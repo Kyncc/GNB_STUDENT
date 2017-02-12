@@ -12,7 +12,7 @@
         <cell title="年级" :value="User.grade | gradeName"></cell>
         <cell title="学校" :value="User.school"></cell>
       </group>
-      <group title="教材版本">
+      <group title="课本版本">
         <cell title="数学" :value="User.subject.math.name"></cell>
         <cell title="物理" v-if="User.subject.physics.length != 0" :value="User.subject.physics.name"></cell>
       </group> 

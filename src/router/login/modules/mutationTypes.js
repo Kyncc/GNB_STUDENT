@@ -8,5 +8,5 @@ export const SET_PASSWORD = 'SET_PASSWORD'
 export const FORGET_MESSAGE = 'FORGET_MESSAGE'
 /** 重置密码*/
 export const RESET_PASSWORD = 'RESET_PASSWORD'
-/** 获取教材版本*/
+/** 获取课本版本*/
 export const TEXTBOOK_VERSION_ALL = 'TEXTBOOK_VERSION_ALL'

@@ -72,7 +72,7 @@ export default {
       }
       this.selectBookList = [];
       this.searchName = '';
-      //根据query切换需要添加科目的教材
+      //根据query切换需要添加科目的课本
       if(this.Query.subjectId.length != 0 ){
         this.setWorkBookSubject(this.Query.subjectId);
         this.$nextTick(() => {
