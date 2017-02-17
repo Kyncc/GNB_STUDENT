@@ -328,7 +328,8 @@ img[lazy=error] {
   .weui_media_box {
     padding: 15/40rem;
     .weui_media_desc {
-      -webkit-line-clamp: 100;
+      overflow-y:auto;
+      -webkit-line-clamp: 1000;
       font-size: .8rem;
       color: #666;
     }
@@ -349,7 +350,6 @@ img[lazy=error] {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
-    overflow: hidden;
   }
   .options {
     .weui_media_desc {
@@ -359,7 +359,8 @@ img[lazy=error] {
   .weui_media_box {
     padding: 15/40rem;
     .weui_media_desc {
-      -webkit-line-clamp: 100;
+       overflow:auto;
+      -webkit-line-clamp: 1000;
       font-size: .8rem;
       color: #666;
     }

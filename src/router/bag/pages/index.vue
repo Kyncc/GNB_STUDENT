@@ -16,13 +16,11 @@
           <span class="icon iconfont icon-box" style="color:#6DC6FF" slot="icon"></span>
         </cell>
       </group>
-
       <group style="padding-bottom:10px;">
         <cell title="知识图谱" link="bag/report/">
           <span class="icon iconfont icon-pie-chart" style="color:#794BB8" slot="icon"></span>
         </cell>
       </group>
-
       <group >
         <cell title="我的课本" link="bag/textbook/">
           <span class="icon iconfont icon-book2" style="color:#FF546B"  slot="icon"></span>

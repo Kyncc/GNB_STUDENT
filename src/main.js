@@ -23,7 +23,6 @@ import FastClick from 'fastclick'
 Vue.use(Router)
 Vue.config.devtools = true
 FastClick.attach(document.body)
-
 //图片异步加载
 // Vue.use(VueLazyload,{
 //   preLoad: 1.3,

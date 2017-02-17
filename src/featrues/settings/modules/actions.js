@@ -8,10 +8,11 @@ export const updatePwd = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> {
     axios({
       method:'post',
-      url: 'user/updatePwd',
-      params: {
-          "token":rootState.login.token,
-          ...params
+      url: 'pwd/update',
+      data: {
+        "token":rootState.login.token,
+        "oldPwd": params.oldPwd,
+        "pwd": params.pwd,
       }
     })
     .then((response) => {
