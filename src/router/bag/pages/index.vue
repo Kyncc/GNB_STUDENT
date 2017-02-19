@@ -6,7 +6,10 @@
   <scroller lock-x v-ref:scroller height="-47px">
     <div>
       <group style="padding-bottom:10px;">
-        <cell title="斩题本" link="bag/break/">
+        <!--<cell title="刷题本" link="bag/brushed/">
+          <span class="icon iconfont icon-brush" style="color:#33CC99" slot="icon"></span>
+        </cell>-->
+         <cell title="斩题本" link="bag/break/">
           <span class="icon iconfont icon-book1" style="color:#5ECFE7" slot="icon"></span>
         </cell>
         <cell title="弃题本" link="bag/pass/">
