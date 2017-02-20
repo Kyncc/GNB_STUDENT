@@ -4,7 +4,6 @@ import pass from '../../featrues/pass/router'
 import Break from '../../featrues/break/router'
 import brushed from '../../featrues/brushed/router'
 import workbook from '../../featrues/workbook/router'
-import textbook from '../../featrues/textbook/router'
 import report from '../../featrues/report/router'
 import collect from '../../featrues/collect/router'
 
@@ -19,7 +18,6 @@ export default {
       ...pass,
       ...brushed,
       ...Break,
-      ...textbook,
       ...workbook,
       ...collect
     }

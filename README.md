@@ -61,7 +61,7 @@
 ├── components  # 公用的组件
 ├── src         # 开发目录
     ├── router      # 主体模块
-        ├── bag     # 书包
+        ├── bag         # 书包
         ├── index       # 首页
         ├── login       # 注册、登陆
         ├── interact    # 互动
@@ -75,9 +75,10 @@
         ├── myclass     # 我的班级
         ├── message     # 消息模块
         ├── report      # 成绩报告单模块
-        ├── brush       # 题型汇总模块
+        ├── brush       # 刷题型
         ├── break       # 斩题列表
         ├── pass        # 弃题列表
+        ├── brushed     # 刷题列表
         ├── settings    # 设置
 ```
 

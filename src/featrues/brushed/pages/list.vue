@@ -23,6 +23,13 @@
                 {{{item.stem}}}
               </p>
             </div>
+             <template v-if=" item.type == 1 ? true:false">
+              <div class="weui_media_bd weui_media_box options">
+                <p class="weui_media_desc" v-for="value in item.tabs">
+                  {{ $key }} : {{{ value }}}
+                </p>
+              </div>
+            </template> 
           </a>
         </div>
         <div class="abandon">

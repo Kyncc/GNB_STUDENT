@@ -5,7 +5,7 @@
       </x-header>
       <header v-if="brushList" class="sectionHeader">
         <p class="ellipsis">{{brushList.chapterName}}</p>
-        <font class="ellipsis">共<b>{{brushList.count}}</b>个题型</font>
+        <font class="ellipsis"><b>{{brushList.count}}/{{brushList.total}}</b></font>
       </header>
     </div>
     <!--空白间隔-->
@@ -23,11 +23,19 @@
                 {{{item.stem}}}
               </p>
             </div>
+             <template v-if=" item.type == 1 ? true:false">
+              <div class="weui_media_bd weui_media_box options">
+                <p class="weui_media_desc" v-for="value in item.tabs">
+                  {{ $key }} : {{{ value }}}
+                </p>
+              </div>
+            </template> 
           </a>
         </div>
         <div class="abandon">
-          <span @click="_abandon('back',item.exercises_id,$index)">斩题</span>
-          <span @click="_abandon('drop',item.exercises_id,$index)">弃题</span>
+          <span @click="_abandon('1',item.exercises_id,$index)">斩题</span>
+          <span @click="_abandon('2',item.exercises_id,$index)">弃题</span>
+          <span @click="_abandon('3',item.exercises_id,$index)">刷题</span>
         </div>
       </div>
       </template>
@@ -78,7 +86,7 @@ export default {
     _abandon(type,id,index){
         let parm = {
           'id':id,
-          'status':( type == 'back' ? '1' :'2'),
+          'status': type,
           'index':index
         }
         this.brushAction(parm)

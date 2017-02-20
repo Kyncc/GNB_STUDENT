@@ -11,6 +11,7 @@ const state = {
   list: {
     list:[],
     count:0,
+    total:0,
     isReset:false,
     chapterName:'',
     scroll:0,
@@ -47,6 +48,7 @@ const mutations = {
     state.list.chapterName = data.chapterName;
     state.list.isReset = false;
     state.list.count = data.recordSize;
+    state.list.total = data.totalCount;
     state.list.offset = data.offset;
     state.list.list = state.list.list.concat(data.list);
   },
@@ -54,6 +56,7 @@ const mutations = {
     state.list.isReset = true;
     state.list.list = [];
     state.list.count = 0;
+    state.list.total = 0;
     state.list.chapterName = '';
     state.list.scroll = 0;
     state.list.offset = '';

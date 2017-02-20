@@ -12,7 +12,7 @@
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
-           <p style="font-size:1rem;display:inline-block;" @click="_intoTextbook">点我先添加课本吧~</p>
+           <p style="font-size:1rem;display:inline-block;">服务异常~</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
@@ -49,9 +49,6 @@ export default {
   },
   methods: {
      ...mapActions(['getPass','passChangeChapter','setPassScroll','setPassSubject','clearPass','passListClear']),
-      _intoTextbook(){
-        this.$router.go(`/main/bag/textbook/add?subjectId=${this.passSubjectId}`);
-     },
      _toDetail(chapterId){
       this.setPassScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
       this.passListClear();
