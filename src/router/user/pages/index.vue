@@ -25,7 +25,7 @@
           <cell title="设置" link="/main/user/settings/">
             <span class="icon iconfont icon-settingfull" style="color:#794BB8"  slot="icon"></span>
           </cell>
-          <cell title="检查更新" @click="_update" is-link>
+          <cell title="检查更新" @click="_update" is-link v-if="System != 'IOS'">
             <div v-if="isUpdate" class="badge-value" slot="value" class="vux-center-v" style="display:inline-block">
               <badge text="新版本"></badge>
             </div>
