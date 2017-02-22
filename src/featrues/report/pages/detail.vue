@@ -1,5 +1,5 @@
 <template >
-  <view-box v-ref:view-box class="reportDetail">
+  <view-box class="reportDetail">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">知识图谱</x-header>
     </div>

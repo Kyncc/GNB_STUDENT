@@ -1,5 +1,5 @@
 <template >
-  <view-box v-ref:view-box class="workbookStuPager workbookStuSelect">
+  <view-box class="workbookStuPager workbookStuSelect">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">章节选择
         <a slot="right" @click="_changeType()" class="changeSub">

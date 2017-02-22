@@ -1,5 +1,5 @@
 <template>
-<view-box v-ref:view-box class='bag vux-scroller-header-box'>
+<view-box class='bag vux-scroller-header-box'>
   <div style="height:46px;">
     <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">书包</x-header>
   </div>
