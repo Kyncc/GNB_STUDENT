@@ -23,15 +23,15 @@
                 {{{item.stem}}}
               </p>
             </div>
-             <template v-if=" item.type == 1 ? true:false">
-              <div class="weui_media_bd weui_media_box options">
-                <p class="weui_media_desc" v-for="value in item.tabs">
-                  {{ $key }} : {{{ value }}}
-                </p>
-              </div>
-            </template> 
           </a>
         </div>
+         <a v-if=" item.opt_jo.hasOwnProperty('A') " @click="_intoDetail(item.exercises_id)">
+          <div class="weui_media_bd weui_media_box options">
+            <p class="weui_media_desc" v-for="value in item.opt_jo">
+              {{ $key }} : {{{ value }}}
+            </p>
+          </div>
+        </a> 
         <div class="abandon">
           <span @click="_abandon('1',item.exercises_id,$index)">斩题</span>
           <span @click="_abandon('2',item.exercises_id,$index)">弃题</span>

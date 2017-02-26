@@ -91,7 +91,7 @@ export default {
   computed:{
      ...mapGetters(['registerMobile','textBookAllVersion']),
      disable(){
-        return (this.username && this.school ? false : true)
+        return (this.username  ? false : true)
      }
   },
   created(){

@@ -17,14 +17,14 @@
                   {{{item.stem}}}
                 </p>
               </div>
-              <template v-if=" item.type == 1 ? true:false">
-                <div class="weui_media_bd weui_media_box options">
-                  <p class="weui_media_desc" v-for="value in item.opt">
-                    {{ $key }} : {{{ value }}}
-                  </p>
-                </div>
-              </template> 
             </a>
+            <a v-if=" item.opt_jo.hasOwnProperty('A') " @click="_intoDetail(item.exercises_id)">
+              <div class="weui_media_bd weui_media_box options">
+                <p class="weui_media_desc" v-for="value in item.opt_jo">
+                  {{ $key }} : {{{ value }}}
+                </p>
+              </div>
+            </a> 
             <div class="weui_panel_ft">
               <flexbox :gutter="0" wrap="wrap">
                 <flexbox-item :span="1/2">收藏时间：{{item.collect_time | ymd}}</flexbox-item>

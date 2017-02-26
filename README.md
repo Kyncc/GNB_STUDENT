@@ -1,5 +1,9 @@
 ﻿# 归纳本学生端
-> 基于Vue.js和Dcloud(H5+)混合技术Hybrid App
+
+> 基于Vue.js和Dcloud(H5+)混合技术Hybrid App 
+
+
+![商店下载](http://okkula0y9.bkt.clouddn.com/student.png)
 
 使用技术简介
 
