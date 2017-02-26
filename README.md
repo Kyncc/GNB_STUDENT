@@ -2,10 +2,11 @@
 
 > 基于Vue.js和Dcloud(H5+)混合技术Hybrid App 
 
+# 苹果安卓市场下载
 
 ![商店下载](http://okkula0y9.bkt.clouddn.com/student.png)
 
-使用技术简介
+# 使用技术简介
 
 当时建立此项目时使用Vux基于Vue1.0，因此用的Vue1.X开发。
 目前已重构逻辑部分,换成Vuex2,http请求换成axios。
