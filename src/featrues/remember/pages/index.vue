@@ -11,7 +11,14 @@
       <template v-for="item in stuWorkBook">
          <template v-if="item">
           <group :title="item.textbookName">
-            <cell v-for="workbook in item.list" :title="workbook.workbookName" link="javascript:;" @click="_toChapter(workbook.workbookId)"></cell>
+            <cell v-for="workbook in item.list" @click="_toChapter(workbook.workbookId)" is-link>
+              <div slot="icon"><img class="workbookListImg" v-lazy="workbook.img+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
+              <div slot="after-title">
+                <div style="width:80%;display:inline-block;float:left">
+                  {{workbook.workbookName}}
+                </div>
+              </div>
+            </cell>
           </group>
         </template>
       </template>
@@ -26,7 +33,7 @@
     </div>
 
     <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-      <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #d9d9d9" type="primary" @click="_add">我的习题册</x-button>
+      <x-button style="width:100%;border-radius:0px;background:#fff;color:#000;border-top:1px solid #d9d9d9" type="primary" @click="_add">添加习题册</x-button>
     </tabbar>
 
   </view-box>
@@ -59,7 +66,7 @@ export default {
     _toChapter(id){
       this.workbookStuChapterClear();      //进去前清除章节数据
       this.workbookStuPageClear();      //进去前清除页码数据
-      this.$router.go(`page/${id}`);
+      this.$router.go(`chapter/${id}`);
     }, 
     _changeSub(){
       this.visible = true;

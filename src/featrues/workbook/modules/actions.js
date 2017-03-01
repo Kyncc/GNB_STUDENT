@@ -29,7 +29,8 @@ export const getWorkbookAll = ({ rootState,commit,state },params) => {
       params: {
         "token":rootState.login.token,
         "subjectId":state.subjectId,
-        "workbookName":params.workbookName
+        "workbookName":params.workbookName,
+        "textbookId":params.textbookId
       }
     })
     .then((response) => {

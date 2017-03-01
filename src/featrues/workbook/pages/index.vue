@@ -8,14 +8,7 @@
     </div>
 
     <div style="padding-top:46px;">
-      <template v-for="item in workbookMy.list">
-        <template v-if="item">
-          <group :title="item.textbookName">
-            <cell v-for="workbook in item.list" :title="workbook.workbookName"></cell>
-          </group>
-        </template>
-      </template>
-
+      <workbook-list-del :workbook-list="workbookMy" @on-click-del="_del"></workbook-list-del>
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -37,12 +30,12 @@
 <script>
 import {XHeader,Panel,ViewBox,Group,Cell,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {gnbChangeSub} from 'components'
+import {gnbChangeSub,workbookListDel} from 'components'
 import { mapActions,mapGetters  } from 'vuex'
 
 export default {
   components:{
-    XHeader,ViewBox,Panel,Group,Cell,gnbChangeSub,InfiniteLoading,Tabbar,XButton
+    XHeader,ViewBox,Panel,Group,Cell,gnbChangeSub,InfiniteLoading,Tabbar,XButton,workbookListDel
   },
   route:{
     data:function(transition){
@@ -54,7 +47,15 @@ export default {
     }
   },
   methods: {
-  ...mapActions(['getWorkbook','setWorkBookSubject']),
+  ...mapActions(['getWorkbook','setWorkBookSubject','delWorkbook']),
+    _del(id){
+      this.delWorkbook({
+        "id":id
+      })
+      .then(()=>{
+         this.$broadcast('$InfiniteLoading:reset')
+      })
+    },
     _add(){
       this.$router.go(`add?subjectId=${this.workbookSubjectId}`);
     },
