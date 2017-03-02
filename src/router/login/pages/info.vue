@@ -14,9 +14,9 @@
       </div>
 
       <group title="基本资料">
-        <x-input title="姓名" placeholder="姓名至少2个字符" name="username" :value.sync="username" v-ref:username ></x-input>
+        <!--<x-input title="姓名" placeholder="姓名至少2个字符" name="username" :value.sync="username"></x-input>-->
         <selector title="年级" :options="gradeList" :value.sync="grade" @on-change="_onChangeGrade"></selector>
-        <x-input title="学校" placeholder="请输入学校名称" name="school" :value.sync="school" v-ref:school ></x-input>
+        <!--<x-input title="学校" placeholder="请输入学校名称" name="school" :value.sync="school"  ></x-input>-->
       </group>
 
       <group title="版本选择">
@@ -91,7 +91,8 @@ export default {
   computed:{
      ...mapGetters(['registerMobile','textBookAllVersion']),
      disable(){
-        return (this.username  ? false : true)
+        // return (this.username  ? false : true)
+        return false;
      }
   },
   created(){

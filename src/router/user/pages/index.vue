@@ -8,7 +8,7 @@
       <div>
         <div class="info">
           <img class="defaultimg" :src="userImg" @click="_upload"/>
-          <p class="phone">&nbsp;{{userName}}&nbsp;</p>
+          <p class="phone">&nbsp;{{userName || User.mobile}}&nbsp;</p>
           <div class="upload" @click="_upload">
             上传头像
           </div>

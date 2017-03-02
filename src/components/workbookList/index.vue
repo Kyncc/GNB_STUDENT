@@ -19,7 +19,7 @@
 
 <script>
 import {Group,Cell,XButton,Previewer} from 'vux'
-export default  {
+export default {
     props: ['item'],
     components:{
       Group,Cell,XButton,Previewer 
