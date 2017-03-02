@@ -1,5 +1,5 @@
 <template>
-  <view-box v-ref:view-box class='myClassMate'>
+  <view-box class='myClassMate'>
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
         <x-header :left-options="{showBack: true}">
             {{ClassMyClassmate.classname}}
@@ -10,13 +10,13 @@
         <template v-if="ClassMyClassmate">
           <group title="我的老师">
             <cell v-if="ClassMyClassmate.teacher" :title="ClassMyClassmate.teacher.name">
-                <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" :src="ClassMyClassmate.teacher.headImg">
+                <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="ClassMyClassmate.teacher.headImg">
             </cell>
           </group>
           <group title="我的同学">
               <template v-for="student in ClassMyClassmate.students">
                 <cell :title="student.name">
-                    <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" :src="student.headImg">
+                    <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="student.headImg">
                 </cell>
               </template>
           </group>

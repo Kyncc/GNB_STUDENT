@@ -1,5 +1,5 @@
 <template>
-  <view-box v-ref:view-box class='user vux-scroller-header-box'>
+  <view-box class='user vux-scroller-header-box'>
     <div style="height:46px;">
       <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">个人中心</x-header>
     </div>
@@ -8,7 +8,7 @@
       <div>
         <div class="info">
           <img class="defaultimg" :src="userImg" @click="_upload"/>
-          <p class="phone">&nbsp;{{userName}}&nbsp;</p>
+          <p class="phone">&nbsp;{{userName || User.mobile}}&nbsp;</p>
           <div class="upload" @click="_upload">
             上传头像
           </div>
@@ -25,7 +25,7 @@
           <cell title="设置" link="/main/user/settings/">
             <span class="icon iconfont icon-settingfull" style="color:#794BB8"  slot="icon"></span>
           </cell>
-          <cell title="检查更新" @click="_update" is-link v-if="System != 'IOS'">
+          <cell title="检查更新" v-if="System != 'IOS'" @click="_update" is-link>
             <div v-if="isUpdate" class="badge-value" slot="value" class="vux-center-v" style="display:inline-block">
               <badge text="新版本"></badge>
             </div>
@@ -82,10 +82,6 @@ export default {
     //更新APP
     _update(){
         if(this.isUpdate){
-            if(this.System == 'IOS'){
-              window.location.href = "itms-apps://itunes.apple.com/cn/app/gui-na-ben-xue-sheng-duan/id1184077595?l=en&mt=8";
-              return;
-            }
             let start = true;
             let dtask = plus.downloader.createDownload(`http://www.guinaben.com/app/com.sanbao.guinaben.${this.android_version}.student.apk`, {}, (d, status)=> {
               if (status == 200) {
@@ -147,17 +143,10 @@ export default {
        return this.User.ios_version;
     },
     isUpdate(){
-      if(this.System == 'IOS'){
-        if(this.ios_version == '2.0.0'){
-          return false;
-        }
-        return true;
-      }else{
-         if(this.android_version == '2.0.0'){
-          return false;
-        }
-        return true;
-      } 
+      if(this.android_version == '2.0.0'){
+        return false;
+      }
+      return true;
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-    <view-box v-ref:view-box class='myClassAdd'>
+    <view-box class='myClassAdd'>
 
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">

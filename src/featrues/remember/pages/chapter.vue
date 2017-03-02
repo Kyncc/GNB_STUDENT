@@ -1,11 +1,11 @@
 <template >
-  <view-box v-ref:view-box class="workbookStuSelect">
+  <view-box class="workbookStuSelect">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">章节选择
-        <a slot="right" @click="_changeType()" class="changeSub">
+        <!--<a slot="right" @click="_changeType()" class="changeSub">
           按章节
           <span class="with_arrow"></span>
-        </a>
+        </a>-->
       </x-header>
     </div>
 
@@ -37,10 +37,10 @@
       </infinite-loading>
     </div>
 
-    <Popup :visible.sync="visible"  popup-transition="popup-fade" class="gnb-changeSub">
+    <!--<Popup :visible.sync="visible"  popup-transition="popup-fade" class="gnb-changeSub">
       <p class="active">按章节</p>
       <p @click="_intoPage()">按页码</p>
-    </Popup>
+    </Popup>-->
   </view-box>
 </template>
 

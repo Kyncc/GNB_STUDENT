@@ -1,5 +1,5 @@
 <template>
-  <view-box v-ref:view-box class="messageCorrect">
+  <view-box class="messageCorrect">
      <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
           <x-header :left-options="{showBack: true}">纠错消息</x-header>
       </div>

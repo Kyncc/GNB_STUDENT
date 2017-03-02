@@ -1,5 +1,5 @@
 <template>
-  <view-box v-ref:view-box class="passList">
+  <view-box class="passList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
           弃题列表
@@ -25,6 +25,13 @@
             </div>
           </a>
         </div>
+         <a v-if=" item.opt_jo.hasOwnProperty('A') " @click="_intoDetail(item.exercises_id)">
+          <div class="weui_media_bd weui_media_box options">
+            <p class="weui_media_desc" v-for="value in item.opt_jo">
+              {{ $key }} : {{{ value }}}
+            </p>
+          </div>
+        </a> 
          <div class="abandon">
           <span @click="_abandon(item.loose_win_excercise_id,$index)">撤回</span>
         </div>

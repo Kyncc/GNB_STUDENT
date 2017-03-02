@@ -29,7 +29,8 @@ export const getWorkbookAll = ({ rootState,commit,state },params) => {
       params: {
         "token":rootState.login.token,
         "subjectId":state.subjectId,
-        "workbookName":params.workbookName
+        "workbookName":params.workbookName,
+        "textbookId":params.textbookId
       }
     })
     .then((response) => {
@@ -73,7 +74,7 @@ export const addWorkbook = ({ rootState,commit },params) => {
     axios({
       method:'post',
       url: 'workbook/add',
-      params: {
+      data: {
         "token":rootState.login.token,
         "workbookId":params.id,
       }

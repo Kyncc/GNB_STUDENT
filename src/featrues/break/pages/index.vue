@@ -1,5 +1,5 @@
 <template >
-  <view-box v-ref:view-box class="reportStudent">
+  <view-box class="reportStudent">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
          <change-text-book :value.sync="textbookId" :user-textbook="User.textbook" :subject-id="breakSubjectId"></change-text-book>
@@ -12,7 +12,7 @@
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;" @click="_intoTextbook">点我先添加课本吧~</p>
+          <p style="font-size:1rem;display:inline-block;" >服务异常~</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
@@ -49,9 +49,6 @@ export default {
   },
   methods: {
      ...mapActions(['getBreak','breakChangeChapter','setBreakScroll','setBreakSubject','clearBreak','breakListClear']),
-     _intoTextbook(){
-       this.$router.go(`/main/bag/textbook/add?subjectId=${this.breakSubjectId}`);
-     },
      _toDetail(chapterId){
       this.setBreakScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
       this.breakListClear();

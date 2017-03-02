@@ -1,7 +1,12 @@
 ﻿# 归纳本学生端
-> 基于Vue.js和Dcloud(H5+)混合技术Hybrid App
 
-使用技术简介
+> 基于Vue.js和Dcloud(H5+)混合技术Hybrid App 
+
+# 苹果安卓市场下载
+
+![商店下载](http://okkula0y9.bkt.clouddn.com/student.png)
+
+# 使用技术简介
 
 当时建立此项目时使用Vux基于Vue1.0，因此用的Vue1.X开发。
 目前已重构逻辑部分,换成Vuex2,http请求换成axios。
@@ -61,7 +66,7 @@
 ├── components  # 公用的组件
 ├── src         # 开发目录
     ├── router      # 主体模块
-        ├── bag     # 书包
+        ├── bag         # 书包
         ├── index       # 首页
         ├── login       # 注册、登陆
         ├── interact    # 互动
@@ -75,9 +80,10 @@
         ├── myclass     # 我的班级
         ├── message     # 消息模块
         ├── report      # 成绩报告单模块
-        ├── brush       # 题型汇总模块
+        ├── brush       # 刷题型
         ├── break       # 斩题列表
         ├── pass        # 弃题列表
+        ├── brushed     # 刷题列表
         ├── settings    # 设置
 ```
 

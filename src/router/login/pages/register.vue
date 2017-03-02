@@ -103,7 +103,7 @@ export default {
             }else{
               _.toast("注册码已发送");
             }
-        });
+        })
     }
   },
   computed: {

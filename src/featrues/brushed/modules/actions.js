@@ -41,14 +41,14 @@ export const setBrushedSubject = ({ commit }, id) => {
   commit(types.BRUSHED_CLEAR);
 }
 
-/**获取弃题列表 */
+/**获取刷题列表 */
 export const getBrushedList = ({ state,rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
       url: 'summary/list-loose-win-exercise',
       params: {
-        "status":1,
+        "status":3,
         "token":rootState.login.token,
         "chapter_id":rootState.route.params.chapterId,
         "subject_id":state.subjectId,
@@ -63,7 +63,7 @@ export const getBrushedList = ({ state,rootState,commit }, params) => {
 }
 
 
-/**弃题列表撤回 */
+/**刷题列表撤回 */
 export const brushedAction = ({ state,rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
