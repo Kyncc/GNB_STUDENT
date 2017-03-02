@@ -12,7 +12,7 @@
          <template v-if="item">
           <group :title="item.textbookName">
             <cell v-for="workbook in item.list" @click="_toChapter(workbook.workbookId)" is-link>
-              <div slot="icon"><img class="workbookListImg" v-lazy="workbook.img+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
+              <div slot="icon"><img class="workbookListImg" v-lazy="workbook.img.url+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
               <div slot="after-title">
                 <div style="width:80%;display:inline-block;float:left">
                   {{workbook.workbookName}}
@@ -102,15 +102,6 @@ export default {
     ...mapGetters(['workbookStu','workbookStuSubject','Params','User']),
     stuWorkBook(){
       return this.workbookStu.list;
-    },
-    notice(){
-      if(this.User.textbook['math'].id === '0'){
-        return '点我添加课本';
-      }else{
-        return '点我添加练习册';
-      }
-
-
     }
 	}
 }

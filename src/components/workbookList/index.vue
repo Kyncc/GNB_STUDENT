@@ -2,7 +2,7 @@
   <div>
     <group class="workbookList">
       <cell v-for="workbook in item.list">
-        <div slot="icon" @click="show(index,workbook)"><img class="workbookListImg" v-lazy="workbook.img+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
+        <div slot="icon" @click="show(index,workbook)"><img class="workbookListImg" v-lazy="workbook.img.url+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
         <div slot="after-title" >
           <div style="width:80%;display:inline-block;float:left" @click="show(index,workbook)">
             {{workbook.workbookName}}
@@ -28,14 +28,16 @@ export default {
       return{
         list: [{
           src: '',
-          w: 600,
-          h: 400
+          w: '',
+          h: ''
         }]
       }
     },
     methods:{
        show (index,item) {
-          this.list[0].src = `${item.img}`
+          this.list[0].src = `${item.img.url}`
+          this.list[0].w = item.img.width
+          this.list[0].h = item.img.height
           this.$refs.previewer.show(index)
         },
         onClickAdd(index){

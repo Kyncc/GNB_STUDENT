@@ -76,7 +76,7 @@ export const addWorkbook = ({ rootState,commit },params) => {
       url: 'workbook/add',
       data: {
         "token":rootState.login.token,
-        "workbookId":params.id,
+        "workbookId":[params.id],
       }
     })
     .then((response) => {
