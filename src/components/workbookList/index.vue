@@ -2,9 +2,9 @@
   <div>
     <group class="workbookList">
       <cell v-for="workbook in item.list">
-        <div slot="icon" @click="show(index,workbook)"><img class="workbookListImg" v-lazy="workbook.img+'/xtc.jpg?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
-        <div slot="after-title">
-          <div style="width:80%;display:inline-block;float:left">
+        <div slot="icon" @click="show(index,workbook)"><img class="workbookListImg" v-lazy="workbook.img+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
+        <div slot="after-title" >
+          <div style="width:80%;display:inline-block;float:left" @click="show(index,workbook)">
             {{workbook.workbookName}}
           </div>
           <div style="width:20%;display:inline-block;float:left">
@@ -18,7 +18,6 @@
 </template>
 
 <script>
-
 import {Group,Cell,XButton,Previewer} from 'vux'
 export default  {
     props: ['item'],
@@ -36,7 +35,7 @@ export default  {
     },
     methods:{
        show (index,item) {
-          this.list[0].src = `${item.img}/xtc.jpg`
+          this.list[0].src = `${item.img}`
           this.$refs.previewer.show(index)
         },
         onClickAdd(index){

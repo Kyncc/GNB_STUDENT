@@ -10,12 +10,12 @@
 
     <div style="padding-top:90px;">
       <template v-for="item in workbookAll.list">
-        <workbook-list :item="item"></workbook-list>
+        <workbook-list :item="item" @on-click-add="_addWorkbook"></workbook-list>
       </template>
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
             <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
-            <p style="font-size:1rem;display:inline-block;"  @click="_addTextBook()">{{(searchName.length == 0 ? '暂无更多习题册':'查询无结果')}}</p>
+            <p style="font-size:1rem;display:inline-block;">查询无结果</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
@@ -90,11 +90,6 @@ export default {
     _changeSub(){
       this.visible = true;
     },
-    _addTextBook(){
-      if(this.searchName.length == 0){
-        this.$router.go(`add`);
-      }
-    },
     _onSearch(str){
       this.searchName = str;
       this.workbookAllClear();      //搜索需要清除数据
@@ -102,13 +97,13 @@ export default {
           this.$broadcast('$InfiniteLoading:reset');
       });
     },
-    _addWorkbook(){
+    _addWorkbook(index){
       this.addWorkbook({
-        id:this.selectBookList
+        "id":index
       })
       .then(()=>{
-          _.toast('添加成功');
-          history.back();
+          _.toast('添加成功')
+          this.$broadcast('$InfiniteLoading:reset')
       })
     },
     _onInfinite(){

@@ -74,7 +74,7 @@ export const addWorkbook = ({ rootState,commit },params) => {
     axios({
       method:'post',
       url: 'workbook/add',
-      params: {
+      data: {
         "token":rootState.login.token,
         "workbookId":params.id,
       }
