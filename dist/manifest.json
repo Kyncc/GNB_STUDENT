@@ -57,9 +57,7 @@
 			"description": "管理应用本地数据"
 		},
 
-		"Uploader": {
-			"description": "管理文件上传任务"
-		},
+		
 		"Runtime": {
 			"description": "访问运行期环境"
 		},

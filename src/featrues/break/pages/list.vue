@@ -15,23 +15,23 @@
         <div class="weui_panel_hd">
           {{{item.chapter_name}}}
         </div>
-        <div class="weui_panel_bd ">
-          <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.excercise_id)">
-            <div class="weui_media_bd">
-              <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>
-              <p class="weui_media_desc">
-                {{{item.stem}}}
-              </p>
+        <div @click="_intoDetail(item.excercise_id)"> 
+          <div class="weui_panel_bd ">
+            <div class="weui_media_box weui_media_appmsg" >
+              <div class="weui_media_bd">
+                <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>
+                <p class="weui_media_desc">
+                  {{{item.stem}}}
+                </p>
+              </div>
             </div>
-          </a>
-        </div>
-        <a v-if=" item.opt_jo.hasOwnProperty('A') " @click="_intoDetail(item.exercises_id)">
-          <div class="weui_media_bd weui_media_box options">
+          </div>
+          <div v-if=" item.opt_jo.hasOwnProperty('A') " class="weui_media_bd weui_media_box options">
             <p class="weui_media_desc" v-for="value in item.opt_jo">
               {{ $key }} : {{{ value }}}
             </p>
           </div>
-        </a> 
+        </div>
         <div class="abandon">
           <span @click="_abandon(item.loose_win_excercise_id,$index)">撤回</span>
         </div>

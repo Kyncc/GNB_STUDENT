@@ -25,7 +25,7 @@
             </div>
           </a>
         </div>
-         <a v-if=" item.opt_jo.hasOwnProperty('A') " @click="_intoDetail(item.exercises_id)">
+         <a v-if=" item.opt_jo.hasOwnProperty('A') " @click="_intoDetail(item.excercise_id)">
           <div class="weui_media_bd weui_media_box options">
             <p class="weui_media_desc" v-for="value in item.opt_jo">
               {{ $key }} : {{{ value }}}

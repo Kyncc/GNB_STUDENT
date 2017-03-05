@@ -48,7 +48,7 @@
     </div>
   </view-box>
   <confirm :show.sync="confirmShow" confirm-text="确定" cancel-text="取消" :title="confrimTitle" @on-confirm="_onAction">
-    <p style="padding:.35rem 0 ;font-size:16px;" @click="_noticeAgain" :class="notAgain ? 'notAgain':''">
+    <p style="padding:.35rem 0 ;font-size:16px;" @click="_noticeAgain" :class="notice ? 'notAgain':''">
       <b><i class="icon iconfont exampleIcon icon-correct"></i></b>  选我以后不在提示
     </p>
   </confirm>
@@ -57,7 +57,7 @@
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,Confirm} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import { mapActions,mapGetters  } from 'vuex'
+import { mapActions,mapGetters} from 'vuex'
 
 export default {
   components: {
@@ -90,19 +90,56 @@ export default {
         this.selectItem.id = id;
         this.selectItem.status = status;
         this.selectItem.index = index;
-        if(localStorage.getItem("brushFirst")){
-          this.brushAction(this.selectItem)
-        }else{
-          this.confirmShow = true
+
+         /**不同动作的判断
+        *1.为斩题目，若localStorage 内 breakFirst为true则不显示对话框
+        *2.为弃题 3.为刷题
+        */
+        if(this.selectItem.status == '1'){
+          if(localStorage.getItem("breakFirst")){
+            this.brushAction(this.selectItem)
+            return
+          }else{
+            this.notice = this.notAgain.break
+          }
         }
+        else if(this.selectItem.status == '2'){
+          if(localStorage.getItem("passFirst")){
+            this.brushAction(this.selectItem)
+            return
+          }else{
+            this.notice = this.notAgain.pass
+          }
+        }else{
+          if(localStorage.getItem("brushFirst")){
+            this.brushAction(this.selectItem)
+            return
+          }else{
+            this.notice = this.notAgain.brush
+          }
+        }
+        this.confirmShow = true
     },
     //动作的提示
     _noticeAgain(){
-      this.notAgain = !this.notAgain
+      if(this.selectItem.status == '1'){
+        this.notice = !this.notAgain.break
+        this.notAgain.break = !this.notAgain.break
+      }else if(this.selectItem.status == '2'){
+        this.notice = !this.notAgain.pass
+        this.notAgain.pass = !this.notAgain.pass
+      }else{
+        this.notice = !this.notAgain.brush
+        this.notAgain.brush = !this.notAgain.brush
+      }
     },
     //确认不提示
     _onAction(){
-      if(this.notAgain){
+      if(this.selectItem.status == '1' && this.notAgain.break){
+        localStorage.setItem("breakFirst","true")
+      }else if(this.selectItem.status == '2'  && this.notAgain.pass){
+        localStorage.setItem("passFirst","true")
+      }else if(this.selectItem.status == '3'  && this.notAgain.brush){
         localStorage.setItem("brushFirst","true")
       }
       this.brushAction(this.selectItem)
@@ -139,7 +176,12 @@ export default {
         'status': '',
         'index':''
       },
-      notAgain: false,
+      notAgain:{
+        'brush':false,
+        'break':false,
+        'pass':false
+      },
+      notice:false
     }
   }
 }
