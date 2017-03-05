@@ -4,10 +4,10 @@
       <cell v-for="workbook in item.list">
         <div slot="icon" @click="show(index,workbook)"><img class="workbookListImg" v-lazy="workbook.img.url+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
         <div slot="after-title" >
-          <div style="width:80%;display:inline-block;float:left" @click="show(index,workbook)">
+          <div style="width:9rem;display:inline-block;float:left" @click="show(index,workbook)">
             {{workbook.workbookName}}
           </div>
-          <div style="width:20%;display:inline-block;float:left">
+          <div style="width:4rem;display:inline-block;float:right">
             <x-button type="primary" @click="onClickAdd(workbook.workbookId)">添加</x-button>
           </div>
         </div>

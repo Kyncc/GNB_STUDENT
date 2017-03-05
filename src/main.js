@@ -100,6 +100,6 @@ document.addEventListener('plusready', function(){
       history.back();
     },false);
   },500)
-});
+})
     
 router.start(App, '#App')

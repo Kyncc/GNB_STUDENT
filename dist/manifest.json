@@ -7,8 +7,8 @@
 	"id": "H55E5EFFB",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "2.0.0",/*应用版本名称*/
-		"code": "200"
+		"name": "2.1.0",/*应用版本名称*/
+		"code": "210"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -16,13 +16,11 @@
 	},
 	"launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
 	"developer": {
-		"name": "李颖琨",/*开发者名称*/
-		"email": "walykadyb@vip.qq.com",/*开发者邮箱地址*/
+		"name": "LiYingkun",/*开发者名称*/
+		"email": "hopefullstack@gmail.com",/*开发者邮箱地址*/
 		"url": "www.guinaben.com"
 	},
 	"permissions": {
-
-
 		"Cache": {
 			"description": "管理应用缓存"
 		},
@@ -68,9 +66,7 @@
 		"XMLHttpRequest": {
 			"description": "跨域网络访问"
 		},
-		"Zip": {
-			"description": "文件压缩与解压缩"
-		},
+		
 
 
 
@@ -86,8 +82,7 @@
 		"NativeObj": {
 			"description": "原生对象"
 		},
-		"Statistic": {},
-		"Accelerometer": {}
+		"Statistic": {}
 	},
 	"plus": {
 		"splashscreen": {
@@ -101,9 +96,9 @@
 				"statics": {
 					"umeng": {
 						"appkey_ios": "584125476e27a40bc4000e49",
-						"channelid_ios": "2.0",
+						"channelid_ios": "2.1",
 						"appkey_android": "5833f42d8630f57e24001bc5",
-						"channelid_android": "2.0"
+						"channelid_android": "2.1"
 					}
 				},
 				"share": {}
