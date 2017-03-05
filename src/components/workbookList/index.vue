@@ -13,7 +13,7 @@
         </div>
       </cell>
     </group>
-    <previewer :list="list" v-ref:previewer></previewer>
+    <previewer :list="list" :options="options" v-ref:previewer></previewer>
   </div>
 </template>
 
@@ -30,14 +30,21 @@ export default {
           src: '',
           w: '',
           h: ''
-        }]
+        }],
+         options: {
+            bgOpacity:0.7,
+            showAnimationDuration :0,
+            fullscreenEl: false,
+        }
       }
     },
     methods:{
        show (index,item) {
-          this.list[0].src = `${item.img.url}`
+          this.list[0].src = `${item.img.url}?imageView2/2/w/700/h/1050/q|imageslim`
           this.list[0].w = item.img.width
           this.list[0].h = item.img.height
+          // this.$refs.previewer.items.pop()
+          // this.$refs.previewer.items.push(this.list)
           this.$refs.previewer.show(index)
         },
         onClickAdd(index){
