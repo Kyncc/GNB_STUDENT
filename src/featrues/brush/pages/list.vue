@@ -49,7 +49,7 @@
   </view-box>
   <confirm :show.sync="confirmShow" confirm-text="确定" cancel-text="取消" :title="confrimTitle" @on-confirm="_onAction">
     <p style="padding:.35rem 0 ;font-size:16px;" @click="_noticeAgain" :class="notice ? 'notAgain':''">
-      <b><i class="icon iconfont exampleIcon icon-correct"></i></b>  选我以后不在提示
+      <b><i class="icon iconfont exampleIcon icon-correct"></i></b>  选我以后不再提示
     </p>
   </confirm>
 </template>
