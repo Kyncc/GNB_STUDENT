@@ -28,8 +28,8 @@ export default {
       return{
         list: [{
           src: '',
-          w: '',
-          h: ''
+          w: '750',
+          h: '1040'
         }],
          options: {
             bgOpacity:0.7,
@@ -41,8 +41,8 @@ export default {
     methods:{
        show (index,item) {
           this.list[0].src = `${item.img.url}?imageView2/2/w/700/h/1050/q|imageslim`
-          this.list[0].w = item.img.width
-          this.list[0].h = item.img.height
+          // this.list[0].w = item.img.width
+          // this.list[0].h = item.img.height
           // this.$refs.previewer.items.pop()
           // this.$refs.previewer.items.push(this.list)
           this.$refs.previewer.show(index)

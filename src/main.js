@@ -84,6 +84,7 @@ router.beforeEach(function(transition) {
 * 其他页面则直接返回上一页
 */
 document.addEventListener('plusready', function(){
+    let first = null;
     plus.key.addEventListener('backbutton',function(){
     if(
       store.state.route.path == '/login' || 

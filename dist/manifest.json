@@ -173,9 +173,9 @@
 			"splashscreen": {
 				"ios": {
 					"iphone": {
-						"retina55": "unpackage/res/start/1080x1882.png",
-						"retina47": "unpackage/res/start/750x1334.png",
-						"retina40": "unpackage/res/start/640x1136.png",
+						"retina55": "unpackage/res/start/1242×2208.png",
+						"retina47": "unpackage/res/start/750×1334.png",
+						"retina40": "unpackage/res/start/640×1136.png",
 						"retina35": "unpackage/res/start/640x960.png"
 					},
 					"ipad": {
@@ -190,9 +190,9 @@
 					}
 				},
 				"android": {
-					"xxhdpi": "unpackage/res/start/1080x1882.png",
-					"hdpi": "unpackage/res/start/480x762.png",
-					"xhdpi": "unpackage/res/start/1080x1882.png"
+					"xxhdpi": "unpackage/res/start/1080×1882.png",
+					"hdpi": "unpackage/res/start/480×762.png",
+					"xhdpi": "unpackage/res/start/750×1334.png"
 				}
 			}
 		}
