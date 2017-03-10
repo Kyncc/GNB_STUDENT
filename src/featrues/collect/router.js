@@ -1,14 +1,12 @@
-import layout from './pages/layout'
-import index from './pages/index'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default  {
   'collect': {
-    component: layout,
+    component:  r => require.ensure([], () => r(require('./pages/layout')), '/collect'),
     subRoutes: {
       '/': {
-        component: index,
+        component: r => require.ensure([], () => r(require('./pages/index')), '/collect/'),
       }
     }
   }

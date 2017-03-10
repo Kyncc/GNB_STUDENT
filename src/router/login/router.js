@@ -1,34 +1,27 @@
-import layout from './pages/layout'
-import login from './pages/login'
-import register from './pages/register'
-import forget from './pages/forget'
-import info from './pages/info'
-import resetPassword from './pages/resetPassword'
-import setPassword from './pages/setPassword'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default {
   '/': {
-    component: layout,
+    component: r => require.ensure([], () => r(require('./pages/layout')), '/'),
     subRoutes: {
       'login': {
-        component: login,
+        component: r => require.ensure([], () => r(require('./pages/login')), '/login'),
       },
       'register': {
-        component: register,
+        component: r => require.ensure([], () => r(require('./pages/register')), '/register') ,
       },
       'setPassword': {
-        component: setPassword,
+        component: r => require.ensure([], () => r(require('./pages/setPassword')), '/setPassword') ,
       },
       'info':{
-         component: info,
+         component: r => require.ensure([], () => r(require('./pages/info')), '/info'),
       },
       'forget': {
-        component: forget,
+        component: r => require.ensure([], () => r(require('./pages/forget')), '/forget') ,
       },
       'resetPassword': {
-        component: resetPassword,
+        component: r => require.ensure([], () => r(require('./pages/resetPassword')), '/resetPassword') ,
       }
     }
   }

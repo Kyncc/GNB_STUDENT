@@ -1,22 +1,18 @@
-import layout from './pages/layout'
-import index from './pages/index'
-import classmate from './pages/classmate'
-import add from './pages/add'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default  {
   'class': {
-    component: layout,
+    component:  r => require.ensure([], () => r(require('./pages/layout')), '/class'),
     subRoutes: {
       '/': {
-        component: index
+        component: r => require.ensure([], () => r(require('./pages/index')), '/class/'),
       },
       '/add': {
-        component:add
+        component: r => require.ensure([], () => r(require('./pages/add')), '/class/add'),
       },
       '/detail/:code': {
-        component: classmate
+        component:  r => require.ensure([], () => r(require('./pages/classmate')), '/class/detail'),
       },
     }
   }

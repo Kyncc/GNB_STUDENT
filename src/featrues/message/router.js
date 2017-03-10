@@ -1,22 +1,18 @@
-import layout from './pages/layout'
-import correct from './pages/correct'
-import system from './pages/system'
-import classes from './pages/class'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default {
   'message': {
-    component: layout,
+    component:  r => require.ensure([], () => r(require('./pages/layout')), '/message'),
     subRoutes: {
       '/correct': {
-        component: correct
+        component: r => require.ensure([], () => r(require('./pages/correct')), '/message/correct')
       },
       '/system': {
-        component: system
+        component: r => require.ensure([], () => r(require('./pages/system')), '/message/system')
       },
       '/class': {
-        component: classes
+        component: r => require.ensure([], () => r(require('./pages/class')), '/message/class')
       }
     }
   }

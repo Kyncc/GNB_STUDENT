@@ -1,18 +1,15 @@
-import layout from './pages/layout'
-import index from './pages/index'
-import list from './pages/list'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default {
   '/pass': {
-    component: layout,
+    component: r => require.ensure([], () => r(require('./pages/layout')), '/pass'),
     subRoutes: {
       '/': {
-        component: index,
+        component: r => require.ensure([], () => r(require('./pages/index')), '/pass/'),
       },
       '/list/:chapterId': {
-          component: list,
+          component:  r => require.ensure([], () => r(require('./pages/list')), '/pass/list'),
       }
     }
   }

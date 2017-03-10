@@ -1,5 +1,3 @@
-import layout from './pages/layout'
-import index from './pages/index'
 import pass from '../../featrues/pass/router'
 import Break from '../../featrues/break/router'
 import brushed from '../../featrues/brushed/router'
@@ -9,10 +7,10 @@ import collect from '../../featrues/collect/router'
 
 export default {
   'bag': {
-    component: layout,
+    component:  r => require.ensure([], () => r(require('./pages/layout')), '/bag'),
     subRoutes: {
       '/': {
-        component: index
+        component:  r => require.ensure([], () => r(require('./pages/index')), '/bag/'),
       },
       ...report,
       ...pass,

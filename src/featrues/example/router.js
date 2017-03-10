@@ -1,10 +1,9 @@
-import example from './pages/index'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default {
   '/example/:subjectId/:id': {
-    component: example
+    component: r => require.ensure([], () => r(require('./pages/index')), '/example/')
   }
 }
 

@@ -1,23 +1,19 @@
-import layout from './pages/layout'
-import index from './pages/index'
-import add from './pages/add'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default  {
   'workbook': {
-    component: layout,
+    component: r => require.ensure([], () => r(require('./pages/layout')), '/workbook'),
     subRoutes: {
       '/': {
-        component: index,
+        component: r => require.ensure([], () => r(require('./pages/index')), '/workbook/'),
       },
       '/add': {
-        component: add
+        component: r => require.ensure([], () => r(require('./pages/add')), '/workbook/add'),
       }
     }
   }
 }
-
 
 store.registerModule('workbook', {
   ...modules

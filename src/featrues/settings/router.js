@@ -1,30 +1,24 @@
-import layout from './pages/layout'
-import index from './pages/index'
-import info from './pages/info'
-import resetPwd from './pages/resetPwd'
-import advice from './pages/advice'
-import adviceList from './pages/adviceHistory'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default {
   'settings': {
-    component: layout,
+    component: r => require.ensure([], () => r(require('./pages/layout')), '/settings'),
     subRoutes: {
       '/': {
-        component: index,
+        component: r => require.ensure([], () => r(require('./pages/index')), '/settings/'),
       },
       '/info': {
-        component: info,
+        component: r => require.ensure([], () => r(require('./pages/info')), '/settings/info'),
       },
       '/resetPwd': {
-        component: resetPwd,
+        component: r => require.ensure([], () => r(require('./pages/resetPwd')), '/settings/resetPwd'),
       },
       '/advice': {
-        component: advice,
+        component: r => require.ensure([], () => r(require('./pages/advice')), '/settings/advice'),
       },
       '/adviceList': {
-        component: adviceList
+        component: r => require.ensure([], () => r(require('./pages/adviceHistory')), '/settings/adviceList'),
       }
     }
   }
