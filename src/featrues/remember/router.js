@@ -8,11 +8,11 @@ export default {
       '/': {
         component: r => require.ensure([], () => r(require('./pages/index')), '/remember/'),
       },
+      '/e': {
+        component: r => require.ensure([], () => r(require('./pages/exercise/layout')), '/remember/e/'),
+      },
       '/chapter/:workbookId': {
         component: r => require.ensure([], () => r(require('./pages/chapter')), '/remember/chapter'),
-      },
-      '/page/:workbookId': {
-        component: r => require.ensure([], () => r(require('./pages/page')), '/remember/page'),
       },
       '/exercise/:chapterId': {
         component: r => require.ensure([], () => r(require('./pages/exercise')), '/remember/exercise'),

@@ -7,7 +7,7 @@ export const getRegisterCode = ({commit},params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'getCode',
+      url: 'register/code',
       params: {
         "mobile": params.mobile,
         "cover": params.cover

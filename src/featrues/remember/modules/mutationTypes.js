@@ -11,14 +11,6 @@ export const WORKBOOK_STU_CHAPTER = 'WORKBOOK_STU_CHAPTER'
 export const WORKBOOK_STU_CHAPTER_CLEAR = 'WORKBOOK_STU_CHAPTER_CLEAR'
 /** 设置章节高度 */
 export const WORKBOOK_STU_CHAPTER_SCROLL = 'WORKBOOK_STU_CHAPTER_SCROLL'
-
-/** 获取习题册页码 */
-export const WORKBOOK_STU_PAGE = 'WORKBOOK_STU_PAGE'
-/** 清除习题册页码数据 */
-export const WORKBOOK_STU_PAGE_CLEAR = 'WORKBOOK_STU_PAGE_CLEAR'
-/** 设置习题册页码高度 */
-export const WORKBOOK_STU_PAGE_SCROLL = 'WORKBOOK_STU_PAGE_SCROLL'
-
 /** 获取练习题 */
 export const WORKBOOK_STU_EXERCISE= 'WORKBOOK_STU_EXERCISE'
 /** 练习题更改答案 */

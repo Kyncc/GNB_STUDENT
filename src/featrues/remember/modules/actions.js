@@ -34,34 +34,6 @@ export const workbookStuSetSubject = ({ commit },id) => {
   commit(types.WORKBOOK_STU_CLEAR);
 }
 
-/**获取练习册数据 */
-export const getWorkbookStuPage = ({rootState,commit}) => {
-  return new Promise((resolve, reject)=> { 
-    axios({
-      method:'get',
-      url: 'remember/pages',
-      params: {
-        "token":rootState.login.token,
-        "workbookId":rootState.route.params.workbookId
-      }
-    })
-    .then((response) => {
-      commit(types.WORKBOOK_STU_PAGE,response.data.data)
-      resolve(response);
-    })
-  });
-}
-
-/**页码数据清空 */
-export const workbookStuPageClear = ({ commit }) => {
-  commit(types.WORKBOOK_STU_PAGE_CLEAR);
-}
-
-/**页码高度设置 */
-export const setWorkbookStuPageScroll = ({ commit },height) => {
-  commit(types.WORKBOOK_STU_PAGE_SCROLL,height);
-}
-
 /**获取练习册章节数据 */
 export const getWorkbookStuChapter = ({state,rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
@@ -98,7 +70,6 @@ export const WorkbookExercisePost = ({state,rootState,commit},parmas) => {
       _.leave();
       _.toast('提交成功');
       commit(types.WORKBOOK_STU_CHAPTER_CLEAR);
-      commit(types.WORKBOOK_STU_PAGE_CLEAR);
       resolve(response);
     })
     .catch((response)=>{

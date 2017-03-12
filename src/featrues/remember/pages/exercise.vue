@@ -115,11 +115,12 @@ export default {
     /** 提交信息*/
     onAction(type) {
       if(type=='确认'){
-          this._getAnswerList();
+          this._getAnswerList()
           this.WorkbookExercisePost({
               answerId:this.answerListId,
               answer:this.answerListAnswer
-          }).then(()=>{
+          })
+          .then(()=>{
               setTimeout(()=>{
                   history.back();
               },500);

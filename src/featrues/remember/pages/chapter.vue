@@ -1,12 +1,7 @@
 <template >
   <view-box class="workbookStuSelect">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}">章节选择
-        <!--<a slot="right" @click="_changeType()" class="changeSub">
-          按章节
-          <span class="with_arrow"></span>
-        </a>-->
-      </x-header>
+      <x-header :left-options="{showBack: true}">章节选择</x-header>
     </div>
 
     <div style="padding-top:46px;">
@@ -37,10 +32,6 @@
       </infinite-loading>
     </div>
 
-    <!--<Popup :visible.sync="visible"  popup-transition="popup-fade" class="gnb-changeSub">
-      <p class="active">按章节</p>
-      <p @click="_intoPage()">按页码</p>
-    </Popup>-->
   </view-box>
 </template>
 
@@ -48,12 +39,11 @@
 import { XHeader,Panel,ViewBox,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { mapActions,mapGetters} from 'vuex'
-import { Popup } from 'mint-ui'
 import * as _ from 'config/whole'
 
 export default {
   components:{
-    XHeader,ViewBox,Panel,Group,Cell,InfiniteLoading,Popup
+    XHeader,ViewBox,Panel,Group,Cell,InfiniteLoading
   },
   data(){
     return{
