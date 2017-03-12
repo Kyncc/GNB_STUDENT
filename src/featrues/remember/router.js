@@ -14,7 +14,10 @@ export default {
       '/chapter/:workbookId': {
         component: r => require.ensure([], () => r(require('./pages/chapter')), '/remember/chapter'),
       },
-      '/exercise/:chapterId': {
+      // '/exercise/:chapterId': {
+      //   component: r => require.ensure([], () => r(require('./pages/exercise')), '/remember/exercise'),
+      // }
+      '/exercise/:chapterId/:name': {
         component: r => require.ensure([], () => r(require('./pages/exercise')), '/remember/exercise'),
       }
     }

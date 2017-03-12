@@ -82,7 +82,7 @@ export default {
       if(item.isLink == 'true'){
         this.workbookStuExerciseClear();//进去前清空数据
         this.setWorkbookStuChapterScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
-        this.$router.go(`../exercise/${item.id}`);
+        this.$router.go(`../exercise/${item.id}/${item.name}`);
       }
       return;
     },
