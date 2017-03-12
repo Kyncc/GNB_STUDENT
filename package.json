@@ -15,7 +15,6 @@
     "fastclick": "^1.0.6",
     "jroll": "^2.4.3",
     "mint-ui": "^1.0.1",
-    "moment": "^2.15.0",
     "qs": "^6.3.0",
     "vue": "^1.0.21",
     "vue-infinite-loading": "^1.1.1",
