@@ -160,11 +160,11 @@ export default {
     ...mapGetters(['brushList','brushListIsReset','brushSubjectId','brushListScroll']),
     confrimTitle(){
       if(this.selectItem.status == '2'){
-        return '真的很简单，确定放进弃题本？'
+        return '真的很难，确定放进弃题本？'
       }else if(this.selectItem.status == '3'){
         return '真的需要练习，确定放进刷题本？'
       }else{
-        return '真的很难，确定放进斩题本？'
+        return '真的很简单，确定放进斩题本？'
       }
     }
   },
