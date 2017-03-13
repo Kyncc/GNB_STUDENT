@@ -7,8 +7,8 @@
 	"id": "H55E5EFFB",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "2.1.0",/*应用版本名称*/
-		"code": "210"
+		"name": "2.1.1",/*应用版本名称*/
+		"code": "211"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -57,14 +57,14 @@
 			"description": "管理应用本地数据"
 		},
 
-		
+
 		"Runtime": {
 			"description": "访问运行期环境"
 		},
 		"XMLHttpRequest": {
 			"description": "跨域网络访问"
 		},
-		
+
 
 
 
@@ -167,16 +167,14 @@
 					"ldpi": "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
 					"hdpi": "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
 					"xhdpi": "unpackage/res/icons/96x96.png",/*720P高分屏程序图标，分辨率：96x96*/
-					"xxhdpi": "unpackage/res/icons/144x144.png"
+					"xxhdpi": "unpackage/res/icons/144x144.png",
+					"xxxhdpi": "unpackage/res/icons/192x192.png"
 				}
 			},
 			"splashscreen": {
 				"ios": {
 					"iphone": {
-						"retina55": "unpackage/res/start/1242×2208.png",
-						"retina47": "unpackage/res/start/750×1334.png",
-						"retina40": "unpackage/res/start/640×1136.png",
-						"retina35": "unpackage/res/start/640x960.png"
+						"retina40": "E:/Workspace/GNB_TEACHER/distT/unpackage/res/start/640×1136.png"
 					},
 					"ipad": {
 						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
@@ -190,9 +188,9 @@
 					}
 				},
 				"android": {
-					"xxhdpi": "unpackage/res/start/1080×1882.png",
 					"hdpi": "unpackage/res/start/480×762.png",
-					"xhdpi": "unpackage/res/start/750×1334.png"
+					"xhdpi": "unpackage/res/start/640×1136.png",
+					"xxhdpi": "unpackage/res/start/1080×1882.png"
 				}
 			}
 		}

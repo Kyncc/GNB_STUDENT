@@ -1,7 +1,6 @@
 <template >
-  <div style="padding-top:46px;">
+  <div class="workbookStuExercise">
     <template v-if="Exercise.chaper">
-      <header class="sectionHeader">{{Exercise.chaper.name}}</header>
       <template v-for="item in Exercise.a">
         <!--2级别练习册-->
         <template v-if="item.b[0].type == '1'">

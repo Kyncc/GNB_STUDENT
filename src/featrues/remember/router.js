@@ -8,17 +8,25 @@ export default {
       '/': {
         component: r => require.ensure([], () => r(require('./pages/index')), '/remember/'),
       },
-      '/e': {
-        component: r => require.ensure([], () => r(require('./pages/exercise/layout')), '/remember/e/'),
-      },
       '/chapter/:workbookId': {
         component: r => require.ensure([], () => r(require('./pages/chapter')), '/remember/chapter'),
       },
-      // '/exercise/:chapterId': {
-      //   component: r => require.ensure([], () => r(require('./pages/exercise')), '/remember/exercise'),
-      // }
-      '/exercise/:chapterId/:name': {
-        component: r => require.ensure([], () => r(require('./pages/exercise')), '/remember/exercise'),
+      '/exercise': {
+        component: r => require.ensure([], () => r(require('./pages/exercise/layout')), '/remember/exercise'),
+        subRoutes: {
+          '/main/:chapterId/:name/':{
+            component: r => require.ensure([], () => r(require('./pages/exercise/exercise')), '/remember/exercise/'),
+          },
+          '/answer/:chapterId/:name/':{
+            component: r => require.ensure([], () => r(require('./pages/exercise/answer')), '/remember/exercise/answer'),
+          },
+          '/error/:chapterId/:name/':{
+            component: r => require.ensure([], () => r(require('./pages/exercise/error')), '/remember/exercise/error'),
+          },
+          '/upload/:chapterId/:name/':{
+            component: r => require.ensure([], () => r(require('./pages/exercise/upload')), '/remember/exercise/upload'),
+          }
+        }
       }
     }
   }
