@@ -63,7 +63,7 @@ export default {
         return (this.$refs.mobile.valid && this.$refs.password.valid ? false : true);
      }
   },
-  ready(){
+  created(){
       try{
         plus.navigator.closeSplashscreen();
       }catch(e){

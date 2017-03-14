@@ -5,6 +5,7 @@ import accordionReport from './accordionReport/index'
 import changeTextBook from './changeTextBook/index'
 import workbookList from './workbookList/index'
 import workbookListDel from './workbookListDel/index'
+import photoswiper from './photoswiper/index'
 
 module.exports = {
     gnbChangeSub,
@@ -13,5 +14,6 @@ module.exports = {
     changeTextBook,
     accordionReport,
     workbookList,
-    workbookListDel
+    workbookListDel,
+    photoswiper
 }

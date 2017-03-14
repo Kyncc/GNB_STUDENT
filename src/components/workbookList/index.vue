@@ -13,23 +13,24 @@
         </div>
       </cell>
     </group>
-    <previewer :list="list" :options="options" v-ref:previewer></previewer>
+    <photoswiper :list="list" :options="options" v-ref:previewer></photoswiper>
   </div>
 </template>
 
 <script>
-import {Group,Cell,XButton,Previewer} from 'vux'
+import {Group,Cell,XButton} from 'vux'
+import {photoswiper} from '../index'
 export default {
     props: ['item'],
     components:{
-      Group,Cell,XButton,Previewer 
+      Group,Cell,XButton,photoswiper 
     },
     data(){
       return{
         list: [{
           src: '',
-          w: '750',
-          h: '1040'
+          w: 750,
+          h: 1040
         }],
          options: {
             bgOpacity:0.7,

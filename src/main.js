@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import 'babel-polyfill'
+// import 'babel-polyfill'
 import { sync } from 'vuex-router-sync'
 import App from './app'
 import store from './store'
@@ -9,7 +9,6 @@ import * as _ from 'config/whole.js'
 import Login from './router/login/router'
 import Correct from './featrues/correct/router'
 import Example from './featrues/example/router'
-
 import Layout from './router/layout'
 import User from './router/user/router'
 import Index from './router/index/router'
@@ -25,7 +24,6 @@ Vue.config.devtools = true
 FastClick.attach(document.body)
 //图片异步加载
 Vue.use(VueLazyload)
-
 // //格式化时间
 Vue.filter('ymd',(value)=>{
   return moment.unix(value).format('YYYY-MM-DD')
