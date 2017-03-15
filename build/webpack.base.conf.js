@@ -72,6 +72,7 @@ module.exports = {
   },
   vue: {
     loaders: utils.cssLoaders(),
+    preserveWhitespace: false,
     autoprefixer: {
       browsers: ['> 5%','iOS 7','iOS 8','iOS 9']
     }

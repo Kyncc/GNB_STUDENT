@@ -13,6 +13,9 @@ const state = {
     scroll:0,
     isReset:false
   },
+  uploader:{
+    list:[]
+  },
   exercise:{            //练习
     list:[],
     scroll:0,

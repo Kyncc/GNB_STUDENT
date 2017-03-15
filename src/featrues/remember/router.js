@@ -11,6 +11,17 @@ export default {
       '/chapter/:workbookId': {
         component: r => require.ensure([], () => r(require('./pages/chapter')), '/remember/chapter'),
       },
+      '/upload':{
+         component: r => require.ensure([], () => r(require('./pages/uploader/layout')), '/remember/upload'),
+         subRoutes: {
+            '/:chapterId/':{
+                component: r => require.ensure([], () => r(require('./pages/uploader/upload')), '/remember/upload/photo'),
+            },
+            '/photo/:chapterId/':{
+                component: r => require.ensure([], () => r(require('./pages/uploader/photo')), '/remember/upload/photo'),
+            }
+         }
+      },
       '/exercise': {
         component: r => require.ensure([], () => r(require('./pages/exercise/layout')), '/remember/exercise'),
         subRoutes: {
@@ -22,9 +33,6 @@ export default {
           },
           '/error/:chapterId/:name/':{
             component: r => require.ensure([], () => r(require('./pages/exercise/error')), '/remember/exercise/error'),
-          },
-          '/upload/:chapterId/:name/':{
-            component: r => require.ensure([], () => r(require('./pages/exercise/upload')), '/remember/exercise/upload'),
           }
         }
       }
