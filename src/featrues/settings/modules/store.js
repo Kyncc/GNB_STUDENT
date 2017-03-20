@@ -10,6 +10,7 @@ const state = {
   }
 }
 
+
 const mutations = {
   [types.ADVICE_LIST](state, data) {
     state.adviceList = data;

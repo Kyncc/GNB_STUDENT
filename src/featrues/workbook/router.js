@@ -1,6 +1,3 @@
-import modules from './modules/store'
-import store from 'src/store'
-
 export default  {
   'workbook': {
     component: r => require.ensure([], () => r(require('./pages/layout')), '/workbook'),
@@ -15,6 +12,3 @@ export default  {
   }
 }
 
-store.registerModule('workbook', {
-  ...modules
-});

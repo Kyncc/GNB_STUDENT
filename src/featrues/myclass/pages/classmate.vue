@@ -10,13 +10,13 @@
         <template v-if="ClassMyClassmate">
           <group title="我的老师">
             <cell v-if="ClassMyClassmate.teacher" :title="ClassMyClassmate.teacher.name">
-                <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="ClassMyClassmate.teacher.headImg">
+                <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%;background:#ddd" v-lazy="ClassMyClassmate.teacher.headImg">
             </cell>
           </group>
           <group title="我的同学">
               <template v-for="student in ClassMyClassmate.students">
                 <cell :title="student.name">
-                    <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="student.headImg">
+                    <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%;background:#ddd" v-lazy="student.headImg">
                 </cell>
               </template>
           </group>

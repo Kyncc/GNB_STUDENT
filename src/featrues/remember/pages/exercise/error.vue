@@ -1,6 +1,6 @@
 <template >
   <div class="workbookAnswer">
-    <p>错题本列表</p>
+    <div class="weui_cells_title">错题列表</div>
     <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
       <span slot="no-results" style="color:#4bb7aa;">
         <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>

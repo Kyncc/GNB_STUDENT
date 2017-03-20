@@ -109,14 +109,8 @@ export default {
               answerId:this.answerListId,
               answer:this.answerListAnswer
           })
-          .then(()=>{
-              setTimeout(()=>{
-                  history.back();
-              },500);
-          });
-      }else{
-          return
       }
+      return
     },
     //进入例题
     _intoExample(id){

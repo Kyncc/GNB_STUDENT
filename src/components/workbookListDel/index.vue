@@ -4,7 +4,7 @@
     <template v-if="item">
       <group :title="item.textbookName">
         <cell v-for="workbook in item.list">
-          <div slot="icon"><img v-lazy="workbook.img.url+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
+          <div slot="icon"><img v-lazy="workbook.img.url+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="background:#ddd;margin-right:.3rem"/></div>
           <div slot="after-title">
             <div style="width:9rem;display:inline-block;float:left">
               {{workbook.workbookName}}

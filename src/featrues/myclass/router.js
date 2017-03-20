@@ -1,5 +1,4 @@
-import modules from './modules/store'
-import store from 'src/store'
+
 
 export default  {
   'class': {
@@ -18,6 +17,4 @@ export default  {
   }
 }
 
-store.registerModule('class', {
-  ...modules
-});
+

@@ -1,6 +1,3 @@
-import modules from './modules/store'
-import store from 'src/store'
-
 export default {
   '/break': {
     component: r => require.ensure([], () => r(require('./pages/layout')), '/break'),
@@ -14,7 +11,3 @@ export default {
     }
   }
 }
-
-store.registerModule('break', {
-  ...modules
-});

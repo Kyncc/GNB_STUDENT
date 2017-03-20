@@ -33,6 +33,12 @@
 import {XHeader,XButton,Checker,CheckerItem,Group,XTextarea} from 'vux'
 import { mapActions,mapGetters  } from 'vuex'
 import * as _ from 'config/whole'
+import store from 'src/store'
+import modules from '../modules/store'
+
+store.registerModule('correct', {
+  ...modules
+})
 
 export default {
   components: {

@@ -2,7 +2,9 @@
   <div>
     <group class="workbookList">
       <cell v-for="workbook in item.list">
-        <div slot="icon" @click="show(index,workbook)"><img class="workbookListImg" v-lazy="workbook.img.url+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
+        <div slot="icon" @click="show(index,workbook)">
+          <img class="workbookListImg" v-lazy="workbook.img.url+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem;background:#ddd"/>
+        </div>
         <div slot="after-title" >
           <div style="width:9rem;display:inline-block;float:left" @click="show(index,workbook)">
             {{workbook.workbookName}}
@@ -13,7 +15,7 @@
         </div>
       </cell>
     </group>
-    <photoswiper :list="list" :options="options" v-ref:previewer></photoswiper>
+    <photoswiper :list="list" :options="options" v-ref:photo></photoswiper>
   </div>
 </template>
 
@@ -40,13 +42,13 @@ export default {
       }
     },
     methods:{
-       show (index,item) {
+       show(index,item) {
           this.list[0].src = `${item.img.url}?imageView2/2/w/700/h/1050/q|imageslim`
+          // this.$refs.photo.show(index)
           // this.list[0].w = item.img.width
           // this.list[0].h = item.img.height
           // this.$refs.previewer.items.pop()
           // this.$refs.previewer.items.push(this.list)
-          this.$refs.previewer.show(index)
         },
         onClickAdd(index){
            this.$emit('on-click-add',index)

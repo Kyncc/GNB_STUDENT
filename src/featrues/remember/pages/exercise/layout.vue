@@ -3,7 +3,7 @@
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
         {{Params.name}}
-        <a slot="right" @click="_changeSub()">练习册</a>
+        <a slot="right" @click="_changeSub()"><i class="icon iconfont icon-bianji" style="font-size:22px"></i></a>
       </x-header>
       <tab active-color='#4bb7aa'>
         <tab-item :selected="isExercise" @click="_into(1)">记错题</tab-item>
@@ -26,6 +26,9 @@
       XHeader,ViewBox,Tab, TabItem
     },
     methods:{
+      _changeSub(){
+        history.go(-2)
+      },
       _into(state){
         if(state == '1'){
           this.$router.replace(`../../../main/${this.Params.chapterId}/${this.Params.name}/`)
@@ -38,14 +41,14 @@
     },
     computed:{
       ...mapGetters(['path','Params']),
-      isChapter(){
-        return (this.path.indexOf('exercise') == -1 ? false : true)
+      isExercise(){
+        return this.path.includes('exercise/main')
       },
       isAnswer(){
-        return (this.path.indexOf('answer') == -1 ? false : true)
+        return this.path.includes('exercise/answer')
       },
       isError(){
-        return (this.path.indexOf('error') == -1 ? false : true)
+        return this.path.includes('exercise/error')
       }
     }
   }

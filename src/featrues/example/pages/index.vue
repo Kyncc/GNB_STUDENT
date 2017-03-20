@@ -68,6 +68,12 @@
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { mapActions,mapGetters  } from 'vuex'
+import modules from '../modules/store'
+import store from 'src/store'
+
+store.registerModule('example', {
+  ...modules
+})
 
 export default {
   components: {

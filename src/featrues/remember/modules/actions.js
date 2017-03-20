@@ -69,6 +69,7 @@ export const WorkbookExercisePost = ({state,rootState,commit},parmas) => {
     .then((response) => {
       _.leave();
       _.toast('提交成功');
+      commit(types.WORKBOOK_STU_EXERCISE_POST);
       commit(types.WORKBOOK_STU_CHAPTER_CLEAR);
       resolve(response);
     })

@@ -1,6 +1,3 @@
-import modules from './modules/store'
-import store from 'src/store'
-
 export default  {
   'collect': {
     component:  r => require.ensure([], () => r(require('./pages/layout')), '/collect'),
@@ -11,7 +8,3 @@ export default  {
     }
   }
 }
-
-store.registerModule('collect', {
-  ...modules
-});

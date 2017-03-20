@@ -78,6 +78,7 @@ router.beforeEach(function(transition) {
   transition.next();
 })
 
+
 /*在首页 或者loading启动的时候,返回键失效
 * 其他页面则直接返回上一页
 */
