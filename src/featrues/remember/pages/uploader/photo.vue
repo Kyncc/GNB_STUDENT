@@ -6,7 +6,7 @@
     </x-header>
   </div>
   <div style="margin-top:46px;" >
-    <img v-el:img :src="userImgBuffer" style="width:100%;"/>
+    <img v-el:img :src="workbookStuUploader.camera" style="width:100%;"/>
   </div>
   </view-box>
 </template>
@@ -16,25 +16,16 @@ import {XHeader,ViewBox} from 'vux'
 import {mapActions,mapGetters} from 'vuex'
 import Cropper from 'Cropperjs'
 import 'Cropperjs/dist/cropper.min.css'
-import * as _ from 'config/whole'
 
 export default {
   components: {
      XHeader,ViewBox
   },
   methods: {
-    ...mapActions(['uploadHeadImg']),
+    ...mapActions(['uploadHeadImg','workbookStuUploadAdd']),
     _img(){
-      // this.uploadHeadImg({
-      //   file:this.cropper.getCroppedCanvas({width:140,height:140}).toDataURL('image/png'),
-      //   token:this.fetchToken
-      // })
-      // .then((res)=>{
-      //   _.toast("上传成功");
-      //   setTimeout(()=>{
-      //     history.back();
-      //   },500);
-      // })
+      this.workbookStuUploadAdd(this.cropper.getCroppedCanvas({width:640}).toDataURL('image/png'))
+      history.back()
     }
   },
   data(){
@@ -43,16 +34,20 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['User']),
-    // userImgBuffer(){
-    //   return this.User.bufferImg;
-    // }
+    ...mapGetters(['workbookStuUploader']),
   },
   ready(){
     let minHeight= document.documentElement.clientHeight - 46
+    let minWidth= document.documentElement.clientWidth
     this.cropper = new Cropper(this.$els.img, {
-      aspectRatio: 1/1,
-      minContainerHeight:minHeight
+      minContainerHeight:minHeight,
+      minContainerWidth:minWidth,
+      build: function (e) {
+        _.busy()
+      },  
+      built: function (e) {
+        _.leave()
+      }
     });
   }
 }

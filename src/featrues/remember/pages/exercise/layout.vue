@@ -35,7 +35,8 @@
         }else if(state == '2'){
           this.$router.replace(`../../../answer/${this.Params.chapterId}/${this.Params.name}/`)
         }else{
-          this.$router.replace(`../../../error/${this.Params.chapterId}/${this.Params.name}/`)
+          this.$router.go(`../../../../upload/${this.Params.chapterId}/`)
+          // this.$router.replace(`../../../error/${this.Params.chapterId}/${this.Params.name}/`)
         }
       }
     },

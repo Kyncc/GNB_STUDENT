@@ -122,3 +122,43 @@ export const setWorkbookStuExersciseScroll = ({ commit },height) => {
   commit(types.WORKBOOK_STU_EXERCISE_SCROLL,height);
 }
 
+
+/** 上传照片删除 */
+export const workbookStuUploadDel = ({ commit },id) => {
+  commit(types.WORKBOOK_STU_UPLOAD_DEL,id);
+}
+
+/** 上传照片增加 */
+export const workbookStuUploadAdd = ({ commit },data) => {
+  commit(types.WORKBOOK_STU_UPLOAD_ADD,data);
+}
+
+/** 照片增加 */
+export const workbookStuCamera = ({ commit },data) => {
+  commit(types.WORKBOOK_STU_UPLOAD_CAMERA,data);
+}
+
+/** 上传照片 */
+export const workbookStuUpload =  ({state,rootState,commit}) => {
+  _.busy();
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'post',
+      url: 'remember/uploader/',
+      data: {
+        "token":rootState.login.token,
+        "cameraList":state.uploader.list,
+        "chapterId":rootState.route.params.chapterId
+      }
+    })
+    .then((response) => {
+      commit(types.WORKBOOK_STU_UPLOAD,response.data.data)
+      resolve(response)
+      _.leave();
+    })
+    .catch((response)=>{
+      _.leave();
+    })
+  })
+}
+

@@ -30,13 +30,13 @@
 
 .icon-book1:before { content: "\e607"; }
 
-.icon-icon:before { content: "\e614"; }
-
 .icon-bianji:before { content: "\e615"; }
 
 .icon-iconfontsousuo:before { content: "\e620"; }
 
 .icon-share:before { content: "\e609"; }
+
+.icon-upload:before { content: "\e6a4"; }
 
 .icon-collect:before { content: "\e60b"; }
 
@@ -62,15 +62,13 @@
 
 .icon-user:before { content: "\e629"; }
 
-.icon-qq:before { content: "\e648"; }
-
 .icon-banjitongzhi:before { content: "\e62b"; }
+
+.icon-brush1:before { content: "\e617"; }
 
 .icon-collect1:before { content: "\e604"; }
 
 .icon-correct2:before { content: "\e680"; }
-
-.icon-filterclear:before { content: "\e6b7"; }
 
 .icon-cf-c23:before { content: "\e62a"; }
 
@@ -84,8 +82,6 @@
 
 .icon-bag:before { content: "\e611"; }
 
-.icon-addclass:before { content: "\e641"; }
-
 .icon-userInfo:before { content: "\e601"; }
 
 .icon-hat:before { content: "\e6b6"; }
@@ -97,10 +93,6 @@
 .icon-pie-chart:before { content: "\e7a7"; }
 
 .icon-yuanxiaobanji:before { content: "\e613"; }
-
-.icon-textbook:before { content: "\e61f"; }
-
-.icon-z-brush-copy:before { content: "\e90b"; }
 
 .icon-ban:before { content: "\e90c"; }
 
