@@ -47,7 +47,10 @@ export default {
   },
   route: {
     data:function(transition){
-      this.clearMessage();
+      //检测是否已加载消息模块
+      if(this.$store.state.message){
+       this.clearMessage()
+      }
       this.getInteract();
     }
   },

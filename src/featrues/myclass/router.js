@@ -1,5 +1,3 @@
-
-
 export default  {
   'class': {
     component:  r => require.ensure([], () => r(require('./pages/layout')), '/class'),

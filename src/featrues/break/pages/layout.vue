@@ -9,6 +9,6 @@ import store from 'src/store'
 
 store.registerModule('break', {
   ...modules
-});
+})
 
 </script>

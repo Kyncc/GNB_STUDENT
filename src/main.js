@@ -20,11 +20,12 @@ import FastClick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 
 Vue.use(Router)
-Vue.config.devtools = true
-FastClick.attach(document.body)
 //图片异步加载
 Vue.use(VueLazyload)
-// //格式化时间
+
+Vue.config.devtools = true
+FastClick.attach(document.body)
+//格式化时间
 Vue.filter('ymd',(value)=>{
   return moment.unix(value).format('YYYY-MM-DD')
 })
@@ -77,7 +78,6 @@ router.beforeEach(function(transition) {
   }
   transition.next();
 })
-
 
 /*在首页 或者loading启动的时候,返回键失效
 * 其他页面则直接返回上一页

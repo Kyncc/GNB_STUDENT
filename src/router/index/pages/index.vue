@@ -27,7 +27,7 @@ export default {
       setTimeout(()=>{
         plus.navigator.closeSplashscreen(); //关闭等待
         plus.navigator.setStatusBarBackground(75,183,170);      //设置系统状态条颜色
-      },100)
+      },300)
     }
   }
 }

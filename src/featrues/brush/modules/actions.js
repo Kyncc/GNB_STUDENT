@@ -14,31 +14,31 @@ export const getBrush = ({ rootState,commit },params) => {
       }
     })
     .then((response) => {
-      commit(types.BRUSH,response.data.data);
-      resolve(response);
+      commit(types.BRUSH,response.data.data)
+      resolve(response)
     })
-  });
+  })
 }
 
 /**索引对应手风琴的打开关闭 */
 export const brushChangeChapter = ({ commit },index) => {
-  commit(types.BRUSH_STATE_CHANGE,index);
+  commit(types.BRUSH_STATE_CHANGE,index)
 }
 
 /**浏览器高度 */
 export const setBrushScroll = ({ commit },height) => {
-  commit(types.BRUSH_SCOLLER,height);
+  commit(types.BRUSH_SCOLLER,height)
 }
 
 /**清除刷题型数据 */
 export const clearBrush = ({ commit }) => {
-  commit(types.BRUSH_CLEAR);
+  commit(types.BRUSH_CLEAR)
 }
 
 /**更换科目 */
 export const setBrushSubject = ({ commit }, id) => {
-  commit(types.BRUSH_CHANGE_SUBJECT,id);
-  commit(types.BRUSH_CLEAR);
+  commit(types.BRUSH_CHANGE_SUBJECT,id)
+  commit(types.BRUSH_CLEAR)
 }
 
 /**获取刷题列表 */
@@ -55,10 +55,10 @@ export const getBrushList = ({ state,rootState,commit }, params) => {
       }
     })
     .then((response) => {
-      commit(types.BRUSH_LIST,response.data.data);
-      resolve(response);
+      commit(types.BRUSH_LIST,response.data.data)
+      resolve(response)
     })
-  });
+  })
 }
 
 /**斩弃题动作 */
@@ -76,19 +76,19 @@ export const brushAction =({ state,rootState,commit }, params) => {
       }
     })
     .then((response) => {
-      commit(types.BRUSH_ACTION,params.index);
-      resolve(response);
+      commit(types.BRUSH_ACTION,params.index)
+      resolve(response)
     })
-  });
+  })
 }
 
 /**清空列表 */
 export const brushListClear = ({ commit }) => {
-  commit(types.BRUSH_LIST_CLEAR);
+  commit(types.BRUSH_LIST_CLEAR)
 }
 
 /**设置列表高度 */
 export const setBrushListScroll = ({ commit },height) => {
-  commit(types.BRUSH_LIST_SCOLLER,height);
+  commit(types.BRUSH_LIST_SCOLLER,height)
 }
 
