@@ -21,6 +21,25 @@ export default {
   components: {
      XHeader,ViewBox
   },
+  route: {
+    data:function(transition){
+        if(this.cropper){
+            this.cropper.destroy()
+            let minHeight= document.documentElement.clientHeight - 46
+            let minWidth= document.documentElement.clientWidth
+            this.cropper = new Cropper(this.$els.img, {
+              minContainerHeight:minHeight,
+              minContainerWidth:minWidth,
+              build: function (e) {
+                _.busy()
+              },  
+              built: function (e) {
+                _.leave()
+              }
+            });
+        }
+    }
+  },
   methods: {
     ...mapActions(['uploadHeadImg','workbookStuUploadAdd']),
     _img(){

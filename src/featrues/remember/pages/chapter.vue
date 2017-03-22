@@ -70,15 +70,18 @@ export default {
     }
   },
   methods:{
-    ...mapActions(['getWorkbookStuChapter','setWorkbookStuChapterScroll','workbookStuExerciseClear']),
+    ...mapActions(['getWorkbookStuChapter','setWorkbookStuChapterScroll','workbookStuExerciseClear','getWorkbookStuExercise']),
     _changeType(){
       this.visible = true;
     },
     _isLink(item){
       if(item.isLink == 'true'){
         this.workbookStuExerciseClear();//进去前清空数据
-        this.setWorkbookStuChapterScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
-        this.$router.go(`../exercise/main/${item.id}/${item.name}/`);
+        this.setWorkbookStuChapterScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
+        this.getWorkbookStuExercise(item.id)
+        .then(()=>{
+          this.$router.go(`../exercise/main/${item.id}/${item.name}/`);
+        })
       }
       return;
     },

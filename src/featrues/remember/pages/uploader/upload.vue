@@ -43,15 +43,15 @@ export default {
       this.workbookStuUploadDel(index)
     },
     _add(){
-      // let cmr = plus.camera.getCamera()
-      // let self = this
-      // cmr.captureImage(function(p) {
-      //   plus.io.resolveLocalFileSystemURL(p,function(entry){
-      //     self.workbookStuCamera(entry.toLocalURL())
-      //     self.$router.go(`../photo/${this.Params.chapterId}`);
-      //   })
-      // })
-      this.$router.go(`../photo/${this.Params.chapterId}`);
+      let cmr = plus.camera.getCamera()
+      let self = this
+      cmr.captureImage(function(p) {
+        plus.io.resolveLocalFileSystemURL(p,function(entry){
+          self.workbookStuCamera(entry.toLocalURL())
+          self.$router.go(`../photo/${self.Params.chapterId}`);
+        })
+      })
+      // this.$router.go(`../photo/${this.Params.chapterId}`);
     },
     _upload(){
       if(this.workbookStuUploader.list.length === 0){

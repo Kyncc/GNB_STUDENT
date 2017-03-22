@@ -15,7 +15,8 @@ const state = {
   },
   uploader:{
     list:[],
-    camera:"http://img.guinaben.com/workbookPic/038a4aac4c74498d94214c1de495daa8-answer-420684.png"
+    camera:"https://blog.ygxdxx.com/img/random/material-2.png"
+    // camera:""
   },
   exercise:{            //练习
     list:[],
@@ -46,8 +47,6 @@ const mutations = {
     state.chapter.list =  []
     state.chapter.isReset =  true
     state.chapter.scroll = 0
-    state.uploader.list = []
-    // state.uploader.camera =  ''
   },
   [types.WORKBOOK_STU_CHAPTER_SCROLL](state, height){
    state.chapter.scroll = height
@@ -59,6 +58,8 @@ const mutations = {
   },
   [types.WORKBOOK_STU_EXERCISE_CLEAR](state){
     state.exercise.list = []
+    state.uploader.list = []
+     state.uploader.camera = ''
     state.exercise.isReset = true
   },
   [types.WORKBOOK_STU_EXERCISE_SCROLL](state, height){

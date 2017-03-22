@@ -67,6 +67,9 @@ export default {
     show (index) {
       this.init(index)
     },
+    destroy(){
+      this.photoswipe.destroy()
+    },
     close(){
       this.photoswipe.close()
     }

@@ -1,41 +1,63 @@
 <template >
   <div class="workbookAnswer">
-    <div class="weui_cells_title">错题列表</div>
-    <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
-      <span slot="no-results" style="color:#4bb7aa;">
-        <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-        <p style="font-size:1rem;display:inline-block;">数据发生一点问题~</p>
-      </span>
-      <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
-    </infinite-loading>
+    <template v-for="item in errorList">
+       <group :title="item.group.name">
+        <cell>  
+          <img class="previewer-workbookAnswer-img" @click="show($index)" v-lazy="item.group.url+'?imageView2/2/w/640/q|imageslim'">
+        </cell>
+      </group>
+    </template>
+    <photoswiper :list="list" :options="options" v-ref:photo></photoswiper>
+  </div>
 </template>
 
 <script>
 import { XHeader,Group,Cell} from 'vux'
-import InfiniteLoading from 'vue-infinite-loading'
 import { mapActions,mapGetters} from 'vuex'
+import {photoswiper} from 'components'
+
 
 export default {
   components:{
-    XHeader,Group,Cell,InfiniteLoading
+    XHeader,Group,Cell,photoswiper
   },
   route: {
     data:function(transition){
-      
+      // console.log(this.$refs.photo)
+      // this.$refs.photo.destroy()
+    }
+  },
+  data(){
+    return{
+      preload:[1,1],
+      bgOpacity:1,
+      fullscreenEl: false
     }
   },
   methods: {
     ...mapActions([]),
-    _onInfinite(){
-      // this.getWorkbookStuExercise()
-      // .then(()=>{
-      //   this.$broadcast('$InfiniteLoading:loaded');
-      //   this.$broadcast('$InfiniteLoading:complete');
-      // });
+    show(index){
+      this.$refs.photo.show(index)
     }
   },
   computed:{
-    ...mapGetters(['']),
+    ...mapGetters(['workbookStuExercise']),
+    errorList(){
+      return this.workbookStuExercise.list.errorList
+    },
+    list(){
+      let list = []
+      if(this.errorList){
+        for(let arr of this.errorList) {
+          list.push({
+            "w":Number(arr.group.width),
+            "h":Number(arr.group.height),
+            "src":`${arr.group.url}?imageView2/0/q/50|imageslim`
+          })
+        }
+      }
+      return list
+    }
 	}
 }
 </script>

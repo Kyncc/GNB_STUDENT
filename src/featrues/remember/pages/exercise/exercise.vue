@@ -37,36 +37,19 @@
 
     </template>
 
-    <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
-      <span slot="no-results" style="color:#4bb7aa;">
-        <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-        <p style="font-size:1rem;display:inline-block;">数据发生一点问题~</p>
-      </span>
-      <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
-    </infinite-loading>
   <confirm :show.sync="showConfirm" confirm-text="确定" cancel-text="取消" title="确定提交练习结果？" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
 </template>
 
 <script>
 import { XHeader,Panel,Group,Cell,XButton,Checker, CheckerItem,Confirm} from 'vux'
-import InfiniteLoading from 'vue-infinite-loading'
 import { mapActions,mapGetters} from 'vuex'
 
 export default {
   components:{
-    Panel,Group,Cell,XButton,InfiniteLoading,Checker, CheckerItem,Confirm
-  },
-  route: {
-    data:function(transition){
-      if(this.workbookStuExercise.isReset){
-        this.$nextTick(() => {
-          this.$broadcast('$InfiniteLoading:reset');
-        })
-      }
-    }
+    Panel,Group,Cell,XButton,Checker, CheckerItem,Confirm
   },
   methods: {
-    ...mapActions(['getWorkbookStuExercise','setWorkbookStuExersciseScroll','WorkbookExercisePost','workbookStuExAnswerChange']),
+    ...mapActions(['setWorkbookStuExersciseScroll','WorkbookExercisePost','workbookStuExAnswerChange']),
     /**获取答案*/
     _getAnswerList(){
       this.answerListId = [];
@@ -93,13 +76,6 @@ export default {
           }
         }
       }
-    },
-    _onInfinite(){
-      this.getWorkbookStuExercise()
-      .then(()=>{
-        this.$broadcast('$InfiniteLoading:loaded');
-        this.$broadcast('$InfiniteLoading:complete');
-      });
     },
     /** 提交信息*/
     onAction(type) {

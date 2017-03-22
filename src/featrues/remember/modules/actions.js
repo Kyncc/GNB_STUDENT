@@ -90,19 +90,24 @@ export const setWorkbookStuChapterScroll = ({ commit },height) => {
 }
 
 /**获取练习册章节数据 */
-export const getWorkbookStuExercise = ({state,rootState,commit}) => {
+export const getWorkbookStuExercise = ({state,rootState,commit},id) => {
+  _.busy()
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
       url: 'remember/exercises',
       params: {
         "token":rootState.login.token,
-        "chapterId":rootState.route.params.chapterId
+        "chapterId":rootState.route.params.chapterId || id
       }
     })
     .then((response) => {
+      _.leave()
       commit(types.WORKBOOK_STU_EXERCISE,response.data.data)
       resolve(response);
+    })
+    .catch((response)=>{
+      _.leave()
     })
   })
 }
