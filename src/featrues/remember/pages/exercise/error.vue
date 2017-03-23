@@ -16,7 +16,6 @@ import { XHeader,Group,Cell} from 'vux'
 import { mapActions,mapGetters} from 'vuex'
 import {photoswiper} from 'components'
 
-
 export default {
   components:{
     XHeader,Group,Cell,photoswiper

@@ -37,6 +37,8 @@ export default {
   methods: {
     ...mapActions([]),
     show(index){
+      
+
       this.$refs.photoswiper.show(index)
     }
   },

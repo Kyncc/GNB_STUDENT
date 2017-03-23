@@ -57,15 +57,24 @@ export default {
         history: false,
         shareEl: false,
         tapToClose: true,
+        errorMsg:'加载图片失败...',
         index: index
       }, this.options)
       this.photoswipe = new PhotoSwipe(this.$el, UI, this.list, options)
+   
+
       setTimeout(()=>{
         this.photoswipe.init()
       },100)
     },
     show (index) {
       this.init(index)
+      this.photoswipe.listen('afterChange', function() { 
+          console.log('before')
+      });
+      this.photoswipe.listen('close', function() { 
+          console.log('close')
+      });
     },
     destroy(){
       this.photoswipe.destroy()
@@ -89,6 +98,9 @@ export default {
         return {}
       }
     }
+  },
+  ready(){
+  
   }
 }
 </script>

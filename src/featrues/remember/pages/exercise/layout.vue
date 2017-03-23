@@ -33,15 +33,17 @@
         if(state == '1'){
           this.$router.replace(`../../../main/${this.Params.chapterId}/${this.Params.name}/`)
         }else if(state == '2'){
-          this.$router.replace(`../../../answer/${this.Params.chapterId}/${this.Params.name}/`)
+          if(this.isUpload)
+            this.$router.go(`../../../../upload/${this.Params.chapterId}/`)
+          else
+            this.$router.replace(`../../../answer/${this.Params.chapterId}/${this.Params.name}/`)
         }else{
-          // this.$router.go(`../../../../upload/${this.Params.chapterId}/`)
           this.$router.replace(`../../../error/${this.Params.chapterId}/${this.Params.name}/`)
         }
       }
     },
     computed:{
-      ...mapGetters(['path','Params']),
+      ...mapGetters(['path','Params','workbookStuExercise']),
       isExercise(){
         return this.path.includes('exercise/main')
       },
@@ -50,6 +52,12 @@
       },
       isError(){
         return this.path.includes('exercise/error')
+      },
+      //是否需要上传答案
+      isUpload(){
+         if(!this.workbookStuExercise.list.bindTeacher || this.workbookStuExercise.list.resultImg.length)
+            return false
+        return true
       }
     }
   }

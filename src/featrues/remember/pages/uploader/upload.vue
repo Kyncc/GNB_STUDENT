@@ -8,7 +8,7 @@
     </div>
 
     <div style="padding-top:46px;">
-      <group title="最多上传5张作业照片"></group>
+      <group title="需要上传作业后方可查看答案,最多5张"></group>
       <div style="padding:.6rem" class="photoGroup">
         <div class="photo" v-for="item in workbookStuUploader.list" track-by="$index">
           <img :src="item"/>
@@ -20,7 +20,6 @@
       </div>
     </div>
   </view-box>
-
 </template>
 
 <script>
