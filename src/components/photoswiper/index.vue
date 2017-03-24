@@ -61,7 +61,6 @@ export default {
         index: index
       }, this.options)
       this.photoswipe = new PhotoSwipe(this.$el, UI, this.list, options)
-   
 
       setTimeout(()=>{
         this.photoswipe.init()
@@ -69,18 +68,12 @@ export default {
     },
     show (index) {
       this.init(index)
-      this.photoswipe.listen('afterChange', function() { 
-          console.log('before')
-      });
-      this.photoswipe.listen('close', function() { 
-          console.log('close')
-      });
+    },
+    obj(){
+      return this.photoswipe;
     },
     destroy(){
       this.photoswipe.destroy()
-    },
-    close(){
-      this.photoswipe.close()
     }
   },
   props: {

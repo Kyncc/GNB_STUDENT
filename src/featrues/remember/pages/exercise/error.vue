@@ -1,24 +1,25 @@
 <template >
   <div class="workbookAnswer">
     <template v-for="item in errorList">
-       <group :title="item.group.name">
-        <cell>  
-          <img class="previewer-workbookAnswer-img" @click="show($index)" v-lazy="item.group.url+'?imageView2/2/w/640/q|imageslim'">
+       <group :title="item.name">
+        <cell v-for="img in item.imgList">  
+          <img class="previewer-workbookAnswer-img" @click="show($index)" v-lazy="img.url+'?imageView2/2/w/640/q|imageslim'">
         </cell>
       </group>
     </template>
-    <photoswiper :list="list" :options="options" v-ref:photo></photoswiper>
+    <!--<photoswiper :list="list" :options="options" v-ref:photo></photoswiper>-->
   </div>
 </template>
 
 <script>
 import { XHeader,Group,Cell} from 'vux'
 import { mapActions,mapGetters} from 'vuex'
-import {photoswiper} from 'components'
+//import {photoswiper} from 'components'
 
 export default {
   components:{
-    XHeader,Group,Cell,photoswiper
+    XHeader,Group,Cell
+    //,photoswiper
   },
   route: {
     data:function(transition){

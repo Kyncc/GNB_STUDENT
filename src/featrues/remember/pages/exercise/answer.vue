@@ -37,13 +37,25 @@ export default {
   methods: {
     ...mapActions([]),
     show(index){
-      
-
+      //显示
       this.$refs.photoswiper.show(index)
+      //打开图集
+      this.$refs.photoswiper.obj().listen('initialZoomIn', () =>{
+        this.$router.go({
+          path:this.path,
+          query:{
+            'photo':true
+          }
+        })
+      });
+      //关闭图集
+      this.$refs.photoswiper.obj().listen('close', () =>{
+          history.back()
+      });
     }
   },
   computed:{
-    ...mapGetters(['workbookStuExercise']),
+    ...mapGetters(['workbookStuExercise','Path']),
     resultImg(){
       return (this.workbookStuExercise.list.resultImg ? this.workbookStuExercise.list.resultImg : [])
     },

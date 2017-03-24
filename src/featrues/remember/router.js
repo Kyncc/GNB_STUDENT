@@ -26,6 +26,7 @@ export default {
             component: r => require.ensure([], () => r(require('./pages/exercise/exercise')), '/remember/exercise/'),
           },
           '/answer/:chapterId/:name/':{
+            name:'exerciseAnswer',
             component: r => require.ensure([], () => r(require('./pages/exercise/answer')), '/remember/exercise/answer'),
           },
           '/error/:chapterId/:name/':{
