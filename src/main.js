@@ -104,9 +104,11 @@ document.addEventListener('plusready', function(){
           }
       }
       return;
-    }else if(store.state.tools.isLoading){
+    }
+    else if(store.state.tools.isLoading){
       return;
-    }else{
+    }
+    else{
       history.back();
     }
   },false)

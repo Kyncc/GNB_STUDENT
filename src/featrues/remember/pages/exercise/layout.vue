@@ -36,9 +36,9 @@
           if(this.isUpload)
             this.$router.go(`../../../../upload/${this.Params.chapterId}/`)
           else
-            this.$router.replace(`../../../answer/${this.Params.chapterId}/${this.Params.name}/`)
+            this.$router.go(`../../../answer/${this.Params.chapterId}/${this.Params.name}/`)
         }else{
-          this.$router.replace(`../../../error/${this.Params.chapterId}/${this.Params.name}/`)
+          this.$router.go(`../../../error/${this.Params.chapterId}/${this.Params.name}/`)
         }
       }
     },

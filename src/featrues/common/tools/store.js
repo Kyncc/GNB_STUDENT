@@ -24,6 +24,9 @@ const getters = {
   Query:(state,getters,rootState) => {
     return rootState.route.query
   },
+  Name:(state,getters,rootState) => {
+    return rootState.route.name
+  },
   ClassCode:(state,getters,rootState) => {
     return rootState.route.params.code
   },

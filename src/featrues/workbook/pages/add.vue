@@ -7,10 +7,9 @@
       </x-header>
       <search @on-submit="_onSearch" @on-change="_onSearch" :value.sync="searchName" :auto-fixed="false" placeholder="请输入习题册名"></search>
     </div>
-
     <div style="padding-top:90px;">
       <template v-for="item in workbookAll.list">
-        <workbook-list :item="item" @on-click-add="_addWorkbook"></workbook-list>
+        <workbook-list :item="item" @on-click-add="_addWorkbook" @on-click-show="_showWorkbook"></workbook-list>
       </template>
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
@@ -21,6 +20,7 @@
       </infinite-loading>
     </div>
   </view-box>
+   <photoswiper :list="workbookImg" :options="options" v-ref:wkphotoswiper></photoswiper>
    <gnb-change-sub :visible.sync="visible" :selected="workbookSubjectId" :subject="User.subjectType" @on-click-back="_changeSubject"></gnb-change-sub>
 </template>
 <script>
@@ -28,13 +28,13 @@
 
 import {XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,Search} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {workbookList,gnbChangeSub,changeTextBook} from 'components'
+import {workbookList,gnbChangeSub,changeTextBook,photoswiper} from 'components'
 import { mapActions,mapGetters  } from 'vuex'
 import * as _ from 'config/whole'
 
 export default {
   components: {
-    XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,InfiniteLoading,Search,workbookList,gnbChangeSub,changeTextBook
+    XHeader,XInput,Group,Selector,Cell,ViewBox,XButton,Checklist,InfiniteLoading,Search,workbookList,gnbChangeSub,changeTextBook,photoswiper
   },
   created () {
     this.textbookId = this.User.textbook['math'][0].id;
@@ -56,7 +56,14 @@ export default {
       selectBookList:[],
       searchName:'',
       visible:false,
-      textbookId:''
+      textbookId:'',
+      workbookImg:[],
+      options: {
+        preload:[1,1],
+        bgOpacity:1,
+        fullscreenEl: false,
+        getThumbBoundsFn (index) {}
+      }
     }
   },
   route:{
@@ -105,6 +112,18 @@ export default {
           _.toast('添加成功')
           this.$broadcast('$InfiniteLoading:reset')
       })
+    },
+    /*显示照片*/
+    _showWorkbook(index,item){
+      this.workbookImg = []
+      this.workbookImg.push({
+        'src':`${item.img.url}?imageView2/2/w/700/h/1050/q|imageslim`,
+         "w":700,
+         "h":1050,
+      })
+      setTimeout(()=>{
+        this.$refs.wkphotoswiper.show(index)
+      },100)
     },
     _onInfinite(){
       this.getWorkbookAll({

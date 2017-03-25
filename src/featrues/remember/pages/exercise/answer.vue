@@ -42,20 +42,27 @@ export default {
       //打开图集
       this.$refs.photoswiper.obj().listen('initialZoomIn', () =>{
         this.$router.go({
-          path:this.path,
-          query:{
-            'photo':true
-          }
+          path:'photo/'
         })
       });
       //关闭图集
       this.$refs.photoswiper.obj().listen('close', () =>{
-          history.back()
+        //如果不是在图集页面则不返回
+        if(this.path.includes('photo'))
+        history.go(-1)
       });
     }
   },
+  watch:{
+    Query(){
+      //若在打开照片并点击返回则关闭
+      if(this.path.includes('main/index/remember/exercise/answer/') && !this.path.includes('photo') && this.$refs.photoswiper){
+         this.$refs.photoswiper.close()
+      }
+    }
+  },
   computed:{
-    ...mapGetters(['workbookStuExercise','Path']),
+    ...mapGetters(['workbookStuExercise','path','Query','Params']),
     resultImg(){
       return (this.workbookStuExercise.list.resultImg ? this.workbookStuExercise.list.resultImg : [])
     },

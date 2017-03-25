@@ -29,6 +29,10 @@ export default {
             name:'exerciseAnswer',
             component: r => require.ensure([], () => r(require('./pages/exercise/answer')), '/remember/exercise/answer'),
           },
+          '/answer/:chapterId/:name/photo/':{
+            name:'exerciseAnswerPhoto',
+            component: r => require.ensure([], () => r(require('./pages/exercise/answer')), '/remember/exercise/answer'),
+          },
           '/error/:chapterId/:name/':{
             component: r => require.ensure([], () => r(require('./pages/exercise/error')), '/remember/exercise/error'),
           }
