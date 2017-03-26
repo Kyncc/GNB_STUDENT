@@ -3,7 +3,7 @@
     <group class="workbookList">
       <cell v-for="workbook in item.list">
         <div slot="icon" @click="onClickShow($index,workbook)">
-          <img class="workbookListImg" v-lazy="workbook.img.url+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem;background:#ddd"/>
+          <img class="workbookListImg" v-lazy='workbook.img.url+"-workbook"' width="45" height="60" style="margin-right:.3rem;background:#ddd"/>
         </div>
         <div slot="after-title" >
           <div style="width:9rem;display:inline-block;float:left" @click="onClickShow($index,workbook)">

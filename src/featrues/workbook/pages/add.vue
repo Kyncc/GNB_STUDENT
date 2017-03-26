@@ -118,7 +118,7 @@ export default {
     _showWorkbook(index,item){
       this.workbookImg = []
       this.workbookImg.push({
-        'src':`${item.img.url}?imageView2/2/w/700/h/1050/q|imageslim`,
+        'src':`${item.img.url}-workbookBig`,
          "w":700,
          "h":1050,
       })

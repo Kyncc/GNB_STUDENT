@@ -56,7 +56,7 @@ export default {
       let options = Object.assign({
         history: true,
         shareEl: false,
-        tapToClose: false,
+        tapToClose: true,
         pinchToClose :true,
         closeOnScroll :false,
         closeOnVerticalDrag :false,

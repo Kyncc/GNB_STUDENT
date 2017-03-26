@@ -3,7 +3,7 @@
     <div class="weui_cells_title">答案列表</div>
     <div style="padding-left:.35rem">
       <template v-for="img in resultImg">
-        <img class="previewer-demo-img photo" @click="show($index)" style="background:#ddd" v-lazy="img.url+'?imageView2/2/w/75/h/100/q/50|imageslim'" />
+        <img class="previewer-demo-img photo" @click="show($index)" style="background:#ddd" :src="img.url+'-answer'" />
       </template>
     </div>
     <div style="z-index:2017;position:relative">
@@ -57,7 +57,7 @@ export default {
           list.push({
             "w":Number(arr.width)/2,
             "h":Number(arr.height)/2,
-            "src":`${arr.url}?imageMogr2/auto-orient/thumbnail/!50p/format/jpg/interlace/1/quality/30|imageslim`
+            "src":`${arr.url}-answerBig`
           })
         }
       }
