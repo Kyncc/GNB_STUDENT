@@ -50,7 +50,7 @@ export default {
           self.$router.go(`../photo/${self.Params.chapterId}`);
         })
       })
-      // this.$router.go(`../photo/${this.Params.chapterId}`);
+      // this.$router.go(`../../photo/${this.Params.chapterId}/${this.Params.name}/`);
     },
     _upload(){
       if(this.workbookStuUploader.list.length === 0){
@@ -59,11 +59,8 @@ export default {
       }
       this.workbookStuUpload()
       .then(()=>{
-        history.go(-1)
+        this.$router.replace(`../../../exercise/answer/${this.Params.chapterId}/${this.Params.name}/`);
       })
-      // .catch(()=>{
-      //    _.toast("请重新上传")
-      // })
     }
   },
   computed:{

@@ -33,8 +33,9 @@
         if(state == '1'){
           this.$router.replace(`../../../main/${this.Params.chapterId}/${this.Params.name}/`)
         }else if(state == '2'){
-          if(this.isUpload)
-            this.$router.go(`../../../../upload/${this.Params.chapterId}/`)
+          //绑定了教师并未上传答案
+          if(this.workbookStuExercise.list.bindTeacher && this.workbookStuExercise.list.practiceImg.length == 0)
+            this.$router.go(`../../../../upload/${this.Params.chapterId}/${this.Params.name}/`)
           else
             this.$router.go(`../../../answer/${this.Params.chapterId}/${this.Params.name}/`)
         }else{
@@ -52,12 +53,6 @@
       },
       isError(){
         return this.path.includes('exercise/error')
-      },
-      //是否需要上传答案
-      isUpload(){
-         if(!this.workbookStuExercise.list.bindTeacher || this.workbookStuExercise.list.resultImg.length)
-            return false
-        return true
       }
     }
   }

@@ -6,7 +6,7 @@ axios.defaults.timeout = 5000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 axios.defaults.baseURL = 'http://www.guinaben.com:8070/student/';
 // axios.defaults.baseURL = 'http://www.guinaben.com/api/student/';
-// axios.defaults.baseURL = 'http://192.168.13.222:6060/edu_api/student';
+// axios.defaults.baseURL = 'http://192.168.13.222:90/edu_api/student';
 
 //POST传参序列化
 axios.interceptors.request.use((config) => {
