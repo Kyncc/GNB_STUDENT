@@ -47,7 +47,7 @@ export default {
       cmr.captureImage(function(p) {
         plus.io.resolveLocalFileSystemURL(p,function(entry){
           self.workbookStuCamera(entry.toLocalURL())
-          self.$router.go(`../photo/${self.Params.chapterId}`);
+          self.$router.go(`../../photo/${self.Params.chapterId}/${self.Params.name}/`);
         })
       })
       // this.$router.go(`../../photo/${this.Params.chapterId}/${this.Params.name}/`);

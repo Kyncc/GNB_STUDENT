@@ -89,8 +89,9 @@ const mutations = {
    [types.WORKBOOK_STU_UPLOAD_CAMERA](state,data){
      state.uploader.camera = data
    },
-   [types.WORKBOOK_STU_UPLOAD](state){
+   [types.WORKBOOK_STU_UPLOAD](state,data){
      state.uploader.list = []
+    state.exercise.list = data
    }
 }
 
