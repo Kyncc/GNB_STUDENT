@@ -3,7 +3,7 @@
     <template v-for="item in errorList">
        <group :title="item.name">
         <cell v-for="img in item.imgList">  
-          <img class="previewer-workbookAnswer-img"  v-lazy="img.url+'?imageView2/2/w/640/q|imageslim'">
+          <img class="previewer-workbookAnswer-img" v-lazy="img.url+'?imageView2/2/w/640/format/jpg/q/70|imageslim'">
         </cell>
       </group>
     </template>

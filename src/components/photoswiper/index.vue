@@ -54,15 +54,16 @@ export default {
   methods: {
     init (index) {
       let options = Object.assign({
-        history: false,
+        history: true,
         shareEl: false,
-        tapToClose: true,
+        tapToClose: false,
+        pinchToClose :true,
+        closeOnScroll :false,
+        closeOnVerticalDrag :false,
         errorMsg:'加载图片失败...',
         index: index
       }, this.options)
       this.photoswipe = new PhotoSwipe(this.$el, UI, this.list, options)
-   
-
       setTimeout(()=>{
         this.photoswipe.init()
       },100)

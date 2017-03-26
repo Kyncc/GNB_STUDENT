@@ -69,7 +69,7 @@ export const WorkbookExercisePost = ({state,rootState,commit},parmas) => {
     .then((response) => {
       _.leave();
       _.toast('提交成功');
-      commit(types.WORKBOOK_STU_EXERCISE_POST);
+      commit(types.WORKBOOK_STU_EXERCISE_POST,response.data.data);
       commit(types.WORKBOOK_STU_CHAPTER_CLEAR);
       resolve(response);
     })
@@ -149,7 +149,7 @@ export const workbookStuUpload =  ({state,rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
-      url: 'remember/uploader/',
+      url: 'remember/uploadHomeWork/',
       data: {
         "token":rootState.login.token,
         "cameraList":state.uploader.list,

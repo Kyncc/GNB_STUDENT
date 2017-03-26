@@ -60,6 +60,7 @@ export default {
       workbookImg:[],
       options: {
         preload:[1,1],
+        history:true,
         bgOpacity:1,
         fullscreenEl: false,
         getThumbBoundsFn (index) {}

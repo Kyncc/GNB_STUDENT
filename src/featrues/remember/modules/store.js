@@ -15,8 +15,8 @@ const state = {
   },
   uploader:{
     list:[],
-    camera:"https://blog.ygxdxx.com/img/random/material-2.png"
-    // camera:""
+    // camera:"https://blog.ygxdxx.com/img/random/material-2.png"
+    camera:""
   },
   exercise:{            //练习
     list:[],
@@ -59,15 +59,17 @@ const mutations = {
   [types.WORKBOOK_STU_EXERCISE_CLEAR](state){
     state.exercise.list = []
     state.uploader.list = []
-     state.uploader.camera = ''
+    state.uploader.camera = ''
     state.exercise.isReset = true
   },
   [types.WORKBOOK_STU_EXERCISE_SCROLL](state, height){
      state.exercise.scroll = height
   },
-  [types.WORKBOOK_STU_EXERCISE_POST](state){
+  [types.WORKBOOK_STU_EXERCISE_POST](state,data){
     state.chapter.isReset = true
-    state.exercise.list.isUsed = true
+    state.exercise.list = data
+    // state.exercise.list.isUsed = true
+
   },
   [types.WORKBOOK_STU_EXERCISE_CHANGE](state,data){
     if(data.type == '1'){

@@ -58,10 +58,12 @@ export default {
         return
       }
       this.workbookStuUpload()
-    }
-  },
-  data(){
-    return {
+      .then(()=>{
+        history.go(-1)
+      })
+      // .catch(()=>{
+      //    _.toast("请重新上传")
+      // })
     }
   },
   computed:{

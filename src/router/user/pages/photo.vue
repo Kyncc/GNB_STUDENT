@@ -26,7 +26,7 @@ export default {
     ...mapActions(['uploadHeadImg']),
     _img(){
       this.uploadHeadImg({
-        file:this.cropper.getCroppedCanvas({width:140,height:140}).toDataURL('image/png'),
+        file:this.cropper.getCroppedCanvas({width:140,height:140}).toDataURL('image/jpeg'),
         token:this.fetchToken
       })
       .then((res)=>{

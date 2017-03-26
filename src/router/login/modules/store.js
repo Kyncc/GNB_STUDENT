@@ -16,6 +16,7 @@ const state = {
      code:'',
      mobile:''
   },
+  // token: '0bc59fa42ce6683a1617e2e05ceb1997'
   token: localStorage.getItem('token')
 }
 

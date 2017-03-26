@@ -1,9 +1,9 @@
 <template >
   <div class="workbookAnswer">
     <div class="weui_cells_title">答案列表</div>
-    <div class="padding:.5rem">
+    <div style="padding-left:.35rem">
       <template v-for="img in resultImg">
-        <img  class="previewer-demo-img" width="90" height="120" @click="show($index)" style="margin-left:.5rem;background:#ddd" v-lazy="img.url+'?imageView2/2/w/90/h/120/q/75|imageslim'" />
+        <img class="previewer-demo-img photo" @click="show($index)" style="background:#ddd" v-lazy="img.url+'?imageView2/2/w/75/h/100/q/50|imageslim'" />
       </template>
     </div>
     <div style="z-index:2017;position:relative">
@@ -42,29 +42,7 @@ export default {
       //显示
       this.$refs.photoswiper.show(index)
       //打开图集
-      this.$refs.photoswiper.obj().listen('initialZoomIn', () =>{
-        this.$router.go({
-          path:'photo/'
-        })
-      });
-      //关闭图集
-      this.$refs.photoswiper.obj().listen('close', () =>{
-        //如果不是在图集页面则不返回
-        if(this.path.includes('photo'))
-        history.go(-1)
-      });
-    }
-  },
-  watch:{
-    Query(){
-      //若在打开照片并点击返回则关闭
-      if(this.path.includes('main/index/remember/exercise/answer/') && !this.path.includes('photo') && this.$refs.photoswiper){
-          try{
-            this.$refs.photoswiper.close()
-          }catch(e){
-            // console.log('为初始化')
-          }
-      }
+     
     }
   },
   computed:{
@@ -79,7 +57,7 @@ export default {
           list.push({
             "w":Number(arr.width)/2,
             "h":Number(arr.height)/2,
-            "src":`${arr.url}?imageMogr2/auto-orient/thumbnail/!50p/format/jpg/interlace/1/blur/1x0/quality/50|imageslim`
+            "src":`${arr.url}?imageMogr2/auto-orient/thumbnail/!50p/format/jpg/interlace/1/quality/30|imageslim`
           })
         }
       }
