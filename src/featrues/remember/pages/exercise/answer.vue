@@ -6,7 +6,9 @@
         <img  class="previewer-demo-img" width="90" height="120" @click="show($index)" style="margin-left:.5rem;background:#ddd" v-lazy="img.url+'?imageView2/2/w/90/h/120/q/75|imageslim'" />
       </template>
     </div>
-    <photoswiper :list="list" :options="options" v-ref:photoswiper></photoswiper>
+    <div style="z-index:2017;position:relative">
+      <photoswiper :list="list" :options="options" v-ref:photoswiper></photoswiper>
+    </div>
   </div>
 </template>
 <script>
@@ -57,7 +59,11 @@ export default {
     Query(){
       //若在打开照片并点击返回则关闭
       if(this.path.includes('main/index/remember/exercise/answer/') && !this.path.includes('photo') && this.$refs.photoswiper){
-         this.$refs.photoswiper.close()
+          try{
+            this.$refs.photoswiper.close()
+          }catch(e){
+            // console.log('为初始化')
+          }
       }
     }
   },
