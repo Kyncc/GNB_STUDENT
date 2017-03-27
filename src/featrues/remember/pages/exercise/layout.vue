@@ -35,11 +35,11 @@
         }else if(state == '2'){
           //绑定了教师并未上传答案
           if(this.workbookStuExercise.list.bindTeacher && this.workbookStuExercise.list.practiceImg.length == 0)
-            this.$router.go(`../../../../upload/${this.Params.chapterId}/${this.Params.name}/`)
+            this.$router.replace(`../../../../upload/${this.Params.chapterId}/${this.Params.name}/`)
           else
-            this.$router.go(`../../../answer/${this.Params.chapterId}/${this.Params.name}/`)
+            this.$router.replace(`../../../answer/${this.Params.chapterId}/${this.Params.name}/`)
         }else{
-          this.$router.go(`../../../error/${this.Params.chapterId}/${this.Params.name}/`)
+          this.$router.replace(`../../../error/${this.Params.chapterId}/${this.Params.name}/`)
         }
       }
     },

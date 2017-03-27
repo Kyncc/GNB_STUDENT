@@ -1,7 +1,7 @@
 <template>
   <view-box class="workbookStuUploader">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}" >
+      <x-header :left-options="{showBack: true,preventGoBack:'true'}" @on-click-back="_back" >
         上传作业
         <a slot="right" @click="_upload"><i class="icon iconfont icon-upload" style="font-size:22px"></i></a>
       </x-header>
@@ -38,6 +38,9 @@ export default {
   },
   methods: {
     ...mapActions(["workbookStuUploadDel","workbookStuUploadAdd","workbookStuUpload","workbookStuCamera"]),
+    _back(){
+      this.$router.replace(`../../../exercise/main/${this.Params.chapterId}/${this.Params.name}/`);
+    },
     _del(index){
       this.workbookStuUploadDel(index)
     },
@@ -50,7 +53,7 @@ export default {
           self.$router.go(`../../photo/${self.Params.chapterId}/${self.Params.name}/`);
         })
       })
-      // this.$router.go(`../../photo/${this.Params.chapterId}/${this.Params.name}/`);
+      //  this.$router.go(`../../photo/${this.Params.chapterId}/${this.Params.name}/`);
     },
     _upload(){
       if(this.workbookStuUploader.list.length === 0){
