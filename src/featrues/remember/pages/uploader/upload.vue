@@ -53,6 +53,7 @@ export default {
           self.$router.go(`../../photo/${self.Params.chapterId}/${self.Params.name}/`);
         })
       })
+
       //  this.$router.go(`../../photo/${this.Params.chapterId}/${this.Params.name}/`);
     },
     _upload(){

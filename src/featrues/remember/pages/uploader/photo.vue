@@ -45,7 +45,7 @@ export default {
   methods: {
     ...mapActions(['uploadHeadImg','workbookStuUploadAdd']),
     _img(){
-      this.workbookStuUploadAdd(this.cropper.getCroppedCanvas({width:640}).toDataURL("image/jpeg",0.8))
+      this.workbookStuUploadAdd(this.cropper.getCroppedCanvas({width:640}).toDataURL("image/jpeg",0.9))
       history.back()
     }
   },

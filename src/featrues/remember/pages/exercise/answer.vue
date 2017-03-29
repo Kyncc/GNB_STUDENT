@@ -3,7 +3,7 @@
     <div class="weui_cells_title">答案列表</div>
     <div style="padding-left:.35rem">
       <template v-for="img in resultImg">
-        <img class="previewer-demo-img photo" @click="show($index)" style="background:#ddd" :src="img.url+'-answer'" />
+        <img class="previewer-answer-img photo" @click="show($index)" style="background:#ddd" :src="img.url+'-answer'" />
       </template>
     </div>
     <div style="z-index:2017;position:relative">
@@ -24,11 +24,11 @@ export default {
   data(){
     return{
       options: {
-        preload:[1,3],
+        preload:[1,1],
         bgOpacity:1,
         fullscreenEl: false,
         getThumbBoundsFn (index) {
-          let thumbnail = document.querySelectorAll('.previewer-demo-img')[index]
+          let thumbnail = document.querySelectorAll('.previewer-answer-img')[index]
           let pageYScroll = window.pageYOffset || document.documentElement.scrollTop
           let rect = thumbnail.getBoundingClientRect()
           return {x: rect.left, y: rect.top + pageYScroll, w: rect.width}
@@ -39,10 +39,10 @@ export default {
   methods: {
     ...mapActions([]),
     show(index){
-      //显示
-      this.$refs.photoswiper.show(index)
       //打开图集
-     
+      setTimeout(()=>{
+        this.$refs.photoswiper.show(index)
+      },200)
     }
   },
   computed:{
