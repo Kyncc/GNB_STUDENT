@@ -14,31 +14,31 @@ export const getBreak = ({ rootState,commit },params) => {
       }
     })
     .then((response) => {
-      commit(types.BREAK,response.data);
-      resolve(response);
+      commit(types.BREAK,response.data)
+      resolve(response)
     })
-  });
+  })
 }
 
 /**索引对应手风琴的打开关闭 */
 export const breakChangeChapter = ({ commit },index) => {
-  commit(types.BREAK_STATE_CHANGE,index);
+  commit(types.BREAK_STATE_CHANGE,index)
 }
 
 /**浏览器高度 */
 export const setBreakScroll = ({ commit },height) => {
-  commit(types.BREAK_SCOLLER,height);
+  commit(types.BREAK_SCOLLER,height)
 }
 
 /**清除刷题型数据 */
 export const clearBreak = ({ commit }) => {
-  commit(types.BREAK_CLEAR);
+  commit(types.BREAK_CLEAR)
 }
 
 /**更换科目 */
 export const setBreakSubject = ({ commit }, id) => {
-  commit(types.BREAK_CHANGE_SUBJECT,id);
-  commit(types.BREAK_CLEAR);
+  commit(types.BREAK_CHANGE_SUBJECT,id)
+  commit(types.BREAK_CLEAR)
 }
 
 /**获取弃题列表 */
@@ -56,12 +56,11 @@ export const getBreakList = ({ state,rootState,commit }, params) => {
       }
     })
     .then((response) => {
-      commit(types.BREAK_LIST,response.data.data);
-      resolve(response);
+      commit(types.BREAK_LIST,response.data.data)
+      resolve(response)
     })
   })
 }
-
 
 /**弃题列表撤回 */
 export const breakAction = ({ state,rootState,commit }, params) => {
@@ -76,19 +75,19 @@ export const breakAction = ({ state,rootState,commit }, params) => {
       }
     })
     .then((response) => {
-      commit(types.BREAK_LIST_BACK,params.index);
-      resolve(response);
+      commit(types.BREAK_LIST_BACK,params.index)
+      resolve(response)
     })
   })
 }
 
 /**清空列表 */
 export const breakListClear = ({ commit }) => {
-  commit(types.BREAK_LIST_CLEAR);
+  commit(types.BREAK_LIST_CLEAR)
 }
 
 /**设置列表高度 */
 export const setBreakListScroll = ({ commit },height) => {
-  commit(types.BREAK_LIST_SCOLLER,height);
+  commit(types.BREAK_LIST_SCOLLER,height)
 }
 
