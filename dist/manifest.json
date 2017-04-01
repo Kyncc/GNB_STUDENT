@@ -8,7 +8,7 @@
 	"name": "归纳本",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "2.2.0",/*应用版本名称*/
-		"code": "211"
+		"code": "220"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -94,9 +94,9 @@
 				"statics": {
 					"umeng": {
 						"appkey_ios": "584125476e27a40bc4000e49",
-						"channelid_ios": "2.1",
+						"channelid_ios": "2.2",
 						"appkey_android": "5833f42d8630f57e24001bc5",
-						"channelid_android": "2.1"
+						"channelid_android": "2.2"
 					}
 				},
 				"share": {}
