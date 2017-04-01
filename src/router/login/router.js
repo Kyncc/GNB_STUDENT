@@ -1,4 +1,5 @@
 import modules from './modules/store'
+import settings from '../../featrues/settings/modules/store'
 import store from 'src/store'
 
 export default {
@@ -31,3 +32,6 @@ store.registerModule('login', {
   ...modules
 });
 
+store.registerModule('settings', {
+  ...settings
+});

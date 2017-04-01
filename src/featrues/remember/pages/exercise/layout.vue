@@ -35,7 +35,7 @@
         }else if(state == '2'){
           //绑定了教师并未上传答案
           if(this.workbookStuExercise.list.bindTeacher && this.workbookStuExercise.list.practiceImg.length == 0)
-            this.$router.replace(`../../../../upload/${this.Params.chapterId}/${this.Params.name}/`)
+            this.$router.go(`../../../../upload/${this.Params.chapterId}/${this.Params.name}/`)
           else
             this.$router.replace(`../../../answer/${this.Params.chapterId}/${this.Params.name}/`)
         }else{
