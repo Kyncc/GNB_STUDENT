@@ -1,7 +1,5 @@
 import myClass from '../../featrues/myclass/router'
 import settings from '../../featrues/settings/router'
-import modules from './modules/store'
-import store from 'src/store'
 
 export default {
   'user': {
@@ -14,7 +12,3 @@ export default {
     }
   }
 }
-
-store.registerModule('user', {
-  ...modules
-});

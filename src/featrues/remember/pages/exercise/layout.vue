@@ -1,6 +1,6 @@
 <template>
   <view-box class="workbookStuSelect">
-    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+    <div slot="header" class="workbookStuSelectHeader">
       <x-header :left-options="{showBack: true}">
         {{Params.name}}
         <a slot="right" @click="_changeSub()"><i class="icon iconfont icon-bianji" style="font-size:22px"></i></a>

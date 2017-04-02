@@ -1,5 +1,5 @@
 <template >
-  <div class="workbookAnswer">
+  <div class="workbookAnswer" style="-webkit-overflow-scrolling:auto">
     <div class="weui_cells_title">答案列表</div>
     <div style="padding-left:.35rem">
       <template v-for="img in resultImg">
@@ -7,7 +7,7 @@
       </template>
     </div>
     <div style="z-index:2017;position:relative">
-      <photoswiper :list="list" :options="options" v-ref:photoswiper></photoswiper>
+      <photoswiper :list="list" :options="options" :begin="_photoBegin" :end="_photoEnd" v-ref:photoswiper></photoswiper>
     </div>
   </div>
 </template>
@@ -38,6 +38,12 @@ export default {
   },
   methods: {
     ...mapActions([]),
+    _photoBegin(){
+      document.querySelector('.workbookStuSelectHeader').setAttribute('style','z-index:-1')
+    },
+    _photoEnd(){
+      document.querySelector('.workbookStuSelectHeader').setAttribute('style','z-index:100')
+    },
     show(index){
       //打开图集
       setTimeout(()=>{

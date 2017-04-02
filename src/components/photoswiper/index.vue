@@ -64,9 +64,13 @@ export default {
         index: index
       }, this.options)
       this.photoswipe = new PhotoSwipe(this.$el, UI, this.list, options)
-      setTimeout(()=>{
-        this.photoswipe.init()
-      },100)
+      this.photoswipe.init()
+      this.photoswipe.listen('close', () => { 
+          this.end()
+      });
+      this.photoswipe.listen('initialZoomIn', () => { 
+          this.begin()
+      });
     },
     show (index) {
       this.init(index)
@@ -95,6 +99,12 @@ export default {
       default () {
         return {}
       }
+    },
+    begin:{
+      type:Function
+    },
+    end:{
+      type:Function
     }
   },
   ready(){
