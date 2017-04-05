@@ -1,6 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import * as _ from './whole'
+import 'es6-promise/auto'
 
 axios.defaults.timeout = 8000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
