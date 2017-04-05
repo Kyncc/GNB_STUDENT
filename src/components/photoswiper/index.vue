@@ -67,10 +67,10 @@ export default {
       this.photoswipe.init()
       this.photoswipe.listen('close', () => { 
           this.end()
-      });
+      })
       this.photoswipe.listen('initialZoomIn', () => { 
           this.begin()
-      });
+      })
     },
     show (index) {
       this.init(index)
@@ -101,14 +101,17 @@ export default {
       }
     },
     begin:{
-      type:Function
+      type:Function,
+      default () {
+        return () => {}
+      }
     },
     end:{
-      type:Function
+      type:Function,
+      default () {
+        return () => {}
+      }
     }
-  },
-  ready(){
-  
   }
 }
 </script>

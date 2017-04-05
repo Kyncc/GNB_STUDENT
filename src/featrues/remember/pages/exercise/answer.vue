@@ -11,6 +11,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { XHeader} from 'vux'
 import {photoswiper} from 'components'
