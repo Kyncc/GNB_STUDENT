@@ -1,14 +1,5 @@
 .DS_Store
-.idea
-.vscode/
 node_modules/
-#dist/static/
-dist/unpackage/release/
-#dist/index.html
-dist/.project
+dist/
 npm-debug.log
-selenium-debug.log
-test/unit/coverage
-test/e2e/reports
-dist/unpackage/.confirmed_dependencies
-
+yarn-error.log

@@ -1,0 +1,610 @@
+/** 作业帮样式*/
+
+.fS4 {
+  font-family: MathJax_Size4;
+  font-weight: 400;
+  font-style: normal
+}
+
+.exerciseDetail .content {
+  font-size: 16px
+}
+
+.exerciseDetail .content .card {
+  padding: 13px 20px;
+  background: #FFF;
+  border: solid 1px #dadada;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #666;
+  line-height: 32px
+}
+
+.exerciseDetail .content .card>dt {
+  height: 38px;
+  margin: -20px -20px 0;
+  padding: 8px 20px 0;
+  font-size: 16px;
+  line-height: 38px;
+  color: #45B7FF
+}
+
+.exerciseDetail .content .card>dd {
+  border-bottom: 1px dashed #e7e7e7;
+  padding: 1px 0;
+  position: relative
+}
+
+.exerciseDetail .content .card>dd:first-child {
+  padding-top: 0
+}
+
+.exerciseDetail .content .card>dd:last-child {
+  border: 0;
+  padding-bottom: 0
+}
+
+.exerciseDetail .content .card>dd .trace {
+  *zoom: 1
+}
+
+.exerciseDetail .content .card>dd .trace:after {
+  content: '\0020';
+  display: block;
+  height: 0;
+  font-size: 0;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden
+}
+
+.exerciseDetail .content .card>dd .trace.refer-ques {
+  padding-bottom: 10px
+}
+
+.exerciseDetail .content .card>dd .trace.refer-ques dt {
+  color: #45B7FF
+}
+
+.exerciseDetail .content .card>dd .trace.refer-answer {
+  padding: 10px 0
+}
+
+.exerciseDetail .content .card>dd .trace.refer-answer dt {
+  color: #0FDB84
+}
+
+.exerciseDetail .content .card.question {
+  font-size: 18px;
+  color: #333;
+  border-top: 0
+}
+
+.exerciseDetail .content .card.question>dd {
+  border: 0
+}
+
+.exerciseDetail .content .card.question>dd img {
+  display: inline-block;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  max-width: 100%
+}
+
+.exerciseDetail .content .card.refer {
+  padding: 0 10px;
+  margin: 0 auto 4px;
+  width: 90%;
+  border-radius: 3px
+}
+
+.exerciseDetail .content .card.refer>div {
+  height: 36px;
+  line-height: 40px;
+  width: 100.3%;
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 10px;
+  font-size: 14px;
+  background: #f8f8f8;
+  margin-left: -10px;
+  padding-left: 10px;
+  padding-right: 9px;
+  border-radius: 3px 3px 0 0;
+  font-weight: 700
+}
+
+.exerciseDetail .special-style {
+  word-wrap: break-word;
+  line-height: 2
+}
+
+.exerciseDetail .special-style .math {
+  display: inline;
+  text-align: left;
+  word-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  float: none;
+  direction: ltr;
+  margin: 0 .2em
+}
+
+.exerciseDetail .special-style .math nobr {
+  text-decoration: none
+}
+
+.exerciseDetail .special-style .math nobr>.pS {
+  padding: .2em 0
+}
+
+.exerciseDetail .special-style .math span {
+  display: inline;
+  position: static;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  vertical-align: 0;
+  line-height: normal;
+  text-decoration: none
+}
+
+.exerciseDetail .special-style img {
+  max-width: 100%;
+  vertical-align: middle
+}
+
+.exerciseDetail .special-style table {
+  border-spacing: 0
+}
+
+.exerciseDetail .special-style table.tB {
+  border-top: solid 1px #999;
+  border-left: solid 1px #999;
+  border-radius: 4px
+}
+
+.exerciseDetail .special-style table.tB>tbody>tr:first-child>td {
+  border-top: 0
+}
+
+.exerciseDetail .special-style table.tB>tbody>tr:first-child>td:first-child {
+  border-top-left-radius: 4px
+}
+
+.exerciseDetail .special-style table.tB>tbody>tr:first-child>td:last-child {
+  border-top-right-radius: 4px
+}
+
+.exerciseDetail .special-style table.tB>tbody>tr:last-child>td:first-child {
+  border-bottom-left-radius: 4px
+}
+
+.exerciseDetail .special-style table.tB>tbody>tr:last-child>td:last-child {
+  border-bottom-right-radius: 4px
+}
+
+.exerciseDetail .special-style table.tB>tbody>tr:nth-child(odd) {
+  background: #F5F5F5
+}
+
+.exerciseDetail .special-style table.tB>tbody>tr>td {
+  border-right: solid 1px #999;
+  border-bottom: solid 1px #999;
+  padding: 0 4px;
+  text-align: center
+}
+
+.exerciseDetail .special-style span.special-symbol {
+  font-family: arial, tahoma, '\5b8b\4f53', sans-serif;
+  line-height: 1
+}
+
+.exerciseDetail .special-style span.dI {
+  display: inline-block
+}
+
+.exerciseDetail .special-style span.pA {
+  position: absolute
+}
+
+.exerciseDetail .special-style span.pR {
+  position: relative
+}
+
+.exerciseDetail .special-style span.pS {
+  position: static
+}
+
+.exerciseDetail .special-style span.oH {
+  overflow: hidden
+}
+
+@font-face {
+  font-family: MathJax_Main;
+  src: url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathMain_6962a4f.woff') format('woff'), url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathMain_752d0f2.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal
+}
+
+.fM {
+  font-family: MathJax_Main;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: MathJax_Math;
+  src: url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathItalic_6720343.woff') format('woff'), url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathItalic_cbe55fc.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic
+}
+
+.fI {
+  font-family: MathJax_Math;
+  font-weight: 400;
+  font-style: italic
+}
+
+@font-face {
+  font-family: MathJax_AMS;
+  src: url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathAMS_a750404.woff') format('woff'), url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathAMS_c9db082.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal
+}
+
+.fAMS {
+  font-family: MathJax_AMS;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: MathJax_Size1;
+  src: url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathS1_fb2b025.woff') format('woff'), url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathS1_d6a9636.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal
+}
+
+.fS1 {
+  font-family: MathJax_Size1;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: MathJax_Size2;
+  src: url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathS2_0c7cfdd.woff') format('woff'), url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathS2_3faa164.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal
+}
+
+.fS2 {
+  font-family: MathJax_Size2;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: MathJax_Size3;
+  src: url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathS3_0d153bd.woff') format('woff'), url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathS3_7d70c42.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal
+}
+
+.fS3 {
+  font-family: MathJax_Size3;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: MathJax_Size4;
+  src: url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathS4_e5f1845.woff') format('woff'), url('https://ws-s.zuoyebang.cc/static/question/base/resource/mathS4_87256da.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: zuoyeFont_mathFont;
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathFont_45cb6c2.eot?#iefix);
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathFont_45cb6c2.eot?#iefix) format('embedded-opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathFont_84f42a9.woff2) format('woff2'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathFont_b78f80a.woff) format('woff'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathFont_f30c886.ttf) format('truetype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathFont_7554296.otf) format('opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathFont_606a261.svg) format('svg');
+  font-weight: 400;
+  font-style: normal
+}
+
+.mathFont {
+  font-family: zuoyeFont_mathFont;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: MathJax_Main;
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathMain_69e4e13.eot?#iefix);
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathMain_69e4e13.eot?#iefix) format('embedded-opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathMain_54c07c0.woff2) format('woff2'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathMain_6962a4f.woff) format('woff'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathMain_752d0f2.ttf) format('truetype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathMain_1391373.otf) format('opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathMain_c7db9c2.svg) format('svg');
+  font-weight: 400;
+  font-style: normal
+}
+
+.fM {
+  font-family: MathJax_Main;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: MathJax_Math;
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathItalic_2b773b3.eot?#iefix);
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathItalic_2b773b3.eot?#iefix) format('embedded-opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathItalic_fe2a21e.woff2) format('woff2'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathItalic_6720343.woff) format('woff'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathItalic_cbe55fc.ttf) format('truetype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathItalic_33d77b6.otf) format('opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathItalic_32ccf34.svg) format('svg');
+  font-weight: 400;
+  font-style: italic
+}
+
+.fI {
+  font-family: MathJax_Math;
+  font-weight: 400;
+  font-style: italic
+}
+
+@font-face {
+  font-family: MathJax_AMS;
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathAMS_3f79e2c.eot?#iefix);
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathAMS_3f79e2c.eot?#iefix) format('embedded-opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathAMS_febdc8e.woff2) format('woff2'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathAMS_a750404.woff) format('woff'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathAMS_c9db082.ttf) format('truetype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathAMS_17eb77f.otf) format('opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathAMS_912acf4.svg) format('svg');
+  font-weight: 400;
+  font-style: normal
+}
+
+.fAMS {
+  font-family: MathJax_AMS;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: MathJax_Size1;
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS1_c1763df.eot?#iefix);
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS1_c1763df.eot?#iefix) format('embedded-opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS1_8c10dc8.woff2) format('woff2'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS1_fb2b025.woff) format('woff'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS1_d6a9636.ttf) format('truetype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS1_0e13fb2.otf) format('opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS1_0405182.svg) format('svg');
+  font-weight: 400;
+  font-style: normal
+}
+
+.fS1 {
+  font-family: MathJax_Size1;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: MathJax_Size2;
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS2_4d86bc6.eot?#iefix);
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS2_4d86bc6.eot?#iefix) format('embedded-opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS2_cbba513.woff2) format('woff2'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS2_0c7cfdd.woff) format('woff'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS2_3faa164.ttf) format('truetype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS2_33e98ba.otf) format('opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS2_0989615.svg) format('svg');
+  font-weight: 400;
+  font-style: normal
+}
+
+.fS2 {
+  font-family: MathJax_Size2;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: MathJax_Size3;
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS3_57c3fd1.eot?#iefix);
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS3_57c3fd1.eot?#iefix) format('embedded-opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS3_25fb9f7.woff2) format('woff2'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS3_0d153bd.woff) format('woff'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS3_7d70c42.ttf) format('truetype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS3_c02b8b6.otf) format('opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS3_65ac53f.svg) format('svg');
+  font-weight: 400;
+  font-style: normal
+}
+
+.fS3 {
+  font-family: MathJax_Size3;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: MathJax_Size4;
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS4_8813f2a.eot?#iefix);
+  src: url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS4_8813f2a.eot?#iefix) format('embedded-opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS4_d2a5547.woff2) format('woff2'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS4_e5f1845.woff) format('woff'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS4_87256da.ttf) format('truetype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS4_97657c0.otf) format('opentype'), url(https://ws-s.zuoyebang.cc/static/question/base/resource/mathS4_9924f24.svg) format('svg');
+  font-weight: 400;
+  font-style: normal
+}
+
+.fS4 {
+  font-family: MathJax_Size4;
+  font-weight: 400;
+  font-style: normal
+}
+
+.math {
+  display: inline;
+  text-align: left;
+  word-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  float: none;
+  direction: ltr;
+  margin: 0 .2em
+}
+
+.math nobr {
+  text-decoration: none
+}
+
+.math nobr>.pS {
+  padding: .2em 0
+}
+
+.math span {
+  display: inline;
+  position: static;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  vertical-align: 0;
+  line-height: normal;
+  text-decoration: none
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle
+}
+
+table {
+  border-spacing: 0
+}
+
+table.tB {
+  border-top: solid 1px #999;
+  border-left: solid 1px #999;
+  border-radius: 4px
+}
+
+table.tB>tbody>tr:first-child>td {
+  border-top: 0
+}
+
+table.tB>tbody>tr:first-child>td:first-child {
+  border-top-left-radius: 4px
+}
+
+table.tB>tbody>tr:first-child>td:last-child {
+  border-top-right-radius: 4px
+}
+
+table.tB>tbody>tr:last-child>td:first-child {
+  border-bottom-left-radius: 4px
+}
+
+table.tB>tbody>tr:last-child>td:last-child {
+  border-bottom-right-radius: 4px
+}
+
+table.tB>tbody>tr:nth-child(odd) {
+  background: #F5F5F5
+}
+
+table.tB>tbody>tr>td {
+  border-right: solid 1px #999;
+  border-bottom: solid 1px #999;
+  padding: 0 4px;
+  text-align: center
+}
+
+span.special-symbol {
+  font-family: arial, tahoma, '\5b8b\4f53', sans-serif;
+  line-height: 1
+}
+
+span.dI {
+  display: inline-block
+}
+
+span.pA {
+  position: absolute
+}
+
+span.pR {
+  position: relative
+}
+
+span.pS {
+  position: static
+}
+
+span.oH {
+  overflow: hidden
+}
+
+.MathZyb {
+  letter-spacing: 1px;
+  white-space: nowrap;
+  word-spacing: normal;
+  word-wrap: normal;
+  display: inline-block
+}
+
+.MathZyb div,
+.MathZyb span {
+  height: auto;
+  white-space: normal
+}
+
+.MathZyb table {
+  border-collapse: collapse;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle
+}
+
+.MathZyb table td {
+  line-height: normal;
+  white-space: nowrap;
+  border: 0 none;
+  width: auto;
+  padding: 0
+}
+
+.MathZybm {
+  font-style: italic
+}
+
+.edittable {
+  text-align: center;
+  margin: 2px;
+  border-collapse: collapse;
+  width: 100%
+}
+
+.composition {
+  border-collapse: collapse;
+  text-align: left;
+  margin: 2px;
+  width: 100%
+}
+
+.flipv {
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1)
+}
+
+.zyb_option * {
+  vertical-align: middle
+}
+
+.zyb_option .zyb_option_titie {
+  display: inline-block;
+  margin-right: 1em
+}
+
+bdo.mathjye-aligncenter {
+  display: block;
+  text-align: center
+}
+
+bdo.mathjye-alignright {
+  display: block;
+  text-align: right
+}
+
+bdo.mathjye-alignleft {
+  display: block;
+  text-align: left
+}
+
+bdo.mathjye-underline {
+  padding-bottom: 2px;
+  border-bottom: 1px solid #000
+}
+
+bdo.mathjye-underpoint {
+  padding-bottom: 4px;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAQAAADYv8WvAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfgDBoKGQ5R6+oRAAAAEklEQVQI12NkOMzAwMTAwMAAAAY2AMdDQGOJAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE2LTEyLTI2VDEwOjI1OjE3KzA4OjAwcQVE1wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNi0xMi0yNlQxMDoyNToxNCswODowMDGw5vYAAAAASUVORK5CYII=") no-repeat center bottom
+}
+
+bdo.mathjye-underpoint2 {
+  padding-bottom: 3px;
+  border-bottom: 2px dotted #000
+}

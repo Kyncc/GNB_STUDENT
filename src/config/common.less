@@ -1,0 +1,45 @@
+@import '../libs/font/iconfont.css';
+
+html,body{
+  -webkit-touch-callout: none;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background:#F3F9F8;
+}
+#app{
+  height:100%;
+}
+
+.iconfont{
+  font-size:22px;
+  position: relative;
+  top:2px;
+  margin-right:5px;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+/**
+*   Vux-XHeader
+*/
+.vux-header .vux-header-left, .vux-header .vux-header-right{
+  font-size:16px !important;
+  margin-top: -1px;
+}
+.vux-header .vux-header-left .left-arrow:before{
+  border-width: 2px 0 0 2px !important;
+}
+
+// 修改按钮默认颜色
+.weui-btn_disabled {
+  &.weui-btn_primary {
+    background-color: #ccc !important;
+  }
+}
