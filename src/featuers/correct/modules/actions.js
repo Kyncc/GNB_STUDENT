@@ -8,7 +8,7 @@ export const postCorrect = ({ rootState, commit }, params) => {
       method: 'post',
       url: 'correct',
       data: {
-        token: rootState.login.token,
+        token: rootState.common.user.token,
         id: rootState.route.params.id,
         content: params.content,
         type: params.type

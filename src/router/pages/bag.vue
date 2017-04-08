@@ -8,8 +8,8 @@
       <cell title="我的收藏本" link="collect">
         <i class="icon iconfont icon-box" style="color:#6DC6FF" slot="icon"></i>
       </cell>
-      <cell title="我的班级" link="workbook">
-        <i class="icon iconfont icon-workbook" style="color:#ABC97C"  slot="icon"></i>
+      <cell title="我的班级" link="class">
+        <i class="icon iconfont icon-workbook" style="color:#ABC97C" slot="icon"></i>
       </cell>
     </group>
   </div>

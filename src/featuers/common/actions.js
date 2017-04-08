@@ -10,7 +10,7 @@ export const getUserInfo = ({ rootState, commit }) => {
       method: 'get',
       url: 'user/getUserInfo',
       params: {
-        token: rootState.login.token
+        token: rootState.common.user.token
       }
     })
     .then((response) => {
@@ -32,7 +32,7 @@ export const setUserInfo = ({ rootState, commit }, params) => {
       url: 'user/updateUserInfo',
       data: {
         ...params,
-        token: rootState.login.token
+        token: rootState.common.user.token
       }
     })
     .then((response) => {

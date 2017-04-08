@@ -11,7 +11,7 @@ export const getExample = ({ rootState, commit }) => {
       params: {
         ids: [rootState.route.params.id],
         subject_id: rootState.route.params.subjectId,
-        token: rootState.login.token
+        token: rootState.common.user.token
       }
     })
     .then((response) => {
@@ -32,7 +32,7 @@ export const collectRemove = ({ rootState, commit, dispatch }) => {
           id: rootState.route.params.id,
           subject_id: rootState.route.params.subjectId
         },
-        token: rootState.login.token,
+        token: rootState.common.user.token,
         type: 'example'
       }
     })
@@ -56,7 +56,7 @@ export const collectAdd = ({ rootState, commit, dispatch }) => {
           id: rootState.route.params.id,
           subject_id: rootState.route.params.subjectId
         },
-        token: rootState.login.token,
+        token: rootState.common.user.token,
         type: 'example'
       }
     })

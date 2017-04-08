@@ -4,49 +4,45 @@
     <template v-if="ClassMyClassmate">
       <group title="我的老师">
         <cell v-if="ClassMyClassmate.teacher" :title="ClassMyClassmate.teacher.name">
-          <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%;background:#ddd" v-lazy="ClassMyClassmate.teacher.headImg">
+          <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%;background:#ddd" :src="ClassMyClassmate.teacher.headImg">
         </cell>
       </group>
       <group title="我的同学">
         <template v-for="student in ClassMyClassmate.students">
           <cell :title="student.name">
-            <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%;background:#ddd" v-lazy="student.headImg">
+            <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%;background:#ddd" :src="student.headImg">
           </cell>
         </template>
       </group>
     </template>
-     <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading" spinner="default">
-      <div slot="no-results" >
-        <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-        <p style="font-size:1rem;display:inline-block;">还未同学~</p>
-      </div>
+     <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="default">
+      <div slot="no-results"></div>
       <div slot="no-more"></div>
+      <div slot="spinner">
+        <spinner type="bubbles" slot="value"></spinner>
+      </div>
     </infinite-loading>
   </view-box>
 </template>
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
-import {XHeader, Cell, Group, ViewBox} from 'vux'
+import {XHeader, Cell, Group, ViewBox, XImg, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   components: {
-    XHeader, Cell, Group, ViewBox, InfiniteLoading
+    XHeader, Cell, Group, ViewBox, InfiniteLoading, XImg, Spinner
   },
-  // route: {
-  //   data:function(transition){
-  //     this.$nextTick(() => {
-  //       this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
-  //     });
-  //   }
-  // },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+    })
+  },
   methods: {
     ...mapActions(['getMyClassmateList']),
     _onInfinite () {
-      this.getMyClassmateList({
-        'classCode': this.id
-      })
+      this.getMyClassmateList()
       .then(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')

@@ -9,7 +9,7 @@ export const updateAdvice = ({rootState, commit}, params) => {
       method: 'post',
       url: 'user/advice',
       data: {
-        token: rootState.login.token,
+        token: rootState.common.user.token,
         ...params
       }
     })
@@ -22,12 +22,13 @@ export const updateAdvice = ({rootState, commit}, params) => {
 
 /** 反馈列表 */
 export const adviceHistory = ({rootState, commit}) => {
+  commit(types.ADVICE_LIST_CLEAR)
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'user/adviceHistory',
       params: {
-        token: rootState.login.token
+        token: rootState.common.user.token
       }
     })
     .then((response) => {

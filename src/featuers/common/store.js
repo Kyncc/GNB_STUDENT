@@ -13,7 +13,8 @@ const state = {
     subjectType: [],
     textbook: [],
     subject: [],
-    version: ''
+    version: '',
+    token: 'a2015acf8d8fcb01ef08ced2e0ffd583'
   }
 }
 

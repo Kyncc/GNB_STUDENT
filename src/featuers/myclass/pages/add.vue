@@ -9,7 +9,7 @@
         </cell>
       </template>
     </group>
-        <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading" spinner="default">
+    <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading" spinner="default">
       <div slot="no-results" >
         <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
         <p style="font-size:1rem;display:inline-block;">没有查询到班级~</p>

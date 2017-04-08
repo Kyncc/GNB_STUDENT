@@ -23,7 +23,7 @@ axios.interceptors.request.use((config) => {
 
 // code状态码200判断
 axios.interceptors.response.use((res) => {
-  if (res.data.code !== '200') {
+  if (res.data.code !== 200) {
     Vue.$vux.toast.show({text: res.data.msg, type: 'text', time: 1000, position: 'bottom'})
     return Promise.reject(res)
   }

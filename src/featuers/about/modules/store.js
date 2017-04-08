@@ -9,6 +9,9 @@ const state = {
 const mutations = {
   [types.ADVICE_LIST] (state, data) {
     state.adviceList = data
+  },
+  [types.ADVICE_LIST_CLEAR] (state) {
+    state.adviceList = []
   }
 }
 

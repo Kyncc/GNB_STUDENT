@@ -8,7 +8,7 @@ export const getMessageClass = ({ rootState, commit }, params) => {
       method: 'get',
       url: 'message/class',
       params: {
-        token: rootState.login.token
+        token: rootState.common.user.token
       }
     })
     .then((response) => {
@@ -25,7 +25,7 @@ export const getMessageSystem = ({ rootState, commit }, params) => {
       method: 'get',
       url: 'message/system',
       params: {
-        token: rootState.login.token
+        token: rootState.common.user.token
       }
     })
     .then((response) => {
@@ -42,7 +42,7 @@ export const getMessageCorrect = ({ rootState, commit }, params) => {
       method: 'get',
       url: 'message/correct',
       params: {
-        token: rootState.login.token
+        token: rootState.common.user.token
       }
     })
     .then((response) => {

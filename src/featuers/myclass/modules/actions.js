@@ -9,7 +9,7 @@ export const getMyClass = ({ rootState, commit }, params) => {
       method: 'get',
       url: 'class/myClassList',
       params: {
-        token: rootState.login.token
+        token: rootState.common.user.token
       }
     })
     .then((response) => {
@@ -28,7 +28,7 @@ export const getMyClassmateList = ({ rootState, commit }, params) => {
       url: 'class/myClassmateList',
       params: {
         classCode: rootState.route.params.code,
-        token: rootState.login.token
+        token: rootState.common.user.token
       }
     })
     .then((response) => {
@@ -46,7 +46,7 @@ export const getMyClassSearchClass = ({ rootState, commit }, params) => {
       url: 'class/bindClass',
       params: {
         classCode: params.classCode,
-        token: rootState.login.token
+        token: rootState.common.user.token
       }
     })
     .then((response) => {
@@ -64,7 +64,7 @@ export const postMyClassInto = ({ rootState, commit }, params) => {
       url: 'class/intoClass',
       data: {
         classCode: params.classCode,
-        token: rootState.login.token
+        token: rootState.common.user.token
       }
     })
     .then((response) => {

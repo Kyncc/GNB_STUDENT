@@ -9,7 +9,7 @@ export const getWorkbookStu = ({state, rootState, commit}, params) => {
       method: 'get',
       url: 'workbook',
       params: {
-        'token': rootState.login.token,
+        'token': rootState.common.user.token,
         'subjectId': state.subjectId,
         'textbookId': state.textbookId
       }
@@ -39,7 +39,7 @@ export const getWorkbookStuChapter = ({state, rootState, commit}) => {
       method: 'get',
       url: 'remember/chapter',
       params: {
-        'token': rootState.login.token,
+        'token': rootState.common.user.token,
         'workbookId': rootState.route.params.workbookId
       }
     })
@@ -60,7 +60,7 @@ export const WorkbookExercisePost = ({state, rootState, commit}, params) => {
       data: {
         'answer': params.answer,
         'answerId': params.answerId,
-        'token': rootState.login.token,
+        'token': rootState.common.user.token,
         'chapterId': rootState.route.params.chapterId
       }
     })
@@ -95,7 +95,7 @@ export const getWorkbookStuExercise = ({state, rootState, commit}, id) => {
       method: 'get',
       url: 'remember/exercises',
       params: {
-        'token': rootState.login.token,
+        'token': rootState.common.user.token,
         'chapterId': rootState.route.params.chapterId || id
       }
     })
@@ -149,7 +149,7 @@ export const workbookStuUpload = ({state, rootState, commit}) => {
       method: 'post',
       url: 'remember/uploadHomeWork/',
       data: {
-        'token': rootState.login.token,
+        'token': rootState.common.user.token,
         'cameraList': state.uploader.list,
         'chapterId': rootState.route.params.chapterId
       }
