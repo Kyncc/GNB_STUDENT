@@ -25,6 +25,7 @@ import {XHeader, XButton, Cell, Group, Search, ViewBox} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
+  name: 'add',
   components: {
     XHeader, XButton, Cell, Group, Search, ViewBox, InfiniteLoading
   },

@@ -22,13 +22,13 @@
 </template>
 
 <script>
-import {XHeader, Cell, Group, Scroller, ViewBox, Flexbox, FlexboxItem} from 'vux'
+import {XHeader, Cell, Group, ViewBox, Flexbox, FlexboxItem} from 'vux'
 import {mapGetters} from 'vuex'
 
 export default {
   name: 'index',
   components: {
-    XHeader, Cell, Group, Scroller, ViewBox, Flexbox, FlexboxItem
+    XHeader, Cell, Group, ViewBox, Flexbox, FlexboxItem
   },
   computed: {
     ...mapGetters(['System'])

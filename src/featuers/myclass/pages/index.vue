@@ -34,6 +34,7 @@ import {XHeader, Cell, Group, ViewBox, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
+  name: 'index',
   components: {
     XHeader, Cell, Group, ViewBox, InfiniteLoading, Spinner
   },

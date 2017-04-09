@@ -9,6 +9,10 @@ import './index.less'
 import modules from '../modules/store'
 import store from '@/store'
 
+export default {
+  name: 'class'
+}
+
 store.registerModule('class', {
   ...modules
 })

@@ -16,7 +16,7 @@
 
 <script>
 import {XHeader, ViewBox, XButton} from 'vux'
-import './index.less'
+
 export default {
   name: 'index',
   components: {

@@ -25,6 +25,7 @@
 <script>
 import {Tabbar, TabbarItem, ViewBox} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
+import './index.less'
 
 export default {
   name: 'router',
@@ -68,5 +69,10 @@ export default {
 <style lang="less" scoped>
 .homepage{
    .weui_tabbar_label{font-size:14px;margin-top:2px;}
+   .weui-tabbar__icon .iconfont{
+    position: relative;
+    left: 1px;
+    top: -2px;
+   }
 }
 </style>

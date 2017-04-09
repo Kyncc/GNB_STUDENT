@@ -6,6 +6,7 @@ import login from './featuers/login/router'
 import about from './featuers/about/router'
 import settings from './featuers/settings/router'
 import collect from './featuers/collect/router'
+import report from './featuers/report/router'
 import myclass from './featuers/myclass/router'
 import index from './router/router'
 
@@ -17,6 +18,7 @@ let router = new Router({
     index,
     about,
     collect,
+    report,
     myclass,
     settings
   ]

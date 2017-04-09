@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import {XHeader, Cell, Group, Scroller, ViewBox} from 'vux'
+import {XHeader, Cell, Group, ViewBox} from 'vux'
 
 export default {
   name: 'bag',
   components: {
-    XHeader, Cell, Group, Scroller, ViewBox
+    XHeader, Cell, Group, ViewBox
   }
 }
 </script>

@@ -31,6 +31,7 @@ import {XHeader, Cell, Group, ViewBox, XImg, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
+  name: 'classmate',
   components: {
     XHeader, Cell, Group, ViewBox, InfiniteLoading, XImg, Spinner
   },

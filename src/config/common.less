@@ -33,10 +33,20 @@ html,body{
   font-size:16px !important;
   margin-top: -1px;
 }
+.vux-header .vux-header-left .vux-header-back{
+  position: relative;
+  top: -1px;
+}
 .vux-header .vux-header-left .left-arrow:before{
   border-width: 2px 0 0 2px !important;
 }
-
+/**
+*   weui-cell
+*/
+[class^="weui-icon-"]:before, [class*=" weui-icon-"]:before{
+  position: relative;
+  top: -2px;
+}
 // 修改按钮默认颜色
 .weui-btn_disabled {
   &.weui-btn_primary {
