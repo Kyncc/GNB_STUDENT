@@ -7,7 +7,7 @@
       </router-link>
     </div>
     <div>
-      <router-link :to="{ path: 'remember'}">
+      <router-link :to="{ path: 'workbook'}">
         <x-button type='primary' mini class="rememberBtn">查答案</x-button>
       </router-link>
     </div>

@@ -20,21 +20,26 @@
       <cell title="关于归纳本" link="about">
         <i class="icon iconfont icon-info" style="color:#6DC6FF" slot="icon"></i>
       </cell>
-      <cell title="消息通知" link="workbook">
+       <cell title="消息通知" link="workbook">
         <i class="icon iconfont icon-comment" style="color:#ABC97C"  slot="icon"></i>
+      </cell>
+      <cell title="版本更新">
+        <i class="icon iconfont icon-upload" style="color:#ABC97C"  slot="icon"></i>
+        <badge text="新版本"></badge>
       </cell>
     </group>
     <actionsheet v-model="show" :menus="menus" @on-click-menu="_menusClick" show-cancel></actionsheet>
   </div>
 </template>
 
+
 <script>
-import {XHeader, Cell, Group, ViewBox, Actionsheet} from 'vux'
+import {XHeader, Cell, Group, ViewBox, Actionsheet, Badge} from 'vux'
 
 export default {
   name: 'user',
   components: {
-    XHeader, Cell, Group, ViewBox, Actionsheet
+    XHeader, Cell, Group, ViewBox, Actionsheet, Badge
   },
   data () {
     return {
