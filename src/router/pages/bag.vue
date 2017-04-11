@@ -9,7 +9,7 @@
         <i class="icon iconfont icon-box" style="color:#6DC6FF" slot="icon"></i>
       </cell>
       <cell title="我的班级" link="class">
-        <i class="icon iconfont icon-workbook" style="color:#ABC97C" slot="icon"></i>
+        <i class="icon iconfont icon-hat" style="color:#ABC97C" slot="icon"></i>
       </cell>
     </group>
   </div>

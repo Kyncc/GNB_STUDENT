@@ -8,6 +8,7 @@ import settings from './featuers/settings/router'
 import collect from './featuers/collect/router'
 import workbook from './featuers/workbook/router'
 import report from './featuers/report/router'
+import message from './featuers/message/router'
 import myclass from './featuers/myclass/router'
 import index from './router/router'
 
@@ -19,6 +20,7 @@ let router = new Router({
     index,
     about,
     ...workbook,
+    message,
     collect,
     report,
     myclass,

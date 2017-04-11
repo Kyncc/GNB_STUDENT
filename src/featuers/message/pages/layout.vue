@@ -6,9 +6,12 @@
 
 <script>
 import modules from '../modules/store'
-import store from 'src/store'
-
+import store from '@/store'
 store.registerModule('message', {
   ...modules
 })
+
+export default {
+  name: 'message'
+}
 </script>

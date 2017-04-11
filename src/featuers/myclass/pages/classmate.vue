@@ -35,10 +35,8 @@ export default {
   components: {
     XHeader, Cell, Group, ViewBox, InfiniteLoading, XImg, Spinner
   },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
-    })
+  activated () {
+    this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
   },
   methods: {
     ...mapActions(['getMyClassmateList']),

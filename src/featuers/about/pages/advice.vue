@@ -2,7 +2,7 @@
   <view-box ref="about_advice" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '意见反馈'}">
       <router-link :to="{ path: 'adviceHistory'}" slot="right">
-        <p >反馈历史</p>
+        <p>反馈历史</p>
       </router-link>
     </x-header>
     <group gutter="0">
@@ -21,6 +21,7 @@ import {XHeader, XInput, Group, XTextarea, XButton, ViewBox} from 'vux'
 import {mapActions} from 'vuex'
 
 export default {
+  name: 'advice',
   components: {
     XHeader, XInput, Group, XTextarea, XButton, ViewBox
   },

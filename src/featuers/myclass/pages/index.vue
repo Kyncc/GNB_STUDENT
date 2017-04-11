@@ -15,7 +15,7 @@
         <cell :title="item.name" :link="'class/detail/'+item.classCode"></cell>
       </template>
     </group>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="default">
+    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
       <div slot="no-results">
         <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
         <p style="font-size:1rem;display:inline-block;">点我加入班级~</p>
@@ -38,16 +38,13 @@ export default {
   components: {
     XHeader, Cell, Group, ViewBox, InfiniteLoading, Spinner
   },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
-    })
+  activated () {
+    this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
   },
   methods: {
     ...mapActions(['getMyClass']),
     _onInfinite () {
-      this.getMyClass()
-      .then(() => {
+      this.getMyClass().then(() => {
         if (this.ClassMy.length !== 0) this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       })

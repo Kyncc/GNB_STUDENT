@@ -20,7 +20,7 @@
       <cell title="关于归纳本" link="about">
         <i class="icon iconfont icon-info" style="color:#6DC6FF" slot="icon"></i>
       </cell>
-       <cell title="消息通知" link="workbook">
+      <cell title="消息通知" link="message">
         <i class="icon iconfont icon-comment" style="color:#ABC97C"  slot="icon"></i>
       </cell>
       <cell title="版本更新">

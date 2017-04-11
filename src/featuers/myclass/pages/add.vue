@@ -45,8 +45,7 @@ export default {
     _addClass (code) {
       this.postMyClassInto({
         classCode: code
-      })
-      .then(() => {
+      }).then(() => {
         this.$vux.toast.show({text: '申请成功', type: 'text', time: 1000})
         history.back()
       })
@@ -54,8 +53,7 @@ export default {
     _onInfinite () {
       this.getMyClassSearchClass({
         'classCode': this.searchCode
-      })
-      .then(() => {
+      }).then(() => {
         if (this.ClassSearch.length !== 0) this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       })

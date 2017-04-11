@@ -11,6 +11,10 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/add')), '/class/add')
     },
     {
+      path: 'message',
+      redirect: '/message/class'
+    },
+    {
       path: 'detail/:code',
       component: r => require.ensure([], () => r(require('./pages/classmate')), '/class/detail')
     }

@@ -5,14 +5,14 @@
 </template>
 
 <script>
-export default {
-  name: 'about'
-}
-
 import store from '@/store'
 import modules from '../modules/store'
 
 store.registerModule('about', {
   ...modules
 })
+
+export default {
+  name: 'about'
+}
 </script>
