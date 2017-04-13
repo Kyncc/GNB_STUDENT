@@ -5,10 +5,12 @@ export default {
   children: [
     {
       path: 'physics',
+      name: 'physics',
       component: r => require.ensure([], () => r(require('./pages/physics')), '/collect/physics')
     },
     {
       path: 'math',
+      name: 'math',
       component: r => require.ensure([], () => r(require('./pages/math')), '/collect/math')
     }
   ]

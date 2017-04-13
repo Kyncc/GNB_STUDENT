@@ -13,7 +13,7 @@
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
           <p style="font-size:1rem;display:inline-block;">暂无通知~</p>
         </div>
-        <div slot="no-more" ></div>
+        <div slot="no-more"></div>
       </infinite-loading>
     </div>
   </view-box>

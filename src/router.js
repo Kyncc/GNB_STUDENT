@@ -2,15 +2,17 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { sync } from 'vuex-router-sync'
 import store from './store'
+import index from './router/router'
 import login from './featuers/login/router'
 import about from './featuers/about/router'
-import settings from './featuers/settings/router'
 import collect from './featuers/collect/router'
-import workbook from './featuers/workbook/router'
-import report from './featuers/report/router'
+import correct from './featuers/correct/router'
+import example from './featuers/example/router'
 import message from './featuers/message/router'
 import myclass from './featuers/myclass/router'
-import index from './router/router'
+import report from './featuers/report/router'
+import settings from './featuers/settings/router'
+import workbook from './featuers/workbook/router'
 
 Vue.use(Router)
 let router = new Router({
@@ -19,6 +21,8 @@ let router = new Router({
     login,
     index,
     about,
+    example,
+    correct,
     ...workbook,
     message,
     collect,

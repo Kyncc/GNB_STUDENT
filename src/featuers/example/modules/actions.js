@@ -73,6 +73,3 @@ export const collectAdd = ({ rootState, commit, dispatch }) => {
 export const exampleClear = ({ commit }) => {
   commit(types.EXAMPLE_CLEAR)
 }
-
-
-
