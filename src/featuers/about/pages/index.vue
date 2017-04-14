@@ -10,7 +10,7 @@
       <cell title="意见反馈" link="about/advice"></cell>
       <cell title="给小纳好评" @click.native="_openStore" is-link></cell>
     </group>
-    <group >
+    <group>
       <cell title="关于我们" link="report"></cell>
       <cell title="加入群聊" link="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode"></cell>
     </group>

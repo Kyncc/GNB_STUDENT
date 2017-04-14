@@ -2,8 +2,8 @@
   <div class="mainIndex">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{showBack: false}">归纳本</x-header>
     <div>
-      <router-link :to="{ path: 'brush'}">
-        <p class="brush" ></p>
+      <router-link :to="{ path: 'induce'}">
+        <p class="induce"></p>
       </router-link>
     </div>
     <div>

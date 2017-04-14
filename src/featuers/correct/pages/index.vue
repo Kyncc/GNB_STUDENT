@@ -21,7 +21,6 @@
     <group title="纠错内容" gutter="0">
       <x-textarea :max="200" :rows="5" v-model="content" placeholder="请简单描述纠错内容"></x-textarea>
     </group>
-    </div>
   </view-box>
 </template>
 

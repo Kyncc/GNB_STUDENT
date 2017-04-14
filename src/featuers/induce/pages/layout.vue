@@ -1,15 +1,15 @@
 <template>
-  <view-box ref="collect" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '收藏本'}"></x-header>
+  <view-box ref="induce" body-padding-top="46px">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '题型归纳'}"></x-header>
     <tab style="position:fixed;top:46px;width:100%;z-index:2017">
-      <tab-item :selected="Route.name === 'math'" @click.native="$router.replace('math')">数学</tab-item>
-      <tab-item :selected="Route.name === 'physics'" @click.native="$router.replace('physics')">物理</tab-item>
+      <tab-item :selected="Route.name === 'Indece_Math'" @click.native="$router.replace('math')">数学</tab-item>
+      <tab-item :selected="Route.name === 'Indece_Physics'" @click.native="$router.replace('physics')">物理</tab-item>
     </tab>
     <div style="padding-top:46px;">
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
-    </div>
+    </div> 
   </view-box>
 </template>
 
@@ -19,12 +19,12 @@ import {mapGetters} from 'vuex'
 import modules from '../modules/store'
 import store from '@/store'
 
-store.registerModule('collect', {
+store.registerModule('induce', {
   ...modules
 })
 
 export default {
-  name: 'collect',
+  name: 'induce',
   components: {
     XHeader, ViewBox, Tab, TabItem
   },

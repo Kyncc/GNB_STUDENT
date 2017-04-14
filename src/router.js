@@ -10,6 +10,7 @@ import correct from './featuers/correct/router'
 import example from './featuers/example/router'
 import message from './featuers/message/router'
 import myclass from './featuers/myclass/router'
+import induce from './featuers/induce/router'
 import report from './featuers/report/router'
 import settings from './featuers/settings/router'
 import workbook from './featuers/workbook/router'
@@ -18,17 +19,18 @@ Vue.use(Router)
 let router = new Router({
   mode: 'hash',
   routes: [
+    about,
+    collect,
+    correct,
+    example,
     login,
     index,
-    about,
-    example,
-    correct,
-    ...workbook,
+    induce,
     message,
-    collect,
-    report,
     myclass,
-    settings
+    report,
+    settings,
+    ...workbook
   ]
 })
 

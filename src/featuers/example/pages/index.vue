@@ -4,7 +4,16 @@
     <template v-for="detail in Example"> 
       <card>
         <div slot="header" class="weui-panel__hd">
-          题干
+          <flexbox>
+            <flexbox-item :span="2" style="color:#4bb7aa">题干</flexbox-item>
+            <flexbox-item :span="6"></flexbox-item>
+            <flexbox-item :span="2" @click.native="_collect">
+              <i class="icon iconfont icon-collect"></i>{{( detail.collectTime === 0 ? '收藏' : '取消' )}}
+            </flexbox-item>
+            <flexbox-item :span="2" @click.native="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id}})">
+              <i class="icon iconfont icon-error-login"></i>纠错
+            </flexbox-item>
+          </flexbox>
         </div>
         <div slot="content">
           <div v-html="detail.content"></div>
@@ -31,7 +40,7 @@
 </template>
 
 <script>
-import {XHeader, Card, ViewBox} from 'vux'
+import {XHeader, Card, ViewBox, Flexbox, FlexboxItem} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 import InfiniteLoading from 'vue-infinite-loading'
 import modules from '../modules/store'
@@ -44,7 +53,7 @@ store.registerModule('example', {
 export default {
   name: 'example',
   components: {
-    XHeader, Card, ViewBox, InfiniteLoading
+    XHeader, Card, ViewBox, InfiniteLoading, Flexbox, FlexboxItem
   },
   computed: {
     ...mapGetters(['Example', 'Params'])
@@ -58,19 +67,10 @@ export default {
       }).catch(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       })
+    },
+    _collect (state) {
+      Number(state) === 0 ? this.collectAdd() : this.collectRemove()
     }
-    // _correct(){
-    //   this.$router.push(`/correct/${this.Params.subjectId}/${this.Params.id}`)
-    // },
-    // _collect(state){
-    //   if(Number(state) != 0){
-    //     //已收藏
-    //     this.collectRemove();
-    //   }else{
-    //     //未收藏
-    //     this.collectAdd();
-    //   }
-    // }
   },
   activated () {
     this.exampleClear()

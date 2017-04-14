@@ -2,7 +2,7 @@
   <div>
     <template v-for="item in list">
       <card :header="{title:`${item.chapter_name}`}">
-        <div slot="content" class="content" @click="$router.push(`example/7/${item.exercises_id}`)">
+        <div slot="content" class="content" @click="$router.push({name:'example', params: {subjectId: '7', id: item.exercises_id}})">
           <div v-html="item.stem"></div>
           <div v-if="item.opt_jo.hasOwnProperty('A')">
             <template v-for="(value, key) in item.opt_jo">
