@@ -84,4 +84,3 @@ export const induceListClear = ({ rootState, commit }) => {
 export const setInduceListScroll = ({ rootState, commit }, height) => {
   commit(types.INDUCE_LIST_SCOLLER, {'subject': rootState.route.name, 'height': height})
 }
-

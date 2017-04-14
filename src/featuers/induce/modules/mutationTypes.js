@@ -10,7 +10,7 @@ export const INDUCE_CLEAR = 'INDUCE_CLEAR'
 export const INDUCE_LIST = 'INDUCE_LIST'
 /** 清除题目列表  */
 export const INDUCE_LIST_CLEAR = 'INDUCE_LIST_CLEAR'
-/** 题目列表高度  */
+/** 题目高度  */
 export const INDUCE_LIST_SCOLLER = 'INDUCE_LIST_SCOLLER'
 /** 题目动作 */
 export const INDUCE_ACTION = 'INDUCE_ACTION'

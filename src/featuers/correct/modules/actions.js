@@ -20,4 +20,3 @@ export const postCorrect = ({ rootState, commit }, params) => {
     })
   })
 }
-

@@ -1,11 +1,13 @@
 <template>
   <view-box ref="report" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '知识图谱'}"></x-header>
-      <tab style="position:fixed;top:46px;width:100%">
-        <tab-item :selected="Route.name === 'math'" @click.native="_intoPage('math')">数学</tab-item>
-        <tab-item :selected="Route.name === 'physics'" @click.native="_intoPage('physics')">物理</tab-item>
+      <tab style="position:fixed;top:46px;width:100%;z-index:100;">
+        <tab-item :selected="Route.name === 'report_math'" @click.native="$router.replace('math')">数学</tab-item>
+        <template v-if="User.subjectType.length > 1">
+          <tab-item :selected="Route.name === 'report_physics'" @click.native="$router.replace('physics')">物理</tab-item>
+        </template>
       </tab>
-      <div style="padding-top:46px;">
+      <div style="padding-top:44px;">
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
@@ -15,21 +17,24 @@
 </template>
 
 <script>
-import {XHeader, XInput, Group, XButton, ViewBox, Tab, TabItem} from 'vux'
+import {XHeader, ViewBox, Tab, TabItem} from 'vux'
 import {mapGetters} from 'vuex'
+import modules from '../modules/store'
+import store from '@/store'
+
+store.registerModule('report', {
+  ...modules
+})
 
 export default {
   name: 'report',
   components: {
-    XHeader, XInput, Group, XButton, ViewBox, Tab, TabItem
+    XHeader, ViewBox, Tab, TabItem
   },
   computed: {
-    ...mapGetters(['Route'])
+    ...mapGetters(['Route', 'User'])
   },
   methods: {
-    _intoPage (subject) {
-      this.$router.replace(`${subject}`)
-    }
   }
 }
 </script>

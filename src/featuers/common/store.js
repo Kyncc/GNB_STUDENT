@@ -31,11 +31,11 @@ const getters = {
   Route: (state, getters, rootState) => {
     return rootState.route
   },
-  User: (state, getters, rootState) => {
-    return rootState.user
+  User: (state) => {
+    return state.user
   },
-  System: (state, getters, rootState) => {
-    return rootState.common.system
+  System: (state) => {
+    return state.system
   }
 }
 

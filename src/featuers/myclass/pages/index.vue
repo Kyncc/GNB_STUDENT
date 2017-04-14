@@ -21,22 +21,19 @@
         <p style="font-size:1rem;display:inline-block;">点我加入班级~</p>
       </div>
       <div slot="no-more"></div>
-      <div slot="spinner">
-        <spinner type="bubbles" slot="value"></spinner>
-      </div>
     </infinite-loading>
   </view-box>
 </template>
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
-import {XHeader, Cell, Group, ViewBox, Spinner} from 'vux'
+import {XHeader, Cell, Group, ViewBox} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'index',
   components: {
-    XHeader, Cell, Group, ViewBox, InfiniteLoading, Spinner
+    XHeader, Cell, Group, ViewBox, InfiniteLoading
   },
   activated () {
     this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')

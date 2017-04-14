@@ -1,6 +1,10 @@
 <template>
   <div>
-    
+    <select dir="rtl" v-model="value">
+      <template v-for="text in textList">
+        <option v-bind:value="text.id">{{text.name}}</option>
+      </template>
+    </select>
     <group gutter="0">
       <cell :title="'Title 001'" is-link
       :border-intent="false"
@@ -41,10 +45,14 @@ export default {
     XHeader, Cell, Group, CellBox, InfiniteLoading
   },
   computed: {
-    ...mapGetters(['induceMath'])
+    ...mapGetters(['induceMath', 'User']),
+    textList () {
+      return this.User.textbook.math
+    }
   },
   data () {
     return {
+      value: '',
       showContent001: false,
       showContent002: false
     }

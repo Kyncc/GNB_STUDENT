@@ -33,35 +33,23 @@ export default {
     Tabbar, TabbarItem, ViewBox
   },
   methods: {
-    ...mapActions([''])
+    ...mapActions(['getUserInfo'])
   },
-  // created () {
-  //   this.getUserInfo()
-  //   .then(() => {
-      // this.User.textbook.physics.length == 0
-      // if(this.User.textbook.math[0].id == '0' ){
-      //   this.$router.go('/main/bag/textbook/add?type=new');
-      // }
-  //   })
-    // .catch((error) => {
-    //   if (window.plus) {
-    //     setTimeout(() => {
-    //       plus.navigator.closeSplashscreen() // 关闭等待
-    //     }, 500)
-    //   }
-    // })
-  // },
   computed: {
     ...mapGetters(['Path']),
     select () {
-      if (this.Path === '/') {
-        return 0
-      } else if (this.Path === '/bag') {
-        return 1
-      } else if (this.Path === '/user') {
-        return 2
+      switch (this.Path) {
+        case '/' : return 0
+        case '/bag' : return 1
+        case '/user' : return 2
       }
     }
+  },
+  created () {
+    this.getUserInfo().then(() => {})
+  },
+  mounted () {
+    if (window.plus) { setTimeout(() => { plus.navigator.closeSplashscreen() }, 300) }
   }
 }
 </script>

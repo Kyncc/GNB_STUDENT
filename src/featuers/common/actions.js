@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import axios from 'axios'
+import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
 /**  获取用户信息 */

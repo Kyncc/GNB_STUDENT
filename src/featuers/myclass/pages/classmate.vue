@@ -1,7 +1,9 @@
 <template>
   <view-box ref="myClass" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: ClassMyClassmate.classname,showBack: true}"> </x-header>
-    <template v-if="ClassMyClassmate">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" 
+    :left-options="{backText: ClassMyClassmate.classname ? ClassMyClassmate.classname : '',showBack: true}"> 
+    </x-header>
+    <template v-if="ClassMyClassmate.teacher">
       <group title="我的老师">
         <cell v-if="ClassMyClassmate.teacher" :title="ClassMyClassmate.teacher.name">
           <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%;background:#ddd" :src="ClassMyClassmate.teacher.headImg">
@@ -15,25 +17,22 @@
         </template>
       </group>
     </template>
-     <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="default">
+     <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
       <div slot="no-results"></div>
       <div slot="no-more"></div>
-      <div slot="spinner">
-        <spinner type="bubbles" slot="value"></spinner>
-      </div>
     </infinite-loading>
   </view-box>
 </template>
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
-import {XHeader, Cell, Group, ViewBox, XImg, Spinner} from 'vux'
+import {XHeader, Cell, Group, ViewBox, XImg} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'classmate',
   components: {
-    XHeader, Cell, Group, ViewBox, InfiniteLoading, XImg, Spinner
+    XHeader, Cell, Group, ViewBox, InfiniteLoading, XImg
   },
   activated () {
     this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')

@@ -28,7 +28,7 @@ let router = new Router({
     induce,
     message,
     myclass,
-    report,
+    ...report,
     settings,
     ...workbook
   ]
