@@ -1,6 +1,8 @@
 # Induction Book(归纳本)
 
-> Base on Vue.js and Dcloud Hybrid App
+> Base on Vue.js and DCloud Hybrid App
+
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## App Market Download(IOS and Android)
 
@@ -18,9 +20,9 @@ MIT
 
 ### Cross Platform
 
--	[Dcloud](http://www.dcloud.io/runtime.html)
+-	[DCloud](http://www.dcloud.io/runtime.html)
 
-### Main Javascript Framwork
+### Main Javascript Framework
 
 -	[vue](http://cn.vuejs.org/guide/)
 
@@ -47,7 +49,6 @@ MIT
 -	[Vue-lazyload - An Image lazyload plugin for Vue](https://github.com/hilongjw/vue-lazyload)
 
 ## File Structure
-----------
 
 ```
 ├── build       # webpack编译配置
