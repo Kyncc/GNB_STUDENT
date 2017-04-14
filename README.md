@@ -1,8 +1,8 @@
 # Induction Book(归纳本)
 
-> Base on Vue.js and DCloud Hybrid App
-
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+> Base on Vue.js and DCloud Hybrid App
 
 ## App Market Download(IOS and Android)
 
@@ -42,34 +42,40 @@ MIT
 
 ### UI Compoents
 
--	[Vux - Vue UI Components](https://vuxjs.gitbooks.io/vux/content/about/component-standard.html)
+-	[Vux - Vue UI Components](https://vux.li/#/)
 
 -	[Vue-infinite-loading - An infinite scroll plugin for Vue ](https://peachscript.github.io/vue-infinite-loading/#!/slots)
 
 -	[Vue-lazyload - An Image lazyload plugin for Vue](https://github.com/hilongjw/vue-lazyload)
 
-## File Structure
+## File Structure Introduction
 
 ```
-├── build       # webpack编译配置
-├── config      # webpack配置
-├── dist        # 打包后文件（此目录放在HBuilder中）
-├── app.vue     # 入口页面
-├── main.js     # 入口JS
-├── store.js    # store
-├── index.html  # html模版
-├── components  # 公用的组件
-├── src         # 开发目录
-    ├── router      # 主体模块
-    ├── features    # 功能模块
-        ├── common      # 全局功能函数（HTTP配置,弹窗等）
-        ├── workbook    # 习题册记错题模块
+├── build       # webpack Build
+├── config      # webpack Config
+├── dist        # Dist Folder
+├── app.vue     # Entry File
+├── main.js     # Entry Js
+├── store.js    # Vuex Main Stroe
+├── router.js   # Main Router
+├── theme.less  # Vux UI Color Config
+├── index.html  # Html Template
+├── components  # UI or Function Components
+├── src         # Code Folder
+    ├── router      # Main Pages
+    ├── features    # Modules
+        ├── common      # 全局功能函数
+        ├── workbook    # 习题册
+        ├── example     # 例题
         ├── collect     # 收藏本模块
-        ├── correct     # 纠错模块
+        ├── correct     # 纠错
         ├── myclass     # 我的班级
-        ├── report      # 知识图谱模块
+        ├── report      # 知识图谱
+        ├── message     # 消息
+        ├── login       # 登陆
+        ├── induce      # 题型归纳
         ├── settings    # 设置
-        ├── about       # 关于
+        ├── about       # 关于归纳本
 ```
 
 ### How to run it
@@ -81,11 +87,11 @@ npm install
 
 ## Development
 ```
-npm run dev     //Into development enviroment
+npm run dev
 
 ```
 ### Build
 ```
-npm run build   //打包生成的目录在dist下
-npm run build --report   //打包并生成报告
+npm run build
+npm run build --report
 ```
