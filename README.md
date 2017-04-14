@@ -1,53 +1,58 @@
-# 归纳本学生端
+# Induction Book(归纳本)
 
-> 基于Vue.js(2.x)和Dcloud(H5+)混合技术Hybrid App 
+> Base on Vue.js and Dcloud Hybrid App
 
-# 苹果安卓市场下载
+## App Market Download(IOS and Android)
 
-![商店下载](http://okkula0y9.bkt.clouddn.com/student.png)
+![DownloadPicture](http://okkula0y9.bkt.clouddn.com/student.png)
 
+## License
 
-### 编译环境
+MIT
 
--	[VueLoader](http://vue-loader.vuejs.org/en/index.html)
+## Technology Overview
 
-	### Hybird框架
+### Compiler Environment
 
--	[跨平台技术-H5+](http://www.dcloud.io/runtime.html)
+-	[vuxLoader](https://github.com/airyland/vux-loader)
 
-	### 数据视图控制
+### Cross Platform
 
--	[Vue2](http://cn.vuejs.org/guide/)
+-	[Dcloud](http://www.dcloud.io/runtime.html)
 
--	[路由-VueRouter2](http://router.vuejs.org/zh-cn/index.html)
+### Main Javascript Framwork
 
--	[http请求-Axios](https://github.com/mzabriskie/axios)
+-	[vue](http://cn.vuejs.org/guide/)
 
--	[单项数据流-Vuex](http://vuex.vuejs.org/zh-cn/index.html)
+-	[vue-router](http://router.vuejs.org/zh-cn/index.html)
 
--	[VueRouter和Vuex流同步-Vuex-router-sync](https://github.com/vuejs/vuex-router-sync)
+-	[vuex](http://vuex.vuejs.org/zh-cn/index.html)
 
-	### 功能组件
+-	[Axios - Http Client](https://github.com/mzabriskie/axios)
 
--	[图片控制剪裁-Cropper.js](https://fengyuanchen.github.io/cropperjs/)
+-	[vuex-router-sync - Keep vue-router and vuex store in sync](https://github.com/vuejs/vuex-router-sync)
 
-	### UI组件
+### Plugins
 
--	[手机UI库-Vux](https://vuxjs.gitbooks.io/vux/content/about/component-standard.html)
+-	[Cropper.js - Image cropping plugin](https://fengyuanchen.github.io/cropperjs/)
 
--	[加载数据组件-Vue-infinite-loading](https://peachscript.github.io/vue-infinite-loading/#!/slots)
+-	[PhotoSwipe - JavaScript image gallery for mobile](https://github.com/dimsemenov/PhotoSwipe)
 
--	[图片懒加载-Vue-lazyload](https://github.com/hilongjw/vue-lazyload)
+### UI Compoents
 
--	[灯箱-PhotoSwipe](https://github.com/dimsemenov/PhotoSwipe)
+-	[Vux - Vue UI Components](https://vuxjs.gitbooks.io/vux/content/about/component-standard.html)
 
-文件夹结构
+-	[Vue-infinite-loading - An infinite scroll plugin for Vue ](https://peachscript.github.io/vue-infinite-loading/#!/slots)
+
+-	[Vue-lazyload - An Image lazyload plugin for Vue](https://github.com/hilongjw/vue-lazyload)
+
+## File Structure
 ----------
 
 ```
 ├── build       # webpack编译配置
 ├── config      # webpack配置
-├── dist       # 打包后文件（此目录放在HBuilder中）
+├── dist        # 打包后文件（此目录放在HBuilder中）
 ├── app.vue     # 入口页面
 ├── main.js     # 入口JS
 ├── store.js    # store
@@ -66,16 +71,20 @@
         ├── about       # 关于
 ```
 
-### 安装
+### How to run it
+
+## Install
+```
+npm install 
+```
+
+## Development
+```
+npm run dev     //Into development enviroment
 
 ```
-npm install //安装依赖包
+### Build
 ```
-
-### 使用
-
-```
-npm run dev     //进入开发模式
 npm run build   //打包生成的目录在dist下
 npm run build --report   //打包并生成报告
 ```
