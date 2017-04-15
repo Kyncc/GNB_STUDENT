@@ -7,7 +7,7 @@
           <tab-item :selected="Route.name === 'report_physics'" @click.native="$router.replace('physics')">物理</tab-item>
         </template>
       </tab>
-      <div style="padding-top:44px;">
+      <div style="padding-top:44px;" class="report">
         <keep-alive>
           <router-view></router-view>
         </keep-alive>

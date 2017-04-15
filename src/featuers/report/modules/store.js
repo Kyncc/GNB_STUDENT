@@ -6,11 +6,11 @@ const state = {
   index: {
     math: {
       chapter: [],
-      scoll: 0
+      scroll: 0
     },
     physics: {
       chapter: [],
-      scoll: 0
+      scroll: 0
     }
   },
   detail: []

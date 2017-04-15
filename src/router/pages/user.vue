@@ -32,7 +32,6 @@
   </div>
 </template>
 
-
 <script>
 import {XHeader, Cell, Group, ViewBox, Actionsheet, Badge} from 'vux'
 

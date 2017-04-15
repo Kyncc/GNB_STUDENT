@@ -43,7 +43,8 @@ export const getReportDetail = ({ rootState, commit }, params) => {
 
 /** 浏览器高度 */
 export const setReportScoll = ({ rootState, commit }, height) => {
-  commit(types.REPORT_SCROLL, {'subject': rootState.route.name, 'height': height})
+  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
+  commit(types.REPORT_SCROLL, {'subject': subject, 'height': height})
 }
 
 /** 清除详细数据 */

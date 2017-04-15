@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <group gutter="0">
+  <div class="reportPhysics">
+    <group gutter="0" class="gnb_collapse">
       <template v-for="list in reportPhysics.chapter">
         <cell :title="list.name" is-link
         :border-intent="false"
@@ -39,7 +39,7 @@ export default {
     ...mapGetters(['User', 'reportPhysics'])
   },
   methods: {
-    ...mapActions(['getReport']),
+    ...mapActions(['getReport', 'setReportScoll']),
     _onInfinite () {
       this.getReport().then(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
@@ -48,6 +48,17 @@ export default {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       })
     }
+  },
+  activated () {
+    this.$parent.$refs.viewBoxBody.scrollTop = this.reportPhysics.scroll
+  },
+  beforeRouteUpdate (to, from, next) {
+    this.$parent.$refs.viewBoxBody.scrollTop = 0
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    this.setReportScoll(this.$parent.$refs.viewBoxBody.scrollTop)
+    next()
   }
 }
 </script>
