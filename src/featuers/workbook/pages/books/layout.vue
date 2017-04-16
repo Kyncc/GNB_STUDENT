@@ -1,10 +1,10 @@
 <template>
-  <view-box ref="collect" body-padding-top="46px">
+  <view-box body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '查答案'}"></x-header>
       <tab style="position:fixed;top:46px;width:100%">
-        <tab-item selected @click.native="$router.replace('math')">数学</tab-item>
+        <tab-item :selected="Route.name === 'workbook_math'" @click.native="$router.replace('math')">数学</tab-item>
         <template v-if="User.subjectType.length > 1">
-          <tab-item @click.native="$router.replace('physics')">物理</tab-item>
+          <tab-item :selected="Route.name === 'workbook_physics'" @click.native="$router.replace('physics')">物理</tab-item>
         </template>
       </tab>
       <div style="padding-top:46px;">
@@ -18,7 +18,13 @@
 
 <script>
 import {XHeader, XInput, Group, XButton, ViewBox, Tab, TabItem} from 'vux'
-import {mapActions} from 'vuex'
+import {mapGetters} from 'vuex'
+import modules from '../../modules/store'
+import store from '@/store'
+
+store.registerModule('workbook', {
+  ...modules
+})
 
 export default {
   name: 'workbook',
@@ -29,8 +35,8 @@ export default {
     return {
     }
   },
-  methods: {
-    ...mapActions([''])
+  computed: {
+    ...mapGetters(['Route', 'User'])
   }
 }
 </script>

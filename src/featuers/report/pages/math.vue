@@ -62,15 +62,5 @@ export default {
 }
 </script>
 <style lang="less" scrope>
-.slide {
-  padding: 0 15px 0 0;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height .5s cubic-bezier(0, 1, 0, 1) -.1s;
-}
-.animate {
-  max-height: 9999px;
-  transition-timing-function: cubic-bezier(0.5, 0, 1, 0);
-  transition-delay: 0s;
-}
+@import '../../../components/gnb_collapse/index.less';
 </style>

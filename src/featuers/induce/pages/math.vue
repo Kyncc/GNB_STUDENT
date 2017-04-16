@@ -9,7 +9,7 @@
         @click.native="list.checked = !list.checked"></cell>
         <div class="slide" :class="list.checked ? 'animate':''">
           <template v-for="chapter in list.sub_chapter_list">
-            <cell-box @click.native="$router.push({name: 'indece_exercise', params: {subject: 'math', chapterId: chapter.chapter_id, chapterName: chapter.name}})">
+            <cell-box @click.native="$router.push({name: 'induce_exercise', params: {subject: 'math', chapterId: chapter.chapter_id, chapterName: chapter.name}})">
               {{chapter.name}}
             </cell-box>
           </template>
@@ -58,6 +58,13 @@ export default {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       })
     }
+  },
+  activated () {
+    this.$parent.$refs.viewBoxBody.scrollTop = this.induceMath.scroll
+  },
+  beforeRouteLeave (to, from, next) {
+    this.setInduceScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    next()
   }
 }
 </script>

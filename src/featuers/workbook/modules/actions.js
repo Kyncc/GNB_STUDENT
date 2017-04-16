@@ -3,37 +3,34 @@ import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
 /** 获取练习册数据 */
-export const getWorkbookStu = ({state, rootState, commit}, params) => {
+export const getWorkbook = ({state, rootState, commit}, params) => {
+  let subjectId = (rootState.route.name.includes('math') ? 2 : 7)
+  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'workbook',
       params: {
         'token': rootState.common.user.token,
-        'subjectId': state.subjectId,
+        'subjectId': subjectId,
         'textbookId': state.textbookId
       }
     })
     .then((response) => {
-      commit(types.WORKBOOK_STU, response.data.data)
+      commit(types.WORKBOOK, {'subject': subject, 'data': response.data.data})
       resolve(response)
     })
   })
 }
 
 /** 练习册数据清空 */
-export const workbookStuClear = ({ commit }) => {
-  commit(types.WORKBOOK_STU_CLEAR)
-}
-
-/** 切换科目 */
-export const workbookStuSetSubject = ({ commit }, id) => {
-  commit(types.WORKBOOK_STU_SUBJECT_CHANGE, id)
-  commit(types.WORKBOOK_STU_CLEAR)
+export const workbookClear = ({ rootState, commit }) => {
+  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
+  commit(types.WORKBOOK_CLEAR, {'subject': subject})
 }
 
 /** 获取练习册章节数据 */
-export const getWorkbookStuChapter = ({state, rootState, commit}) => {
+export const getWorkbookChapter = ({state, rootState, commit}) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -44,7 +41,7 @@ export const getWorkbookStuChapter = ({state, rootState, commit}) => {
       }
     })
     .then((response) => {
-      commit(types.WORKBOOK_STU_CHAPTER, response.data.data)
+      commit(types.WORKBOOK_CHAPTER, response.data.data)
       resolve(response)
     })
   })
@@ -67,28 +64,28 @@ export const WorkbookExercisePost = ({state, rootState, commit}, params) => {
     .then((response) => {
       Vue.$vux.loading.hide()
       Vue.$vux.toast.show({text: '提交成功', type: 'text', time: 1000, position: 'bottom'})
-      commit(types.WORKBOOK_STU_EXERCISE_POST, response.data.data)
-      commit(types.WORKBOOK_STU_CHAPTER_CLEAR)
+      commit(types.WORKBOOK_EXERCISE_POST, response.data.data)
+      commit(types.WORKBOOK_CHAPTER_CLEAR)
       resolve(response)
     })
-    .catch((response) => {
+    .catch(() => {
       Vue.$vux.loading.hide()
     })
   })
 }
 
 /** 章节数据清空 */
-export const workbookStuChapterClear = ({ commit }) => {
-  commit(types.WORKBOOK_STU_CHAPTER_CLEAR)
+export const workbookChapterClear = ({ commit }) => {
+  commit(types.WORKBOOK_CHAPTER_CLEAR)
 }
 
 /** 章节高度设置 */
-export const setWorkbookStuChapterScroll = ({ commit }, height) => {
-  commit(types.WORKBOOK_STU_CHAPTER_SCROLL, height)
+export const setWorkbookChapterScroll = ({ commit }, height) => {
+  commit(types.WORKBOOK_CHAPTER_SCROLL, height)
 }
 
 /** 获取练习册章节数据 */
-export const getWorkbookStuExercise = ({state, rootState, commit}, id) => {
+export const getWorkbookExercise = ({state, rootState, commit}, id) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
@@ -101,48 +98,47 @@ export const getWorkbookStuExercise = ({state, rootState, commit}, id) => {
     })
     .then((response) => {
       Vue.$vux.loading.hide()
-      commit(types.WORKBOOK_STU_EXERCISE, response.data.data)
+      commit(types.WORKBOOK_EXERCISE, response.data.data)
       resolve(response)
     })
-    .catch((response) => {
+    .catch(() => {
       Vue.$vux.loading.hide()
     })
   })
 }
 
-/**  练习数据清空 */
-export const workbookStuExerciseClear = ({ commit }) => {
-  commit(types.WORKBOOK_STU_EXERCISE_CLEAR)
+/** 练习数据清空 */
+export const workbookExerciseClear = ({ commit }) => {
+  commit(types.WORKBOOK_EXERCISE_CLEAR)
 }
 
 /** 章节练习题答案变更 */
-export const workbookStuExAnswerChange = ({ commit }, params) => {
-  commit(types.WORKBOOK_STU_EXERCISE_CHANGE, params)
+export const workbookExAnswerChange = ({ commit }, params) => {
+  commit(types.WORKBOOK_EXERCISE_CHANGE, params)
 }
 
 /** 练习题目高度设置 */
-export const setWorkbookStuExersciseScroll = ({ commit }, height) => {
-  commit(types.WORKBOOK_STU_EXERCISE_SCROLL, height)
+export const setWorkbookExersciseScroll = ({ commit }, height) => {
+  commit(types.WORKBOOK_EXERCISE_SCROLL, height)
 }
 
-
-/**  上传照片删除 */
-export const workbookStuUploadDel = ({ commit }, id) => {
-  commit(types.WORKBOOK_STU_UPLOAD_DEL, id)
+/** 上传照片删除 */
+export const workbookUploadDel = ({ commit }, id) => {
+  commit(types.WORKBOOK_UPLOAD_DEL, id)
 }
 
-/**  上传照片增加 */
-export const workbookStuUploadAdd = ({ commit }, data) => {
-  commit(types.WORKBOOK_STU_UPLOAD_ADD, data)
+/** 上传照片增加 */
+export const workbookUploadAdd = ({ commit }, data) => {
+  commit(types.WORKBOOK_UPLOAD_ADD, data)
 }
 
-/**  照片增加 */
-export const workbookStuCamera = ({ commit }, data) => {
-  commit(types.WORKBOOK_STU_UPLOAD_CAMERA, data)
+/** 照片增加 */
+export const workbookCamera = ({ commit }, data) => {
+  commit(types.WORKBOOK_UPLOAD_CAMERA, data)
 }
 
-/**  上传照片 */
-export const workbookStuUpload = ({state, rootState, commit}) => {
+/** 上传照片 */
+export const workbookUpload = ({state, rootState, commit}) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
@@ -155,13 +151,12 @@ export const workbookStuUpload = ({state, rootState, commit}) => {
       }
     })
     .then((response) => {
-      commit(types.WORKBOOK_STU_UPLOAD, response.data.data)
+      commit(types.WORKBOOK_UPLOAD, response.data.data)
       resolve(response)
       Vue.$vux.loading.hide()
     })
-    .catch((response) => {
+    .catch(() => {
       Vue.$vux.loading.hide()
     })
   })
 }
-
