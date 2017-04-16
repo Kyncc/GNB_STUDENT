@@ -52,9 +52,8 @@ export default {
   activated () {
     this.$parent.$refs.viewBoxBody.scrollTop = this.reportMath.scroll
   },
-  beforeRouteUpdate (to, from, next) {
+  deactivated () {
     this.$parent.$refs.viewBoxBody.scrollTop = 0
-    next()
   },
   beforeRouteLeave (to, from, next) {
     this.setReportScoll(this.$parent.$refs.viewBoxBody.scrollTop)

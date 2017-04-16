@@ -15,3 +15,7 @@ export default {
   name: 'message'
 }
 </script>
+<style lang="less" scrope>
+@import "../../../components/gnb_messageList/index.less";
+</style>
+

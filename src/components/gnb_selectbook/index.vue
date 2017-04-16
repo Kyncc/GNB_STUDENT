@@ -1,9 +1,11 @@
 <template>
   <div class="gnbCompoents_selectBook">
-    <p>{{name}}<span class="header_title_select_arrow"></span></p>
-    <select dir="rtl" v-model="value">
+    <p>{{name}}
+      <b class="header_title_select_arrow"></b>
+    </p>
+    <select v-model="value">
       <template v-for="item in list">
-        <option v-bind:value="item.id">{{text.name}}</option>
+        <option v-bind:value="item.id">{{item.name}}</option>
       </template>
     </select>
   </div>
@@ -11,7 +13,7 @@
 
 <script>
 export default {
-  name: 'selectBook',
+  name: 'gnb_textbook',
   props: {
     value: {
       type: String
@@ -22,19 +24,16 @@ export default {
   },
   data () {
     return {
-      show: false
+      name: this.list[0].name
     }
-  },
-  created () {
-    this.show = this.value
   },
   watch: {
     value (val) {
       let value = this.value
       this.list.forEach((arr) => {
-        if(arr.id == value){
+        if (arr.id.toString() === value) {
           this.name = arr.name
-          break 
+          return
         }
       })
     }
@@ -45,6 +44,10 @@ export default {
 <style lang="less" scoped>
 .gnbCompoents_selectBook{
   position: relative;
+  height:40px;
+  text-align: center;
+  width:100%;
+  padding-top:5px;
   select{
     -webkit-appearance: none;
     border: 0;
@@ -69,7 +72,7 @@ export default {
     height: 6px;
     width: 6px;
     border-width: 2px 2px 0 0;
-    border-color: #fff;
+    border-color: #C8C8CD;
     border-style: solid;
     margin-left:5px;
     transition-duration: .2s;

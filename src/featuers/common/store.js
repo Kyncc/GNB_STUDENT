@@ -14,6 +14,7 @@ const state = {
     textbook: [],
     subject: [],
     version: '',
+    swiper: [{}],
     token: 'a2015acf8d8fcb01ef08ced2e0ffd583'
   }
 }
@@ -51,6 +52,7 @@ const mutations = {
     state.user.version = data.data.version
     state.user.subject = data.data.subject
     state.user.subjectType = data.data.subjectType
+    state.user.swiper = data.data.swiper
   }
 }
 

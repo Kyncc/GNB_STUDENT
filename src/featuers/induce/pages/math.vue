@@ -1,28 +1,20 @@
 <template>
   <div>
-    <select dir="rtl" v-model="value">
-      <template v-for="text in textList">
-        <option v-bind:value="text.id">{{text.name}}</option>
+    <selectBook :list="textList" v-model="value"></selectBook>
+    <group gutter="0" class="gnb_collapse">
+      <template v-for="list in induceMath.list">
+        <cell :title="list.name" is-link
+        :border-intent="false"
+        :arrow-direction="list.checked ? 'up' : 'down'"
+        @click.native="list.checked = !list.checked"></cell>
+        <div class="slide" :class="list.checked ? 'animate':''">
+          <template v-for="chapter in list.sub_chapter_list">
+            <cell-box @click.native="$router.push({name: 'indece_exercise', params: {subject: 'math', chapterId: chapter.chapter_id, chapterName: chapter.name}})">
+              {{chapter.name}}
+            </cell-box>
+          </template>
+        </div>
       </template>
-    </select>
-    <group gutter="0">
-      <cell :title="'Title 001'" is-link
-      :border-intent="false"
-      :arrow-direction="showContent001 ? 'up' : 'down'"
-      @click.native="showContent001 = !showContent001"></cell>
-      <div class="slide" :class="showContent001?'animate':''">
-        <cell-box :border-intent="false">content 001</cell-box>
-        <cell-box>content 001</cell-box>
-        <cell-box>content 001</cell-box>
-      </div>
-      <cell :title="'Title 001'" is-link :border-intent="false"
-      :arrow-direction="showContent002 ? 'up' : 'down'"
-      @click.native="showContent002 = !showContent002"></cell>
-      <div class="slide" :class="showContent002?'animate':''">
-        <cell-box :border-intent="false">content 001</cell-box>
-        <cell-box>content 001</cell-box>
-        <cell-box>content 001</cell-box>
-      </div>
     </group>
     <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
       <div slot="no-results" style="color:#4bb7aa;">
@@ -36,13 +28,14 @@
 
 <script>
 import {XHeader, Cell, CellBox, Group} from 'vux'
+import selectBook from '@/components/gnb_selectbook'
 import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'math',
   components: {
-    XHeader, Cell, Group, CellBox, InfiniteLoading
+    XHeader, Cell, Group, CellBox, InfiniteLoading, selectBook
   },
   computed: {
     ...mapGetters(['induceMath', 'User']),
@@ -52,13 +45,11 @@ export default {
   },
   data () {
     return {
-      value: '',
-      showContent001: false,
-      showContent002: false
+      value: ''
     }
   },
   methods: {
-    ...mapActions(['getInduce', 'induceChangeChapter', 'setInduceScroll', 'clearInduce']),
+    ...mapActions(['getInduce', 'setInduceScroll', 'clearInduce']),
     _onInfinite () {
       this.getInduce().then(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
@@ -72,15 +63,5 @@ export default {
 </script>
 
 <style lang="less" scrope>
-.slide {
-  padding: 0 15px 0 0;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height .5s cubic-bezier(0, 1, 0, 1) -.1s;
-}
-.animate {
-  max-height: 9999px;
-  transition-timing-function: cubic-bezier(0.5, 0, 1, 0);
-  transition-delay: 0s;
-}
+@import "../../../components/gnb_collapse/index.less";
 </style>

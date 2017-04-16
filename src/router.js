@@ -25,7 +25,7 @@ let router = new Router({
     example,
     login,
     index,
-    induce,
+    ...induce,
     message,
     myclass,
     ...report,

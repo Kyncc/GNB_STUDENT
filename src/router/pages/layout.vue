@@ -9,11 +9,11 @@
           <i slot="icon" class="icon iconfont icon-home"></i>
           <span slot="label">主页</span>
         </tabbar-item>
-        <tabbar-item link="bag">
+        <tabbar-item link="bag" show-dot>
           <i slot="icon" class="icon iconfont icon-bag"></i>
           <span slot="label">书包</span>
         </tabbar-item>
-        <tabbar-item link="user">
+        <tabbar-item link="user" show-dot>
           <i slot="icon" class="icon iconfont icon-user"></i>
           <span slot="label">我的</span>
         </tabbar-item>
@@ -45,6 +45,7 @@ export default {
       }
     }
   },
+  activated () {},
   created () {
     this.getUserInfo().then(() => {})
   },

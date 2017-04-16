@@ -5,16 +5,16 @@ import state from './state'
 
 const mutations = {
   [types.INDUCE] (state, payload) {
-    state[payload.subject].list = payload.data
-    state[payload.subject].isReset = false
+    state.index[payload.subject].list = payload.data
+    state.index[payload.subject].isReset = false
   },
   [types.INDUCE_CLEAR] (state, payload) {
-    state[payload.subject].list = []
-    state[payload.subject].scroll = 0
-    state[payload.subject].isReset = true
+    state.index[payload.subject].list = []
+    state.index[payload.subject].scroll = 0
+    state.index[payload.subject].isReset = true
   },
   [types.INDUCE_SCOLLER] (state, payload) {
-    state[payload.subject].scroll = payload.height
+    state.index[payload.subject].scroll = payload.height
   },
   [types.INDUCE_LIST] (state, payload) {
     state.exercise[payload.type].list = payload.data

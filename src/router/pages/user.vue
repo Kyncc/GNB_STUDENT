@@ -22,8 +22,9 @@
       </cell>
       <cell title="消息通知" link="message">
         <i class="icon iconfont icon-comment" style="color:#ABC97C"  slot="icon"></i>
+        <badge text="新消息"></badge>
       </cell>
-      <cell title="版本更新">
+      <cell title="版本更新" is-link>
         <i class="icon iconfont icon-upload" style="color:#ABC97C"  slot="icon"></i>
         <badge text="新版本"></badge>
       </cell>

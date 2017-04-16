@@ -3,35 +3,33 @@ import * as types from './mutationTypes'
 
 /** 获取章节数据 */
 export const getInduce = ({rootState, commit}, params) => {
+  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'summary',
       params: {
-        textbook_id: params.textbook_id,
+        textbook_id: '200',
         token: rootState.common.user.token
       }
     })
     .then((response) => {
-      commit(types.INDUCE, response.data.data)
+      commit(types.INDUCE, {'subject': subject, 'data': response.data.data})
       resolve(response)
     })
   })
 }
 
-/** 索引对应手风琴的打开关闭 */
-export const induceChangeChapter = ({ rootState, commit }, index) => {
-  commit(types.INDUCE_STATE_CHANGE, {'subject': rootState.route.name, 'index': index})
-}
-
-/** 浏览器高度 */
+/** 首页章节浏览器高度 */
 export const setInduceScroll = ({ rootState, commit }, height) => {
-  commit(types.INDUCE_SCOLLER, {'subject': rootState.route.name, 'height': height})
+  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
+  commit(types.INDUCE_SCOLLER, {'subject': subject, 'height': height})
 }
 
-/** 清除刷题型数据 */
+/** 清除章节数据 */
 export const clearInduce = ({ rootState, commit }) => {
-  commit(types.INDUCE_CLEAR, {'subject': rootState.route.name})
+  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
+  commit(types.INDUCE_CLEAR, {'subject': subject})
 }
 
 /** 获取刷题列表 */

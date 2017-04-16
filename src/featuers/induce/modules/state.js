@@ -1,18 +1,14 @@
 let state = {
   index: {
     math: {
-      index: {
-        list: [],
-        scroll: 0,
-        isReset: false
-      }
+      list: [],
+      scroll: 0,
+      isReset: false
     },
     physics: {
-      index: {
-        list: [],
-        scroll: 0,
-        isReset: false
-      }
+      list: [],
+      scroll: 0,
+      isReset: false
     }
   },
   exercise: {

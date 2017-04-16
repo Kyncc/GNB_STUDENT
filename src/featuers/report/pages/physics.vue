@@ -52,10 +52,6 @@ export default {
   activated () {
     this.$parent.$refs.viewBoxBody.scrollTop = this.reportPhysics.scroll
   },
-  beforeRouteUpdate (to, from, next) {
-    this.$parent.$refs.viewBoxBody.scrollTop = 0
-    next()
-  },
   beforeRouteLeave (to, from, next) {
     this.setReportScoll(this.$parent.$refs.viewBoxBody.scrollTop)
     next()
