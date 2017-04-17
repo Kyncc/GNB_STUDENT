@@ -14,14 +14,13 @@
     "cropperjs": "^1.0.0-rc",
     "es6-promise": "^4.1.0",
     "fastclick": "^1.0.6",
-    "mint-ui": "^2.2.2",
     "qs": "^6.4.0",
     "vue": "^2.2.2",
     "vue-infinite-loading": "^2.0.3",
     "vue-router": "^2.2.0",
     "vuex": "^2.1.1",
     "vuex-router-sync": "^4.1.2",
-    "vux": "^2.2.1-rc.3"
+    "vux": "^2.2.1-rc.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
