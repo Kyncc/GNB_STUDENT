@@ -54,7 +54,7 @@ export default {
   }
 }
 </script>
-<style lang="less" scrope>
+<style lang="less" scoped>
 .content{
   padding:10px 15px;
   font-size:14px;

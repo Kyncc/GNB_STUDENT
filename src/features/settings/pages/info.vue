@@ -6,6 +6,9 @@
       </router-link>
     </x-header>
     <group gutter="0">
+      <cell title="头像" >
+        <x-img slot="default" default-src="http://placehold.it/60x60" src="https://cn.nuxtjs.org/vuejobs.png" width="60" height="60"/>
+      </cell>
       <cell title="姓名" value="王三宝"></cell>
       <cell title="性别" value="男"></cell>
     </group>
@@ -24,12 +27,12 @@
 </template>
 
 <script>
-import {XHeader, Cell, Group, ViewBox} from 'vux'
+import {XHeader, Cell, Group, XImg, ViewBox} from 'vux'
 
 export default {
   name: 'info',
   components: {
-    XHeader, Cell, Group, ViewBox
+    XHeader, Cell, Group, ViewBox, XImg
   },
   methods: {
   }

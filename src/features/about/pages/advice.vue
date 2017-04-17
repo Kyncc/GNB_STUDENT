@@ -53,7 +53,7 @@ export default {
   }
 }
 </script>
-<style lang="less" scroped>
+<style lang="less" scopedd>
 .footer{
   width:90%;
   margin:0 auto;

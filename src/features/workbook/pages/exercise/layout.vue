@@ -7,7 +7,7 @@
         记错题
       </tab-item>
       <tab-item :selected="Route.name === 'workbook_exercise_answer'" 
-        @click.native="$router.replace({name:'workbook_exercise_answer'})">
+        @click.native="_intoAnswer">
         查答案
       </tab-item>
       <tab-item :selected="Route.name === 'workbook_exercise_error'" 
@@ -32,8 +32,16 @@ export default {
   components: {
     XHeader, ViewBox, Tab, TabItem
   },
+  methods: {
+    _intoAnswer(){
+      if(this.workbookExercise.list.bindTeacher && this.workbookExercise.list.practiceImg.length == 0)
+        this.$router.go({name: 'workbook_exercise_upload'})
+      else
+        this.$router.replace({name: 'workbook_exercise_answer'})
+    }
+  },
   computed: {
-    ...mapGetters(['Route'])
+    ...mapGetters(['Route', 'workbookExercise'])
   }
 }
 </script>

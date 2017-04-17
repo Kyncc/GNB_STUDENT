@@ -1,6 +1,6 @@
 <template>
   <div>
-    <selectBook :list="textList" v-model="value"></selectBook>
+    <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
     <group gutter="0" class="gnb_collapse">
       <template v-for="list in inducePhysics.list">
         <cell :title="list.name" is-link
@@ -43,20 +43,22 @@ export default {
       return this.User.textbook.physics
     }
   },
-  data () {
-    return {
-      value: ''
-    }
-  },
   methods: {
     ...mapActions(['getInduce', 'setInduceScroll', 'clearInduce']),
     _onInfinite () {
-      this.getInduce().then(() => {
+      this.getInduce({
+        'textbook_id': this.textbook_id | this.User.textbook.physics[0].id
+      }).then(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       }).catch(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       })
+    },
+    _currentTextbook (val) {
+      this.textbook_id = val
+      this.clearInduce()
+      this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
     }
   },
   activated () {
@@ -68,6 +70,6 @@ export default {
   }
 }
 </script>
-<style lang="less" scrope>
+<style lang="less" scoped>
 @import "../../../components/gnb_collapse/index.less";
 </style>

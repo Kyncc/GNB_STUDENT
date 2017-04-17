@@ -4,6 +4,9 @@
       <p slot="right">完成</p>
     </x-header>
     <group gutter="0">
+      <cell title="头像">
+        <img slot="default" src="https://cn.nuxtjs.org/vuejobs.png" width="60" height="60"/>
+      </cell>
       <x-input title="姓名" v-model="name"></x-input>
       <cell title="性别">
         <checker slot="default" v-model="sex" default-item-class="demo2-item" selected-item-class="demo2-item-selected">

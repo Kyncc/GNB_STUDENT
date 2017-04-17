@@ -61,6 +61,6 @@ export default {
   }
 }
 </script>
-<style lang="less" scrope>
+<style lang="less" scoped>
 @import '../../../components/gnb_collapse/index.less';
 </style>

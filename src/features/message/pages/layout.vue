@@ -7,6 +7,8 @@
 <script>
 import modules from '../modules/store'
 import store from '@/store'
+import '@/components/gnb_messageList/index.less'
+
 store.registerModule('message', {
   ...modules
 })
@@ -15,7 +17,3 @@ export default {
   name: 'message'
 }
 </script>
-<style lang="less" scrope>
-@import "../../../components/gnb_messageList/index.less";
-</style>
-

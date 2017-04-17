@@ -3,7 +3,7 @@
     <p>{{name}}
       <b class="header_title_select_arrow"></b>
     </p>
-    <select v-model="value">
+    <select v-model="currentValue">
       <template v-for="item in list">
         <option v-bind:value="item.id">{{item.name}}</option>
       </template>
@@ -16,7 +16,7 @@ export default {
   name: 'gnb_textbook',
   props: {
     value: {
-      type: String
+      type: [String, Number, Object, Boolean]
     },
     list: {
       type: Array
@@ -24,18 +24,20 @@ export default {
   },
   data () {
     return {
-      name: this.list[0].name
+      name: this.list[0].name,
+      currentValue: this.value
     }
   },
   watch: {
-    value (val) {
-      let value = this.value
+    currentValue (val) {
       this.list.forEach((arr) => {
-        if (arr.id.toString() === value) {
+        if (arr.id.toString() === val.toString()) {
           this.name = arr.name
           return
         }
       })
+      this.$emit('on-change', val)
+      this.$emit('input', val)
     }
   }
 }

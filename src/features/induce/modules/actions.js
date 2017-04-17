@@ -9,7 +9,7 @@ export const getInduce = ({rootState, commit}, params) => {
       method: 'get',
       url: 'summary',
       params: {
-        textbook_id: '200',
+        textbook_id: params.textbook_id,
         token: rootState.common.user.token
       }
     })

@@ -12,8 +12,8 @@ export const getWorkbook = ({state, rootState, commit}, params) => {
       url: 'workbook',
       params: {
         'token': rootState.common.user.token,
-        'subjectId': subjectId,
-        'textbookId': state.textbookId
+        'subjectId': subjectId
+        // 'textbookId': state.textbookId
       }
     })
     .then((response) => {

@@ -19,7 +19,7 @@ const mutations = {
   [types.INDUCE_LIST] (state, payload) {
     state.exercise[payload.type].list = payload.data
   },
-  [types.INDUCE_CLEAR] (state, payload) {
+  [types.INDUCE_LIST_CLEAR] (state, payload) {
     state.exercise[payload.type].list = []
     state.exercise[payload.type].count = 0
     state.exercise[payload.type].isReset = false

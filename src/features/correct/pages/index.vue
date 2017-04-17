@@ -77,7 +77,7 @@ export default {
 }
 </script>
 
-<style scrope>
+<style scoped>
 .select-item {
   width: 100/20rem;
   height: 30/20rem;

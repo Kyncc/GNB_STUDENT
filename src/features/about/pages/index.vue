@@ -44,7 +44,7 @@ export default {
   }
 }
 </script>
-<style lang="less" scroped>
+<style lang="less" scopedd>
 .about_footer{
   margin-top:.5rem;
   text-align:center;

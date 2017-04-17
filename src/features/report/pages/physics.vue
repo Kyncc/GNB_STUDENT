@@ -58,7 +58,7 @@ export default {
   }
 }
 </script>
-<style lang="less" scrope>
+<style lang="less" scoped>
 .slide {
   padding: 0 15px 0 0;
   overflow: hidden;
