@@ -1,15 +1,16 @@
 <template>
   <div>
     <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
-    <group gutter="0">
-      <template v-for="book in workbookMath.list[0]">
-        <cell>
-          <!--<img :src='book+"-workbook"' slot="defalut" width="60" height="80">-->
-
-        </cell>
+      <template v-for="workbook in workbookMath.list">
+        <group>
+          <template v-for="book in workbook.list">
+            <router-link :to="{ name: 'workbook_chapter', params: {'id': book.workbookId ,'name': book.workbookName}}">
+              <img :src="book.img.url+'-workbook'" alt="">
+            </router-link>
+          </template>
+        </group>
       </template>
       <cell></cell>
-    </group>
     <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
       <div slot="no-results" style="color:#4bb7aa;">
         <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>

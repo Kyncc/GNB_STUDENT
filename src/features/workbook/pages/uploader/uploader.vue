@@ -41,11 +41,11 @@ export default {
       this.workbookUploadDel(index)
     },
     _finish () {
-      this.workbookUploadAdd(this.cropper.getCroppedCanvas({width:640}).toDataURL("image/jpeg", 0.9))
+      this.workbookUploadAdd(this.cropper.getCroppedCanvas({width: 640}).toDataURL('image/jpeg', 0.9))
       history.back()
     },
     _upload () {
-      if(!this.workbookUploader.list.length){
+      if (!this.workbookUploader.list.length) {
         this.$vux.toast.show({text: '您还未拍照', type: 'text', time: 1000, position: 'bottom'})
         return
       }

@@ -12,8 +12,8 @@
 </template>
 <script>
 
-import {XHeader,ViewBox} from 'vux'
-import {mapActions,mapGetters} from 'vuex'
+import {XHeader, ViewBox} from 'vux'
+import {mapActions, mapGetters} from 'vuex'
 import Cropper from 'Cropperjs'
 import 'Cropperjs/dist/cropper.min.css'
 
@@ -24,13 +24,13 @@ export default {
   },
   data () {
     return {
-       cropper: ''
+      cropper: ''
     }
   },
   methods: {
     ...mapActions(['uploadHeadImg', 'workbookUploadAdd']),
-    _finish(){
-      this.workbookUploadAdd(this.cropper.getCroppedCanvas({width:640}).toDataURL("image/jpeg", 0.9))
+    _finish () {
+      this.workbookUploadAdd(this.cropper.getCroppedCanvas({width: 640}).toDataURL('image/jpeg', 0.9))
       history.back()
     }
   },
@@ -44,7 +44,7 @@ export default {
         minContainerWidth: minWidth,
         build: () => {
           this.$vux.loading.show({text: '请稍候'})
-        },  
+        },
         built: () => {
           this.$vux.loading.hide()
         }
@@ -58,11 +58,11 @@ export default {
     let minHeight = document.documentElement.clientHeight - 46
     let minWidth = document.documentElement.clientWidth
     this.cropper = new Cropper(this.$els.img, {
-      minContainerHeight:minHeight,
-      minContainerWidth:minWidth,
+      minContainerHeight: minHeight,
+      minContainerWidth: minWidth,
       build: () => {
         this.$vux.loading.show({text: '请稍候'})
-      },  
+      },
       built: () => {
         this.$vux.loading.hide()
       }

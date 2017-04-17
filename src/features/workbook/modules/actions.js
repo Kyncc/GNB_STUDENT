@@ -37,7 +37,7 @@ export const getWorkbookChapter = ({state, rootState, commit}) => {
       url: 'remember/chapter',
       params: {
         'token': rootState.common.user.token,
-        'workbookId': rootState.route.params.workbookId
+        'workbookId': rootState.route.params.id
       }
     })
     .then((response) => {
