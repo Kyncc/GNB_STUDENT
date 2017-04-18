@@ -1,26 +1,25 @@
 <template >
   <div>
-    <template v-for="item in errorList">
-      <group :title="item.name" :gutter="0">
-        <cell v-for="img in item.imgList">
-          <x-img :src="img.url+'-errorList'"/>
-        </cell>
-      </group>
-    </template>
+    <group v-for="(item, index) in errorList" :title="item.name" :gutter="(index === 0 ? '0' : '10px')" :key="index">
+      <cell v-for="(img, index) in item.imgList" :key="index">
+        <img v-lazy="img.url+'-errorList'">
+      </cell>
+    </group>
   </div>
 </template>
 
 <script>
-import {XHeader, Group, Cell, XImg} from 'vux'
-import {mapActions, mapGetters} from 'vuex'
+import {Group, Cell} from 'vux'
+import {mapGetters} from 'vuex'
 
 export default {
-  components:{
-    Group, Cell, XImg
+  name: 'error',
+  components: {
+    Group, Cell
   },
-  computed:{
+  computed: {
     ...mapGetters(['workbookExercise']),
-    errorList(){
+    errorList () {
       return this.workbookExercise.list.errorList
     }
   }

@@ -93,7 +93,7 @@ export const getWorkbookExercise = ({state, rootState, commit}, id) => {
       url: 'remember/exercises',
       params: {
         'token': rootState.common.user.token,
-        'chapterId': rootState.route.params.chapterId || id
+        'chapterId': rootState.route.params.id || id
       }
     })
     .then((response) => {

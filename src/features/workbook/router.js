@@ -1,3 +1,6 @@
+import exercise from './pages/exercise/router'
+import uploader from './pages/uploader/router'
+
 export default [
   // 练习册
   {
@@ -23,28 +26,8 @@ export default [
     name: 'workbook_add',
     component: r => require.ensure([], () => r(require('./pages/books/add')), '/workbook/add')
   },
-  // 练习册章节
-  {
-    path: '/workbook/chapter/:name/:id',
-    name: 'workbook_chapter',
-    component: r => require.ensure([], () => r(require('./pages/exercise/chapter')), '/workbook/chapter')
-  },
+  // 练习模块
+  ...exercise,
   // 作业上传模块
-  {
-    path: '/workbook/uploader',
-    name: 'workbook_uploader',
-    component: r => require.ensure([], () => r(require('./pages/uploader/layout')), '/workbook/uploader'),
-    children: [
-      {
-        path: '/workbook/uploader/:id',
-        name: 'workbook_uploader',
-        component: r => require.ensure([], () => r(require('./pages/uploader/uploader')), '/workbook/uploader/')
-      },
-      {
-        path: 'photo',
-        name: 'workbook_uploader_photo',
-        component: r => require.ensure([], () => r(require('./pages/uploader/photo')), '/workbook/uploader/photo')
-      }
-    ]
-  }
+  uploader
 ]

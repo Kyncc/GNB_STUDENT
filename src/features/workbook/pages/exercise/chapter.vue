@@ -1,14 +1,14 @@
 <template>
-  <view-box body-padding-top="46px">
+  <view-box ref="viewBoxBody" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: Route.params.name}"></x-header>
     <template v-for="a in chapter">
       <group v-for="(aitem, index) in a" :key="index" :gutter="(index === 0 ? '0' : '10px')">
         <cell :title="aitem.name" 
-          @click.native="aitem.isLink ? $router.push({name : 'workbook_uploader', params: {id: aitem.id}}) : ''">
+          @click.native="aitem.isLink ? $router.push({name : 'workbook_exercise_answer', params: {id: aitem.id, name: aitem.name}}) : ''">
         </cell>
         <template v-for="b in aitem.b"> 
           <cell :title="b.name"
-            @click.native="b.isLink ? $router.push({name : 'workbook_uploader', params: {id: b.id}}) : ''">
+            @click.native="b.isLink ? $router.push({name : 'workbook_exercise_answer', params: {id: b.id, name: b.name}}) : ''">
           </cell>
           <!--<cell v-for="c in b.c" :title="c.name" :key="c.id" link="javascript:;"></cell>-->
         </template>
@@ -44,6 +44,9 @@ export default {
       })
     }
   },
+  activated () {
+    this.$refs.viewBoxBody.scrollTo(this.workbookChapter.scroll)
+  },
   beforeRouteEnter (to, from, next) {
     // 选择练习本进来清空数据
     if (from.name === 'workbook_math' || from.name === 'workbook_physics') {
@@ -54,6 +57,10 @@ export default {
     } else {
       next()
     }
+  },
+  beforeRouteLeave (to, from, next) {
+    this.setWorkbookChapterScroll(this.$refs.viewBoxBody.getScrollTop())
+    next()
   },
   computed: {
     ...mapGetters(['workbookChapter', 'Route']),
