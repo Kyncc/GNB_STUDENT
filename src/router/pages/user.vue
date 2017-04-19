@@ -1,13 +1,13 @@
 <template>
   <div class='user'>
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{showBack: false}">
-      <i class="icon iconfont icon-share" slot="right"></i>
+      <!--<i class="icon iconfont icon-share" slot="right"></i>-->
       个人中心
     </x-header>
     <div class="info">
-      <div v-on:click="_showMenus">
-        <img class="defaultimg" src="userImg"/>
-        <p class="phone">&nbsp;王三宝&nbsp;</p>
+      <div style="display:inline-block;position:absolute;top:50%;margin-top:-57.5px;left:50%;margin-left:-40px;">
+        <img src="http://img.guinaben.com/gnb.png" width="80" height="80" style="border-radius:50%"/>
+        <p class="phone">&nbsp;{{User.name}}&nbsp;</p>
       </div>
       <router-link :to="{ path: 'settings/info'}" class="arrow">
         <i class="icon iconfont icon-right"></i>
@@ -21,66 +21,33 @@
         <i class="icon iconfont icon-info" style="color:#6DC6FF" slot="icon"></i>
       </cell>
       <cell title="消息通知" link="message">
-        <i class="icon iconfont icon-comment" style="color:#ABC97C"  slot="icon"></i>
+        <i class="icon iconfont icon-comment" style="color:#ABC97C" slot="icon"></i>
         <badge text="新消息"></badge>
       </cell>
-      <cell title="版本更新" is-link>
-        <i class="icon iconfont icon-upload" style="color:#ABC97C"  slot="icon"></i>
-        <badge text="新版本"></badge>
+      <cell title="版本更新" v-if="System != 'IOS'" is-link>
+        <i class="icon iconfont icon-upload" style="color:#ABC97C" slot="icon"></i>
+        <badge v-if="User.version === '3.0.0'" text="新版本"></badge>
       </cell>
     </group>
-    <actionsheet v-model="show" :menus="menus" @on-click-menu="_menusClick" show-cancel></actionsheet>
   </div>
 </template>
 
 <script>
-import {XHeader, Cell, Group, ViewBox, Actionsheet, Badge} from 'vux'
+import {XHeader, Cell, Group, ViewBox, Badge} from 'vux'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'user',
   components: {
-    XHeader, Cell, Group, ViewBox, Actionsheet, Badge
+    XHeader, Cell, Group, ViewBox, Badge
+  },
+  computed: {
+    ...mapGetters(['User', 'System'])
   },
   data () {
-    return {
-      show: false,
-      menus: {
-        menu1: '拍照',
-        menu2: '选择照片'
-      }
-    }
+    return {}
   },
-  methods: {
-    // 从相机获取图片
-    _getImage () {
-      let cmr = plus.camera.getCamera()
-      cmr.captureImage((p) => {
-        plus.io.resolveLocalFileSystemURL(p, (entry) => {
-          this.setHeadImg(entry.toLocalURL())
-          this.$router.push('settings/photo')
-        })
-      })
-    },
-    // 唤起本机相册选择图片并获取路径
-    _galleryImgs () {
-      plus.gallery.pick((e) => {
-        // this.setHeadImg(e.files[0])
-        this.$router.go('settings/photo')
-      }, (e) => {
-        this.$vux.toast.show({text: '您已取消选择图片', type: 'text', time: 1000, position: 'bottom'})
-      }, {
-        filter: 'image',
-        multiple: true
-      })
-    },
-    // 菜单选择
-    _menusClick (val) {
-      val === 'menu1' ? this._getImage() : this._galleryImgs()
-    },
-    // 显示选择
-    _showMenus () {
-      this.show = true
-    }
-  }
+  methods: {}
 }
 </script>
+

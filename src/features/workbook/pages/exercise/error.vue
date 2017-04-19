@@ -1,6 +1,6 @@
 <template >
   <div>
-    <group v-for="(item, index) in errorList" :title="item.name" :gutter="(index === 0 ? '0' : '10px')" :key="index">
+    <group v-for="(item, index) in errorList" :title="item.name" :gutter="(index ? '10px' : '0px')" :key="index">
       <cell v-for="(img, index) in item.imgList" :key="index">
         <img v-lazy="img.url+'-errorList'">
       </cell>

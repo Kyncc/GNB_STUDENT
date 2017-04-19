@@ -2,13 +2,15 @@
   <view-box ref="viewBoxBody" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: Route.params.name}"></x-header>
     <template v-for="a in chapter">
-      <group v-for="(aitem, index) in a" :key="index" :gutter="(index === 0 ? '0' : '10px')">
+      <group v-for="(aitem, index) in a" :key="index" style="margin-bottom:.5rem" gutter="0">
         <cell :title="aitem.name" 
-          @click.native="aitem.isLink ? $router.push({name : 'workbook_exercise_answer', params: {id: aitem.id, name: aitem.name}}) : ''">
+          :style="aitem.isUsed === 'true' ? 'color:#FEAA85':''"
+          @click.native="aitem.isLink ? $router.push({name : 'workbook_exercise_result', params: {id: aitem.id, name: aitem.name}}) : ''">
         </cell>
-        <template v-for="b in aitem.b"> 
-          <cell :title="b.name"
-            @click.native="b.isLink ? $router.push({name : 'workbook_exercise_answer', params: {id: b.id, name: b.name}}) : ''">
+        <template v-for="b in aitem.b" > 
+          <cell :title="b.name" 
+            :style="b.isUsed === 'true' ? 'color:#FEAA85':''"
+            @click.native="b.isLink ? $router.push({name : 'workbook_exercise_result', params: {id: b.id, name: b.name}}) : ''">
           </cell>
           <!--<cell v-for="c in b.c" :title="c.name" :key="c.id" link="javascript:;"></cell>-->
         </template>

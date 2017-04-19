@@ -1,48 +1,48 @@
 <template>
   <view-box body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '上传作业'}">
-      <a slot="right" @click="_upload"><i class="icon iconfont icon-upload" style="font-size:22px"></i></a>
+      <i slot="right" @click="_upload" class="icon iconfont icon-upload" style="font-size:22px"></i>
     </x-header>
     <div>
-      <group title="需要上传作业后方可查看答案,最多5张"></group>
-      <div style="padding:.6rem" class="photoGroup">
-        <div class="photo" v-for="(index, item) in workbookUploader.list">
-          <img :src="item"/>
-          <i class="icon iconfont icon-error" style="font-size:30px" v-on:click="_del(index)"></i>
-        </div>
-        <div class="photoAdd" v-on:click="_add" v-show="!(workbookUploader.list.length === 5)">
-          <i class="icon iconfont icon-plus" style="font-size:44px"></i>
-        </div>
+      <group-title style="margin:10px 0;">需要上传作业后方可查看答案,最多5张</group-title>
+      <div style="margin:.75rem">
+        <flexbox wrap="wrap" align="baseline" :gutter="0">
+          <flexbox-item :span="3" v-for="(img, index) in workbookUploader.list" :key="index" style="text-align:center;height:120px;">
+            <img :src="img" height="80" width="120"/>
+            <i class="icon iconfont icon-error" style="font-size:30px" @click="_del(index)"></i>
+          </flexbox-item>
+          <flexbox-item :span="3" style="text-align:center;height:120px;border:1px solid #ccc;" class="add" @click.native="_add">
+            <i class="icon iconfont icon-plus" style="font-size:44px;margin:0 auto;top:20px;color:#bbb;"></i>
+          </flexbox-item>
+        </flexbox>
       </div>
     </div>
   </view-box>
 </template>
+
 <script>
-import {XHeader, ViewBox, Group} from 'vux'
+import {Flexbox, FlexboxItem, GroupTitle, XHeader, ViewBox} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'photo',
   components: {
-    XHeader, ViewBox, Group
+    XHeader, ViewBox, Flexbox, FlexboxItem, GroupTitle
   },
   methods: {
     ...mapActions(['uploadHeadImg', 'workbookUploadAdd']),
     _add () {
-      let cmr = plus.camera.getCamera()
-      cmr.captureImage((p) => {
-        plus.io.resolveLocalFileSystemURL(p, (entry) => {
-          this.workbookCamera(entry.toLocalURL())
-          this.$router.push({'name': 'workbook_uploader_photo'})
-        })
-      })
+      this.$router.push({'name': 'workbook_uploader_photo'})
+      // let cmr = plus.camera.getCamera()
+      // cmr.captureImage((p) => {
+      //   plus.io.resolveLocalFileSystemURL(p, (entry) => {
+      //     this.workbookCamera(entry.toLocalURL())
+      //     this.$router.push({'name': 'workbook_uploader_photo'})
+      //   })
+      // })
     },
     _del (index) {
       this.workbookUploadDel(index)
-    },
-    _finish () {
-      this.workbookUploadAdd(this.cropper.getCroppedCanvas({width: 640}).toDataURL('image/jpeg', 0.9))
-      history.back()
     },
     _upload () {
       if (!this.workbookUploader.list.length) {

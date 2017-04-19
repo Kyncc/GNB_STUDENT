@@ -2,7 +2,7 @@
   <div class='bag'>
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{showBack: false}">书包</x-header>
     <swiper :list="list" auto height="155px" :loop="true" :show-desc-mask="false" :interval="5000"></swiper>
-    <group gutter="0">
+    <group gutter='0'>
       <cell title="知识图谱" link="report">
         <i class="icon iconfont icon-pie-chart" style="color:#794BB8" slot="icon"></i>
       </cell>

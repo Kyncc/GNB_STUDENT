@@ -45,11 +45,5 @@ export default [
         component: r => require.ensure([], () => r(require('./pages/exercise/practice')), '/induce/exercise/practice')
       }
     ]
-  },
-  // 练习题列表
-  {
-    path: '/induce/exercise/:subject/:chapterId/:chapterName/practice/list',
-    name: 'induce_exercise_practice_list',
-    component: r => require.ensure([], () => r(require('./pages/exercise/practiceList')), '/induce/exercise/practice/list')
   }
 ]

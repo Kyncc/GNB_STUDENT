@@ -1,16 +1,20 @@
 <template>
   <div>
     <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
-      <template v-for="workbook in workbookMath.list">
-        <group>
-          <template v-for="book in workbook.list">
-            <router-link :to="{ name: 'workbook_chapter', params: {'id': book.workbookId ,'name': book.workbookName}}">
-              <img :src="book.img.url+'-workbook'" alt="">
-            </router-link>
-          </template>
-        </group>
-      </template>
-      <cell></cell>
+    <div style="padding:10px">
+      <flexbox v-for="(workbook, index) in workbookMath.list" wrap="wrap" align="baseline" :key="index" :gutter="0">
+        <flexbox-item :span="3" v-for="(book, index) in workbook.list" :key="index" 
+          @click.native="$router.push({ name: 'workbook_chapter', params: {'id': book.workbookId ,'name': book.workbookName}})" 
+          style="text-align:center;">
+          <img v-lazy="book.img.url+'-workbook'" style="background-repeat:no-repeat"/>
+        </flexbox-item>
+        <flexbox-item :span="3" style="text-align:center;border:1px solid #ccc;height:90px;width:65px;"
+          @click.native="$router.push({ name: 'workbook_chapter', params: {'id': book.workbookId ,'name': book.workbookName}})">
+          <i class="icon iconfont icon-plus" style="font-size:44px;margin:0 auto;top:20px;color:#bbb;"></i>
+        </flexbox-item>
+      </flexbox>
+    </div>
+
     <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
       <div slot="no-results" style="color:#4bb7aa;">
         <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -22,7 +26,7 @@
 </template>
 
 <script>
-import {Group, Cell} from 'vux'
+import {Flexbox, FlexboxItem} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 import selectBook from '@/components/gnb_selectbook'
 import InfiniteLoading from 'vue-infinite-loading'
@@ -30,7 +34,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 export default {
   name: 'math',
   components: {
-    Group, Cell, InfiniteLoading, selectBook
+    Flexbox, FlexboxItem, InfiniteLoading, selectBook
   },
   data () {
     return {
@@ -63,3 +67,10 @@ export default {
   }
 }
 </script>
+<style>
+.flex-demo {
+  text-align: center;
+  color: #fff;
+  background-clip: padding-box;
+}
+</style>

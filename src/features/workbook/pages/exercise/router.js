@@ -3,7 +3,7 @@ export default [
   {
     path: '/workbook/exercise',
     component: r => require.ensure([], () => r(require('./layout')), '/workbook/exercise'),
-    redirect: '/workbook/exercise/answer',
+    redirect: '/workbook/exercise/result',
     children: [
       {
         path: 'answer/:name/:id',

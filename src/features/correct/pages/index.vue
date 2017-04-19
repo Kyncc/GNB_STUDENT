@@ -3,7 +3,7 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '我要纠错'}">
       <i slot="right" @click="_commit">提交</i>
     </x-header>
-    <group title="纠错类型" gutter="0">
+    <group title="纠错类型" :gutter="0">
       <checker style="padding:.25rem .75rem 1rem;"
         v-model="type"
         :max="4"
@@ -18,7 +18,7 @@
           <checker-item :value="4">其他</checker-item>
       </checker>
     </group>
-    <group title="纠错内容" gutter="0">
+    <group title="纠错内容" :gutter="0">
       <x-textarea :max="200" :rows="5" v-model="content" placeholder="请简单描述纠错内容"></x-textarea>
     </group>
   </view-box>

@@ -13,11 +13,11 @@
     <div class="btnWapper">
       <x-button :disabled="!disable" @click.native='_login' type="primary">登录</x-button>
       <div class="link">
-        <router-link :to="{ path: 'forget'}">
-          <p class="resetPwd">登录遇到问题</p>
-        </router-link>
         <router-link :to="{ path: 'register'}">
           <p class="register">新用户注册</p>
+        </router-link>
+        <router-link :to="{ path: 'forget'}">
+          <p class="resetPwd">忘记密码?</p>
         </router-link>
       </div>
     </div>
