@@ -7,6 +7,10 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/index')), '/about/index')
     },
     {
+      path: 'my',
+      component: r => require.ensure([], () => r(require('./pages/my')), '/about/my')
+    },
+    {
       path: 'advice',
       component: r => require.ensure([], () => r(require('./pages/advice')), '/about/advice')
     },

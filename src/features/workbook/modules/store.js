@@ -33,6 +33,7 @@ const mutations = {
   [types.WORKBOOK_EXERCISE_CLEAR] (state) {
     state.exercise.list = []
     state.exercise.isReset = true
+    state.exercise.scroll = 0
     // state.uploader.list = []
     // state.uploader.camera = ''
   },

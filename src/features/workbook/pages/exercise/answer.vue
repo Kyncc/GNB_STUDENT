@@ -33,26 +33,17 @@
       <x-button v-if = "!isUsed" type="primary" @click.native="_post">提交结果</x-button>
       <x-button v-else type="primary" disabled>已提交</x-button>
     </div>
-
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
-      <div slot="no-results" style="color:#4bb7aa;">
-        <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-        <p style="font-size:1rem;display:inline-block;">出错了~</p>
-      </div>
-      <div slot="no-more"></div>
-    </infinite-loading>
   </div>
 </template>
 
 <script>
 import {Group, Cell, XButton} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
-import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   name: 'answer',
   components: {
-    Group, Cell, InfiniteLoading, XButton
+    Group, Cell, XButton
   },
   computed: {
     ...mapGetters(['workbookExercise']),
@@ -106,14 +97,6 @@ export default {
         }
       }
     },
-    _onInfinite () {
-      this.getWorkbookExercise().then(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-      }).catch(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-      })
-    },
     _post () {
       let _this = this
       this.$vux.confirm.show({
@@ -126,17 +109,6 @@ export default {
           })
         }
       })
-    }
-  },
-  beforeRouteEnter (to, from, next) {
-    // 章节进来清空数据
-    if (from.name === 'workbook_chapter') {
-      next(vm => {
-        vm.workbookExerciseClear()
-        vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
-      })
-    } else {
-      next()
     }
   },
   activated () {

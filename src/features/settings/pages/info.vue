@@ -6,35 +6,43 @@
       </router-link>
     </x-header>
     <group gutter="0">
-      <cell title="头像" >
-        <x-img slot="default" default-src="http://placehold.it/60x60" src="https://cn.nuxtjs.org/vuejobs.png" width="60" height="60"/>
+      <cell title="头像">
+        <img v-lazy="User.headImg" width="60" height="60"/>
       </cell>
-      <cell title="姓名" value="王三宝"></cell>
-      <cell title="性别" value="男"></cell>
+      <cell title="电话" :value="User.mobile"></cell>
+      <cell title="姓名" :value="User.name"></cell>
+      <cell title="性别" :value="User.sex ? '男' : '女'"></cell>
     </group>
     <group>
-      <cell title="年级" value="七年级"></cell>
-      <cell title="学校" value="芜湖市"></cell>
+      <cell title="年级" :value="grade"></cell>
+      <cell title="学校" :value="User.school"></cell>
     </group>
     <group>
-      <cell title="数学" value="新人教版"></cell>
-      <cell title="物理" value="沪教版"></cell>
-    </group>
-    <group>
-      <cell title="手机号码" value="13605592895"></cell>
+      <cell title="数学版本" :value="User.subject.math.name"></cell>
+      <cell v-if="User.subject.physics" title="物理版本" :value="User.subject.physics.name"></cell>
     </group>
   </view-box>
 </template>
 
 <script>
-import {XHeader, Cell, Group, XImg, ViewBox} from 'vux'
+import {XHeader, Cell, Group, ViewBox} from 'vux'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'info',
   components: {
-    XHeader, Cell, Group, ViewBox, XImg
+    XHeader, Cell, Group, ViewBox
   },
-  methods: {
+  computed: {
+    ...mapGetters(['User']),
+    grade () {
+      switch (this.User.grade) {
+        case '7' : return '七年级'
+        case '8' : return '八年级'
+        case '9' : return '九年级'
+        case '10' : return '高中'
+      }
+    }
   }
 }
 </script>

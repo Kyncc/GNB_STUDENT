@@ -27,7 +27,7 @@
 
 <script>
 import {XHeader, ViewBox, Tab, TabItem} from 'vux'
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'exercise',
@@ -36,6 +36,23 @@ export default {
   },
   computed: {
     ...mapGetters(['Route', 'workbookExercise'])
+  },
+  methods: {
+    ...mapActions(['getWorkbookExercise', 'workbookExerciseClear'])
+  },
+  beforeRouteEnter (to, from, next) {
+    if (from.name === 'workbook_chapter') {
+      next(vm => {
+        vm.workbookExerciseClear()
+        vm.getWorkbookExercise().then(() => {
+          next()
+        }).catch(() => {
+          this.$router.go(-1)
+        })
+      })
+    } else {
+      next()
+    }
   }
 }
 </script>

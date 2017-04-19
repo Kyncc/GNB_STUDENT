@@ -3,14 +3,16 @@
     <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
     <div style="padding:10px">
       <flexbox v-for="(workbook, index) in workbookMath.list" wrap="wrap" align="baseline" :key="index" :gutter="0">
-        <flexbox-item :span="3" v-for="(book, index) in workbook.list" :key="index" 
+        <flexbox-item :span="4" v-for="(book, index) in workbook.list" :key="index" 
           @click.native="$router.push({ name: 'workbook_chapter', params: {'id': book.workbookId ,'name': book.workbookName}})" 
-          style="text-align:center;">
-          <img v-lazy="book.img.url+'-workbook'" style="background-repeat:no-repeat"/>
+          style="text-align:center;margin-bottom:.75rem;">
+          <img v-lazy="book.img.url+'-workbook3small'" style="background-repeat:no-repeat"/>
         </flexbox-item>
-        <flexbox-item :span="3" style="text-align:center;border:1px solid #ccc;height:90px;width:65px;"
+        <flexbox-item :span="4" 
           @click.native="$router.push({ name: 'workbook_chapter', params: {'id': book.workbookId ,'name': book.workbookName}})">
-          <i class="icon iconfont icon-plus" style="font-size:44px;margin:0 auto;top:20px;color:#bbb;"></i>
+          <!--<div style="border:1px solid #ccc;height:133px;width:95px;text-align:center">
+            <i class="icon iconfont icon-plus" style="font-size:44px;margin:0 auto;top:20px;color:#bbb;"></i>
+          </div>-->
         </flexbox-item>
       </flexbox>
     </div>

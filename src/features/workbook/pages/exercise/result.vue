@@ -1,14 +1,22 @@
 <template>
   <div>
-    <template v-if="isUpload">
-
-
+    <template v-if="!isUpload">
+      <flexbox wrap="wrap" :gutter="0" style="margin-top:5rem;" @click.native="$router.push({name:'workbook_uploader'})">
+        <flexbox-item :span="12">
+          <div style="text-align:center">
+            <i class="icon iconfont icon-camera" style="font-size:5rem"></i>
+          </div>
+        </flexbox-item>
+        <flexbox-item :span="12">
+          <p style="text-align:center;margin-top:-1rem;font-size:.85rem;">请先上传作业再查看答案，最多5张</p>
+        </flexbox-item>
+      </flexbox>
     </template>
     <template v-else>
       <group-title style="margin:10px 0;">答案列表</group-title>
       <flexbox wrap="wrap" align="baseline" :gutter="0">
         <flexbox-item :span="3" v-for="(img, index) in resultImg" :key="index" @click.native="show(index)" style="text-align:center">
-          <img :src="img.url+'-answer'" class="previewer-answer-img"/>
+          <img :src="img.url+'?imageMogr2/auto-orient/thumbnail/65x90!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" class="previewer-answer-img"/>
         </flexbox-item>
       </flexbox>
     </template>
@@ -32,7 +40,7 @@ export default {
       return this.workbookExercise.list.resultImg
     },
     isUpload () {
-      return this.workbookExercise.list.bindTeacher && this.workbookExercise.list.practiceImg.length
+      return Boolean(this.workbookExercise.list.bindTeacher && this.workbookExercise.list.practiceImg.length)
     },
     list () {
       let list = []

@@ -50,6 +50,11 @@ export default {
         this.$vux.toast.show({text: '请完善内容', type: 'text', time: 1000, position: 'bottom'})
       }
     }
+  },
+  activated () {
+    this.title = ''
+    this.content = ''
+    this.contact = ''
   }
 }
 </script>
