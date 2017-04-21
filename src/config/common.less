@@ -11,7 +11,12 @@ html,body{
   overflow-x: hidden;
   background:#F3F9F8;
   color:#555;
+  user-select: none;
+  -webkit-user-select:none; 
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
 }
+a,img { -webkit-touch-callout: none }
 #app{
   height:100%;
 }
@@ -69,6 +74,19 @@ html,body{
 */
 .weui-cells__title{
   color:#4BB7AA !important;
+}
+/**
+*   vux-spinner
+*/
+.vux-spinner{
+  &.vux-spinner-lines{
+    stroke: #4BB7AA;
+    fill: #4BB7AA;
+  }
+  &.vux-spinner-ripple{
+    stroke: #4BB7AA;
+    fill: #4BB7AA;
+  }
 }
 // 修改按钮默认颜色
 .weui-btn_disabled {

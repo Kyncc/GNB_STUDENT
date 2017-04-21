@@ -22,7 +22,7 @@ const mutations = {
     if (payload.data.list.length === 0) return
     state[payload.subject].isReset = false
     state[payload.subject].offset = payload.data.offset
-    state[payload.subject].list = state.math.list.concat(payload.data.list)
+    state[payload.subject].list = state[payload.subject].list.concat(payload.data.list)
   },
   [types.COLLECT_SCROLL] (state, payload) {
     state[payload.subject].scroll = payload.height

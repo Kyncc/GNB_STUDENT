@@ -1,41 +1,37 @@
 <template>
   <div>
-    <template v-for="item in list">
-      <card :header="{title:`${item.chapter_name}`}">
-        <div slot="content" @click="$router.push({name:'example', params: {subjectId: '2', id: item.exercises_id}})">
-          <div v-html="item.stem"></div>
-          <div v-if="item.opt_jo.hasOwnProperty('A')">
-            <template v-for="(value, key) in item.opt_jo">
-              <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
-            </template>
-          </div>
+    <card v-for="(item, index) in list" :header="{title:`${item.chapter_name}`}" :key="index">
+      <div slot="content" @click="$router.push({name:'example', params: {subjectId: '2', id: item.exercises_id}})">
+        <div v-html="item.stem"></div>
+        <div v-if="item.opt_jo.hasOwnProperty('A')">
+          <template v-for="(value, key) in item.opt_jo">
+            <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+          </template>
         </div>
-        <div slot="footer">
-          <div class="weui-cell weui-cell_access weui-cell_link">
-            <div class="weui-cell__bd">收藏时间: {{item.collect_time | ymd}}</div>
-          </div>
-        </div>
-      </card>
-    </template>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
-      <div slot="no-results" style="color:#4bb7aa;">
-        <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-        <p style="font-size:1rem;display:inline-block;">快去收藏更多题目吧~</p>
       </div>
-      <div slot="no-more"></div>
+      <div slot="footer">
+        <div class="weui-cell weui-cell_access weui-cell_link">
+          <div class="weui-cell__bd">收藏时间: {{item.collect_time | ymd}}</div>
+        </div>
+      </div>
+    </card>
+    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
+      <div slot="no-results" style="color:#4bb7aa;">快去收藏更多题目吧~</div>
+      <div slot="no-more" style="color:#4bb7aa;">已经加载全部收藏</div>
+      <div slot="spinner" style="padding:.5rem 0"><spinner type="lines" slot="value"></spinner></div>
     </infinite-loading>
   </div>
 </template>
 
 <script>
-import {XHeader, Card} from 'vux'
+import {XHeader, Card, Spinner} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'math',
   components: {
-    XHeader, Card, InfiniteLoading
+    XHeader, Card, Spinner, InfiniteLoading
   },
   computed: {
     ...mapGetters(['collectMath']),
@@ -44,19 +40,20 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getCollect']),
+    ...mapActions(['getCollect', 'setCollectScroll']),
     _onInfinite () {
-      this.getCollect().then(() => {
-        if (this.list.length !== 0) this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+      this.getCollect().then((res) => {
+        res.data.data.list.length < 5 ? this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete') : ''
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
       })
     }
+  },
+  activated () {
+    this.$parent.$refs.viewBoxBody.scrollTop = this.collectMath.scroll
+  },
+  beforeRouteLeave (to, from, next) {
+    this.setCollectScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    next()
   }
 }
 </script>
-<style lang="less" scoped>
-.content{
-  padding:10px 15px;
-  font-size:14px;
-}
-</style>

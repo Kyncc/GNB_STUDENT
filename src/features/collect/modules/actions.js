@@ -1,7 +1,7 @@
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
-/** 获取收藏例题ID */
+/** 获取收藏例题 */
 export const getCollect = ({rootState, commit, state}, params) => {
   let subjectId = (rootState.route.name.includes('math') ? 2 : 7)
   let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')

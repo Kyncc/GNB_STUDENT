@@ -32,8 +32,6 @@ export default {
   },
   computed: {
     ...mapGetters(['Route', 'User'])
-  },
-  methods: {
   }
 }
 </script>
