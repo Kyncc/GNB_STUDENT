@@ -50,7 +50,10 @@ export default {
     this.getUserInfo().then(() => {})
   },
   mounted () {
-    if (window.plus) { setTimeout(() => { plus.navigator.closeSplashscreen() }, 300) }
+    if (window.plus) {
+      plus.navigator.setStatusBarBackground(75, 183, 170) // 设置系统状态条颜色
+      setTimeout(() => { plus.navigator.closeSplashscreen() }, 800)
+    }
   }
 }
 </script>

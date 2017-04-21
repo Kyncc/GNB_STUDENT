@@ -17,11 +17,6 @@ export default {
   name: 'my',
   components: {
     XHeader, ViewBox, Flexbox, FlexboxItem
-  },
-  method: {
   }
 }
 </script>
-<style lang="less" scoped>
-
-</style>

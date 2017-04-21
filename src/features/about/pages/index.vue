@@ -11,11 +11,14 @@
     </group>
     <group>
       <cell title="关于我们" link="about/my"></cell>
-      <cell title="加入群聊" link="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode"></cell>
+      <cell title="加入群聊" is-link 
+        @click.native="window.location.href = 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode'">
+      </cell>
     </group>
     <section class="about_footer">
       <a href="tel:0553-2111770" class="about_footer__link">联系我们: 0553-2111770</a><br/>
-      <a href="mqqwpa://im/chat?chat_type=wpa&uin=1879831346&version=1&src_type=web&web_src=oicqzone.com"  class="about_footer__link" target="_blank">QQ客服: 1879831346</a>
+      <a href="mqqwpa://im/chat?chat_type=wpa&uin=1879831346&version=1&src_type=web&web_src=oicqzone.com"  
+        class="about_footer__link" target="_blank">QQ客服: 1879831346</a>
     </section>
   </view-box>
 </template>
@@ -43,7 +46,7 @@ export default {
   }
 }
 </script>
-<style lang="less" scopedd>
+<style lang="less" scoped>
 .about_footer{
   margin-top:.5rem;
   text-align:center;

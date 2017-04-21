@@ -45,11 +45,12 @@ export default {
 
 <style lang="less" scoped>
 .gnbCompoents_selectBook{
+  p{font-size:.8rem;color:#4BB7AA;}
   position: relative;
-  height:40px;
+  height:35px;
   text-align: center;
   width:100%;
-  padding-top:5px;
+  padding-top:10px;
   select{
     -webkit-appearance: none;
     border: 0;
@@ -68,13 +69,14 @@ export default {
     opacity: 0;
   }
   .header_title_select_arrow{
+
     display: inline-block;
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
     height: 6px;
     width: 6px;
     border-width: 2px 2px 0 0;
-    border-color: #C8C8CD;
+    border-color: #4BB7AA;
     border-style: solid;
     margin-left:5px;
     transition-duration: .2s;

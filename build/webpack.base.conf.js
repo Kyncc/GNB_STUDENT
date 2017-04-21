@@ -62,7 +62,7 @@ let webpackConfig = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         query: {
-          limit: 10000,
+          limit: 30000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }

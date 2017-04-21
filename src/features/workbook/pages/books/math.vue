@@ -18,17 +18,15 @@
     </div>
 
     <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
-      <div slot="no-results" style="color:#4bb7aa;">
-        <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-        <p style="font-size:1rem;display:inline-block;">出错了~</p>
-      </div>
+      <div slot="no-results" style="color:#4bb7aa;">出错了~</div>
+      <div slot="spinner" style="padding:.5rem 0"><spinner type="ripple" slot="value"></spinner></div>
       <div slot="no-more"></div>
     </infinite-loading>
   </div>
 </template>
 
 <script>
-import {Flexbox, FlexboxItem} from 'vux'
+import {Flexbox, FlexboxItem, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 import selectBook from '@/components/gnb_selectbook'
 import InfiniteLoading from 'vue-infinite-loading'
@@ -36,7 +34,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 export default {
   name: 'math',
   components: {
-    Flexbox, FlexboxItem, InfiniteLoading, selectBook
+    Flexbox, FlexboxItem, InfiniteLoading, selectBook, Spinner
   },
   data () {
     return {

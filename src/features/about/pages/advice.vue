@@ -1,5 +1,5 @@
 <template>
-  <view-box ref="about_advice" body-padding-top="46px">
+  <view-box body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '意见反馈'}">
       <router-link :to="{ path: 'adviceHistory'}" slot="right">
         <p>反馈历史</p>
@@ -10,7 +10,7 @@
       <x-input placeholder="QQ号/微信号" v-model="contact"></x-input>
       <x-textarea :max="200" name="description" placeholder="问题或建议描述" :rows="5" v-model="content"></x-textarea>
     </group>
-    <div class="footer">
+    <div style="width:90%;margin:1rem auto 0">
       <x-button class="footer_botton" type="primary" @click.native="_submit">提交</x-button>
     </div>
   </view-box>
@@ -58,11 +58,3 @@ export default {
   }
 }
 </script>
-<style lang="less" scopedd>
-.footer{
-  width:90%;
-  margin:0 auto;
-  .footer_botton{margin-top:1rem;}
-}
-</style>
-

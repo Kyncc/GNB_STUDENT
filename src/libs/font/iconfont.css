@@ -1,7 +1,3 @@
-@font-face {font-family: "iconfont";
-  src:url('./iconfont.ttf?t=1474006879') format('truetype');
-      /*Chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-}
 .iconfont {
   font-family:"iconfont" !important;
   font-size:16px;

@@ -27,7 +27,7 @@
         <div slot="content" v-html="detail.answer"></div>
       </card>
     </template>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
+    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
       <div slot="no-results" style="color:#4bb7aa;">加载题目失败~</div>
       <div slot="no-more"></div>
       <div slot="spinner" style="padding:.5rem 0"><spinner type="ripple" slot="value"></spinner></div>
@@ -68,9 +68,16 @@ export default {
       Number(state) === 0 ? this.collectAdd() : this.collectRemove()
     }
   },
-  activated () {
-    this.exampleClear()
-    this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+  beforeRouteEnter (to, from, next) {
+    // 纠错页面来的不需要刷新
+    if (from.name !== 'correct') {
+      next(vm => {
+        vm.exampleClear()
+        vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+      })
+    } else {
+      next()
+    }
   }
 }
 </script>

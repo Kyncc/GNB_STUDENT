@@ -15,11 +15,9 @@
         <cell :title="item.name" :link="'class/detail/'+item.classCode"></cell>
       </template>
     </group>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
-      <div slot="no-results">
-        <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-        <p style="font-size:1rem;display:inline-block;">点我加入班级~</p>
-      </div>
+    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
+      <div slot="no-results" style="color:#4bb7aa;">您还未加入班级~</div>
+      <div slot="spinner" style="padding:.5rem 0"><spinner type="dots" slot="value"></spinner></div>
       <div slot="no-more"></div>
     </infinite-loading>
   </view-box>
@@ -27,13 +25,13 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
-import {XHeader, Cell, Group, ViewBox} from 'vux'
+import {XHeader, Cell, Group, Spinner, ViewBox} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'index',
   components: {
-    XHeader, Cell, Group, ViewBox, InfiniteLoading
+    XHeader, Cell, Group, ViewBox, InfiniteLoading, Spinner
   },
   activated () {
     this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')

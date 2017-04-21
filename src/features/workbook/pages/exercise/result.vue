@@ -4,11 +4,11 @@
       <flexbox wrap="wrap" :gutter="0" style="margin-top:5rem;" @click.native="$router.push({name:'workbook_uploader'})">
         <flexbox-item :span="12">
           <div style="text-align:center">
-            <i class="icon iconfont icon-camera" style="font-size:5rem"></i>
+            <i class="icon iconfont icon-camera" style="font-size:5rem;color:#4BB7AA"></i>
           </div>
         </flexbox-item>
         <flexbox-item :span="12">
-          <p style="text-align:center;margin-top:-1rem;font-size:.85rem;">请先上传作业再查看答案，最多5张</p>
+          <p style="text-align:center;margin-top:-1rem;font-size:.85rem;color:#4BB7AA">请先上传作业再查看答案，最多5张</p>
         </flexbox-item>
       </flexbox>
     </template>

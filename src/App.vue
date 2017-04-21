@@ -13,6 +13,10 @@ export default {
 </script>
 
 <style lang="less">
+@font-face {
+  font-family: "iconfont";
+  src:url('./libs/font/iconfont.ttf') format('truetype')
+}
 @import '~vux/src/styles/reset.less';
 @import '~vux/src/styles/1px.less';
 @import './config/common.less';

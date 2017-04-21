@@ -16,18 +16,16 @@
         </div>
       </template>
     </group>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
-      <div slot="no-results" style="color:#4bb7aa;">
-        <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-        <p style="font-size:1rem;display:inline-block;">出错了~</p>
-      </div>
+    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
+      <div slot="no-results" style="color:#4bb7aa;">出错了~</div>
       <div slot="no-more"></div>
+      <div slot="spinner" style="padding:.5rem 0"><spinner type="ripple" slot="value"></spinner></div>
     </infinite-loading>
   </div>
 </template>
 
 <script>
-import {XHeader, Cell, CellBox, Group} from 'vux'
+import {XHeader, Cell, CellBox, Group, Spinner} from 'vux'
 import selectBook from '@/components/gnb_selectbook'
 import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
@@ -35,7 +33,7 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
   name: 'physics',
   components: {
-    XHeader, Cell, Group, CellBox, InfiniteLoading, selectBook
+    XHeader, Cell, Group, CellBox, InfiniteLoading, selectBook, Spinner
   },
   computed: {
     ...mapGetters(['inducePhysics', 'User']),
@@ -70,6 +68,3 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
-@import "../../../components/gnb_collapse/index.less";
-</style>

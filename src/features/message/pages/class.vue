@@ -9,24 +9,22 @@
         </article>
       </section>
       <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
-        <div slot="no-results" style="color:#4bb7aa;">
-          <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">暂无通知~</p>
-        </div>
+        <div slot="no-results" style="color:#4bb7aa;">暂无通知~</div>
+        <div slot="spinner" style="padding:.5rem 0"><spinner type="dots" slot="value"></spinner></div>
         <div slot="no-more"></div>
       </infinite-loading>
     </div>
   </view-box>
 </template>
 <script>
-import {XHeader, ViewBox} from 'vux'
+import {XHeader, ViewBox, Spinner} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'class',
   components: {
-    XHeader, ViewBox, InfiniteLoading
+    XHeader, ViewBox, Spinner, InfiniteLoading
   },
   activated () {
     this.clearMessage()

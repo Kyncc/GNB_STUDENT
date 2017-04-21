@@ -21,15 +21,6 @@ export default {
   name: 'index',
   components: {
     XHeader, ViewBox, XButton
-  },
-  mounted () {
-    // 进首页一系列清空操作
-    if (window.plus) {
-      setTimeout(() => {
-        plus.navigator.closeSplashscreen() // 关闭等待
-        plus.navigator.setStatusBarBackground(75, 183, 170) // 设置系统状态条颜色
-      }, 300)
-    }
   }
 }
 </script>
