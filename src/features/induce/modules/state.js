@@ -14,32 +14,32 @@ let state = {
   exercise: {
     total: {
       list: [],
-      count: 0,
-      isReset: false,
+      recordSize: 0,
+      totalSize: 0,
       chapterName: '',
       scroll: 0,
       offset: ''
     },
     practice: {
       list: [],
-      count: 0,
-      isReset: false,
+      recordSize: 0,
+      totalSize: 0,
       chapterName: '',
       scroll: 0,
       offset: ''
     },
     break: {
       list: [],
-      count: 0,
-      isReset: false,
+      recordSize: 0,
+      totalSize: 0,
       chapterName: '',
       scroll: 0,
       offset: ''
     },
     pass: {
       list: [],
-      count: 0,
-      isReset: false,
+      recordSize: 0,
+      totalSize: 0,
       chapterName: '',
       scroll: 0,
       offset: ''

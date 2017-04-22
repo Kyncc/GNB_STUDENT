@@ -1,22 +1,90 @@
 <template>
-   <div>
-    题型本
-   </div>
+  <div>
+    <aside style="padding:0 .5rem;font-size:.7rem;line-height:1.5rem;margin-bottom:-10px;">
+      <p>本节共有<b style="color:#F8BF4D">{{totalCount}}</b>个题型，未处理<b style="color:#F8BF4D">{{recordSize}}</b>题</p>
+    </aside>
+    <card v-for="(item, index) in list" :key="index">
+      <div class="weui-panel__hd" slot="header">
+        <flexbox>
+          <flexbox-item :span="10" style="color:#4bb7aa">{{item.chapter_name}}</flexbox-item>
+          <flexbox-item :span="2">难度: {{item.degree}}</flexbox-item>
+        </flexbox>
+      </div>
+      <div slot="content" @click="$router.push({name:'example', params: {subjectId: Route.params.subject.includes('math') ? 2 : 7, id: item.exercises_id}})">
+        <div v-html="item.stem"></div>
+        <div v-if="item.opt_jo.hasOwnProperty('A')">
+          <template v-for="(value, key) in item.opt_jo">
+            <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+          </template>
+        </div>
+      </div>
+      <div slot="footer">
+        <div class="weui-cell weui-cell_access weui-cell_link">
+          <div class="weui-cell__bd">
+            <flexbox>
+              <flexbox-item :span="6"></flexbox-item>
+              <flexbox-item :span="2">练习</flexbox-item>
+              <flexbox-item :span="2">斩题</flexbox-item>
+              <flexbox-item :span="2">弃题</flexbox-item>
+            </flexbox>
+          </div>
+        </div>
+      </div>
+    </card>
+    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
+      <div slot="no-results" style="color:#4bb7aa;">您已处置所有题型~</div>
+      <div slot="no-more" style="color:#4bb7aa;">已经到头了~</div>
+      <div slot="spinner" style="padding:.5rem 0"><spinner type="lines" slot="value"></spinner></div>
+    </infinite-loading>
+  </div>
 </template>
 
 <script>
-import {ViewBox} from 'vux'
-import {mapGetters} from 'vuex'
+import {Card, Spinner, Flexbox, FlexboxItem} from 'vux'
+import InfiniteLoading from 'vue-infinite-loading'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'total',
   components: {
-    ViewBox
+    Card, Spinner, Flexbox, FlexboxItem, InfiniteLoading
   },
   computed: {
-    ...mapGetters(['Route'])
+    ...mapGetters(['Route', 'induceTotal']),
+    list () {
+      return this.induceTotal.list
+    },
+    recordSize () {
+      return this.induceTotal.recordSize
+    },
+    totalCount () {
+      return this.induceTotal.totalCount
+    }
   },
   methods: {
+    ...mapActions(['getInduceList', 'setInduceListScroll', 'induceListClear']),
+    _onInfinite () {
+      this.getInduceList({type: 'total'}).then((res) => {
+        res.data.data.list.length < 10 ? this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete') : ''
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+      })
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    if (from.name !== 'example') {
+      next(vm => {
+        vm.induceListClear({type: 'total'})
+        vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+      })
+    } else {
+      next(vm => {
+        vm.$parent.$refs.viewBoxBody.scrollTop = vm.induceTotal.scroll
+      })
+    }
+  },
+  beforeRouteLeave (to, from, next) {
+    this.setInduceListScroll({type: 'total', height: this.$parent.$refs.viewBoxBody.scrollTop})
+    next()
   }
 }
 </script>

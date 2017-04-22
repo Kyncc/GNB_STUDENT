@@ -17,12 +17,14 @@ const mutations = {
     state.index[payload.subject].scroll = payload.height
   },
   [types.INDUCE_LIST] (state, payload) {
-    state.exercise[payload.type].list = payload.data
+    state.exercise[payload.type].list = state.exercise[payload.type].list.concat(payload.data.list)
+    state.exercise[payload.type].offset = payload.data.offset
+    state.exercise[payload.type].totalCount = payload.data.totalCount
+    state.exercise[payload.type].recordSize = payload.data.recordSize
   },
   [types.INDUCE_LIST_CLEAR] (state, payload) {
     state.exercise[payload.type].list = []
     state.exercise[payload.type].count = 0
-    state.exercise[payload.type].isReset = false
     state.exercise[payload.type].chapterName = ''
     state.exercise[payload.type].scroll = 0
     state.exercise[payload.type].offset = ''
