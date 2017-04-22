@@ -1,6 +1,6 @@
 <template>
   <div>
-    <aside style="padding:0 .5rem;font-size:.7rem;line-height:1.5rem;margin-bottom:-10px;">
+    <aside v-if="list.length" style="padding:0 .5rem;font-size:.7rem;line-height:1.5rem;margin-bottom:-10px;">
       <p>本节共有<b style="color:#F8BF4D">{{totalCount}}</b>个题型，已弃<b style="color:#F8BF4D">{{recordSize}}</b>题</p>
     </aside>
     <card v-for="(item, index) in list" :key="index">

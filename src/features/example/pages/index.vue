@@ -59,7 +59,7 @@ export default {
     _onInfinite () {
       this.getExample().then(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        this.$nextTick(() => { this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete') })
       }).catch(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       })
@@ -69,11 +69,9 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    // 纠错页面来的不需要刷新
     if (from.name !== 'correct') {
       next(vm => {
         vm.exampleClear()
-        vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
       })
     } else {
       next()

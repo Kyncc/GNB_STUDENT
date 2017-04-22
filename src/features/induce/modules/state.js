@@ -15,7 +15,7 @@ let state = {
     total: {
       list: [],
       recordSize: 0,
-      totalSize: 0,
+      totalCount: 0,
       chapterName: '',
       scroll: 0,
       offset: ''
@@ -23,7 +23,7 @@ let state = {
     practice: {
       list: [],
       recordSize: 0,
-      totalSize: 0,
+      totalCount: 0,
       chapterName: '',
       scroll: 0,
       offset: ''
@@ -31,7 +31,7 @@ let state = {
     break: {
       list: [],
       recordSize: 0,
-      totalSize: 0,
+      totalCount: 0,
       chapterName: '',
       scroll: 0,
       offset: ''
@@ -39,7 +39,7 @@ let state = {
     pass: {
       list: [],
       recordSize: 0,
-      totalSize: 0,
+      totalCount: 0,
       chapterName: '',
       scroll: 0,
       offset: ''

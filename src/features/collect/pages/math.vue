@@ -1,6 +1,12 @@
 <template>
   <div>
-    <card v-for="(item, index) in list" :header="{title:`${item.chapter_name}`}" :key="index">
+    <card v-for="(item, index) in list" :key="index">
+      <div class="weui-panel__hd" slot="header">
+        <flexbox>
+          <flexbox-item :span="10" style="color:#4bb7aa">{{item.chapter_name}}</flexbox-item>
+          <flexbox-item :span="2">难度: {{item.degree}}</flexbox-item>
+        </flexbox>
+      </div>
       <div slot="content" @click="$router.push({name:'example', params: {subjectId: '2', id: item.exercises_id}})">
         <div v-html="item.stem"></div>
         <div v-if="item.opt_jo.hasOwnProperty('A')">
@@ -24,14 +30,14 @@
 </template>
 
 <script>
-import {XHeader, Card, Spinner} from 'vux'
+import {XHeader, Card, Spinner, Flexbox, FlexboxItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'math',
   components: {
-    XHeader, Card, Spinner, InfiniteLoading
+    XHeader, Card, Spinner, Flexbox, FlexboxItem, InfiniteLoading
   },
   computed: {
     ...mapGetters(['collectMath']),

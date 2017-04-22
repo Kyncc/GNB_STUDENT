@@ -24,9 +24,9 @@ const mutations = {
   },
   [types.INDUCE_LIST_CLEAR] (state, payload) {
     state.exercise[payload.type].list = []
-    state.exercise[payload.type].count = 0
-    state.exercise[payload.type].chapterName = ''
     state.exercise[payload.type].scroll = 0
+    state.exercise[payload.type].totalCount = 0
+    state.exercise[payload.type].recordSize = 0
     state.exercise[payload.type].offset = ''
   },
   [types.INDUCE_LIST_SCOLLER] (state, payload) {
