@@ -1,6 +1,11 @@
 /** 获取用户信息 */
 export const USERINFO = 'USERINFO'
-/** 清空用户信息 */
-export const RESET_USERINFO = 'RESET_USERINFO'
 /** 设置用户信息 */
-export const SET_USERINFO = 'SET_USERINFO'
+export const USERINFO_UPDATE = 'USERINFO_UPDATE'
+/** 清空用户信息 */
+export const USERINFO_CLEAR = 'USERINFO_CLEAR'
+/** 设置用户照片 */
+export const USERPHOTO_SET = 'USERPHOTO_SET'
+/** 上传用户照片 */
+export const USERPHOTO_POST = 'USERPHOTO_POST'
+

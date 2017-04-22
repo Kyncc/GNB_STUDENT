@@ -1,18 +1,13 @@
 let state = {
   workbook: {
-    math: {
-      list: [],
-      isReset: false
-    },
-    physics: {
-      list: [],
-      isReset: false
-    }
+    math: [],
+    physics: [],
+    add: [],
+    search: []
   },
   chapter: {
     list: [],
-    scroll: 0,
-    isReset: false
+    scroll: 0
   },
   uploader: {
     list: [],

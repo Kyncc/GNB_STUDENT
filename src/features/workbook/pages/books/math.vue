@@ -2,7 +2,7 @@
   <div>
     <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
     <div style="padding:10px">
-      <flexbox v-for="(workbook, index) in workbookMath.list" wrap="wrap" align="baseline" :key="index" :gutter="0">
+      <flexbox v-for="(workbook, index) in workbookMath" wrap="wrap" align="baseline" :key="index" :gutter="0">
         <flexbox-item :span="4" v-for="(book, index) in workbook.list" :key="index" 
           @click.native="$router.push({ name: 'workbook_chapter', params: {'id': book.workbookId ,'name': book.workbookName}})" 
           style="text-align:center;margin-bottom:.75rem;">
@@ -48,8 +48,6 @@ export default {
         // 'textbook_id': this.textbook_id | this.User.textbook.math[0].id
       }).then(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-      }).catch(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       })
     },

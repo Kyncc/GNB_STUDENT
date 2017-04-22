@@ -4,8 +4,8 @@
       <p slot="right">完成</p>
     </x-header>
     <group gutter="0">
-      <cell title="头像">
-        <img slot="default" src="https://cn.nuxtjs.org/vuejobs.png" width="60" height="60"/>
+      <cell title="头像" @click.native="show = !show">
+        <img slot="default" v-lazy="User.headImg" width="60" height="60"/>
       </cell>
       <x-input title="姓名" v-model="name"></x-input>
       <cell title="性别">
@@ -23,16 +23,21 @@
       <selector v-model="math" title="数学" :options="list"></selector>
       <selector v-model="physics" title="物理" :options="list"></selector>
     </group>
+    <actionsheet v-model="show" :menus="menus" @on-click-menu="_menusClick" ></actionsheet>
   </view-box>
 </template>
 
 <script>
-import {XHeader, Group, ViewBox, XInput, Checker, CheckerItem, Selector, Cell} from 'vux'
+import {XHeader, Group, ViewBox, XInput, Checker, CheckerItem, Selector, Cell, Actionsheet} from 'vux'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'update',
   components: {
-    XHeader, Group, ViewBox, XInput, Checker, CheckerItem, Selector, Cell
+    XHeader, Group, ViewBox, XInput, Checker, CheckerItem, Selector, Cell, Actionsheet
+  },
+  computed: {
+    ...mapGetters(['User'])
   },
   data () {
     return {
@@ -42,10 +47,39 @@ export default {
       grade: 'gd',
       physics: 'gd',
       math: 'gd',
-      list: [{key: 'gd', value: '广东'}, {key: 'gx', value: '广西'}]
+      list: [{key: 'gd', value: '广东'}, {key: 'gx', value: '广西'}],
+      show: false,
+      menus: {
+        menu1: '拍照',
+        menu2: '选择照片'
+      }
     }
   },
   methods: {
+    ...mapActions(['setHeadImg']),
+    _getImage () {
+      let cmr = plus.camera.getCamera()
+      cmr.captureImage((p) => {
+        plus.io.resolveLocalFileSystemURL(p, (entry) => {
+          this.setHeadImg(entry.toLocalURL())
+          this.$router.push({name: 'settings_photo'})
+        })
+      })
+    },
+    _galleryImgs () {
+      plus.gallery.pick((e) => {
+        this.setHeadImg(e.files[0])
+        this.$router.push({name: 'settings_photo'})
+      }, (e) => {
+        this.$vux.toast.show({text: '您已取消选择图片', type: 'text', time: 1000, position: 'bottom'})
+      }, {
+        filter: 'image',
+        multiple: true
+      })
+    },
+    _menusClick (val) {
+      val === 'menu1' ? this._getImage() : this._galleryImgs()
+    }
   }
 }
 </script>

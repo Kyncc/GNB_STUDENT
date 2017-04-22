@@ -40,3 +40,32 @@ export const setUserInfo = ({ rootState, commit }, params) => {
     })
   })
 }
+
+/** 上传头像 */
+export const setHeadImg = ({ commit }, data) => {
+  commit(types.USERPHOTO_SET, data)
+}
+
+/** 上传头像 */
+export const uploadHeadImg = ({ rootState, commit }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'user/headImg',
+      data: {
+        file: params.file,
+        token: rootState.common.user.token
+      }
+    })
+    .then((response) => {
+      commit(types.USERPHOTO_POST, response.data)
+      Vue.$vux.loading.hide()
+      resolve(response)
+    })
+    .catch(() => {
+      Vue.$vux.loading.hide()
+      reject()
+    })
+  })
+}

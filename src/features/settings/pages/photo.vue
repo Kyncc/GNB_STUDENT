@@ -1,11 +1,12 @@
 <template>
-  <view-box ref="userPhoto" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '修改密码'}">
+  <view-box body-padding-top="46px">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '头像更改'}">
       <p slot="right" @click="_img">完成</p>
     </x-header>
-    <img v-el:img :src="userImgBuffer" style="width:100%"/>
+    <img ref="photo" :src="userImgBuffer" style="width:100%"/>
   </view-box>
 </template>
+
 <script>
 import {XHeader, ViewBox} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
@@ -24,9 +25,7 @@ export default {
       })
       .then(() => {
         this.$vux.toast.show({text: '上传成功', type: 'text', time: 1000, position: 'bottom'})
-        setTimeout(() => {
-          history.back()
-        }, 500)
+        setTimeout(() => { history.back() }, 500)
       })
     }
   },
@@ -41,9 +40,19 @@ export default {
       return this.User.bufferImg
     }
   },
-  ready () {
+  activated () {
+    if (this.cropper) {
+      this.cropper.destroy()
+      let minHeight = document.documentElement.clientHeight - 46
+      this.cropper = new Cropper(this.$refs.photo, {
+        aspectRatio: '1/1',
+        minContainerHeight: minHeight
+      })
+    }
+  },
+  mounted () {
     let minHeight = document.documentElement.clientHeight - 46
-    this.cropper = new Cropper(this.$els.img, {
+    this.cropper = new Cropper(this.$refs.photo, {
       aspectRatio: '1/1',
       minContainerHeight: minHeight
     })

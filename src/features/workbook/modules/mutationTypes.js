@@ -6,6 +6,14 @@ export const WORKBOOK_ADD = 'WORKBOOK_ADD'
 export const WORKBOOK_DEL = 'WORKBOOK_DEL'
 /** 重置习题册 */
 export const WORKBOOK_CLEAR = 'WORKBOOK_CLEAR'
+/** 添加习题册全部 */
+export const WORKBOOK_LIST = 'WORKBOOK_LIST'
+/** 删除习题册全部 */
+export const WORKBOOK_LIST_CLEAR = 'WORKBOOK_LIST_CLEAR'
+/** 搜索习题册全部 */
+export const WORKBOOK_SEARCH = 'WORKBOOK_SEARCH'
+/** 删除搜索习题册全部 */
+export const WORKBOOK_SEARCH_CLEAR = 'WORKBOOK_SEARCH_CLEAR'
 
 /** 获取习题册章节 */
 export const WORKBOOK_CHAPTER = 'WORKBOOK_CHAPTER'

@@ -1,8 +1,8 @@
 <template>
   <view-box body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '添加习题册'}"></x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '搜索习题册'}"></x-header>
     <group gutter="0">
-      <cell v-for="(workbook, index) in workbookAddList.list" :key="index">
+      <cell v-for="(workbook, index) in workbookSearchList.list" :key="index">
         <img class="previewer-workbook-img" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(index)" slot="icon" width="60" height="80">
         <p slot="after-title" class="ellipsis" style="width:90%;height:1rem;">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
         <div slot="default">
@@ -26,12 +26,12 @@ import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: 'workbookAdd',
+  name: 'workbookSearch',
   components: {
     XHeader, Group, Cell, XButton, ViewBox, Previewer, Spinner, InfiniteLoading
   },
   computed: {
-    ...mapGetters(['User', 'workbookAddList'])
+    ...mapGetters(['User', 'workbookSearchList'])
   },
   data () {
     return {
@@ -53,9 +53,9 @@ export default {
     TransferDom
   },
   methods: {
-    ...mapActions(['getWorkbookAdd']),
+    ...mapActions(['getWorkbookSearch']),
     _onInfinite () {
-      this.getWorkbookAdd({
+      this.getWorkbookSearch({
         'textbookId': 207
       }).then(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
@@ -65,7 +65,7 @@ export default {
     show (index) {
       this.list = []
       this.list.push({
-        src: `${this.workbookAddList.list[index].img.url}-workbookBig`,
+        src: `${this.workbookSearchList.list[index].img.url}-workbookBig`,
         w: '700',
         h: '1050'
       })
@@ -73,6 +73,9 @@ export default {
         this.$refs.wbpreviewer.show(Number(index))
       })
     }
+  },
+  activated () {
+    this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
   }
 }
 </script>

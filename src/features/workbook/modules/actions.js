@@ -23,6 +23,58 @@ export const getWorkbook = ({state, rootState, commit}, params) => {
   })
 }
 
+/** 全部习题册列表 */
+export const getWorkbookAdd = ({rootState, commit, state}, params) => {
+  let subjectId = (rootState.route.params.subject.includes('math') ? 2 : 7)
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'workbook/list',
+      params: {
+        token: rootState.common.user.token,
+        subjectId: subjectId,
+        workbookName: params.workbookName,
+        textbookId: params.textbookId
+      }
+    })
+    .then((response) => {
+      commit(types.WORKBOOK_LIST, {data: response.data.data})
+      resolve(response)
+    })
+  })
+}
+
+/** 搜索习题册列表 */
+export const getWorkbookSearch = ({rootState, commit, state}, params) => {
+  let subjectId = (rootState.route.params.subject.includes('math') ? 2 : 7)
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'workbook/list',
+      params: {
+        token: rootState.common.user.token,
+        subjectId: subjectId,
+        workbookName: params.workbookName,
+        textbookId: params.textbookId
+      }
+    })
+    .then((response) => {
+      commit(types.WORKBOOK_SEARCH, {data: response.data.data})
+      resolve(response)
+    })
+  })
+}
+
+/** 练习册数据清空 */
+export const workbookAddClear = ({ commit }) => {
+  commit(types.WORKBOOK_LIST_CLEAR)
+}
+
+/** 搜索数据清空 */
+export const workbookSearchClear = ({ commit }) => {
+  commit(types.WORKBOOK_SEARCH_CLEAR)
+}
+
 /** 练习册数据清空 */
 export const workbookClear = ({ rootState, commit }) => {
   let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')

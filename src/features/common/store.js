@@ -5,6 +5,7 @@ const state = {
   system: (/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) ? 'IOS' : 'Android'),
   user: {
     headImg: '',
+    bufferImg: '',
     name: '',
     school: '',
     sex: '',
@@ -53,6 +54,12 @@ const mutations = {
     state.user.subject = data.data.subject
     state.user.subjectType = data.data.subjectType
     state.user.swiper = data.data.swiper
+  },
+  [types.USERPHOTO_SET] (state, data) {
+    state.headImg = data.data.headImg
+  },
+  [types.USERPHOTO_POST] (state, data) {
+    state.bufferImg = data
   }
 }
 

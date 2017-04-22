@@ -52,7 +52,6 @@ export default {
     if (from.name === 'workbook_math' || from.name === 'workbook_physics') {
       next(vm => {
         vm.workbookChapterClear()
-        vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
       })
     } else {
       next()

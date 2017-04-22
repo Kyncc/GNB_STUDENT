@@ -5,21 +5,31 @@ import state from './state'
 
 const mutations = {
   [types.WORKBOOK] (state, payload) {
-    state.workbook[payload.subject].list = payload.data
-    state.workbook[payload.subject].isReset = false
+    state.workbook[payload.subject] = payload.data
   },
   [types.WORKBOOK_CLEAR] (state, payload) {
-    state.workbook[payload.subject].list = []
-    state.workbook[payload.subject].isReset = true
+    state.workbook[payload.subject] = []
+  },
+  [types.WORKBOOK_LIST] (state, payload) {
+    state.workbook.add = payload.data[0]
+  },
+  [types.WORKBOOK_SEARCH] (state, payload) {
+    state.workbook.search = payload.data[0]
+  },
+  [types.WORKBOOK_ADD] (state, payload) {
+    state[payload.type][payload.index] = true
+    state[payload.type][payload.index] = true
+  },
+  [types.WORKBOOK_DEL] (state, payload) {
+    state[payload.type][payload.index] = false
+    state[payload.type][payload.index] = false
   },
   // 章节
   [types.WORKBOOK_CHAPTER] (state, data) {
     state.chapter.list = data
-    state.chapter.isReset = false
   },
   [types.WORKBOOK_CHAPTER_CLEAR] (state) {
     state.chapter.list = []
-    state.chapter.isReset = true
     state.chapter.scroll = 0
   },
   [types.WORKBOOK_CHAPTER_SCROLL] (state, height) {
