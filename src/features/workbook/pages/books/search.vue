@@ -1,34 +1,37 @@
 <template>
   <view-box body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '搜索习题册'}"></x-header>
-    <group gutter="0">
-      <cell v-for="(workbook, index) in workbookSearchList.list" :key="index">
-        <img class="previewer-workbook-img" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(index)" slot="icon" width="60" height="80">
-        <p slot="after-title" class="ellipsis" style="width:90%;height:1rem;">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
-        <div slot="default">
-          <x-button v-if="!workbook.status" mini type="primary" slot="default">添加</x-button>
-          <x-button v-else mini type="warn" slot="default">删除</x-button>
-        </div>
-      </cell>
-    </group>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
-      <div slot="no-results" style="color:#4bb7aa;">出错了~</div>
-      <div slot="spinner" style="padding:.5rem 0"><spinner type="ripple" slot="value"></spinner></div>
-      <div slot="no-more"></div>
-    </infinite-loading>
+    <search @on-submit="_onSearch"  @on-change="_onSearch" v-model.lazy="name" :auto-fixed="false" placeholder="请输入习题册名称" style="position:fixed;z-index:100;"></search>
+    <div style="padding-top:50px;">
+      <group v-for="(workbookList, pindex) in workbookSearchList" :key="pindex" :title="workbookList.textbookName">
+        <cell v-for="(workbook, index) in workbookList.list" :key="index">
+          <img class="previewer-workbook-img" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(index)" slot="icon" width="60" height="80">
+          <p slot="after-title" class="ellipsis" style="width:90%;height:1rem;">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
+          <div slot="default">
+            <x-button v-if="!workbook.status" mini type="primary" slot="default">添加</x-button>
+            <x-button v-else mini type="warn" slot="default">删除</x-button>
+          </div>
+        </cell>
+      </group>
+      <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
+        <div slot="no-results" style="color:#4bb7aa;"></div>
+        <div slot="spinner" style="padding:.5rem 0"><spinner type="dots" slot="value"></spinner></div>
+        <div slot="no-more" style="color:#4bb7aa;">没有更多结果了~</div>
+      </infinite-loading>
+    </div>
     <previewer :list="list" ref="wbpreviewer" :options="options"></previewer>
   </view-box>
 </template>
 
 <script>
-import {XHeader, Group, Cell, XButton, ViewBox, Previewer, Spinner, TransferDomDirective as TransferDom} from 'vux'
+import {XHeader, Group, Cell, XButton, ViewBox, Previewer, Spinner, Search, TransferDomDirective as TransferDom} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'workbookSearch',
   components: {
-    XHeader, Group, Cell, XButton, ViewBox, Previewer, Spinner, InfiniteLoading
+    XHeader, Group, Cell, XButton, ViewBox, Previewer, Spinner, Search, InfiniteLoading
   },
   computed: {
     ...mapGetters(['User', 'workbookSearchList'])
@@ -36,6 +39,7 @@ export default {
   data () {
     return {
       textbookId: '',
+      name: '',
       list: [{
         src: '',
         w: 0,
@@ -53,13 +57,24 @@ export default {
     TransferDom
   },
   methods: {
-    ...mapActions(['getWorkbookSearch']),
+    ...mapActions(['getWorkbookSearch', 'workbookSearchClear']),
     _onInfinite () {
-      this.getWorkbookSearch({
-        'textbookId': 207
-      }).then(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+      if (this.name !== '') {
+        this.getWorkbookSearch({
+          'workbookName': this.name
+        }).then(() => {
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        })
+      } else {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+      }
+    },
+    _onSearch (str) {
+      this.name = str
+      this.workbookSearchClear()
+      this.$nextTick(() => {
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
       })
     },
     show (index) {
@@ -75,6 +90,8 @@ export default {
     }
   },
   activated () {
+    this.name = ''
+    this.workbookSearchClear()
     this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
   }
 }

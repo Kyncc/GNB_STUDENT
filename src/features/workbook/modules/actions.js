@@ -33,8 +33,7 @@ export const getWorkbookAdd = ({rootState, commit, state}, params) => {
       params: {
         token: rootState.common.user.token,
         subjectId: subjectId,
-        workbookName: params.workbookName,
-        textbookId: params.textbookId
+        textbookId: rootState.route.query.id
       }
     })
     .then((response) => {
@@ -54,8 +53,7 @@ export const getWorkbookSearch = ({rootState, commit, state}, params) => {
       params: {
         token: rootState.common.user.token,
         subjectId: subjectId,
-        workbookName: params.workbookName,
-        textbookId: params.textbookId
+        workbookName: params.workbookName
       }
     })
     .then((response) => {

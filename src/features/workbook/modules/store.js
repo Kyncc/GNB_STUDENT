@@ -13,8 +13,14 @@ const mutations = {
   [types.WORKBOOK_LIST] (state, payload) {
     state.workbook.add = payload.data[0]
   },
+  [types.WORKBOOK_LIST_CLEAR] (state) {
+    state.workbook.add = []
+  },
   [types.WORKBOOK_SEARCH] (state, payload) {
-    state.workbook.search = payload.data[0]
+    state.workbook.search = payload.data
+  },
+  [types.WORKBOOK_SEARCH_CLEAR] (state) {
+    state.workbook.search = []
   },
   [types.WORKBOOK_ADD] (state, payload) {
     state[payload.type][payload.index] = true

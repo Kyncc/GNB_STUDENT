@@ -2,21 +2,19 @@
   <div>
     <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
     <div style="padding:10px">
-      <flexbox v-for="(workbook, index) in workbookMath" wrap="wrap" align="baseline" :key="index" :gutter="0">
+      <flexbox v-for="(workbook, pindex) in workbookMath" wrap="wrap" align="baseline" :key="pindex" :gutter="0">
         <flexbox-item :span="4" v-for="(book, index) in workbook.list" :key="index" 
           @click.native="$router.push({ name: 'workbook_chapter', params: {'id': book.workbookId ,'name': book.workbookName}})" 
           style="text-align:center;margin-bottom:.75rem;">
           <img v-lazy="book.img.url+'-workbook3small'" style="background-repeat:no-repeat"/>
         </flexbox-item>
-        <flexbox-item :span="4" 
-          @click.native="$router.push({ name: 'workbook_chapter', params: {'id': book.workbookId ,'name': book.workbookName}})">
-          <!--<div style="border:1px solid #ccc;height:133px;width:95px;text-align:center">
+        <flexbox-item :span="4" @click.native="$router.push({ path: `/workbook/math/add?id=${workbook.textbookId}`})">
+          <div style="border:1px solid #ccc;height:133px;width:95px;text-align:center">
             <i class="icon iconfont icon-plus" style="font-size:44px;margin:0 auto;top:20px;color:#bbb;"></i>
-          </div>-->
+          </div>
         </flexbox-item>
       </flexbox>
     </div>
-
     <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
       <div slot="no-results" style="color:#4bb7aa;">出错了~</div>
       <div slot="spinner" style="padding:.5rem 0"><spinner type="ripple" slot="value"></spinner></div>
@@ -65,10 +63,3 @@ export default {
   }
 }
 </script>
-<style>
-.flex-demo {
-  text-align: center;
-  color: #fff;
-  background-clip: padding-box;
-}
-</style>
