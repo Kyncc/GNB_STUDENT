@@ -6,7 +6,7 @@
         <flexbox-item :span="4" v-for="(book, index) in workbook.list" :key="index" 
           @click.native="$router.push({ name: 'workbook_chapter', params: {'id': book.workbookId ,'name': book.workbookName}})" 
           style="text-align:center;margin-bottom:.75rem;">
-          <img v-lazy="book.img.url+'-workbook3small'" style="background-repeat:no-repeat"/>
+          <img v-lazy="book.img.url+'-workbook3small'" style="background-color:#ccc;background-repeat:no-repeat"/>
         </flexbox-item>
         <flexbox-item :span="4" @click.native="$router.push({ path: `/workbook/math/add?id=${workbook.textbookId}`})">
           <div style="border:1px solid #ccc;height:133px;width:95px;text-align:center">
@@ -28,7 +28,7 @@ import {Flexbox, FlexboxItem, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 import selectBook from '@/components/gnb_selectbook'
 import InfiniteLoading from 'vue-infinite-loading'
-
+// https://placeholdit.imgix.net/~text?txtsize=30&bg=999999&txtclr=ffffff&txt=%2B&w=65&h=80
 export default {
   name: 'math',
   components: {
