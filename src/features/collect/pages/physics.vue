@@ -17,7 +17,7 @@
       </div>
       <div slot="footer">
         <div class="weui-cell weui-cell_access weui-cell_link">
-          <div class="weui-cell__bd">收藏时间: {{item.collect_time | ymd}}</div>
+          <div class="weui-cell__bd" style="text-align:right">收藏时间: {{item.collect_time | ymd}}</div>
         </div>
       </div>
     </card>

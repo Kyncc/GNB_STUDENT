@@ -78,6 +78,6 @@
   },
   "browserslist": [
     "iOS >= 7",
-    "Android >= 4.4"
+    "Android >= 4.3"
   ]
 }

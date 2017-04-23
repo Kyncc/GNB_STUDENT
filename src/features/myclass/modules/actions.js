@@ -3,7 +3,6 @@ import * as types from './mutationTypes'
 
 /** 获取班级列表 */
 export const getMyClass = ({ rootState, commit }, params) => {
-  commit(types.CLASS_MY_CLEAR)// 进来先清空
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -19,9 +18,13 @@ export const getMyClass = ({ rootState, commit }, params) => {
   })
 }
 
+/** 清空班级列表 */
+export const myClassClear = ({ commit }) => {
+  commit(types.CLASS_MY_CLEAR)
+}
+
 /** 获取班级同学列表 */
 export const getMyClassmateList = ({ rootState, commit }, params) => {
-  commit(types.CLASS_MYCLASSMATE_CLEAR)   // 进来先清空
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -36,6 +39,11 @@ export const getMyClassmateList = ({ rootState, commit }, params) => {
       resolve(response)
     })
   })
+}
+
+/** 清空班级同学列表 */
+export const myClassmateClear = ({ commit }) => {
+  commit(types.CLASS_MYCLASSMATE_CLEAR)
 }
 
 /** 获取班级码查找 */
@@ -54,6 +62,11 @@ export const getMyClassSearchClass = ({ rootState, commit }, params) => {
       resolve(response)
     })
   })
+}
+
+/** 清空搜索班级 */
+export const myClassSearchClear = ({ commit }) => {
+  commit(types.CLASS_SEARCH_CLEAR)
 }
 
 /** 加入班级 */

@@ -26,6 +26,7 @@ export const getUserInfo = ({ rootState, commit }) => {
 
 /** 设置用户信息 */
 export const setUserInfo = ({ rootState, commit }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -36,7 +37,34 @@ export const setUserInfo = ({ rootState, commit }, params) => {
       }
     })
     .then((response) => {
+      Vue.$vux.loading.hide()
       resolve(response)
+    })
+    .catch(() => {
+      Vue.$vux.loading.hide()
+    })
+  })
+}
+
+/** *获得课本版本信息 */
+export const getTextbookVersion = ({commit}, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'edition/byGrade',
+      params: {
+        grade: params.grade
+      }
+    })
+    .then((response) => {
+      Vue.$vux.loading.hide()
+      commit(types.TEXTBOOK_VERSION, response.data.data)
+      resolve(response)
+    })
+    .catch((error) => {
+      Vue.$vux.loading.hide()
+      reject(error)
     })
   })
 }

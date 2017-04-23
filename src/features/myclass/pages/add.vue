@@ -9,25 +9,23 @@
         </cell>
       </template>
     </group>
-    <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading" spinner="default">
-      <div slot="no-results" >
-        <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-        <p style="font-size:1rem;display:inline-block;">没有查询到班级~</p>
-      </div>
-      <div slot="no-more"></div>
+    <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading">
+      <div slot="no-results" style="color:#4bb7aa;"></div>
+      <div slot="spinner" style="padding:.5rem 0"><spinner type="dots" slot="value"></spinner></div>
+      <div slot="no-more" style="color:#4bb7aa;">没有更多结果了~</div>
     </infinite-loading>
   </view-box>
 </template>
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
-import {XHeader, XButton, Cell, Group, Search, ViewBox} from 'vux'
+import {XHeader, XButton, Cell, Group, Search, Spinner, ViewBox} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'add',
   components: {
-    XHeader, XButton, Cell, Group, Search, ViewBox, InfiniteLoading
+    XHeader, XButton, Cell, Group, Search, ViewBox, Spinner, InfiniteLoading
   },
   data () {
     return {
@@ -35,7 +33,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getMyClassSearchClass', 'postMyClassInto']),
+    ...mapActions(['getMyClassSearchClass', 'postMyClassInto', 'myClassSearchClear']),
     _onSearch (str) {
       this.searchCode = str
       this.$nextTick(() => {
@@ -52,7 +50,7 @@ export default {
     },
     _onInfinite () {
       this.getMyClassSearchClass({
-        'classCode': this.searchCode
+        classCode: this.searchCode
       }).then(() => {
         if (this.ClassSearch.length !== 0) this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
@@ -61,6 +59,11 @@ export default {
   },
   computed: {
     ...mapGetters(['ClassSearch'])
+  },
+  activated () {
+    this.searchCode = ''
+    this.myClassSearchClear()
+    this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
   }
 }
 </script>

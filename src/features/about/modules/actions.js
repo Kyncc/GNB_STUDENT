@@ -22,7 +22,6 @@ export const updateAdvice = ({rootState, commit}, params) => {
 
 /** 反馈列表 */
 export const adviceHistory = ({rootState, commit}) => {
-  commit(types.ADVICE_LIST_CLEAR)
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -36,4 +35,9 @@ export const adviceHistory = ({rootState, commit}) => {
       resolve(response)
     })
   })
+}
+
+/** 清空反馈列表 */
+export const clearAdviceHistory = ({commit}) => {
+  commit(types.ADVICE_LIST_CLEAR)
 }

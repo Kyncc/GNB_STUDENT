@@ -11,8 +11,13 @@ const state = {
     sex: '',
     mobile: '',
     grade: '',
-    subjectType: [],
     textbook: [],
+    subjectType: [],
+    textbookAll: {
+      math: [],
+      physics: [],
+      subjectType: []
+    },
     subject: [],
     version: '',
     swiper: [{}],
@@ -60,6 +65,11 @@ const mutations = {
   },
   [types.USERPHOTO_POST] (state, data) {
     state.bufferImg = data
+  },
+  [types.TEXTBOOK_VERSION] (state, data) {
+    state.user.textbookAll.math = data.subjectOptions.math
+    state.user.textbookAll.physics = data.subjectOptions.physics
+    state.user.textbookAll.subjectType = data.subjectType
   }
 }
 

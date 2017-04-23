@@ -3,7 +3,7 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '我的班级'}">
       <div slot="right">
         <router-link :to="{ path: 'class/add'}" style="margin:0">
-          <i class="icon iconfont icon-plus" style="padding:8px;font-size:26px;"></i>
+          <i class="icon iconfont icon-plus" style="padding:8px;font-size:28px;top:-1px;"></i>
         </router-link>
         <router-link :to="{ path: 'class/message'}" style="margin:0">
           <i class="icon iconfont icon-comment2" style="padding:10px;margin:0 -10px 0 0"></i>
@@ -33,11 +33,8 @@ export default {
   components: {
     XHeader, Cell, Group, ViewBox, InfiniteLoading, Spinner
   },
-  activated () {
-    this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
-  },
   methods: {
-    ...mapActions(['getMyClass']),
+    ...mapActions(['getMyClass', 'myClassClear']),
     _onInfinite () {
       this.getMyClass().then(() => {
         if (this.ClassMy.length !== 0) this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
@@ -47,6 +44,18 @@ export default {
   },
   computed: {
     ...mapGetters(['ClassMy'])
+  },
+  beforeRouteEnter (to, from, next) {
+    if (from.name === 'bag' || from.name === 'class_add') {
+      next(vm => {
+        vm.myClassClear()
+        vm.$nextTick(() => {
+          vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+        })
+      })
+    } else {
+      next()
+    }
   }
 }
 </script>

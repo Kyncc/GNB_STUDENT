@@ -24,8 +24,8 @@ const mutations = {
   [types.CLASS_SEARCH] (state, data) {
     state.searchClass = data
   },
-  [types.CLASS_ADD] (state) {
-    state.my = []
+  [types.CLASS_SEARCH_CLEAR] (state) {
+    state.searchClass = []
   }
 }
 

@@ -1,13 +1,13 @@
 <template>
   <view-box ref="userinfoUpdate" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '修改资料'}">
-      <p slot="right">完成</p>
+      <p slot="right" @click="_finish">完成</p>
     </x-header>
     <group gutter="0">
       <cell title="头像" @click.native="show = !show">
         <img slot="default" v-lazy="User.headImg" width="60" height="60"/>
       </cell>
-      <x-input title="姓名" v-model="name"></x-input>
+      <x-input title="姓名" v-model="name" class="input_right"></x-input>
       <cell title="性别">
         <checker slot="default" v-model="sex" default-item-class="demo2-item" selected-item-class="demo2-item-selected">
           <checker-item value="1">男</checker-item>
@@ -17,13 +17,13 @@
     </group>
     <group>
       <selector v-model="grade" title="年级" :options="list"></selector>
-      <x-input title="学校" v-model="school"></x-input>
+      <x-input title="学校" v-model="school" class="input_right"></x-input>
     </group>
     <group>
-      <selector v-model="math" title="数学" :options="list"></selector>
-      <selector v-model="physics" title="物理" :options="list"></selector>
+      <selector v-model="math" title="数学" :options="mathList"></selector>
+      <selector v-if="User.textbookAll.subjectType.length === 2" v-model="physics" title="物理" :options="physicsList"></selector>
     </group>
-    <actionsheet v-model="show" :menus="menus" @on-click-menu="_menusClick" ></actionsheet>
+    <actionsheet v-model="show" :menus="menus" @on-click-menu="_menusClick"></actionsheet>
   </view-box>
 </template>
 
@@ -37,17 +37,37 @@ export default {
     XHeader, Group, ViewBox, XInput, Checker, CheckerItem, Selector, Cell, Actionsheet
   },
   computed: {
-    ...mapGetters(['User'])
+    ...mapGetters(['User']),
+    mathList () {
+      let newObj = []
+      this.User.textbookAll.math.forEach((item, index) => {
+        newObj.push({
+          key: item.id.toString() || '',
+          value: item.name.toString() || ''
+        })
+      })
+      return newObj
+    },
+    physicsList () {
+      let newObj = []
+      this.User.textbookAll.physics.forEach((item, index) => {
+        newObj.push({
+          key: item.id.toString() || '',
+          value: item.name.toString() || ''
+        })
+      })
+      return newObj
+    }
   },
   data () {
     return {
-      name: '111',
+      name: '',
       sex: 0,
-      school: '我的学校',
-      grade: 'gd',
-      physics: 'gd',
-      math: 'gd',
-      list: [{key: 'gd', value: '广东'}, {key: 'gx', value: '广西'}],
+      school: '',
+      grade: '',
+      physics: '',
+      math: '',
+      list: [{key: '7', value: '七年级'}, {key: '8', value: '八年级'}, {key: '9', value: '九年级'}, {key: '10', value: '高中'}],
       show: false,
       menus: {
         menu1: '拍照',
@@ -56,7 +76,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setHeadImg']),
+    ...mapActions(['setHeadImg', 'getTextbookVersion']),
+    _finish () {},
     _getImage () {
       let cmr = plus.camera.getCamera()
       cmr.captureImage((p) => {
@@ -80,11 +101,32 @@ export default {
     _menusClick (val) {
       val === 'menu1' ? this._getImage() : this._galleryImgs()
     }
+  },
+  watch: {
+    grade (value) {
+      this.getTextbookVersion({'grade': value}).then(() => {
+        this.math = this.User.textbookAll.math[0].id
+        if (this.User.textbookAll.subjectType.length === 2) {
+          this.physics = this.User.textbookAll.physics[0].id
+        }
+      })
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.name = vm.User.name
+      vm.school = vm.User.school
+      vm.grade = vm.User.grade
+      vm.sex = vm.User.sex
+    })
   }
 }
 </script>
 
-<style scoped>
+<style lang="less">
+.input_right .weui-input{
+  text-align:right;
+}
 .demo2-item {
   width: 27px;
   height: 27px;
@@ -94,13 +136,11 @@ export default {
   line-height: 23px;
   text-align: center;
 }
-.demo2-item-selected {
-  border-color: green;
+.demo2-item-selected{
+  border: 1px solid #4BB7AA;
+  color: #4BB7AA;
 }
 .weui-cell_select .weui-select{
   direction: rtl !important;
-}
-.weui-input{
-  text-align:right
 }
 </style>

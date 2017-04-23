@@ -8,11 +8,11 @@
 }
 
 
-.icon-comment:before { content: "\e60c"; }
-
 .icon-home:before { content: "\e612"; }
 
 .icon-correct:before { content: "\e60f"; }
+
+.icon-chexiao:before { content: "\e659"; }
 
 .icon-plus:before { content: "\e60e"; }
 
@@ -22,8 +22,6 @@
 
 .icon-book2:before { content: "\e63e"; }
 
-.icon-wechat:before { content: "\e602"; }
-
 .icon-book1:before { content: "\e607"; }
 
 .icon-bianji:before { content: "\e615"; }
@@ -31,8 +29,6 @@
 .icon-iconfontsousuo:before { content: "\e620"; }
 
 .icon-share:before { content: "\e609"; }
-
-.icon-upload:before { content: "\e6a4"; }
 
 .icon-collect:before { content: "\e60b"; }
 
@@ -68,15 +64,13 @@
 
 .icon-settingfull:before { content: "\e638"; }
 
-.icon-comiiszanwushuju:before { content: "\e600"; }
+.icon-chufang:before { content: "\e62f"; }
 
 .icon-info:before { content: "\e608"; }
 
 .icon-bag:before { content: "\e611"; }
 
 .icon-userInfo:before { content: "\e601"; }
-
-.icon-right:before { content: "\e614"; }
 
 .icon-hat:before { content: "\e6b6"; }
 
@@ -86,8 +80,13 @@
 
 .icon-yuanxiaobanji:before { content: "\e613"; }
 
+.icon-jinrulianxi:before { content: "\e6c2"; }
+
+.icon-yingyongshengji:before { content: "\e71e"; }
+
+.icon-upload:before { content: "\e60c"; }
+
 .icon-ban:before { content: "\e90c"; }
 
-.icon-icon-refresh:before { content: "\e90d"; }
 
 

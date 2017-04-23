@@ -8,10 +8,12 @@ export default {
     },
     {
       path: 'bag',
+      name: 'bag',
       component: r => require.ensure([], () => r(require('./pages/bag')), '/bag')
     },
     {
       path: 'user',
+      name: 'user',
       component: r => require.ensure([], () => r(require('./pages/user')), '/user')
     }
   ]

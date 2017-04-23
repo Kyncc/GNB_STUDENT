@@ -20,12 +20,12 @@
         <i class="icon iconfont icon-info" style="color:#6DC6FF" slot="icon"></i>
       </cell>
       <cell title="消息通知" link="message">
-        <i class="icon iconfont icon-comment" style="color:#ABC97C" slot="icon"></i>
+        <i class="icon iconfont icon-comment2" style="color:#ABC97C" slot="icon"></i>
         <badge text="新消息"></badge>
       </cell>
-      <cell title="版本更新" v-if="System != 'IOS'" is-link>
-        <i class="icon iconfont icon-upload" style="color:#ABC97C" slot="icon"></i>
-        <badge v-if="User.version === '3.0.0'" text="新版本"></badge>
+      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.0.0'" is-link @click.native="_openStore">
+        <i class="icon iconfont icon-yingyongshengji" style="color:#FF5454" slot="icon"></i>
+        <badge text="新版本"></badge>
       </cell>
     </group>
   </div>
@@ -43,10 +43,11 @@ export default {
   computed: {
     ...mapGetters(['User', 'System'])
   },
-  data () {
-    return {}
-  },
-  methods: {}
+  methods: {
+    _openStore () {
+      window.location.href = 'market://details?id=com.sanbao.guinaben.student'
+    }
+  }
 }
 </script>
 

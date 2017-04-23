@@ -8,5 +8,7 @@ export const CLASS_MYCLASSMATE = 'CLASS_MYCLASSMATE'
 export const CLASS_MYCLASSMATE_CLEAR = 'CLASS_MYCLASSMATE_CLEAR'
 /** 获取搜索班级 */
 export const CLASS_SEARCH = 'CLASS_SEARCH'
+/** 获取搜索班级清空 */
+export const CLASS_SEARCH_CLEAR = 'CLASS_SEARCH_CLEAR'
 /** 加入班级 */
 export const CLASS_ADD = 'CLASS_ADD'

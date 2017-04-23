@@ -7,13 +7,11 @@
     </flexbox>
     <group gutter="0">
       <cell title="意见反馈" link="about/advice"></cell>
-      <cell title="给小纳好评" @click.native="_openStore" is-link></cell>
+      <cell title="给小纳好评" is-link @click.native="_openStore" ></cell>
     </group>
     <group>
       <cell title="关于我们" link="about/my"></cell>
-      <cell title="加入群聊" is-link 
-        @click.native="window.location.href = 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode'">
-      </cell>
+      <cell title="加入群聊" is-link @click.native="_add"></cell>
     </group>
     <section class="about_footer">
       <a href="tel:0553-2111770" class="about_footer__link">联系我们: 0553-2111770</a><br/>
@@ -35,13 +33,16 @@ export default {
   computed: {
     ...mapGetters(['System'])
   },
-  method: {
+  methods: {
     _openStore () {
       if (this.System === 'IOS') {
         window.location.href = 'itms-apps://itunes.apple.com/cn/app/gui-na-ben-xue-sheng-duan/id1184077595?l=en&mt=8'
       } else {
         window.location.href = 'market://details?id=com.sanbao.guinaben.student'
       }
+    },
+    _add () {
+      window.location.href = 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode'
     }
   }
 }
