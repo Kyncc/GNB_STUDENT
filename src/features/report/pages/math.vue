@@ -7,7 +7,7 @@
         :arrow-direction="list.checked ? 'up' : 'down'"
         @click.native="list.checked = !list.checked"></cell>
         <div class="slide" :class="list.checked ? 'animate':''">
-          <template v-for="chapter in list.chapter_list">
+          <template v-for="chapter in list.sub_chapter_list">
             <cell-box @click.native="$router.push({name: 'report_detail', params: {chapterId: chapter.chapter_id}})">
               {{chapter.name}}
             </cell-box>

@@ -3,9 +3,14 @@ import * as actions from './actions'
 
 const state = {
   system: (/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) ? 'IOS' : 'Android'),
+  news: {
+    classes: false,
+    correct: false,
+    system: false
+  },
   user: {
     headImg: '',
-    bufferImg: '',
+    bufferImg: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1391667439,1426519088&fm=80&w=179&h=119&img.JPEG',
     name: '',
     school: '',
     sex: '',
@@ -41,6 +46,9 @@ const getters = {
   User: (state) => {
     return state.user
   },
+  News: (state) => {
+    return state.news
+  },
   System: (state) => {
     return state.system
   }
@@ -48,23 +56,28 @@ const getters = {
 
 const mutations = {
   [types.USERINFO] (state, data) {
-    state.user.textbook = data.data.textbook[0]
-    state.user.headImg = data.data.headImg
-    state.user.name = data.data.name
-    state.user.mobile = data.data.mobile
-    state.user.school = data.data.school
-    state.user.sex = data.data.sex
-    state.user.grade = data.data.grade
-    state.user.version = data.data.version
-    state.user.subject = data.data.subject
-    state.user.subjectType = data.data.subjectType
-    state.user.swiper = data.data.swiper
-  },
-  [types.USERPHOTO_SET] (state, data) {
-    state.headImg = data.data.headImg
+    state.user.textbook = data.textbook[0]
+    state.user.headImg = data.headImg
+    state.user.name = data.name
+    state.user.mobile = data.mobile
+    state.user.school = data.school
+    state.user.sex = data.sex
+    state.user.grade = data.grade
+    state.user.version = data.version
+    state.user.subject = data.subject
+    state.user.subjectType = data.subjectType
+    state.user.swiper = data.swiper
   },
   [types.USERPHOTO_POST] (state, data) {
-    state.bufferImg = data
+    state.headImg = data.headImg
+  },
+  [types.USERPHOTO_SET] (state, data) {
+    state.bufferImg = data.classes
+  },
+  [types.USER_NEW_MESSAGE] (state, data) {
+    state.news.classes = data.classes
+    state.news.correct = data.correct
+    state.news.system = data.system
   },
   [types.TEXTBOOK_VERSION] (state, data) {
     state.user.textbookAll.math = data.subjectOptions.math

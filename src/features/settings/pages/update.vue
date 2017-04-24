@@ -76,8 +76,21 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setHeadImg', 'getTextbookVersion']),
-    _finish () {},
+    ...mapActions(['setHeadImg', 'setUserInfo', 'getTextbookVersion']),
+    _finish () {
+      this.setUserInfo({
+        name: this.name,
+        sex: this.sex,
+        school: this.school,
+        grade: this.grade,
+        subject: {
+          math: this.math,
+          physics: this.physics
+        }
+      }).then(() => {
+        this.$router.go(-1)
+      })
+    },
     _getImage () {
       let cmr = plus.camera.getCamera()
       cmr.captureImage((p) => {

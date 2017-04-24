@@ -8,13 +8,13 @@ export const getUserInfo = ({ rootState, commit }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'user/getUserInfo',
+      url: 'user',
       params: {
         token: rootState.common.user.token
       }
     })
     .then((response) => {
-      commit(types.USERINFO, response.data)
+      commit(types.USERINFO, response.data.data)
       resolve(response)
       Vue.$vux.loading.hide()
     })
@@ -25,7 +25,7 @@ export const getUserInfo = ({ rootState, commit }) => {
 }
 
 /** 设置用户信息 */
-export const setUserInfo = ({ rootState, commit }, params) => {
+export const setUserInfo = ({rootState, commit, dispatch}, params) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
@@ -38,6 +38,7 @@ export const setUserInfo = ({ rootState, commit }, params) => {
     })
     .then((response) => {
       Vue.$vux.loading.hide()
+      dispatch('getUserInfo')
       resolve(response)
     })
     .catch(() => {
@@ -69,6 +70,23 @@ export const getTextbookVersion = ({commit}, params) => {
   })
 }
 
+/** 获取用户通知状态 */
+export const getUserNews = ({ rootState, commit }) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'message/new',
+      params: {
+        token: rootState.common.user.token
+      }
+    })
+    .then((response) => {
+      commit(types.USER_NEW_MESSAGE, response.data.data)
+      resolve(response)
+    })
+  })
+}
+
 /** 上传头像 */
 export const setHeadImg = ({ commit }, data) => {
   commit(types.USERPHOTO_SET, data)
@@ -82,18 +100,18 @@ export const uploadHeadImg = ({ rootState, commit }, params) => {
       method: 'post',
       url: 'user/headImg',
       data: {
-        file: params.file,
+        img: params.img,
         token: rootState.common.user.token
       }
     })
     .then((response) => {
-      commit(types.USERPHOTO_POST, response.data)
+      commit(types.USERPHOTO_POST, response.data.data)
       Vue.$vux.loading.hide()
       resolve(response)
     })
-    .catch(() => {
+    .catch((error) => {
       Vue.$vux.loading.hide()
-      reject()
+      reject(error)
     })
   })
 }

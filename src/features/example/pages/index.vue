@@ -39,12 +39,6 @@
 import {XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 import InfiniteLoading from 'vue-infinite-loading'
-import modules from '../modules/store'
-import store from '@/store'
-
-store.registerModule('example', {
-  ...modules
-})
 
 export default {
   name: 'example',

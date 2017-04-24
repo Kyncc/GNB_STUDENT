@@ -6,7 +6,7 @@ export const getMyClass = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'class/myClassList',
+      url: 'class',
       params: {
         token: rootState.common.user.token
       }
@@ -28,7 +28,7 @@ export const getMyClassmateList = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'class/myClassmateList',
+      url: 'class/classmate',
       params: {
         classCode: rootState.route.params.code,
         token: rootState.common.user.token
@@ -51,7 +51,7 @@ export const getMyClassSearchClass = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'class/bindClass',
+      url: 'class/search',
       params: {
         classCode: params.classCode,
         token: rootState.common.user.token
@@ -74,7 +74,7 @@ export const postMyClassInto = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'class/intoClass',
+      url: 'class/add',
       data: {
         classCode: params.classCode,
         token: rootState.common.user.token

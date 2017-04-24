@@ -7,7 +7,7 @@ export const getExample = ({ rootState, commit }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'exerciseList',
+      url: 'exercise',
       params: {
         ids: [rootState.route.params.id],
         subject_id: rootState.route.params.subjectId,
@@ -26,14 +26,12 @@ export const collectRemove = ({ rootState, commit, dispatch }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'collect/remove',
+      url: 'collect/update',
       data: {
-        options: {
-          id: rootState.route.params.id,
-          subject_id: rootState.route.params.subjectId
-        },
-        token: rootState.common.user.token,
-        type: 'example'
+        id: rootState.route.params.id,
+        subject_id: rootState.route.params.subjectId,
+        type: 'del',
+        token: rootState.common.user.token
       }
     })
     .then((response) => {
@@ -50,14 +48,12 @@ export const collectAdd = ({ rootState, commit, dispatch }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'collect/add',
+      url: 'collect/update',
       data: {
-        options: {
-          id: rootState.route.params.id,
-          subject_id: rootState.route.params.subjectId
-        },
-        token: rootState.common.user.token,
-        type: 'example'
+        id: rootState.route.params.id,
+        subject_id: rootState.route.params.subjectId,
+        type: 'add',
+        token: rootState.common.user.token
       }
     })
     .then((response) => {

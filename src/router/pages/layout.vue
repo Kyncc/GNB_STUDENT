@@ -9,11 +9,11 @@
           <i slot="icon" class="icon iconfont icon-home"></i>
           <span slot="label">主页</span>
         </tabbar-item>
-        <tabbar-item link="bag" show-dot>
+        <tabbar-item link="bag" :show-dot="News.classes">
           <i slot="icon" class="icon iconfont icon-bag"></i>
           <span slot="label">书包</span>
         </tabbar-item>
-        <tabbar-item link="user" show-dot>
+        <tabbar-item link="user" :show-dot="News.correct || News.system">
           <i slot="icon" class="icon iconfont icon-user"></i>
           <span slot="label">我的</span>
         </tabbar-item>
@@ -36,7 +36,7 @@ export default {
     ...mapActions(['getUserInfo'])
   },
   computed: {
-    ...mapGetters(['Path']),
+    ...mapGetters(['Path', 'News']),
     select () {
       switch (this.Path) {
         case '/' : return 0
@@ -45,7 +45,6 @@ export default {
       }
     }
   },
-  activated () {},
   created () {
     this.getUserInfo().then(() => {})
   },

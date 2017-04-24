@@ -11,7 +11,7 @@
       </cell>
       <cell title="我的班级" link="class">
         <i class="icon iconfont icon-hat" style="color:#ABC97C" slot="icon"></i>
-        <template>
+        <template v-if="News.classes">
           <badge text="新通知" style="position:relative;top:-2px;"></badge>
         </template>
       </cell>
@@ -21,7 +21,7 @@
 
 <script>
 import {XHeader, Badge, Cell, Group, ViewBox, Swiper, SwiperItem} from 'vux'
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'bag',
@@ -29,14 +29,22 @@ export default {
     XHeader, Badge, Cell, Group, ViewBox, Swiper, SwiperItem
   },
   computed: {
-    ...mapGetters(['User']),
+    ...mapGetters(['User', 'News']),
     list () {
-      return this.User.swiper['bag'].map((item, index) => ({
+      return this.User.swiper.map((item, index) => ({
         url: 'javascript:;',
         img: item.url,
         title: item.title
       }))
     }
+  },
+  methods: {
+    ...mapActions(['getUserNews'])
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.getUserNews()
+    })
   }
 }
 </script>

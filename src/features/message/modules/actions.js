@@ -6,9 +6,10 @@ export const getMessageClass = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'message/class',
+      url: 'message',
       params: {
-        token: rootState.common.user.token
+        token: rootState.common.user.token,
+        type: 'class'
       }
     })
     .then((response) => {
@@ -23,9 +24,10 @@ export const getMessageSystem = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'message/system',
+      url: 'message',
       params: {
-        token: rootState.common.user.token
+        token: rootState.common.user.token,
+        type: 'system'
       }
     })
     .then((response) => {
@@ -40,9 +42,10 @@ export const getMessageCorrect = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'message/correct',
+      url: 'message',
       params: {
-        token: rootState.common.user.token
+        token: rootState.common.user.token,
+        type: 'correct'
       }
     })
     .then((response) => {

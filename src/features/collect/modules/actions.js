@@ -8,7 +8,7 @@ export const getCollect = ({rootState, commit, state}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'collect/example',
+      url: 'collect',
       params: {
         token: rootState.common.user.token,
         subject_id: subjectId,

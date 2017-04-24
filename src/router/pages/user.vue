@@ -21,7 +21,7 @@
       </cell>
       <cell title="消息通知" link="message">
         <i class="icon iconfont icon-comment2" style="color:#ABC97C" slot="icon"></i>
-        <badge text="新消息"></badge>
+        <badge text="新消息" v-if="News.correct || News.system"></badge>
       </cell>
       <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.0.0'" is-link @click.native="_openStore">
         <i class="icon iconfont icon-yingyongshengji" style="color:#FF5454" slot="icon"></i>
@@ -33,7 +33,7 @@
 
 <script>
 import {XHeader, Cell, Group, ViewBox, Badge} from 'vux'
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'user',
@@ -41,12 +41,18 @@ export default {
     XHeader, Cell, Group, ViewBox, Badge
   },
   computed: {
-    ...mapGetters(['User', 'System'])
+    ...mapGetters(['User', 'System', 'News'])
   },
   methods: {
+    ...mapActions(['getUserNews']),
     _openStore () {
       window.location.href = 'market://details?id=com.sanbao.guinaben.student'
     }
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.getUserNews()
+    })
   }
 }
 </script>

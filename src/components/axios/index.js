@@ -3,16 +3,14 @@ import axios from 'axios'
 import qs from 'qs'
 
 axios.defaults.timeout = 8000
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencodedcharset=UTF-8'
-axios.defaults.baseURL = 'http://www.guinaben.com:8070/student/'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
+axios.defaults.baseURL = 'https://www.guinaben.com:8090/student/'
 // axios.defaults.baseURL = 'http://192.168.13.222:90/edu_api/student'
 
 // POST传参序列化
 axios.interceptors.request.use((config) => {
   if (config.method === 'post') {
-    config.data = qs.stringify(config.data, {
-      arrayFormat: 'brackets'
-    })
+    config.data = qs.stringify(config.data, {arrayFormat: 'brackets'})
   }
   return config
 }, (error) => {

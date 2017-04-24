@@ -7,7 +7,7 @@ export const getInduce = ({rootState, commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'summary',
+      url: 'induce',
       params: {
         textbook_id: params.textbook_id,
         token: rootState.common.user.token
@@ -38,7 +38,7 @@ export const getInduceList = ({state, rootState, commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'summary/list-exercises',
+      url: 'induce/list',
       params: {
         token: rootState.common.user.token,
         chapter_id: rootState.route.params.chapterId,

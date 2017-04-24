@@ -43,7 +43,7 @@ export default {
         })
         .then(() => {
           setTimeout(() => {
-            this.$router.push('adviceList')
+            this.$router.push('adviceHistory')
           }, 300)
         })
       } else {

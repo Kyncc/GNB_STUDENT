@@ -21,9 +21,8 @@ export default {
     ...mapActions(['uploadHeadImg']),
     _img () {
       this.uploadHeadImg({
-        file: this.cropper.getCroppedCanvas({width: 140, height: 140}).toDataURL('image/jpeg')
-      })
-      .then(() => {
+        img: this.cropper.getCroppedCanvas({width: 140, height: 140}).toDataURL('image/jpeg')
+      }).then(() => {
         this.$vux.toast.show({text: '上传成功', type: 'text', time: 1000, position: 'bottom'})
         setTimeout(() => { history.back() }, 500)
       })

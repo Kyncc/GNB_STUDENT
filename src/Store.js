@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import common from './features/common/store'
+import example from './features/example/modules/store'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
-    common
+    common,
+    example
   }
 })
