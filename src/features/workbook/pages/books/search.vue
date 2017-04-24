@@ -5,7 +5,7 @@
     <div style="padding-top:50px;">
       <group v-for="(workbookList, pindex) in workbookSearchList" :key="pindex" :title="workbookList.textbookName">
         <cell v-for="(workbook, index) in workbookList.list" :key="index">
-          <img class="previewer-workbook-img" style="background:#ccc;" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80">
+          <img class="previewer-workbook-img"  v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80">
           <p slot="after-title" class="ellipsis" @click="show(pindex,index)" style="width:90%;height:1rem;">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
           <div slot="default">
             <x-button v-if="!workbook.status" mini type="primary" slot="default">添加</x-button>

@@ -8,7 +8,9 @@ import 'es6-promise/auto'
 import {ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat} from 'vux'
 
 Vue.use(ToastPlugin)    // 使用提醒
-Vue.use(VueLazyload)    // 图片异步加载
+Vue.use(VueLazyload, {
+  attempt: 3
+})    // 图片异步加载
 Vue.use(LoadingPlugin)  // 使用Loading
 Vue.use(ConfirmPlugin)  // 使用Confirm
 FastClick.attach(document.body)   // 使用fastclick
