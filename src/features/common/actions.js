@@ -53,7 +53,7 @@ export const getTextbookVersion = ({commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'edition/byGrade',
+      url: 'data/textbookVersion',
       params: {
         grade: params.grade
       }

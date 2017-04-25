@@ -74,6 +74,10 @@ const mutations = {
   [types.USERPHOTO_SET] (state, data) {
     state.bufferImg = data.classes
   },
+  [types.USER_TOKEN] (state, data) {
+    state.user.token = data.token
+    localStorage.setItem('token', data.token)
+  },
   [types.USER_NEW_MESSAGE] (state, data) {
     state.news.classes = data.classes
     state.news.correct = data.correct
@@ -81,8 +85,11 @@ const mutations = {
   },
   [types.TEXTBOOK_VERSION] (state, data) {
     state.user.textbookAll.math = data.subjectOptions.math
-    state.user.textbookAll.physics = data.subjectOptions.physics
-    state.user.textbookAll.subjectType = data.subjectType
+    if (data.subjectOptions.physics) {
+      state.user.textbookAll.physics = data.subjectOptions.physics
+    } else {
+      state.user.textbookAll.physics = []
+    }
   }
 }
 

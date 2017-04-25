@@ -5,6 +5,12 @@
 </template>
 
 <script>
+import modules from '../modules/store'
+import store from '@/store'
+store.registerModule('settins', {
+  ...modules
+})
+
 export default {
   name: 'settings'
 }

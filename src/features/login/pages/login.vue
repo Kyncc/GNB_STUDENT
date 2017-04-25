@@ -53,10 +53,9 @@ export default {
         mobile: this.mobile,
         pwd: this.password
       }
-      this.login(params)
-      .then(() => {
+      this.login(params).then(() => {
         setTimeout(() => {
-          this.$router.replace('/main/index')
+          this.$router.replace('/')
         }, 500)
       })
       .catch((error) => {

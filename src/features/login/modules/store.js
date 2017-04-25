@@ -30,21 +30,9 @@ const mutations = {
     state.forget.code = data.data.code
     state.forget.mobile = data.data.mobile
   },
-  [types.LOGIN] (state, data) {
-    state.token = data.token
-    localStorage.setItem('token', data.token)
-  },
   [types.SET_PASSWORD] (state, data) {
     state.token = data.token
     localStorage.setItem('token', data.token)
-  },
-  [types.TEXTBOOK_VERSION_ALL] (state, data) {
-    state.register.version.math = data.subjectOptions.math
-    if (data.subjectOptions.physics) {
-      state.register.version.physics = data.subjectOptions.physics
-    } else {
-      state.register.version.physics = []
-    }
   }
 }
 

@@ -11,24 +11,22 @@ const mutations = {
     state.workbook[payload.subject] = []
   },
   [types.WORKBOOK_LIST] (state, payload) {
-    state.workbook.add = payload.data[0]
+    state.workbook.add = payload.data.textbook
   },
   [types.WORKBOOK_LIST_CLEAR] (state) {
     state.workbook.add = []
   },
   [types.WORKBOOK_SEARCH] (state, payload) {
-    state.workbook.search = payload.data
+    state.workbook.search = payload.data.textbook
   },
   [types.WORKBOOK_SEARCH_CLEAR] (state) {
     state.workbook.search = []
   },
   [types.WORKBOOK_ADD] (state, payload) {
-    state[payload.type][payload.index] = true
-    state[payload.type][payload.index] = true
+    state.workbook[payload.type][payload.pindex].list[payload.index] = true
   },
   [types.WORKBOOK_DEL] (state, payload) {
-    state[payload.type][payload.index] = false
-    state[payload.type][payload.index] = false
+    state.workbook[payload.type][payload.pindex].list[payload.index] = false
   },
   // 章节
   [types.WORKBOOK_CHAPTER] (state, data) {

@@ -5,11 +5,11 @@
     <div style="padding-top:50px;">
       <group v-for="(workbookList, pindex) in workbookSearchList" :key="pindex" :title="workbookList.textbookName">
         <cell v-for="(workbook, index) in workbookList.list" :key="index">
-          <img class="previewer-workbook-img"  v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80">
+          <img class="previewer-workbook-img" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80">
           <p slot="after-title" class="ellipsis" @click="show(pindex,index)" style="width:90%;height:1rem;">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
           <div slot="default">
-            <x-button v-if="!workbook.status" mini type="primary" slot="default">添加</x-button>
-            <x-button v-else mini type="warn" slot="default">删除</x-button>
+            <x-button v-if="!workbook.status" mini type="primary" slot="default" @click.native="_add(pindex,index)">添加</x-button>
+            <x-button v-else mini type="warn" slot="default" @click.native="_del(pindex,index)">删除</x-button>
           </div>
         </cell>
       </group>
@@ -57,7 +57,13 @@ export default {
     TransferDom
   },
   methods: {
-    ...mapActions(['getWorkbookSearch', 'workbookSearchClear']),
+    ...mapActions(['getWorkbookSearch', 'workbookSearchClear', 'workbookAdd', 'workbookDel']),
+    _add (pindex, index) {
+      this.workbookAdd({type: 'search', pindex: pindex, index: index})
+    },
+    _del (pindex, index) {
+      this.workbookDel({type: 'search', pindex: pindex, index: index})
+    },
     _onInfinite () {
       if (this.name !== '') {
         this.getWorkbookSearch({

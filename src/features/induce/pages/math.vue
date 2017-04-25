@@ -2,7 +2,7 @@
   <div>
     <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
     <group gutter="0" class="gnb_collapse">
-      <template v-for="list in induceMath.list">
+      <template v-for="list in induceMath.list.chaper">
         <cell :title="list.name" is-link
         :border-intent="false"
         :arrow-direction="list.checked ? 'up' : 'down'"
@@ -50,7 +50,7 @@ export default {
     ...mapActions(['getInduce', 'setInduceScroll', 'clearInduce']),
     _onInfinite () {
       this.getInduce({
-        'textbook_id': this.textbook_id | this.User.textbook.math[0].id
+        'textbook_id': this.textbook_id || this.User.textbook.math[0].id
       }).then(() => {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')

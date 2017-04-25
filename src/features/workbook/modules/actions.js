@@ -12,8 +12,8 @@ export const getWorkbook = ({state, rootState, commit}, params) => {
       url: 'workbook',
       params: {
         'token': rootState.common.user.token,
-        'subjectId': subjectId
-        // 'textbookId': state.textbookId
+        'subjectId': subjectId,
+        'textbookId': params.textbook_id
       }
     })
     .then((response) => {
@@ -23,7 +23,7 @@ export const getWorkbook = ({state, rootState, commit}, params) => {
   })
 }
 
-/** 全部习题册列表 */
+/** 习题册列表 */
 export const getWorkbookAdd = ({rootState, commit, state}, params) => {
   let subjectId = (rootState.route.params.subject.includes('math') ? 2 : 7)
   return new Promise((resolve, reject) => {
@@ -38,6 +38,46 @@ export const getWorkbookAdd = ({rootState, commit, state}, params) => {
     })
     .then((response) => {
       commit(types.WORKBOOK_LIST, {data: response.data.data})
+      resolve(response)
+    })
+  })
+}
+
+/** 习题册增加 */
+export const workbookAdd = ({rootState, commit, state}, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'workbook/update',
+      data: {
+        token: rootState.common.user.token,
+        type: 'add',
+        workbookId: params.workbookId
+      }
+    })
+    .then((response) => {
+      commit(types.WORKBOOK_ADD, {type: params.type, pindex: params.pindex, index: params.index})
+      Vue.$vux.toast.show({text: '增加习题册成功', type: 'text', time: 500, position: 'bottom'})
+      resolve(response)
+    })
+  })
+}
+
+/** 习题册删除 */
+export const workbookDel = ({rootState, commit, state}, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'workbook/update',
+      data: {
+        token: rootState.common.user.token,
+        type: 'del',
+        workbookId: params.workbookId
+      }
+    })
+    .then((response) => {
+      commit(types.WORKBOOK_DEL, {type: params.type, pindex: params.pindex, index: params.index})
+      Vue.$vux.toast.show({text: '删除习题册成功', type: 'text', time: 500, position: 'bottom'})
       resolve(response)
     })
   })
@@ -118,8 +158,9 @@ export const WorkbookExercisePost = ({state, rootState, commit}, params) => {
       commit(types.WORKBOOK_CHAPTER_CLEAR)
       resolve(response)
     })
-    .catch(() => {
+    .catch((error) => {
       Vue.$vux.loading.hide()
+      reject(error)
     })
   })
 }

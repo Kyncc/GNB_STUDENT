@@ -25,14 +25,14 @@ export const getRegisterCode = ({commit}, params) => {
 export const addPwd = ({ commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
-      method: 'get',
+      method: 'post',
       url: 'pwd/add',
-      params: {
+      data: {
         ...params
       }
     })
     .then((response) => {
-      commit(types.SET_PASSWORD, response.data)
+      commit('USER_TOKEN', response.data.data)
       resolve(response)
     })
   })
@@ -44,40 +44,19 @@ export const login = ({ commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'login',
+      url: 'user/token',
       params: {
         ...params
       }
     })
     .then((response) => {
-      commit(types.LOGIN, response.data.data)
+      commit('USER_TOKEN', response.data.data)
       Vue.$vux.loading.hide()
       resolve(response)
     })
-    .catch((response) => {
+    .catch((error) => {
       Vue.$vux.loading.hide()
-    })
-  })
-}
-
-/** 获得课本版本信息  */
-export const getTextbookVersion = ({ commit }, params) => {
-  Vue.$vux.loading.show({text: '请稍候'})
-  return new Promise((resolve, reject) => {
-    axios({
-      method: 'get',
-      url: 'edition/byGrade',
-      params: {
-        grade: params.grade
-      }
-    })
-    .then((response) => {
-      commit(types.TEXTBOOK_VERSION_ALL, response.data.data)
-      Vue.$vux.loading.hide()
-      resolve(response)
-    })
-    .catch((response) => {
-      Vue.$vux.loading.hide()
+      reject(error)
     })
   })
 }

@@ -1,5 +1,7 @@
 /** 获取用户信息 */
 export const USERINFO = 'USERINFO'
+/** 获取TOKEN */
+export const USER_TOKEN = 'USER_TOKEN'
 /** 设置用户信息 */
 export const USERINFO_UPDATE = 'USERINFO_UPDATE'
 /** 清空用户信息 */
