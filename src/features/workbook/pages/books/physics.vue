@@ -68,7 +68,11 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.textbook_id = vm.User.textbook.physics[0].id
+      if (from.name === 'workbook_add') {
+        vm.workbookClear()
+        vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+      }
+      vm.textbook_id ? '' : vm.textbook_id = vm.User.textbook.physics[0].id
     })
   }
 }

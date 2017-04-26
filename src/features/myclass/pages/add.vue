@@ -63,7 +63,12 @@ export default {
   activated () {
     this.searchCode = ''
     this.myClassSearchClear()
-    this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+    this.$nextTick(() => {
+      this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+    })
+  },
+  deactivated () {
+    this.$refs.infiniteLoading.isLoading = false
   }
 }
 </script>

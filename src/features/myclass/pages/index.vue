@@ -45,6 +45,9 @@ export default {
   computed: {
     ...mapGetters(['ClassMy'])
   },
+  deactivated () {
+    this.$refs.infiniteLoading.isLoading = false
+  },
   beforeRouteEnter (to, from, next) {
     if (from.name === 'bag' || from.name === 'class_add') {
       next(vm => {

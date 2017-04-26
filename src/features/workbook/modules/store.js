@@ -5,10 +5,10 @@ import state from './state'
 
 const mutations = {
   [types.WORKBOOK] (state, payload) {
-    state.workbook[payload.subject] = payload.data
+    state['workbook'][payload.subject] = payload.data
   },
   [types.WORKBOOK_CLEAR] (state, payload) {
-    state.workbook[payload.subject] = []
+    state['workbook'][payload.subject] = []
   },
   [types.WORKBOOK_LIST] (state, payload) {
     state.workbook.add = payload.data.textbook
@@ -23,10 +23,10 @@ const mutations = {
     state.workbook.search = []
   },
   [types.WORKBOOK_ADD] (state, payload) {
-    state.workbook[payload.type][payload.pindex].list[payload.index] = true
+    state['workbook'][payload.type][payload.pindex]['list'][payload.index] = true
   },
   [types.WORKBOOK_DEL] (state, payload) {
-    state.workbook[payload.type][payload.pindex].list[payload.index] = false
+    state['workbook'][payload.type][payload.pindex]['list'][payload.index] = false
   },
   // 章节
   [types.WORKBOOK_CHAPTER] (state, data) {

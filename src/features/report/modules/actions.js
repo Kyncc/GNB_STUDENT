@@ -3,7 +3,7 @@ import * as types from './mutationTypes'
 
 /** 获取章节数据 */
 export const getReport = ({ rootState, commit }, params) => {
-  let subjectId = (rootState.route.name.includes('math') ? 2 : 7)
+  let subjectId = (rootState.route.name.indexOf('math') !== -1 ? 2 : 7)
   let subject = (subjectId === 2 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
@@ -23,7 +23,7 @@ export const getReport = ({ rootState, commit }, params) => {
 
 /** 获取详细报表 */
 export const getReportDetail = ({ rootState, commit }, params) => {
-  let subjectId = (rootState.route.name.includes('math') ? 2 : 7)
+  let subjectId = (rootState.route.name.indexOf('math') !== -1 ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -43,7 +43,7 @@ export const getReportDetail = ({ rootState, commit }, params) => {
 
 /** 浏览器高度 */
 export const setReportScoll = ({ rootState, commit }, height) => {
-  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
+  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   commit(types.REPORT_SCROLL, {'subject': subject, 'height': height})
 }
 

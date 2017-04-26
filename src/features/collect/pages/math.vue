@@ -49,7 +49,9 @@ export default {
     ...mapActions(['getCollect', 'setCollectScroll']),
     _onInfinite () {
       this.getCollect().then((res) => {
-        res.data.data.list.length < 5 ? this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete') : ''
+        if (res.data.data.list.length < 5) {
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        }
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
       })
     }
@@ -60,6 +62,9 @@ export default {
   beforeRouteLeave (to, from, next) {
     this.setCollectScroll(this.$parent.$refs.viewBoxBody.scrollTop)
     next()
+  },
+  deactivated () {
+    this.$refs.infiniteLoading.isLoading = false
   }
 }
 </script>

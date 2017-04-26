@@ -48,6 +48,9 @@ export default {
       })
     }
   },
+  deactivated () {
+    this.$refs.infiniteLoading.isLoading = false
+  },
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.myClassmateClear()

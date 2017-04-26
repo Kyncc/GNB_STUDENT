@@ -18,10 +18,10 @@ const state = {
 
 const mutations = {
   [types.REPORT] (state, payload) {
-    state.index[payload.subject].chapter = payload.data
+    state['index'][payload.subject]['chapter'] = payload.data
   },
   [types.REPORT_SCROLL] (state, payload) {
-    state.index[payload.subject].scroll = payload.height
+    state['index'][payload.subject]['scroll'] = payload.height
   },
   [types.REPORT_DETAIL] (state, data) {
     state.detail = data
