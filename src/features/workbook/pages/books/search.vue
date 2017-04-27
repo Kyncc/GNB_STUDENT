@@ -1,26 +1,28 @@
 <template>
-  <view-box body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '搜索习题册'}"></x-header>
-    <search @on-submit="_onSearch"  @on-change="_onSearch" v-model.lazy="name" :auto-fixed="false" placeholder="请输入习题册名称" style="position:fixed;z-index:100;"></search>
-    <div style="padding-top:50px;">
-      <group v-for="(workbookList, pindex) in workbookSearchList" :key="pindex" :title="workbookList.textbookName">
-        <cell v-for="(workbook, index) in workbookList.list" :key="index">
-          <img class="previewer-workbook-img" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80">
-          <p slot="after-title" class="ellipsis" @click="show(pindex,index)" style="width:90%;height:1rem;">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
-          <div slot="default">
-            <x-button v-if="!workbook.status" mini type="primary" slot="default" @click.native="_add(pindex,index)">添加</x-button>
-            <x-button v-else mini type="warn" slot="default" @click.native="_del(pindex,index)">删除</x-button>
-          </div>
-        </cell>
-      </group>
-      <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
-        <div slot="no-results" style="color:#4bb7aa;"></div>
-        <div slot="spinner" style="padding:.5rem 0"><spinner type="dots" slot="value"></spinner></div>
-        <div slot="no-more" style="color:#4bb7aa;">没有更多结果了~</div>
-      </infinite-loading>
-    </div>
+  <div>
+    <view-box body-padding-top="46px">
+      <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '搜索习题册'}"></x-header>
+      <search @on-submit="_onSearch"  @on-change="_onSearch" v-model.lazy="name" :auto-fixed="false" placeholder="请输入习题册名称" style="position:absolute;left:0;top:46px;z-index:100;"></search>
+      <div style="padding-top:50px;">
+        <group v-for="(workbookList, pindex) in workbookSearchList" :key="pindex" :title="workbookList.textbookName">
+          <cell v-for="(workbook, index) in workbookList.list" :key="index">
+            <img class="previewer-workbook-img" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80">
+            <p slot="after-title" class="ellipsis" @click="show(pindex,index)" style="width:90%;height:1rem;">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
+            <div slot="default">
+              <x-button v-if="!workbook.status" mini type="primary" slot="default" @click.native="_add(pindex,index)">添加</x-button>
+              <x-button v-else mini type="warn" slot="default" @click.native="_del(pindex,index)">删除</x-button>
+            </div>
+          </cell>
+        </group>
+        <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
+          <div slot="no-results" style="color:#4bb7aa;"></div>
+          <div slot="spinner" style="padding:.5rem 0"><spinner type="dots" slot="value"></spinner></div>
+          <div slot="no-more" style="color:#4bb7aa;">没有更多结果了~</div>
+        </infinite-loading>
+      </div>
+    </view-box>
     <previewer :list="list" ref="wbpreviewer" :options="options"></previewer>
-  </view-box>
+  </div>
 </template>
 
 <script>
