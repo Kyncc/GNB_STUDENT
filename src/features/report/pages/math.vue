@@ -1,6 +1,6 @@
 <template>
   <div ref="reportMath">
-    <group gutter="0" class="gnb_collapse">
+    <group gutter="0" class="gnb_collapse" v-if="!loading">
       <template v-for="list in reportMath.chapter">
         <cell :title="list.name" is-link
         :border-intent="false"
@@ -15,47 +15,44 @@
         </div>
       </template>
     </group>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
-      <div slot="no-results" style="color:#4bb7aa;">出错了~</div>
-      <div slot="no-more"></div>
-      <div slot="spinner" style="padding:.5rem 0"><spinner type="ripple" slot="value"></spinner></div>
-    </infinite-loading>
+    <div style="text-align:center">
+      <spinner v-if="loading" type="ripple"></spinner>
+    </div>
   </div>
 </template>
 
 <script>
 import {ViewBox, Cell, CellBox, Group, Spinner} from 'vux'
-import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'math',
   components: {
-    ViewBox, Cell, CellBox, Group, Spinner, InfiniteLoading
+    ViewBox, Cell, CellBox, Group, Spinner
   },
   computed: {
     ...mapGetters(['User', 'reportMath'])
   },
-  methods: {
-    ...mapActions(['getReport', 'setReportScoll']),
-    _onInfinite () {
-      this.getReport().then(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-      }).catch(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-      })
+  data () {
+    return {
+      loading: true
     }
+  },
+  methods: {
+    ...mapActions(['getReport', 'setReportScoll'])
   },
   activated () {
     this.$parent.$refs.viewBoxBody.scrollTop = this.reportMath.scroll
   },
-  deactivated () {
-    this.$parent.$refs.viewBoxBody.scrollTop = 0
-  },
   beforeRouteLeave (to, from, next) {
     this.setReportScoll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.$parent.$refs.viewBoxBody.scrollTop = 0
     next()
+  },
+  mounted () {
+    this.getReport().then(() => {
+      this.loading = false
+    })
   }
 }
 </script>

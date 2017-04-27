@@ -38,12 +38,11 @@
           </div>
         </template>
       </template>
+      <div style="text-align:center">
+        <spinner v-if="loading" type="dots"></spinner>
+        <p v-else-if="reportDetail.chapter.length == 0" style="font-size:14px;padding:10px 0;color:#4BB7AA">暂无反馈消息~</p>
+      </div>
     </div>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
-      <div slot="no-results" style="color:#4bb7aa;">出错了~</div>
-      <div slot="no-more"></div>
-      <div slot="spinner" style="padding:.5rem 0"><spinner type="dots" slot="value"></spinner></div>
-    </infinite-loading>
   </view-box>
 </template>
 
@@ -60,20 +59,25 @@ export default {
   computed: {
     ...mapGetters(['reportDetail'])
   },
-  methods: {
-    ...mapActions(['getReportDetail', 'clearReportDetail']),
-    _onInfinite () {
-      this.getReportDetail().then(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-      }).catch(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-      })
+  data () {
+    return {
+      loading: true
     }
   },
-  activated () {
+  methods: {
+    ...mapActions(['getReportDetail', 'clearReportDetail'])
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.getReportDetail().then(() => {
+        vm.loading = false
+      })
+    })
+  },
+  beforeRouteLeave (to, from, next) {
     this.clearReportDetail()
-    this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+    this.loading = true
+    next()
   }
 }
 </script>
