@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <view-box body-padding-top="46px">
-      <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '搜索习题册'}"></x-header>
-      <search @on-submit="_onSearch"  @on-change="_onSearch" v-model.lazy="name" :auto-fixed="false" placeholder="请输入习题册名称" style="position:absolute;left:0;top:46px;z-index:100;"></search>
-      <div style="padding-top:50px;">
+  <div style="height:100%">
+    <view-box body-padding-top="86px">
+      <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;">
+        <x-header :left-options="{backText: '搜索习题册'}"></x-header>
+        <search @on-submit="_onSearch"  @on-change="_onSearch" v-model.lazy="name" :auto-fixed="false" placeholder="请输入习题册名称" style="position:fixed;z-index:100;"></search>
+      </div>
+      <div>
         <group v-for="(workbookList, pindex) in workbookSearchList" :key="pindex" :title="workbookList.textbookName">
           <cell v-for="(workbook, index) in workbookList.list" :key="index">
             <img class="previewer-workbook-img" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80">

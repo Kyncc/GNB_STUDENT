@@ -1,24 +1,26 @@
 <template>
-  <div>
-    <view-box body-padding-top="46px">
-      <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '添加习题册'}">
-        <div slot="right">
-          <i class="icon iconfont icon-iconfontsousuo" style="padding:8px;font-size:26px;margin-right:-10px;" 
-            @click="$router.push({name: 'workbook_search', param: {subject: Route.params.subject}})">
-          </i>
+  <div style="height:100%">
+    <view-box body-padding-top="86px">
+      <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" >
+        <x-header :left-options="{backText: '添加习题册'}">
+          <div slot="right">
+            <i class="icon iconfont icon-iconfontsousuo" style="padding:8px;font-size:26px;margin-right:-10px;" 
+              @click="$router.push({name: 'workbook_search', param: {subject: Route.params.subject}})">
+            </i>
+          </div>
+        </x-header>
+        <div ref="tab" style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;z-index:100;">
+          <tab :line-width="1" :style='"width:"+tabwidth'>
+            <template v-for="(textbook, index) in textBookList">
+              <tab-item :selected="Number(Route.query.id) === Number(textbook.id)" 
+                @click.native="$router.replace({name: 'workbook_add', query:{id: textbook.id}})">
+                {{textbook.name}}
+              </tab-item>
+            </template> 
+          </tab>
         </div>
-      </x-header>
-      <div ref="tab" style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;position:absolute;left:0;top:46px;z-index:100;">
-        <tab :line-width="1" :style='"width:"+tabwidth'>
-          <template v-for="(textbook, index) in textBookList">
-            <tab-item :selected="Number(Route.query.id) === Number(textbook.id)" 
-              @click.native="$router.replace({name: 'workbook_add', query:{id: textbook.id}})">
-              {{textbook.name}}
-            </tab-item>
-          </template> 
-        </tab>
       </div>
-      <div style="padding-top:43px;">
+      <div>
         <group gutter="0" v-if="workbookAddList.length">
           <template v-for="(result, pindex) in workbookAddList">
             <cell v-for="(workbook, index) in result.list" :key="index">
