@@ -51,7 +51,7 @@ export default {
   mounted () {
     if (window.plus) {
       plus.navigator.setStatusBarBackground(75, 183, 170) // 设置系统状态条颜色
-      setTimeout(() => { plus.navigator.closeSplashscreen() }, 2000)
+      setTimeout(() => { plus.navigator.closeSplashscreen() }, 3000)
     }
   }
 }

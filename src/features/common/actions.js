@@ -30,7 +30,7 @@ export const setUserInfo = ({rootState, commit, dispatch}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'user/updateUserInfo',
+      url: 'user/update',
       data: {
         ...params,
         token: rootState.common.user.token
@@ -53,7 +53,7 @@ export const getTextbookVersion = ({commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'data/textbookVersion',
+      url: 'textbookVersion',
       params: {
         grade: params.grade
       }
@@ -93,7 +93,7 @@ export const setHeadImg = ({ commit }, data) => {
 }
 
 /** 上传头像 */
-export const uploadHeadImg = ({ rootState, commit }, params) => {
+export const uploadHeadImg = ({rootState, commit, dispatch}, params) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
@@ -106,6 +106,7 @@ export const uploadHeadImg = ({ rootState, commit }, params) => {
     })
     .then((response) => {
       commit(types.USERPHOTO_POST, response.data.data)
+      dispatch('getUserInfo')
       Vue.$vux.loading.hide()
       resolve(response)
     })

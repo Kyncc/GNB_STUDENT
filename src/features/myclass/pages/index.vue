@@ -10,51 +10,51 @@
         </router-link>
       </div>
     </x-header>
-    <group gutter="0">
-      <template v-for="item in ClassMy">
-        <cell :title="item.name" :link="'class/detail/'+item.classCode"></cell>
-      </template>
-    </group>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
-      <div slot="no-results" style="color:#4bb7aa;">您还未加入班级~</div>
-      <div slot="spinner" style="padding:.5rem 0"><spinner type="dots" slot="value"></spinner></div>
-      <div slot="no-more"></div>
-    </infinite-loading>
+    <div>
+      <group gutter="0" v-if="!loading">
+        <template v-for="item in ClassMy">
+          <cell :title="item.name" :link="'class/detail/'+item.classCode"></cell>
+        </template>
+      </group>
+      <div style="text-align:center">
+        <spinner v-if="loading" type="ripple"></spinner>
+        <p v-else-if="ClassMy.length == 0" style="font-size:14px;padding:10px 0;color:#4BB7AA">您还未加入任何班级~</p>
+      </div>
+    </div>
   </view-box>
 </template>
 
 <script>
-import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader, Cell, Group, Spinner, ViewBox} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'index',
   components: {
-    XHeader, Cell, Group, ViewBox, InfiniteLoading, Spinner
+    XHeader, Cell, Group, ViewBox, Spinner
   },
   methods: {
     ...mapActions(['getMyClass', 'myClassClear']),
-    _onInfinite () {
+    _getData () {
       this.getMyClass().then(() => {
-        if (this.ClassMy.length !== 0) this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        this.loading = false
       })
     }
   },
   computed: {
     ...mapGetters(['ClassMy'])
   },
-  deactivated () {
-    this.$refs.infiniteLoading.isLoading = false
+  data () {
+    return {
+      loading: true
+    }
   },
   beforeRouteEnter (to, from, next) {
     if (from.name === 'bag' || from.name === 'class_add') {
       next(vm => {
         vm.myClassClear()
-        vm.$nextTick(() => {
-          vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
-        })
+        vm.loading = true
+        vm._getData()
       })
     } else {
       next()

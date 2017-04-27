@@ -1,7 +1,7 @@
 <template>
   <div>
     <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
-    <group gutter="0" class="gnb_collapse">
+    <group gutter="0" class="gnb_collapse" v-if="!loading">
       <template v-for="list in induceMath.list.chaper">
         <cell :title="list.name" is-link
         :border-intent="false"
@@ -16,24 +16,21 @@
         </div>
       </template>
     </group>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
-      <div slot="no-results" style="color:#4bb7aa;">出错了~</div>
-      <div slot="no-more"></div>
-      <div slot="spinner" style="padding:.5rem 0"><spinner type="ripple" slot="value"></spinner></div>
-    </infinite-loading>
+    <div style="text-align:center">
+      <spinner v-if="loading" type="ripple"></spinner>
+    </div>
   </div>
 </template>
 
 <script>
 import {XHeader, Cell, CellBox, Group, Spinner} from 'vux'
 import selectBook from '@/components/gnb_selectbook'
-import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'math',
   components: {
-    XHeader, Cell, Group, CellBox, Spinner, InfiniteLoading, selectBook
+    XHeader, Cell, Group, CellBox, Spinner, selectBook
   },
   computed: {
     ...mapGetters(['induceMath', 'User']),
@@ -43,25 +40,24 @@ export default {
   },
   data () {
     return {
-      textbook_id: ''
+      textbook_id: '',
+      loading: true
     }
   },
   methods: {
     ...mapActions(['getInduce', 'setInduceScroll', 'clearInduce']),
-    _onInfinite () {
+    _getData () {
       this.getInduce({
         'textbook_id': this.textbook_id || this.User.textbook.math[0].id
       }).then(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-      }).catch(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        this.loading = false
       })
     },
     _currentTextbook (val) {
       this.textbook_id = val
       this.clearInduce()
-      this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+      this.loading = true
+      this._getData()
     }
   },
   activated () {
@@ -69,7 +65,11 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     this.setInduceScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.$parent.$refs.viewBoxBody.scrollTop = 0
     next()
+  },
+  mounted () {
+    this._getData()
   }
 }
 </script>

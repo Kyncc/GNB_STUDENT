@@ -4,8 +4,8 @@ import * as types from './mutationTypes'
 
 /** 获取练习册数据 */
 export const getWorkbook = ({state, rootState, commit}, params) => {
-  let subjectId = (rootState.route.name.includes('math') ? 2 : 7)
-  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
+  let subjectId = (rootState.route.name.indexOf('math') !== -1 ? 2 : 7)
+  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -25,7 +25,7 @@ export const getWorkbook = ({state, rootState, commit}, params) => {
 
 /** 习题册列表 */
 export const getWorkbookAdd = ({rootState, commit, state}, params) => {
-  let subjectId = (rootState.route.params.subject.includes('math') ? 2 : 7)
+  let subjectId = (rootState.route.params.subject.indexOf('math') !== -1 ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -85,7 +85,7 @@ export const workbookDel = ({rootState, commit, state}, params) => {
 
 /** 搜索习题册列表 */
 export const getWorkbookSearch = ({rootState, commit, state}, params) => {
-  let subjectId = (rootState.route.params.subject.includes('math') ? 2 : 7)
+  let subjectId = (rootState.route.params.subject.indexOf('math') !== -1 ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -115,7 +115,7 @@ export const workbookSearchClear = ({ commit }) => {
 
 /** 练习册数据清空 */
 export const workbookClear = ({ rootState, commit }) => {
-  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
+  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   commit(types.WORKBOOK_CLEAR, {'subject': subject})
 }
 

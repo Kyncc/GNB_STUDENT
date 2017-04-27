@@ -3,7 +3,7 @@ import * as types from './mutationTypes'
 
 /** 获取章节数据 */
 export const getInduce = ({rootState, commit}, params) => {
-  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
+  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -22,19 +22,19 @@ export const getInduce = ({rootState, commit}, params) => {
 
 /** 首页章节浏览器高度 */
 export const setInduceScroll = ({ rootState, commit }, height) => {
-  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
+  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   commit(types.INDUCE_SCOLLER, {'subject': subject, 'height': height})
 }
 
 /** 清除章节数据 */
 export const clearInduce = ({ rootState, commit }) => {
-  let subject = (rootState.route.name.includes('math') ? 'math' : 'physics')
+  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   commit(types.INDUCE_CLEAR, {'subject': subject})
 }
 
 /** 获取刷题列表 */
 export const getInduceList = ({state, rootState, commit}, params) => {
-  let subjectId = (rootState.route.params.subject.includes('math') ? 2 : 7)
+  let subjectId = (rootState.route.params.subject.indexOf('math') ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',

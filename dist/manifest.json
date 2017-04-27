@@ -203,7 +203,14 @@
 					"static/js/app.js",
 					"static/js/manifest.js",
 					"static/js/vendor.js",
-					"static/css/app.css"
+					"static/css/app.css",
+					"static/js/app.01eb69d7344aa228e894.js",
+					"static/css/app.63e2d419283d96885f666409d2860ff4.css",
+					"static/js/manifest.05add1e3d8b527d7dabe.js",
+					"static/js/vendor.d4a2f131ede7ee5efff1.js",
+					"static/js/manifest.53109c8e3b3b21ec74e7.js",
+					"static/js/app.f88f00aefc7f564bc6ef.js",
+					"static/js/manifest.c1890b2d9c6e9d7536b9.js"
 				],
 				"refer": [],
 				"priority": 0

@@ -5,12 +5,11 @@
       个人中心
     </x-header>
     <div class="info">
-      <router-link :to="{ path: 'settings/info'}">
-        <div style="display:inline-block;position:absolute;top:50%;margin-top:-57.5px;left:50%;margin-left:-40px;">
-          <img src="http://img.guinaben.com/gnb.png" width="80" height="80" style="border-radius:50%"/>
+        <div style="display:inline-block;position:absolute;top:50%;margin-top:-57.5px;left:50%;margin-left:-40px;"
+          @click="$router.push('settings/info')">
+          <img v-lazy="User.headImg" width="80" height="80" style="border-radius:50%"/>
           <p class="phone">&nbsp;{{User.name}}&nbsp;</p>
         </div>
-      </router-link>
     </div>
     <group gutter="0">
       <cell title="设置" link="settings">

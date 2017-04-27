@@ -40,7 +40,6 @@
       </template>
       <div style="text-align:center">
         <spinner v-if="loading" type="dots"></spinner>
-        <p v-else-if="reportDetail.chapter.length == 0" style="font-size:14px;padding:10px 0;color:#4BB7AA">暂无反馈消息~</p>
       </div>
     </div>
   </view-box>

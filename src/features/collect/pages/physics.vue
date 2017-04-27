@@ -59,14 +59,13 @@ export default {
     }
   },
   activated () {
+    // this.$refs.infiniteLoading.isLoading = true
     this.$parent.$refs.viewBoxBody.scrollTop = this.collectPhysics.scroll
   },
   beforeRouteLeave (to, from, next) {
+    this.$refs.infiniteLoading.isLoading = false
     this.setCollectScroll(this.$parent.$refs.viewBoxBody.scrollTop)
     next()
-  },
-  deactivated () {
-    this.$refs.infiniteLoading.isLoading = false
   }
 }
 </script>

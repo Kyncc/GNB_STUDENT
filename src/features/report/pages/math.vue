@@ -1,5 +1,5 @@
 <template>
-  <div ref="reportMath">
+  <div class="reportMath">
     <group gutter="0" class="gnb_collapse" v-if="!loading">
       <template v-for="list in reportMath.chapter">
         <cell :title="list.name" is-link
@@ -57,5 +57,10 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@import '../../../components/gnb_collapse/index.less';
+.animate{
+  transition: max-height 0s cubic-bezier(0, 1, 0, 1) 0s !important; 
+}
+.slide{
+  transition: max-height 0s cubic-bezier(0, 1, 0, 1) 0s !important;
+}
 </style>

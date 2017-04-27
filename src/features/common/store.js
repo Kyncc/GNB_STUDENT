@@ -10,7 +10,7 @@ const state = {
   },
   user: {
     headImg: '',
-    bufferImg: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1391667439,1426519088&fm=80&w=179&h=119&img.JPEG',
+    bufferImg: '',
     name: '',
     school: '',
     sex: '',

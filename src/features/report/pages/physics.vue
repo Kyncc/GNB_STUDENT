@@ -56,3 +56,11 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.animate{
+  transition: max-height 0s cubic-bezier(0, 1, 0, 1) 0s !important; 
+}
+.slide{
+  transition: max-height 0s cubic-bezier(0, 1, 0, 1) 0s !important;
+}
+</style>
