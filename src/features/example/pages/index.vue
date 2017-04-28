@@ -2,24 +2,24 @@
   <view-box body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '例题详情'}">
       <div slot="right">
-        <i v-for="detail in Example" class="icon iconfont icon-collect1" :class="(detail.collectTime ? 'icon-collect' : 'icon-collect1')" @click.native="_collect"></i>
+        <i v-for="detail in Example.detail" class="icon iconfont icon-collect1" style="top:1px;" :style="(detail.collectTime ? 'color:#FBC34B' : 'color:#FFF')" @click="_collect"></i>
         <i class="icon iconfont icon-bianji" style="padding:10px;margin:0 -10px 0 0"
           @click="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id}})">
         </i>
       </div>
     </x-header>
-    <template v-for="detail in Example"> 
+    <template v-for="detail in Example.detail"> 
       <card>
         <div slot="header" class="weui-panel__hd">
-          <flexbox><flexbox-item :span="2" style="color:#4bb7aa">题干</flexbox-item></flexbox>
+          <flexbox><flexbox-item :span="10" style="color:#4bb7aa">{{detail.charpterName}}</flexbox-item></flexbox>
         </div>
         <div slot="content">
-          <div v-html="detail.content"></div>
-          <template v-if="detail.type === '1'">
-            <div style="padding-top:5px;" v-for="(value, key) in detail.tabs" >
-              {{ key }}： <p v-html="value" style="display:inline-block"></p>
-            </div>
-          </template> 
+          <div v-html="detail.stem"></div>
+          <div v-if="detail.opt.hasOwnProperty('A')">
+            <template v-for="(value, key) in detail.opt">
+              <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+            </template>
+          </div>
         </div>
       </card>
       <card>
@@ -27,35 +27,38 @@
         <div slot="content" v-html="detail.answer"></div>
       </card>
     </template>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
-      <div slot="no-results" style="color:#4bb7aa;">加载题目失败~</div>
-      <div slot="no-more"></div>
-      <div slot="spinner" style="padding:.5rem 0"><spinner type="ripple" slot="value"></spinner></div>
-    </infinite-loading>
+    <div style="text-align:center">
+      <spinner v-if="loading" type="dots"></spinner>
+      <p v-else-if="Example.detail.length == 0" style="font-size:14px;padding:10px 0;color:#4BB7AA">出错了~</p>
+    </div>
   </view-box>
 </template>
 
 <script>
 import {XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
-import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   name: 'example',
   components: {
-    XHeader, Card, ViewBox, Spinner, InfiniteLoading, Flexbox, FlexboxItem
+    XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem
   },
   computed: {
     ...mapGetters(['Example', 'Params'])
   },
+  data () {
+    return {
+      loading: true
+    }
+  },
   methods: {
     ...mapActions(['getExample', 'exampleClear', 'collectRemove', 'collectAdd']),
-    _onInfinite () {
+    _getDate () {
+      this.loading = true
       this.getExample().then(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        this.$nextTick(() => { this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete') })
+        this.loading = false
       }).catch(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        this.loading = false
       })
     },
     _collect (state) {
@@ -66,6 +69,7 @@ export default {
     if (from.name !== 'correct') {
       next(vm => {
         vm.exampleClear()
+        vm._getDate()
       })
     } else {
       next()

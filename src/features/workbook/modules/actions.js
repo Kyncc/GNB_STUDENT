@@ -239,7 +239,7 @@ export const workbookUpload = ({state, rootState, commit}) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'workbook/uploadHomeWork',
+      url: 'workbook/uploader',
       data: {
         'token': rootState.common.user.token,
         'cameraList': state.uploader.list,

@@ -7,7 +7,7 @@ export const getExample = ({ rootState, commit }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'exercise',
+      url: 'exerciseList',
       params: {
         ids: [rootState.route.params.id],
         subject_id: rootState.route.params.subjectId,

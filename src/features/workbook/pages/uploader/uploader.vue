@@ -8,7 +8,7 @@
       <div style="margin:.75rem">
         <flexbox wrap="wrap" align="baseline" :gutter="0">
           <flexbox-item :span="3" v-for="(img, index) in workbookUploader.list" :key="index" style="text-align:center;height:120px;">
-            <img :src="img" height="80" width="120"/>
+            <img v-lazy="img" height="80" width="120" style="background:#ccc"/>
             <i class="icon iconfont icon-error" style="font-size:30px" @click="_del(index)"></i>
           </flexbox-item>
           <flexbox-item :span="3" style="text-align:center;height:120px;border:1px solid #ccc;" class="add" @click.native="_add">
@@ -30,7 +30,7 @@ export default {
     XHeader, ViewBox, Flexbox, FlexboxItem, GroupTitle
   },
   methods: {
-    ...mapActions(['uploadHeadImg', 'workbookUploadAdd']),
+    ...mapActions(['uploadHeadImg', 'workbookUploadAdd', 'workbookUpload']),
     _add () {
       this.$router.push({'name': 'workbook_uploader_photo'})
       // let cmr = plus.camera.getCamera()
@@ -50,12 +50,12 @@ export default {
         return
       }
       this.workbookUpload().then(() => {
-        this.$router.replace({'name': 'workbook_uploader'})
+        history.go(-1)
       })
     }
   },
   computed: {
-    ...mapGetters(['workbookUploader'])
+    ...mapGetters(['workbookUploader', 'Route'])
   }
 }
 </script>
