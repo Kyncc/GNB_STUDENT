@@ -5,10 +5,14 @@ import state from './state'
 
 const mutations = {
   [types.WORKBOOK] (state, payload) {
-    state['workbook'][payload.subject] = payload.data
+    state['workbook'][payload.subject]['list'] = payload.data
   },
   [types.WORKBOOK_CLEAR] (state, payload) {
-    state['workbook'][payload.subject] = []
+    state['workbook'][payload.subject]['list'] = []
+    state['workbook'][payload.subject]['scroll'] = 0
+  },
+  [types.WORKBOOK_SCROLL] (state, payload) {
+    state['workbook'][payload.subject].scroll = payload.height
   },
   [types.WORKBOOK_LIST] (state, payload) {
     state.workbook.add = payload.data.textbook
@@ -23,18 +27,19 @@ const mutations = {
     state.workbook.search = []
   },
   [types.WORKBOOK_ADD] (state, payload) {
-    state['workbook'][payload.type][payload.pindex]['list'][payload.index] = true
+    state['workbook'][payload.type][payload.pindex]['list'][payload.index].status = true
   },
   [types.WORKBOOK_DEL] (state, payload) {
-    state['workbook'][payload.type][payload.pindex]['list'][payload.index] = false
+    state['workbook'][payload.type][payload.pindex]['list'][payload.index].status = false
   },
   // 章节
   [types.WORKBOOK_CHAPTER] (state, data) {
     state.chapter.list = data
+    state.chapter.isReset = false
   },
   [types.WORKBOOK_CHAPTER_CLEAR] (state) {
     state.chapter.list = []
-    state.chapter.scroll = 0
+    state.chapter.isReset = true
   },
   [types.WORKBOOK_CHAPTER_SCROLL] (state, height) {
     state.chapter.scroll = height
@@ -47,7 +52,6 @@ const mutations = {
   [types.WORKBOOK_EXERCISE_CLEAR] (state) {
     state.exercise.list = []
     state.exercise.isReset = true
-    state.exercise.scroll = 0
     // state.uploader.list = []
     // state.uploader.camera = ''
   },
@@ -57,7 +61,6 @@ const mutations = {
   [types.WORKBOOK_EXERCISE_POST] (state, data) {
     state.chapter.isReset = true
     state.exercise.list = data
-    // state.exercise.list.isUsed = true
   },
   [types.WORKBOOK_EXERCISE_CHANGE] (state, data) {
     if (data.type === '1') {

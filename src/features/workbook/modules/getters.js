@@ -1,7 +1,7 @@
 /** 数学练习册 */
 export const workbookMath = (state) => state.workbook.math
 /** 物理练习册 */
-export const workbookPhysics = (state) => state.workbook.physcics
+export const workbookPhysics = (state) => state.workbook.physics
 /** 全部练习册 */
 export const workbookAddList = (state) => state.workbook.add
 /** 搜索练习册 */

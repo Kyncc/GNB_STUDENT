@@ -11,7 +11,7 @@
       </cell>
       <cell title="电话" :value="User.mobile"></cell>
       <cell title="姓名" :value="User.name"></cell>
-      <cell title="性别" :value="User.sex ? '男' : '女'"></cell>
+      <cell title="性别" :value="User.sex === '1' ? '男' : '女'"></cell>
     </group>
     <group>
       <cell title="年级" :value="grade"></cell>

@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import {Group, Cell, XButton, TransferDomDirective as TransferDom} from 'vux'
+import {Group, Cell, XButton} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
@@ -53,9 +53,6 @@ export default {
     isUsed () {
       return this.workbookExercise.list.isUsed
     }
-  },
-  directives: {
-    TransferDom
   },
   data () {
     return {

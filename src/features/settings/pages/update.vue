@@ -88,24 +88,27 @@ export default {
           physics: this.physics
         }
       }).then(() => {
-        this.$router.go(-1)
+        history.go(-1)
       })
     },
     _getImage () {
+      let self = this
+      // 唤起本机相机
       let cmr = plus.camera.getCamera()
-      cmr.captureImage((p) => {
-        plus.io.resolveLocalFileSystemURL(p, (entry) => {
-          this.setHeadImg(entry.toLocalURL())
-          this.$router.push({name: 'settings_photo'})
+      cmr.captureImage(function (p) {
+        plus.io.resolveLocalFileSystemURL(p, function (entry) {
+          self.setHeadImg(entry.toLocalURL())
+          self.$router.push({name: 'settings_photo'})
         })
       })
     },
     _galleryImgs () {
-      plus.gallery.pick((e) => {
-        this.setHeadImg(e.files[0])
-        this.$router.push({name: 'settings_photo'})
-      }, (e) => {
-        this.$vux.toast.show({text: '您已取消选择图片', type: 'text', time: 1000, position: 'bottom'})
+      let self = this
+      plus.gallery.pick(function (e) {
+        self.setHeadImg(e.files[0])
+        self.$router.push({name: 'settings_photo'})
+      }, function () {
+        self.$vux.toast.show({text: '您已取消选择图片', type: 'text', time: 1000, position: 'bottom'})
       }, {
         filter: 'image',
         multiple: true

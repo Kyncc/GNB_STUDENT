@@ -19,7 +19,7 @@ const state = {
 
 const mutations = {
   [types.COLLECT_LIST] (state, payload) {
-    // if (payload.data.list.length === 0) return
+    if (payload.data.list.length === 0) return
     state[payload.subject]['isReset'] = false
     state[payload.subject]['offset'] = payload.data.offset
     state[payload.subject]['list'] = state[payload.subject]['list'].concat(payload.data.list)

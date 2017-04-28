@@ -6,6 +6,8 @@ export const WORKBOOK_ADD = 'WORKBOOK_ADD'
 export const WORKBOOK_DEL = 'WORKBOOK_DEL'
 /** 重置习题册 */
 export const WORKBOOK_CLEAR = 'WORKBOOK_CLEAR'
+/** 习题册高度 */
+export const WORKBOOK_SCROLL = 'WORKBOOK_SCROLL'
 /** 添加习题册全部 */
 export const WORKBOOK_LIST = 'WORKBOOK_LIST'
 /** 删除习题册全部 */

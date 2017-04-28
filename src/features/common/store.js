@@ -85,6 +85,7 @@ const mutations = {
   },
   [types.TEXTBOOK_VERSION] (state, data) {
     state.user.textbookAll.math = data.subjectOptions.math
+    state.user.textbookAll.subjectType = data.subjectType
     if (data.subjectOptions.physics) {
       state.user.textbookAll.physics = data.subjectOptions.physics
     } else {

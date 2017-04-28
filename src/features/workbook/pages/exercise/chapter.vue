@@ -16,42 +16,54 @@
         </template>
       </group>
     </template>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" spinner="spiral">
-      <div slot="no-results" style="color:#4bb7aa;">出错了~</div>
-      <div slot="spinner" style="padding:.5rem 0"><spinner type="dots" slot="value"></spinner></div>
-      <div slot="no-more"></div>
-    </infinite-loading>
+    <div style="text-align:center">
+      <spinner v-if="loading" type="dots"></spinner>
+    </div>
   </view-box>
 </template>
 <script>
 import {XHeader, ViewBox, Group, Cell, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
-import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   name: 'chapter',
   components: {
-    XHeader, ViewBox, Group, Cell, Spinner, InfiniteLoading
+    XHeader, ViewBox, Group, Cell, Spinner
+  },
+  data () {
+    return {
+      loading: true
+    }
   },
   methods: {
     ...mapActions(['getWorkbookChapter', 'setWorkbookChapterScroll', 'workbookChapterClear']),
-    _onInfinite () {
+    _getData () {
+      this.loading = true
       this.getWorkbookChapter().then(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-      }).catch(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        this.loading = false
       })
     }
   },
   activated () {
-    this.$refs.viewBoxBody.scrollTo(this.workbookChapter.scroll)
+    if (this.workbookChapter.isReset) {
+      this.loading = true
+      this.getWorkbookChapter().then(() => {
+        this.loading = false
+      }).then(() => {
+        this.$nextTick(() => {
+          this.$refs.viewBoxBody.scrollTo(this.workbookChapter.scroll)
+        })
+      })
+    } else {
+      this.$refs.viewBoxBody.scrollTo(this.workbookChapter.scroll)
+    }
   },
   beforeRouteEnter (to, from, next) {
     // 选择练习本进来清空数据
     if (from.name === 'workbook_math' || from.name === 'workbook_physics') {
       next(vm => {
         vm.workbookChapterClear()
+        vm._getData()
       })
     } else {
       next()

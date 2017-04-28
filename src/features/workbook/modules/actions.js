@@ -12,8 +12,7 @@ export const getWorkbook = ({state, rootState, commit}, params) => {
       url: 'workbook',
       params: {
         'token': rootState.common.user.token,
-        'subjectId': subjectId,
-        'textbookId': params.textbook_id
+        'subjectId': subjectId
       }
     })
     .then((response) => {
@@ -103,6 +102,12 @@ export const getWorkbookSearch = ({rootState, commit, state}, params) => {
   })
 }
 
+/** 练习册章节高度设置 */
+export const setWorkbookScroll = ({ rootState, commit }, height) => {
+  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
+  commit(types.WORKBOOK_SCROLL, {subject: subject, height: height})
+}
+
 /** 练习册数据清空 */
 export const workbookAddClear = ({ commit }) => {
   commit(types.WORKBOOK_LIST_CLEAR)
@@ -124,7 +129,7 @@ export const getWorkbookChapter = ({state, rootState, commit}) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'remember/chapter',
+      url: 'workbook/chapter',
       params: {
         'token': rootState.common.user.token,
         'workbookId': rootState.route.params.id
@@ -143,12 +148,12 @@ export const WorkbookExercisePost = ({state, rootState, commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'remember/submit',
+      url: 'workbook/submit',
       data: {
         'answer': params.answer,
         'answerId': params.answerId,
         'token': rootState.common.user.token,
-        'chapterId': rootState.route.params.chapterId
+        'chapterId': rootState.route.params.id
       }
     })
     .then((response) => {
@@ -181,7 +186,7 @@ export const getWorkbookExercise = ({state, rootState, commit}, id) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'remember/exercises',
+      url: 'workbook/exercises',
       params: {
         'token': rootState.common.user.token,
         'chapterId': rootState.route.params.id || id
@@ -234,11 +239,11 @@ export const workbookUpload = ({state, rootState, commit}) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'remember/uploadHomeWork/',
+      url: 'workbook/uploadHomeWork',
       data: {
         'token': rootState.common.user.token,
         'cameraList': state.uploader.list,
-        'chapterId': rootState.route.params.chapterId
+        'chapterId': rootState.route.params.id
       }
     })
     .then((response) => {
