@@ -9,8 +9,9 @@
         </cell>
       </group>
     </template>
-    <div style="text-align:center">
+    <div style="text-align:center;padding:10px 0;">
       <spinner v-if="loading" type="ripple"></spinner>
+      <p v-else-if="workbookMath.list.textbook.length === 0">您还未添加数学习题册</p>
     </div>
   </div>
 </template>

@@ -48,12 +48,13 @@ const mutations = {
   [types.WORKBOOK_EXERCISE] (state, data) {
     state.exercise.list = data
     state.exercise.isReset = false
+    state.exercise.scroll = 0
   },
   [types.WORKBOOK_EXERCISE_CLEAR] (state) {
     state.exercise.list = []
     state.exercise.isReset = true
-    // state.uploader.list = []
-    // state.uploader.camera = ''
+    state.uploader.list = []
+    state.uploader.camera = ''
   },
   [types.WORKBOOK_EXERCISE_SCROLL] (state, height) {
     state.exercise.scroll = height

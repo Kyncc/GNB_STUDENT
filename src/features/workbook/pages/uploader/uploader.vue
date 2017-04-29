@@ -4,15 +4,19 @@
       <i slot="right" @click="_upload" class="icon iconfont icon-upload" style="font-size:22px"></i>
     </x-header>
     <div>
-      <group-title style="margin:10px 0;">需要上传作业后方可查看答案,最多5张</group-title>
-      <div style="margin:.75rem">
+      <group-title style="margin:10px 0 0;">需要上传作业后方可查看答案,最多5张</group-title>
+      <div style="padding:10px">
         <flexbox wrap="wrap" align="baseline" :gutter="0">
-          <flexbox-item :span="3" v-for="(img, index) in workbookUploader.list" :key="index" style="text-align:center;height:120px;">
-            <img v-lazy="img" height="80" width="120" style="background:#ccc"/>
-            <i class="icon iconfont icon-error" style="font-size:30px" @click="_del(index)"></i>
+          <flexbox-item :span="3" v-for="(img, index) in workbookUploader.list" :key="index">
+            <div class="photo">
+              <div style="text-align:center;height:110px;background-size:100% 100%" :style="'background-image:url('+img+')'"></div>
+              <i class="icon iconfont icon-error" style="font-size:30px;position:absolute;right:-15px;top:-25px" @click="_del(index)"></i>
+            </div>
           </flexbox-item>
-          <flexbox-item :span="3" style="text-align:center;height:120px;border:1px solid #ccc;" class="add" @click.native="_add">
-            <i class="icon iconfont icon-plus" style="font-size:44px;margin:0 auto;top:20px;color:#bbb;"></i>
+          <flexbox-item :span="3" v-if="!(workbookUploader.list.length === 5)" @click.native="_add">
+            <div class="photo">
+              <div style="text-align:center;height:110px;border:1px solid #ccc"></div>
+            </div>
           </flexbox-item>
         </flexbox>
       </div>
@@ -30,16 +34,16 @@ export default {
     XHeader, ViewBox, Flexbox, FlexboxItem, GroupTitle
   },
   methods: {
-    ...mapActions(['uploadHeadImg', 'workbookUploadAdd', 'workbookUpload']),
+    ...mapActions(['uploadHeadImg', 'workbookUploadAdd', 'workbookUpload', 'workbookUploadDel']),
     _add () {
-      this.$router.push({'name': 'workbook_uploader_photo'})
-      // let cmr = plus.camera.getCamera()
-      // cmr.captureImage((p) => {
-      //   plus.io.resolveLocalFileSystemURL(p, (entry) => {
-      //     this.workbookCamera(entry.toLocalURL())
-      //     this.$router.push({'name': 'workbook_uploader_photo'})
-      //   })
-      // })
+      // this.$router.push({'name': 'workbook_uploader_photo'})
+      let cmr = plus.camera.getCamera()
+      cmr.captureImage((p) => {
+        plus.io.resolveLocalFileSystemURL(p, (entry) => {
+          this.workbookCamera(entry.toLocalURL())
+          this.$router.push({'name': 'workbook_uploader_photo'})
+        })
+      })
     },
     _del (index) {
       this.workbookUploadDel(index)
@@ -59,3 +63,16 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.photo{
+  position:relative;
+  margin-top:10px;
+  padding-left:10px;
+  
+}
+.vux-flexbox .vux-flexbox-item:first-child {
+  .photo{
+    padding-left: 0px !important;
+  }
+}
+</style>

@@ -56,7 +56,7 @@ export const workbookAdd = ({rootState, commit, state}, params) => {
     })
     .then((response) => {
       commit(types.WORKBOOK_ADD, {type: params.type, pindex: params.pindex, index: params.index})
-      Vue.$vux.toast.show({text: '增加习题册成功', type: 'text', time: 500, position: 'bottom'})
+      Vue.$vux.toast.show({text: '增加习题册成功', type: 'success', time: 1000})
       resolve(response)
     })
   })
@@ -76,7 +76,7 @@ export const workbookDel = ({rootState, commit, state}, params) => {
     })
     .then((response) => {
       commit(types.WORKBOOK_DEL, {type: params.type, pindex: params.pindex, index: params.index})
-      Vue.$vux.toast.show({text: '删除习题册成功', type: 'text', time: 500, position: 'bottom'})
+      Vue.$vux.toast.show({text: '删除习题册成功', type: 'success', time: 1000})
       resolve(response)
     })
   })
