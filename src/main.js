@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
 import {ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat} from 'vux'
-// import 'babel-polyfill'
 
 Vue.use(ToastPlugin)    // 使用提醒
 // 图片异步加载
@@ -29,7 +28,7 @@ document.addEventListener('plusready', () => {
     if (store.state.route.path === '/' || store.state.route.path === '/bag' || store.state.route.path === '/user') {
       if (!first) {
         first = new Date().getTime()
-        Vue.$vux.toast.show({text: '再按一次退出', type: 'text', time: 1000, position: 'bottom'})
+        Vue.$vux.toast.show({text: '再按一次退出', type: 'text', time: 1000, position: 'middle'})
         setTimeout(function () { first = null }, 1000)
       } else {
         new Date().getTime() - first < 1000 ? plus.runtime.quit() : ''

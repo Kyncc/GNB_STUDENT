@@ -30,7 +30,7 @@ export const collectRemove = ({ rootState, commit, dispatch }) => {
       data: {
         id: rootState.route.params.id,
         subject_id: rootState.route.params.subjectId,
-        type: 'del',
+        handleType: 'del',
         token: rootState.common.user.token
       }
     })
@@ -52,7 +52,7 @@ export const collectAdd = ({ rootState, commit, dispatch }) => {
       data: {
         id: rootState.route.params.id,
         subject_id: rootState.route.params.subjectId,
-        type: 'add',
+        handleType: 'add',
         token: rootState.common.user.token
       }
     })

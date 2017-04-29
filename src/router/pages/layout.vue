@@ -47,12 +47,6 @@ export default {
   },
   created () {
     this.getUserInfo().then(() => {})
-  },
-  mounted () {
-    if (window.plus) {
-      plus.navigator.setStatusBarBackground(75, 183, 170) // 设置系统状态条颜色
-      setTimeout(() => { plus.navigator.closeSplashscreen() }, 3000)
-    }
   }
 }
 </script>

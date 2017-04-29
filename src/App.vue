@@ -7,8 +7,12 @@
 </template>
 
 <script>
+import { TransferDomDirective as TransferDom } from 'vux'
 export default {
-  name: 'app'
+  name: 'app',
+  directives: {
+    TransferDom
+  }
 }
 </script>
 

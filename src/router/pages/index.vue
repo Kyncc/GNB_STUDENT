@@ -21,6 +21,14 @@ export default {
   name: 'index',
   components: {
     XHeader, ViewBox, XButton
+  },
+  mounted () {
+    setTimeout(function () {
+      if (window.plus) {
+        plus.navigator.setStatusBarBackground('#4BB7AA')
+        // plus.navigator.closeSplashscreen()
+      }
+    }, 1000)
   }
 }
 </script>

@@ -7,7 +7,7 @@
     </x-header>
     <group gutter="0">
       <cell title="头像">
-        <img v-lazy="User.headImg" width="60" height="60"/>
+        <img :src="User.headImg" width="60" height="60"/>
       </cell>
       <cell title="电话" :value="User.mobile"></cell>
       <cell title="姓名" :value="User.name"></cell>

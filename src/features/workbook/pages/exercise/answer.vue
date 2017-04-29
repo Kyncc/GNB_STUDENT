@@ -101,6 +101,7 @@ export default {
       let _this = this
       this.$vux.confirm.show({
         title: '是否提交练习结果',
+        dialogTransition: 'vux-fade',
         onConfirm () {
           _this._getAnswerList()
           _this.WorkbookExercisePost({

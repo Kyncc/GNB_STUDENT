@@ -21,6 +21,7 @@ export default {
       let self = this
       this.$vux.confirm.show({
         title: '是否退出登录',
+        dialogTransition: 'vux-fade',
         onConfirm () {
           localStorage.removeItem('token')
           if (window.plus) plus.runtime.restart() // 重启应用

@@ -69,10 +69,10 @@ const mutations = {
     state.user.swiper = data.swiper
   },
   [types.USERPHOTO_POST] (state, data) {
-    state.headImg = data.headImg
+    state.user.headImg = data.headImg
   },
   [types.USERPHOTO_SET] (state, data) {
-    state.bufferImg = data.classes
+    state.user.bufferImg = data
   },
   [types.USER_TOKEN] (state, data) {
     state.user.token = data.token

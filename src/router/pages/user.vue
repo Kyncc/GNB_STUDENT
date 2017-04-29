@@ -7,7 +7,7 @@
     <div class="info">
         <div style="display:inline-block;position:absolute;top:50%;margin-top:-57.5px;left:50%;margin-left:-40px;"
           @click="$router.push('settings/info')">
-          <img v-lazy="User.headImg" width="80" height="80" style="border-radius:50%"/>
+          <img :src="User.headImg" width="80" height="80" style="border-radius:50%"/>
           <p class="phone">&nbsp;{{User.name}}&nbsp;</p>
         </div>
     </div>
