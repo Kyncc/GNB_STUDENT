@@ -30,7 +30,7 @@ export const collectRemove = ({ rootState, commit, dispatch }) => {
       data: {
         id: rootState.route.params.id,
         subject_id: rootState.route.params.subjectId,
-        handleType: 'del',
+        handleType: 'cancel',
         token: rootState.common.user.token
       }
     })

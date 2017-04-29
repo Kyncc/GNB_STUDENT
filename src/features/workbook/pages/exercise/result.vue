@@ -15,12 +15,14 @@
     <template v-else>
       <group-title style="margin:10px 0;">答案列表</group-title>
       <flexbox wrap="wrap" align="baseline" :gutter="0">
-        <flexbox-item :span="3" v-for="(img, index) in resultImg" :key="index" @click.native="show(index)" style="text-align:center">
+        <flexbox-item :span="3" v-for="(img, index) in resultImg" :key="index" @click.native="show(index)" style="text-align:center;margin-bottom:10px;">
           <img v-lazy="img.url+'?imageMogr2/auto-orient/thumbnail/65x90!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'"  width="65" height="90" class="previewer-answer-img"/>
         </flexbox-item>
       </flexbox>
     </template>
-    <previewer :list="list" ref="previewer" :options="options"></previewer>
+    <div v-transfer-dom>
+      <previewer :list="list" ref="previewer" :options="options"></previewer>
+    </div>
   </div>
 </template>
 

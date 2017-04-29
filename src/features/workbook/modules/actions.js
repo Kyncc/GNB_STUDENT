@@ -158,7 +158,7 @@ export const WorkbookExercisePost = ({state, rootState, commit}, params) => {
     })
     .then((response) => {
       Vue.$vux.loading.hide()
-      Vue.$vux.toast.show({text: '提交成功', type: 'text', time: 1000, position: 'bottom'})
+      Vue.$vux.toast.show({text: '提交成功', type: 'success', isShowMask: true, time: 1000})
       commit(types.WORKBOOK_EXERCISE_POST, response.data.data)
       commit(types.WORKBOOK_CHAPTER_CLEAR)
       resolve(response)

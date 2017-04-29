@@ -2,7 +2,7 @@
   <view-box body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '例题详情'}">
       <div slot="right">
-        <i v-for="detail in Example.detail" class="icon iconfont icon-collect1" style="top:1px;" :style="(detail.collectTime ? 'color:#FBC34B' : 'color:#FFF')" @click="_collect"></i>
+        <i v-for="detail in Example.detail" class="icon iconfont icon-collect1" style="top:1px;" :style="(detail.collectTime ? 'color:#FBC34B' : 'color:#FFF')" @click="_collect(detail.collectTime)"></i>
         <i class="icon iconfont icon-bianji" style="padding:10px;margin:0 -10px 0 0"
           @click="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id}})">
         </i>
@@ -37,6 +37,12 @@
 <script>
 import {XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
+import store from '@/store'
+import modules from '../modules/store'
+
+store.registerModule('example', {
+  ...modules
+})
 
 export default {
   name: 'example',
@@ -62,6 +68,7 @@ export default {
       })
     },
     _collect (state) {
+      console.log(state)
       Number(state) === 0 ? this.collectAdd() : this.collectRemove()
     }
   },

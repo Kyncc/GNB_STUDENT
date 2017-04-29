@@ -28,8 +28,8 @@ document.addEventListener('plusready', () => {
     if (store.state.route.path === '/' || store.state.route.path === '/bag' || store.state.route.path === '/user') {
       if (!first) {
         first = new Date().getTime()
-        Vue.$vux.toast.show({text: '再按一次退出', type: 'text', time: 1000, position: 'middle'})
-        setTimeout(function () { first = null }, 1000)
+        Vue.$vux.toast.show({text: '再按一次退出', type: 'text', time: 1000, position: 'top'})
+        setTimeout(() => { first = null }, 1000)
       } else {
         new Date().getTime() - first < 1000 ? plus.runtime.quit() : ''
       }
