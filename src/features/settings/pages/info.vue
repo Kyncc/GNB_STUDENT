@@ -1,6 +1,6 @@
 <template>
   <view-box ref="userinfo" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '个人资料'}">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '个人资料'}">
       <router-link :to="{ path: 'update'}" slot="right">
         <p>编辑</p>
       </router-link>

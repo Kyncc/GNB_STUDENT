@@ -1,6 +1,6 @@
 <template>
   <view-box  body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '关于我们'}"></x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '关于我们'}"></x-header>
     <div style="padding:1rem">
       <flexbox wrap="wrap" :gutter="0">
         <flexbox-item><img src="../assets/ewm.jpg"></flexbox-item>

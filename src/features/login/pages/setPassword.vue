@@ -1,6 +1,6 @@
 <template>
    <view-box class="register">
-    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:1">
       <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%" >设置密码</x-header>
     </div>
     <div style="padding-top:46px">

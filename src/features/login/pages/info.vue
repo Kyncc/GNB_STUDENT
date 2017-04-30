@@ -1,6 +1,6 @@
 <template >
   <view-box class="registerInfo">
-    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:1">
       <x-header :left-options="{showBack: false}">资料填写</x-header>
     </div>
     <div style="padding-top:46px">

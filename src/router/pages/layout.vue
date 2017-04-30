@@ -4,8 +4,8 @@
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
-      <tabbar slot="bottom" class="homepage" v-model="select">
-        <tabbar-item link="/" >
+      <tabbar slot="bottom" class="homepage" v-model="select" style="z-index:2;">
+        <tabbar-item link="index" >
           <i slot="icon" class="icon iconfont icon-home"></i>
           <span slot="label">主页</span>
         </tabbar-item>
@@ -39,7 +39,7 @@ export default {
     ...mapGetters(['Path', 'News']),
     select () {
       switch (this.Path) {
-        case '/' : return 0
+        case '/index' : return 0
         case '/bag' : return 1
         case '/user' : return 2
       }

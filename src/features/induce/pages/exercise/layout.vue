@@ -1,6 +1,6 @@
 <template>
   <view-box ref="induce" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: Route.params.chapterName}"></x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: Route.params.chapterName}"></x-header>
     <tab style="position:fixed;top:46px;width:100%;z-index:2017">
       <tab-item :selected="Route.name === 'induce_exercise_total'" 
         @click.native="$router.replace({name:'induce_exercise_total'})">

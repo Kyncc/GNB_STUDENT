@@ -1,6 +1,6 @@
 <template>
   <view-box body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '上传作业'}">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '上传作业'}">
       <i slot="right" @click="_upload" class="icon iconfont icon-upload" style="font-size:22px"></i>
     </x-header>
     <div>
@@ -38,14 +38,14 @@ export default {
   methods: {
     ...mapActions(['uploadHeadImg', 'workbookUploadAdd', 'workbookUpload', 'workbookUploadDel', 'workbookCamera']),
     _add () {
-      this.$router.push({'name': 'workbook_uploader_photo'})
-      // let cmr = plus.camera.getCamera()
-      // cmr.captureImage((p) => {
-      //   plus.io.resolveLocalFileSystemURL(p, (entry) => {
-      //     this.workbookCamera(entry.toLocalURL())
-      //     this.$router.push({'name': 'workbook_uploader_photo'})
-      //   })
-      // })
+      // this.$router.push({'name': 'workbook_uploader_photo'})
+      let cmr = plus.camera.getCamera()
+      cmr.captureImage((p) => {
+        plus.io.resolveLocalFileSystemURL(p, (entry) => {
+          this.workbookCamera(entry.toLocalURL())
+          this.$router.push({'name': 'workbook_uploader_photo'})
+        })
+      })
     },
     _del (index) {
       this.workbookUploadDel(index)

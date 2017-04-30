@@ -1,14 +1,14 @@
 <template>
   <div style="height:100%">
     <view-box body-padding-top="86px">
-      <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" >
+      <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
         <x-header :left-options="{backText: '添加习题册'}">
           <div slot="right" @click="$router.push({name: 'workbook_search', param: {subject: Route.params.subject}})">
             <i class="icon iconfont icon-iconfontsousuo" style="padding:8px;font-size:26px;margin-right:-10px;">
             </i>
           </div>
         </x-header>
-        <div ref="tab" style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;z-index:100;">
+        <div ref="tab" style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;z-index:1;">
           <tab :line-width="1" :style='"width:"+tabwidth'>
             <template v-for="(textbook, index) in textBookList">
               <tab-item :selected="Number(Route.query.id) === Number(textbook.id)" 

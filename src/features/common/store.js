@@ -26,6 +26,7 @@ const state = {
     subject: [],
     version: '',
     swiper: [{}],
+    // token: localStorage.getItem('token')
     token: 'a2015acf8d8fcb01ef08ced2e0ffd583'
   }
 }
@@ -75,8 +76,8 @@ const mutations = {
     state.user.bufferImg = data
   },
   [types.USER_TOKEN] (state, data) {
-    state.user.token = data.token
-    localStorage.setItem('token', data.token)
+    state.user.token = data
+    localStorage.setItem('token', data)
   },
   [types.USER_NEW_MESSAGE] (state, data) {
     state.news.classes = data.classes

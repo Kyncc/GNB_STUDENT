@@ -47,6 +47,29 @@ export const setUserInfo = ({rootState, commit, dispatch}, params) => {
   })
 }
 
+/** 获取用户token */
+export const getToken = ({ commit }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'user/token',
+      params: {
+        ...params
+      }
+    })
+    .then((response) => {
+      commit('USER_TOKEN', response.data.token)
+      Vue.$vux.loading.hide()
+      resolve(response)
+    })
+    .catch((error) => {
+      Vue.$vux.loading.hide()
+      reject(error)
+    })
+  })
+}
+
 /** *获得课本版本信息 */
 export const getTextbookVersion = ({commit}, params) => {
   Vue.$vux.loading.show({text: '请稍候'})

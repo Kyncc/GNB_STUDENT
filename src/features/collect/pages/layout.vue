@@ -1,6 +1,6 @@
 <template>
   <view-box ref="collect" body-padding-top="86px">
-    <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;">
+    <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: '收藏本'}"></x-header>
       <tab>
         <tab-item :selected="Route.name === 'collect_math'" @click.native="$router.replace('math')">数学</tab-item>

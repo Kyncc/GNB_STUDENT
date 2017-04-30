@@ -1,10 +1,10 @@
 <template>
   <view-box ref="workbook" body-padding-top="90px">
-    <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" >
+    <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
       <x-header :left-options="{backText: Route.params.name}">
         <i slot="right" class="icon iconfont icon-home" @click="$router.go(-2)"></i>
       </x-header>
-      <tab style="position:fixed;top:46px;width:100%;z-index:100">
+      <tab style="position:fixed;top:46px;width:100%;z-index:1">
         <tab-item :selected="Route.name === 'workbook_exercise_result'" 
           @click.native="$router.replace({name:'workbook_exercise_result'})">
           查答案

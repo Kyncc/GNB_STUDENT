@@ -1,6 +1,6 @@
 <template>
   <view-box ref="resetPwd" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '修改密码'}">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '修改密码'}">
       <a slot="right" @click="_complete" v-show="newPwd && repeatPwd && oldPwd">完成</a>
     </x-header>
     <group gutter="0">

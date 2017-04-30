@@ -1,6 +1,6 @@
 <template>
   <view-box body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '剪裁'}">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '剪裁'}">
       <p slot="right" v-on:click="_finish">完成</p>
     </x-header>
     <div>

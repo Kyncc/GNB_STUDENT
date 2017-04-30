@@ -1,6 +1,6 @@
 <template>
   <view-box class="register">
-    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:1">
       <x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%" >用户注册</x-header>
     </div>
     <div style="padding-top:46px">
@@ -16,8 +16,7 @@
         </x-input>
         <x-input name="code" placeholder="验证码" keyboard="number" 
           style="padding:0 0 0 15px" v-model="code" :min="6" :max="6" 
-          ref="code" is-type="is-code" @on-change="_changeCode"
-        >
+          ref="code" is-type="is-code" @on-change="_changeCode">
           <x-button slot="right" :text="btnValue" type="primary" :disabled="!disableMobile" style="width:118px;height:49px;border-radius:0"  @click.native="_getCode"></x-button>
         </x-input>
       </group>

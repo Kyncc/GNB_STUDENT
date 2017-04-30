@@ -1,6 +1,6 @@
 <template>
   <view-box body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '头像更改'}">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '头像更改'}">
       <p slot="right" @click="_img">完成</p>
     </x-header>
     <img ref="photo" :src="userImgBuffer" style="width:100%"/>

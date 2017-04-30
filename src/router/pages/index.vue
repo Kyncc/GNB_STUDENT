@@ -21,13 +21,6 @@ export default {
   name: 'index',
   components: {
     XHeader, ViewBox, XButton
-  },
-  mounted () {
-    setTimeout(function () {
-      if (window.plus) {
-        plus.navigator.setStatusBarBackground('#4BB7AA')
-      }
-    }, 300)
   }
 }
 </script>

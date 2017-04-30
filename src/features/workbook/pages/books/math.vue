@@ -60,6 +60,5 @@ export default {
   mounted () {
     this._getData()
   }
-
 }
 </script>

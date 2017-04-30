@@ -1,6 +1,6 @@
 <template>
   <view-box ref="messageSystem" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '系统通知'}"></x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '系统通知'}"></x-header>
     <div v-if="!loading" class="messageSection">
       <section v-for="item in messageSystemList">
         <h3>{{item.time | ymd}}</h3>

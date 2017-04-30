@@ -1,6 +1,6 @@
 <template>
   <view-box ref="viewBoxBody" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: Route.params.name}"></x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: Route.params.name}"></x-header>
     <template v-for="a in chapter">
       <group v-for="(aitem, index) in a" :key="index" style="margin-bottom:.5rem" gutter="0">
         <cell :title="aitem.name" 

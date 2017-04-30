@@ -13,11 +13,11 @@ export const getRegisterCode = ({commit}, params) => {
         'cover': params.cover
       }
     })
-    // .then((response) => {
-    //   commit(types.REGISTER_MESSAGE, response.data)
-    //   Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
-    //   resolve(response)
-    // })
+    .then((response) => {
+      commit(types.REGISTER_MESSAGE, response.data)
+      Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
+      resolve(response)
+    })
   })
 }
 
@@ -38,35 +38,12 @@ export const addPwd = ({ commit }, params) => {
   })
 }
 
-/** 用户登陆 */
-export const login = ({ commit }, params) => {
-  Vue.$vux.loading.show({text: '请稍候'})
-  return new Promise((resolve, reject) => {
-    axios({
-      method: 'get',
-      url: 'user/token',
-      params: {
-        ...params
-      }
-    })
-    .then((response) => {
-      commit('USER_TOKEN', response.data.data)
-      Vue.$vux.loading.hide()
-      resolve(response)
-    })
-    .catch((error) => {
-      Vue.$vux.loading.hide()
-      reject(error)
-    })
-  })
-}
-
 /** 获取短信验证码(忘记密码) */
 export const getForgetCode = ({ commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'pwd/code',
+      url: 'code/pwd',
       params: {
         mobile: params.mobile
       }

@@ -1,9 +1,9 @@
 <template>
   <div style="height:100%">
     <view-box body-padding-top="95px">
-      <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;">
+      <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
         <x-header :left-options="{backText: '搜索习题册'}"></x-header>
-        <search @on-submit="_onSearch" @on-change="_onSearch" v-model.lazy="name" :auto-fixed="false" placeholder="请输入习题册名称" style="position:fixed;z-index:100;"></search>
+        <search @on-submit="_onSearch" @on-change="_onSearch" v-model.lazy="name" :auto-fixed="false" placeholder="请输入习题册名称" style="position:fixed;z-index:1;"></search>
       </div>
       <div>
         <group v-for="(workbookList, pindex) in workbookSearchList" :key="pindex" :title="workbookList.textbookName">

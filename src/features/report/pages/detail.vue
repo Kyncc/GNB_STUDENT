@@ -1,6 +1,6 @@
 <template>
   <view-box ref="report_detail" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" 
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" 
       :left-options="{backText: reportDetail.chapter ? reportDetail.chapter.name : '知识图谱'}">
     </x-header>
     <div style="font-size:.75rem;">

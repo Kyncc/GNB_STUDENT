@@ -1,6 +1,6 @@
 <template>
   <view-box ref="myClass" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '我的班级'}">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '我的班级'}">
       <div slot="right">
         <router-link :to="{ path: 'class/add'}" style="margin:0">
           <i class="icon iconfont icon-plus" style="padding:8px;font-size:28px;top:-1px;"></i>

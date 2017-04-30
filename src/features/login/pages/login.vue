@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['login']),
+    ...mapActions(['getToken']),
     // 改动的事件
     _change () {
       this.disable = this.$refs.mobile.valid && this.$refs.password.valid
@@ -53,9 +53,9 @@ export default {
         mobile: this.mobile,
         pwd: this.password
       }
-      this.login(params).then(() => {
+      this.getToken(params).then(() => {
         setTimeout(() => {
-          this.$router.replace('/')
+          this.$router.replace({name: 'index'})
         }, 500)
       })
       .catch((error) => {

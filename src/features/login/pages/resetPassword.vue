@@ -1,6 +1,6 @@
 <template>
   <view-box class="register">
-    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:1">
       <x-header :left-options="{showBack: false,preventGoBack:false}" style="position:fixed;left:0;top:0;width:100%" >重置密码</x-header>
     </div>
     <div style="padding-top:46px">
@@ -44,7 +44,6 @@ export default {
   },
   methods: {
     ...mapActions(['resetPwd']),
-
     _complete () {
       let params = {
         mobile: this.forgetMobile,
@@ -52,7 +51,7 @@ export default {
       }
       this.resetPwd(params)
       .then(() => {
-        this.$router.replace('/')
+        this.$router.replace({name: 'index'})
       })
     }
   },

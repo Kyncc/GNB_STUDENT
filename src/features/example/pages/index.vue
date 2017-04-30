@@ -1,6 +1,6 @@
 <template>
   <view-box body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '例题详情'}">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '例题详情'}">
       <div slot="right">
         <i v-for="detail in Example.detail" class="icon iconfont icon-collect1" style="top:1px;" :style="(detail.collectTime ? 'color:#FBC34B' : 'color:#FFF')" @click="_collect(detail.collectTime)"></i>
         <i class="icon iconfont icon-bianji" style="padding:10px;margin:0 -10px 0 0"

@@ -1,6 +1,6 @@
 <template>
   <view-box ref="adviceHistory" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '反馈历史'}"></x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '反馈历史'}"></x-header>
     <div v-if="!loading" class="messageSection">
       <section v-for="item in historyList">
         <h3>{{item.createTime}}</h3>

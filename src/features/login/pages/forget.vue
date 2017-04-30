@@ -1,6 +1,6 @@
 <template>
   <view-box class="forget">
-    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:1">
       <x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%" >重置密码</x-header>
     </div>
     <div style="padding-top:46px">
@@ -37,6 +37,7 @@ import {XInput, Group, ViewBox, XButton, Flexbox, FlexboxItem, XHeader, Cell} fr
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
+  name: 'forget',
   components: {
     XInput, Group, ViewBox, XButton, Flexbox, FlexboxItem, XHeader, Cell
   },
@@ -85,7 +86,7 @@ export default {
       this.getForgetCode(params)
     },
     _changeMoblie () {
-      this.disable = this.$refs.mobile.valid && !this.currentDown
+      this.disableMobile = this.$refs.mobile.valid && !this.currentDown
     },
     _changeCode () {
       this.$refs.mobile.valid && this.$refs.code.valid

@@ -1,6 +1,6 @@
 <template>
   <view-box ref="myClassAdd" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{backText: '添加班级'}"></x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '添加班级'}"></x-header>
     <search @on-submit="_onSearch"  @on-change="_onSearch" v-model="searchCode" :auto-fixed="false" placeholder="请输入班级码"></search>
     <group gutter="0" v-if="!loading">
       <template v-if="ClassSearch.name">
