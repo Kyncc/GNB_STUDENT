@@ -2,8 +2,8 @@ export default {
   path: '/',
   component: r => require.ensure([], () => r(require('./pages/layout')), '/'),
   redirect: to => {
-    if (localStorage.getItem('token') === 'undefined') return 'login'
-    return 'index'
+    if (localStorage.getItem('token')) return 'index'
+    return 'login'
   },
   children: [
     {

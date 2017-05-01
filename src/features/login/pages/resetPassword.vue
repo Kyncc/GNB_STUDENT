@@ -1,7 +1,7 @@
 <template>
   <view-box class="register">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:1">
-      <x-header :left-options="{showBack: false,preventGoBack:false}" style="position:fixed;left:0;top:0;width:100%" >重置密码</x-header>
+      <x-header :left-options="{showBack: false,preventGoBack:false}" style="position:fixed;left:0;top:0;width:100%" >重1置密码</x-header>
     </div>
     <div style="padding-top:46px">
       <div class="icon">
@@ -11,14 +11,14 @@
         <img src="../assets/title.png">
       </div>
       <group class="weui_cells_form">
-        <x-input type="password" placeholder="新密码" keyboard="text" v-model="password" ref="password" :min="6" :max="18" ></x-input>
-        <x-input type="password" placeholder="再次确认密码" keyboard="text" v-model="passwordAgain" ref="passwordagain" :equal-with="password"></x-input>
+        <x-input type="password" placeholder="新密码" keyboard="text" v-model="password" ref="password" :min="6" :max="18" @on-change="_change"></x-input>
+        <x-input type="password" placeholder="再次确认密码" keyboard="text" v-model="passwordAgain" ref="passwordAgain" :equal-with="password" @on-change="_change"></x-input>
       </group>
       <flexbox :gutter="0" wrap="wrap">
         <flexbox-item :span="1/20"></flexbox-item>
         <flexbox-item :span="18/20">
           <group>
-            <x-button type="primary" @click.native="_complete" :disabled="!disable">完成</x-button>
+            <x-button type="primary" @click.native="_complete" :disabled="!disable" >完成</x-button>
           </group>
         </flexbox-item>
         <flexbox-item :span="1/20"></flexbox-item>
@@ -43,23 +43,22 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['resetPwd']),
+    ...mapActions(['addPwd']),
+    _change () {
+      this.disable = this.$refs.password.valid && (this.passwordAgain === this.password)
+    },
     _complete () {
       let params = {
         mobile: this.forgetMobile,
         pwd: this.password
       }
-      this.resetPwd(params)
-      .then(() => {
+      this.addPwd(params).then(() => {
         this.$router.replace({name: 'index'})
       })
     }
   },
   computed: {
     ...mapGetters(['forgetMobile'])
-    //  disable ( {
-    //   return (this.$refs.password.valid && this.$refs.passwordagain.valid ? false : true)
-    //  }
   }
 }
 </script>

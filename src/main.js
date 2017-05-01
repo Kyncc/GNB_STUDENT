@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import store from './store'
 import FastClick from 'fastclick'
-import App from './App'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
 import {ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat} from 'vux'
+import App from './App'
 
 Vue.use(ToastPlugin)    // 使用提醒
 // 图片异步加载

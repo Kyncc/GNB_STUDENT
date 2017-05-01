@@ -34,7 +34,7 @@ export default {
   },
   data () {
     return {
-      disable: true,
+      disable: false,
       mobile: this.registerMobile,
       password: '',
       'is-password': (val) => {
@@ -65,11 +65,6 @@ export default {
   },
   computed: {
     ...mapGetters(['registerMobile'])
-  },
-  mounted () {
-    if (window.plus) {
-      plus.navigator.closeSplashscreen()
-    }
   }
 }
 </script>

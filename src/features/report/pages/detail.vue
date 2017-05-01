@@ -47,13 +47,12 @@
 
 <script>
 import {XHeader, ViewBox, Flexbox, FlexboxItem, Divider, Spinner} from 'vux'
-import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'detail',
   components: {
-    XHeader, ViewBox, Flexbox, FlexboxItem, Divider, Spinner, InfiniteLoading
+    XHeader, ViewBox, Flexbox, FlexboxItem, Divider, Spinner
   },
   computed: {
     ...mapGetters(['reportDetail'])

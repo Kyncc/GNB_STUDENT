@@ -24,3 +24,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.weui-loading_toast .weui-mask_transparent{
+  z-index: 2 !important;
+}
+</style>

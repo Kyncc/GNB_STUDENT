@@ -7,7 +7,7 @@ export const getRegisterCode = ({commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'register/code',
+      url: 'code/register',
       params: {
         'mobile': params.mobile,
         'cover': params.cover
@@ -32,7 +32,7 @@ export const addPwd = ({ commit }, params) => {
       }
     })
     .then((response) => {
-      commit('USER_TOKEN', response.data.data)
+      commit('USER_TOKEN', response.data.token)
       resolve(response)
     })
   })
@@ -77,7 +77,7 @@ export const resetPwd = ({ commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'pwd/resetByMobile',
+      url: 'pwd/reset',
       data: {
         ...params
       }

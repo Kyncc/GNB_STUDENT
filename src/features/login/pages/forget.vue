@@ -41,6 +41,9 @@ export default {
   components: {
     XInput, Group, ViewBox, XButton, Flexbox, FlexboxItem, XHeader, Cell
   },
+  computed: {
+    ...mapGetters(['forgetCode', 'forgetMobile'])
+  },
   data () {
     return {
       disableMobile: false,
@@ -72,8 +75,8 @@ export default {
       let time = 60
       let timeDown = setInterval(() => {
         time--
-        this.btnValue = `已发送${time}`
-        if (time === '0') {
+        this.btnValue = `已发送(${time})`
+        if (time.toString() === '0') {
           clearInterval(timeDown)
           this.btnValue = '获取验证码'
           this.currentDown = false
@@ -89,11 +92,13 @@ export default {
       this.disableMobile = this.$refs.mobile.valid && !this.currentDown
     },
     _changeCode () {
-      this.$refs.mobile.valid && this.$refs.code.valid
+      this.disableNext = this.$refs.mobile.valid && this.$refs.code.valid
     }
   },
-  computed: {
-    ...mapGetters(['forgetCode', 'forgetMobile'])
+  watch: {
+    currentDown () {
+      this.disableMobile = this.$refs.mobile.valid && !this.currentDown
+    }
   }
 }
 </script>

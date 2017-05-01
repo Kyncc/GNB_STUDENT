@@ -26,8 +26,8 @@ const state = {
     subject: [],
     version: '',
     swiper: [{}],
-    // token: localStorage.getItem('token')
-    token: 'a2015acf8d8fcb01ef08ced2e0ffd583'
+    token: localStorage.getItem('token')
+    // token: 'a2015acf8d8fcb01ef08ced2e0ffd583'
   }
 }
 

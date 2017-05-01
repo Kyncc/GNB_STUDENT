@@ -21,23 +21,17 @@
         </div>
       </div>
     </card>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
-      <div slot="no-results" style="color:#4bb7aa;">快去收藏更多题目吧~</div>
-      <div slot="no-more" style="color:#4bb7aa;">已经加载全部收藏</div>
-      <div slot="spinner" style="padding:.5rem 0"><spinner type="lines" slot="value"></spinner></div>
-    </infinite-loading>
   </div>
 </template>
 
 <script>
 import {XHeader, Card, Spinner, Flexbox, FlexboxItem} from 'vux'
-import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'physics',
   components: {
-    XHeader, Card, Spinner, Flexbox, FlexboxItem, InfiniteLoading
+    XHeader, Card, Spinner, Flexbox, FlexboxItem
   },
   computed: {
     ...mapGetters(['collectPhysics']),

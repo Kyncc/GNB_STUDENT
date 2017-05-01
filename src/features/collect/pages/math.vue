@@ -21,23 +21,24 @@
         </div>
       </div>
     </card>
-    <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading">
-      <div slot="no-results" style="color:#4bb7aa;">快去收藏更多题目吧~</div>
-      <div slot="no-more" style="color:#4bb7aa;">已经加载全部收藏</div>
-      <div slot="spinner" style="padding:.5rem 0"><spinner type="lines" slot="value"></spinner></div>
-    </infinite-loading>
+    <div style="text-align:center;padding:10px 0;">
+      <spinner v-if="loading" type="lines"></spinner>
+      <div>
+        <p style="font-size:14px;padding:10px 0;color:#4BB7AA" v-if="loadingNoData">已经加载全部收藏~</p>
+        <p style="font-size:14px;padding:10px 0;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多~</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import {XHeader, Card, Spinner, Flexbox, FlexboxItem} from 'vux'
-import InfiniteLoading from 'vue-infinite-loading'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'math',
   components: {
-    XHeader, Card, Spinner, Flexbox, FlexboxItem, InfiniteLoading
+    XHeader, Card, Spinner, Flexbox, FlexboxItem
   },
   computed: {
     ...mapGetters(['collectMath']),
@@ -45,23 +46,34 @@ export default {
       return this.collectMath.list
     }
   },
+  data () {
+    return {
+      loading: true,
+      loadingNoData: false
+    }
+  },
   methods: {
-    ...mapActions(['getCollect', 'setCollectScroll']),
-    _onInfinite () {
+    ...mapActions(['getCollect', 'setCollectScroll', 'clearCollect']),
+    _getData () {
+      this.loading = true
       this.getCollect().then((res) => {
-        if (res.data.data.list.length < 5) {
-          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        if (res.data.data.list.length < 10) {
+          this.loadingNoData = true
         }
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+        this.loading = false
+      }).catch(() => {
+        this.loading = false
       })
     }
   },
   activated () {
-    // this.$refs.infiniteLoading.isLoading = true
+    this.collectMath.isReset ? this.clearCollect() : ''
     this.$parent.$refs.viewBoxBody.scrollTop = this.collectMath.scroll
   },
+  mounted () {
+    this._getData()
+  },
   beforeRouteLeave (to, from, next) {
-    this.$refs.infiniteLoading.isLoading = false
     this.setCollectScroll(this.$parent.$refs.viewBoxBody.scrollTop)
     next()
   }

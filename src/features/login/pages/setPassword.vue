@@ -11,8 +11,8 @@
         <img src="../assets/title.png">
       </div>
       <group class="weui_cells_form">
-        <x-input type="password" placeholder="新密码" keyboard="text" v-model="password" ref="password" :min="6" :max="18"></x-input>
-        <x-input type="password" placeholder="再次确认密码" keyboard="text" v-model="passwordAgain" ref="passwordagain" :equal-with="password"></x-input>
+        <x-input type="password" placeholder="新密码" keyboard="text" v-model="password" ref="password" :min="6" :max="18" @on-change="_change"></x-input>
+        <x-input type="password" placeholder="再次确认密码" keyboard="text" v-model="passwordAgain" ref="passwordAgain" :equal-with="password" @on-change="_change"></x-input>
       </group>
       <flexbox :gutter="0" wrap="wrap">
         <flexbox-item :span="1/20"></flexbox-item>
@@ -44,22 +44,21 @@ export default {
   },
   methods: {
     ...mapActions(['addPwd']),
+    _change () {
+      this.disable = this.$refs.password.valid && (this.passwordAgain === this.password)
+    },
     _complete () {
       let params = {
         mobile: this.registerMobile,
         pwd: this.password
       }
-      this.addPwd(params)
-      .then(() => {
+      this.addPwd(params).then(() => {
         this.$router.replace('/info')
       })
     }
   },
   computed: {
     ...mapGetters(['registerMobile'])
-    //  disable(){
-    //     return (this.$refs.password.valid && this.$refs.passwordagain.valid ? false : true)
-    //  }
   }
 }
 </script>

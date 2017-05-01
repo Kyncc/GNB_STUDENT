@@ -24,7 +24,10 @@
           <template v-for="(result, pindex) in workbookAddList">
             <cell v-for="(workbook, index) in result.list" :key="index">
               <img class="previewer-workbook-img" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80"/>
-              <p slot="after-title" class="ellipsis" @click="show(pindex,index)" style="width:90%;">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
+              <div slot="after-title" @click="show(pindex,index)" style="width:90%;">
+                <p style="color:#aaa;font-size:14px;">&nbsp;&nbsp;&nbsp;{{workbook.year}}版</p>
+                <p class="ellipsis">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
+              </div>
               <div slot="default">
                 <x-button v-if="!workbook.status" mini type="primary" slot="default" @click.native="_add(pindex,index,workbook.workbookId)">添加</x-button>
                 <x-button v-else mini type="warn" slot="default" @click.native="_del(pindex,index,workbook.workbookId)">删除</x-button>
@@ -33,7 +36,7 @@
           </template>
         </group>
         <div style="text-align:center;padding:10px 0;">
-          <spinner v-if="loading" type="ripple"></spinner>
+          <spinner v-if="loading" type="dots"></spinner>
           <p v-else-if="workbookAddList.length === 0" style="font-size:14px;color:#4BB7AA">没有更多的练习册~</p>
         </div>
       </div>
