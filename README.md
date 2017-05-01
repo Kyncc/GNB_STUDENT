@@ -2,7 +2,7 @@
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-> Base on Vue.js and DCloud Hybrid App
+> Base on Vue.js(v2.3) and DCloud Hybrid App
 
 ## App Market Download(IOS and Android)
 
@@ -43,8 +43,6 @@ MIT
 ### UI Compoents
 
 -	[Vux - Vue UI Components](https://vux.li/#/)
-
--	[Vue-infinite-loading - An infinite scroll plugin for Vue ](https://peachscript.github.io/vue-infinite-loading/#!/slots)
 
 -	[Vue-lazyload - An Image lazyload plugin for Vue](https://github.com/hilongjw/vue-lazyload)
 

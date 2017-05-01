@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{showBack: true}">{{SwiperInfo.title}}</x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{showBack: true, backText: SwiperInfo.title}"></x-header>
     <view-box ref="viewBox" body-padding-top="46px" body-padding-bottom="50px">
       <div v-html="SwiperInfo.content" style="padding:1rem;font-size:16px;"></div>
       <div style="text-align:center">

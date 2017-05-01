@@ -69,23 +69,25 @@ export default {
   },
   mounted () {
     // 在首页 返回键失效其他页面则直接返回上一页
-    document.addEventListener('plusready', () => {
-      let first = null
-      plus.navigator.setStatusBarBackground('#4BB7AA')  // 设置状态栏颜色
-      plus.key.addEventListener('backbutton', () => {
-        if (store.state.route.path === '/index' || store.state.route.path === '/bag' || store.state.route.path === '/login' || store.state.route.path === '/user') {
-          if (!first) {
-            first = new Date().getTime()
-            this.$vux.toast.show({text: '再按一次退出', type: 'text', time: 1000, position: 'bottom'})
-            setTimeout(() => { first = null }, 1000)
+    setTimeout(() => {
+      document.addEventListener('plusready', () => {
+        let first = null
+        plus.navigator.setStatusBarBackground('#4BB7AA')  // 设置状态栏颜色
+        plus.key.addEventListener('backbutton', () => {
+          if (store.state.route.path === '/index' || store.state.route.path === '/bag' || store.state.route.path === '/login' || store.state.route.path === '/user') {
+            if (!first) {
+              first = new Date().getTime()
+              this.$vux.toast.show({text: '再按一次退出', type: 'text', time: 1000, position: 'bottom'})
+              setTimeout(() => { first = null }, 1000)
+            } else {
+              new Date().getTime() - first < 1000 ? plus.runtime.quit() : ''
+            }
           } else {
-            new Date().getTime() - first < 1000 ? plus.runtime.quit() : ''
+            history.back()
           }
-        } else {
-          history.back()
-        }
-      }, false)
-    })
+        }, false)
+      })
+    }, 300)
   }
 }
 </script>

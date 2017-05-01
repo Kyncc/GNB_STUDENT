@@ -101,6 +101,14 @@ export default {
         }
       })
     }
+  },
+  mounted () {
+    this.getTextbookVersion({'grade': this.grade}).then(() => {
+      this.math = this.User.textbookAll.math[0].id
+      if (this.User.textbookAll.subjectType.length === 2) {
+        this.physics = this.User.textbookAll.physics[0].id
+      }
+    })
   }
 }
 </script>

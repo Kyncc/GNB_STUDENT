@@ -76,7 +76,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setHeadImg', 'setUserInfo', 'getTextbookVersion']),
+    ...mapActions(['setHeadImg', 'setUserInfo', 'getTextbookVersion', 'getUserInfo']),
     _finish () {
       this.setUserInfo({
         name: this.name,
@@ -88,7 +88,18 @@ export default {
           physics: this.physics
         }
       }).then(() => {
-        history.go(-1)
+        // 更改年级需要重启应用,其他操作则重新获取数据
+        if (this.grade !== this.User.grade) {
+          try {
+            plus.runtime.restart()
+          } catch (e) {
+            this.$router.push('/login')
+          }
+        } else {
+          this.getUserInfo().then(() => {
+            history.go(-1)
+          })
+        }
       })
     },
     _getImage () {

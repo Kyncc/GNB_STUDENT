@@ -12,9 +12,9 @@
         </cell>
       </group>
     </template>
-    <div style="text-align:center;padding:10px 0;">
+    <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="ripple"></spinner>
-      <p v-else-if="workbookPhysics.list.textbook.length === 0" style="font-size:16px;color:#4BB7AA;padding:10px 0;"
+      <p v-else-if="workbookPhysics.list.textbook.length === 0" style="font-size:16px;color:#4BB7AA;"
       @click="$router.push({name: 'workbook_add', params: {subject: 'physics'}, query: {id: User.textbook.physics[0].id}})"
       >点我添加物理习题册</p>
     </div>

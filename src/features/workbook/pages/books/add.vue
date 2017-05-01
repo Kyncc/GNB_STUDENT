@@ -9,7 +9,7 @@
           </div>
         </x-header>
         <div ref="tab" style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;z-index:1;">
-          <tab :line-width="1" :style='"width:"+tabwidth'>
+          <tab :line-width="1" :style='"min-width:100%;width:"+tabwidth'>
             <template v-for="(textbook, index) in textBookList">
               <tab-item :selected="Number(Route.query.id) === Number(textbook.id)" 
                 @click.native="$router.replace({name: 'workbook_add', query:{id: textbook.id}})">
@@ -37,7 +37,7 @@
         </group>
         <div style="text-align:center;padding:20px 0;">
           <spinner v-if="loading" type="dots"></spinner>
-          <p v-else-if="workbookAddList.length === 0" style="font-size:14px;color:#4BB7AA;">没有更多的练习册~</p>
+          <p v-else-if="workbookAddList.length === 0" style="font-size:16px;color:#4BB7AA;">没有更多的练习册~</p>
         </div>
       </div>
     </view-box>

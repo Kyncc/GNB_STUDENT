@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {XHeader, Cell, Group, ViewBox, Confirm, TransferDomDirective as TransferDom} from 'vux'
+import {XHeader, Cell, Group, ViewBox, Confirm} from 'vux'
 
 export default {
   name: 'index',
@@ -22,9 +22,6 @@ export default {
     return {
       show: false
     }
-  },
-  directives: {
-    TransferDom
   },
   methods: {
     _onConfirm () {

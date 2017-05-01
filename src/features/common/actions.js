@@ -38,7 +38,6 @@ export const setUserInfo = ({rootState, commit, dispatch}, params) => {
     })
     .then((response) => {
       Vue.$vux.loading.hide()
-      dispatch('getUserInfo')
       resolve(response)
     })
     .catch(() => {

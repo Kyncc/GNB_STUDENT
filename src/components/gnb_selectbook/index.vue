@@ -50,7 +50,6 @@ export default {
   height:35px;
   text-align: center;
   width:100%;
-  padding-top:10px;
   select{
     -webkit-appearance: none;
     border: 0;

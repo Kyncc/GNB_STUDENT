@@ -1,23 +1,23 @@
 <template>
   <view-box ref="viewBoxBody" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: Route.params.name}"></x-header>
-    <template v-for="a in chapter">
-      <group v-for="(aitem, index) in a" :key="index" style="margin-bottom:.5rem" gutter="0">
-        <cell :title="aitem.name" 
-          :style="aitem.isUsed === 'true' ? 'color:#FEAA85':''"
-          @click.native="aitem.isLink.toString() === 'true' ? $router.push({name : 'workbook_exercise_result', params: {id: aitem.id, name: aitem.name}}) : ''">
-        </cell>
-        <template v-for="b in aitem.b" > 
-          <cell :title="b.name" 
-            :style="b.isUsed === 'true' ? 'color:#FEAA85':''"
-            @click.native="b.isLink.toString() === 'true' ? $router.push({name : 'workbook_exercise_result', params: {id: b.id, name: b.name}}) : ''">
+    <div v-if="!loading">
+      <template v-for="a in chapter">
+        <group v-for="(aitem, index) in a" :key="index" style="margin-bottom:.5rem" gutter="0">
+          <cell :title="aitem.name" 
+            :style=" _getColor(aitem)" @click.native="aitem.isLink.toString() === 'true' ? $router.push({name : 'workbook_exercise_result', params: {id: aitem.id, name: aitem.name}}) : ''">
           </cell>
-          <!--<cell v-for="c in b.c" :title="c.name" :key="c.id" link="javascript:;"></cell>-->
-        </template>
-      </group>
-    </template>
-    <div style="text-align:center">
-      <spinner v-if="loading" type="dots"></spinner>
+          <template v-for="b in aitem.b" > 
+            <cell :title="b.name" 
+              :style=" _getColor(b)"
+              @click.native="b.isLink.toString() === 'true' ? $router.push({name : 'workbook_exercise_result', params: {id: b.id, name: b.name}}) : ''">
+            </cell>
+          </template>
+        </group>
+      </template>
+      <div style="text-align:center">
+        <spinner v-if="loading" type="dots"></spinner>
+      </div>
     </div>
   </view-box>
 </template>
@@ -42,6 +42,13 @@ export default {
       this.getWorkbookChapter().then(() => {
         this.loading = false
       })
+    },
+    _getColor (item) {
+      if (item.isUsed.toString() === 'true') {
+        return 'color:#FEAA85'  // 是否联系过
+      } else if (item.isLink.toString() === 'false') {
+        return 'color:#4BB7AA' // 是否是标题
+      }
     }
   },
   activated () {
