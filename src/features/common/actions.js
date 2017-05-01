@@ -64,6 +64,7 @@ export const getToken = ({ commit }, params) => {
       resolve(response)
     })
     .catch((error) => {
+      console.log(error)
       Vue.$vux.loading.hide()
       reject(error)
     })
@@ -138,4 +139,26 @@ export const uploadHeadImg = ({rootState, commit, dispatch}, params) => {
       reject(error)
     })
   })
+}
+
+/** 获取轮播文案 */
+export const getSwiperInfo = ({ rootState, commit }) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'swiper',
+      params: {
+        id: rootState.route.params.id
+      }
+    })
+    .then((response) => {
+      commit(types.SWIPER_INFO, response.data.data)
+      resolve(response)
+    })
+  })
+}
+
+/** 清空轮播文案 */
+export const swiperInfoClear = ({ commit }) => {
+  commit(types.SWIPER_INFO, {title: '', article: ''})
 }

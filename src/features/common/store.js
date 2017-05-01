@@ -3,6 +3,10 @@ import * as actions from './actions'
 
 const state = {
   system: (/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) ? 'IOS' : 'Android'),
+  article: {
+    title: '',
+    content: ''
+  },
   news: {
     classes: false,
     correct: false,
@@ -27,7 +31,6 @@ const state = {
     version: '',
     swiper: [{}],
     token: localStorage.getItem('token')
-    // token: 'a2015acf8d8fcb01ef08ced2e0ffd583'
   }
 }
 
@@ -49,6 +52,9 @@ const getters = {
   },
   News: (state) => {
     return state.news
+  },
+  SwiperInfo: (state) => {
+    return state.article
   },
   System: (state) => {
     return state.system
@@ -83,6 +89,10 @@ const mutations = {
     state.news.classes = data.classes
     state.news.correct = data.correct
     state.news.system = data.system
+  },
+  [types.SWIPER_INFO] (state, data) {
+    state.article.title = data.title
+    state.article.content = data.content
   },
   [types.TEXTBOOK_VERSION] (state, data) {
     state.user.textbookAll.math = data.subjectOptions.math

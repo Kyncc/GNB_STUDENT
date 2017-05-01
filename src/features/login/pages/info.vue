@@ -11,13 +11,13 @@
         <img src="../assets/title.png">
       </div>
       <group title="基本资料">
-        <selector title="年级" :options="gradeList" v-model="grade" @on-change="_onChangeGrade"></selector>
+        <selector v-model="grade" title="年级" :options="gradeList"></selector>
       </group>
       <group title="版本选择">
-        <selector title="数学" :options="textBookAllVersion.math | covert" v-model="math" @on-change="_onChangeMath"></selector>
-        <selector title="物理"  v-show="textBookAllVersion.physics.length != 0" :options="textBookAllVersion.physics | covert " v-model="physics" @on-change="_onChangePhysisc"></selector>
+        <selector v-model="math" title="数学" :options="mathList"></selector>
+        <selector v-if="User.textbookAll.subjectType.length === 2" v-model="physics" title="物理" :options="physicsList"></selector>
       </group>
-      <div style="width:90%margin:1.5rem auto">
+      <div style="width:90%;margin:1.5rem auto">
         <x-button type="primary" @click.native="_complete" :disabled="disable">完成</x-button>
       </div>
     </div>
@@ -32,23 +32,8 @@ export default {
   components: {
     XHeader, ViewBox, XButton, XInput, Group, Cell, Selector
   },
-  filters: {
-    covert (obj) {
-      let newObj = []
-      obj.forEach((item, index) => {
-        newObj.push({
-          key: item.id.toString() || '',
-          value: item.name.toString() || ''
-        })
-      })
-      return newObj
-    }
-  },
   methods: {
-    ...mapActions(['setNewUserInfo', 'getTextbookAllVersion']),
-    _onChangeGrade (item) {
-      this.grade = item
-    },
+    ...mapActions(['setUserInfo', 'getTextbookVersion']),
     _onChangeMath (item) {
       this.math = item
     },
@@ -56,7 +41,7 @@ export default {
       this.physics = item
     },
     _complete () {
-      this.setNewUserInfo({
+      this.setUserInfo({
         name: this.username,
         school: this.school,
         mobile: this.registerMobile,
@@ -82,26 +67,38 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['registerMobile', 'textBookAllVersion']),
+    ...mapGetters(['registerMobile', 'textBookAllVersion', 'User']),
+    mathList () {
+      let newObj = []
+      this.User.textbookAll.math.forEach((item, index) => {
+        newObj.push({
+          key: item.id.toString() || '',
+          value: item.name.toString() || ''
+        })
+      })
+      return newObj
+    },
+    physicsList () {
+      let newObj = []
+      this.User.textbookAll.physics.forEach((item, index) => {
+        newObj.push({
+          key: item.id.toString() || '',
+          value: item.name.toString() || ''
+        })
+      })
+      return newObj
+    },
     disable () {
       return false
     }
   },
-  created () {
-    this.getTextbookAllVersion({grade: this.grade})
-    .then((res) => {
-      this.math = this.textBookAllVersion.math[0].id.toString()
-      this.textBookAllVersion.physics.length === 0
-      ? (this.physics = '') : (this.physics = this.textBookAllVersion.physics[0].id.toString())
-    })
-  },
   watch: {
-    grade () {
-      this.getTextbookAllVersion({grade: this.grade})
-      .then((res) => {
-        this.math = this.textBookAllVersion.math[0].id.toString()
-        this.textBookAllVersion.physics.length === 0
-        ? (this.physics = '') : (this.physics = this.textBookAllVersion.physics[0].id.toString())
+    grade (value) {
+      this.getTextbookVersion({'grade': value}).then(() => {
+        this.math = this.User.textbookAll.math[0].id
+        if (this.User.textbookAll.subjectType.length === 2) {
+          this.physics = this.User.textbookAll.physics[0].id
+        }
       })
     }
   }

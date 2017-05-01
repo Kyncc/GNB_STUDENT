@@ -16,9 +16,9 @@
           <cell :title="item.name" :link="'class/detail/'+item.classCode"></cell>
         </template>
       </group>
-      <div style="text-align:center">
+      <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="ripple"></spinner>
-        <p v-else-if="ClassMy.length === 0" style="font-size:14px;padding:10px 0;color:#4BB7AA">您还未加入任何班级~</p>
+        <p v-else-if="ClassMy.length === 0" style="font-size:16px;color:#4BB7AA" @click="$router.push('class/add')">点我加入班级~</p>
       </div>
     </div>
   </view-box>

@@ -10,7 +10,12 @@
         <div class="slide" :class="list.checked ? 'animate':''">
           <template v-for="chapter in list.sub_chapter_list">
             <cell-box @click.native="$router.push({name: 'induce_exercise', params: {subject: 'physics', chapterId: chapter.chapter_id, chapterName: chapter.name}})">
-              {{chapter.name}}
+              <div slot="default" style="width:100%;">
+                <flexbox>
+                  <flexbox-item :span="10">{{chapter.name}}</flexbox-item>
+                  <flexbox-item :span="2" style="text-align:right">{{chapter.handleCount}}/{{chapter.total}}</flexbox-item>
+                </flexbox>
+              </div>
             </cell-box>
           </template>
         </div>
@@ -23,14 +28,14 @@
 </template>
 
 <script>
-import {XHeader, Cell, CellBox, Group, Spinner} from 'vux'
+import {XHeader, Cell, CellBox, Group, Spinner, Flexbox, FlexboxItem} from 'vux'
 import selectBook from '@/components/gnb_selectbook'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'physics',
   components: {
-    XHeader, Cell, Group, CellBox, selectBook, Spinner
+    XHeader, Cell, Group, CellBox, selectBook, Spinner, Flexbox, FlexboxItem
   },
   computed: {
     ...mapGetters(['inducePhysics', 'User']),

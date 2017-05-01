@@ -16,11 +16,18 @@
 
 <script>
 import {XHeader, ViewBox, XButton} from 'vux'
+import {mapActions} from 'vuex'
 
 export default {
   name: 'index',
   components: {
     XHeader, ViewBox, XButton
+  },
+  methods: {
+    ...mapActions(['getUserInfo'])
+  },
+  created () {
+    this.getUserInfo()
   }
 }
 </script>

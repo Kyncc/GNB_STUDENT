@@ -11,12 +11,12 @@
         <img src="../assets/title.png">
       </div>
       <group class="weui_cells_form">
-        <x-input name="mobile" placeholder="手机号" keyboard="number" is-type="china-mobile" 
+        <x-input name="mobile" placeholder="手机号" keyboard="number" is-type="china-mobile"  
           v-model="mobile" ref="mobile" @on-change="_changeMoblie">
         </x-input>
-        <x-input name="code" placeholder="验证码" keyboard="number" style="padding:0 0 0 15px" v-model="code" :min="6" :max="6" 
-          ref="code" is-type="is-code" @on-change="_changeCode">
-          <x-button slot="right" :text="btnValue" type="primary" :disabled="!disableMobile" style="width:118px;height:49px;border-radius:0"  @click.native="_getCode"></x-button>
+        <x-input name="code" placeholder="验证码" keyboard="number"  style="padding:0 0 0 15px" v-model="code" :min="6" :max="6" 
+          ref="code" is-type="is-code" class="weui-cell_vcode" @on-change="_changeCode">
+          <x-button slot="right" :text="btnValue" type="primary" class="weui-vcode" :disabled="!disableMobile" style="width:118px;height:49px;border-radius:0"  @click.native="_getCode"></x-button>
         </x-input>
       </group>
       <flexbox :gutter="0" wrap="wrap">

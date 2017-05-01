@@ -24,16 +24,13 @@
 
 <script>
 import {Tabbar, TabbarItem, ViewBox} from 'vux'
-import {mapActions, mapGetters} from 'vuex'
+import {mapGetters} from 'vuex'
 import './index.less'
 
 export default {
   name: 'router',
   components: {
     Tabbar, TabbarItem, ViewBox
-  },
-  methods: {
-    ...mapActions(['getUserInfo'])
   },
   computed: {
     ...mapGetters(['Path', 'News']),
@@ -45,8 +42,10 @@ export default {
       }
     }
   },
-  created () {
-    this.getUserInfo().then(() => {})
+  activated () {
+    if (this.Path === '/index') this.select = 0
+    else if (this.Path === '/bag') this.select = 1
+    else this.select = 2
   }
 }
 </script>

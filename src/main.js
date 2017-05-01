@@ -26,7 +26,7 @@ document.addEventListener('plusready', () => {
   let first = null
   plus.navigator.setStatusBarBackground('#4BB7AA')  // 设置状态栏颜色
   plus.key.addEventListener('backbutton', () => {
-    if (store.state.route.path === '/index' || store.state.route.path === '/bag' || store.state.route.path === '/user') {
+    if (store.state.route.path === '/index' || store.state.route.path === '/bag' || store.state.route.path === '/login' || store.state.route.path === '/user') {
       if (!first) {
         first = new Date().getTime()
         Vue.$vux.toast.show({text: '再按一次退出', type: 'text', time: 1000, position: 'bottom'})

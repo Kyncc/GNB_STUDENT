@@ -43,7 +43,7 @@ export const getInduceList = ({state, rootState, commit}, params) => {
         token: rootState.common.user.token,
         chapter_id: rootState.route.params.chapterId,
         subject_id: subjectId,
-        // type: params.type,
+        type: params.type,
         offset: state.exercise[params.type].offset
       }
     })

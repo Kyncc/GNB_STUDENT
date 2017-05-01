@@ -16,34 +16,34 @@ export default [
         component: r => require.ensure([], () => r(require('./pages/math')), '/induce/math')
       }
     ]
-  },
-  // 题型处置
-  {
-    path: '/induce/exercise/:subject/:chapterId/:chapterName',
-    name: 'induce_exercise',
-    component: r => require.ensure([], () => r(require('./pages/exercise/layout')), '/induce/exercise'),
-    redirect: '/induce/exercise/:subject/:chapterId/:chapterName/total',
-    children: [
-      {
-        path: 'total',
-        name: 'induce_exercise_total',
-        component: r => require.ensure([], () => r(require('./pages/exercise/total')), '/induce/exercise/total')
-      },
-      {
-        path: 'pass',
-        name: 'induce_exercise_pass',
-        component: r => require.ensure([], () => r(require('./pages/exercise/pass')), '/induce/exercise/pass')
-      },
-      {
-        path: 'break',
-        name: 'induce_exercise_break',
-        component: r => require.ensure([], () => r(require('./pages/exercise/break')), '/induce/exercise/break')
-      },
-      {
-        path: 'practice',
-        name: 'induce_exercise_practice',
-        component: r => require.ensure([], () => r(require('./pages/exercise/practice')), '/induce/exercise/practice')
-      }
-    ]
   }
+  // 题型处置
+  // {
+  //   path: '/induce/exercise/:subject/:chapterId/:chapterName',
+  //   name: 'induce_exercise',
+  //   component: r => require.ensure([], () => r(require('./pages/exercise/layout')), '/induce/exercise'),
+  //   redirect: '/induce/exercise/:subject/:chapterId/:chapterName/total',
+  //   children: [
+  //     {
+  //       path: 'total',
+  //       name: 'induce_exercise_total',
+  //       component: r => require.ensure([], () => r(require('./pages/exercise/total')), '/induce/exercise/total')
+  //     },
+  //     {
+  //       path: 'pass',
+  //       name: 'induce_exercise_pass',
+  //       component: r => require.ensure([], () => r(require('./pages/exercise/pass')), '/induce/exercise/pass')
+  //     },
+  //     {
+  //       path: 'break',
+  //       name: 'induce_exercise_break',
+  //       component: r => require.ensure([], () => r(require('./pages/exercise/break')), '/induce/exercise/break')
+  //     },
+  //     {
+  //       path: 'practice',
+  //       name: 'induce_exercise_practice',
+  //       component: r => require.ensure([], () => r(require('./pages/exercise/practice')), '/induce/exercise/practice')
+  //     }
+  //   ]
+  // }
 ]

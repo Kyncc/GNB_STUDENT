@@ -1,11 +1,11 @@
 <template>
   <div class='bag'>
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{showBack: false}">书包</x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{showBack: false}">书包</x-header>
     <swiper :list="list" auto height="155px" :loop="true" :show-desc-mask="false" :interval="5000"></swiper>
     <group gutter='0'>
-      <cell title="知识图谱" link="report">
+      <!--<cell title="知识图谱" link="report">
         <i class="icon iconfont icon-pie-chart" style="color:#794BB8" slot="icon"></i>
-      </cell>
+      </cell>-->
       <cell title="我的收藏本" link="collect">
         <i class="icon iconfont icon-box" style="color:#6DC6FF" slot="icon"></i>
       </cell>
@@ -32,9 +32,8 @@ export default {
     ...mapGetters(['User', 'News']),
     list () {
       return this.User.swiper.map((item, index) => ({
-        url: 'javascript:;',
-        img: item.url,
-        title: item.title
+        url: `article/${item.id}`,
+        img: item.img + '?imageMogr2/auto-orient/thumbnail/x155/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'
       }))
     }
   },

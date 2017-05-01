@@ -9,11 +9,9 @@
       </div>
       <div slot="content" @click="$router.push({name:'example', params: {subjectId: '2', id: item.exercises_id}})">
         <div v-html="item.stem"></div>
-        <div v-if="item.opt_jo.hasOwnProperty('A')">
-          <template v-for="(value, key) in item.opt_jo">
-            <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
-          </template>
-        </div>
+        <template v-for="(value, key) in item.opt_jo">
+          <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+        </template>
       </div>
       <div slot="footer">
         <div class="weui-cell weui-cell_access weui-cell_link">
@@ -53,7 +51,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getCollect', 'setCollectScroll', 'clearCollect']),
+    ...mapActions(['getCollect', 'setCollectScroll']),
     _getData () {
       this.loading = true
       this.getCollect().then((res) => {
@@ -66,12 +64,13 @@ export default {
       })
     }
   },
-  activated () {
-    this.collectMath.isReset ? this.clearCollect() : ''
-    this.$parent.$refs.viewBoxBody.scrollTop = this.collectMath.scroll
-  },
-  mounted () {
-    this._getData()
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      if (vm.collectMath.isReset) {
+        vm._getData()
+      }
+      vm.$parent.$refs.viewBoxBody.scrollTop = vm.collectMath.scroll
+    })
   },
   beforeRouteLeave (to, from, next) {
     this.setCollectScroll(this.$parent.$refs.viewBoxBody.scrollTop)

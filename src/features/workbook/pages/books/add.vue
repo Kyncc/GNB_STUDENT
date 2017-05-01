@@ -2,7 +2,7 @@
   <div style="height:100%">
     <view-box body-padding-top="86px">
       <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
-        <x-header :left-options="{backText: '添加习题册'}">
+        <x-header :left-options="{backText: '习题册管理'}">
           <div slot="right" @click="$router.push({name: 'workbook_search', param: {subject: Route.params.subject}})">
             <i class="icon iconfont icon-iconfontsousuo" style="padding:8px;font-size:26px;margin-right:-10px;">
             </i>
@@ -35,9 +35,9 @@
             </cell>
           </template>
         </group>
-        <div style="text-align:center;padding:10px 0;">
+        <div style="text-align:center;padding:20px 0;">
           <spinner v-if="loading" type="dots"></spinner>
-          <p v-else-if="workbookAddList.length === 0" style="font-size:14px;color:#4BB7AA">没有更多的练习册~</p>
+          <p v-else-if="workbookAddList.length === 0" style="font-size:14px;color:#4BB7AA;">没有更多的练习册~</p>
         </div>
       </div>
     </view-box>

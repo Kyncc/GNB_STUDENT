@@ -9,11 +9,9 @@
       </div>
       <div slot="content" @click="$router.push({name:'example', params: {subjectId: '7', id: item.exercises_id}})">
         <div v-html="item.stem"></div>
-        <div v-if="item.opt_jo.hasOwnProperty('A')">
-          <template v-for="(value, key) in item.opt_jo">
-            <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
-          </template>
-        </div>
+        <template v-for="(value, key) in item.opt_jo">
+          <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+        </template>
       </div>
       <div slot="footer">
         <div class="weui-cell weui-cell_access weui-cell_link">
@@ -21,6 +19,13 @@
         </div>
       </div>
     </card>
+    <div style="text-align:center;padding:10px 0;">
+      <spinner v-if="loading" type="lines"></spinner>
+      <div>
+        <p style="font-size:14px;padding:10px 0;color:#4BB7AA" v-if="loadingNoData">已经加载全部收藏~</p>
+        <p style="font-size:14px;padding:10px 0;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多~</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -39,25 +44,35 @@ export default {
       return this.collectPhysics.list
     }
   },
+  data () {
+    return {
+      loading: true,
+      loadingNoData: false
+    }
+  },
   methods: {
     ...mapActions(['getCollect', 'setCollectScroll']),
-    _onInfinite () {
+    _getData () {
+      this.loading = true
       this.getCollect().then((res) => {
-        if (res.data.data.list.length < 5) {
-          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        if (res.data.data.list.length < 10) {
+          this.loadingNoData = true
         }
-        this.$nextTick(() => {
-          this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        })
+        this.loading = false
+      }).catch(() => {
+        this.loading = false
       })
     }
   },
-  activated () {
-    // this.$refs.infiniteLoading.isLoading = true
-    this.$parent.$refs.viewBoxBody.scrollTop = this.collectPhysics.scroll
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      if (vm.collectPhysics.isReset) {
+        vm._getData()
+      }
+      vm.$parent.$refs.viewBoxBody.scrollTop = vm.collectPhysics.scroll
+    })
   },
   beforeRouteLeave (to, from, next) {
-    this.$refs.infiniteLoading.isLoading = false
     this.setCollectScroll(this.$parent.$refs.viewBoxBody.scrollTop)
     next()
   }

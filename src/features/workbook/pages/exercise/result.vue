@@ -42,7 +42,10 @@ export default {
       return this.workbookExercise.list.resultImg
     },
     isUpload () {
-      return Boolean(this.workbookExercise.list.bindTeacher && this.workbookExercise.list.practiceImg.length)
+      if (!this.workbookExercise.list.bindTeacher) return true
+      else {
+        return Boolean(this.workbookExercise.list.bindTeacher && this.workbookExercise.list.practiceImg.length)
+      }
     },
     list () {
       let list = []

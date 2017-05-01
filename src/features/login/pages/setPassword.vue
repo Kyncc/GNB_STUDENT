@@ -18,7 +18,7 @@
         <flexbox-item :span="1/20"></flexbox-item>
         <flexbox-item :span="18/20">
           <group>
-            <x-button type="primary" @click.native="_complete" :disabled="disable">下一步</x-button>
+            <x-button type="primary" @click.native="_complete" :disabled="!disable">下一步</x-button>
           </group>
         </flexbox-item>
         <flexbox-item :span="1/20"></flexbox-item>

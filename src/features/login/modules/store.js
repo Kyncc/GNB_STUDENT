@@ -29,7 +29,6 @@ const mutations = {
     state.forget.mobile = data.data.mobile
   },
   [types.SET_PASSWORD] (state, data) {
-    state.token = data.token
     localStorage.setItem('token', data.token)
   }
 }

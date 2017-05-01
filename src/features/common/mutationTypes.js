@@ -14,3 +14,5 @@ export const USERPHOTO_POST = 'USERPHOTO_POST'
 export const USER_NEW_MESSAGE = 'USER_NEW_MESSAGE'
 /** 获取教材所有版本 */
 export const TEXTBOOK_VERSION = 'TEXTBOOK_VERSION'
+/** 获取轮播信息 */
+export const SWIPER_INFO = 'SWIPER_INFO'

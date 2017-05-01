@@ -68,7 +68,6 @@ export default {
       })
     },
     _collect (state) {
-      console.log(state)
       Number(state) === 0 ? this.collectAdd() : this.collectRemove()
     }
   },

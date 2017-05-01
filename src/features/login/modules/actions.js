@@ -83,7 +83,8 @@ export const resetPwd = ({ commit }, params) => {
       }
     })
     .then((response) => {
-      Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
+      // Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
+      commit('USER_TOKEN', response.data.token)
       resolve(response)
     })
   })

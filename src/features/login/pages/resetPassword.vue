@@ -1,7 +1,7 @@
 <template>
   <view-box class="register">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:1">
-      <x-header :left-options="{showBack: false,preventGoBack:false}" style="position:fixed;left:0;top:0;width:100%" >重1置密码</x-header>
+      <x-header :left-options="{showBack: false,preventGoBack:false}" style="position:fixed;left:0;top:0;width:100%" >重置密码</x-header>
     </div>
     <div style="padding-top:46px">
       <div class="icon">
@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['addPwd']),
+    ...mapActions(['resetPwd']),
     _change () {
       this.disable = this.$refs.password.valid && (this.passwordAgain === this.password)
     },
@@ -52,7 +52,7 @@ export default {
         mobile: this.forgetMobile,
         pwd: this.password
       }
-      this.addPwd(params).then(() => {
+      this.resetPwd(params).then(() => {
         this.$router.replace({name: 'index'})
       })
     }

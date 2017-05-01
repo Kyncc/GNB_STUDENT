@@ -19,7 +19,7 @@
             </div>
           </cell>
         </group>
-        <div style="text-align:center;padding:10px 0;">
+        <div style="text-align:center;padding:20px 0;">
           <spinner v-if="loading" type="dots"></spinner>
           <p v-else-if="workbookSearchList.length === 0" style="font-size:14px;color:#4BB7AA">没有搜索到相对应的练习册~</p>
         </div>
