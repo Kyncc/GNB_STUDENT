@@ -25,7 +25,7 @@ axios.interceptors.response.use((res) => {
     localStorage.removeItem('token')
     Vue.$vux.toast.show({text: res.data.msg, type: 'warn', time: 500, isShowMask: true})
     setTimeout(() => {
-      window.location.href = '/'
+      window.location.href = '/login'
     }, 500)
     return Promise.reject(res)
   } else if (res.data.code !== 200) {

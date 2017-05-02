@@ -36,4 +36,7 @@ export default {
 .weui-loading_toast .weui-mask_transparent{
   z-index: 2 !important;
 }
+.mainIndex .weui-btn_primary:not(.weui-btn_disabled):active{
+  background:none;
+}
 </style>

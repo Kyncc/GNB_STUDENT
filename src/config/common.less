@@ -47,11 +47,17 @@ img[lazy=loading] {
 }
 
 .vux-header .vux-header-left .vux-header-back{
-  width:85%;
-  position: relative;
-  top: -1px;
-  .ellipsis
+  width:15rem;
+  text-align: left !important;
+  line-height: 19px;
+  text-align: center;
+  height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
 }
+
 .vux-header .vux-header-left .left-arrow:before{
   border-width: 2px 0 0 2px !important;
 }
@@ -75,11 +81,18 @@ img[lazy=loading] {
   font-size:14px;
   padding:10px 15px;
 }
+
+.vux-tap-active:active{
+  background:none; 
+}
 /**
 *   group
 */
 .weui-cells__title{
   color:#4BB7AA !important;
+}
+.weui-panel__hd{
+  font-size:14px !important;
 }
 /**
 *   vux-spinner
@@ -131,4 +144,8 @@ img[lazy=loading] {
   &.weui-btn_primary {
     background-color: #ccc !important;
   }
+}
+
+.weui-btn_disabled.weui-btn_primary:after{
+  border:0px !important;
 }

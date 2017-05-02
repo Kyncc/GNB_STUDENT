@@ -16,8 +16,8 @@
           <div style="width:60%">
             <x-input name="code" placeholder="验证码" keyboard="number" v-model="code" :min="6" :max="6" ref="code" is-type="is-code"  @on-change="_changeCode"/>
           </div>
-          <div style="width:40%">
-            <x-button style="height:2.65em;border-radius:0;" slot="right" :text="btnValue" type="primary" :disabled="!disableMobile" @click.native="_getCode"></x-button>
+          <div style="width:40%" class="code">
+            <x-button style="height:2.75em;border-radius:0;border:0px;" slot="right" :text="btnValue" type="primary" :disabled="!disableMobile" @click.native="_getCode"></x-button>
           </div>
         </div>
       </group>

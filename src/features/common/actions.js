@@ -63,7 +63,6 @@ export const getToken = ({ commit }, params) => {
       resolve(response)
     })
     .catch((error) => {
-      console.log(error)
       Vue.$vux.loading.hide()
       reject(error)
     })
