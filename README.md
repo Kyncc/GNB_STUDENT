@@ -63,11 +63,12 @@ MIT
     ├── router      # Main Pages
     ├── features    # Modules
         ├── common      # 全局功能函数
-        ├── workbook    # 习题册
+        ├── workbook    # 查答案
         ├── example     # 例题
         ├── collect     # 收藏本模块
         ├── correct     # 纠错
         ├── myclass     # 我的班级
+        ├── myBook      # 我的习题册
         ├── report      # 知识图谱
         ├── message     # 消息
         ├── login       # 登陆

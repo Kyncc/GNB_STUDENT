@@ -9,11 +9,11 @@
       </swiper-item>
     </swiper>
     <group gutter='0'>
-      <!--<cell title="知识图谱" link="report">
-        <i class="icon iconfont icon-pie-chart" style="color:#794BB8" slot="icon"></i>
-      </cell>-->
       <cell title="我的收藏本" link="collect">
         <i class="icon iconfont icon-box" style="color:#6DC6FF" slot="icon"></i>
+      </cell>
+      <cell title="我的习题册" link="myBook">
+        <i class="icon iconfont icon-book" style="color:#794BB8" slot="icon"></i>
       </cell>
       <cell title="我的班级" link="class">
         <i class="icon iconfont icon-hat" style="color:#ABC97C" slot="icon"></i>

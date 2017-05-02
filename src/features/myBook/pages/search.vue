@@ -6,22 +6,22 @@
         <search @on-submit="_onSearch" @on-change="_onSearch" v-model.lazy="name" :auto-fixed="false" placeholder="请输入习题册名称" style="position:fixed;z-index:1;"></search>
       </div>
       <div>
-        <group v-for="(workbookList, pindex) in workbookSearchList" :key="pindex" :title="workbookList.textbookName">
-          <cell v-for="(workbook, index) in workbookList.list" :key="index">
-            <img class="previewer-workbook-img" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80">
+        <group v-for="(myBookList, pindex) in myBookSearchList" :key="pindex" :title="myBookList.textbookName">
+          <cell v-for="(myBook, index) in myBookList.list" :key="index">
+            <img class="previewer-myBook-img" v-lazy='myBook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80">
             <div slot="after-title" @click="show(pindex,index)" style="width:90%;">
-              <p style="color:#aaa;font-size:14px;">&nbsp;&nbsp;&nbsp;{{workbook.year}}版</p>
-              <p class="ellipsis">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
+              <p style="color:#aaa;font-size:14px;">&nbsp;&nbsp;&nbsp;{{myBook.year}}版</p>
+              <p class="ellipsis">&nbsp;&nbsp;&nbsp;{{myBook.workbookName}}</p>
             </div>
             <div slot="default">
-              <x-button v-if="!workbook.status" mini type="primary" slot="default" @click.native="_add(pindex,index,workbook.workbookId)">添加</x-button>
-              <x-button v-else mini type="warn" slot="default" @click.native="_del(pindex,index,workbook.workbookId)">删除</x-button>
+              <x-button v-if="!myBook.status" mini type="primary" slot="default" @click.native="_add(pindex,index,myBook.workbookId)">添加</x-button>
+              <x-button v-else mini type="warn" slot="default" @click.native="_del(pindex,index,myBook.workbookId)">删除</x-button>
             </div>
           </cell>
         </group>
         <div style="text-align:center;padding:20px 0;">
           <spinner v-if="loading" type="dots"></spinner>
-          <p v-else-if="workbookSearchList.length === 0" style="font-size:16px;color:#4BB7AA">没有搜索到相对应的习题册~</p>
+          <p v-else-if="myBookSearchList.length === 0" style="font-size:16px;color:#4BB7AA">没有搜索到相对应的习题册~</p>
         </div>
       </div>
     </view-box>
@@ -34,12 +34,12 @@ import {XHeader, Group, Cell, XButton, ViewBox, Previewer, Spinner, Search, Tran
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: 'workbookSearch',
+  name: 'myBookSearch',
   components: {
     XHeader, Group, Cell, XButton, ViewBox, Previewer, Spinner, Search
   },
   computed: {
-    ...mapGetters(['User', 'workbookSearchList'])
+    ...mapGetters(['User', 'myBookSearchList'])
   },
   data () {
     return {
@@ -62,18 +62,18 @@ export default {
     TransferDom
   },
   methods: {
-    ...mapActions(['getWorkbookSearch', 'workbookSearchClear', 'workbookAdd', 'workbookDel']),
+    ...mapActions(['getMyBookSearch', 'myBookSearchClear', 'myBookAdd', 'myBookDel']),
     _add (pindex, index, workbookId) {
-      this.workbookAdd({type: 'search', pindex: pindex, index: index, workbookId: workbookId})
+      this.myBookAdd({type: 'search', pindex: pindex, index: index, workbookId: workbookId})
     },
     _del (pindex, index, workbookId) {
-      this.workbookDel({type: 'search', pindex: pindex, index: index, workbookId: workbookId})
+      this.myBookDel({type: 'search', pindex: pindex, index: index, workbookId: workbookId})
     },
     _getData () {
       if (this.name !== '') {
         this.loading = true
-        this.getWorkbookSearch({
-          'workbookName': this.name
+        this.getMyBookSearch({
+          'workBookName': this.name
         }).then(() => {
           this.loading = false
         })
@@ -81,13 +81,13 @@ export default {
     },
     _onSearch (str) {
       this.name = str
-      this.workbookSearchClear()
+      this.myBookSearchClear()
       this._getData()
     },
     show (pindex, index) {
       this.list = []
       this.list.push({
-        src: `${this.workbookSearchList[pindex].list[index].img.url}-workbookBig`,
+        src: `${this.myBookSearchList[pindex].list[index].img.url}-workbookBig`,
         w: '700',
         h: '1050'
       })
@@ -98,7 +98,7 @@ export default {
   },
   activated () {
     this.name = ''
-    this.workbookSearchClear()
+    this.myBookSearchClear()
   }
 }
 </script>

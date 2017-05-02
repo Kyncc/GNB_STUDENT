@@ -14,6 +14,7 @@ import induce from './features/induce/router'
 // import report from './features/report/router'
 import settings from './features/settings/router'
 import workbook from './features/workbook/router'
+import mybook from './features/mybook/router'
 
 Vue.use(Router)
 let router = new Router({
@@ -30,6 +31,7 @@ let router = new Router({
     myclass,
     // ...report,
     settings,
+    ...mybook,
     ...workbook
   ]
 })
