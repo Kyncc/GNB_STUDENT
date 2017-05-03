@@ -19,13 +19,19 @@
         </div>
       </div>
       <div slot="footer">
-        <div class="weui-cell weui-cell_access weui-cell_link">
+        <div class="weui-cell weui-cell_link" style="padding:0;">
           <div class="weui-cell__bd">
-            <flexbox>
-              <flexbox-item :span="6"></flexbox-item>
-              <flexbox-item :span="2" @click.native="_operate('practice', item, index)">练习</flexbox-item>
-              <flexbox-item :span="2" @click.native="_operate('break',  item, index)">斩题</flexbox-item>
-              <flexbox-item :span="2" @click.native="_operate('pass',  item, index)">弃题</flexbox-item>
+            <flexbox style="text-align:center" :gutter="0">
+              <flexbox-item :span="3"></flexbox-item>
+              <flexbox-item :span="3" @click.native="_operate('practice', item, index)" class="weui-cell_access" style="padding:10px 0px">
+                <i class="icon iconfont icon-jinrulianxi" style="font-size:17px;"></i>练习
+              </flexbox-item>
+              <flexbox-item :span="3" @click.native="_operate('break', item, index)" class="weui-cell_access" style="padding:10px 0px">
+                <i class="icon iconfont icon-brush1" style="font-size:17px;"></i>斩题
+              </flexbox-item>
+              <flexbox-item :span="3" @click.native="_operate('pass', item, index)" class="weui-cell_access" style="padding:10px 0px">
+                <i class="icon iconfont icon-lajitong16" style="font-size:17px;"></i>弃题
+              </flexbox-item>
             </flexbox>
           </div>
         </div>
@@ -35,14 +41,14 @@
       <spinner v-if="loading" type="lines"></spinner>
       <div>
         <p style="font-size:16px;color:#4BB7AA" v-if="loadingNoData">已经加载全部题型~</p>
-        <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多~</p>
+        <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {Card, Spinner, Flexbox, FlexboxItem} from 'vux'
+import {Card, Spinner, Flexbox, FlexboxItem, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
@@ -62,6 +68,9 @@ export default {
       return this.induceTotal.totalCount
     }
   },
+  directives: {
+    TransferDom
+  },
   data () {
     return {
       loading: true,
@@ -71,7 +80,13 @@ export default {
   methods: {
     ...mapActions(['getInduceList', 'setInduceListScroll', 'induceListClear', 'induceTotalAction']),
     _operate (type, item, index) {
-      this.induceTotalAction({index: index, type: type, id: item.exercises_id, chapter_id: item.chapter_id})
+      let msg
+      if (type === 'practice') msg = '已放入练习本'
+      else if (type === 'break') msg = '已放入斩题本'
+      else msg = '已放入弃题本'
+      this.induceTotalAction({index: index, type: type, id: item.exercises_id, chapter_id: item.chapter_id}).then(() => {
+        this.$vux.toast.show({text: msg, type: 'text', time: 800, position: 'bottom'})
+      })
     },
     _getData () {
       this.loading = true

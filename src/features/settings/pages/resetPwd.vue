@@ -41,6 +41,7 @@ export default {
             this.$vux.toast.show({text: '修改成功', type: 'text', time: 1000, position: 'bottom'})
             setTimeout(() => {
               try {
+                localStorage.removeItem('token')
                 plus.runtime.restart() // 重启应用
               } catch (e) {
                 this.$router.push('/login')

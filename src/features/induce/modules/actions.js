@@ -63,8 +63,8 @@ export const induceTotalAction = ({ state, rootState, commit }, params) => {
       method: 'post',
       url: 'induce/update',
       data: {
-        excercise_id: params.id,
-        chapter_id: params.chapterId,
+        exerciseId: params.id,
+        chapter_id: params.chapter_id,
         type: params.type,
         subject_id: subjectId,
         token: rootState.common.user.token
@@ -85,15 +85,15 @@ export const induceBack = ({ state, rootState, commit }, params) => {
       method: 'post',
       url: 'induce/back',
       data: {
-        excercise_id: params.id,
-        chapter_id: params.chapterId,
+        exerciseId: params.id,
+        chapter_id: params.chapter_id,
         type: params.type,
         subject_id: subjectId,
         token: rootState.common.user.token
       }
     })
     .then((response) => {
-      commit(types.INDUCE_BACK, params.index)
+      commit(types.INDUCE_BACK, {type: params.type, index: params.index})
       resolve(response)
     })
   })

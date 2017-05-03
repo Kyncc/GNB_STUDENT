@@ -19,11 +19,13 @@
         </div>
       </div>
       <div slot="footer">
-        <div class="weui-cell weui-cell_access weui-cell_link">
+        <div class="weui-cell weui-cell_link" style="padding:0;">
           <div class="weui-cell__bd">
-            <flexbox>
-              <flexbox-item :span="10"></flexbox-item>
-              <flexbox-item :span="2" @click.native="_back(item, index)">撤回</flexbox-item>
+            <flexbox style="text-align:center" :gutter="0">
+              <flexbox-item :span="9"></flexbox-item>
+              <flexbox-item :span="3" @click.native="_back(item, index)" class="weui-cell_access" style="padding:10px 0px">
+                <i class="icon iconfont icon-chexiao"></i>撤回
+              </flexbox-item>
             </flexbox>
           </div>
         </div>
@@ -32,8 +34,8 @@
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="lines"></spinner>
       <div>
-        <p style="font-size:16px;color:#4BB7AA" v-if="loadingNoData">已经加载全部弃题~</p>
-        <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多~</p>
+        <p style="font-size:16px;color:#4BB7AA" v-if="loadingNoData">已经加载全部练习题~</p>
+        <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
       </div>
     </div>
   </div>
@@ -80,7 +82,9 @@ export default {
       })
     },
     _back (item, index) {
-      this.induceBack({index: index, type: 'practice', id: item.exercises_id, chapter_id: item.chapter_id})
+      this.induceBack({index: index, type: 'practice', id: item.exercises_id, chapter_id: item.chapter_id}).then(() => {
+        this.$vux.toast.show({text: '已撤回到题型本', type: 'text', time: 600, position: 'bottom'})
+      })
     }
   },
   beforeRouteEnter (to, from, next) {

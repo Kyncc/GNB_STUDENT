@@ -3,7 +3,7 @@ import axios from 'axios'
 import qs from 'qs'
 import 'es6-promise/auto'
 
-axios.defaults.timeout = 8000
+axios.defaults.timeout = 10000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 axios.defaults.baseURL = 'https://www.guinaben.com:8090/student/'
 // axios.defaults.baseURL = 'http://192.168.13.222:90/edu_api/student'
@@ -25,7 +25,11 @@ axios.interceptors.response.use((res) => {
     localStorage.removeItem('token')
     Vue.$vux.toast.show({text: res.data.msg, type: 'warn', time: 500, isShowMask: true})
     setTimeout(() => {
-      window.location.href = '/login'
+      try {
+        plus.runtime.restart() // 重启应用
+      } catch (e) {
+        window.location.href = '/login'
+      }
     }, 500)
     return Promise.reject(res)
   } else if (res.data.code !== 200) {

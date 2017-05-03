@@ -23,7 +23,7 @@
       <spinner v-if="loading" type="lines"></spinner>
       <div>
         <p style="font-size:16px;color:#4BB7AA" v-if="loadingNoData">已经加载全部收藏~</p>
-        <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多~</p>
+        <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
       </div>
     </div>
   </div>

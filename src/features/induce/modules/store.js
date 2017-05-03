@@ -37,6 +37,14 @@ const mutations = {
   },
   [types.INDUCE_LIST_SCROLL] (state, payload) {
     state['exercise'][payload.type]['scroll'] = payload.height
+  },
+  [types.INDUCE_ACTION] (state, index) {
+    state.exercise.total.recordSize = --state.exercise.total.recordSize
+    state.exercise.total.list.splice(index, 1)
+  },
+  [types.INDUCE_BACK] (state, payload) {
+    state['exercise'][payload.type]['recordSize'] = --state['exercise'][payload.type]['recordSize']
+    state['exercise'][payload.type]['list'].splice(payload.index, 1)
   }
 }
 

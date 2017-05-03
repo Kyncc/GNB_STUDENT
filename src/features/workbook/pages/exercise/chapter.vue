@@ -15,9 +15,9 @@
           </template>
         </group>
       </template>
-      <div style="text-align:center">
-        <spinner v-if="loading" type="dots"></spinner>
-      </div>
+    </div>
+    <div style="text-align:center">
+      <spinner v-if="loading" type="dots"></spinner>
     </div>
   </view-box>
 </template>

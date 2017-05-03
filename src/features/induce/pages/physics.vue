@@ -52,6 +52,7 @@ export default {
   methods: {
     ...mapActions(['getInduce', 'setInduceScroll', 'clearInduce']),
     _getData () {
+      this.loading = true
       this.getInduce({
         'textbook_id': this.textbook_id || this.User.textbook.physics[0].id
       }).then(() => {
@@ -61,12 +62,18 @@ export default {
     _currentTextbook (val) {
       this.textbook_id = val
       this.clearInduce()
-      this.loading = true
       this._getData()
     }
   },
-  activated () {
-    this.$parent.$refs.viewBoxBody.scrollTop = this.inducePhysics.scroll
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      if (from.name.indexOf('induce_exercise') !== -1) {
+        vm.clearInduce()
+        vm._getData()
+      } else {
+        vm.$parent.$refs.viewBoxBody.scrollTop = vm.inducePhysics.scroll
+      }
+    })
   },
   beforeRouteLeave (to, from, next) {
     this.setInduceScroll(this.$parent.$refs.viewBoxBody.scrollTop)
