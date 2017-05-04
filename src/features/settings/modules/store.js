@@ -12,7 +12,7 @@ const actions = {
         url: 'pwd/update',
         data: {
           oldPwd: params.oldPwd,
-          pwd: params.newPwd,
+          pwd: params.pwd,
           token: rootState.common.user.token
         }
       })
