@@ -7,8 +7,8 @@
 	"id": "H55E5EFFB",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "2.2.0",/*应用版本名称*/
-		"code": "220"
+		"name": "3.0.0",/*应用版本名称*/
+		"code": "300"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -84,19 +84,19 @@
 	},
 	"plus": {
 		"splashscreen": {
-			"autoclose": false,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
-			"waiting": false
+			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"waiting": false,"delay":"1000"
 		},
-		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+		"runmode": "normal",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
 		"distribute": {
 			"plugins": {
 				"statics": {
 					"umeng": {
 						"appkey_ios": "584125476e27a40bc4000e49",
-						"channelid_ios": "2.2",
+						"channelid_ios": "3.0",
 						"appkey_android": "5833f42d8630f57e24001bc5",
-						"channelid_android": "2.2"
+						"channelid_android": "3.0"
 					}
 				},
 				"share": {}
@@ -174,7 +174,7 @@
 			"splashscreen": {
 				"ios": {
 					"iphone": {
-						"retina40": "E:/Workspace/GNB_TEACHER/distT/unpackage/res/start/640×1136.png"
+						"retina40": "E:/Workspace/GNB_TEACHER/distT/unpackage/res/start/640×1136.png","retina35":"E:/Workspace/GNB_TEACHER/distT/unpackage/res/start/640×960.png","retina55":"E:/Workspace/GNB_TEACHER/distT/unpackage/res/start/1242×2208.png","retina47":"E:/Workspace/GNB_TEACHER/distT/unpackage/res/start/750×1334.png"
 					},
 					"ipad": {
 						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
@@ -189,7 +189,7 @@
 				},
 				"android": {
 					"hdpi": "unpackage/res/start/480×762.png",
-					"xhdpi": "unpackage/res/start/640×1136.png",
+					"xhdpi": "unpackage/res/start/720×1242.png",
 					"xxhdpi": "unpackage/res/start/1080×1882.png"
 				}
 			}
@@ -203,7 +203,14 @@
 					"static/js/app.js",
 					"static/js/manifest.js",
 					"static/js/vendor.js",
-					"static/css/app.css"
+					"static/css/app.css",
+					"static/js/app.01eb69d7344aa228e894.js",
+					"static/css/app.63e2d419283d96885f666409d2860ff4.css",
+					"static/js/manifest.05add1e3d8b527d7dabe.js",
+					"static/js/vendor.d4a2f131ede7ee5efff1.js",
+					"static/js/manifest.53109c8e3b3b21ec74e7.js",
+					"static/js/app.f88f00aefc7f564bc6ef.js",
+					"static/js/manifest.c1890b2d9c6e9d7536b9.js"
 				],
 				"refer": [],
 				"priority": 0

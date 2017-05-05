@@ -1,0 +1,158 @@
+@import '../libs/font/iconfont.css';
+@import '../libs/styles/zyb.css';
+@import '../libs/styles/jyw.css';
+@import '../components/gnb_collapse/index.less';
+@import '../components/gnb_messageList/index.less';
+
+html,body{
+  -webkit-touch-callout: none;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background:#F3F9F8;
+  color:#555;
+  user-select: none;
+  -webkit-user-select:none; 
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+}
+a,img { -webkit-touch-callout: none }
+#app{
+  height:100%;
+  position:relative;
+}
+img[lazy=loading] {
+  background: #ccc
+}
+.iconfont{
+  font-size:22px;
+  position: relative;
+  top:2px;
+  margin-right:5px;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+/**
+*   Vux-XHeader
+*/
+.vux-header .vux-header-left, .vux-header .vux-header-right{
+  font-size:16px !important;
+  margin-top: -1px;
+}
+
+.vux-header .vux-header-left .vux-header-back{
+  width:15rem;
+  text-align: left !important;
+  line-height: 19px;
+  text-align: center;
+  height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.vux-header .vux-header-left .left-arrow:before{
+  border-width: 2px 0 0 2px !important;
+}
+/**
+*   vux-reddot
+*/
+.vux-reddot:after, .vux-reddot-border:after, .vux-reddot-s:after{
+  background-color:#FF7043 !important;
+  right: -3px !important;
+  top: 1px !important;
+}
+
+[class^="weui-icon-"]:before, [class*=" weui-icon-"]:before{
+  position: relative;
+  top: -2px;
+}
+/**
+*   vux-card
+*/
+.vux-card-content{
+  font-size:14px;
+  padding:10px 15px;
+}
+
+.vux-tap-active:active{
+  background:none; 
+}
+/**
+*   group
+*/
+.weui-cells__title{
+  color:#4BB7AA !important;
+}
+.weui-panel__hd{
+  font-size:14px !important;
+}
+.weui-panel__ft{
+  .weui-cell_access{
+    &:active{
+      background:none !important;
+    }
+  }
+}
+/**
+*   vux-spinner
+*/
+.vux-spinner{
+  &.vux-spinner-lines{
+    stroke: #4BB7AA;
+    fill: #4BB7AA;
+  }
+  &.vux-spinner-ripple{
+    stroke: #4BB7AA;
+    fill: #4BB7AA;
+  }
+  &.vux-spinner-dots{
+    stroke: #4BB7AA;
+    fill: #4BB7AA;
+    svg{width:50px !important;height:50px !important;}
+  }
+}
+.weui-dialog__bd{
+  min-height:0px !important;
+}
+/*
+* vux-search-box
+*/
+.vux-search-box{
+  .weui-icon-search{
+    top:5px !important;
+  }
+  .weui-search-bar__input{
+    height:1.4em !important;
+    line-height:1.4em !important;
+  }
+  .weui-icon-clear{
+    top:8px !important;
+  }
+  .weui-search-bar__cancel-btn{
+    color:#4BB7AA;
+    line-height:33px;
+  }
+  .weui-search-bar__label span {
+    font-size: 16px !important;
+    top: -3px;
+    position: relative;
+  }
+}
+// 修改按钮默认颜色
+.weui-btn_disabled {
+  &.weui-btn_primary {
+    background-color: #ccc !important;
+  }
+}
+
+.weui-btn_disabled.weui-btn_primary:after{
+  border:0px !important;
+}
