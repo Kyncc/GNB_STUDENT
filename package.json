@@ -14,7 +14,6 @@
     "cropperjs": "^1.0.0-rc",
     "es6-promise": "^4.1.0",
     "fastclick": "^1.0.6",
-    "jroll": "^2.4.9",
     "qs": "^6.4.0",
     "vue": "^2.3.0",
     "vue-lazyload": "^1.0.3",
