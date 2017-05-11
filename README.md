@@ -73,17 +73,18 @@
         ├── about       # 关于归纳本
 ```
 
-### Getting Started
+## Getting Started
+> Recommend `yarn` to obtain a stable dependency package
 
-## Install
+### Install
 ```
-npm/yarn install 
-npm/yarn run dev
+yarn/npm install 
+yarn run dev/npm run dev
 open http://localhost:8080
 ```
 
 ### Build
 ```
-npm/yarn run build
+yarn run build/npm run build
 open Files in Dist Folder
 ```
