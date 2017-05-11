@@ -1,6 +1,6 @@
 # Induction Book(归纳本)
 
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Build status](https://ci.appveyor.com/api/projects/status/8r82xwcsi2iujudj?svg=true)](https://ci.appveyor.com/project/HopeFE/gnb-student)
 
 > Base on Vue.js(v2.3) and DCloud Hybrid App
 
