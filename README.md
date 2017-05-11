@@ -8,10 +8,6 @@
 
 ![DownloadPicture](http://okkula0y9.bkt.clouddn.com/student.png)
 
-## License
-
-MIT
-
 ## Technology Overview
 
 ### Compiler Environment
@@ -77,20 +73,17 @@ MIT
         ├── about       # 关于归纳本
 ```
 
-### How to run it
+### Getting Started
 
 ## Install
 ```
-npm install 
+npm/yarn install 
+npm/yarn run dev
+open http://localhost:8080
 ```
 
-## Development
-```
-npm run dev
-
-```
 ### Build
 ```
-npm run build
-npm run build --report
+npm/yarn run build
+open Files in Dist Folder
 ```
