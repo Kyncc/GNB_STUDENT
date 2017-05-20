@@ -11,7 +11,7 @@ import example from './features/example/router'
 import message from './features/message/router'
 import myclass from './features/myclass/router'
 import induce from './features/induce/router'
-// import report from './features/report/router'
+import error from './features/error/router'
 import settings from './features/settings/router'
 import workbook from './features/workbook/router'
 import mybook from './features/mybook/router'
@@ -22,6 +22,7 @@ let router = new Router({
   routes: [
     about,
     collect,
+    error,
     correct,
     example,
     login,

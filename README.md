@@ -64,6 +64,7 @@
         ├── collect     # 收藏本模块
         ├── correct     # 纠错
         ├── myclass     # 我的班级
+        ├── error       # 错题本
         ├── myBook      # 我的习题册
         ├── report      # 知识图谱
         ├── message     # 消息
