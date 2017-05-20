@@ -7,9 +7,16 @@
       </router-link>
     </div>
     <div>
-      <router-link :to="{ path: 'workbook'}">
-        <x-button type='primary' mini class="rememberBtn">查答案</x-button>
-      </router-link>
+      <div>
+        <router-link :to="{ path: 'workbook'}">
+          <x-button type='primary' mini class="rememberBtn">查答案</x-button>
+        </router-link>
+      </div>
+      <div>
+        <router-link :to="{ path: 'error'}">
+          <x-button type='primary' mini class="rememberBtn">我的错题</x-button>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
