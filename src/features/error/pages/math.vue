@@ -12,7 +12,7 @@
           <img src="http://img.guinaben.com/workbookPlatePic/f1b3233be034496999a7cb894845eace-stem-088838.png-errorList"/>
         </div>
         <div slot="footer">
-          <div class="weui-cell weui-cell_access weui-cell_link">
+          <div class="weui-cell">
             <div class="weui-cell__bd" style="text-align:right">
               <x-button mini type="primary" @click.native="showErrorPopup=true">错误类型</x-button>
               <x-button mini plain type="primary" >参考例题</x-button>
