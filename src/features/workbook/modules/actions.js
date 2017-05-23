@@ -213,6 +213,49 @@ export const workbookExAnswerChange = ({ commit }, params) => {
   commit(types.WORKBOOK_EXERCISE_CHANGE, params)
 }
 
+/** 章节练习题拍照 */
+export const workbookExCamera = ({ commit }, data) => {
+  commit(types.WORKBOOK_EXERCISE_ERROR_ADD, data)
+}
+
+/** 章节练习题照片增加删除 */
+export const workbookExCameraDel = ({ commit }, id) => {
+  commit(types.WORKBOOK_EXERCISE_ERROR_DEL, id)
+}
+
+/** 章节练习题照片增加 */
+export const workbookExCameraAdd = ({ commit }, data) => {
+  commit(types.WORKBOOK_EXERCISE_ERROR_CAMERA, data)
+}
+
+/** 提交章节错误练习题 */
+export const workbookExErrorUpload = ({state, rootState, commit}, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'workbook/exercise/uploader',
+      data: {
+        'id': params.id,
+        'img': state.exercise.cameraList,
+        'type': params.type,
+        'chapterId': rootState.route.params.id,
+        'token': rootState.common.user.token
+      }
+    })
+    .then((response) => {
+      Vue.$vux.loading.hide()
+      Vue.$vux.toast.show({text: '提交成功', type: 'success', isShowMask: true, time: 1000})
+      commit(types.WORKBOOK_EXERCISE_ERROR_UPLOAD, response.data.data)
+      resolve(response)
+    })
+    .catch((error) => {
+      Vue.$vux.loading.hide()
+      reject(error)
+    })
+  })
+}
+
 /** 练习题目高度设置 */
 export const setWorkbookExersciseScroll = ({ commit }, height) => {
   commit(types.WORKBOOK_EXERCISE_SCROLL, height)
@@ -228,7 +271,7 @@ export const workbookUploadAdd = ({ commit }, data) => {
   commit(types.WORKBOOK_UPLOAD_ADD, data)
 }
 
-/** 照片增加 */
+/** 作业照片增加 */
 export const workbookCamera = ({ commit }, data) => {
   commit(types.WORKBOOK_UPLOAD_CAMERA, data)
 }

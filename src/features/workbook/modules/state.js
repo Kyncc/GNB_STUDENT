@@ -23,6 +23,8 @@ let state = {
   },
   exercise: {
     list: [],
+    cameraList: [],
+    camera: '',
     scroll: 0,
     isReset: false
   }

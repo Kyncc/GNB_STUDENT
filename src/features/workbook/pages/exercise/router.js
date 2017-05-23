@@ -22,6 +22,18 @@ export default [
       }
     ]
   },
+  // 练习错题照片
+  {
+    path: '/workbook/exercise/photo/:name/:chapterId/:id',
+    name: 'workbook_exercise_error_photo',
+    component: r => require.ensure([], () => r(require('./photo')), '/workbook/exercise/photo')
+  },
+  // 练习册错题上传
+  {
+    path: '/workbook/exercise/upload/:name/:chapterId/:id',
+    name: 'workbook_exercise_error_upload',
+    component: r => require.ensure([], () => r(require('./upload')), '/workbook/exercise/upload')
+  },
   // 练习册章节
   {
     path: '/workbook/chapter/:name/:id',

@@ -9,6 +9,7 @@
               <section style="display:inline-block;" @click="_changeAnswer(pindex,index,1)">
                 <i v-if="itemC.answer" class="icon iconfont icon-correct" style="color:#4BB7AA"></i>
                 <i v-else class="icon iconfont icon-error" style="color:#4BB7AA"></i>
+               
               </section>
             </p>
           </cell>
@@ -19,9 +20,10 @@
         <group :title="item.name">
           <cell v-for="(itemB, index) in item.b" :title="itemB.name" :key="itemB.id">
             <div slot="default">
-              <section style="display:inline-block;" @click="_changeAnswer(pindex,index,2)">
-                <i v-if="itemB.answer" class="icon iconfont exampleIcon icon-correct" style="color:#4BB7AA"></i>
-                <i v-else class="icon iconfont icon-error exampleIcon" style="color:#FF7043"></i>
+              <section style="display:inline-block;">
+                <i v-if="!itemB.answer"class="icon iconfont icon-camera"></i>
+                <i @click="_changeAnswer(pindex,index,2)" v-if="itemB.answer" class="icon iconfont exampleIcon icon-correct" style="color:#4BB7AA"></i>
+                <i @click="_changeAnswer(pindex,index,2)"v-else class="icon iconfont icon-error exampleIcon" style="color:#FF7043"></i>
               </section>
             </div>
           </cell>
@@ -121,3 +123,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.icon-camera{
+  color:#4BB7AA;padding-right:10px;position:relative;top:5px;
+}
+</style>
