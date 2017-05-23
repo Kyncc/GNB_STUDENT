@@ -7,7 +7,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 .icon-home:before { content: "\e612"; }
 
 .icon-correct:before { content: "\e60f"; }
@@ -30,9 +29,11 @@
 
 .icon-share:before { content: "\e609"; }
 
-.icon-collect:before { content: "\e60b"; }
+.icon-collect1:before { content: "\e60b"; }
 
 .icon-qq1:before { content: "\e722"; }
+
+.icon-refresh:before { content: "\e662"; }
 
 .icon-error:before { content: "\e610"; }
 
@@ -54,7 +55,7 @@
 
 .icon-brush1:before { content: "\e617"; }
 
-.icon-collect1:before { content: "\e604"; }
+.icon-collect:before { content: "\e604"; }
 
 .icon-correct2:before { content: "\e680"; }
 
@@ -88,5 +89,4 @@
 
 .icon-ban:before { content: "\e90c"; }
 
-
-
+.icon-yishangchuan:before { content: "\e614"; }
