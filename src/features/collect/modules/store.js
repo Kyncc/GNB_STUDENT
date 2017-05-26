@@ -5,13 +5,11 @@ import * as actions from './actions'
 const state = {
   math: {
     list: [],
-    isReset: true,
     offset: '',
     scroll: 0
   },
   physics: {
     list: [],
-    isReset: true,
     offset: '',
     scroll: 0
   }
@@ -33,7 +31,6 @@ const mutations = {
   },
   [types.COLLECT_RELOAD] (state, payload) {
     state[payload.subject]['list'] = []
-    state[payload.subject]['isReset'] = true
     state[payload.subject]['offset'] = ''
     state[payload.subject]['scroll'] = 0
   }

@@ -1,11 +1,11 @@
 <template>
   <div>
     <group>
-      <card>
+      <card v-for='(error, index) in errorMath.list' :key='index'>
         <div class="weui-panel__hd" slot="header">
           <flexbox>
-            <flexbox-item :span="8" style="color:#4bb7aa">来源：精英网</flexbox-item>
-            <flexbox-item :span="4" style="text-align:right">2016-04-18</flexbox-item>
+            <flexbox-item :span="8" style="color:#4bb7aa">来源：{{error.from}}</flexbox-item>
+            <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
           </flexbox>
         </div>
         <div slot="content" @click="show()">
@@ -15,8 +15,8 @@
           <div class="weui-cell">
             <div class="weui-cell__bd" style="text-align:right">
               <x-button mini type="primary" @click.native="showErrorPopup=true">错误类型</x-button>
-              <x-button mini plain type="primary" >参考例题</x-button>
-              <x-button mini plain type="primary"  @click.native="showCommentPopup=true">查看点评</x-button>
+              <x-button mini plain type="primary">参考例题</x-button>
+              <x-button mini plain type="primary" @click.native="showCommentPopup=true">查看点评</x-button>
             </div>
           </div>
         </div>
@@ -37,15 +37,15 @@
     <div v-transfer-dom>
       <popup v-model="showErrorPopup" class="checker-popup">
         <div style="padding:10px 10px 0 10px;">
-          <checker v-model="check" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
-            <checker-item value="花跟叶" @on-item-click="onItemClick">审题不清</checker-item>
-            <checker-item value="鸟与树" @on-item-click="onItemClick">概念模糊</checker-item>
-            <checker-item value="我和你" @on-item-click="onItemClick">思路不清</checker-item>
-            <checker-item value="运算错误" @on-item-click="onItemClick">运算错误</checker-item>
-            <checker-item value="粗心大意" @on-item-click="onItemClick">粗心大意</checker-item>
-            <checker-item value="方法不对" @on-item-click="onItemClick">方法不对</checker-item>
-            <checker-item value="时间不够" @on-item-click="onItemClick">时间不够</checker-item>
-            <checker-item value="我不知道" @on-item-click="onItemClick">我不知道</checker-item>
+          <checker type="radio" v-model="errorType" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
+            <checker-item value="1" @on-item-click="onItemClick">审题不清</checker-item>
+            <checker-item value="2" @on-item-click="onItemClick">概念模糊</checker-item>
+            <checker-item value="3" @on-item-click="onItemClick">思路不清</checker-item>
+            <checker-item value="4" @on-item-click="onItemClick">运算错误</checker-item>
+            <checker-item value="5" @on-item-click="onItemClick">粗心大意</checker-item>
+            <checker-item value="6" @on-item-click="onItemClick">方法不对</checker-item>
+            <checker-item value="7" @on-item-click="onItemClick">时间不够</checker-item>
+            <checker-item value="0" @on-item-click="onItemClick">我不知道</checker-item>
           </checker>
         </div>
       </popup>
@@ -73,7 +73,7 @@ export default {
     Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, Popup, Scroller
   },
   computed: {
-    ...mapGetters([''])
+    ...mapGetters(['errorMath'])
   },
   data () {
     return {
@@ -81,6 +81,7 @@ export default {
       loadingNoData: false,
       showCommentPopup: false,
       showErrorPopup: false,
+      errorType: '',
       check: '花跟叶',
       list: [{
         w: 800,
@@ -99,7 +100,18 @@ export default {
     TransferDom
   },
   methods: {
-    ...mapActions(['setCollectScroll']),
+    ...mapActions(['setCollectScroll', 'getError', 'clearError']),
+    _getData () {
+      this.loading = true
+      this.getError().then((res) => {
+        if (res.data.data.list.length < 10) {
+          this.loadingNoData = true
+        }
+        this.loading = false
+      }).catch(() => {
+        this.loading = false
+      })
+    },
     show () {
       this.$refs.previewer.show()
     },
@@ -110,13 +122,17 @@ export default {
     },
     onItemClick (value, disabled) {
       if (!this.disabled) {
+        this.errorType = ''
         this.showErrorPopup = false
       }
     }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      // vm.$parent.$refs.viewBoxBody.scrollTop = vm.collectMath.scroll
+      if (from.name === 'index') {
+        vm.clearError()
+        vm._getData()
+      }
     })
   },
   beforeRouteLeave (to, from, next) {
