@@ -223,11 +223,6 @@ export const workbookExCameraDel = ({ commit }, id) => {
   commit(types.WORKBOOK_EXERCISE_ERROR_DEL, id)
 }
 
-/** 章节练习题照片增加 */
-export const workbookExCameraAdd = ({ commit }, data) => {
-  commit(types.WORKBOOK_EXERCISE_ERROR_CAMERA, data)
-}
-
 /** 提交章节错误练习题 */
 export const workbookExErrorUpload = ({state, rootState, commit}, params) => {
   Vue.$vux.loading.show({text: '请稍候'})
@@ -236,10 +231,10 @@ export const workbookExErrorUpload = ({state, rootState, commit}, params) => {
       method: 'post',
       url: 'workbook/exercise/uploader',
       data: {
-        'id': params.id,
+        'wbeid': rootState.route.params.wbeid,
         'img': state.exercise.cameraList,
         'type': params.type,
-        'chapterId': rootState.route.params.id,
+        'chapterId': rootState.route.params.chapterId,
         'token': rootState.common.user.token
       }
     })

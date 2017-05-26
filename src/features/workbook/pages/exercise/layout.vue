@@ -43,7 +43,7 @@ export default {
     ...mapActions(['getWorkbookExercise', 'workbookExerciseClear'])
   },
   beforeRouteEnter (to, from, next) {
-    if (from.name === 'workbook_chapter') {
+    if (from.name === 'workbook_chapter' || from.name === 'workbook_exercise_error_upload') {
       next(vm => {
         vm.workbookExerciseClear()
         vm.getWorkbookExercise().then(() => {

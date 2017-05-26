@@ -71,14 +71,14 @@ const mutations = {
     }
   },
   [types.WORKBOOK_EXERCISE_ERROR_ADD] (state, data) {
-    state.exercise.camera = data
+    state.exercise.cameraList.push(data)
   },
   [types.WORKBOOK_EXERCISE_ERROR_DEL] (state, index) {
     state.exercise.cameraList.splice(index, 1)
   },
-  [types.WORKBOOK_EXERCISE_ERROR_CAMERA] (state, data) {
-    state.exercise.cameraList.push(data)
-  },
+  // [types.WORKBOOK_EXERCISE_ERROR_CAMERA] (state, data) {
+  //   state.exercise.cameraList.push(data)
+  // },
   [types.WORKBOOK_EXERCISE_ERROR_UPLOAD] (state) {
     state.exercise.camera = ''
     state.exercise.cameraList = []
