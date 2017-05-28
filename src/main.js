@@ -21,6 +21,21 @@ Vue.filter('ymd', (value) => {
   return dateFormat(new Date(Number(`${value}000`)), 'YYYY-MM-DD')
 })
 
+// 时间戳转换
+Vue.filter('errorType', (value) => {
+  switch (value) {
+    case -1: return '错误类型'
+    case 0: return '审题不清'
+    case 1: return '概念模糊'
+    case 2: return '思路不清'
+    case 3: return '运算错误'
+    case 4: return '粗心大意'
+    case 5: return '方法不对'
+    case 6: return '时间不够'
+    case 7: return '我不知道'
+  }
+})
+
 // 在首页 返回键失效其他页面则直接返回上一页
 document.addEventListener('plusready', () => {
   let first = null

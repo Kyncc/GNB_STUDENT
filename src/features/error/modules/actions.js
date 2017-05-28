@@ -22,16 +22,15 @@ export const getError = ({rootState, commit, state}, params) => {
   })
 }
 
-/** 设置例题错误 */
-export const setErrorWrong = ({rootState, commit, state}, params) => {
+/** 设置例题错误类型 */
+export const setErrorType = ({rootState, commit, state}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'error/setExample',
+      url: 'error/type',
       data: {
         token: rootState.common.user.token,
-        eid: rootState.route.params.eid,
-        id: rootState.route.params.id,
+        wbeid: params.wbeid,
         chapterId: params.chapterId,
         type: params.type
       }
@@ -51,8 +50,9 @@ export const setErrorScroll = ({rootState, commit}, height) => {
 
 /** 清空错题本 */
 export const clearError = ({rootState, commit}) => {
-  let subject = (rootState.route.params.subjectId === '2' ? 'math' : 'physics')
-  commit(types.ERROR_RELOAD, {subject: subject})
+  // let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
+  commit(types.ERROR_RELOAD, {subject: 'math'})
+  commit(types.ERROR_RELOAD, {subject: 'physics'})
 }
 
 /** 获取错题详情 */

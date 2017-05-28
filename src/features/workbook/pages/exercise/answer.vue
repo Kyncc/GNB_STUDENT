@@ -20,7 +20,7 @@
           <cell v-for="(itemB, index) in item.b" :title="itemB.name" :key="itemB.id">
             <div slot="default">
               <section style="display:inline-block;">
-                <i v-if="!itemB.isUpload" class="icon iconfont icon-camera" 
+                <i v-if="!itemB.isUpload && !itemB.answer" class="icon iconfont icon-camera" 
                   @click="$router.push({name: 'workbook_exercise_error_upload', params: {eid: itemB.eid, wbeid: itemB.id, chapterId: Route.params.id}})">
                 </i>
                 <i @click="_changeAnswer(pindex,index,2)" v-if="itemB.answer" class="icon iconfont exampleIcon icon-correct" style="color:#4BB7AA"></i>

@@ -8,15 +8,19 @@
             <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
           </flexbox>
         </div>
-        <div slot="content" @click="show()">
-          <img src="http://img.guinaben.com/workbookPlatePic/f1b3233be034496999a7cb894845eace-stem-088838.png-errorList"/>
+        <!--上传错题则显示题目，否则显示题干-->
+        <div v-if='!error.isUpload' slot="content" @click="show(error.exerciseImg)">
+          <img v-lazy="error.exerciseImg.src+'-errorList'"/>
+        </div>
+        <div v-else slot="content" @click="show(error.errorImg[0])">
+          <img v-lazy="error.errorImg[0].src+'-errorList'"/>
         </div>
         <div slot="footer">
           <div class="weui-cell">
             <div class="weui-cell__bd" style="text-align:right">
-              <x-button mini type="primary" @click.native="showErrorPopup=true">错误类型</x-button>
-              <x-button mini plain type="primary">参考例题</x-button>
-              <x-button mini plain type="primary" @click.native="showCommentPopup=true">查看点评</x-button>
+              <x-button mini type="primary" :plain="error.errorType !== -1" @click.native="_showErrorPopup(error, index)">{{error.errorType | errorType}}</x-button>
+              <!--<x-button mini plain type="primary">参考例题</x-button>-->
+              <x-button mini plain type="primary" @click.native="_showCommentPopup(error)">查看点评</x-button>
             </div>
           </div>
         </div>
@@ -26,7 +30,7 @@
       <spinner v-if="loading" type="lines"></spinner>
       <div>
         <p style="font-size:16px;color:#4BB7AA" v-if="loadingNoData">已经加载全部错题~</p>
-        <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" >点我加载更多</p>
+        <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
       </div>
     </div>
     <!--照片放大 -->
@@ -37,7 +41,7 @@
     <div v-transfer-dom>
       <popup v-model="showErrorPopup" class="checker-popup">
         <div style="padding:10px 10px 0 10px;">
-          <checker type="radio" v-model="errorType" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
+          <checker type="radio" v-model="errorType.type" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
             <checker-item value="1" @on-item-click="onItemClick">审题不清</checker-item>
             <checker-item value="2" @on-item-click="onItemClick">概念模糊</checker-item>
             <checker-item value="3" @on-item-click="onItemClick">思路不清</checker-item>
@@ -55,7 +59,7 @@
       <popup v-model="showCommentPopup" height="200px" @on-first-show="resetScroller">
         <scroller height="200px" lock-x ref="scroller">
           <div>
-            <p v-for="i of 10">{{i}}</p>
+            <p v-for="i of comment">{{i}}</p>
           </div>
         </scroller>
       </popup>
@@ -81,12 +85,17 @@ export default {
       loadingNoData: false,
       showCommentPopup: false,
       showErrorPopup: false,
-      errorType: '',
-      check: '花跟叶',
+      errorType: {
+        chapterId: '',
+        wbeid: '',
+        type: '',
+        index: ''
+      },
+      comment: [],
       list: [{
-        w: 800,
-        h: 800,
-        src: `http://img.guinaben.com/workbookPlatePic/f1b3233be034496999a7cb894845eace-stem-088838.png-errorList`
+        w: 0,
+        h: 0,
+        src: ``
       }],
       options: {
         preload: [1, 1],
@@ -100,7 +109,7 @@ export default {
     TransferDom
   },
   methods: {
-    ...mapActions(['setCollectScroll', 'getError', 'clearError']),
+    ...mapActions(['setErrorScroll', 'getError', 'clearError', 'setErrorType']),
     _getData () {
       this.loading = true
       this.getError().then((res) => {
@@ -112,31 +121,63 @@ export default {
         this.loading = false
       })
     },
-    show () {
-      this.$refs.previewer.show()
+    show (img) {
+      this.list[0].w = img.width
+      this.list[0].h = img.height
+      this.list[0].src = img.src
+      this.$nextTick(() => {
+        this.$refs.previewer.show()
+      })
     },
     resetScroller () {
       this.$nextTick(() => {
         this.$refs.scroller.reset()
       })
     },
-    onItemClick (value, disabled) {
-      if (!this.disabled) {
-        this.errorType = ''
-        this.showErrorPopup = false
+    // 类型错误弹窗
+    _showErrorPopup (error, index) {
+      this.showErrorPopup = true
+      this.errorType.index = index
+      this.errorType.type = error.errorType
+      this.errorType.wbeid = error.wbeid
+      this.errorType.chapterId = error.chapterId
+    },
+    // 类型错误弹窗
+    _showCommentPopup (error) {
+      if (error.comment.length === 0) {
+        this.$vux.toast.show({text: '教师未点评!', type: 'text', time: 1000, position: 'bottom'})
+      } else {
+        this.comment = error.comment
+        this.showCommentPopup = true
+        this.resetScroller()
       }
+    },
+    // 选择错误类型
+    onItemClick (value) {
+      this.setErrorType({
+        chapterId: this.errorType.chapterId,
+        index: this.errorType.index,
+        type: value,
+        wbeid: this.errorType.wbeid
+      }).then(() => {
+        this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 500, position: 'bottom'})
+        this.showErrorPopup = false
+      })
     }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
       if (from.name === 'index') {
         vm.clearError()
-        vm._getData()
+        if (vm.errorMath.isReset) {
+          vm._getData()
+        }
       }
+      vm.$parent.$refs.viewBoxBody.scrollTop = vm.errorMath.scroll
     })
   },
   beforeRouteLeave (to, from, next) {
-    // this.setCollectScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setErrorScroll(this.$parent.$refs.viewBoxBody.scrollTop)
     next()
   }
 }
@@ -149,12 +190,12 @@ export default {
   padding: 5px 10px;
 }
 .check-item {
-  width:20%;
   background-color: #ddd;
   color: #222;
   font-size: 14px;
-  padding: 8px 12px;
-  margin-right: 10px;
+  padding: 8px 0;
+  width:32%;
+  margin-right: 0px;
   line-height: 18px;
   text-align:center;
   margin-bottom: 10px;
