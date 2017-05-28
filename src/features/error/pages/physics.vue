@@ -1,31 +1,29 @@
 <template>
   <div>
-    <group>
-      <card v-for='(error, index) in errorPhysics.list' :key='index'>
-        <div class="weui-panel__hd" slot="header">
-          <flexbox>
-            <flexbox-item :span="8" style="color:#4bb7aa">来源：{{error.from}}</flexbox-item>
-            <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
-          </flexbox>
-        </div>
-        <!--上传错题则显示题目，否则显示题干-->
-        <div v-if='!error.isUpload' slot="content" @click="show(error.exerciseImg)">
-          <img v-lazy="error.exerciseImg.src+'-errorList'"/>
-        </div>
-        <div v-else slot="content" @click="show(error.errorImg[0])">
-          <img v-lazy="error.errorImg[0].src+'-errorList'"/>
-        </div>
-        <div slot="footer">
-          <div class="weui-cell">
-            <div class="weui-cell__bd" style="text-align:right">
-              <x-button mini type="primary" :plain="error.errorType !== -1" @click.native="_showErrorPopup(error, index)">{{error.errorType | errorType}}</x-button>
-              <!--<x-button mini plain type="primary">参考例题</x-button>-->
-              <x-button mini plain type="primary" @click.native="_showCommentPopup(error)">查看点评</x-button>
-            </div>
+    <card v-for='(error, index) in errorPhysics.list' :key='index'>
+      <div class="weui-panel__hd" slot="header">
+        <flexbox>
+          <flexbox-item :span="8" style="color:#4bb7aa">来源：{{error.from}}</flexbox-item>
+          <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
+        </flexbox>
+      </div>
+      <!--上传错题则显示题目，否则显示题干-->
+      <div v-if='!error.isUpload' slot="content" @click="show(error.exerciseImg)">
+        <img v-lazy="error.exerciseImg.src+'-errorList'"/>
+      </div>
+      <div v-else slot="content" @click="show(error.errorImg[0])">
+        <img v-lazy="error.errorImg[0].src+'-errorList'"/>
+      </div>
+      <div slot="footer">
+        <div class="weui-cell">
+          <div class="weui-cell__bd" style="text-align:right">
+            <x-button mini type="primary" :plain="error.errorType !== -1" @click.native="_showErrorPopup(error, index)">{{error.errorType | errorType}}</x-button>
+            <!--<x-button mini plain type="primary">参考例题</x-button>-->
+            <x-button mini type="primary" @click.native="_showCommentPopup(error)">查看点评</x-button>
           </div>
         </div>
-      </card>
-    </group>
+      </div>
+    </card>
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="lines"></spinner>
       <div>
@@ -113,7 +111,7 @@ export default {
     _getData () {
       this.loading = true
       this.getError().then((res) => {
-        if (res.data.data.list.length < 10) {
+        if (!res.data.data.offset) {
           this.loadingNoData = true
         }
         this.loading = false
@@ -138,7 +136,7 @@ export default {
     _showErrorPopup (error, index) {
       this.showErrorPopup = true
       this.errorType.index = index
-      this.errorType.type = error.errorType
+      this.errorType.type = (error.type === -1 ? '' : error.type)
       this.errorType.wbeid = error.wbeid
       this.errorType.chapterId = error.chapterId
     },
@@ -154,6 +152,7 @@ export default {
     },
     // 选择错误类型
     onItemClick (value) {
+      this.showErrorPopup = false
       this.setErrorType({
         chapterId: this.errorType.chapterId,
         index: this.errorType.index,
@@ -161,7 +160,6 @@ export default {
         wbeid: this.errorType.wbeid
       }).then(() => {
         this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 500, position: 'bottom'})
-        this.showErrorPopup = false
       })
     }
   },

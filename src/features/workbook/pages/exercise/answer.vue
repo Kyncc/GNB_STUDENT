@@ -7,6 +7,9 @@
           <cell v-for="(itemC, index) in itemB.c" :title="itemC.name" :key="itemC.id">
             <p slot="default">
               <section style="display:inline-block;" @click="_changeAnswer(pindex,index,1)">
+                <i v-if="!itemC.isUpload && !itemC.answer" class="icon iconfont icon-camera" 
+                  @click="$router.push({name: 'workbook_exercise_error_upload', params: {eid: itemC.eid, wbeid: itemC.id, chapterId: Route.params.id}})">
+                </i>
                 <i v-if="itemC.answer" class="icon iconfont icon-correct" style="color:#4BB7AA"></i>
                 <i v-else class="icon iconfont icon-error" style="color:#4BB7AA"></i>
               </section>

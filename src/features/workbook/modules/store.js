@@ -80,6 +80,7 @@ const mutations = {
   //   state.exercise.cameraList.push(data)
   // },
   [types.WORKBOOK_EXERCISE_ERROR_UPLOAD] (state) {
+    state.exercise.isReset = true
     state.exercise.camera = ''
     state.exercise.cameraList = []
   },

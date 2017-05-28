@@ -25,14 +25,14 @@ Vue.filter('ymd', (value) => {
 Vue.filter('errorType', (value) => {
   switch (value) {
     case -1: return '错误类型'
-    case 0: return '审题不清'
-    case 1: return '概念模糊'
-    case 2: return '思路不清'
-    case 3: return '运算错误'
-    case 4: return '粗心大意'
-    case 5: return '方法不对'
-    case 6: return '时间不够'
-    case 7: return '我不知道'
+    case 1: return '审题不清'
+    case 2: return '概念模糊'
+    case 3: return '思路不清'
+    case 4: return '运算错误'
+    case 5: return '粗心大意'
+    case 6: return '方法不对'
+    case 7: return '时间不够'
+    case 0: return '我不知道'
   }
 })
 

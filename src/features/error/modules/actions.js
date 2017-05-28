@@ -24,6 +24,7 @@ export const getError = ({rootState, commit, state}, params) => {
 
 /** 设置例题错误类型 */
 export const setErrorType = ({rootState, commit, state}, params) => {
+  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -36,7 +37,7 @@ export const setErrorType = ({rootState, commit, state}, params) => {
       }
     })
     .then((response) => {
-      commit(types.ERROR_ERROR_TYPE, {index: params.index, type: params.type})
+      commit(types.ERROR_ERROR_TYPE, {subject: subject, index: params.index, type: params.type})
       resolve(response)
     })
   })
@@ -50,7 +51,6 @@ export const setErrorScroll = ({rootState, commit}, height) => {
 
 /** 清空错题本 */
 export const clearError = ({rootState, commit}) => {
-  // let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   commit(types.ERROR_RELOAD, {subject: 'math'})
   commit(types.ERROR_RELOAD, {subject: 'physics'})
 }
