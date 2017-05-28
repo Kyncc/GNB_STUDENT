@@ -37,20 +37,22 @@
     </div>
     <!--错误选择 -->
     <div v-transfer-dom>
-      <popup v-model="showErrorPopup" class="checker-popup">
-        <div style="padding:10px 10px 0 10px;">
-          <checker type="radio" :value="errorType.type.toString()" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
-            <checker-item value="1" @on-item-click="onItemClick">审题不清</checker-item>
-            <checker-item value="2" @on-item-click="onItemClick">概念模糊</checker-item>
-            <checker-item value="3" @on-item-click="onItemClick">思路不清</checker-item>
-            <checker-item value="4" @on-item-click="onItemClick">运算错误</checker-item>
-            <checker-item value="5" @on-item-click="onItemClick">粗心大意</checker-item>
-            <checker-item value="6" @on-item-click="onItemClick">方法不对</checker-item>
-            <checker-item value="7" @on-item-click="onItemClick">时间不够</checker-item>
-            <checker-item value="0" @on-item-click="onItemClick">我不知道</checker-item>
-          </checker>
-        </div>
-      </popup>
+        <popup v-model="showErrorPopup" class="checker-popup">
+          <group title='选择错误类型：'>
+            <div style="padding:10px 10px 0 10px;">
+              <checker type="radio" :value="errorType.type.toString()" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
+                <checker-item value="1" @on-item-click="onItemClick">审题不清</checker-item>
+                <checker-item value="2" @on-item-click="onItemClick">概念模糊</checker-item>
+                <checker-item value="3" @on-item-click="onItemClick">思路不清</checker-item>
+                <checker-item value="4" @on-item-click="onItemClick">运算错误</checker-item>
+                <checker-item value="5" @on-item-click="onItemClick">粗心大意</checker-item>
+                <checker-item value="6" @on-item-click="onItemClick">方法不对</checker-item>
+                <checker-item value="7" @on-item-click="onItemClick">时间不够</checker-item>
+                <checker-item value="0" @on-item-click="onItemClick">我不知道</checker-item>
+              </checker>
+            </div>
+          </group>
+        </popup>
     </div>
     <!--教师点评 -->
     <div v-transfer-dom>
@@ -187,12 +189,15 @@ export default {
 .popover-demo-content {
   padding: 5px 10px;
 }
+.checker-popup{
+  background: #fff;
+}
 .check-item {
   background-color: #ddd;
   color: #222;
   font-size: 14px;
   padding: 8px 0;
-  width:32%;
+  width:32.3%;
   margin-right: 0px;
   line-height: 18px;
   text-align:center;
