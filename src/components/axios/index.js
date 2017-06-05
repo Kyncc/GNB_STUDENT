@@ -14,7 +14,7 @@ axios.interceptors.request.use((config) => {
   }
   return config
 }, (error) => {
-  Vue.$vux.toast.show({text: '非法输入', type: 'text', time: 1000, position: 'bottom'})
+  Vue.$vux.toast.show({text: '非法输入', type: 'text', time: 1500, position: 'bottom'})
   return Promise.reject(error)
 })
 
@@ -22,7 +22,7 @@ axios.interceptors.response.use((res) => {
   // token失效得判断
   if (res.data.code === 401) {
     localStorage.removeItem('token')
-    Vue.$vux.toast.show({text: res.data.msg, type: 'warn', time: 500, isShowMask: true})
+    Vue.$vux.toast.show({text: res.data.msg, type: 'warn', time: 1500, isShowMask: true})
     setTimeout(() => {
       try {
         plus.runtime.restart() // 重启应用
@@ -32,12 +32,12 @@ axios.interceptors.response.use((res) => {
     }, 500)
     return Promise.reject(res)
   } else if (res.data.code !== 200) {
-    Vue.$vux.toast.show({text: res.data.msg, type: 'text', time: 1000, position: 'bottom'})
+    Vue.$vux.toast.show({text: res.data.msg, type: 'text', time: 1500, position: 'bottom'})
     return Promise.reject(res)
   }
   return res
 }, (error) => {
-  Vue.$vux.toast.show({text: '网络异常', type: 'text', time: 1000, position: 'bottom'})
+  Vue.$vux.toast.show({text: '网络异常', type: 'text', time: 1500, position: 'bottom'})
   return Promise.reject(error)
 })
 

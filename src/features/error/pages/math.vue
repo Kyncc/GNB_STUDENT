@@ -145,7 +145,7 @@ export default {
     // 类型错误弹窗
     _showCommentPopup (error) {
       if (error.comment.length === 0) {
-        this.$vux.toast.show({text: '教师未点评!', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '教师未点评!', type: 'text', time: 1500, position: 'bottom'})
       } else {
         this.comment = error.comment
         this.showCommentPopup = true
@@ -161,7 +161,7 @@ export default {
         type: value,
         wbeid: this.errorType.wbeid
       }).then(() => {
-        this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 500, position: 'bottom'})
+        this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 1500, position: 'bottom'})
       })
     }
   },

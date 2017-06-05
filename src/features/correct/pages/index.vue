@@ -56,11 +56,11 @@ export default {
     ...mapActions(['postCorrect']),
     _commit () {
       if (this.type[0].length) {
-        this.$vux.toast.show({text: '请选择纠错类型', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '请选择纠错类型', type: 'text', time: 1500, position: 'bottom'})
         return
       }
       if (this.type.indexOf(4) >= 0 && this.content.length === 0) {
-        this.$vux.toast.show({text: '请填写纠错内容', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '请填写纠错内容', type: 'text', time: 1500, position: 'bottom'})
         return
       }
       let params = {

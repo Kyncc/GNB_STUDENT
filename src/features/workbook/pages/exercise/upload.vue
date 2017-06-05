@@ -74,9 +74,9 @@ export default {
     },
     _upload () {
       if (!this.workbookExercise.cameraList.length) {
-        this.$vux.toast.show({text: '您还未拍照', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '您还未拍照', type: 'text', time: 1500, position: 'bottom'})
       } else if (this.type === '') {
-        this.$vux.toast.show({text: '您还未选择出错原因', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '您还未选择出错原因', type: 'text', time: 1500, position: 'bottom'})
       } else {
         this.workbookExErrorUpload({type: this.type}).then(() => {
           history.go(-1)
@@ -92,6 +92,7 @@ export default {
     if (from.name === 'workbook_exercise_answer') {
       next(vm => {
         vm.workbookExerciseClear()
+        vm.type = ''
       })
     } else {
       next()

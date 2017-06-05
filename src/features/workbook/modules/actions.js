@@ -56,7 +56,7 @@ export const workbookAdd = ({rootState, commit, state}, params) => {
     })
     .then((response) => {
       commit(types.WORKBOOK_ADD, {type: params.type, pindex: params.pindex, index: params.index})
-      Vue.$vux.toast.show({text: '增加习题册成功', type: 'success', isShowMask: true, time: 1000})
+      Vue.$vux.toast.show({text: '增加习题册成功', type: 'success', isShowMask: true, time: 1500})
       resolve(response)
     })
   })
@@ -76,7 +76,7 @@ export const workbookDel = ({rootState, commit, state}, params) => {
     })
     .then((response) => {
       commit(types.WORKBOOK_DEL, {type: params.type, pindex: params.pindex, index: params.index})
-      Vue.$vux.toast.show({text: '删除习题册成功', type: 'success', isShowMask: true, time: 1000})
+      Vue.$vux.toast.show({text: '删除习题册成功', type: 'success', isShowMask: true, time: 1500})
       resolve(response)
     })
   })
@@ -158,7 +158,7 @@ export const WorkbookExercisePost = ({state, rootState, commit}, params) => {
     })
     .then((response) => {
       Vue.$vux.loading.hide()
-      Vue.$vux.toast.show({text: '提交成功', type: 'success', isShowMask: true, time: 1000})
+      Vue.$vux.toast.show({text: '提交成功', type: 'success', isShowMask: true, time: 1500})
       commit(types.WORKBOOK_EXERCISE_POST, response.data.data)
       commit(types.WORKBOOK_CHAPTER_CLEAR)
       resolve(response)
@@ -240,7 +240,7 @@ export const workbookExErrorUpload = ({state, rootState, commit}, params) => {
     })
     .then((response) => {
       Vue.$vux.loading.hide()
-      Vue.$vux.toast.show({text: '提交成功', type: 'success', isShowMask: true, time: 1000})
+      Vue.$vux.toast.show({text: '提交成功', type: 'success', isShowMask: true, time: 1500})
       commit(types.WORKBOOK_EXERCISE_ERROR_UPLOAD, response.data.data)
       resolve(response)
     })

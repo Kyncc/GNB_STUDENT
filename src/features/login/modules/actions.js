@@ -15,7 +15,7 @@ export const getRegisterCode = ({commit}, params) => {
     })
     .then((response) => {
       commit(types.REGISTER_MESSAGE, response.data)
-      Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
+      Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1500, position: 'bottom'})
       resolve(response)
     })
   })
@@ -50,7 +50,7 @@ export const getForgetCode = ({ commit }, params) => {
     })
     .then((response) => {
       commit(types.FORGET_MESSAGE, response.data)
-      Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
+      Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1500, position: 'bottom'})
       resolve(response)
     })
   })
@@ -83,7 +83,7 @@ export const resetPwd = ({ commit }, params) => {
       }
     })
     .then((response) => {
-      // Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
+      // Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1500, position: 'bottom'})
       commit('USER_TOKEN', response.data.token)
       resolve(response)
     })

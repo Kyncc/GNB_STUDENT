@@ -78,7 +78,7 @@ export default {
           mobile: this.mobile
         })
         .then(() => {
-          this.$vux.toast.show({text: '注册码已发送', type: 'text', time: 1000, position: 'bottom'})
+          this.$vux.toast.show({text: '注册码已发送', type: 'text', time: 1500, position: 'bottom'})
         })
       }
     },
@@ -87,7 +87,7 @@ export default {
         this.$router.replace({path: 'setPassword', registerMobile: this.mobile})
       } else {
         this.code = ''
-        this.$vux.toast.show({text: '注册码已发送', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '注册码已发送', type: 'text', time: 1500, position: 'bottom'})
       }
     },
     _getCode () {
@@ -115,7 +115,7 @@ export default {
       //   if (response.data.data.isTeacher) {
       //     this.confirmShow = true
       //   } else {
-      //     this.$vux.toast.show({text: '注册码已发送', type: 'text', time: 1000, position: 'bottom'})
+      //     this.$vux.toast.show({text: '注册码已发送', type: 'text', time: 1500, position: 'bottom'})
       //   }
       // })
     }

@@ -14,7 +14,7 @@ export const updateAdvice = ({rootState, commit}, params) => {
       }
     })
     .then((response) => {
-      Vue.$vux.toast.show({text: '感谢您的反馈！', type: 'text', time: 1000, position: 'bottom'})
+      Vue.$vux.toast.show({text: '感谢您的反馈！', type: 'text', time: 1500, position: 'bottom'})
       resolve(response)
     })
   })

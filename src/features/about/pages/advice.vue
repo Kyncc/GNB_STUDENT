@@ -47,7 +47,7 @@ export default {
           }, 300)
         })
       } else {
-        this.$vux.toast.show({text: '请完善内容', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '请完善内容', type: 'text', time: 1500, position: 'bottom'})
       }
     }
   },

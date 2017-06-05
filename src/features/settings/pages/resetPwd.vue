@@ -30,7 +30,7 @@ export default {
     ...mapActions(['updatePwd']),
     _complete () {
       if (this.oldPwd === this.newPwd) {
-        this.$vux.toast.show({text: '不可与旧密码一致', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '不可与旧密码一致', type: 'text', time: 1500, position: 'bottom'})
       } else {
         if (this.newPwd === this.repeatPwd) {
           this.updatePwd({
@@ -38,7 +38,7 @@ export default {
             pwd: this.newPwd
           })
           .then(() => {
-            this.$vux.toast.show({text: '修改成功', type: 'text', time: 1000, position: 'bottom'})
+            this.$vux.toast.show({text: '修改成功', type: 'text', time: 1500, position: 'bottom'})
             setTimeout(() => {
               try {
                 localStorage.removeItem('token')
@@ -49,7 +49,7 @@ export default {
             }, 500)
           })
         } else {
-          this.$vux.toast.show({text: '两次密码输入不一致', type: 'text', time: 1000, position: 'bottom'})
+          this.$vux.toast.show({text: '两次密码输入不一致', type: 'text', time: 1500, position: 'bottom'})
         }
       }
     }

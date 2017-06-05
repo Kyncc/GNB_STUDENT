@@ -37,7 +37,7 @@ export default {
       this.postMyClassInto({
         classCode: code
       }).then(() => {
-        this.$vux.toast.show({text: '申请成功', type: 'text', time: 1000})
+        this.$vux.toast.show({text: '申请成功', type: 'text', time: 1500})
         history.back()
       })
     },

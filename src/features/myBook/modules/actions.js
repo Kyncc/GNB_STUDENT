@@ -56,7 +56,7 @@ export const myBookAdd = ({rootState, commit, state}, params) => {
     })
     .then((response) => {
       commit(types.MYBOOK_ADD, {type: params.type, pindex: params.pindex, index: params.index})
-      Vue.$vux.toast.show({text: '增加习题册成功', type: 'success', isShowMask: true, time: 1000})
+      Vue.$vux.toast.show({text: '增加习题册成功', type: 'success', isShowMask: true, time: 1500})
       resolve(response)
     })
   })
@@ -76,7 +76,7 @@ export const myBookDel = ({rootState, commit, state}, params) => {
     })
     .then((response) => {
       commit(types.MYBOOK_DEL, {type: params.type, pindex: params.pindex, index: params.index})
-      Vue.$vux.toast.show({text: '删除习题册成功', type: 'success', isShowMask: true, time: 1000})
+      Vue.$vux.toast.show({text: '删除习题册成功', type: 'success', isShowMask: true, time: 1500})
       resolve(response)
     })
   })

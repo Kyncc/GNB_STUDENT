@@ -52,7 +52,7 @@ export default {
     },
     _upload () {
       if (!this.workbookUploader.list.length) {
-        this.$vux.toast.show({text: '您还未拍照', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '您还未拍照', type: 'text', time: 1500, position: 'bottom'})
         return
       }
       this.workbookUpload().then(() => {
