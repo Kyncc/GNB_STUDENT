@@ -58,16 +58,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['workbookExCameraAdd', 'workbookExErrorUpload', 'workbookExCameraDel', 'workbookExCamera']),
+    ...mapActions(['workbookExErrorUpload', 'workbookExCameraDel', 'workbookExCamera', 'workbookExerciseClear']),
     _add () {
-      this.$router.push({'name': 'workbook_exercise_error_photo'})
-      // let cmr = plus.camera.getCamera()
-      // cmr.captureImage((p) => {
-      //   plus.io.resolveLocalFileSystemURL(p, (entry) => {
-      //     this.workbookExCamera(entry.toLocalURL())
-      //     this.$router.push({'name': 'workbook_exercise_error_photo'})
-      //   })
-      // })
+      // this.$router.push({'name': 'workbook_exercise_error_photo'})
+      let cmr = plus.camera.getCamera()
+      cmr.captureImage((p) => {
+        plus.io.resolveLocalFileSystemURL(p, (entry) => {
+          this.workbookExCamera(entry.toLocalURL())
+          this.$router.push({'name': 'workbook_exercise_error_photo'})
+        })
+      })
     },
     _del (index) {
       this.workbookExCameraDel(index)
@@ -86,6 +86,16 @@ export default {
   },
   computed: {
     ...mapGetters(['workbookExercise', 'Route'])
+  },
+  beforeRouteEnter (to, from, next) {
+    // 章节练习进来清空
+    if (from.name === 'workbook_exercise_answer') {
+      next(vm => {
+        vm.workbookExerciseClear()
+      })
+    } else {
+      next()
+    }
   }
 }
 </script>

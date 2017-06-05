@@ -52,6 +52,7 @@ const mutations = {
   },
   [types.WORKBOOK_EXERCISE_CLEAR] (state) {
     state.exercise.list = []
+    state.exercise.cameraList = []
     state.exercise.isReset = true
     state.uploader.list = []
     state.uploader.camera = ''

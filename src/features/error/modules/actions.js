@@ -122,4 +122,3 @@ export const setErrorExampleWrong = ({rootState, commit, state}, params) => {
     })
   })
 }
-

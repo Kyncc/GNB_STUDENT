@@ -59,4 +59,3 @@ export const getMessageCorrect = ({ rootState, commit }, params) => {
 export const clearMessage = ({ commit }) => {
   commit(types.MESSAGE_CLEAR)
 }
-

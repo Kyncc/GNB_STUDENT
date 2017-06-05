@@ -37,7 +37,9 @@ export default {
     }
   },
   activated () {
-    this.cropper ? this.cropper.destroy() : ''
+    if (this.cropper) {
+      this.cropper.destroy()
+    }
     let minHeight = document.documentElement.clientHeight - 46
     this.cropper = new Cropper(this.$refs.result, {
       aspectRatio: '1/1',

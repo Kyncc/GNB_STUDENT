@@ -108,7 +108,9 @@ export default {
         vm.induceListClear({type: 'total'})
       }
       // 是否需要加载
-      vm.induceTotal.isReset ? vm._getData() : ''
+      if (vm.induceTotal.isReset) {
+        vm._getData()
+      }
       vm.$parent.$refs.viewBoxBody.scrollTop = vm.induceTotal.scroll
     })
   },
