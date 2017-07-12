@@ -117,7 +117,7 @@ export default {
         this.setHeadImg(e.files[0])
         this.$router.push({name: 'settings_photo'})
       }, () => {
-        this.$vux.toast.show({text: '您已取消选择图片', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '您已取消选择图片', type: 'text', time: 1500, position: 'bottom'})
       }, {
         filter: 'image',
         multiple: true

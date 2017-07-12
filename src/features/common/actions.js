@@ -4,7 +4,7 @@ import * as types from './mutationTypes'
 
 /**  获取用户信息 */
 export const getUserInfo = ({ rootState, commit }) => {
-  Vue.$vux.loading.show({text: '请稍候'})
+  Vue.$vux.loading.show({ text: '请稍候' })
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -13,20 +13,20 @@ export const getUserInfo = ({ rootState, commit }) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      commit(types.USERINFO, response.data.data)
-      resolve(response)
-      Vue.$vux.loading.hide()
-    })
-    .catch(() => {
-      Vue.$vux.loading.hide()
-    })
+      .then((response) => {
+        commit(types.USERINFO, response.data.data)
+        resolve(response)
+        Vue.$vux.loading.hide()
+      })
+      .catch(() => {
+        Vue.$vux.loading.hide()
+      })
   })
 }
 
 /** 设置用户信息 */
-export const setUserInfo = ({rootState, commit, dispatch}, params) => {
-  Vue.$vux.loading.show({text: '请稍候'})
+export const setUserInfo = ({ rootState, commit, dispatch }, params) => {
+  Vue.$vux.loading.show({ text: '请稍候' })
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -36,19 +36,19 @@ export const setUserInfo = ({rootState, commit, dispatch}, params) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      Vue.$vux.loading.hide()
-      resolve(response)
-    })
-    .catch(() => {
-      Vue.$vux.loading.hide()
-    })
+      .then((response) => {
+        Vue.$vux.loading.hide()
+        resolve(response)
+      })
+      .catch(() => {
+        Vue.$vux.loading.hide()
+      })
   })
 }
 
 /** 获取用户token */
 export const getToken = ({ commit }, params) => {
-  Vue.$vux.loading.show({text: '请稍候'})
+  Vue.$vux.loading.show({ text: '请稍候' })
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -57,21 +57,21 @@ export const getToken = ({ commit }, params) => {
         ...params
       }
     })
-    .then((response) => {
-      commit('USER_TOKEN', response.data.token)
-      Vue.$vux.loading.hide()
-      resolve(response)
-    })
-    .catch((error) => {
-      Vue.$vux.loading.hide()
-      reject(error)
-    })
+      .then((response) => {
+        commit('USER_TOKEN', response.data.token)
+        Vue.$vux.loading.hide()
+        resolve(response)
+      })
+      .catch((error) => {
+        Vue.$vux.loading.hide()
+        reject(error)
+      })
   })
 }
 
 /** *获得课本版本信息 */
-export const getTextbookVersion = ({commit}, params) => {
-  Vue.$vux.loading.show({text: '请稍候'})
+export const getTextbookVersion = ({ commit }, params) => {
+  Vue.$vux.loading.show({ text: '请稍候' })
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -80,15 +80,15 @@ export const getTextbookVersion = ({commit}, params) => {
         grade: params.grade
       }
     })
-    .then((response) => {
-      Vue.$vux.loading.hide()
-      commit(types.TEXTBOOK_VERSION, response.data.data)
-      resolve(response)
-    })
-    .catch((error) => {
-      Vue.$vux.loading.hide()
-      reject(error)
-    })
+      .then((response) => {
+        Vue.$vux.loading.hide()
+        commit(types.TEXTBOOK_VERSION, response.data.data)
+        resolve(response)
+      })
+      .catch((error) => {
+        Vue.$vux.loading.hide()
+        reject(error)
+      })
   })
 }
 
@@ -102,10 +102,10 @@ export const getUserNews = ({ rootState, commit }) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      commit(types.USER_NEW_MESSAGE, response.data.data)
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.USER_NEW_MESSAGE, response.data.data)
+        resolve(response)
+      })
   })
 }
 
@@ -115,8 +115,8 @@ export const setHeadImg = ({ commit }, data) => {
 }
 
 /** 上传头像 */
-export const uploadHeadImg = ({rootState, commit, dispatch}, params) => {
-  Vue.$vux.loading.show({text: '请稍候'})
+export const uploadHeadImg = ({ rootState, commit, dispatch }, params) => {
+  Vue.$vux.loading.show({ text: '请稍候' })
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -126,16 +126,16 @@ export const uploadHeadImg = ({rootState, commit, dispatch}, params) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      commit(types.USERPHOTO_POST, response.data.data)
-      dispatch('getUserInfo')
-      Vue.$vux.loading.hide()
-      resolve(response)
-    })
-    .catch((error) => {
-      Vue.$vux.loading.hide()
-      reject(error)
-    })
+      .then((response) => {
+        commit(types.USERPHOTO_POST, response.data.data)
+        dispatch('getUserInfo')
+        Vue.$vux.loading.hide()
+        resolve(response)
+      })
+      .catch((error) => {
+        Vue.$vux.loading.hide()
+        reject(error)
+      })
   })
 }
 
@@ -149,14 +149,14 @@ export const getSwiperInfo = ({ rootState, commit }) => {
         id: rootState.route.params.id
       }
     })
-    .then((response) => {
-      commit(types.SWIPER_INFO, response.data.data)
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.SWIPER_INFO, response.data.data)
+        resolve(response)
+      })
   })
 }
 
 /** 清空轮播文案 */
 export const swiperInfoClear = ({ commit }) => {
-  commit(types.SWIPER_INFO, {title: '', article: ''})
+  commit(types.SWIPER_INFO, { title: '', article: '' })
 }

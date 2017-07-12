@@ -40,14 +40,13 @@ export default {
           title: this.title,
           content: this.content,
           contact: this.contact
-        })
-        .then(() => {
+        }).then(() => {
           setTimeout(() => {
             this.$router.push('adviceHistory')
           }, 300)
         })
       } else {
-        this.$vux.toast.show({text: '请完善内容', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '请完善内容', type: 'text', time: 1500, position: 'bottom'})
       }
     }
   },

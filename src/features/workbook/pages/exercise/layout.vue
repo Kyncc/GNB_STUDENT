@@ -43,18 +43,16 @@ export default {
     ...mapActions(['getWorkbookExercise', 'workbookExerciseClear'])
   },
   beforeRouteEnter (to, from, next) {
-    if (from.name === 'workbook_chapter') {
-      next(vm => {
+    next(vm => {
+      if (from.name === 'workbook_chapter' || vm.workbookExercise.isReset) {
         vm.workbookExerciseClear()
         vm.getWorkbookExercise().then(() => {
           next()
         }).catch(() => {
           this.$router.go(-1)
         })
-      })
-    } else {
-      next()
-    }
+      }
+    })
   }
 }
 </script>

@@ -12,6 +12,11 @@ export default {
       path: 'math',
       name: 'error_math',
       component: r => require.ensure([], () => r(require('./pages/math')), '/error/math')
+    },
+    {
+      path: 'detail/:chapterId/:eid/:id',
+      name: 'error_detail',
+      component: r => require.ensure([], () => r(require('./pages/detail')), '/error/detail')
     }
   ]
 }

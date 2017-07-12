@@ -23,6 +23,9 @@ let state = {
   },
   exercise: {
     list: [],
+    cameraList: [],
+    // camera: 'https://blog.ygxdxx.com/img/random/material-2.png',
+    camera: '',
     scroll: 0,
     isReset: false
   }

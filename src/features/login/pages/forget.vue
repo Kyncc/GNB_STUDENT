@@ -66,7 +66,7 @@ export default {
         this.$router.replace('resetPassword')
       } else {
         this.code = ''
-        this.$vux.toast.show({text: '错误的验证码', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '错误的验证码', type: 'text', time: 1500, position: 'bottom'})
       }
     },
     _getCode () {

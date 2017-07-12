@@ -50,8 +50,7 @@ export default {
           physics: this.physics
         },
         grade: this.grade
-      })
-      .then(() => {
+      }).then(() => {
         this.$router.replace('/')
       })
     }
