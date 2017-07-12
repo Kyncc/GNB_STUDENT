@@ -7,14 +7,14 @@ import VueLazyload from 'vue-lazyload'
 import {ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat} from 'vux'
 import App from './App'
 
-Vue.use(ToastPlugin)    // 使用提醒
+Vue.use(ToastPlugin) // 使用提醒
 // 图片异步加载
 Vue.use(VueLazyload, {
   attempt: 3
 })
-Vue.use(LoadingPlugin)  // 使用Loading
-Vue.use(ConfirmPlugin)  // 使用Confirm
-FastClick.attach(document.body)   // 使用fastclick
+Vue.use(LoadingPlugin) // 使用Loading
+Vue.use(ConfirmPlugin) // 使用Confirm
+FastClick.attach(document.body) // 使用fastclick
 Vue.config.productionTip = false
 
 // 时间戳转换
@@ -37,10 +37,10 @@ Vue.filter('errorType', (value) => {
   }
 })
 
-// 在首页 返回键失效其他页面则直接返回上一页
+// 在首页返回键失效其他页面则直接返回上一页
 document.addEventListener('plusready', () => {
   let first = null
-  plus.navigator.setStatusBarBackground('#4BB7AA')  // 设置状态栏颜色
+  plus.navigator.setStatusBarBackground('#4BB7AA') // 设置状态栏颜色
   plus.key.addEventListener('backbutton', () => {
     if (store.state.route.path === '/index' || store.state.route.path === '/bag' || store.state.route.path === '/login' || store.state.route.path === '/user') {
       if (!first) {

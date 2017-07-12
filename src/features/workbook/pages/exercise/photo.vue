@@ -10,7 +10,6 @@
   </view-box>
 </template>
 <script>
-
 import {XHeader, ViewBox} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 import Cropper from 'Cropperjs'

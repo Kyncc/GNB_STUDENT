@@ -57,8 +57,7 @@ export default {
         setTimeout(() => {
           this.$router.replace({name: 'index'})
         }, 500)
-      })
-      .catch((error) => {
+      }).catch((error) => {
         if (error) this.pwd = ''
       })
     }

@@ -36,8 +36,7 @@ export default {
           this.updatePwd({
             oldPwd: this.oldPwd,
             pwd: this.newPwd
-          })
-          .then(() => {
+          }).then(() => {
             this.$vux.toast.show({text: '修改成功', type: 'text', time: 1500, position: 'bottom'})
             setTimeout(() => {
               try {

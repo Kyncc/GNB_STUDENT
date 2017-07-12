@@ -36,7 +36,6 @@ let router = new Router({
     ...workbook
   ]
 })
-
 // 同步store和路由
 sync(store, router)
 

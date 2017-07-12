@@ -1,13 +1,13 @@
 <template >
   <div>
-    <div v-for="(item, pindex) in exercise">
+    <div v-for="(item, pindex) in exercise" :key='pindex'>
       <!--2级别练习册-->
       <template v-if="item.b[0].type == '1'">
         <group v-for="(itemB, index) in item.b" :title="itemB.name" :key="itemB.id">
           <cell v-for="(itemC, index) in itemB.c" :title="itemC.name" :key="itemC.id">
             <p slot="default">
               <section style="display:inline-block;" @click="_changeAnswer(pindex,index,1)">
-                <i v-if="!itemC.isUpload && !itemC.answer" class="icon iconfont icon-camera" 
+                <i v-if="!itemC.isUpload && !itemC.answer" class="icon iconfont icon-camera"
                   @click="$router.push({name: 'workbook_exercise_error_upload', params: {eid: itemC.eid, wbeid: itemC.id, chapterId: Route.params.id}})">
                 </i>
                 <i v-if="itemC.answer" class="icon iconfont icon-correct" style="color:#4BB7AA"></i>
@@ -23,7 +23,7 @@
           <cell v-for="(itemB, index) in item.b" :title="itemB.name" :key="itemB.id">
             <div slot="default">
               <section style="display:inline-block;">
-                <i v-if="!itemB.isUpload && !itemB.answer" class="icon iconfont icon-camera" 
+                <i v-if="!itemB.isUpload && !itemB.answer" class="icon iconfont icon-camera"
                   @click="$router.push({name: 'workbook_exercise_error_upload', params: {eid: itemB.eid, wbeid: itemB.id, chapterId: Route.params.id}})">
                 </i>
                 <i @click="_changeAnswer(pindex,index,2)" v-if="itemB.answer" class="icon iconfont exampleIcon icon-correct" style="color:#4BB7AA"></i>
@@ -34,7 +34,7 @@
         </group>
       </template>
     </div>
-    
+
     <div style="margin:1rem" v-if="exercise">
       <x-button v-if = "!isUsed" type="primary" @click.native="_post">提交结果</x-button>
       <x-button v-else type="primary" disabled>已提交</x-button>
@@ -62,8 +62,8 @@ export default {
   },
   data () {
     return {
-      answerListId: [],             // 答案的列表
-      answerListAnswer: [],         // 答案的列表
+      answerListId: [], // 答案的列表
+      answerListAnswer: [], // 答案的列表
       workbookType: ''
     }
   },

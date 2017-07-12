@@ -76,8 +76,7 @@ export default {
         this.getRegisterCode({
           cover: this.cover,
           mobile: this.mobile
-        })
-        .then(() => {
+        }).then(() => {
           this.$vux.toast.show({text: '注册码已发送', type: 'text', time: 1500, position: 'bottom'})
         })
       }

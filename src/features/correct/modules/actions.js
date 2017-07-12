@@ -14,9 +14,9 @@ export const postCorrect = ({ rootState, commit }, params) => {
         type: params.type
       }
     })
-    .then((response) => {
-      Vue.$vux.toast.show({text: '纠错成功', type: 'text', time: 1500, position: 'bottom'})
-      resolve(response)
-    })
+      .then((response) => {
+        Vue.$vux.toast.show({ text: '纠错成功', type: 'text', time: 1500, position: 'bottom' })
+        resolve(response)
+      })
   })
 }

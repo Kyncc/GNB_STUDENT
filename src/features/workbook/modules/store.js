@@ -86,7 +86,7 @@ const mutations = {
     state.exercise.camera = ''
     state.exercise.cameraList = []
   },
-   // 上传
+  // 上传
   [types.WORKBOOK_UPLOAD_DEL] (state, index) {
     state.uploader.list.splice(index, 1)
   },

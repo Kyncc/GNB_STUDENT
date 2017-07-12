@@ -1,4 +1,4 @@
- // 练习册练习
+// 练习册练习
 export default [
   {
     path: '/workbook/exercise',

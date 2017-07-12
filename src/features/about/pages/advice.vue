@@ -40,8 +40,7 @@ export default {
           title: this.title,
           content: this.content,
           contact: this.contact
-        })
-        .then(() => {
+        }).then(() => {
           setTimeout(() => {
             this.$router.push('adviceHistory')
           }, 300)
