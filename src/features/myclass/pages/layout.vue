@@ -10,10 +10,11 @@ import modules from '../modules/store'
 import store from '@/store'
 
 export default {
-  name: 'class'
+  name: 'class',
+  beforeCreate () {
+    store.registerModule('class', {
+      ...modules
+    })
+  }
 }
-
-store.registerModule('class', {
-  ...modules
-})
 </script>

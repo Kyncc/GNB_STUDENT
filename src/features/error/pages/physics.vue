@@ -8,7 +8,7 @@
         </flexbox>
       </div>
       <!--上传错题则显示题目，否则显示题干-->
-      <div v-if='!error.isUpload' slot="content" @click="show(error.exerciseImg)">
+      <div v-if='!error.isUploader' slot="content" @click="show(error.exerciseImg)">
         <img v-lazy="error.exerciseImg.src+'-errorList'"/>
       </div>
       <div v-else slot="content" @click="show(error.errorImg[0])">
@@ -54,27 +54,17 @@
         </group>
       </popup>
     </div>
-    <!--教师点评 -->
-    <div v-transfer-dom>
-      <popup v-model="showCommentPopup" height="200px" @on-first-show="resetScroller">
-        <scroller height="200px" lock-x ref="scroller">
-          <div>
-            <p v-for="i of comment">{{i}}</p>
-          </div>
-        </scroller>
-      </popup>
-    </div>
   </div>
 </template>
 
 <script>
-import {Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer, Scroller, TransferDomDirective as TransferDom} from 'vux'
+import {Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'physics',
   components: {
-    Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, Popup, Scroller
+    Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, Popup
   },
   computed: {
     ...mapGetters(['errorPhysics'])
@@ -83,7 +73,6 @@ export default {
     return {
       loading: false,
       loadingNoData: false,
-      showCommentPopup: false,
       showErrorPopup: false,
       errorType: {
         chapterId: '',
@@ -91,7 +80,6 @@ export default {
         type: '',
         index: ''
       },
-      comment: [],
       list: [{
         w: 0,
         h: 0,
@@ -126,12 +114,7 @@ export default {
       this.list[0].h = img.height
       this.list[0].src = img.src
       this.$nextTick(() => {
-        this.$refs.previewer.show()
-      })
-    },
-    resetScroller () {
-      this.$nextTick(() => {
-        this.$refs.scroller.reset()
+        this.$refs.previewer.show(0)
       })
     },
     // 类型错误弹窗
@@ -142,14 +125,12 @@ export default {
       this.errorType.wbeid = error.wbeid
       this.errorType.chapterId = error.chapterId
     },
-    // 类型错误弹窗
+    // 评论
     _showCommentPopup (error) {
-      if (error.comment.length === 0) {
+      if (!error.comment) {
         this.$vux.toast.show({text: '教师未点评!', type: 'text', time: 1500, position: 'bottom'})
       } else {
-        this.comment = error.comment
-        this.showCommentPopup = true
-        this.resetScroller()
+        this.$router.push({name: 'error_comment', params: {webid: error.wbeid}})
       }
     },
     // 选择错误类型

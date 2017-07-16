@@ -49,7 +49,7 @@ export default {
         h: this.errorList[pindex].imgList[index].height
       })
       this.$nextTick(() => {
-        this.$refs.previewer.show()
+        this.$refs.previewer.show(0)
       })
     }
   }

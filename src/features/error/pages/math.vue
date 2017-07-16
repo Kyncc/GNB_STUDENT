@@ -8,11 +8,13 @@
         </flexbox>
       </div>
       <!--上传错题则显示题目，否则显示题干-->
-      <div v-if='!error.isUpload' slot="content" @click="show(error.exerciseImg)">
-        <img v-lazy="error.exerciseImg.src+'-errorList'"/>
-      </div>
-      <div v-else slot="content" @click="show(error.errorImg[0])">
-        <img v-lazy="error.errorImg[0].src+'-errorList'"/>
+      <div slot="content">
+        <div v-if='!error.isUploader' @click="show(error.exerciseImg)">
+          <img v-lazy="error.exerciseImg.src+'-errorList'"/>
+        </div>
+        <div v-else @click="show(error.errorImg[0])">
+          <img v-lazy="error.errorImg[0].src+'-errorList'"/>
+        </div>
       </div>
       <div slot="footer">
         <div class="weui-cell">
@@ -37,44 +39,34 @@
     </div>
     <!--错误选择 -->
     <div v-transfer-dom>
-        <popup v-model="showErrorPopup" class="checker-popup">
-          <group title='选择错误原因：'>
-            <div style="padding:10px 10px 0 10px;">
-              <checker type="radio" :value="errorType.type.toString()" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
-                <checker-item value="1" @on-item-click="onItemClick">审题不清</checker-item>
-                <checker-item value="2" @on-item-click="onItemClick">概念模糊</checker-item>
-                <checker-item value="3" @on-item-click="onItemClick">思路不清</checker-item>
-                <checker-item value="4" @on-item-click="onItemClick">运算错误</checker-item>
-                <checker-item value="5" @on-item-click="onItemClick">粗心大意</checker-item>
-                <checker-item value="6" @on-item-click="onItemClick">方法不对</checker-item>
-                <checker-item value="7" @on-item-click="onItemClick">时间不够</checker-item>
-                <checker-item value="0" @on-item-click="onItemClick">不知道啊</checker-item>
-              </checker>
-            </div>
-          </group>
-        </popup>
-    </div>
-    <!--教师点评 -->
-    <div v-transfer-dom>
-      <popup v-model="showCommentPopup" height="200px" @on-first-show="resetScroller">
-        <scroller height="200px" lock-x ref="scroller">
-          <div>
-            <p v-for="i of comment">{{i}}</p>
+      <popup v-model="showErrorPopup" class="checker-popup">
+        <group title='选择错误原因：'>
+          <div style="padding:10px 10px 0 10px;">
+            <checker type="radio" :value="errorType.type.toString()" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
+              <checker-item value="1" @on-item-click="onItemClick">审题不清</checker-item>
+              <checker-item value="2" @on-item-click="onItemClick">概念模糊</checker-item>
+              <checker-item value="3" @on-item-click="onItemClick">思路不清</checker-item>
+              <checker-item value="4" @on-item-click="onItemClick">运算错误</checker-item>
+              <checker-item value="5" @on-item-click="onItemClick">粗心大意</checker-item>
+              <checker-item value="6" @on-item-click="onItemClick">方法不对</checker-item>
+              <checker-item value="7" @on-item-click="onItemClick">时间不够</checker-item>
+              <checker-item value="0" @on-item-click="onItemClick">不知道啊</checker-item>
+            </checker>
           </div>
-        </scroller>
+        </group>
       </popup>
     </div>
   </div>
 </template>
 
 <script>
-import {Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer, Scroller, TransferDomDirective as TransferDom} from 'vux'
+import {Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'math',
   components: {
-    Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, Popup, Scroller
+    Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, Popup
   },
   computed: {
     ...mapGetters(['errorMath'])
@@ -83,7 +75,6 @@ export default {
     return {
       loading: false,
       loadingNoData: false,
-      showCommentPopup: false,
       showErrorPopup: false,
       errorType: {
         chapterId: '',
@@ -91,7 +82,6 @@ export default {
         type: '',
         index: ''
       },
-      comment: [],
       list: [{
         w: 0,
         h: 0,
@@ -126,12 +116,7 @@ export default {
       this.list[0].h = img.height
       this.list[0].src = img.src
       this.$nextTick(() => {
-        this.$refs.previewer.show()
-      })
-    },
-    resetScroller () {
-      this.$nextTick(() => {
-        this.$refs.scroller.reset()
+        this.$refs.previewer.show(0)
       })
     },
     // 类型错误弹窗
@@ -142,14 +127,12 @@ export default {
       this.errorType.wbeid = error.wbeid
       this.errorType.chapterId = error.chapterId
     },
-    // 类型错误弹窗
+    // 评论
     _showCommentPopup (error) {
-      if (error.comment.length === 0) {
+      if (!error.comment) {
         this.$vux.toast.show({text: '教师未点评!', type: 'text', time: 1500, position: 'bottom'})
       } else {
-        this.comment = error.comment
-        this.showCommentPopup = true
-        this.resetScroller()
+        this.$router.push({name: 'error_comment', params: {webid: error.wbeid}})
       }
     },
     // 选择错误类型

@@ -4,6 +4,11 @@ export default {
   redirect: '/error/math',
   children: [
     {
+      path: 'comment/:wbeid',
+      name: 'error_comment',
+      component: r => require.ensure([], () => r(require('./pages/comment')), '/error/comment')
+    },
+    {
       path: 'physics',
       name: 'error_physics',
       component: r => require.ensure([], () => r(require('./pages/physics')), '/error/physics')

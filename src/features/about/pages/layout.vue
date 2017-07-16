@@ -8,11 +8,12 @@
 import store from '@/store'
 import modules from '../modules/store'
 
-store.registerModule('about', {
-  ...modules
-})
-
 export default {
-  name: 'about'
+  name: 'about',
+  beforeCreate () {
+    store.registerModule('about', {
+      ...modules
+    })
+  }
 }
 </script>

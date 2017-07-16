@@ -37,7 +37,9 @@ export const collectRemove = ({ rootState, commit, dispatch }) => {
       .then((response) => {
         Vue.$vux.toast.show({ text: '取消收藏成功', type: 'success', time: 600, isShowMask: true })
         commit(types.COLLECT_REMOVE)
-        dispatch('clearCollect')
+        if (rootState.hasOwnProperty('collect')) {
+          dispatch('clearCollect')
+        }
         resolve(response)
       })
   })
@@ -59,7 +61,10 @@ export const collectAdd = ({ rootState, commit, dispatch }) => {
       .then((response) => {
         Vue.$vux.toast.show({ text: '收藏成功', type: 'success', time: 600, isShowMask: true })
         commit(types.COLLECT_ADD)
-        dispatch('clearCollect')
+        console.log(rootState)
+        if (rootState.hasOwnProperty('collect')) {
+          dispatch('clearCollect')
+        }
         resolve(response)
       })
   })

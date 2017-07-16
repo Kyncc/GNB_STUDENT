@@ -23,10 +23,6 @@ import {mapGetters} from 'vuex'
 import modules from '../modules/store'
 import store from '@/store'
 
-store.registerModule('report', {
-  ...modules
-})
-
 export default {
   name: 'report',
   components: {
@@ -34,6 +30,11 @@ export default {
   },
   computed: {
     ...mapGetters(['Route', 'User'])
+  },
+  beforeCreate () {
+    store.registerModule('report', {
+      ...modules
+    })
   }
 }
 </script>

@@ -6,12 +6,14 @@ const state = {
   math: {
     list: [],
     offset: '',
-    scroll: 0
+    scroll: 0,
+    isReset: true
   },
   physics: {
     list: [],
     offset: '',
-    scroll: 0
+    scroll: 0,
+    isReset: true
   }
 }
 
@@ -29,10 +31,9 @@ const mutations = {
   [types.COLLECT_SCROLL] (state, payload) {
     state[payload.subject]['scroll'] = payload.height
   },
-  [types.COLLECT_RELOAD] (state, payload) {
-    state[payload.subject]['list'] = []
-    state[payload.subject]['offset'] = ''
-    state[payload.subject]['scroll'] = 0
+  [types.COLLECT_RELOAD] (state) {
+    state.math = {list: [], offset: '', scroll: 0, isReset: true}
+    state.physics = {list: [], offset: '', scroll: 0, isReset: true}
   }
 }
 

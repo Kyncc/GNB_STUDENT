@@ -8,12 +8,12 @@
           <tab-item :selected="Route.name === 'induce_physics'" @click.native="$router.replace('physics')">物理</tab-item>
         </template>
       </tab>
-    </div> 
+    </div>
     <div>
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
-    </div> 
+    </div>
   </view-box>
 </template>
 
@@ -23,10 +23,6 @@ import {mapGetters} from 'vuex'
 import modules from '../modules/store'
 import store from '@/store'
 
-store.registerModule('induce', {
-  ...modules
-})
-
 export default {
   name: 'induce',
   components: {
@@ -35,7 +31,10 @@ export default {
   computed: {
     ...mapGetters(['Route', 'User'])
   },
-  methods: {
+  beforeCreate () {
+    store.registerModule('induce', {
+      ...modules
+    })
   }
 }
 </script>

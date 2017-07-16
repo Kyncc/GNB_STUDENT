@@ -29,7 +29,6 @@ export const setCollectScroll = ({ rootState, commit }, height) => {
 }
 
 /** 清空收藏本 */
-export const clearCollect = ({ rootState, commit }) => {
-  let subject = (rootState.route.params.subjectId === '2' ? 'math' : 'physics')
-  commit(types.COLLECT_RELOAD, { subject: subject })
+export const clearCollect = ({ commit }) => {
+  commit(types.COLLECT_RELOAD)
 }

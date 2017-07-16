@@ -30,10 +30,6 @@ import {mapActions} from 'vuex'
 import store from '@/store'
 import modules from '../modules/store'
 
-store.registerModule('correct', {
-  ...modules
-})
-
 export default {
   components: {
     XHeader, XButton, Checker, CheckerItem, Group, XTextarea, ViewBox
@@ -77,6 +73,11 @@ export default {
   activated () {
     this.type = []
     this.content = ''
+  },
+  beforeCreate () {
+    store.registerModule('correct', {
+      ...modules
+    })
   }
 }
 </script>

@@ -7,10 +7,12 @@ import './index.less'
 import modules from '../modules/store'
 import store from '@/store'
 
-store.registerModule('login', {
-  ...modules
-})
 export default {
-  name: 'login'
+  name: 'login',
+  beforeCreate () {
+    store.registerModule('login', {
+      ...modules
+    })
+  }
 }
 </script>

@@ -27,10 +27,6 @@ import {mapGetters} from 'vuex'
 import modules from '../../modules/store'
 import store from '@/store'
 
-store.registerModule('workbook', {
-  ...modules
-})
-
 export default {
   name: 'workbook',
   components: {
@@ -49,6 +45,11 @@ export default {
         this.$router.push({name: 'workbook_add', params: {subject: 'physics'}, query: {id: id}})
       }
     }
+  },
+  beforeCreate () {
+    store.registerModule('workbook', {
+      ...modules
+    })
   }
 }
 </script>
