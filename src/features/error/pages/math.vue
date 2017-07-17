@@ -21,7 +21,7 @@
           <div class="weui-cell__bd" style="text-align:right">
             <x-button mini type="primary" :plain="error.errorType !== -1" @click.native="_showErrorPopup(error, index)">{{error.errorType | errorType}}</x-button>
             <!--<x-button mini plain type="primary">参考例题</x-button>-->
-            <x-button mini type="primary" @click.native="_showCommentPopup(error)">查看点评</x-button>
+            <x-button mini type="primary" plain @click.native="_showCommentPopup(error)" v-if='error.comment'>查看点评</x-button>
           </div>
         </div>
       </div>
@@ -129,11 +129,7 @@ export default {
     },
     // 评论
     _showCommentPopup (error) {
-      if (!error.comment) {
-        this.$vux.toast.show({text: '教师未点评!', type: 'text', time: 1500, position: 'bottom'})
-      } else {
-        this.$router.push({name: 'error_comment', params: {webid: error.wbeid}})
-      }
+      this.$router.push({name: 'error_comment', params: {wbeid: error.wbeid}})
     },
     // 选择错误类型
     onItemClick (value) {
@@ -161,7 +157,12 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     this.setErrorScroll(this.$parent.$refs.viewBoxBody.scrollTop)
-    next()
+    if (this.showErrorPopup) {
+      this.showErrorPopup = false
+      next(false)
+    } else {
+      next()
+    }
   }
 }
 </script>

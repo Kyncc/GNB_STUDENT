@@ -22,7 +22,7 @@ let router = new Router({
   routes: [
     about,
     collect,
-    error,
+    ...error,
     correct,
     example,
     login,

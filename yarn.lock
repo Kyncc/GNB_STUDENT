@@ -2476,6 +2476,14 @@ html-minifier@^3.2.3:
     relateurl "0.2.x"
     uglify-js "3.0.x"
 
+html-webpack-inline-source-plugin@^0.0.9:
+  version "0.0.9"
+  resolved "http://registry.npm.taobao.org/html-webpack-inline-source-plugin/download/html-webpack-inline-source-plugin-0.0.9.tgz#e52dd3cf1164ac76ceaf39ba206f92e3597d054d"
+  dependencies:
+    escape-string-regexp "^1.0.5"
+    slash "^1.0.0"
+    source-map-url "^0.4.0"
+
 html-webpack-plugin@^2.28.0:
   version "2.28.0"
   resolved "http://registry.npm.taobao.org/html-webpack-plugin/download/html-webpack-plugin-2.28.0.tgz#2e7863b57e5fd48fe263303e2ffc934c3064d009"
@@ -4459,7 +4467,7 @@ source-map-support@^0.4.2:
   dependencies:
     source-map "^0.5.6"
 
-source-map-url@0.4.0:
+source-map-url@0.4.0, source-map-url@^0.4.0:
   version "0.4.0"
   resolved "http://registry.npm.taobao.org/source-map-url/download/source-map-url-0.4.0.tgz#3e935d7ddd73631b97659956d55128e87b5084a3"
 
@@ -4894,9 +4902,13 @@ vue-hot-reload-api@^2.0.11:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
 
-vue-lazyload@^1.0.1, vue-lazyload@^1.0.4:
+vue-lazyload@^1.0.1:
   version "1.0.5"
   resolved "http://registry.npm.taobao.org/vue-lazyload/download/vue-lazyload-1.0.5.tgz#767c041472e85237c6efa8a486badfa4dbb96edb"
+
+vue-lazyload@^1.0.6:
+  version "1.0.6"
+  resolved "http://registry.npm.taobao.org/vue-lazyload/download/vue-lazyload-1.0.6.tgz#7d5494fc35c35fc84dcc271165b827e309b4e793"
 
 vue-loader@^11.3.4:
   version "11.3.4"

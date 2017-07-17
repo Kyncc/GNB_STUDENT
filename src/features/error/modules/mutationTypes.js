@@ -16,3 +16,7 @@ export const ERROR_DETAIL_RELOAD = 'ERROR_DETAIL_RELOAD'
 export const ERROR_EXAMPLE_ERROR = 'ERROR_EXAMPLE_ERROR'
 /** 错误类型选择 */
 export const ERROR_ERROR_TYPE = 'ERROR_ERROR_TYPE'
+/** 错题评价 */
+export const ERROR_COMMENT = 'ERROR_COMMENT'
+/** 错题评价清空 */
+export const ERROR_COMMENT_RELOAD = 'ERROR_COMMENT_RELOAD'

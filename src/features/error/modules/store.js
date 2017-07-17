@@ -15,6 +15,7 @@ const state = {
     offset: '',
     scroll: 0
   },
+  comment: {},
   detail: {
     scroll: 0,
     list: []
@@ -59,6 +60,12 @@ const mutations = {
   },
   [types.ERROR_EXAMPLE_ERROR] (state, payload) {
     state['detail']['list'][payload.index].exampleError = !state['detail']['list'][payload.index].exampleError
+  },
+  [types.ERROR_COMMENT] (state, payload) {
+    state.comment = payload.data
+  },
+  [types.ERROR_COMMENT_RELOAD] (state) {
+    state.comment = []
   }
 }
 

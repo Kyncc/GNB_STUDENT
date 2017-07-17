@@ -122,3 +122,25 @@ export const setErrorExampleWrong = ({ rootState, commit, state }, params) => {
       })
   })
 }
+
+/** 获取错题评价 */
+export const getErrorComment = ({ rootState, commit, state }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'error/getComment',
+      params: {
+        token: rootState.common.user.token,
+        wbeid: rootState.route.params.wbeid
+      }
+    }).then((response) => {
+      commit(types.ERROR_COMMENT, { data: response.data.data })
+      resolve(response)
+    })
+  })
+}
+
+/** 错题评价清空 */
+export const setErrorCommentClear = ({ commit }) => {
+  commit(types.ERROR_COMMENT_RELOAD)
+}
