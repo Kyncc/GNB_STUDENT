@@ -189,7 +189,7 @@ export default {
   border-radius: 15px;
 }
 .check-item-selected {
-  background-color: #FF3B3B;
+  background-color: #4BB7AA;
   color: #fff;
 }
 .check-item-disabled {

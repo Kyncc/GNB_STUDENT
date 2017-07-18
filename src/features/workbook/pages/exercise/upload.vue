@@ -54,7 +54,7 @@ export default {
   },
   data () {
     return {
-      type: ''
+      type: 0
     }
   },
   methods: {
