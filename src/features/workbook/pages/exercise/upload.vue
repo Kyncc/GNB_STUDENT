@@ -36,7 +36,7 @@
             <checker-item :value="5">粗心大意</checker-item>
             <checker-item :value="6">方法不对</checker-item>
             <checker-item :value="7">时间不够</checker-item>
-            <checker-item :value="0">不知道啊</checker-item>
+            <checker-item :value="0">我不知道</checker-item>
         </checker>
       </group>
     </div>

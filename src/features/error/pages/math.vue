@@ -50,7 +50,7 @@
               <checker-item value="5" @on-item-click="onItemClick">粗心大意</checker-item>
               <checker-item value="6" @on-item-click="onItemClick">方法不对</checker-item>
               <checker-item value="7" @on-item-click="onItemClick">时间不够</checker-item>
-              <checker-item value="0" @on-item-click="onItemClick">不知道啊</checker-item>
+              <checker-item value="0" @on-item-click="onItemClick">我不知道</checker-item>
             </checker>
           </div>
         </group>
