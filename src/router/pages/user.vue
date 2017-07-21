@@ -4,13 +4,13 @@
       <!--<i class="icon iconfont icon-share" slot="right"></i>-->
       个人中心
     </x-header>
-    <div class="info">
-        <div style="display:inline-block;position:absolute;top:50%;margin-top:-57.5px;left:50%;margin-left:-40px;"
-          @click="$router.push('settings/info')">
-          <img :src="User.headImg" width="80" height="80" style="border-radius:50%"/>
-          <p class="phone">&nbsp;{{User.name}}&nbsp;</p>
-        </div>
-    </div>
+    <group gutter="0" class='headInfo'>
+      <cell style='background:#4BB7AA;color:#fff;' link='settings/info'>
+        <img slot="icon" width="70" height="70" style="border-radius:50%;margin-right:1rem" v-lazy="User.headImg">
+        <div slot="after-title" style='color:#fff;'>{{User.name}}</div>
+        <div slot="inline-desc" style='color:#fff;padding-top:.25rem'>{{User.mobile}}</div>
+      </cell>
+    </group>
     <group gutter="0">
       <cell title="设置" link="settings">
         <i class="icon iconfont icon-settingfull" style="color:#794BB8" slot="icon"></i>
@@ -22,7 +22,7 @@
         <i class="icon iconfont icon-comment2" style="color:#ABC97C" slot="icon"></i>
         <badge text="新消息" v-if="News.correct || News.system"></badge>
       </cell>
-      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.0.0'" is-link @click.native="_openStore">
+      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.1.0'" is-link @click.native="_openStore">
         <i class="icon iconfont icon-yingyongshengji" style="color:#FF5454" slot="icon"></i>
         <badge text="新版本"></badge>
       </cell>
@@ -55,4 +55,3 @@ export default {
   }
 }
 </script>
-

@@ -5,9 +5,9 @@
         <router-link :to="{ path: 'class/add'}" style="margin:0">
           <i class="icon iconfont icon-plus" style="padding:8px;font-size:28px;top:-1px;"></i>
         </router-link>
-        <router-link :to="{ path: 'class/message'}" style="margin:0">
+        <!-- <router-link :to="{ path: 'class/message'}" style="margin:0">
           <i class="icon iconfont icon-comment2" style="padding:10px;margin:0 -10px 0 0"></i>
-        </router-link>
+        </router-link> -->
       </div>
     </x-header>
     <div>

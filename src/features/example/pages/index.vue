@@ -8,7 +8,7 @@
         </i>
       </div>
     </x-header>
-    <template v-for="detail in Example.detail"> 
+    <template v-for="detail in Example.detail">
       <card>
         <div slot="header" class="weui-panel__hd">
           <flexbox><flexbox-item :span="10" style="color:#4bb7aa">{{detail.charpterName}}</flexbox-item></flexbox>
@@ -39,10 +39,6 @@ import {XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 import store from '@/store'
 import modules from '../modules/store'
-
-store.registerModule('example', {
-  ...modules
-})
 
 export default {
   name: 'example',
@@ -80,6 +76,11 @@ export default {
     } else {
       next()
     }
+  },
+  beforeCreate () {
+    store.registerModule('example', {
+      ...modules
+    })
   }
 }
 </script>

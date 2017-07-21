@@ -11,8 +11,7 @@ export const getMessageClass = ({ rootState, commit }, params) => {
         token: rootState.common.user.token,
         type: 'class'
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.MESSAGE_CLASS, response.data.data)
       resolve(response)
     })
@@ -29,8 +28,7 @@ export const getMessageSystem = ({ rootState, commit }, params) => {
         token: rootState.common.user.token,
         type: 'system'
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.MESSAGE_SYSTEM, response.data.data)
       resolve(response)
     })
@@ -47,8 +45,7 @@ export const getMessageCorrect = ({ rootState, commit }, params) => {
         token: rootState.common.user.token,
         type: 'correct'
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.MESSAGE_CORRECT, response.data.data)
       resolve(response)
     })
@@ -59,4 +56,3 @@ export const getMessageCorrect = ({ rootState, commit }, params) => {
 export const clearMessage = ({ commit }) => {
   commit(types.MESSAGE_CLEAR)
 }
-

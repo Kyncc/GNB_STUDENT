@@ -1,4 +1,4 @@
- // 练习册练习
+// 练习册练习
 export default [
   {
     path: '/workbook/exercise',
@@ -21,6 +21,18 @@ export default [
         component: r => require.ensure([], () => r(require('./error')), '/workbook/exercise/error')
       }
     ]
+  },
+  // 练习错题照片
+  {
+    path: '/workbook/exercise/photo',
+    name: 'workbook_exercise_error_photo',
+    component: r => require.ensure([], () => r(require('./photo')), '/workbook/exercise/photo')
+  },
+  // 练习册错题上传
+  {
+    path: '/workbook/exercise/upload/:chapterId/:wbeid/:eid',
+    name: 'workbook_exercise_error_upload',
+    component: r => require.ensure([], () => r(require('./upload')), '/workbook/exercise/upload')
   },
   // 练习册章节
   {

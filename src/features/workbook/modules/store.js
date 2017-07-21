@@ -52,6 +52,7 @@ const mutations = {
   },
   [types.WORKBOOK_EXERCISE_CLEAR] (state) {
     state.exercise.list = []
+    state.exercise.cameraList = []
     state.exercise.isReset = true
     state.uploader.list = []
     state.uploader.camera = ''
@@ -70,7 +71,22 @@ const mutations = {
       state.exercise.list.a[data.pid].b[data.id].answer = !state.exercise.list.a[data.pid].b[data.id].answer
     }
   },
-   // 上传
+  [types.WORKBOOK_EXERCISE_ERROR_ADD] (state, data) {
+    state.exercise.cameraList = []
+    state.exercise.cameraList.push(data)
+  },
+  [types.WORKBOOK_EXERCISE_ERROR_DEL] (state, index) {
+    state.exercise.cameraList.splice(index, 1)
+  },
+  // [types.WORKBOOK_EXERCISE_ERROR_CAMERA] (state, data) {
+  //   state.exercise.cameraList.push(data)
+  // },
+  [types.WORKBOOK_EXERCISE_ERROR_UPLOAD] (state) {
+    state.exercise.isReset = true
+    state.exercise.camera = ''
+    state.exercise.cameraList = []
+  },
+  // 上传
   [types.WORKBOOK_UPLOAD_DEL] (state, index) {
     state.uploader.list.splice(index, 1)
   },

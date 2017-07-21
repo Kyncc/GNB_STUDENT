@@ -30,10 +30,6 @@ import {mapActions} from 'vuex'
 import store from '@/store'
 import modules from '../modules/store'
 
-store.registerModule('correct', {
-  ...modules
-})
-
 export default {
   components: {
     XHeader, XButton, Checker, CheckerItem, Group, XTextarea, ViewBox
@@ -56,11 +52,11 @@ export default {
     ...mapActions(['postCorrect']),
     _commit () {
       if (this.type[0].length) {
-        this.$vux.toast.show({text: '请选择纠错类型', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '请选择纠错类型', type: 'text', time: 1500, position: 'bottom'})
         return
       }
       if (this.type.indexOf(4) >= 0 && this.content.length === 0) {
-        this.$vux.toast.show({text: '请填写纠错内容', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '请填写纠错内容', type: 'text', time: 1500, position: 'bottom'})
         return
       }
       let params = {
@@ -77,6 +73,11 @@ export default {
   activated () {
     this.type = []
     this.content = ''
+  },
+  beforeCreate () {
+    store.registerModule('correct', {
+      ...modules
+    })
   }
 }
 </script>

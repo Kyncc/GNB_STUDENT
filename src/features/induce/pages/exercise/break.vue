@@ -95,7 +95,9 @@ export default {
         vm.induceListClear({type: 'break'})
       }
       // 是否需要加载
-      vm.induceBreak.isReset ? vm._getData() : ''
+      if (vm.induceBreak.isReset) {
+        vm._getData()
+      }
       vm.$parent.$refs.viewBoxBody.scrollTop = vm.induceBreak.scroll
     })
   },

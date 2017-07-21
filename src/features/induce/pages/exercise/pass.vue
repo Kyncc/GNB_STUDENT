@@ -95,7 +95,9 @@ export default {
         vm.induceListClear({type: 'pass'})
       }
       // 是否需要加载
-      vm.inducePass.isReset ? vm._getData() : ''
+      if (vm.inducePass.isReset) {
+        vm._getData()
+      }
       vm.$parent.$refs.viewBoxBody.scrollTop = vm.inducePass.scroll
     })
   },

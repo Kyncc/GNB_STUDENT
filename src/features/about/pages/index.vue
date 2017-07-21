@@ -3,7 +3,7 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '关于归纳本'}"></x-header>
     <flexbox justify="center" orient="vertical" style="text-align:center;padding:3rem 0 1rem">
       <flexbox-item><img  src="../assets/icon.png" width="80px" height="80px"></flexbox-item>
-      <flexbox-item><p style="font-size:16px;">归纳本学生端 3.0.0</p></flexbox-item>
+      <flexbox-item><p style="font-size:16px;">归纳本学生端 3.1.0</p></flexbox-item>
     </flexbox>
     <group gutter="0">
       <cell title="意见反馈" link="about/advice"></cell>
@@ -15,14 +15,13 @@
     </group>
     <section class="about_footer">
       <a href="tel:0553-2111770" class="about_footer__link">联系我们: <span style="text-decoration: underline;">0553-2111770</span></a><br/>
-      <a href="mqqwpa://im/chat?chat_type=wpa&uin=1879831346&version=1&src_type=web&web_src=oicqzone.com"  
+      <a href="mqqwpa://im/chat?chat_type=wpa&uin=1879831346&version=1&src_type=web&web_src=oicqzone.com"
         class="about_footer__link" target="_blank">QQ客服: <span style="text-decoration: underline;">1879831346</span></a>
     </section>
   </view-box>
 </template>
 
 <script>
-
 import {XHeader, Cell, Group, ViewBox, Flexbox, FlexboxItem} from 'vux'
 import {mapGetters} from 'vuex'
 

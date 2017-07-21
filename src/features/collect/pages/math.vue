@@ -9,9 +9,7 @@
       </div>
       <div slot="content" @click="$router.push({name:'example', params: {subjectId: '2', id: item.exercises_id}})">
         <div v-html="item.stem"></div>
-        <template v-for="(value, key) in item.opt_jo">
-          <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
-        </template>
+          <div v-for="(value, key) in item.opt_jo" :key='key' style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
       </div>
       <div slot="footer">
         <div class="weui-cell weui-cell_access weui-cell_link">
@@ -51,7 +49,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getCollect', 'setCollectScroll']),
+    ...mapActions(['getCollect', 'setCollectScroll', 'clearCollect']),
     _getData () {
       this.loading = true
       this.getCollect().then((res) => {
@@ -66,7 +64,8 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (vm.collectMath.isReset) {
+      if (from.name === 'bag' || vm.collectMath.isReset) {
+        vm.clearCollect()
         vm._getData()
       }
       vm.$parent.$refs.viewBoxBody.scrollTop = vm.collectMath.scroll

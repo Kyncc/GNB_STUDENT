@@ -11,10 +11,10 @@ export const getMyClass = ({ rootState, commit }, params) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      commit(types.CLASS_MY, response.data.data)
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.CLASS_MY, response.data.data)
+        resolve(response)
+      })
   })
 }
 
@@ -34,10 +34,10 @@ export const getMyClassmateList = ({ rootState, commit }, params) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      commit(types.CLASS_MYCLASSMATE, response.data.data)
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.CLASS_MYCLASSMATE, response.data.data)
+        resolve(response)
+      })
   })
 }
 
@@ -57,10 +57,10 @@ export const getMyClassSearchClass = ({ rootState, commit }, params) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      commit(types.CLASS_SEARCH, response.data.data)
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.CLASS_SEARCH, response.data.data)
+        resolve(response)
+      })
   })
 }
 
@@ -80,9 +80,9 @@ export const postMyClassInto = ({ rootState, commit }, params) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      commit(types.CLASS_ADD, response.data.data)
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.CLASS_ADD, response.data.data)
+        resolve(response)
+      })
   })
 }

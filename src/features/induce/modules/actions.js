@@ -2,7 +2,7 @@ import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
 /** 获取章节数据 */
-export const getInduce = ({rootState, commit}, params) => {
+export const getInduce = ({ rootState, commit }, params) => {
   let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
@@ -13,27 +13,27 @@ export const getInduce = ({rootState, commit}, params) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      commit(types.INDUCE, {'subject': subject, 'data': response.data.data})
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.INDUCE, { 'subject': subject, 'data': response.data.data })
+        resolve(response)
+      })
   })
 }
 
 /** 首页章节浏览器高度 */
 export const setInduceScroll = ({ rootState, commit }, height) => {
   let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.INDUCE_SCROLL, {'subject': subject, 'height': height})
+  commit(types.INDUCE_SCROLL, { 'subject': subject, 'height': height })
 }
 
 /** 清除章节数据 */
 export const clearInduce = ({ rootState, commit }) => {
   let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.INDUCE_CLEAR, {'subject': subject})
+  commit(types.INDUCE_CLEAR, { 'subject': subject })
 }
 
 /** 获取刷题列表 */
-export const getInduceList = ({state, rootState, commit}, params) => {
+export const getInduceList = ({ state, rootState, commit }, params) => {
   let subjectId = (rootState.route.params.subject.indexOf('math') !== -1 ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
@@ -48,10 +48,10 @@ export const getInduceList = ({state, rootState, commit}, params) => {
         currentExercisesId: state['exercise'][params.type]['currentExercisesId']
       }
     })
-    .then((response) => {
-      commit(types.INDUCE_LIST, {'data': response.data.data, 'type': params.type})
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.INDUCE_LIST, { 'data': response.data.data, 'type': params.type })
+        resolve(response)
+      })
   })
 }
 
@@ -70,10 +70,10 @@ export const induceTotalAction = ({ state, rootState, commit }, params) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      commit(types.INDUCE_ACTION, params.index)
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.INDUCE_ACTION, params.index)
+        resolve(response)
+      })
   })
 }
 
@@ -92,19 +92,19 @@ export const induceBack = ({ state, rootState, commit }, params) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      commit(types.INDUCE_BACK, {type: params.type, index: params.index})
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.INDUCE_BACK, { type: params.type, index: params.index })
+        resolve(response)
+      })
   })
 }
 
 /** 清空列表数据 */
 export const induceListClear = ({ rootState, commit }, params) => {
-  commit(types.INDUCE_LIST_CLEAR, {'type': params.type})
+  commit(types.INDUCE_LIST_CLEAR, { 'type': params.type })
 }
 
 /** 设置列表高度 */
 export const setInduceListScroll = ({ rootState, commit }, params) => {
-  commit(types.INDUCE_LIST_SCROLL, {'type': params.type, 'height': params.height})
+  commit(types.INDUCE_LIST_SCROLL, { 'type': params.type, 'height': params.height })
 }

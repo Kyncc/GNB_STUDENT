@@ -85,7 +85,7 @@ export default {
       else if (type === 'break') msg = '已放入斩题本'
       else msg = '已放入弃题本'
       this.induceTotalAction({index: index, type: type, id: item.exercises_id, chapter_id: item.chapter_id}).then(() => {
-        this.$vux.toast.show({text: msg, type: 'text', time: 800, position: 'bottom'})
+        this.$vux.toast.show({text: msg, type: 'text', time: 1500, position: 'bottom'})
       })
     },
     _getData () {
@@ -108,7 +108,9 @@ export default {
         vm.induceListClear({type: 'total'})
       }
       // 是否需要加载
-      vm.induceTotal.isReset ? vm._getData() : ''
+      if (vm.induceTotal.isReset) {
+        vm._getData()
+      }
       vm.$parent.$refs.viewBoxBody.scrollTop = vm.induceTotal.scroll
     })
   },

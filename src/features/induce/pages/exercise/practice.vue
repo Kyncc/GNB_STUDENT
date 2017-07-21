@@ -95,7 +95,9 @@ export default {
         vm.induceListClear({type: 'practice'})
       }
       // 是否需要加载
-      vm.inducePractice.isReset ? vm._getData() : ''
+      if (vm.inducePractice.isReset) {
+        vm._getData()
+      }
       vm.$parent.$refs.viewBoxBody.scrollTop = vm.inducePractice.scroll
     })
   },

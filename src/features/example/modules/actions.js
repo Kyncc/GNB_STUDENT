@@ -14,10 +14,10 @@ export const getExample = ({ rootState, commit }) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      commit(types.EXAMPLE, response.data.data)
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.EXAMPLE, response.data.data)
+        resolve(response)
+      })
   })
 }
 
@@ -34,12 +34,14 @@ export const collectRemove = ({ rootState, commit, dispatch }) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      Vue.$vux.toast.show({text: '取消收藏成功', type: 'success', time: 600, isShowMask: true})
-      commit(types.COLLECT_REMOVE)
-      dispatch('clearCollect')
-      resolve(response)
-    })
+      .then((response) => {
+        Vue.$vux.toast.show({ text: '取消收藏成功', type: 'success', time: 600, isShowMask: true })
+        commit(types.COLLECT_REMOVE)
+        if (rootState.hasOwnProperty('collect')) {
+          dispatch('clearCollect')
+        }
+        resolve(response)
+      })
   })
 }
 
@@ -56,12 +58,15 @@ export const collectAdd = ({ rootState, commit, dispatch }) => {
         token: rootState.common.user.token
       }
     })
-    .then((response) => {
-      Vue.$vux.toast.show({text: '收藏成功', type: 'success', time: 600, isShowMask: true})
-      commit(types.COLLECT_ADD)
-      dispatch('clearCollect')
-      resolve(response)
-    })
+      .then((response) => {
+        Vue.$vux.toast.show({ text: '收藏成功', type: 'success', time: 600, isShowMask: true })
+        commit(types.COLLECT_ADD)
+        console.log(rootState)
+        if (rootState.hasOwnProperty('collect')) {
+          dispatch('clearCollect')
+        }
+        resolve(response)
+      })
   })
 }
 

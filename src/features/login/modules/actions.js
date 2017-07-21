@@ -3,7 +3,7 @@ import axios from '@/components/axios'
 import * as types from './mutationTypes'
 
 /** 获取短信验证码(注册账号) */
-export const getRegisterCode = ({commit}, params) => {
+export const getRegisterCode = ({ commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -13,11 +13,11 @@ export const getRegisterCode = ({commit}, params) => {
         'cover': params.cover
       }
     })
-    .then((response) => {
-      commit(types.REGISTER_MESSAGE, response.data)
-      Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.REGISTER_MESSAGE, response.data)
+        Vue.$vux.toast.show({ text: response.data.msg, type: 'text', time: 1500, position: 'bottom' })
+        resolve(response)
+      })
   })
 }
 
@@ -31,10 +31,10 @@ export const addPwd = ({ commit }, params) => {
         ...params
       }
     })
-    .then((response) => {
-      commit('USER_TOKEN', response.data.token)
-      resolve(response)
-    })
+      .then((response) => {
+        commit('USER_TOKEN', response.data.token)
+        resolve(response)
+      })
   })
 }
 
@@ -48,16 +48,16 @@ export const getForgetCode = ({ commit }, params) => {
         mobile: params.mobile
       }
     })
-    .then((response) => {
-      commit(types.FORGET_MESSAGE, response.data)
-      Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
-      resolve(response)
-    })
+      .then((response) => {
+        commit(types.FORGET_MESSAGE, response.data)
+        Vue.$vux.toast.show({ text: response.data.msg, type: 'text', time: 1500, position: 'bottom' })
+        resolve(response)
+      })
   })
 }
 
 /** 新建用户信息 */
-export const setNewUserInfo = ({rootState, commit}, params) => {
+export const setNewUserInfo = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -66,9 +66,9 @@ export const setNewUserInfo = ({rootState, commit}, params) => {
         ...params
       }
     })
-    .then((response) => {
-      resolve(response)
-    })
+      .then((response) => {
+        resolve(response)
+      })
   })
 }
 
@@ -82,10 +82,10 @@ export const resetPwd = ({ commit }, params) => {
         ...params
       }
     })
-    .then((response) => {
-      // Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
-      commit('USER_TOKEN', response.data.token)
-      resolve(response)
-    })
+      .then((response) => {
+        // Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1500, position: 'bottom'})
+        commit('USER_TOKEN', response.data.token)
+        resolve(response)
+      })
   })
 }
