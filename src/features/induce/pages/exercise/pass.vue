@@ -14,7 +14,7 @@
         <div v-html="item.stem"></div>
         <div v-if="item.opt_jo.hasOwnProperty('A')">
           <template v-for="(value, key) in item.opt_jo">
-            <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+            <div style="padding-top:5px;" :key='key'>{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
           </template>
         </div>
       </div>

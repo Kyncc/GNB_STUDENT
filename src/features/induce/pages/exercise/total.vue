@@ -14,7 +14,7 @@
         <div v-html="item.stem"></div>
         <div v-if="item.opt_jo.hasOwnProperty('A')">
           <template v-for="(value, key) in item.opt_jo">
-            <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+            <div style="padding-top:5px;" :key='key'>{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
           </template>
         </div>
       </div>
@@ -27,7 +27,7 @@
                 <i class="icon iconfont icon-jinrulianxi" style="font-size:17px;"></i>练习
               </flexbox-item>
               <flexbox-item :span="3" @click.native="_operate('break', item, index)" class="weui-cell_access" style="padding:10px 0px">
-                <i class="icon iconfont icon-brush1" style="font-size:17px;"></i>斩题
+                <i class="icon iconfont icon-brush" style="font-size:17px;"></i>斩题
               </flexbox-item>
               <flexbox-item :span="3" @click.native="_operate('pass', item, index)" class="weui-cell_access" style="padding:10px 0px">
                 <i class="icon iconfont icon-lajitong16" style="font-size:17px;"></i>弃题

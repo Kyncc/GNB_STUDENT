@@ -21,6 +21,18 @@
 		"url": "ygxdxx.com"
 	},
 	"permissions": {
+		"NSCameraUsageDescription": {
+			"description": "相机访问"
+		},
+		"NSMicrophoneUsageDescription": {
+			"description": "麦克风"
+		},
+		"NSPhotoLibraryUsageDescription": {
+			"description": "相册访问"
+		},
+		"NSContactsUsageDescription": {
+			"description": "通讯录访问"
+		},
 		"Cache": {
 			"description": "管理应用缓存"
 		},
@@ -82,10 +94,20 @@
 		},
 		"Statistic": {},
 		"Share": {},
-		"Audio": {}
+		"Audio": {},
+		"Contacts": {}
 	},
 	"plus": {
-		"schemeWhitelist":["market","mqqapi"],
+		"plistcmds": [
+			"Add :NSCameraUsageDescription string 相机访问",
+			"Add :NSMicrophoneUsageDescription string 麦克风访问",
+			"Add :NSPhotoLibraryUsageDescription string 相册访问",
+			"Add :NSContactsUsageDescription string 通讯录访问"
+		],
+		"schemeWhitelist": [
+			"market",
+			"mqqapi"
+		],
 		"splashscreen": {
 			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
 			"waiting": false,
@@ -129,19 +151,22 @@
 				"password": "",/*Android应用打包使用密钥库中证书的密码*/
 				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
 				"permissions": [
+					"<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
 					"<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
-					"<uses-feature android:name=\"android.hardware.camera\"/>",
 					"<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>",
 					"<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
-					"<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>",
+					"<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
 					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
 					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
 					"<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
 					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
-					"<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
 					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
 					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+					"<uses-feature android:name=\"android.hardware.camera\"/>",
+					"<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
 					"<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>",
 					"<uses-permission android:name=\"android.permission.CAMERA\"/>"
 				]
