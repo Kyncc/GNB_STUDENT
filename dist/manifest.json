@@ -85,6 +85,7 @@
 		"Audio": {}
 	},
 	"plus": {
+		"schemeWhitelist":["market","mqqapi"],
 		"splashscreen": {
 			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
 			"waiting": false,
@@ -104,11 +105,11 @@
 				},
 				"share": {
 					"qq": {
-						"appid": "1105745360",
+						"appid": "QQ1105745360",
 						"description": "QQ分享"
 					},
 					"weixin": {
-						"appid": "1105745360",
+						"appid": "wx1105745360",
 						"appsecret": "Zm17ULCzONSYjDIH",
 						"description": "可选，微信分享"
 					}
