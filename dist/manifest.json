@@ -7,7 +7,7 @@
 	"id": "H55E5EFFB",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "3.1.0",/*应用版本名称*/
+		"name": "3.2.0",/*应用版本名称*/
 		"code": "310"
 	},
 	"description": "",/*应用描述信息*/
@@ -98,6 +98,7 @@
 		"Contacts": {}
 	},
 	"plus": {
+		"schemeWhitelist":["market","mqqapi"],
 		"plistcmds": [
 			"Add :NSCameraUsageDescription string 相机访问",
 			"Add :NSMicrophoneUsageDescription string 麦克风访问",
@@ -127,12 +128,12 @@
 				},
 				"share": {
 					"qq": {
-						"appid": "QQ1105745360",
+						"appid": "1105745360",
 						"description": "QQ分享"
 					},
 					"weixin": {
-						"appid": "wx1105745360",
-						"appsecret": "Zm17ULCzONSYjDIH",
+						"appid": "wx1511fa0bd1c7f572",
+						"appsecret": "0854cf1d582cb6202ffe8958e7cbb8580854cf1d582cb6202ffe8958e7cbb858",
 						"description": "可选，微信分享"
 					}
 				}
