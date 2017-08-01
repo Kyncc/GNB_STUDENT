@@ -1,0 +1,41 @@
+.gnb-changeSub{
+    margin-right:8px;
+     .with_arrow{
+        display: inline-block;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+        height: 6px;
+        width: 6px;
+        border-width: 2px 2px 0 0;
+        border-color: #fff;
+        border-style: solid;
+        position: absolute;
+        right:-5px;
+        top:7px;
+    }
+    .gnb-changeSub-popup{
+        background: #fff;
+        width: 4rem;
+        border-radius: 8px;
+        padding:.5rem ;
+        top:2.3rem;
+        left:87%;
+        -webkit-transform: translate(-50%, 0);
+        p{font-size:.8rem;text-align: center;line-height:1.8rem; color:#555;}
+        .active{
+            background: #ccc;
+        }
+    }
+    .gnb-changeSub-popup:before {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border: solid transparent;
+        border-width:.5rem;
+        border-bottom-color: #fff;
+        content: '';
+        position: absolute;
+        top: -.9rem;
+        right: 1rem;
+    }
+}

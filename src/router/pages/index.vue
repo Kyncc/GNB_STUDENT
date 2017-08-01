@@ -17,6 +17,11 @@
           <x-button type='primary' mini class="rememberBtn">我的错题</x-button>
         </router-link>
       </div>
+      <div>
+        <router-link :to="{ path: 'homework'}">
+          <x-button type='primary' mini class="rememberBtn">我的作业</x-button>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
