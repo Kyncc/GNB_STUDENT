@@ -12,7 +12,7 @@
           <tab :line-width="1" :style='"min-width:100%;width:"+tabwidth' :animate="false">
             <template v-for="(textbook, index) in textBookList">
               <tab-item :selected="Number(Route.query.id) === Number(textbook.id)"
-                @click.native="$router.replace({name: 'workbook_add', query:{id: textbook.id}})">
+                @click.native="$router.replace({name: 'workbook_add', query:{id: textbook.id}})" :key='index'>
                 {{textbook.name}}
               </tab-item>
             </template>

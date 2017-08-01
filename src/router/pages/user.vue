@@ -22,7 +22,7 @@
         <i class="icon iconfont icon-comment2" style="color:#ABC97C" slot="icon"></i>
         <badge text="新消息" v-if="News.correct || News.system"></badge>
       </cell>
-      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.1.0'" is-link @click.native="_openStore">
+      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.2.0'" is-link @click.native="_openStore">
         <i class="icon iconfont icon-yingyongshengji" style="color:#FF5454" slot="icon"></i>
         <badge text="新版本"></badge>
       </cell>
