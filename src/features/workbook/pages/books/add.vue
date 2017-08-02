@@ -111,7 +111,7 @@ export default {
         h: '1050'
       })
       this.$nextTick(() => {
-        this.$refs.wbpreviewer.show()
+        this.$refs.wbpreviewer.show(0)
       })
     }
   },

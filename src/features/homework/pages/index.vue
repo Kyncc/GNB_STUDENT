@@ -35,7 +35,8 @@
       </card>
       <div style="text-align:center">
         <spinner v-show="loading" type="dots"></spinner>
-        <p v-show="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
+        <p v-show="error" @click='_getData()' style="font-size:16px;color:#4BB7AA;padding:10px 0;">出错了点我重新加载</p>
+        <p v-show="Homework.list.length === 0 && !loading" style="font-size:16px;color:#4BB7AA;padding:10px 0;">还未有老师布置作业~</p>
       </div>
     </div>
     <div v-transfer-dom>
