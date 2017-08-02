@@ -2,7 +2,7 @@
   <view-box ref="about" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '关于归纳本'}"></x-header>
     <flexbox justify="center" orient="vertical" style="text-align:center;padding:3rem 0 1rem">
-      <flexbox-item><img  src="../assets/icon.png" width="80px" height="80px"></flexbox-item>
+      <flexbox-item><img src="../assets/icon.png" width="80" height="80"/></flexbox-item>
       <flexbox-item><p style="font-size:16px;">归纳本学生端 3.2.0</p></flexbox-item>
     </flexbox>
     <group gutter="0">

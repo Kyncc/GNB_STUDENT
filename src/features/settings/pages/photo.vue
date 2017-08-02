@@ -44,7 +44,7 @@ export default {
       this.cropper.destroy()
       let minHeight = document.documentElement.clientHeight - 46
       this.cropper = new Cropper(this.$refs.photo, {
-        aspectRatio: '1/1',
+        aspectRatio: 1 / 1,
         minContainerHeight: minHeight
       })
     }
@@ -52,7 +52,7 @@ export default {
   mounted () {
     let minHeight = document.documentElement.clientHeight - 46
     this.cropper = new Cropper(this.$refs.photo, {
-      aspectRatio: '1/1',
+      aspectRatio: 1 / 1,
       minContainerHeight: minHeight
     })
   }
