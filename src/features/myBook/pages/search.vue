@@ -8,7 +8,7 @@
       <div>
         <group v-for="(myBookList, pindex) in myBookSearchList" :key="pindex" :title="myBookList.textbookName">
           <cell v-for="(myBook, index) in myBookList.list" :key="index">
-            <img class="previewer-myBook-img" v-lazy='myBook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80">
+            <img class="previewer-myBook-img" v-lazy='myBook.img.url+"?imageMogr2/auto-orient/thumbnail/120x160!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80">
             <div slot="after-title" @click="show(pindex,index)" style="width:90%;">
               <p style="color:#aaa;font-size:14px;">&nbsp;&nbsp;&nbsp;{{myBook.year}}版</p>
               <p class="ellipsis">&nbsp;&nbsp;&nbsp;{{myBook.workbookName}}</p>

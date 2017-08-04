@@ -4,8 +4,9 @@
       <p slot="right" v-on:click="_finish">完成</p>
     </x-header>
     <div>
-      <img ref="result" :src="workbookExercise.cameraList[0]" style="width:100%;"/> 
+      <img ref="result" :src="workbookExercise.cameraList[0]" style="width:100%;"/>
        <!--<img ref="result" src="http://img.guinaben.com/workbookPic/429answer5810/1/Untitled.FR12%20-%200001.png?imageMogr2/auto-orient/thumbnail/!50p/format/jpg/interlace/1/quality/30|imageslim" style="width:100%;"/>-->
+      <div class='rotate' @click="cropper.rotate(90)"><img src="../../assets/rotate-right.png"></div>
     </div>
   </view-box>
 </template>
@@ -53,3 +54,12 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.rotate{
+  position: fixed;
+  bottom: 5%;
+  left:5%;
+  width:2.5rem;
+  height:2.5rem;
+}
+</style>

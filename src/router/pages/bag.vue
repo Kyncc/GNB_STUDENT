@@ -4,7 +4,7 @@
     <swiper auto height="140px" :loop="true" :interval="5000">
       <swiper-item v-for="(item, index) in User.swiper" :key="index">
         <router-link :to="{path: `article/${item.id}`}">
-          <img :src="item.img+'?imageMogr2/auto-orient/thumbnail/x140/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" style="width: 100%;height:140px"/>
+          <img :src="item.img+'?imageMogr2/auto-orient/thumbnail/x420/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" style="width: 100%;height:140px"/>
         </router-link>
       </swiper-item>
     </swiper>
