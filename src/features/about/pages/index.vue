@@ -36,7 +36,7 @@ export default {
   methods: {
     _openStore () {
       if (this.System === 'IOS') {
-        window.location.href = 'itms-apps://itunes.apple.com/cn/app/gui-na-ben-xue-sheng-duan/id1184077595?l=en&mt=8'
+        plus.runtime.openURL('itms-apps://itunes.apple.com/cn/app/gui-na-ben-xue-sheng-duan/id1184077595?l=en&mt=8')
       } else {
         window.location.href = 'market://details?id=com.sanbao.guinaben.student'
       }
