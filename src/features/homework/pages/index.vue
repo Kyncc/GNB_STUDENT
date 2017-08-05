@@ -20,13 +20,13 @@
         <!--文字作业 -->
         <p slot="content" class="card-padding" v-if='item.content'>{{item.content}}</p>
         <!--图片作业 -->
-        <flexbox slot="content" wrap="wrap" align="baseline" :gutter="0" v-else-if='item.img'>
+        <flexbox slot="content" wrap="wrap" align="baseline" :gutter="0" v-if='item.img'>
           <flexbox-item :span="3" v-for="(img, index) in item.img" :key="index" @click.native="_show(index, item.img)" style="text-align:center;margin-bottom:10px;">
-            <img v-lazy="img.url+'?imageMogr2/auto-orient/thumbnail/130x180!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" width="65" height="90" class="previewer-answer-img">
+            <img v-lazy="img.url+'?imageMogr2/auto-orient/thumbnail/260x360!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" width="65" height="90" class="previewer-answer-img">
           </flexbox-item>
         </flexbox>
         <!--语音作业 -->
-        <flexbox slot="content"  v-else>
+        <flexbox slot="content"  v-if='item.img'>
           <flexbox-item v-if='item.audio' :span="2" @click.native='_audio(item.audio, index)'>
             <i v-if='audio.state && audio.index === index' class='icon iconfont icon-zanting' style='font-size:2rem'></i>
             <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4BB7AA;margin-top:-.1rem;'></i>
@@ -129,7 +129,7 @@ export default {
             this.audio.obj.stop()
           }
         })
-        this.audio.audio.stop().play()
+        this.audio.obj.stop().play()
       } else {
         // 手动暂停
         this.audio.index = null
