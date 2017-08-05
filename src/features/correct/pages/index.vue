@@ -51,7 +51,7 @@ export default {
   methods: {
     ...mapActions(['postCorrect']),
     _commit () {
-      if (this.type[0].length) {
+      if (this.type.length === 0) {
         this.$vux.toast.show({text: '请选择纠错类型', type: 'text', time: 1500, position: 'bottom'})
         return
       }

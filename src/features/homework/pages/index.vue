@@ -29,7 +29,7 @@
         <flexbox slot="content"  v-if='item.img'>
           <flexbox-item v-if='item.audio' :span="2" @click.native='_audio(item.audio, index)'>
             <i v-if='audio.state && audio.index === index' class='icon iconfont icon-zanting' style='font-size:2rem'></i>
-            <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4BB7AA;margin-top:-.1rem;'></i>
+            <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4BB7AA;margin-top:.7rem;'></i>
           </flexbox-item>
         </flexbox>
       </card>

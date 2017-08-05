@@ -11,7 +11,7 @@
         <div ref="tab" style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;z-index:1;">
           <tab :line-width="1" :style='"min-width:100%;width:"+tabwidth' :animate="false">
             <template v-for="(textbook, index) in textBookList">
-              <tab-item :selected="Number(Route.query.id) === Number(textbook.id)"
+              <tab-item :selected="Number(Route.query.id) === Number(textbook.id)" :key='index'
                 @click.native="$router.replace({name: 'myBook_add', query:{id: textbook.id}})">
                 {{textbook.name}}
               </tab-item>
@@ -126,8 +126,8 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.myBookAddClear()
-      vm.tabwidth = vm.textBookList.length * 70 + 'px' // tab的宽度
-      vm.$refs.tab.scrollLeft = Number((vm.textBookIndex - 1) * 70)
+      vm.tabwidth = vm.textBookList.length * 110 + 'px' // tab的宽度
+      vm.$refs.tab.scrollLeft = Number((vm.textBookIndex - 1) * 110)
       vm._getData()
     })
   }
