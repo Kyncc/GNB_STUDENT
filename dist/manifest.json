@@ -98,16 +98,12 @@
 		"Contacts": {}
 	},
 	"plus": {
-		"schemeWhitelist":["market","mqqapi","mqqwpa"],
+		"schemeWhitelist":["market","mqqapi","mqqwpa","itms-apps"],
 		"plistcmds": [
 			"Add :NSCameraUsageDescription string 相机访问",
 			"Add :NSMicrophoneUsageDescription string 麦克风访问",
 			"Add :NSPhotoLibraryUsageDescription string 相册访问",
 			"Add :NSContactsUsageDescription string 通讯录访问"
-		],
-		"schemeWhitelist": [
-			"market",
-			"mqqapi"
 		],
 		"splashscreen": {
 			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
