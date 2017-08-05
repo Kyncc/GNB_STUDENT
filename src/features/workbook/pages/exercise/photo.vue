@@ -32,7 +32,7 @@ export default {
   methods: {
     ...mapActions(['workbookExCamera']),
     _finish () {
-      this.workbookExCamera(this.cropper.getCroppedCanvas({width: 750}).toDataURL('image/jpeg', 0.9))
+      this.workbookExCamera(this.cropper.getCroppedCanvas({width: 640}).toDataURL('image/jpeg', 0.9))
       history.back()
     }
   },

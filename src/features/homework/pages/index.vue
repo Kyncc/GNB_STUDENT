@@ -13,7 +13,7 @@
           <flexbox>
             <flexbox-item :span="7" style="color:#4BB7AA">布置时间：{{item.time | ymd}}</flexbox-item>
             <flexbox-item :span="5" style="color:#4BB7AA;text-align:right;padding-right:5px;">
-              <x-button type="primary" mini plain @click.native="$router.push({name: 'homework_class',params:{index: index, id: item.homeworkId}})">布置给</x-button>
+              <x-button type="primary" mini plain>{{item.name}}</x-button>
             </flexbox-item>
           </flexbox>
         </div>
