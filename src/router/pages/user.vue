@@ -5,7 +5,7 @@
       个人中心
     </x-header>
     <group gutter="0" class='headInfo'>
-      <cell style='background:#4BB7AA;color:#fff;' link='settings/info'>
+       <cell class='userBg' link='settings/info'>
         <img slot="icon" width="70" height="70" style="border-radius:50%;margin-right:1rem" v-lazy="User.headImg">
         <div slot="after-title" style='color:#fff;'>{{User.name}}</div>
         <div slot="inline-desc" style='color:#fff;padding-top:.25rem'>{{User.mobile}}</div>
@@ -13,14 +13,14 @@
     </group>
     <group gutter="0">
       <cell title="设置" link="settings">
-        <i class="icon iconfont icon-settingfull" style="color:#794BB8" slot="icon"></i>
+        <i class="icon iconfont icon-settingfull" style="color:#4cc0be" slot="icon"></i>
       </cell>
       <cell title="消息通知" link="message">
-        <i class="icon iconfont icon-comment2" style="color:#ABC97C" slot="icon"></i>
+        <i class="icon iconfont icon-comment2" style="color:#4cc0be" slot="icon"></i>
         <badge text="新消息" v-if="News.correct || News.system"></badge>
       </cell>
       <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.2.0'" is-link @click.native="_openStore">
-        <i class="icon iconfont icon-yingyongshengji" style="color:#FF5454" slot="icon"></i>
+        <i class="icon iconfont icon-yingyongshengji" style="color:#4cc0be" slot="icon"></i>
         <badge text="新版本"></badge>
       </cell>
     </group>

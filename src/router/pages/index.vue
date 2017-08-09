@@ -1,39 +1,43 @@
 <template>
   <div class="mainIndex">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{showBack: false}">归纳本</x-header>
-    <div>
-      <router-link :to="{ path: 'induce'}">
-        <p class="induce"></p>
-      </router-link>
-    </div>
-    <div>
-      <div>
-        <router-link :to="{ path: 'workbook'}">
-          <x-button type='primary' mini class="rememberBtn">查答案</x-button>
+    <swiper auto height="145px" :loop="true" :interval="8000">
+      <swiper-item v-for="(item, index) in list" :key="index">
+        <router-link :to="{path: `${item.url}`}">
+          <img :src="item.img" style="width: 100%;height:145px">
         </router-link>
-      </div>
-      <div>
-        <router-link :to="{ path: 'error'}">
-          <x-button type='primary' mini class="rememberBtn">我的错题</x-button>
-        </router-link>
-      </div>
-      <div>
-        <router-link :to="{ path: 'homework'}">
-          <x-button type='primary' mini class="rememberBtn">我的作业</x-button>
-        </router-link>
-      </div>
-    </div>
+      </swiper-item>
+    </swiper>
+    <flexbox style='height:6.3rem' :gutter='0'>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'induce'})" class='induce'></flexbox-item>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'workbook'})" class='workbook'></flexbox-item>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'error'})" class='error'></flexbox-item>
+    </flexbox>
+    <flexbox style='height:6.3rem' :gutter='0'>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'homework'})" class='homework'></flexbox-item>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'class'})" class='class'></flexbox-item>
+      <flexbox-item :span="4" style='background:#fff;height:100%;'></flexbox-item>
+    </flexbox>
   </div>
 </template>
 
 <script>
-import {XHeader, ViewBox, XButton} from 'vux'
-import {mapActions} from 'vuex'
+import {XHeader, ViewBox, XButton, Swiper, SwiperItem, Flexbox, FlexboxItem} from 'vux'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'index',
   components: {
-    XHeader, ViewBox, XButton
+    XHeader, ViewBox, XButton, Swiper, SwiperItem, Flexbox, FlexboxItem
+  },
+  computed: {
+    ...mapGetters(['User']),
+    list () {
+      return this.User.swiper.map((item, index) => ({
+        url: `/article/${item.id}`,
+        img: item.img + ''
+      }))
+    }
   },
   methods: {
     ...mapActions(['getUserInfo'])
@@ -47,8 +51,5 @@ export default {
 <style>
 .weui-loading_toast .weui-mask_transparent{
   z-index: 2 !important;
-}
-.mainIndex .weui-btn_primary:not(.weui-btn_disabled):active{
-  background:none;
 }
 </style>

@@ -9,7 +9,7 @@
               <flexbox-item v-if='item.content'>{{item.content}}</flexbox-item>
               <flexbox-item v-if='item.audioUrl' :span="2" @click.native='_audio(item.audioUrl, index)'>
                 <i v-if='comment.state && comment.index === index' class='icon iconfont icon-zanting' style='font-size:2rem'></i>
-                <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4BB7AA;margin-top:-.1rem;'></i>
+                <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4cc0be;margin-top:-.1rem;'></i>
               </flexbox-item>
             </flexbox>
           </div>

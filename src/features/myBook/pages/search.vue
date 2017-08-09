@@ -21,7 +21,7 @@
         </group>
         <div style="text-align:center;padding:20px 0;">
           <spinner v-if="loading" type="dots"></spinner>
-          <p v-else-if="myBookSearchList.length === 0" style="font-size:16px;color:#4BB7AA">没有搜索到相对应的习题册~</p>
+          <p v-else-if="myBookSearchList.length === 0" style="font-size:16px;color:#4cc0be">没有搜索到相对应的习题册~</p>
         </div>
       </div>
     </view-box>

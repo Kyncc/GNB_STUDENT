@@ -3980,6 +3980,14 @@ process@^0.11.0:
   version "0.11.10"
   resolved "http://registry.npm.taobao.org/process/download/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
 
+progress-bar-webpack-plugin@^1.10.0:
+  version "1.10.0"
+  resolved "http://registry.npm.taobao.org/progress-bar-webpack-plugin/download/progress-bar-webpack-plugin-1.10.0.tgz#e0b1063aa03c79e298a9340598590bb61efef9a4"
+  dependencies:
+    chalk "^1.1.1"
+    object.assign "^4.0.1"
+    progress "^1.1.8"
+
 progress-bar-webpack-plugin@^1.9.3:
   version "1.9.3"
   resolved "http://registry.npm.taobao.org/progress-bar-webpack-plugin/download/progress-bar-webpack-plugin-1.9.3.tgz#81fb8bd8e38da6edaf9a20beed79bd978dd63c2a"
@@ -4902,11 +4910,7 @@ vue-hot-reload-api@^2.0.11:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
 
-vue-lazyload@^1.0.1:
-  version "1.0.5"
-  resolved "http://registry.npm.taobao.org/vue-lazyload/download/vue-lazyload-1.0.5.tgz#767c041472e85237c6efa8a486badfa4dbb96edb"
-
-vue-lazyload@^1.0.6:
+vue-lazyload@^1.0.1, vue-lazyload@^1.0.6:
   version "1.0.6"
   resolved "http://registry.npm.taobao.org/vue-lazyload/download/vue-lazyload-1.0.6.tgz#7d5494fc35c35fc84dcc271165b827e309b4e793"
 
@@ -4988,9 +4992,9 @@ vux-xscroll@^3.1.10:
   version "3.1.12"
   resolved "http://registry.npm.taobao.org/vux-xscroll/download/vux-xscroll-3.1.12.tgz#e352e7f9dc5f9fee9253db331c967dd56b3bc950"
 
-vux@^2.5.2:
-  version "2.5.2"
-  resolved "http://registry.npm.taobao.org/vux/download/vux-2.5.2.tgz#41a807a0020e5369258c5f8b79d563e781487be5"
+vux@^2.5.7:
+  version "2.5.7"
+  resolved "http://registry.npm.taobao.org/vux/download/vux-2.5.7.tgz#2a06dc4a5b6fade1f7fa6b30a83b540ca2c3ffba"
   dependencies:
     array-filter "^1.0.0"
     array-find "^1.0.0"
@@ -5006,6 +5010,7 @@ vux@^2.5.2:
     lodash.throttle "^4.1.1"
     object-assign "^4.1.0"
     photoswipe "^4.1.1"
+    progress-bar-webpack-plugin "^1.10.0"
     qr.js "0.0.0"
     shake.js "^1.2.2"
     v-markdown-loader "^0.6.3-beta.2"

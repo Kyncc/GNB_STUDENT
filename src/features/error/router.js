@@ -2,6 +2,7 @@ export default [
   {
     path: '/error',
     component: r => require.ensure([], () => r(require('./pages/layout')), '/error'),
+    name: 'error',
     redirect: '/error/math',
     children: [
       {

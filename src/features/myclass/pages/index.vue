@@ -12,13 +12,13 @@
     </x-header>
     <div>
       <group gutter="0" v-if="!loading">
-        <template v-for="item in ClassMy">
-          <cell :title="item.name" :link="'class/detail/'+item.classCode"></cell>
+        <template v-for="(item, index) in ClassMy">
+          <cell :title="item.name" :link="'class/detail/'+item.classCode" :key='index'></cell>
         </template>
       </group>
       <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="ripple"></spinner>
-        <p v-else-if="ClassMy.length === 0" style="font-size:16px;color:#4BB7AA" @click="$router.push('class/add')">点我加入班级~</p>
+        <p v-else-if="ClassMy.length === 0" style="font-size:16px;color:#4cc0be" @click="$router.push('class/add')">点我加入班级~</p>
       </div>
     </div>
   </view-box>
@@ -50,7 +50,7 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    if (from.name === 'bag' || from.name === 'class_add') {
+    if (from.name === 'index' || from.name === 'class_add') {
       next(vm => {
         vm.myClassClear()
         vm.loading = true

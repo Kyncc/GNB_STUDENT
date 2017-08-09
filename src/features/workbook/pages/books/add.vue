@@ -37,7 +37,7 @@
         </group>
         <div style="text-align:center;padding:20px 0;">
           <spinner v-if="loading" type="dots"></spinner>
-          <p v-else-if="workbookAddList.length === 0" style="font-size:16px;color:#4BB7AA;">没有更多的习题册了~</p>
+          <p v-else-if="workbookAddList.length === 0" style="font-size:16px;color:#4cc0be;">没有更多的习题册了~</p>
         </div>
       </div>
     </view-box>

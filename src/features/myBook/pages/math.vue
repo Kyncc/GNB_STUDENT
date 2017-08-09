@@ -13,7 +13,7 @@
     </template>
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="ripple"></spinner>
-      <p v-else-if="myBookMath.list.textbook.length === 0" style="font-size:16px;color:#4BB7AA;"
+      <p v-else-if="myBookMath.list.textbook.length === 0" style="font-size:16px;color:#4cc0be;"
        @click="$router.push({name: 'myBook_add', params: {subject: 'math'}, query: {id: User.textbook.math[0].id}})">点我添加数学习题册</p>
     </div>
   </div>

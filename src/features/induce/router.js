@@ -3,6 +3,7 @@ export default [
   {
     path: '/induce',
     component: r => require.ensure([], () => r(require('./pages/layout')), '/induce'),
+    name: 'induce',
     redirect: '/induce/math',
     children: [
       {

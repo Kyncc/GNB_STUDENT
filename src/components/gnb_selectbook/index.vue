@@ -44,7 +44,7 @@ export default {
 
 <style lang="less" scoped>
 .gnbCompoents_selectBook{
-  p{font-size:.8rem;color:#4BB7AA;}
+  p{font-size:.8rem;color:#4cc0be;}
   position: relative;
   height:35px;
   text-align: center;
@@ -74,7 +74,7 @@ export default {
     height: 6px;
     width: 6px;
     border-width: 2px 2px 0 0;
-    border-color: #4BB7AA;
+    border-color: #4cc0be;
     border-style: solid;
     margin-left:5px;
     transition-duration: .2s;

@@ -11,8 +11,8 @@
       <card v-for="(item, index) in Homework.list" :key="index">
         <div slot="header" class="weui-panel__hd" style='padding:5px 15px;'>
           <flexbox>
-            <flexbox-item :span="7" style="color:#4BB7AA">布置时间：{{item.time | ymd}}</flexbox-item>
-            <flexbox-item :span="5" style="color:#4BB7AA;text-align:right;padding-right:5px;">
+            <flexbox-item :span="7" style="color:#4cc0be">布置时间：{{item.time | ymd}}</flexbox-item>
+            <flexbox-item :span="5" style="color:#4cc0be;text-align:right;padding-right:5px;">
               <x-button type="primary" mini plain>{{item.name}}</x-button>
             </flexbox-item>
           </flexbox>
@@ -29,14 +29,14 @@
         <flexbox slot="content"  v-if='item.img'>
           <flexbox-item v-if='item.audio' :span="2" @click.native='_audio(item.audio, index)'>
             <i v-if='audio.state && audio.index === index' class='icon iconfont icon-zanting' style='font-size:2rem'></i>
-            <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4BB7AA;margin-top:.7rem;'></i>
+            <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4cc0be;margin-top:.7rem;'></i>
           </flexbox-item>
         </flexbox>
       </card>
       <div style="text-align:center">
         <spinner v-show="loading" type="dots"></spinner>
-        <p v-show="error" @click='_getData()' style="font-size:16px;color:#4BB7AA;padding:10px 0;">出错了点我重新加载</p>
-        <p v-show="Homework.list.length === 0 && !loading && !error" style="font-size:16px;color:#4BB7AA;padding:10px 0;">还没有老师布置作业~</p>
+        <p v-show="error" @click='_getData()' style="font-size:16px;color:#4cc0be;padding:10px 0;">出错了点我重新加载</p>
+        <p v-show="Homework.list.length === 0 && !loading && !error" style="font-size:16px;color:#4cc0be;padding:10px 0;">还没有老师布置作业~</p>
       </div>
     </div>
     <div v-transfer-dom>

@@ -11,7 +11,7 @@
     </group>
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="ripple"></spinner>
-      <p v-else-if="_isEmpty(ClassSearch) && searchCode.length === 6" style="font-size:16px;color:#4BB7AA">没有查找到班级~</p>
+      <p v-else-if="_isEmpty(ClassSearch) && searchCode.length === 6" style="font-size:16px;color:#4cc0be">没有查找到班级~</p>
     </div>
   </view-box>
 </template>
