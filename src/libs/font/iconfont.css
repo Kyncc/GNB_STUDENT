@@ -69,7 +69,11 @@
 
 .icon-cf-c23:before { content: "\e62a"; }
 
+.icon-my_exercisebook:before { content: "\e6f3"; }
+
 .icon-workbook:before { content: "\e639"; }
+
+.icon-my_collection:before { content: "\e618"; }
 
 .icon-download_link:before { content: "\e663"; }
 
@@ -122,3 +126,4 @@
 .icon-danxuananniu-xuanzhong:before { content: "\e61a"; }
 
 .icon-down:before { content: "\e90d"; }
+

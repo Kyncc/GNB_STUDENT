@@ -2,8 +2,8 @@
   <view-box ref="myClass" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '我的班级'}">
       <div slot="right">
-        <router-link :to="{ path: 'class/add'}" style="margin:0">
-          <i class="icon iconfont icon-plus" style="padding:8px;font-size:28px;top:-1px;"></i>
+        <router-link :to="{name: 'class_add'}" style="margin:0">
+          <i class="icon iconfont icon-plus" style="padding:8px;font-size:28px;top:-1px;right:-10px;"></i>
         </router-link>
         <!-- <router-link :to="{ path: 'class/message'}" style="margin:0">
           <i class="icon iconfont icon-comment2" style="padding:10px;margin:0 -10px 0 0"></i>
@@ -13,12 +13,12 @@
     <div>
       <group gutter="0" v-if="!loading">
         <template v-for="(item, index) in ClassMy">
-          <cell :title="item.name" :link="'class/detail/'+item.classCode" :key='index'></cell>
+          <cell :title="item.name" :link="'detail/'+item.classCode" :key='index'></cell>
         </template>
       </group>
       <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="ripple"></spinner>
-        <p v-else-if="ClassMy.length === 0" style="font-size:16px;color:#4cc0be" @click="$router.push('class/add')">点我加入班级~</p>
+        <p v-else-if="ClassMy.length === 0" style="font-size:16px;color:#4cc0be" @click="$router.push({name: 'class_add'})">点我加入班级~</p>
       </div>
     </div>
   </view-box>

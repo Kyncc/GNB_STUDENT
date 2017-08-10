@@ -19,6 +19,11 @@ Vue.filter('ymd', (value) => {
   return dateFormat(new Date(Number(`${value}000`)), 'YYYY-MM-DD')
 })
 
+// 时间戳转换分秒
+Vue.filter('ymdhms', (value) => {
+  return dateFormat(new Date(Number(`${value}000`)), 'YYYY-MM-DD HH:mm:ss')
+})
+
 // 错误类型注入
 Vue.filter('errorType', (value) => {
   switch (value) {

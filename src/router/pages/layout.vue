@@ -9,10 +9,10 @@
           <i slot="icon" :class="'icon iconfont '+(select === 0 ? 'icon-home1' : 'icon-home2')"></i>
           <span slot="label">主页</span>
         </tabbar-item>
-        <tabbar-item link="bag" :show-dot="News.classes">
+        <!-- <tabbar-item link="bag" :show-dot="News.classes">
           <i slot="icon" :class="'icon iconfont '+(select === 1 ? 'icon-bag1' : 'icon-bag2')"></i>
           <span slot="label">书包</span>
-        </tabbar-item>
+        </tabbar-item> -->
         <tabbar-item link="user" :show-dot="News.correct || News.system">
           <i slot="icon" :class="'icon iconfont '+(select === 2 ? 'icon-user1' : 'icon-user2')"></i>
           <span slot="label">我的</span>

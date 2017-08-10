@@ -11,9 +11,9 @@
       <card v-for="(item, index) in Homework.list" :key="index">
         <div slot="header" class="weui-panel__hd" style='padding:5px 15px;'>
           <flexbox>
-            <flexbox-item :span="7" style="color:#4cc0be">布置时间：{{item.time | ymd}}</flexbox-item>
+            <flexbox-item :span="7" style="color:#4cc0be">{{item.time | ymdhms}}</flexbox-item>
             <flexbox-item :span="5" style="color:#4cc0be;text-align:right;padding-right:5px;">
-              <x-button type="primary" mini plain>{{item.name}}</x-button>
+              <x-button type="primary" mini >{{item.name}}</x-button>
             </flexbox-item>
           </flexbox>
         </div>

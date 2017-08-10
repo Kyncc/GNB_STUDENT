@@ -11,7 +11,13 @@
         <div slot="inline-desc" style='color:#fff;padding-top:.25rem'>{{User.mobile}}</div>
       </cell>
     </group>
-    <group gutter="0">
+    <group gutter="0" style='margin-top:-2px;'>
+      <cell title="我的收藏本" link="collect">
+        <i class="icon iconfont icon-my_collection" style="color:#4cc0be" slot="icon"></i>
+      </cell>
+      <cell title="我的习题册" link="myBook">
+        <i class="icon iconfont icon-my_exercisebook" style="color:#4cc0be" slot="icon"></i>
+      </cell>
       <cell title="设置" link="settings">
         <i class="icon iconfont icon-settingfull" style="color:#4cc0be" slot="icon"></i>
       </cell>
@@ -20,8 +26,8 @@
         <badge text="新消息" v-if="News.correct || News.system"></badge>
       </cell>
       <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.2.0'" is-link @click.native="_openStore">
-        <i class="icon iconfont icon-yingyongshengji" style="color:#4cc0be" slot="icon"></i>
-        <badge text="新版本"></badge>
+        <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>
+        <badge></badge>
       </cell>
     </group>
   </div>
