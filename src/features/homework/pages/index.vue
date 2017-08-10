@@ -11,7 +11,7 @@
       <card v-for="(item, index) in Homework.list" :key="index">
         <div slot="header" class="weui-panel__hd" style='padding:5px 15px;'>
           <flexbox>
-            <flexbox-item :span="7" style="color:#4cc0be">{{item.time | ymdhms}}</flexbox-item>
+            <flexbox-item :span="7" style="color:#999">{{item.time | ymdhms}}</flexbox-item>
             <flexbox-item :span="5" style="color:#4cc0be;text-align:right;padding-right:5px;">
               <x-button type="primary" mini >{{item.name}}</x-button>
             </flexbox-item>
@@ -26,7 +26,7 @@
           </flexbox-item>
         </flexbox>
         <!--语音作业 -->
-        <flexbox slot="content"  v-if='item.img'>
+        <flexbox slot="content" v-if='item.img'>
           <flexbox-item v-if='item.audio' :span="2" @click.native='_audio(item.audio, index)'>
             <i v-if='audio.state && audio.index === index' class='icon iconfont icon-zanting' style='font-size:2rem'></i>
             <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4cc0be;margin-top:.7rem;'></i>

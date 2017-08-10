@@ -23,7 +23,7 @@
       </cell>
       <cell title="消息通知" link="message">
         <i class="icon iconfont icon-comment2" style="color:#4cc0be" slot="icon"></i>
-        <badge text="新消息" v-if="News.correct || News.system"></badge>
+        <badge v-if="News.correct || News.system"></badge>
       </cell>
       <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.2.0'" is-link @click.native="_openStore">
         <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>

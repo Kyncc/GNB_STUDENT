@@ -4,18 +4,18 @@
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
-      <tabbar slot="bottom" class="homepage" v-model="select" style="z-index:2;">
-        <tabbar-item link="index" >
-          <i slot="icon" :class="'icon iconfont '+(select === 0 ? 'icon-home1' : 'icon-home2')"></i>
+      <tabbar slot="bottom" class="homepage" style="z-index:2;">
+        <tabbar-item link="index" :selected="Path === '/index'">
+          <i slot="icon" :class="'icon iconfont '+(Path === '/index' ? 'icon-home1' : 'icon-home2')"></i>
           <span slot="label">主页</span>
         </tabbar-item>
         <!-- <tabbar-item link="bag" :show-dot="News.classes">
           <i slot="icon" :class="'icon iconfont '+(select === 1 ? 'icon-bag1' : 'icon-bag2')"></i>
           <span slot="label">书包</span>
         </tabbar-item> -->
-        <tabbar-item link="user" :show-dot="News.correct || News.system">
-          <i slot="icon" :class="'icon iconfont '+(select === 2 ? 'icon-user1' : 'icon-user2')"></i>
-          <span slot="label">我的</span>
+        <tabbar-item link="user" :show-dot="News.correct || News.system" :selected="Path === '/user'">
+          <i slot="icon" :class="'icon iconfont '+(Path === '/user' ? 'icon-user1' : 'icon-user2')"></i>
+          <span slot="label" style=''>我的</span>
         </tabbar-item>
       </tabbar>
     </view-box>
@@ -33,19 +33,7 @@ export default {
     Tabbar, TabbarItem, ViewBox
   },
   computed: {
-    ...mapGetters(['Path', 'News']),
-    select () {
-      switch (this.Path) {
-        case '/index' : return 0
-        case '/bag' : return 1
-        case '/user' : return 2
-      }
-    }
-  },
-  activated () {
-    if (this.Path === '/index') this.select = 0
-    else if (this.Path === '/bag') this.select = 1
-    else this.select = 2
+    ...mapGetters(['Path', 'News'])
   }
 }
 </script>

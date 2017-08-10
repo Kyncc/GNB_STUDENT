@@ -3,7 +3,7 @@
     <card v-for='(error, index) in errorPhysics.list' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
-          <flexbox-item :span="8" style="color:#4cc0be">来源：{{error.from}}</flexbox-item>
+          <flexbox-item :span="8" >来源：{{error.from}}</flexbox-item>
           <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
         </flexbox>
       </div>

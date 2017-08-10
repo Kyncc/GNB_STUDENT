@@ -5,7 +5,7 @@
     <group gutter="0" v-if="!loading">
       <template v-if="ClassSearch.name">
         <cell :title="ClassSearch.name">
-          <x-button type="primary" :mini="true" @click.native="_addClass(ClassSearch.classCode)">申请加入</x-button>
+          <x-button type="primary" :mini="true" @click.native="_addClass(ClassSearch.classCode)">加入班级</x-button>
         </cell>
       </template>
     </group>
@@ -37,7 +37,7 @@ export default {
       this.postMyClassInto({
         classCode: code
       }).then(() => {
-        this.$vux.toast.show({text: '申请成功', type: 'text', time: 1500})
+        this.$vux.toast.show({text: '加入成功', type: 'text', time: 1500})
         history.back()
       })
     },
