@@ -92,7 +92,7 @@ export default {
         h: '1050'
       })
       this.$nextTick(() => {
-        this.$refs.wbpreviewer.show(Number(index))
+        this.$refs.wbpreviewer.show(0)
       })
     }
   },

@@ -88,11 +88,11 @@ export default {
       this.list = []
       this.list.push({
         src: `${this.myBookSearchList[pindex].list[index].img.url}-workbookBig`,
-        w: '700',
-        h: '1050'
+        w: 700,
+        h: 1050
       })
       this.$nextTick(() => {
-        this.$refs.wbpreviewer.show(Number(index))
+        this.$refs.wbpreviewer.show(0)
       })
     }
   },

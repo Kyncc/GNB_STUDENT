@@ -126,8 +126,8 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.workbookAddClear()
-      vm.tabwidth = vm.textBookList.length * 70 + 'px' // tab的宽度
-      vm.$refs.tab.scrollLeft = Number((vm.textBookIndex - 1) * 70)
+      vm.tabwidth = vm.textBookList.length * 105 + 'px' // tab的宽度
+      vm.$refs.tab.scrollLeft = Number((vm.textBookIndex - 1) * 105)
       vm._getData()
     })
   }
