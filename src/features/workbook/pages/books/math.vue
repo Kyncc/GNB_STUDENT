@@ -4,7 +4,7 @@
       <group :title="textbook.textbookName">
         <cell v-for="(workbook, index) in textbook.list" :key="index" is-link
           @click.native="$router.push({ name: 'workbook_chapter', params: {'id': workbook.workbookId ,'name': workbook.workbookName}})">
-          <img v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/90x120!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' slot="icon" width="60" height="80"/>
+          <img v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/120x160!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' slot="icon" width="60" height="80"/>
           <div slot="after-title" style="width:90%;">
             <p style="color:#aaa;font-size:14px;">&nbsp;&nbsp;&nbsp;{{workbook.year}}版</p>
             <p class="ellipsis">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
@@ -14,7 +14,7 @@
     </template>
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="ripple"></spinner>
-      <p v-else-if="workbookMath.list.textbook.length === 0" style="font-size:16px;color:#4BB7AA;"
+      <p v-else-if="workbookMath.list.textbook.length === 0" style="font-size:16px;color:#4cc0be;"
        @click="$router.push({name: 'workbook_add', params: {subject: 'math'}, query: {id: User.textbook.math[0].id}})"
       >点我添加数学习题册</p>
     </div>

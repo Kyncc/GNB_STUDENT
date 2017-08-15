@@ -5,26 +5,29 @@
       个人中心
     </x-header>
     <group gutter="0" class='headInfo'>
-      <cell style='background:#4BB7AA;color:#fff;' link='settings/info'>
+       <cell class='userBg' link='settings/info'>
         <img slot="icon" width="70" height="70" style="border-radius:50%;margin-right:1rem" v-lazy="User.headImg">
         <div slot="after-title" style='color:#fff;'>{{User.name}}</div>
         <div slot="inline-desc" style='color:#fff;padding-top:.25rem'>{{User.mobile}}</div>
       </cell>
     </group>
-    <group gutter="0">
-      <cell title="设置" link="settings">
-        <i class="icon iconfont icon-settingfull" style="color:#794BB8" slot="icon"></i>
+    <group gutter="0" style='margin-top:-2px;'>
+      <cell title="我的收藏本" link="collect">
+        <i class="icon iconfont icon-my_collection" style="color:#4cc0be" slot="icon"></i>
       </cell>
-      <cell title="关于归纳本" link="about">
-        <i class="icon iconfont icon-info" style="color:#6DC6FF" slot="icon"></i>
+      <cell title="我的习题册" link="myBook">
+        <i class="icon iconfont icon-my_exercisebook" style="color:#4cc0be" slot="icon"></i>
+      </cell>
+      <cell title="设置" link="settings">
+        <i class="icon iconfont icon-settingfull" style="color:#4cc0be" slot="icon"></i>
       </cell>
       <cell title="消息通知" link="message">
-        <i class="icon iconfont icon-comment2" style="color:#ABC97C" slot="icon"></i>
-        <badge text="新消息" v-if="News.correct || News.system"></badge>
+        <i class="icon iconfont icon-comment2" style="color:#4cc0be" slot="icon"></i>
+        <badge v-if="News.correct || News.system"></badge>
       </cell>
       <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.2.0'" is-link @click.native="_openStore">
-        <i class="icon iconfont icon-yingyongshengji" style="color:#FF5454" slot="icon"></i>
-        <badge text="新版本"></badge>
+        <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>
+        <badge></badge>
       </cell>
     </group>
   </div>

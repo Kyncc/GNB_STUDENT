@@ -5,7 +5,7 @@
 		""
 	],
 	"id": "H55E5EFFB",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "归纳本",/*应用名称，程序桌面图标名称*/
+	"name": "归纳本-学生端",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "3.2.0",/*应用版本名称*/
 		"code": "320"
@@ -98,16 +98,12 @@
 		"Contacts": {}
 	},
 	"plus": {
-		"schemeWhitelist":["market","mqqapi"],
+		"schemeWhitelist":["market","mqqapi","mqqwpa","itms-apps"],
 		"plistcmds": [
 			"Add :NSCameraUsageDescription string 相机访问",
 			"Add :NSMicrophoneUsageDescription string 麦克风访问",
 			"Add :NSPhotoLibraryUsageDescription string 相册访问",
 			"Add :NSContactsUsageDescription string 通讯录访问"
-		],
-		"schemeWhitelist": [
-			"market",
-			"mqqapi"
 		],
 		"splashscreen": {
 			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
@@ -121,9 +117,9 @@
 				"statics": {
 					"umeng": {
 						"appkey_ios": "584125476e27a40bc4000e49",
-						"channelid_ios": "3.1.0",
+						"channelid_ios": "3.2.0",
 						"appkey_android": "5833f42d8630f57e24001bc5",
-						"channelid_android": "3.1.0"
+						"channelid_android": "3.2.0"
 					}
 				},
 				"share": {

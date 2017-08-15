@@ -3,7 +3,7 @@
     <card v-for='(error, index) in errorPhysics.list' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
-          <flexbox-item :span="8" style="color:#4bb7aa">来源：{{error.from}}</flexbox-item>
+          <flexbox-item :span="8" >来源：{{error.from}}</flexbox-item>
           <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
         </flexbox>
       </div>
@@ -27,8 +27,8 @@
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="lines"></spinner>
       <div>
-        <p style="font-size:16px;color:#4BB7AA" v-if="loadingNoData">已经加载全部错题~</p>
-        <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
+        <p style="font-size:16px;color:#4cc0be" v-if="loadingNoData">已经加载全部错题~</p>
+        <p style="font-size:16px;color:#4cc0be" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
       </div>
     </div>
     <!--照片放大 -->
@@ -184,7 +184,7 @@ export default {
   border-radius: 15px;
 }
 .check-item-selected {
-  background-color: #4BB7AA;
+  background-color: #4cc0be;
   color: #fff;
 }
 .check-item-disabled {

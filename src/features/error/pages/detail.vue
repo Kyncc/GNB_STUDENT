@@ -8,28 +8,28 @@
         </i>
       </div>
     </x-header>
-    <template v-for="detail in Example.detail"> 
-      <card>
+    <template v-for="(detail, index) in Example.detail">
+      <card :key='index'>
         <div slot="header" class="weui-panel__hd">
-          <flexbox><flexbox-item :span="10" style="color:#4bb7aa">{{detail.charpterName}}</flexbox-item></flexbox>
+          <flexbox><flexbox-item :span="10" style="color:#4cc0be">{{detail.charpterName}}</flexbox-item></flexbox>
         </div>
         <div slot="content">
           <div v-html="detail.stem"></div>
           <div v-if="detail.opt.hasOwnProperty('A')">
             <template v-for="(value, key) in detail.opt">
-              <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+              <div style="padding-top:5px;" :key='key'>{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
             </template>
           </div>
         </div>
       </card>
-      <card>
-        <div slot="header" class="weui-panel__hd" style="color:#4bb7aa">解析</div>
+      <card :key='index'>
+        <div slot="header" class="weui-panel__hd" style="color:#4cc0be">解析</div>
         <div slot="content" v-html="detail.answer"></div>
       </card>
     </template>
     <div style="text-align:center">
       <spinner v-if="loading" type="dots"></spinner>
-      <p v-else-if="Example.detail.length == 0" style="font-size:16px;padding:10px 0;color:#4BB7AA">出错了~</p>
+      <p v-else-if="Example.detail.length == 0" style="font-size:16px;padding:10px 0;color:#4cc0be">出错了~</p>
     </div>
   </view-box>
 </template>

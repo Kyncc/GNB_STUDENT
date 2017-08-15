@@ -162,8 +162,8 @@ export default {
   text-align: center;
 }
 .demo2-item-selected{
-  border: 1px solid #4BB7AA;
-  color: #4BB7AA;
+  border: 1px solid #4cc0be;
+  color: #4cc0be;
 }
 .weui-cell_select .weui-select{
   direction: rtl !important;

@@ -121,8 +121,8 @@ export default {
   line-height: 1.5rem;
   text-align: center;
   border-radius: 3px;
-  color: #4bb7aa;
-  border: 1px solid #4bb7aa;
+  color: #4cc0be;
+  border: 1px solid #4cc0be;
   background-color: #fff;
   margin-right: .3rem;
   margin-top: .75rem;

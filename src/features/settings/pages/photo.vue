@@ -21,7 +21,7 @@ export default {
     ...mapActions(['uploadHeadImg']),
     _img () {
       this.uploadHeadImg({
-        img: this.cropper.getCroppedCanvas({width: 140, height: 140}).toDataURL('image/jpeg')
+        img: this.cropper.getCroppedCanvas({width: 300, height: 300}).toDataURL('image/jpeg')
       }).then(() => {
         this.$vux.toast.show({text: '上传成功', type: 'text', time: 1500, position: 'bottom'})
         setTimeout(() => { history.back() }, 500)
@@ -44,7 +44,7 @@ export default {
       this.cropper.destroy()
       let minHeight = document.documentElement.clientHeight - 46
       this.cropper = new Cropper(this.$refs.photo, {
-        aspectRatio: '1/1',
+        aspectRatio: 1 / 1,
         minContainerHeight: minHeight
       })
     }
@@ -52,7 +52,7 @@ export default {
   mounted () {
     let minHeight = document.documentElement.clientHeight - 46
     this.cropper = new Cropper(this.$refs.photo, {
-      aspectRatio: '1/1',
+      aspectRatio: 1 / 1,
       minContainerHeight: minHeight
     })
   }

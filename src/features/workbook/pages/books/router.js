@@ -3,6 +3,7 @@ export default [
   {
     path: '/workbook',
     component: r => require.ensure([], () => r(require('./layout')), '/workbook'),
+    name: 'workbook',
     redirect: '/workbook/math',
     children: [
       {

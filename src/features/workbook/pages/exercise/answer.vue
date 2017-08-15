@@ -10,8 +10,8 @@
                 <i v-if="!itemC.isUpload && !itemC.answer" class="icon iconfont icon-camera"
                   @click="$router.push({name: 'workbook_exercise_error_upload', params: {eid: itemC.eid, wbeid: itemC.id, chapterId: Route.params.id}})">
                 </i>
-                <i v-if="itemC.answer" class="icon iconfont icon-correct" style="color:#4BB7AA"></i>
-                <i v-else class="icon iconfont icon-error" style="color:#4BB7AA"></i>
+                <i v-if="itemC.answer" class="icon iconfont icon-correct" style="color:#4cc0be"></i>
+                <i v-else class="icon iconfont icon-error" style="color:#4cc0be"></i>
               </section>
             </p>
           </cell>
@@ -26,7 +26,7 @@
                 <i v-if="!itemB.isUpload && !itemB.answer" class="icon iconfont icon-camera"
                   @click="$router.push({name: 'workbook_exercise_error_upload', params: {eid: itemB.eid, wbeid: itemB.id, chapterId: Route.params.id}})">
                 </i>
-                <i @click="_changeAnswer(pindex,index,2)" v-if="itemB.answer" class="icon iconfont exampleIcon icon-correct" style="color:#4BB7AA"></i>
+                <i @click="_changeAnswer(pindex,index,2)" v-if="itemB.answer" class="icon iconfont exampleIcon icon-correct" style="color:#4cc0be"></i>
                 <i @click="_changeAnswer(pindex,index,2)" v-else class="icon iconfont icon-error exampleIcon" style="color:#FF7043"></i>
               </section>
             </div>
@@ -129,6 +129,6 @@ export default {
 </script>
 <style scoped>
 .icon-camera{
-  color:#4BB7AA;padding-right:10px;position:relative;top:5px;
+  color:#4cc0be;padding-right:10px;position:relative;top:5px;
 }
 </style>

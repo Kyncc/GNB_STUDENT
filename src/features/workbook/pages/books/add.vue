@@ -23,7 +23,7 @@
         <group gutter="0" v-if="!loading">
           <template v-for="(result, pindex) in workbookAddList">
             <cell v-for="(workbook, index) in result.list" :key="index">
-              <img class="previewer-workbook-img" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/60x80!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80"/>
+              <img class="previewer-workbook-img" v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/120x160!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80"/>
               <div slot="after-title" @click="show(pindex,index)" style="width:90%;">
                 <p style="color:#aaa;font-size:14px;">&nbsp;&nbsp;&nbsp;{{workbook.year}}版</p>
                 <p class="ellipsis">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>
@@ -37,7 +37,7 @@
         </group>
         <div style="text-align:center;padding:20px 0;">
           <spinner v-if="loading" type="dots"></spinner>
-          <p v-else-if="workbookAddList.length === 0" style="font-size:16px;color:#4BB7AA;">没有更多的习题册了~</p>
+          <p v-else-if="workbookAddList.length === 0" style="font-size:16px;color:#4cc0be;">没有更多的习题册了~</p>
         </div>
       </div>
     </view-box>
@@ -111,7 +111,7 @@ export default {
         h: '1050'
       })
       this.$nextTick(() => {
-        this.$refs.wbpreviewer.show()
+        this.$refs.wbpreviewer.show(0)
       })
     }
   },
@@ -126,8 +126,8 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.workbookAddClear()
-      vm.tabwidth = vm.textBookList.length * 70 + 'px' // tab的宽度
-      vm.$refs.tab.scrollLeft = Number((vm.textBookIndex - 1) * 70)
+      vm.tabwidth = vm.textBookList.length * 105 + 'px' // tab的宽度
+      vm.$refs.tab.scrollLeft = Number((vm.textBookIndex - 1) * 105)
       vm._getData()
     })
   }

@@ -5,13 +5,13 @@
     <group gutter="0" v-if="!loading">
       <template v-if="ClassSearch.name">
         <cell :title="ClassSearch.name">
-          <x-button type="primary" :mini="true" @click.native="_addClass(ClassSearch.classCode)">申请加入</x-button>
+          <x-button type="primary" :mini="true" @click.native="_addClass(ClassSearch.classCode)">加入班级</x-button>
         </cell>
       </template>
     </group>
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="ripple"></spinner>
-      <p v-else-if="_isEmpty(ClassSearch) && searchCode.length === 6" style="font-size:16px;color:#4BB7AA">没有查找到班级~</p>
+      <p v-else-if="_isEmpty(ClassSearch) && searchCode.length === 6" style="font-size:16px;color:#4cc0be">没有查找到班级~</p>
     </div>
   </view-box>
 </template>
@@ -37,7 +37,7 @@ export default {
       this.postMyClassInto({
         classCode: code
       }).then(() => {
-        this.$vux.toast.show({text: '申请成功', type: 'text', time: 1500})
+        this.$vux.toast.show({text: '加入成功', type: 'text', time: 1500})
         history.back()
       })
     },

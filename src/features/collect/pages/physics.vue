@@ -3,7 +3,7 @@
     <card v-for="(item, index) in list" :key="index">
       <div class="weui-panel__hd" slot="header">
         <flexbox>
-          <flexbox-item :span="10" style="color:#4bb7aa">{{item.chapter_name}}</flexbox-item>
+          <flexbox-item :span="10" style="color:#4cc0be">{{item.chapter_name}}</flexbox-item>
           <flexbox-item :span="2">难度: {{item.degree}}</flexbox-item>
         </flexbox>
       </div>
@@ -22,8 +22,8 @@
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="lines"></spinner>
       <div>
-        <p style="font-size:16px;color:#4BB7AA" v-if="loadingNoData">已经加载全部收藏~</p>
-        <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
+        <p style="font-size:16px;color:#4cc0be" v-if="loadingNoData">已经加载全部收藏~</p>
+        <p style="font-size:16px;color:#4cc0be" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
       </div>
     </div>
   </div>
