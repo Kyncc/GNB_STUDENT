@@ -23,6 +23,9 @@
       <selector v-model="math" title="数学" :options="mathList"></selector>
       <selector v-if="User.textbookAll.subjectType.length === 2" v-model="physics" title="物理" :options="physicsList"></selector>
     </group>
+    <group>
+      <cell title="修改密码" :link="{name: 'settings_pwd'}" is-link></cell>
+    </group>
     <actionsheet v-model="show" :menus="menus" @on-click-menu="_menusClick"></actionsheet>
   </view-box>
 </template>
