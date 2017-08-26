@@ -25,8 +25,13 @@
             <cell v-for="(myBook, index) in result.list" :key="index">
               <img class="previewer-myBook-img" v-lazy='myBook.img.url+"?imageMogr2/auto-orient/thumbnail/120x160!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80"/>
               <div slot="after-title" @click="show(pindex,index)" style="width:90%;">
-                <p style="color:#aaa;font-size:14px;">&nbsp;&nbsp;&nbsp;{{myBook.year}}版</p>
-                <p class="ellipsis">&nbsp;&nbsp;&nbsp;{{myBook.workbookName}}</p>
+                <p style="color:#4cc0be;font-size:14px;">&nbsp;&nbsp;&nbsp;{{myBook.year}}版</p>
+                <p class="ellipsis" style="font-size:.9rem;padding:.2rem 0">&nbsp;&nbsp;{{myBook.workbookName}}</p>
+                <template v-if='myBook.version'>
+                  <p v-for="(tag, index) in myBook.version.split(',')" :key='index' style="color:#aaa;font-size:14px;">
+                    &nbsp;&nbsp;&nbsp;{{tag}}
+                  </p>
+                </template>
               </div>
               <div slot="default">
                 <x-button v-if="!myBook.status" mini type="primary" slot="default" @click.native="_add(pindex,index,myBook.workbookId)">添加</x-button>
