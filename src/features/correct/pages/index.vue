@@ -1,7 +1,7 @@
 <template>
   <view-box ref="gnb_correct" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '我要纠错'}">
-      <p slot="right" @click="_commit">提交</p>
+      <p slot="right" @click="_commit">确定</p>
     </x-header>
     <group title="纠错类型">
       <checker style="padding:.25rem .75rem 1rem;"

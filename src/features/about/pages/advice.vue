@@ -11,7 +11,7 @@
       <x-textarea :max="200" name="description" placeholder="问题或建议描述" :rows="5" v-model="content"></x-textarea>
     </group>
     <div style="width:90%;margin:1rem auto 0">
-      <x-button class="footer_botton" type="primary" @click.native="_submit">提交</x-button>
+      <x-button class="footer_botton" type="primary" @click.native="_submit">确定</x-button>
     </div>
   </view-box>
 </template>

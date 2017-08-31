@@ -18,7 +18,7 @@
         <selector v-if="User.textbookAll.subjectType.length === 2" v-model="physics" title="物理" :options="physicsList"></selector>
       </group>
       <div style="width:90%;margin:1.5rem auto">
-        <x-button type="primary" @click.native="_complete" :disabled="disable">完成</x-button>
+        <x-button type="primary" @click.native="_complete" :disabled="disable">确定</x-button>
       </div>
     </div>
   </view-box>

@@ -1,7 +1,7 @@
 <template>
   <view-box ref="resetPwd" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '修改密码'}">
-      <a slot="right" @click="_complete" v-show="newPwd && repeatPwd && oldPwd">完成</a>
+      <a slot="right" @click="_complete" v-show="newPwd && repeatPwd && oldPwd">确定</a>
     </x-header>
     <group gutter="0">
       <x-input type="password" name="oldPwd" placeholder="请输入旧密码" keyboard="text" v-model="oldPwd" ref="oldPwd" :min="6" :max="18"></x-input>
