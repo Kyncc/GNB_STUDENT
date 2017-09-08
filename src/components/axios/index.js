@@ -45,6 +45,11 @@ axios.interceptors.response.use((res) => {
         } else {
           window.location.href = 'market://details?id=com.sanbao.guinaben.student'
         }
+        try {
+          plus.runtime.quit()
+        } catch (e) {
+          console.log('当前是网页模式')
+        }
       }
     })
   } else if (res.data.code !== 200) {
