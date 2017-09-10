@@ -10,7 +10,7 @@ axios.defaults.baseURL = 'https://www.guinaben.com/student/'
 axios.interceptors.request.use((config) => {
   config.params = {
     ...config.params,
-    VERSION: '3.3.0'
+    VERSION: '3.2.0'
   }
   if (config.method === 'post') {
     config.data = qs.stringify(config.data, {arrayFormat: 'brackets'})
@@ -37,8 +37,8 @@ axios.interceptors.response.use((res) => {
   } else if (res.data.code === 403) {
     // 升级的代码
     Vue.$vux.alert.show({
-      title: '更新',
-      content: '据说新增功能666',
+      title: '发现新版本',
+      content: '升级全新体验',
       onHide () {
         if (/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase())) {
           plus.runtime.openURL('itms-apps://itunes.apple.com/cn/app/gui-na-ben-xue-sheng-duan/id1184077595?l=en&mt=8')
@@ -52,6 +52,7 @@ axios.interceptors.response.use((res) => {
         }
       }
     })
+    return Promise.reject(res)
   } else if (res.data.code !== 200) {
     Vue.$vux.toast.show({text: res.data.msg, type: 'text', time: 1500, position: 'bottom'})
     return Promise.reject(res)
