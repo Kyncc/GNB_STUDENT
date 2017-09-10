@@ -10,7 +10,7 @@ axios.defaults.baseURL = 'https://www.guinaben.com/student/'
 axios.interceptors.request.use((config) => {
   config.params = {
     ...config.params,
-    VERSION: '3.2.0'
+    VERSION: '3.3.0'
   }
   if (config.method === 'post') {
     config.data = qs.stringify(config.data, {arrayFormat: 'brackets'})
