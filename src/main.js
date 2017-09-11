@@ -4,10 +4,11 @@ import store from './store'
 import FastClick from 'fastclick'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
-import { ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat } from 'vux'
+import { ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat, AlertPlugin } from 'vux'
 import App from './App'
 
 Vue.use(ToastPlugin) // 使用提醒
+Vue.use(AlertPlugin)
 Vue.use(VueLazyload, { attempt: 3 }) // 图片异步加载
 Vue.use(LoadingPlugin) // 使用Loading
 Vue.use(ConfirmPlugin) // 使用Confirm

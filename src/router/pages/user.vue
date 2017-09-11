@@ -5,7 +5,7 @@
       个人中心
     </x-header>
     <group gutter="0" class='headInfo'>
-       <cell class='userBg' link='settings/info'>
+      <cell class='userBg' :link="{name: 'settings_update'}">
         <img slot="icon" width="70" height="70" style="border-radius:50%;margin-right:1rem" v-lazy="User.headImg">
         <div slot="after-title" style='color:#fff;'>{{User.name}}</div>
         <div slot="inline-desc" style='color:#fff;padding-top:.25rem'>{{User.mobile}}</div>
@@ -25,7 +25,7 @@
         <i class="icon iconfont icon-comment2" style="color:#4cc0be" slot="icon"></i>
         <badge v-if="News.correct || News.system"></badge>
       </cell>
-      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.2.0'" is-link @click.native="_openStore">
+      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.3.0'" is-link @click.native="_openStore">
         <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>
         <badge></badge>
       </cell>

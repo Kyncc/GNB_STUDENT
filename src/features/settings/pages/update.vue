@@ -1,7 +1,7 @@
 <template>
   <view-box ref="userinfoUpdate" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '修改资料'}">
-      <p slot="right" @click="_finish">完成</p>
+      <p slot="right" @click="_finish">确定</p>
     </x-header>
     <group gutter="0">
       <cell title="头像" @click.native="show = !show">
@@ -22,6 +22,9 @@
     <group>
       <selector v-model="math" title="数学" :options="mathList"></selector>
       <selector v-if="User.textbookAll.subjectType.length === 2" v-model="physics" title="物理" :options="physicsList"></selector>
+    </group>
+    <group>
+      <cell title="修改密码" :link="{name: 'settings_pwd'}" is-link></cell>
     </group>
     <actionsheet v-model="show" :menus="menus" @on-click-menu="_menusClick"></actionsheet>
   </view-box>

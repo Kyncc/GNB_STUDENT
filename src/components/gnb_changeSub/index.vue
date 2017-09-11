@@ -32,7 +32,7 @@ export default {
     onDisplay () {
       this.visible = true
     },
-    // 点击科目提交的回调
+    // 点击科目确定的回调
     onClickBack (item) {
       if (this.selected !== item.id) {
         this.selected = item.id

@@ -1,7 +1,7 @@
 <template>
   <view-box body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-      <x-header :left-options="{backText: '查答案'}">
+      <x-header :left-options="{backText: '记录错题'}">
         <div slot="right"  @click="_add">
           <i class="icon iconfont icon-book" style="padding:10px;margin:0 -10px 0 0"></i>
         </div>
