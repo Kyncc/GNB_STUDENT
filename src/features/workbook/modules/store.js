@@ -100,6 +100,19 @@ const mutations = {
   [types.WORKBOOK_UPLOAD] (state, data) {
     state.uploader.list = []
     state.exercise.list = data
+  },
+  [types.WORKBOOK_WANT_ADD] (state, data) {
+    state.workbook.want.list.push(data)
+  },
+  [types.WORKBOOK_WANT_DEL] (state, index) {
+    state.workbook.want.list.splice(index, 1)
+  },
+  [types.WORKBOOK_WANT_CAMERA] (state, data) {
+    state.uploader.want.camera = data
+  },
+  [types.WORKBOOK_WANT_UPLOAD] (state, index) {
+    state.workbook.want.list = []
+    state.workbook.want.camera = ''
   }
 }
 

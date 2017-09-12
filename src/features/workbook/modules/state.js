@@ -9,7 +9,11 @@ let state = {
       list: []
     },
     add: [],
-    search: []
+    search: [],
+    want: {
+      list: [],
+      camera: ''
+    }
   },
   chapter: {
     list: [],

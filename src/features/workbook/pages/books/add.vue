@@ -1,11 +1,10 @@
 <template>
   <div style="height:100%">
-    <view-box body-padding-top="86px">
+    <view-box body-padding-top="86px" body-padding-bottom="46px">
       <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
         <x-header :left-options="{backText: '习题册管理'}">
           <div slot="right" @click="$router.push({name: 'workbook_search', param: {subject: Route.params.subject}})">
-            <i class="icon iconfont icon-iconfontsousuo" style="padding:8px;font-size:26px;margin-right:-10px;">
-            </i>
+            <i class="icon iconfont icon-iconfontsousuo" style="padding:8px;font-size:26px;margin-right:-10px;"></i>
           </div>
         </x-header>
         <div ref="tab" style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;z-index:1;">
@@ -45,19 +44,22 @@
           <p v-else-if="workbookAddList.length === 0" style="font-size:16px;color:#4cc0be;">没有更多的习题册了~</p>
         </div>
       </div>
+      <tabbar slot="bottom" style='text-align:center;font-size:.8rem;padding:.25rem 0;'>
+        <p style='color:#4cc0be;width:100%;'>没有我想要得习题册？点我提交</p>
+      </tabbar>
     </view-box>
     <previewer :list="list" ref="wbpreviewer" :options="options"></previewer>
   </div>
 </template>
 
 <script>
-import {XHeader, Group, Cell, Tab, TabItem, XButton, ViewBox, Previewer, Spinner} from 'vux'
+import {XHeader, Group, Cell, Tab, TabItem, XButton, ViewBox, Previewer, Spinner, Tabbar} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'workbookAdd',
   components: {
-    XHeader, Group, Cell, Tab, TabItem, XButton, ViewBox, Previewer, Spinner
+    XHeader, Group, Cell, Tab, TabItem, XButton, ViewBox, Previewer, Spinner, Tabbar
   },
   computed: {
     ...mapGetters(['User', 'workbookAddList', 'Route']),

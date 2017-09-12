@@ -1,6 +1,6 @@
 <template>
   <div style="height:100%">
-    <view-box body-padding-top="86px">
+    <view-box body-padding-top="86px" body-padding-bottom="46px">
       <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
         <x-header :left-options="{backText: '习题册管理'}">
           <div slot="right" @click="$router.push({name: 'myBook_search', param: {subject: Route.params.subject}})">
@@ -19,7 +19,7 @@
           </tab>
         </div>
       </div>
-      <div>
+      <div slot="default">
         <group gutter="0" v-if="!loading">
           <template v-for="(result, pindex) in myBookAddList">
             <cell v-for="(myBook, index) in result.list" :key="index">
@@ -45,19 +45,22 @@
           <p v-else-if="myBookAddList.length === 0" style="font-size:16px;color:#4cc0be;">没有更多的习题册了~</p>
         </div>
       </div>
+      <tabbar slot="bottom" style='text-align:center;font-size:.8rem;padding:.25rem 0;'>
+        <p style='color:#4cc0be;width:100%;'>没有我想要得习题册？点我提交</p>
+      </tabbar>
     </view-box>
     <previewer :list="list" ref="wbpreviewer" :options="options"></previewer>
   </div>
 </template>
 
 <script>
-import {XHeader, Group, Cell, Tab, TabItem, XButton, ViewBox, Previewer, Spinner} from 'vux'
+import {XHeader, Group, Cell, Tab, TabItem, XButton, ViewBox, Previewer, Spinner, Tabbar} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'myBookAdd',
   components: {
-    XHeader, Group, Cell, Tab, TabItem, XButton, ViewBox, Previewer, Spinner
+    XHeader, Group, Cell, Tab, TabItem, XButton, ViewBox, Previewer, Spinner, Tabbar
   },
   computed: {
     ...mapGetters(['User', 'myBookAddList', 'Route']),

@@ -12,3 +12,5 @@ export const workbookUploader = (state) => state.uploader
 export const workbookChapter = (state) => state.chapter
 /** 练习 */
 export const workbookExercise = (state) => state.exercise
+/** 想要练习册 */
+export const workbookWant = (state) => state.want

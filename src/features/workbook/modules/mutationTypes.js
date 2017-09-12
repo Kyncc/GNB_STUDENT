@@ -17,6 +17,15 @@ export const WORKBOOK_SEARCH = 'WORKBOOK_SEARCH'
 /** 删除搜索习题册全部 */
 export const WORKBOOK_SEARCH_CLEAR = 'WORKBOOK_SEARCH_CLEAR'
 
+/** 增加想要练习册图片**/
+export const WORKBOOK_WANT_ADD = 'WORKBOOK_WANT_ADD'
+/** 删除想要练习册图片**/
+export const WORKBOOK_WANT_DEL = 'WORKBOOK_WANT_DEL'
+/** 提交想要练习册图片**/
+export const WORKBOOK_WANT_UPLOAD = 'WORKBOOK_WANT_UPLOAD'
+/** 提交想要练习册图片拍照**/
+export const WORKBOOK_WANT_CAMERA = 'WORKBOOK_WANT_CAMERA'
+
 /** 获取习题册章节 */
 export const WORKBOOK_CHAPTER = 'WORKBOOK_CHAPTER'
 /** 清除章节数据 */
