@@ -11,7 +11,8 @@ let state = {
     add: [],
     search: [],
     want: {
-      list: [],
+      version: '',
+      index: '',
       camera: ''
     }
   },

@@ -59,6 +59,7 @@
     ├── router      # Main Pages
     ├── features    # Modules
         ├── common      # 全局功能函数
+        ├── camera      # 拍错题
         ├── workbook    # 查答案
         ├── example     # 例题
         ├── collect     # 收藏本模块

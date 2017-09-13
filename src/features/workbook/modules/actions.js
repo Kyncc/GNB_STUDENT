@@ -267,13 +267,13 @@ export const setWorkbookExersciseScroll = ({ commit }, height) => {
 }
 
 /** 想要练习册照片删除 */
-export const workbookWantDel = ({ commit }, id) => {
-  commit(types.WORKBOOK_WANT_DEL, id)
+export const workbookWantDel = ({ commit }, type) => {
+  commit(types.WORKBOOK_WANT_DEL, type)
 }
 
 /** 提交想要练习册图片 */
 export const workbookWantAdd = ({ commit }, data) => {
-  commit(types.WORKBOOK_WANT_ADD, data)
+  commit(types.WORKBOOK_WANT_ADD, {type: data.type, data: data.data})
 }
 
 /** 想要练习册照片拍照 */
