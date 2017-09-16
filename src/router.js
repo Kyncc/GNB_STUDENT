@@ -4,6 +4,7 @@ import { sync } from 'vuex-router-sync'
 import store from './store'
 import index from './router/router'
 import login from './features/login/router'
+import camera from './features/camera/router'
 import about from './features/about/router'
 import collect from './features/collect/router'
 import correct from './features/correct/router'
@@ -23,6 +24,7 @@ let router = new Router({
   routes: [
     about,
     collect,
+    camera,
     ...error,
     correct,
     example,

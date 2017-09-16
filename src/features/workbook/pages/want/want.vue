@@ -4,7 +4,7 @@
       <i slot="right" @click="_upload" class="icon iconfont icon-upload" style="font-size:22px"></i>
     </x-header>
     <div>
-      <group-title style="margin:15px 0 0px;">封面,请按照示例上传习题册封面及版次</group-title>
+      <group-title style="margin:15px 0 0px;">封面,请按照示例上传习题册封面和版次</group-title>
       <flexbox wrap="wrap" align="baseline" style="padding:15px 0">
         <flexbox-item :span="1"></flexbox-item>
         <flexbox-item :span="4" @click.native="_show(0)">

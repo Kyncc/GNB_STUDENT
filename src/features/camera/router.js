@@ -1,22 +1,28 @@
 export default {
   path: '/camera',
+  name: 'camera',
   component: r => require.ensure([], () => r(require('./layout')), '/camera'),
-  redirect: '/camera/chapter',
+  redirect: '/camera/math',
   children: [
     {
-      path: 'points',
-      name: 'camera_points',
-      component: r => require.ensure([], () => r(require('./pages/points')), '/camera/points')
+      path: 'physics',
+      name: 'camera_physics',
+      component: r => require.ensure([], () => r(require('./pages/physics')), '/camera/physics')
     },
     {
-      path: 'options',
-      name: 'camera_options',
-      component: r => require.ensure([], () => r(require('./pages/options')), '/camera/center/options')
+      path: 'math',
+      name: 'camera_math',
+      component: r => require.ensure([], () => r(require('./pages/math')), '/camera/math')
     },
     {
-      path: 'choice/:subjectId/:grade/:id',
-      name: 'camera_choice',
-      component: r => require.ensure([], () => r(require('./pages/choice')), '/camera/choice')
+      path: 'photo',
+      name: 'camera_photo',
+      component: r => require.ensure([], () => r(require('./pages/photo')), '/camera/photo')
+    },
+    {
+      path: 'upload',
+      name: 'camera_upload',
+      component: r => require.ensure([], () => r(require('./pages/upload')), '/camera/upload')
     }
   ]
 }
