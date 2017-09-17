@@ -19,25 +19,25 @@
         <flexbox wrap="wrap" align="baseline">
           <flexbox-item :span="1"></flexbox-item>
           <flexbox-item :span="4">
-            <div class="photo" v-if="!(workbookWant.index)" @click="_add('index')">
+            <div class="photo" v-if="!(myBookWant.index)" @click="_add('index')">
               <div class="plus">
                 <b>+</b>
               </div>
             </div>
             <div class="photo" v-else>
-              <div style="text-align:center;height:160px;background-size:100% 100%" :style="'background-image:url('+workbookWant.index+')'"></div>
+              <div style="text-align:center;height:160px;background-size:100% 100%" :style="'background-image:url('+myBookWant.index+')'"></div>
               <i class="icon iconfont icon-error" style="font-size:30px;position:absolute;left:5.4rem;top:-1.2rem" @click="_del('index')"></i>
             </div>
             </flexbox-item>
           <flexbox-item :span="1"></flexbox-item>
           <flexbox-item :span="4">
-            <div class="photo" v-if="!(workbookWant.version)" @click="_add('version')">
+            <div class="photo" v-if="!(myBookWant.version)" @click="_add('version')">
               <div class="plus">
                 <b>+</b>
               </div>
             </div>
             <div class="photo" v-else>
-              <div style="text-align:center;height:160px;background-size:100% 100%" :style="'background-image:url('+workbookWant.version+')'"></div>
+              <div style="text-align:center;height:160px;background-size:100% 100%" :style="'background-image:url('+myBookWant.version+')'"></div>
               <i class="icon iconfont icon-error" style="font-size:30px;position:absolute;left:5.4rem;top:-1.2rem" @click="_del('version')"></i>
             </div>
           </flexbox-item>
@@ -61,7 +61,7 @@ export default {
     XHeader, ViewBox, Flexbox, FlexboxItem, GroupTitle, Previewer
   },
   computed: {
-    ...mapGetters(['workbookWant'])
+    ...mapGetters(['myBookWant'])
   },
   directives: {
     TransferDom
@@ -93,23 +93,23 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['workbookWantDel', 'workbookCamera', 'workbookWantUpload']),
+    ...mapActions(['myBookWantDel', 'myBookCamera', 'myBookWantUpload']),
     _add (type) {
       /**
        * version 版本图片
        * index 首页图片
        */
-      this.$router.push({name: 'workbook_want_photo', query: {type: type}})
+      this.$router.push({name: 'myBook_want_photo', query: {type: type}})
       // let cmr = plus.camera.getCamera()
       // cmr.captureImage((p) => {
       //   plus.io.resolveLocalFileSystemURL(p, (entry) => {
-      //     this.workbookCamera(entry.toLocalURL())
-      //     this.$router.push({name: 'workbook_want_photo', query: {type: type}})
+      //     this.myBookCamera(entry.toLocalURL())
+      //     this.$router.push({name: 'myBook_want_photo', query: {type: type}})
       //   })
       // })
     },
     _del (type) {
-      this.workbookWantDel(type)
+      this.myBookWantDel(type)
     },
     _show (index) {
       this.$nextTick(() => {
@@ -117,12 +117,12 @@ export default {
       })
     },
     _upload () {
-      if (!this.workbookWant.index) {
+      if (!this.myBookWant.index) {
         this.$vux.toast.show({text: '请上传习题册封面', type: 'text', time: 1500, position: 'bottom'})
-      } else if (!this.workbookWant.version) {
+      } else if (!this.myBookWant.version) {
         this.$vux.toast.show({text: '请上传习题册版次', type: 'text', time: 1500, position: 'bottom'})
       } else {
-        this.workbookWantUpload().then(() => {
+        this.myBookWantUpload().then(() => {
           history.go(-1)
         })
       }
@@ -130,9 +130,9 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'workbook_add') {
-        vm.workbookWantDel('index')
-        vm.workbookWantDel('version')
+      if (from.name === 'myBook_add') {
+        vm.myBookWantDel('index')
+        vm.myBookWantDel('version')
       }
     })
   }

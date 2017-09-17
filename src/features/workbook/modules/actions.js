@@ -289,7 +289,8 @@ export const workbookWantUpload = ({ state, rootState, commit }) => {
       method: 'post',
       url: 'workbook/want',
       data: {
-        'camera': state.want,
+        'index': state.workbook.want.index,
+        'version': state.workbook.want.version,
         'token': rootState.common.user.token
       }
     })

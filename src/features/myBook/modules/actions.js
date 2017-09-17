@@ -51,7 +51,7 @@ export const myBookAdd = ({ rootState, commit, state }, params) => {
       data: {
         token: rootState.common.user.token,
         type: 'add',
-        workbookId: params.workbookId
+        myBookId: params.myBookId
       }
     })
       .then((response) => {
@@ -71,7 +71,7 @@ export const myBookDel = ({ rootState, commit, state }, params) => {
       data: {
         token: rootState.common.user.token,
         type: 'del',
-        workbookId: params.workbookId
+        myBookId: params.myBookId
       }
     })
       .then((response) => {
@@ -122,4 +122,45 @@ export const myBookClear = ({ rootState, commit }) => {
 export const setMyBookScroll = ({ rootState, commit }, height) => {
   let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   commit(types.MYBOOK_SCROLL, { subject: subject, height: height })
+}
+
+/** 想要练习册照片删除 */
+export const myBookWantDel = ({ commit }, type) => {
+  commit(types.MYBOOK_WANT_DEL, type)
+}
+
+/** 提交想要练习册图片 */
+export const myBookWantAdd = ({ commit }, data) => {
+  commit(types.MYBOOK_WANT_ADD, {type: data.type, data: data.data})
+}
+
+/** 想要练习册照片拍照 */
+export const myBookWantCamera = ({ commit }, data) => {
+  commit(types.MYBOOK_WANT_CAMERA, data)
+}
+
+/** 想要练习册照片增加 */
+export const myBookWantUpload = ({ state, rootState, commit }) => {
+  Vue.$vux.loading.show({ text: '请稍候' })
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'workbook/want',
+      data: {
+        'index': state.myBook.want.index,
+        'version': state.myBook.want.version,
+        'token': rootState.common.user.token
+      }
+    })
+      .then((response) => {
+        Vue.$vux.loading.hide()
+        Vue.$vux.toast.show({ text: '提交成功', type: 'success', isShowMask: true, time: 1500 })
+        commit(types.MYBOOK_WANT_UPLOAD)
+        resolve(response)
+      })
+      .catch((error) => {
+        Vue.$vux.loading.hide()
+        reject(error)
+      })
+  })
 }

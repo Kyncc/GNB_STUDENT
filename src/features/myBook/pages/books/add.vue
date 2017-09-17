@@ -46,7 +46,9 @@
         </div>
       </div>
       <tabbar slot="bottom" style='text-align:center;font-size:.8rem;padding:.25rem 0;'>
-        <p style='color:#4cc0be;width:100%;' @click="$router.push({name: 'workbook_want'})">没有我想要得习题册？点我提交</p>
+        <p style='color:#4cc0be;width:100%;' @click="$router.push({name: 'myBook_want'})">没有我想要得习题册？
+          <b style='text-decoration:underline;font-weight:normal'>点我提交</b>
+        </p>
       </tabbar>
     </view-box>
     <previewer :list="list" ref="wbpreviewer" :options="options"></previewer>

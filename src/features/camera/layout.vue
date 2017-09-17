@@ -2,7 +2,7 @@
   <view-box ref="camera" body-padding-top="100px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: '拍错题'}">
-        <div slot="right">同步练习</div>
+        <div slot="right" @click='_into()'>{{Route.query.type === 'points' ? '同步练习' : '考点练习'}}</div>
       </x-header>
       <tab>
         <tab-item :selected="Route.name === 'camera_math'" @click.native="$router.replace('math')">数学</tab-item>
@@ -32,6 +32,15 @@ export default {
   },
   computed: {
     ...mapGetters(['Route', 'User'])
+  },
+  methods: {
+    _into () {
+      if (this.Route.query.type === 'points') {
+        this.$router.replace({name: this.Route.name})
+      } else {
+        this.$router.replace({name: this.Route.name, query: {type: 'points'}})
+      }
+    }
   },
   beforeCreate () {
     store.registerModule('camera', {

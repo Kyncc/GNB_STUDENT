@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'mybook'
+  name: 'want'
 }
 </script>

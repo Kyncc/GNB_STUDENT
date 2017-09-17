@@ -6,3 +6,5 @@ export const myBookPhysics = (state) => state.myBook.physics
 export const myBookAddList = (state) => state.myBook.add
 /** 搜索练习册 */
 export const myBookSearchList = (state) => state.myBook.search
+/** 想要练习册 */
+export const myBookWant = (state) => state.myBook.want
