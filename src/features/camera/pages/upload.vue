@@ -1,19 +1,18 @@
 <template>
   <view-box body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '上传错题照片'}">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '照片'}">
       <i slot="right" @click="_upload" class="icon iconfont icon-upload" style="font-size:22px"></i>
     </x-header>
     <div>
-      <group-title style="margin:10px 0 0;">一定要包含解题过程哦</group-title>
       <div style="padding:10px 15px">
         <flexbox wrap="wrap" align="baseline" :gutter="0">
-          <flexbox-item :span="3" v-for="(img, index) in workbookExercise.cameraList" :key="index">
+          <flexbox-item :span="3" v-for="(img, index) in CameraUploader.list" :key="index">
             <div class="photo">
               <div style="text-align:center;height:90px;width:65px;background-size:100% 100%" :style="'background-image:url('+img+')'"></div>
               <i class="icon iconfont icon-error" style="font-size:30px;position:absolute;left:58px;top:-25px" @click="_del(index)"></i>
             </div>
           </flexbox-item>
-          <flexbox-item :span="3" v-if="!(workbookExercise.cameraList.length === 1)" @click.native="_add">
+          <flexbox-item :span="3" v-if="!(CameraUploader.list.length === 1)" @click.native="_add">
             <div class="photo">
               <div class="plus">
                 <b>+</b>
@@ -52,44 +51,44 @@ export default {
   components: {
     XHeader, ViewBox, Flexbox, FlexboxItem, Group, GroupTitle, Checker, CheckerItem
   },
+  computed: {
+    ...mapGetters(['CameraUploader'])
+  },
   data () {
     return {
-      type: 0
+      type: ''
     }
   },
   methods: {
-    ...mapActions(['workbookExErrorUpload', 'workbookExCameraDel', 'workbookExCamera', 'workbookExerciseClear']),
+    ...mapActions(['cameraErrorUpload', 'cameraErrorDel', 'cameraErrorCamera']),
     _add () {
-      // this.$router.push({'name': 'workbook_exercise_error_photo'})
-      let cmr = plus.camera.getCamera()
-      cmr.captureImage((p) => {
-        plus.io.resolveLocalFileSystemURL(p, (entry) => {
-          this.workbookExCamera(entry.toLocalURL())
-          this.$router.push({'name': 'workbook_exercise_error_photo'})
-        })
-      })
+      this.$router.push({'name': 'camera_photo'})
+      // let cmr = plus.camera.getCameraChapter()
+      // cmr.captureImage((p) => {
+      //   plus.io.resolveLocalFileSystemURL(p, (entry) => {
+      //     this.cameraErrorCamera(entry.toLocalURL())
+      //     this.$router.push({'name': 'camera_photo'})
+      //   })
+      // })
     },
     _del (index) {
-      this.workbookExCameraDel(index)
+      this.cameraErrorDel(index)
     },
     _upload () {
-      if (!this.workbookExercise.cameraList.length) {
+      if (!this.CameraUploader.list.length) {
         this.$vux.toast.show({text: '您还未拍照', type: 'text', time: 1500, position: 'bottom'})
       } else {
-        this.workbookExErrorUpload({type: this.type}).then(() => {
+        this.cameraErrorUpload({type: this.type}).then(() => {
           history.go(-1)
         })
       }
     }
   },
-  computed: {
-    ...mapGetters(['workbookExercise', 'Route'])
-  },
   beforeRouteEnter (to, from, next) {
     // 章节练习进来清空
-    if (from.name === 'workbook_exercise_answer') {
+    if (from.name === 'camera_chapter' || from.name === 'camera_points') {
       next(vm => {
-        vm.workbookExerciseClear()
+        vm._del(0)
         vm.type = ''
       })
     } else {

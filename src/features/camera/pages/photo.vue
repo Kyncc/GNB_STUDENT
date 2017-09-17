@@ -4,8 +4,7 @@
       <p slot="right" v-on:click="_finish">确定</p>
     </x-header>
     <div>
-      <img ref="result" :src="workbookExercise.cameraList[0]" style="width:100%;"/>
-       <!--<img ref="result" src="http://img.guinaben.com/workbookPic/429answer5810/1/Untitled.FR12%20-%200001.png?imageMogr2/auto-orient/thumbnail/!50p/format/jpg/interlace/1/quality/30|imageslim" style="width:100%;"/>-->
+      <img ref="result" :src="CameraUploader.camera" style="width:100%;"/>
       <div class='rotate' @click="cropper.rotate(-90)"><img src="../assets/rotate-right.png"></div>
     </div>
   </view-box>
@@ -22,7 +21,7 @@ export default {
     XHeader, ViewBox
   },
   computed: {
-    ...mapGetters(['workbookExercise'])
+    ...mapGetters(['CameraUploader'])
   },
   data () {
     return {
@@ -30,9 +29,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['workbookExCamera']),
+    ...mapActions(['cameraErrorAdd']),
     _finish () {
-      this.workbookExCamera(this.cropper.getCroppedCanvas({width: 640}).toDataURL('image/jpeg', 0.9))
+      this.cameraErrorAdd(this.cropper.getCroppedCanvas({width: 640}).toDataURL('image/jpeg', 0.9))
       history.back()
     }
   },

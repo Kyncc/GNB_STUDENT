@@ -1,19 +1,14 @@
+import chapter from './pages/chapter/router'
+import points from './pages/points/router'
+
 export default {
   path: '/camera',
   name: 'camera',
-  component: r => require.ensure([], () => r(require('./layout')), '/camera'),
-  redirect: '/camera/math',
+  component: r => require.ensure([], () => r(require('./pages/layout')), '/camera'),
+  redirect: '/camera/chapter',
   children: [
-    {
-      path: 'physics',
-      name: 'camera_physics',
-      component: r => require.ensure([], () => r(require('./pages/physics')), '/camera/physics')
-    },
-    {
-      path: 'math',
-      name: 'camera_math',
-      component: r => require.ensure([], () => r(require('./pages/math')), '/camera/math')
-    },
+    ...chapter,
+    ...points,
     {
       path: 'photo',
       name: 'camera_photo',

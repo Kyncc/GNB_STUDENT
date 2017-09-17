@@ -2,7 +2,7 @@
   <div>
     <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
     <group gutter="0" class="gnb_collapse" v-if="!loading">
-      <template v-for="(list, index) in CameraPhysics.list.chaper">
+      <template v-for="(list, index) in CameraChapterMath.list.chaper">
         <cell :title="list.name" is-link :key='index'
         :border-intent="false"
         :arrow-direction="list.checked ? 'up' : 'down'"
@@ -10,7 +10,7 @@
         <div class="slide" :class="list.checked ? 'animate':''" :key='index'>
           <template v-for="(chapter, eindex) in list.sub_chapter_list">
             <cell-box :style="chapter.used ? 'color:#FEAA85':''" :key='eindex' is-link
-            @click.native="$router.push({name: 'camera_exercise', params: {subject: 'physics', chapterId: chapter.chapter_id, chapterName: chapter.name}})">
+            @click.native="$router.push({name: 'camera_upload', query: {relationId: chapter.id, type: 'chapter'}})">
               <div slot="default" style="width:100%;">{{chapter.name}}</div>
             </cell-box>
           </template>
@@ -24,19 +24,19 @@
 </template>
 
 <script>
-import {XHeader, Cell, CellBox, Group, Spinner} from 'vux'
+import {XHeader, Cell, CellBox, Group, Spinner, Flexbox, FlexboxItem} from 'vux'
 import selectBook from '@/components/gnb_selectbook'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: 'physics',
+  name: 'math',
   components: {
-    XHeader, Cell, Group, CellBox, Spinner, selectBook
+    XHeader, Cell, Group, CellBox, Spinner, selectBook, Flexbox, FlexboxItem
   },
   computed: {
-    ...mapGetters(['CameraPhysics', 'User']),
+    ...mapGetters(['CameraChapterMath', 'User']),
     textList () {
-      return this.User.textbook.physics
+      return this.User.textbook.math
     }
   },
   data () {
@@ -47,12 +47,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getCamera', 'setCameraScroll', 'clearCamera']),
+    ...mapActions(['getCameraChapter', 'setCameraChapterScroll', 'clearCameraChapter']),
     _getData () {
       this.loading = true
-      this.getCamera({
-        'textbookId': this.textbookId || this.User.textbook.physics[0].id,
-        'editionId': this.User.subject.physics.id,
+      this.getCameraChapter({
+        'textbookId': this.textbookId || this.User.textbook.math[0].id,
+        'editionId': this.User.subject.math.id,
         'type': this.type
       }).then(() => {
         this.loading = false
@@ -60,17 +60,17 @@ export default {
     },
     _currentTextbook (val) {
       this.textbookId = val
-      this.clearCamera()
+      this.clearCameraChapter()
       this._getData()
     }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.$parent.$refs.viewBoxBody.scrollTop = vm.CameraPhysics.scroll
+      vm.$parent.$refs.viewBoxBody.scrollTop = vm.CameraChapterMath.scroll
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setCameraScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setCameraChapterScroll(this.$parent.$refs.viewBoxBody.scrollTop)
     next()
   },
   mounted () {
