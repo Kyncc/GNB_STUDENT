@@ -13,8 +13,8 @@ let state = {
     want: {
       version: '',
       index: '',
-      camera: 'https://blog.ygxdxx.com/img/random/material-2.png'
-      // camera: ''
+      // camera: 'https://blog.ygxdxx.com/img/random/material-2.png'
+      camera: ''
     }
   },
   chapter: {

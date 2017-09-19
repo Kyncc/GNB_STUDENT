@@ -23,19 +23,19 @@
       </div>
       <group title="选择错误原因：">
         <checker style="padding:.25rem .75rem 1rem;"
-          v-model="type"
+          v-model="comment"
           type="radio"
           default-item-class="select-item"
           selected-item-class="select-item-selected"
           >
-            <checker-item :value="1">审题不清</checker-item>
-            <checker-item :value="2">概念模糊</checker-item>
-            <checker-item :value="3">思路不清</checker-item>
-            <checker-item :value="4">运算错误</checker-item>
-            <checker-item :value="5">粗心大意</checker-item>
-            <checker-item :value="6">方法不对</checker-item>
-            <checker-item :value="7">时间不够</checker-item>
-            <checker-item :value="0">我不知道</checker-item>
+            <checker-item value="审题不清">审题不清</checker-item>
+            <checker-item value="概念模糊">概念模糊</checker-item>
+            <checker-item value="思路不清">思路不清</checker-item>
+            <checker-item value="运算错误">运算错误</checker-item>
+            <checker-item value="粗心大意">粗心大意</checker-item>
+            <checker-item value="方法不对">方法不对</checker-item>
+            <checker-item value="时间不够">时间不够</checker-item>
+            <checker-item value="我不知道">我不知道</checker-item>
         </checker>
       </group>
     </div>
@@ -56,20 +56,20 @@ export default {
   },
   data () {
     return {
-      type: ''
+      comment: ''
     }
   },
   methods: {
     ...mapActions(['cameraErrorUpload', 'cameraErrorDel', 'cameraErrorCamera']),
     _add () {
-      this.$router.push({'name': 'camera_photo'})
-      // let cmr = plus.camera.getCameraChapter()
-      // cmr.captureImage((p) => {
-      //   plus.io.resolveLocalFileSystemURL(p, (entry) => {
-      //     this.cameraErrorCamera(entry.toLocalURL())
-      //     this.$router.push({'name': 'camera_photo'})
-      //   })
-      // })
+      // this.$router.push({'name': 'camera_photo'})
+      let cmr = plus.camera.getCameraChapter()
+      cmr.captureImage((p) => {
+        plus.io.resolveLocalFileSystemURL(p, (entry) => {
+          this.cameraErrorCamera(entry.toLocalURL())
+          this.$router.push({'name': 'camera_photo'})
+        })
+      })
     },
     _del (index) {
       this.cameraErrorDel(index)
@@ -78,7 +78,7 @@ export default {
       if (!this.CameraUploader.list.length) {
         this.$vux.toast.show({text: '您还未拍照', type: 'text', time: 1500, position: 'bottom'})
       } else {
-        this.cameraErrorUpload({type: this.type}).then(() => {
+        this.cameraErrorUpload({comment: this.comment}).then(() => {
           history.go(-1)
         })
       }
@@ -89,7 +89,7 @@ export default {
     if (from.name === 'camera_chapter' || from.name === 'camera_points') {
       next(vm => {
         vm._del(0)
-        vm.type = ''
+        vm.comment = ''
       })
     } else {
       next()

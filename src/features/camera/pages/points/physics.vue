@@ -9,7 +9,7 @@
         <div class="slide" :class="list.check ? 'animate':''" :key='index'>
           <template v-for="(chapter, eindex) in list.sub_chapter_list">
             <cell-box :style="chapter.used ? 'color:#FEAA85':''" :key='eindex' is-link
-            @click.native="$router.push({name: 'camera_upload', query: {subject: 'physics', chapterId: chapter.id, type: 'points'}})">
+            @click.native="$router.push({name: 'camera_upload', query: {subject: 'physics', relationId: chapter.id, type: 'testpoint'}})">
               <div slot="default" style="width:100%;">{{chapter.name}}</div>
             </cell-box>
           </template>
