@@ -12,6 +12,11 @@ export default {
       path: 'math',
       name: 'collect_math',
       component: r => require.ensure([], () => r(require('./pages/math')), '/collect/math')
+    },
+    {
+      path: 'chemistry',
+      name: 'collect_chemistry',
+      component: r => require.ensure([], () => r(require('./pages/chemistry')), '/collect/chemistry')
     }
   ]
 }

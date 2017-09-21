@@ -1,6 +1,22 @@
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
+// function getSubjectId (value) {
+//   switch (value) {
+//     case 2: return '数学'
+//     case 7: return '物理'
+//     case 8: return '化学'
+//   }
+// }
+
+// function getSubject (value) {
+//   switch (value) {
+//     case 'math': return '2'
+//     case 'physics': return '7'
+//     case 'chemistry': return '8'
+//   }
+// }
+
 /** 获取错题列表 */
 export const getError = ({ rootState, commit, state }, params) => {
   let subjectId = (rootState.route.name.indexOf('math') !== -1 ? 2 : 7)
@@ -53,6 +69,7 @@ export const setErrorScroll = ({ rootState, commit }, height) => {
 export const clearError = ({ rootState, commit }) => {
   commit(types.ERROR_RELOAD, { subject: 'math' })
   commit(types.ERROR_RELOAD, { subject: 'physics' })
+  commit(types.ERROR_RELOAD, { subject: 'chemistry' })
 }
 
 /** 获取错题详情 */

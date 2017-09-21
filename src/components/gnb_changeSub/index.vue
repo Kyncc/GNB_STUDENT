@@ -1,6 +1,9 @@
 <template>
   <div class="gnb-changeSub">
-    <p @click='onDisplay()'>{{selected === 2 ? '数学' : '物理' }}<span class="with_arrow"></span></p>
+    <p @click='onDisplay()'>
+      {{selected | subject}}
+      <span class="with_arrow"></span>
+    </p>
     <mt-popup v-model="visible" popup-transition="popup-fade" class="gnb-changeSub-popup">
       <template v-for="(item, index) in subjectAllList">
         <p @click="onClickBack(item)" :class="item.id  === selected ? 'active' : ''"  :key='index'>{{item.value}}</p>
@@ -24,7 +27,8 @@ export default {
       path: this.$route.fullPath,
       subjectAllList: [
         { id: 2, value: '数学', key: 'math' },
-        { id: 7, value: '物理', key: 'physics' }
+        { id: 7, value: '物理', key: 'physics' },
+        { id: 8, value: '化学', key: 'chemistry' }
       ]
     }
   },

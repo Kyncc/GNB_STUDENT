@@ -25,6 +25,15 @@ Vue.filter('ymdhms', (value) => {
   return dateFormat(new Date(Number(`${value}000`)), 'YYYY-MM-DD HH:mm:ss')
 })
 
+// 学科的转换
+Vue.filter('subject', (value) => {
+  switch (value) {
+    case 2: return '数学'
+    case 7: return '物理'
+    case 8: return '化学'
+  }
+})
+
 // 错误类型注入
 Vue.filter('errorType', (value) => {
   switch (value) {
