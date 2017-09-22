@@ -15,6 +15,12 @@ const state = {
     offset: '',
     scroll: 0
   },
+  chemistry: {
+    list: [],
+    isReset: true,
+    offset: '',
+    scroll: 0
+  },
   comment: {},
   detail: {
     scroll: 0,

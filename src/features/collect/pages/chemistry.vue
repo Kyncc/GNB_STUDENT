@@ -7,7 +7,7 @@
           <flexbox-item :span="2">难度: {{item.degree}}</flexbox-item>
         </flexbox>
       </div>
-      <div slot="content" @click="$router.push({name:'example', params: {subjectId: '7', id: item.exercises_id}})">
+      <div slot="content" @click="$router.push({name:'example', params: {subjectId: '8', id: item.exercises_id}})">
         <div v-html="item.stem"></div>
         <div v-for="(value, key) in item.opt_jo" style="padding-top:5px;" :key='key'>
           {{ key }}： <p v-html="value" style="display:inline-block"></p>
@@ -54,7 +54,7 @@ export default {
     ...mapActions(['getCollect', 'setCollectScroll']),
     _getData () {
       this.loading = true
-      this.getCollect().then((res) => {
+      this.getCollect({id: 8, subject: 'chemistry'}).then((res) => {
         if (res.data.data.list.length < 10) {
           this.loadingNoData = true
         }
@@ -73,7 +73,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setCollectScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setCollectScroll({subject: 'chemistry', height: this.$parent.$refs.viewBoxBody.scrollTop})
     next()
   }
 }

@@ -7,6 +7,9 @@
         <template v-if="User.subjectType.length > 1">
           <tab-item :selected="Route.name === 'error_physics'" @click.native="$router.replace('physics')">物理</tab-item>
         </template>
+        <template v-if="User.subjectType.length > 2">
+          <tab-item :selected="Route.name === 'error_chemistry'" @click.native="$router.replace('chemistry')">物理</tab-item>
+        </template>
       </tab>
     </div>
     <div>

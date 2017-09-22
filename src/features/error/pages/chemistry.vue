@@ -100,7 +100,7 @@ export default {
     ...mapActions(['setErrorScroll', 'getError', 'clearError', 'setErrorType']),
     _getData () {
       this.loading = true
-      this.getError().then((res) => {
+      this.getError({subject: 'chemistry', id: '8'}).then((res) => {
         if (!res.data.data.offset) {
           this.loadingNoData = true
         }
@@ -136,7 +136,8 @@ export default {
         chapterId: this.errorType.chapterId,
         index: this.errorType.index,
         type: value,
-        wbeid: this.errorType.wbeid
+        wbeid: this.errorType.wbeid,
+        subject: 'chemistry'
       }).then(() => {
         this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 1500, position: 'bottom'})
       })
@@ -151,7 +152,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setErrorScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setErrorScroll({subject: 'chemistry', hight: this.$parent.$refs.viewBoxBody.scrollTop})
     if (this.showErrorPopup) {
       this.showErrorPopup = false
       next(false)

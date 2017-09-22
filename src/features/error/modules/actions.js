@@ -1,38 +1,20 @@
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
-// function getSubjectId (value) {
-//   switch (value) {
-//     case 2: return '数学'
-//     case 7: return '物理'
-//     case 8: return '化学'
-//   }
-// }
-
-// function getSubject (value) {
-//   switch (value) {
-//     case 'math': return '2'
-//     case 'physics': return '7'
-//     case 'chemistry': return '8'
-//   }
-// }
-
 /** 获取错题列表 */
 export const getError = ({ rootState, commit, state }, params) => {
-  let subjectId = (rootState.route.name.indexOf('math') !== -1 ? 2 : 7)
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'error',
       params: {
         token: rootState.common.user.token,
-        subject_id: subjectId,
-        offset: state[subject]['offset']
+        subject_id: params.id,
+        offset: state[params.subject]['offset']
       }
     })
       .then((response) => {
-        commit(types.ERROR, { subject: subject, data: response.data.data })
+        commit(types.ERROR, { subject: params.subject, data: response.data.data })
         resolve(response)
       })
   })
@@ -40,7 +22,6 @@ export const getError = ({ rootState, commit, state }, params) => {
 
 /** 设置例题错误类型 */
 export const setErrorType = ({ rootState, commit, state }, params) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -53,16 +34,15 @@ export const setErrorType = ({ rootState, commit, state }, params) => {
       }
     })
       .then((response) => {
-        commit(types.ERROR_ERROR_TYPE, { subject: subject, index: params.index, type: params.type })
+        commit(types.ERROR_ERROR_TYPE, { subject: params.subject, index: params.index, type: params.type })
         resolve(response)
       })
   })
 }
 
 /** 高度保存 */
-export const setErrorScroll = ({ rootState, commit }, height) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.ERROR_SCROLL, { subject: subject, height: height })
+export const setErrorScroll = ({ rootState, commit }, params) => {
+  commit(types.ERROR_SCROLL, { subject: params.subject, height: params.height })
 }
 
 /** 清空错题本 */
