@@ -47,7 +47,8 @@ export default {
     _getData () {
       this.loading = true
       this.getCameraPoints({
-        'editionId': this.User.subject.physics.id
+        subject: 'physics',
+        editionId: this.User.subject.physics.id
       }).then(() => {
         this.loading = false
       })
@@ -59,7 +60,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setCameraPointsScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setCameraPointsScroll({subject: 'physics', height: this.$parent.$refs.viewBoxBody.scrollTop})
     next()
   },
   mounted () {

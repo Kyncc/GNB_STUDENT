@@ -2,14 +2,15 @@
   <div>
     <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
     <group gutter="0" class="gnb_collapse" v-if="!loading">
-      <template v-for="list in induceMath.list.chaper">
-        <cell :title="list.name" is-link
-        :border-intent="false"
-        :arrow-direction="list.checked ? 'up' : 'down'"
-        @click.native="list.checked = !list.checked"></cell>
-        <div class="slide" :class="list.checked ? 'animate':''">
-          <template v-for="chapter in list.sub_chapter_list">
-            <cell-box :style="chapter.used ? 'color:#FEAA85':''"
+      <template v-for="(list, index) in induceMath.list.chaper">
+        <cell @click.native="list.checked = !list.checked" :key='index'
+          :title="list.name" is-link
+          :border-intent="false"
+          :arrow-direction="list.checked ? 'up' : 'down'">
+        </cell>
+        <div class="slide" :class="list.checked ? 'animate':''" :key='index'>
+          <template v-for="(chapter, pindex) in list.sub_chapter_list">
+            <cell-box :style="chapter.used ? 'color:#FEAA85':''" :key='pindex'
             @click.native="$router.push({name: 'induce_exercise', params: {subject: 'math', chapterId: chapter.chapter_id, chapterName: chapter.name}})">
               <div slot="default" style="width:100%;">
                 <flexbox>
@@ -55,21 +56,22 @@ export default {
     _getData () {
       this.loading = true
       this.getInduce({
-        'textbook_id': this.textbook_id || this.User.textbook.math[0].id
+        subject: 'math',
+        textbook_id: this.textbook_id || this.User.textbook.math[0].id
       }).then(() => {
         this.loading = false
       })
     },
     _currentTextbook (val) {
       this.textbook_id = val
-      this.clearInduce()
+      this.clearInduce({subject: 'math'})
       this._getData()
     }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
       if (from.name.indexOf('induce_exercise') !== -1) {
-        vm.clearInduce()
+        vm.clearInduce({subject: 'math'})
         vm._getData()
       } else {
         vm.$parent.$refs.viewBoxBody.scrollTop = vm.induceMath.scroll
@@ -77,7 +79,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setInduceScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setInduceScroll({subject: 'math', height: this.$parent.$refs.viewBoxBody.scrollTop})
     this.$parent.$refs.viewBoxBody.scrollTop = 0
     next()
   },

@@ -1,9 +1,20 @@
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
+function getSubjectId (name) {
+  let subjectId = ''
+  if (name.indexOf('math') >= 0) {
+    subjectId = '2'
+  } else if (name.indexOf('physics') >= 0) {
+    subjectId = '7'
+  } else if (name.indexOf('chemistry') >= 0) {
+    subjectId = '8'
+  }
+  return subjectId
+}
+
 /** 获取章节数据 */
 export const getInduce = ({ rootState, commit }, params) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -14,27 +25,24 @@ export const getInduce = ({ rootState, commit }, params) => {
       }
     })
       .then((response) => {
-        commit(types.INDUCE, { 'subject': subject, 'data': response.data.data })
+        commit(types.INDUCE, { 'subject': params.subject, 'data': response.data.data })
         resolve(response)
       })
   })
 }
 
 /** 首页章节浏览器高度 */
-export const setInduceScroll = ({ rootState, commit }, height) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.INDUCE_SCROLL, { 'subject': subject, 'height': height })
+export const setInduceScroll = ({ rootState, commit }, params) => {
+  commit(types.INDUCE_SCROLL, { 'subject': params.subject, 'height': params.height })
 }
 
 /** 清除章节数据 */
-export const clearInduce = ({ rootState, commit }) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.INDUCE_CLEAR, { 'subject': subject })
+export const clearInduce = ({ rootState, commit }, params) => {
+  commit(types.INDUCE_CLEAR, { 'subject': params.subject })
 }
 
 /** 获取刷题列表 */
 export const getInduceList = ({ state, rootState, commit }, params) => {
-  let subjectId = (rootState.route.params.subject.indexOf('math') !== -1 ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -42,7 +50,7 @@ export const getInduceList = ({ state, rootState, commit }, params) => {
       params: {
         token: rootState.common.user.token,
         chapter_id: rootState.route.params.chapterId,
-        subject_id: subjectId,
+        subject_id: getSubjectId(rootState.route.params.subject),
         type: params.type,
         currentChapterId: state['exercise'][params.type]['currentChapterId'],
         currentExercisesId: state['exercise'][params.type]['currentExercisesId']
@@ -57,7 +65,6 @@ export const getInduceList = ({ state, rootState, commit }, params) => {
 
 /** 题型处置 */
 export const induceTotalAction = ({ state, rootState, commit }, params) => {
-  let subjectId = (rootState.route.params.subject.indexOf('math') !== -1 ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -66,7 +73,7 @@ export const induceTotalAction = ({ state, rootState, commit }, params) => {
         exerciseId: params.id,
         chapter_id: params.chapter_id,
         type: params.type,
-        subject_id: subjectId,
+        subject_id: getSubjectId(rootState.route.params.subject),
         token: rootState.common.user.token
       }
     })
@@ -79,7 +86,6 @@ export const induceTotalAction = ({ state, rootState, commit }, params) => {
 
 /** 题型处置 */
 export const induceBack = ({ state, rootState, commit }, params) => {
-  let subjectId = (rootState.route.params.subject.indexOf('math') !== -1 ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -88,7 +94,7 @@ export const induceBack = ({ state, rootState, commit }, params) => {
         exerciseId: params.id,
         chapter_id: params.chapter_id,
         type: params.type,
-        subject_id: subjectId,
+        subject_id: getSubjectId(rootState.route.params.subject),
         token: rootState.common.user.token
       }
     })

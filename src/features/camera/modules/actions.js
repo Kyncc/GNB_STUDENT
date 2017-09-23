@@ -4,7 +4,6 @@ import * as types from './mutationTypes'
 
 /** 拍错题获取章节 */
 export const getCameraChapter = ({ rootState, commit, state }, params) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -12,12 +11,12 @@ export const getCameraChapter = ({ rootState, commit, state }, params) => {
       params: {
         token: rootState.common.user.token,
         type: 'chapter',
-        subject: subject,
+        subject: params.subject,
         editionId: params.editionId,
         textbookId: params.textbookId
       }
     }).then((response) => {
-      commit(types.CAMERA_CHAPTER, { 'subject': subject, 'data': response.data.data })
+      commit(types.CAMERA_CHAPTER, { 'subject': params.subject, 'data': response.data.data })
       resolve(response)
     }).catch((e) => {
       reject(e)
@@ -26,20 +25,17 @@ export const getCameraChapter = ({ rootState, commit, state }, params) => {
 }
 
 /** 清除章节数据 */
-export const clearCameraChapter = ({ rootState, commit }) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.CAMERA_CHAPTER_CLEAR, { 'subject': subject })
+export const clearCameraChapter = ({ rootState, commit }, params) => {
+  commit(types.CAMERA_CHAPTER_CLEAR, { 'subject': params.subject })
 }
 
 /** 拍错题高度保存 */
-export const setCameraChapterScroll = ({ rootState, commit }, height) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.CAMERA_CHAPTER_SCROLL, { 'subject': subject, 'height': height })
+export const setCameraChapterScroll = ({ rootState, commit }, params) => {
+  commit(types.CAMERA_CHAPTER_SCROLL, { 'subject': params.subject, 'height': params.height })
 }
 
 /** 拍错题获取考点 */
 export const getCameraPoints = ({ rootState, commit, state }, params) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -47,11 +43,11 @@ export const getCameraPoints = ({ rootState, commit, state }, params) => {
       params: {
         token: rootState.common.user.token,
         type: 'testpoint',
-        subject: subject,
+        subject: params.subject,
         editionId: params.editionId
       }
     }).then((response) => {
-      commit(types.CAMERA_POINTS, { 'subject': subject, 'data': response.data.data })
+      commit(types.CAMERA_POINTS, { 'subject': params.subject, 'data': response.data.data })
       resolve(response)
     }).catch((e) => {
       reject(e)
@@ -60,15 +56,13 @@ export const getCameraPoints = ({ rootState, commit, state }, params) => {
 }
 
 /** 清除考点数据 */
-export const clearCameraPoints = ({ rootState, commit }) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.CAMERA_POINTS_CLEAR, { 'subject': subject })
+export const clearCameraPoints = ({ rootState, commit }, params) => {
+  commit(types.CAMERA_POINTS_CLEAR, { 'subject': params.subject })
 }
 
 /** 拍错题考点高度保存 */
-export const setCameraPointsScroll = ({ rootState, commit }, height) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.CAMERA_POINTS_SCROLL, { 'subject': subject, 'height': height })
+export const setCameraPointsScroll = ({ rootState, commit }, params) => {
+  commit(types.CAMERA_POINTS_SCROLL, { 'subject': params.subject, 'height': params.height })
 }
 
 /** 照片删除 */

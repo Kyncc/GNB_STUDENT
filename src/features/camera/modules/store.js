@@ -11,10 +11,18 @@ const state = {
     physics: {
       list: [],
       scroll: 0
+    },
+    chemistry: {
+      list: [],
+      scroll: 0
     }
   },
   points: {
     math: {
+      list: [],
+      scroll: 0
+    },
+    chemistry: {
       list: [],
       scroll: 0
     },

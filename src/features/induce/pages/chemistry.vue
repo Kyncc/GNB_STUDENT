@@ -2,13 +2,13 @@
   <div>
     <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
     <group gutter="0" class="gnb_collapse" v-if="!loading">
-        <cell v-for="(list, index) in induceChemistry.list.chaper"
-          @click.native="list.checked = !list.checked"
+      <template v-for="(list, index) in induceChemistry.list.chaper">
+        <cell @click.native="list.checked = !list.checked"
           :title="list.name" is-link
           :border-intent="false" :key='index'
           :arrow-direction="list.checked ? 'up' : 'down'">
         </cell>
-        <div class="slide" :class="list.checked ? 'animate':''">
+        <div class="slide" :class="list.checked ? 'animate':''" :key='index'>
           <cell-box v-for="(chapter, pindex) in list.sub_chapter_list"
             @click.native="$router.push({name: 'induce_exercise', params: {subject: 'chemistry', chapterId: chapter.chapter_id, chapterName: chapter.name}})"
             :style="chapter.used ? 'color:#FEAA85':''" :key='pindex'>
@@ -20,6 +20,7 @@
             </div>
           </cell-box>
         </div>
+      </template>
     </group>
     <div style="text-align:center">
       <spinner v-if="loading" type="ripple"></spinner>
@@ -54,21 +55,22 @@ export default {
     _getData () {
       this.loading = true
       this.getInduce({
-        'textbook_id': this.textbook_id || this.User.textbook.chemistry[0].id
+        subject: 'chemistry',
+        textbook_id: this.textbook_id || this.User.textbook.chemistry[0].id
       }).then(() => {
         this.loading = false
       })
     },
     _currentTextbook (val) {
       this.textbook_id = val
-      this.clearInduce()
+      this.clearInduce({subject: 'chemistry'})
       this._getData()
     }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
       if (from.name.indexOf('induce_exercise') !== -1) {
-        vm.clearInduce()
+        vm.clearInduce({subject: 'chemistry'})
         vm._getData()
       } else {
         vm.$parent.$refs.viewBoxBody.scrollTop = vm.induceChemistry.scroll
@@ -76,7 +78,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setInduceScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setInduceScroll({subject: 'chemistry', height: this.$parent.$refs.viewBoxBody.scrollTop})
     this.$parent.$refs.viewBoxBody.scrollTop = 0
     next()
   },

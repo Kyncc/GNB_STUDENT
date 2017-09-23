@@ -51,16 +51,17 @@ export default {
     _getData () {
       this.loading = true
       this.getCameraChapter({
-        'textbookId': this.textbookId || this.User.textbook.math[0].id,
-        'editionId': this.User.subject.math.id,
-        'type': this.type
+        subject: 'math',
+        textbookId: this.textbookId || this.User.textbook.math[0].id,
+        editionId: this.User.subject.math.id,
+        type: this.type
       }).then(() => {
         this.loading = false
       })
     },
     _currentTextbook (val) {
       this.textbookId = val
-      this.clearCameraChapter()
+      this.clearCameraChapter({subject: 'math'})
       this._getData()
     }
   },
@@ -70,7 +71,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setCameraChapterScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setCameraChapterScroll({subject: 'math', height: this.$parent.$refs.viewBoxBody.scrollTop})
     next()
   },
   mounted () {

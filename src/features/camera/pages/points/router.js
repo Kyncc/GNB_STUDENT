@@ -14,6 +14,11 @@ export default [
         path: 'math',
         name: 'camera_points_math',
         component: r => require.ensure([], () => r(require('./math')), '/camera/points/math')
+      },
+      {
+        path: 'chemistry',
+        name: 'camera_points_chemistry',
+        component: r => require.ensure([], () => r(require('./chemistry')), '/camera/points/chemistry')
       }
     ]
   }
