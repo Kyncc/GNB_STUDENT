@@ -14,6 +14,11 @@ export default [
         path: 'math',
         name: 'myBook_math',
         component: r => require.ensure([], () => r(require('./math')), '/myBook/math')
+      },
+      {
+        path: 'chemistry',
+        name: 'myBook_chemistry',
+        component: r => require.ensure([], () => r(require('./chemistry')), '/myBook/chemistry')
       }
     ]
   },

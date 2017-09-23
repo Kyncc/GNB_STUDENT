@@ -7,10 +7,9 @@
         </div>
       </x-header>
       <tab>
-        <tab-item :selected="Route.name === 'workbook_math'" @click.native="$router.replace('math')">数学</tab-item>
-        <template v-if="User.subjectType.length > 1">
-          <tab-item :selected="Route.name === 'workbook_physics'" @click.native="$router.replace('physics')">物理</tab-item>
-        </template>
+        <tab-item v-if="User.subjectType.indexOf('math') >= 0" :selected="Route.name === 'workbook_math'" @click.native="$router.replace('math')">数学</tab-item>
+        <tab-item v-if="User.subjectType.indexOf('physics') >= 0" :selected="Route.name === 'workbook_physics'" @click.native="$router.replace('physics')">物理</tab-item>
+        <tab-item v-if="User.subjectType.indexOf('chemistry') >= 0" :selected="Route.name === 'workbook_chemistry'" @click.native="$router.replace('chemistry')">化学</tab-item>
       </tab>
     </div>
     <div style="padding-top:46px;">
@@ -38,11 +37,11 @@ export default {
   methods: {
     _add () {
       if (this.Route.name === 'workbook_math') {
-        let id = this.User.textbook.math[0].id
-        this.$router.push({name: 'workbook_add', params: {subject: 'math'}, query: {id: id}})
+        this.$router.push({name: 'workbook_add', params: {subject: 'math'}, query: {id: this.User.textbook.math[0].id}})
+      } else if (this.Route.name === 'workbook_physics') {
+        this.$router.push({name: 'workbook_add', params: {subject: 'physics'}, query: {id: this.User.textbook.physics[0].id}})
       } else {
-        let id = this.User.textbook.physics[0].id
-        this.$router.push({name: 'workbook_add', params: {subject: 'physics'}, query: {id: id}})
+        this.$router.push({name: 'workbook_add', params: {subject: 'chemistry'}, query: {id: this.User.textbook.chemistry[0].id}})
       }
     }
   },

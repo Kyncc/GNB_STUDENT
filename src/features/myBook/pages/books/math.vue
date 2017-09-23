@@ -45,7 +45,7 @@ export default {
     ...mapActions(['getMyBook', 'myBookClear', 'setMyBookScroll']),
     _getData () {
       this.loading = true
-      this.getMyBook().then(() => {
+      this.getMyBook({subject: 'math', subjectId: 2}).then(() => {
         this.loading = false
       })
     }
@@ -56,13 +56,13 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       if (from.name === 'myBook_add') {
-        vm.myBookClear()
+        vm.myBookClear({subject: 'math'})
         vm._getData()
       }
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setMyBookScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setMyBookScroll({subject: 'math', height: this.$parent.$refs.viewBoxBody.scrollTop})
     next()
   },
   mounted () {

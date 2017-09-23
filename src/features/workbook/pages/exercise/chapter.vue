@@ -67,7 +67,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     // 选择练习本进来清空数据
-    if (from.name === 'workbook_math' || from.name === 'workbook_physics') {
+    if (from.name === 'workbook_math' || from.name === 'workbook_physics' || from.name === 'workbook_chemistry') {
       next(vm => {
         vm.workbookChapterClear()
         vm._getData()

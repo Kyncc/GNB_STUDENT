@@ -2,6 +2,8 @@
 export const induceMath = (state) => state.index.math
 /** 获取物理章节数据 */
 export const inducePhysics = (state) => state.index.physics
+/** 获取化学章节数据 */
+export const induceChemistry = (state) => state.index.chemistry
 /** 获取题型本 */
 export const induceTotal = (state) => state.exercise.total
 /** 获取练习 */

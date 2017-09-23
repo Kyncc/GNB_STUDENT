@@ -8,6 +8,10 @@ let state = {
       scroll: 0,
       list: []
     },
+    chemistry: {
+      scroll: 0,
+      list: []
+    },
     add: [],
     search: [],
     want: {

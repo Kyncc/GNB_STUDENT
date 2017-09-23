@@ -15,6 +15,11 @@ export default [
         path: 'math',
         name: 'workbook_math',
         component: r => require.ensure([], () => r(require('./math')), '/workbook/math')
+      },
+      {
+        path: 'chemistry',
+        name: 'workbook_chemistry',
+        component: r => require.ensure([], () => r(require('./chemistry')), '/workbook/chemistry')
       }
     ]
   },

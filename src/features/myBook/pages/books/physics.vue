@@ -1,7 +1,7 @@
 <template>
   <div>
-    <template v-for="(textbook, pindex) in myBookPhysics.list.textbook" v-if="!loading">
-      <group :title="textbook.textbookName">
+    <div v-if="!loading">
+      <group v-for="(textbook, pindex) in myBookPhysics.list.textbook" :title="textbook.textbookName" :key='pindex'>
         <cell v-for="(myBook, index) in textbook.list" :key="index">
           <img v-lazy='myBook.img.url+"?imageMogr2/auto-orient/thumbnail/120x160!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' slot="icon" width="60" height="80"/>
           <div slot="after-title" style="width:90%;">
@@ -15,7 +15,7 @@
           </div>
         </cell>
       </group>
-    </template>
+    </div>
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="ripple"></spinner>
       <p v-else-if="myBookPhysics.list.textbook.length === 0" style="font-size:16px;color:#4cc0be;"
@@ -46,7 +46,7 @@ export default {
     ...mapActions(['getMyBook', 'myBookClear', 'setMyBookScroll']),
     _getData () {
       this.loading = true
-      this.getMyBook().then(() => {
+      this.getMyBook({subject: 'physics', subjectId: 7}).then(() => {
         this.loading = false
       })
     }
@@ -57,13 +57,13 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       if (from.name === 'myBook_add') {
-        vm.myBookClear()
+        vm.myBookClear({subject: 'physics'})
         vm._getData()
       }
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setMyBookScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setMyBookScroll({subject: 'physics', height: this.$parent.$refs.viewBoxBody.scrollTop})
     next()
   },
   mounted () {

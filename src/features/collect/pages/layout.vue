@@ -3,13 +3,9 @@
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: '收藏本'}"></x-header>
       <tab>
-        <tab-item :selected="Route.name === 'collect_math'" @click.native="$router.replace('math')">数学</tab-item>
-        <template v-if="User.subjectType.length > 1">
-          <tab-item :selected="Route.name === 'collect_physics'" @click.native="$router.replace('physics')">物理</tab-item>
-        </template>
-        <template v-else-if="User.subjectType.length > 2">
-          <tab-item :selected="Route.name === 'collect_physics'" @click.native="$router.replace('chemistry')">化学</tab-item>
-        </template>
+        <tab-item v-if="User.subjectType.indexOf('math') >= 0" :selected="Route.name === 'collect_math'" @click.native="$router.replace('math')">数学</tab-item>
+        <tab-item v-if="User.subjectType.indexOf('physics') >= 0" :selected="Route.name === 'collect_physics'" @click.native="$router.replace('physics')">物理</tab-item>
+        <tab-item v-if="User.subjectType.indexOf('chemistry') >= 0" :selected="Route.name === 'collect_chemistry'" @click.native="$router.replace('chemistry')">化学</tab-item>
       </tab>
     </div>
     <div>

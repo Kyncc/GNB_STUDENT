@@ -18,7 +18,7 @@ export default [
       {
         path: 'chemistry',
         name: 'error_chemistry',
-        component: r => require.ensure([], () => r(require('./pages/math')), '/error/math')
+        component: r => require.ensure([], () => r(require('./pages/chemistry')), '/error/chemistry')
       },
       {
         path: 'detail/:chapterId/:eid/:id',

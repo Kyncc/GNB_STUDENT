@@ -2,6 +2,8 @@
 export const workbookMath = (state) => state.workbook.math
 /** 物理练习册 */
 export const workbookPhysics = (state) => state.workbook.physics
+/** 化学练习册 */
+export const workbookChemistry = (state) => state.workbook.chemistry
 /** 全部练习册 */
 export const workbookAddList = (state) => state.workbook.add
 /** 搜索练习册 */

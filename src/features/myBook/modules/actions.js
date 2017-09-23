@@ -2,21 +2,31 @@ import Vue from 'vue'
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
+function getSubjectId (name) {
+  let subjectId = ''
+  if (name.indexOf('math') >= 0) {
+    subjectId = '2'
+  } else if (name.indexOf('physics') >= 0) {
+    subjectId = '7'
+  } else if (name.indexOf('chemistry') >= 0) {
+    subjectId = '8'
+  }
+  return subjectId
+}
+
 /** 获取练习册数据 */
 export const getMyBook = ({ state, rootState, commit }, params) => {
-  let subjectId = (rootState.route.name.indexOf('math') !== -1 ? 2 : 7)
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'workbook',
       params: {
         'token': rootState.common.user.token,
-        'subjectId': subjectId
+        'subjectId': params.subjectId
       }
     })
       .then((response) => {
-        commit(types.MYBOOK, { 'subject': subject, 'data': response.data.data })
+        commit(types.MYBOOK, { 'subject': params.subject, 'data': response.data.data })
         resolve(response)
       })
   })
@@ -24,14 +34,13 @@ export const getMyBook = ({ state, rootState, commit }, params) => {
 
 /** 习题册列表 */
 export const getMyBookAdd = ({ rootState, commit, state }, params) => {
-  let subjectId = (rootState.route.params.subject.indexOf('math') !== -1 ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'workbook/list',
       params: {
         token: rootState.common.user.token,
-        subjectId: subjectId,
+        subjectId: getSubjectId(rootState.route.params.subject),
         textbookId: rootState.route.query.id
       }
     })
@@ -51,7 +60,7 @@ export const myBookAdd = ({ rootState, commit, state }, params) => {
       data: {
         token: rootState.common.user.token,
         type: 'add',
-        myBookId: params.myBookId
+        workbookId: params.workbookId
       }
     })
       .then((response) => {
@@ -84,14 +93,13 @@ export const myBookDel = ({ rootState, commit, state }, params) => {
 
 /** 搜索习题册列表 */
 export const getMyBookSearch = ({ rootState, commit, state }, params) => {
-  let subjectId = (rootState.route.params.subject.indexOf('math') !== -1 ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'workbook/list',
       params: {
         token: rootState.common.user.token,
-        subjectId: subjectId,
+        subjectId: getSubjectId(rootState.route.params.subject),
         myBookName: params.myBookName
       }
     })
@@ -113,15 +121,13 @@ export const myBookSearchClear = ({ commit }) => {
 }
 
 /** 练习册数据清空 */
-export const myBookClear = ({ rootState, commit }) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.MYBOOK_CLEAR, { 'subject': subject })
+export const myBookClear = ({ rootState, commit }, payload) => {
+  commit(types.MYBOOK_CLEAR, { 'subject': payload.subject })
 }
 
 /** 练习册章节高度设置 */
-export const setMyBookScroll = ({ rootState, commit }, height) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.MYBOOK_SCROLL, { subject: subject, height: height })
+export const setMyBookScroll = ({ rootState, commit }, payload) => {
+  commit(types.MYBOOK_SCROLL, { subject: payload.subject, height: payload.height })
 }
 
 /** 想要练习册照片删除 */
