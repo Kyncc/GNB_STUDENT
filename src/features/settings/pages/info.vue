@@ -20,6 +20,7 @@
     <group>
       <cell title="数学版本" :value="User.subject.math.name"></cell>
       <cell v-if="User.subject.physics" title="物理版本" :value="User.subject.physics.name"></cell>
+      <cell v-if="User.subject.chemistry" title="化学版本" :value="User.subject.chemistry.name"></cell>
     </group>
     <group>
       <cell title="修改密码" :link="{name: 'settings_pwd'}" is-link></cell>

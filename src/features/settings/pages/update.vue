@@ -20,8 +20,9 @@
       <x-input title="学校" v-model="school" class="input_right"></x-input>
     </group>
     <group>
-      <selector v-model="math" title="数学" :options="mathList"></selector>
-      <selector v-if="User.textbookAll.subjectType.length === 2" v-model="physics" title="物理" :options="physicsList"></selector>
+      <selector v-if="math" v-model="math" title="数学" :options="mathList"></selector>
+      <selector v-if="physics" v-model="physics" title="物理" :options="physicsList"></selector>
+      <selector v-if="chemistry" v-model="chemistry" title="化学" :options="chemistryList"></selector>
     </group>
     <group>
       <cell title="修改密码" :link="{name: 'settings_pwd'}" is-link></cell>
@@ -60,6 +61,16 @@ export default {
         })
       })
       return newObj
+    },
+    chemistryList () {
+      let newObj = []
+      this.User.textbookAll.chemistry.forEach((item, index) => {
+        newObj.push({
+          key: item.id.toString() || '',
+          value: item.name.toString() || ''
+        })
+      })
+      return newObj
     }
   },
   data () {
@@ -68,8 +79,9 @@ export default {
       sex: 0,
       school: '',
       grade: '',
-      physics: '',
       math: '',
+      physics: '',
+      chemistry: '',
       list: [{key: '7', value: '七年级'}, {key: '8', value: '八年级'}, {key: '9', value: '九年级'}, {key: '10', value: '高中'}],
       show: false,
       menus: {
@@ -88,7 +100,8 @@ export default {
         grade: this.grade,
         subject: {
           math: this.math,
-          physics: this.physics
+          physics: this.physics,
+          chemistry: this.chemistry
         }
       }).then(() => {
         // 更改年级需要重启应用,其他操作则重新获取数据
@@ -134,9 +147,8 @@ export default {
     grade (value) {
       this.getTextbookVersion({'grade': value}).then(() => {
         this.math = this.User.textbookAll.math[0].id
-        if (this.User.textbookAll.subjectType.length === 2) {
-          this.physics = this.User.textbookAll.physics[0].id
-        }
+        this.physics = (this.User.textbookAll.subjectType.indexOf('physics') >= 0 ? this.User.textbookAll.physics[0].id : '')
+        this.chemistry = (this.User.textbookAll.subjectType.indexOf('chemistry') >= 0 ? this.User.textbookAll.chemistry[0].id : '')
       })
     }
   },

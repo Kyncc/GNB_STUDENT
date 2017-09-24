@@ -8,7 +8,8 @@
       </section>
     </div>
     <div style="text-align:center">
-      <spinner v-if="loading" type="dots"></spinner>
+      <spinner v-if="loading" type="dots"></spinner
+      >
       <p v-else-if="messageSystemList.length == 0" style="font-size:16px;padding:10px 0;color:#4cc0be">暂无系统消息~</p>
     </div>
   </view-box>
