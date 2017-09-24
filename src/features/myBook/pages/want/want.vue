@@ -99,14 +99,14 @@ export default {
        * version 版本图片
        * index 首页图片
        */
-      this.$router.push({name: 'myBook_want_photo', query: {type: type}})
-      // let cmr = plus.camera.getCamera()
-      // cmr.captureImage((p) => {
-      //   plus.io.resolveLocalFileSystemURL(p, (entry) => {
-      //     this.myBookCamera(entry.toLocalURL())
-      //     this.$router.push({name: 'myBook_want_photo', query: {type: type}})
-      //   })
-      // })
+      // this.$router.push({name: 'myBook_want_photo', query: {type: type}})
+      let cmr = plus.camera.getCamera()
+      cmr.captureImage((p) => {
+        plus.io.resolveLocalFileSystemURL(p, (entry) => {
+          this.myBookCamera(entry.toLocalURL())
+          this.$router.push({name: 'myBook_want_photo', query: {type: type}})
+        })
+      })
     },
     _del (type) {
       this.myBookWantDel(type)

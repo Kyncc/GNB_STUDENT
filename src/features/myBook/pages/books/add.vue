@@ -45,11 +45,11 @@
           <p v-else-if="myBookAddList.length === 0" style="font-size:16px;color:#4cc0be;">没有更多的习题册了~</p>
         </div>
       </div>
-      <tabbar slot="bottom" style='text-align:center;font-size:.8rem;padding:.25rem 0;'>
+      <!-- <tabbar slot="bottom" style='text-align:center;font-size:.8rem;padding:.25rem 0;'>
         <p style='color:#4cc0be;width:100%;' @click="$router.push({name: 'myBook_want'})">没有我想要得习题册？
           <b style='text-decoration:underline;font-weight:normal'>点我提交</b>
         </p>
-      </tabbar>
+      </tabbar> -->
     </view-box>
     <previewer :list="list" ref="wbpreviewer" :options="options"></previewer>
   </div>

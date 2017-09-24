@@ -63,7 +63,7 @@ export default {
     ...mapActions(['cameraErrorUpload', 'cameraErrorDel', 'cameraErrorCamera']),
     _add () {
       // this.$router.push({'name': 'camera_photo'})
-      let cmr = plus.camera.getCameraChapter()
+      let cmr = plus.camera.getCamera()
       cmr.captureImage((p) => {
         plus.io.resolveLocalFileSystemURL(p, (entry) => {
           this.cameraErrorCamera(entry.toLocalURL())
@@ -85,15 +85,10 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    // 章节练习进来清空
-    if (from.name === 'camera_chapter' || from.name === 'camera_points') {
-      next(vm => {
-        vm._del(0)
-        vm.comment = ''
-      })
-    } else {
-      next()
-    }
+    next(vm => {
+      // vm._del(0)
+      vm.comment = ''
+    })
   }
 }
 </script>

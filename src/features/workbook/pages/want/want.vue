@@ -93,20 +93,20 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['workbookWantDel', 'workbookCamera', 'workbookWantUpload']),
+    ...mapActions(['workbookWantDel', 'workbookWantCamera', 'workbookWantUpload']),
     _add (type) {
       /**
        * version 版本图片
        * index 首页图片
        */
-      this.$router.push({name: 'workbook_want_photo', query: {type: type}})
-      // let cmr = plus.camera.getCamera()
-      // cmr.captureImage((p) => {
-      //   plus.io.resolveLocalFileSystemURL(p, (entry) => {
-      //     this.workbookCamera(entry.toLocalURL())
-      //     this.$router.push({name: 'workbook_want_photo', query: {type: type}})
-      //   })
-      // })
+      // this.$router.push({name: 'workbook_want_photo', query: {type: type}})
+      let cmr = plus.camera.getCamera()
+      cmr.captureImage((p) => {
+        plus.io.resolveLocalFileSystemURL(p, (entry) => {
+          this.workbookWantCamera(entry.toLocalURL())
+          this.$router.push({name: 'workbook_want_photo', query: {type: type}})
+        })
+      })
     },
     _del (type) {
       this.workbookWantDel(type)

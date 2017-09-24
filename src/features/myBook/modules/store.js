@@ -47,7 +47,7 @@ const mutations = {
     }
   },
   [types.MYBOOK_WANT_CAMERA] (state, data) {
-    state.uploader.want.camera = data
+    state.myBook.want.camera = data
   },
   [types.MYBOOK_WANT_UPLOAD] (state) {
     state.myBook.want.index = ''

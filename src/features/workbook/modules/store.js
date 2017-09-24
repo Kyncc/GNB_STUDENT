@@ -116,7 +116,7 @@ const mutations = {
     }
   },
   [types.WORKBOOK_WANT_CAMERA] (state, data) {
-    state.uploader.want.camera = data
+    state.workbook.want.camera = data
   },
   [types.WORKBOOK_WANT_UPLOAD] (state) {
     state.workbook.want.index = ''
