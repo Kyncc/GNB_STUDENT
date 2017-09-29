@@ -5,7 +5,7 @@
     </x-header>
     <div>
       <div style='background:#fff;padding:1rem 0;'>
-        <group-title style='margin-top:0;'>请按照示例上传习题册封面和版次印</group-title>
+        <group-title style='margin-top:0;'>请按照示例上传习题册封面和版印次</group-title>
         <flexbox wrap="wrap" align="baseline" style="padding:.5rem 0">
           <flexbox-item :span="1"></flexbox-item>
           <flexbox-item :span="4" @click.native="_show(0)">
@@ -43,7 +43,7 @@
           </flexbox-item>
         </flexbox>
       </div>
-      <p class='notice'>我们会尽快上架该练习册，请注意查看消息通知，感谢您得支持~</p>
+      <p class='notice'>我们会尽快上架该习题册，请注意查看消息通知，感谢您的支持~</p>
     </div>
     <div v-transfer-dom>
       <previewer :list="list" ref="previewer" :options="options"></previewer>

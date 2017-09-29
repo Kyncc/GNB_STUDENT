@@ -30,11 +30,11 @@ export const setErrorType = ({ rootState, commit, state }, params) => {
         token: rootState.common.user.token,
         wbeid: params.wbeid,
         chapterId: params.chapterId,
-        type: params.type
+        errorComment: params.errorComment
       }
     })
       .then((response) => {
-        commit(types.ERROR_ERROR_TYPE, { subject: params.subject, index: params.index, type: params.type })
+        commit(types.ERROR_ERROR_TYPE, { subject: params.subject, index: params.index, errorComment: params.errorComment })
         resolve(response)
       })
   })

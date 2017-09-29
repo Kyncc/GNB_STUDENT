@@ -40,7 +40,7 @@ const mutations = {
     }
   },
   [types.ERROR_ERROR_TYPE] (state, payload) {
-    state[payload.subject]['list'][payload.index]['errorType'] = Number(payload.type)
+    state[payload.subject]['list'][payload.index]['errorComment'] = payload.errorComment
   },
   [types.ERROR_SCROLL] (state, payload) {
     state[payload.subject]['scroll'] = payload.height
