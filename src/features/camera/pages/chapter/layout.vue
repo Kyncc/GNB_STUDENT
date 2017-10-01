@@ -2,7 +2,7 @@
   <view-box ref="camera" body-padding-top="100px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: '拍错题'}">
-        <div slot="right" @click="$router.replace({name: 'camera_points'})">考点练习</div>
+        <!-- <div slot="right" @click="$router.replace({name: 'camera_points'})">考点练习</div> -->
       </x-header>
       <tab>
         <tab-item v-if="User.subjectType.indexOf('math') >= 0" :selected="Route.name === 'camera_chapter_math'" @click.native="$router.replace('math')">数学</tab-item>

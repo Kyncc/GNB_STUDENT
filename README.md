@@ -66,6 +66,7 @@
         ├── correct     # 纠错
         ├── myclass     # 我的班级
         ├── error       # 错题本
+        ├── errorCamera # 拍照错题本
         ├── homework    # 我的作业
         ├── myBook      # 我的习题册
         ├── report      # 知识图谱

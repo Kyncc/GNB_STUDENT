@@ -9,6 +9,7 @@ import about from './features/about/router'
 import collect from './features/collect/router'
 import correct from './features/correct/router'
 import error from './features/error/router'
+import errorCamera from './features/errorCamera/router'
 import example from './features/example/router'
 import message from './features/message/router'
 import homework from './features/homework/router'
@@ -27,6 +28,7 @@ let router = new Router({
     camera,
     correct,
     ...error,
+    errorCamera,
     example,
     login,
     ...index,

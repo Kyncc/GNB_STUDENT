@@ -46,7 +46,7 @@
       </div>
       <tabbar slot="bottom" style='text-align:center;font-size:.8rem;padding:.25rem 0;'>
         <p style='color:#4cc0be;width:100%;' @click="$router.push({name: 'workbook_want'})">没有我想要的习题册？
-          <b style='text-decoration:underline;font-weight:normal;color:#333'>点我提交</b>
+          <b style='text-decoration:underline;font-weight:normal;color:#feaa85'>点我提交</b>
         </p>
       </tabbar>
     </view-box>
