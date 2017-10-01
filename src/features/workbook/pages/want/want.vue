@@ -143,10 +143,12 @@ export default {
   position:relative;
   margin-top:10px;
   .plus{
+    position: relative;
     text-align:center;
-    height:160px;width:6.2rem;border:1px solid #ccc;font-size:3rem;color:#ccc;
+    height:160px;width:6.2rem;border:1px solid #ccc;color:#ccc;
     border-radius:3px;
     float:left;
+    b{ position: absolute; top:40%;font-size:2rem;left:55%;margin-left:-1rem;margin-top:-1rem;}
   }
 }
 .notice{

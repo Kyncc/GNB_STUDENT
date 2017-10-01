@@ -7,7 +7,6 @@
           <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
         </flexbox>
       </div>
-      <!--上传错题则显示题目，否则显示题干-->
       <div slot="content">
         <div @click="show(error.photo)">
           <img v-lazy="error.photo.url+'-errorList'"/>
@@ -17,7 +16,6 @@
         <div class="weui-cell">
           <div class="weui-cell__bd" style="text-align:right">
             <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '错误类型'}}</x-button>
-            <!--<x-button mini plain type="primary">参考例题</x-button>-->
             <x-button mini type="primary" plain @click.native="_showCommentPopup(error)" v-if='error.comment'>查看点评</x-button>
           </div>
         </div>

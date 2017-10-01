@@ -7,7 +7,6 @@
           <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
         </flexbox>
       </div>
-      <!--上传错题则显示题目，否则显示题干-->
       <div slot="content">
         <div @click="show(error.photo)">
           <img v-lazy="error.photo.url+'-errorList'"/>
@@ -74,7 +73,6 @@ export default {
       showErrorPopup: false,
       errorType: {
         errorComment: '',
-        chapterId: '',
         id: '',
         type: '',
         index: ''
