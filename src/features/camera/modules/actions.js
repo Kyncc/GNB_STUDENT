@@ -86,7 +86,7 @@ export const cameraErrorUpload = ({ state, rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'camear/upload',
+      url: 'camera/upload',
       data: {
         'token': rootState.common.user.token,
         'photo': state.uploader.list[0],
