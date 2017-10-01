@@ -6,7 +6,7 @@ export const getErrorCamera = ({ rootState, commit, state }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'error',
+      url: 'camera/list',
       params: {
         token: rootState.common.user.token,
         subject_id: params.id,
@@ -25,11 +25,10 @@ export const setErrorCameraType = ({ rootState, commit, state }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'error/type',
+      url: 'camera/error',
       data: {
         token: rootState.common.user.token,
-        wbeid: params.wbeid,
-        chapterId: params.chapterId,
+        id: params.id,
         errorComment: params.errorComment
       }
     })

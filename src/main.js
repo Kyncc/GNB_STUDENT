@@ -34,21 +34,6 @@ Vue.filter('subject', (value) => {
   }
 })
 
-// 错误类型注入
-Vue.filter('errorType', (value) => {
-  switch (value) {
-    case -1: return '错误类型'
-    case 1: return '审题不清'
-    case 2: return '概念模糊'
-    case 3: return '思路不清'
-    case 4: return '运算错误'
-    case 5: return '粗心大意'
-    case 6: return '方法不对'
-    case 7: return '时间不够'
-    case 0: return '我不知道'
-  }
-})
-
 // 在首页返回键失效其他页面则直接返回上一页
 document.addEventListener('plusready', () => {
   let first = null

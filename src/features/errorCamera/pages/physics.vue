@@ -8,11 +8,10 @@
         </flexbox>
       </div>
       <!--上传错题则显示题目，否则显示题干-->
-      <div v-if='!error.isUploader' slot="content" @click="show(error.exerciseImg)">
-        <img v-lazy="error.exerciseImg.src+'-errorList'"/>
-      </div>
-      <div v-else slot="content" @click="show(error.errorImg[0])">
-        <img v-lazy="error.errorImg[0].src+'-errorList'"/>
+      <div slot="content">
+        <div @click="show(error.photo)">
+          <img v-lazy="error.photo.url+'-errorList'"/>
+        </div>
       </div>
       <div slot="footer">
         <div class="weui-cell">
@@ -75,8 +74,7 @@ export default {
       loadingNoData: false,
       showErrorPopup: false,
       errorType: {
-        chapterId: '',
-        wbeid: '',
+        id: '',
         errorComment: '',
         index: ''
       },
@@ -97,10 +95,10 @@ export default {
     TransferDom
   },
   methods: {
-    ...mapActions(['setErrorScroll', 'getError', 'clearError', 'setErrorType']),
+    ...mapActions(['setErrorScroll', 'getErrorCamera', 'setErrorCameraType']),
     _getData () {
       this.loading = true
-      this.getError({subject: 'physics', id: '7'}).then((res) => {
+      this.getErrorCamera({subject: 'physics', id: '7'}).then((res) => {
         if (!res.data.data.offset) {
           this.loadingNoData = true
         }
@@ -112,7 +110,7 @@ export default {
     show (img) {
       this.list[0].w = img.width
       this.list[0].h = img.height
-      this.list[0].src = img.src
+      this.list[0].src = img.url
       this.$nextTick(() => {
         this.$refs.previewer.show(0)
       })
@@ -122,21 +120,19 @@ export default {
       this.showErrorPopup = true
       this.errorType.index = index
       this.errorType.errorComment = error.errorComment
-      this.errorType.wbeid = error.wbeid
-      this.errorType.chapterId = error.chapterId
+      this.errorType.id = error.id
     },
     // 评论
     _showCommentPopup (error) {
-      this.$router.push({name: 'error_comment', params: {wbeid: error.wbeid}})
+      this.$router.push({name: 'error_comment', params: {id: error.id}})
     },
     // 选择错误类型
     onItemClick (value) {
       this.showErrorPopup = false
-      this.setErrorType({
-        chapterId: this.errorType.chapterId,
+      this.setErrorCameraType({
         index: this.errorType.index,
         errorComment: value,
-        wbeid: this.errorType.wbeid,
+        id: this.errorType.id,
         subject: 'physics'
       }).then(() => {
         this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 1500, position: 'bottom'})

@@ -9,18 +9,14 @@
       </div>
       <!--上传错题则显示题目，否则显示题干-->
       <div slot="content">
-        <div v-if='!error.isUploader' @click="show(error.exerciseImg)">
-          <img v-lazy="error.exerciseImg.src+'-errorList'"/>
-        </div>
-        <div v-else @click="show(error.errorImg[0])">
-          <img v-lazy="error.errorImg[0].src+'-errorList'"/>
+        <div @click="show(error.photo)">
+          <img v-lazy="error.photo.url+'-errorList'"/>
         </div>
       </div>
       <div slot="footer">
         <div class="weui-cell">
           <div class="weui-cell__bd" style="text-align:right">
             <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '错误类型'}}</x-button>
-            <!--<x-button mini plain type="primary">参考例题</x-button>-->
             <x-button mini type="primary" plain @click.native="_showCommentPopup(error)" v-if='error.comment'>查看点评</x-button>
           </div>
         </div>
@@ -79,7 +75,7 @@ export default {
       errorType: {
         errorComment: '',
         chapterId: '',
-        wbeid: '',
+        id: '',
         type: '',
         index: ''
       },
@@ -100,10 +96,10 @@ export default {
     TransferDom
   },
   methods: {
-    ...mapActions(['setErrorScroll', 'getError', 'clearError', 'setErrorType']),
+    ...mapActions(['setErrorCameraScroll', 'getErrorCamera', 'clearErrorCamera', 'setErrorCameraType']),
     _getData () {
       this.loading = true
-      this.getError({subject: 'math', id: '2'}).then((res) => {
+      this.getErrorCamera({subject: 'math', id: '2'}).then((res) => {
         if (!res.data.data.offset) {
           this.loadingNoData = true
         }
@@ -115,7 +111,7 @@ export default {
     show (img) {
       this.list[0].w = img.width
       this.list[0].h = img.height
-      this.list[0].src = img.src
+      this.list[0].src = img.url
       this.$nextTick(() => {
         this.$refs.previewer.show(0)
       })
@@ -125,22 +121,20 @@ export default {
       this.showErrorPopup = true
       this.errorType.index = index
       this.errorType.errorComment = error.errorComment
-      this.errorType.wbeid = error.wbeid
-      this.errorType.chapterId = error.chapterId
+      this.errorType.id = error.id
     },
     // 评论
     _showCommentPopup (error) {
-      this.$router.push({name: 'error_comment', params: {wbeid: error.wbeid}})
+      this.$router.push({name: 'error_comment', params: {id: error.id}})
     },
     // 选择错误类型
     onItemClick (value) {
       this.showErrorPopup = false
       this.errorType.errorComment = ''
-      this.setErrorType({
-        chapterId: this.errorType.chapterId,
+      this.setErrorCameraType({
         index: this.errorType.index,
         errorComment: value,
-        wbeid: this.errorType.wbeid,
+        id: this.errorType.id,
         subject: 'math'
       }).then(() => {
         this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 1500, position: 'bottom'})
@@ -149,8 +143,8 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'index') {
-        vm.clearError()
+      if (from.name.indexOf('error_') !== -1) {
+        vm.clearErrorCamera()
         if (vm.errorCameraMath.isReset) {
           vm._getData()
         }
@@ -159,7 +153,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setErrorScroll({subject: 'math', height: this.$parent.$refs.viewBoxBody.scrollTop})
+    this.setErrorCameraScroll({subject: 'math', height: this.$parent.$refs.viewBoxBody.scrollTop})
     if (this.showErrorPopup) {
       this.showErrorPopup = false
       next(false)

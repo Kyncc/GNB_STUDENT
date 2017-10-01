@@ -1,0 +1,1 @@
+webpackJsonp([97],{1022:function(e,t){e.exports={render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("keep-alive",[n("router-view")],1)},staticRenderFns:[]}},564:function(e,t,n){var r=n(50)(n(904),n(1022),null,null);e.exports=r.exports},904:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={name:"want"}}});
