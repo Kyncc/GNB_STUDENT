@@ -100,7 +100,7 @@ export default {
     ...mapActions(['setErrorScroll', 'getError', 'clearError', 'setErrorType']),
     _getData () {
       this.loading = true
-      this.getError({subject: 'chemistry', subjectId: 8}).then((res) => {
+      this.getError({subject: 'chemistry', id: '8'}).then((res) => {
         if (!res.data.data.offset) {
           this.loadingNoData = true
         }

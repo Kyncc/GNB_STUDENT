@@ -96,7 +96,7 @@ export default {
     ...mapActions(['setErrorCameraScroll', 'getErrorCamera', 'setErrorCameraType']),
     _getData () {
       this.loading = true
-      this.getErrorCamera({subject: 'chemistry', subjectId: 8}).then((res) => {
+      this.getErrorCamera({subject: 'chemistry', id: '8'}).then((res) => {
         if (!res.data.data.offset) {
           this.loadingNoData = true
         }
