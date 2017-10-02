@@ -76,7 +76,7 @@ export default {
       if (!this.workbookExercise.cameraList.length) {
         this.$vux.toast.show({text: '您还未拍照', type: 'text', time: 1500, position: 'bottom'})
       } else {
-        this.workbookExErrorUpload({type: this.type}).then(() => {
+        this.workbookExErrorUpload({errorComment: this.type}).then(() => {
           history.go(-1)
         })
       }

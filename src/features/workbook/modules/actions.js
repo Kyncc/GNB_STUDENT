@@ -250,7 +250,7 @@ export const workbookExErrorUpload = ({ state, rootState, commit }, params) => {
       data: {
         'wbeid': rootState.route.params.wbeid,
         'img': state.exercise.cameraList,
-        'type': params.type,
+        'errorComment': params.errorComment,
         'chapterId': rootState.route.params.chapterId,
         'token': rootState.common.user.token
       }
