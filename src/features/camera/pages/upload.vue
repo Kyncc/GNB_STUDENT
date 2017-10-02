@@ -78,7 +78,7 @@ export default {
       if (!this.CameraUploader.list.length) {
         this.$vux.toast.show({text: '您还未拍照', type: 'text', time: 1500, position: 'bottom'})
       } else {
-        this.cameraErrorUpload({comment: this.comment}).then(() => {
+        this.cameraErrorUpload({errorComment: this.comment}).then(() => {
           history.go(-1)
         })
       }

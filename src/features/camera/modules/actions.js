@@ -90,7 +90,7 @@ export const cameraErrorUpload = ({ state, rootState, commit }, params) => {
       data: {
         'token': rootState.common.user.token,
         'photo': state.uploader.list[0],
-        'comment': params.comment,
+        'errorComment': params.errorComment,
         'relationId': rootState.route.query.relationId,
         'type': rootState.route.query.type
       }
