@@ -40,16 +40,11 @@ export default {
     if (this.cropper) {
       this.cropper.destroy()
     }
-    let minHeight = document.documentElement.clientHeight - 46
     this.cropper = new Cropper(this.$refs.result, {
       aspectRatio: '1/1',
-      minContainerHeight: minHeight,
-      build: (e) => {
-        this.$vux.loading.show({text: '请稍候'})
-      },
-      built: (e) => {
-        this.$vux.loading.hide()
-      }
+      minContainerHeight: document.documentElement.clientHeight - 46,
+      minCropBoxWidth: document.documentElement.clientWidth / 2,
+      minCropBoxHeight: 80
     })
   }
 }

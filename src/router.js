@@ -4,10 +4,12 @@ import { sync } from 'vuex-router-sync'
 import store from './store'
 import index from './router/router'
 import login from './features/login/router'
+import camera from './features/camera/router'
 import about from './features/about/router'
 import collect from './features/collect/router'
 import correct from './features/correct/router'
 import error from './features/error/router'
+import errorCamera from './features/errorCamera/router'
 import example from './features/example/router'
 import message from './features/message/router'
 import homework from './features/homework/router'
@@ -23,8 +25,10 @@ let router = new Router({
   routes: [
     about,
     collect,
-    ...error,
+    camera,
     correct,
+    ...error,
+    errorCamera,
     example,
     login,
     ...index,

@@ -17,7 +17,7 @@
       <div slot="footer">
         <div class="weui-cell">
           <div class="weui-cell__bd" style="text-align:right">
-            <x-button mini type="primary" :plain="error.errorType !== -1" @click.native="_showErrorPopup(error, index)">{{error.errorType | errorType}}</x-button>
+            <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '错误类型'}}</x-button>
             <!--<x-button mini plain type="primary">参考例题</x-button>-->
             <x-button mini type="primary" plain @click.native="_showCommentPopup(error)" v-if='error.comment'>查看点评</x-button>
           </div>
@@ -40,15 +40,15 @@
       <popup v-model="showErrorPopup" class="checker-popup">
         <group title='选择错误类型：'>
           <div style="padding:10px 10px 0 10px;">
-            <checker type="radio" :value="errorType.type.toString()" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
-              <checker-item value="1" @on-item-click="onItemClick">审题不清</checker-item>
-              <checker-item value="2" @on-item-click="onItemClick">概念模糊</checker-item>
-              <checker-item value="3" @on-item-click="onItemClick">思路不清</checker-item>
-              <checker-item value="4" @on-item-click="onItemClick">运算错误</checker-item>
-              <checker-item value="5" @on-item-click="onItemClick">粗心大意</checker-item>
-              <checker-item value="6" @on-item-click="onItemClick">方法不对</checker-item>
-              <checker-item value="7" @on-item-click="onItemClick">时间不够</checker-item>
-              <checker-item value="0" @on-item-click="onItemClick">我不知道</checker-item>
+            <checker type="radio" :value="errorType.errorComment" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
+              <checker-item value="审题不清" @on-item-click="onItemClick">审题不清</checker-item>
+              <checker-item value="概念模糊" @on-item-click="onItemClick">概念模糊</checker-item>
+              <checker-item value="思路不清" @on-item-click="onItemClick">思路不清</checker-item>
+              <checker-item value="运算错误" @on-item-click="onItemClick">运算错误</checker-item>
+              <checker-item value="粗心大意" @on-item-click="onItemClick">粗心大意</checker-item>
+              <checker-item value="方法不对" @on-item-click="onItemClick">方法不对</checker-item>
+              <checker-item value="时间不够" @on-item-click="onItemClick">时间不够</checker-item>
+              <checker-item value="我不知道" @on-item-click="onItemClick">我不知道</checker-item>
             </checker>
           </div>
         </group>
@@ -77,7 +77,7 @@ export default {
       errorType: {
         chapterId: '',
         wbeid: '',
-        type: '',
+        errorComment: '',
         index: ''
       },
       list: [{
@@ -100,7 +100,7 @@ export default {
     ...mapActions(['setErrorScroll', 'getError', 'clearError', 'setErrorType']),
     _getData () {
       this.loading = true
-      this.getError().then((res) => {
+      this.getError({subject: 'physics', id: '7'}).then((res) => {
         if (!res.data.data.offset) {
           this.loadingNoData = true
         }
@@ -121,7 +121,7 @@ export default {
     _showErrorPopup (error, index) {
       this.showErrorPopup = true
       this.errorType.index = index
-      this.errorType.type = error.errorType
+      this.errorType.errorComment = error.errorComment
       this.errorType.wbeid = error.wbeid
       this.errorType.chapterId = error.chapterId
     },
@@ -135,8 +135,9 @@ export default {
       this.setErrorType({
         chapterId: this.errorType.chapterId,
         index: this.errorType.index,
-        type: value,
-        wbeid: this.errorType.wbeid
+        errorComment: value,
+        wbeid: this.errorType.wbeid,
+        subject: 'physics'
       }).then(() => {
         this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 1500, position: 'bottom'})
       })
@@ -151,7 +152,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setErrorScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setErrorScroll({subject: 'physics', height: this.$parent.$refs.viewBoxBody.scrollTop})
     if (this.showErrorPopup) {
       this.showErrorPopup = false
       next(false)

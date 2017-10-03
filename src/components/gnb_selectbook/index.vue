@@ -4,8 +4,8 @@
       <b class="header_title_select_arrow"></b>
     </p>
     <select v-model="currentValue">
-      <template v-for="item in list">
-        <option v-bind:value="item.id">{{item.name}}</option>
+      <template v-for="(item, index) in list">
+        <option v-bind:value="item.id" :key='index'>{{item.name}}</option>
       </template>
     </select>
   </div>

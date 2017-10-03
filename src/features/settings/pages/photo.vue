@@ -42,18 +42,16 @@ export default {
   activated () {
     if (this.cropper) {
       this.cropper.destroy()
-      let minHeight = document.documentElement.clientHeight - 46
       this.cropper = new Cropper(this.$refs.photo, {
         aspectRatio: 1 / 1,
-        minContainerHeight: minHeight
+        minContainerHeight: document.documentElement.clientHeight - 46
       })
     }
   },
   mounted () {
-    let minHeight = document.documentElement.clientHeight - 46
     this.cropper = new Cropper(this.$refs.photo, {
       aspectRatio: 1 / 1,
-      minContainerHeight: minHeight
+      minContainerHeight: document.documentElement.clientHeight - 46
     })
   }
 }

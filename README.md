@@ -59,13 +59,15 @@
     ├── router      # Main Pages
     ├── features    # Modules
         ├── common      # 全局功能函数
+        ├── camera      # 拍错题
         ├── workbook    # 查答案
         ├── example     # 例题
         ├── collect     # 收藏本模块
         ├── correct     # 纠错
         ├── myclass     # 我的班级
         ├── error       # 错题本
-        ├── homework    # 家庭作业
+        ├── errorCamera # 拍照错题本
+        ├── homework    # 我的作业
         ├── myBook      # 我的习题册
         ├── report      # 知识图谱
         ├── message     # 消息

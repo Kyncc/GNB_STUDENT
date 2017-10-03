@@ -1400,9 +1400,9 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cropperjs@^1.0.0-rc.2:
-  version "1.0.0-rc.3"
-  resolved "http://registry.npm.taobao.org/cropperjs/download/cropperjs-1.0.0-rc.3.tgz#50a7c7611befc442702f845ede77d7df4572e82b"
+cropperjs@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/cropperjs/download/cropperjs-1.0.0.tgz#3a4b7261f05a661316facdb4ebac90ecc48b0242"
 
 cryptiles@2.x.x:
   version "2.0.5"
@@ -3980,17 +3980,9 @@ process@^0.11.0:
   version "0.11.10"
   resolved "http://registry.npm.taobao.org/process/download/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
 
-progress-bar-webpack-plugin@^1.10.0:
+progress-bar-webpack-plugin@^1.10.0, progress-bar-webpack-plugin@^1.9.3:
   version "1.10.0"
   resolved "http://registry.npm.taobao.org/progress-bar-webpack-plugin/download/progress-bar-webpack-plugin-1.10.0.tgz#e0b1063aa03c79e298a9340598590bb61efef9a4"
-  dependencies:
-    chalk "^1.1.1"
-    object.assign "^4.0.1"
-    progress "^1.1.8"
-
-progress-bar-webpack-plugin@^1.9.3:
-  version "1.9.3"
-  resolved "http://registry.npm.taobao.org/progress-bar-webpack-plugin/download/progress-bar-webpack-plugin-1.9.3.tgz#81fb8bd8e38da6edaf9a20beed79bd978dd63c2a"
   dependencies:
     chalk "^1.1.1"
     object.assign "^4.0.1"
@@ -4886,6 +4878,10 @@ validator@^6.2.1:
   version "6.3.0"
   resolved "http://registry.npm.taobao.org/validator/download/validator-6.3.0.tgz#47ce23ed8d4eaddfa9d4b8ef0071b6cf1078d7c8"
 
+vanilla-masker@^1.2.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/vanilla-masker/download/vanilla-masker-1.2.0.tgz#c2830e9d994a5fecd2261506477c2707fe589756"
+
 vary@~1.1.1:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/vary/download/vary-1.1.1.tgz#67535ebb694c1d52257457984665323f587e8d37"
@@ -4992,9 +4988,9 @@ vux-xscroll@^3.1.10:
   version "3.1.12"
   resolved "http://registry.npm.taobao.org/vux-xscroll/download/vux-xscroll-3.1.12.tgz#e352e7f9dc5f9fee9253db331c967dd56b3bc950"
 
-vux@^2.5.11:
-  version "2.5.11"
-  resolved "http://registry.npm.taobao.org/vux/download/vux-2.5.11.tgz#c1e8d0052e20ee4df3c0c4cdd07053587ed8a809"
+vux@^2.6.4:
+  version "2.6.4"
+  resolved "http://registry.npm.taobao.org/vux/download/vux-2.6.4.tgz#70ab84579ef4178e5016119bf6a12ac6cb1a6fc8"
   dependencies:
     array-filter "^1.0.0"
     array-find "^1.0.0"
@@ -5015,6 +5011,7 @@ vux@^2.5.11:
     shake.js "^1.2.2"
     v-markdown-loader "^0.6.3-beta.2"
     validator "^6.2.1"
+    vanilla-masker "^1.2.0"
     vux-blazy "^1.6.4"
     vux-xscroll "^3.1.10"
     webp-support "^1.0.3"

@@ -14,8 +14,9 @@
         <selector v-model="grade" title="年级" :options="gradeList"></selector>
       </group>
       <group title="版本选择">
-        <selector v-model="math" title="数学" :options="mathList"></selector>
-        <selector v-if="User.textbookAll.subjectType.length === 2" v-model="physics" title="物理" :options="physicsList"></selector>
+        <selector v-if="math" v-model="math" title="数学" :options="mathList"></selector>
+        <selector v-if="physics" v-model="physics" title="物理" :options="physicsList"></selector>
+        <selector v-if="chemistry" v-model="chemistry" title="化学" :options="chemistryList"></selector>
       </group>
       <div style="width:90%;margin:1.5rem auto">
         <x-button type="primary" @click.native="_complete" :disabled="disable">确定</x-button>
@@ -34,12 +35,6 @@ export default {
   },
   methods: {
     ...mapActions(['setUserInfo', 'getTextbookVersion']),
-    _onChangeMath (item) {
-      this.math = item
-    },
-    _onChangePhysisc (item) {
-      this.physics = item
-    },
     _complete () {
       this.setUserInfo({
         name: this.username,
@@ -47,7 +42,8 @@ export default {
         mobile: this.registerMobile,
         subject: {
           math: this.math,
-          physics: this.physics
+          physics: this.physics,
+          chemistry: this.chemistry
         },
         grade: this.grade
       }).then(() => {
@@ -61,6 +57,7 @@ export default {
       school: '',
       math: '',
       physics: '',
+      chemistry: '',
       grade: '10',
       gradeList: [{key: '7', value: '七年级'}, {key: '8', value: '八年级'}, {key: '9', value: '九年级'}, {key: '10', value: '高中'}]
     }
@@ -87,6 +84,16 @@ export default {
       })
       return newObj
     },
+    chemistryList () {
+      let newObj = []
+      this.User.textbookAll.chemistry.forEach((item, index) => {
+        newObj.push({
+          key: item.id.toString() || '',
+          value: item.name.toString() || ''
+        })
+      })
+      return newObj
+    },
     disable () {
       return false
     }
@@ -95,18 +102,16 @@ export default {
     grade (value) {
       this.getTextbookVersion({'grade': value}).then(() => {
         this.math = this.User.textbookAll.math[0].id
-        if (this.User.textbookAll.subjectType.length === 2) {
-          this.physics = this.User.textbookAll.physics[0].id
-        }
+        this.physics = (this.User.textbookAll.subjectType.indexOf('physics') >= 0 ? this.User.textbookAll.physics[0].id : '')
+        this.chemistry = (this.User.textbookAll.subjectType.indexOf('chemistry') >= 0 ? this.User.textbookAll.chemistry[0].id : '')
       })
     }
   },
   mounted () {
     this.getTextbookVersion({'grade': this.grade}).then(() => {
       this.math = this.User.textbookAll.math[0].id
-      if (this.User.textbookAll.subjectType.length === 2) {
-        this.physics = this.User.textbookAll.physics[0].id
-      }
+      this.physics = (this.User.textbookAll.subjectType.indexOf('physics') >= 0 ? this.User.textbookAll.physics[0].id : '')
+      this.chemistry = (this.User.textbookAll.subjectType.indexOf('chemistry') >= 0 ? this.User.textbookAll.chemistry[0].id : '')
     })
   }
 }

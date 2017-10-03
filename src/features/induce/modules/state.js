@@ -7,6 +7,10 @@ let state = {
     physics: {
       list: [],
       scroll: 0
+    },
+    chemistry: {
+      list: [],
+      scroll: 0
     }
   },
   exercise: {

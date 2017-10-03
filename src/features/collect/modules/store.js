@@ -14,6 +14,12 @@ const state = {
     offset: '',
     scroll: 0,
     isReset: true
+  },
+  chemistry: {
+    list: [],
+    offset: '',
+    scroll: 0,
+    isReset: true
   }
 }
 
@@ -34,6 +40,7 @@ const mutations = {
   [types.COLLECT_RELOAD] (state) {
     state.math = {list: [], offset: '', scroll: 0, isReset: true}
     state.physics = {list: [], offset: '', scroll: 0, isReset: true}
+    state.chemistry = {list: [], offset: '', scroll: 0, isReset: true}
   }
 }
 

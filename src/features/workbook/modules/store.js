@@ -100,6 +100,28 @@ const mutations = {
   [types.WORKBOOK_UPLOAD] (state, data) {
     state.uploader.list = []
     state.exercise.list = data
+  },
+  [types.WORKBOOK_WANT_ADD] (state, payload) {
+    if (payload.type === 'index') {
+      state.workbook.want.index = payload.data
+    } else {
+      state.workbook.want.version = payload.data
+    }
+  },
+  [types.WORKBOOK_WANT_DEL] (state, type) {
+    if (type === 'index') {
+      state.workbook.want.index = ''
+    } else {
+      state.workbook.want.version = ''
+    }
+  },
+  [types.WORKBOOK_WANT_CAMERA] (state, data) {
+    state.workbook.want.camera = data
+  },
+  [types.WORKBOOK_WANT_UPLOAD] (state) {
+    state.workbook.want.index = ''
+    state.workbook.want.version = ''
+    state.workbook.want.camera = ''
   }
 }
 

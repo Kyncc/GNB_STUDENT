@@ -63,7 +63,7 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    if (from.name !== 'error_math' && from.name !== 'error_physics') {
+    if (from.name !== 'error_math' && from.name !== 'error_physics' && from.name !== 'error_chemistry') {
       next(vm => {
         vm.clearErrorDetail()
         vm._getDate()

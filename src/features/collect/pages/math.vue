@@ -52,7 +52,7 @@ export default {
     ...mapActions(['getCollect', 'setCollectScroll', 'clearCollect']),
     _getData () {
       this.loading = true
-      this.getCollect().then((res) => {
+      this.getCollect({id: 2, subject: 'math'}).then((res) => {
         if (res.data.data.list.length < 10) {
           this.loadingNoData = true
         }
@@ -72,7 +72,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setCollectScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setCollectScroll({subject: 'math', height: this.$parent.$refs.viewBoxBody.scrollTop})
     next()
   }
 }

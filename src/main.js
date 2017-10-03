@@ -25,18 +25,12 @@ Vue.filter('ymdhms', (value) => {
   return dateFormat(new Date(Number(`${value}000`)), 'YYYY-MM-DD HH:mm:ss')
 })
 
-// 错误类型注入
-Vue.filter('errorType', (value) => {
+// 学科的转换
+Vue.filter('subject', (value) => {
   switch (value) {
-    case -1: return '错误类型'
-    case 1: return '审题不清'
-    case 2: return '概念模糊'
-    case 3: return '思路不清'
-    case 4: return '运算错误'
-    case 5: return '粗心大意'
-    case 6: return '方法不对'
-    case 7: return '时间不够'
-    case 0: return '我不知道'
+    case 2: return '数学'
+    case 7: return '物理'
+    case 8: return '化学'
   }
 })
 

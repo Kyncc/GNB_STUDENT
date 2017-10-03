@@ -15,6 +15,11 @@ export default [
         path: 'math',
         name: 'induce_math',
         component: r => require.ensure([], () => r(require('./pages/math')), '/induce/math')
+      },
+      {
+        path: 'chemistry',
+        name: 'induce_chemistry',
+        component: r => require.ensure([], () => r(require('./pages/chemistry')), '/induce/chemistry')
       }
     ]
   },

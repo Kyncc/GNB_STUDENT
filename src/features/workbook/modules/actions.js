@@ -2,21 +2,31 @@ import Vue from 'vue'
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
+function getSubjectId (name) {
+  let subjectId = ''
+  if (name.indexOf('math') >= 0) {
+    subjectId = '2'
+  } else if (name.indexOf('physics') >= 0) {
+    subjectId = '7'
+  } else if (name.indexOf('chemistry') >= 0) {
+    subjectId = '8'
+  }
+  return subjectId
+}
+
 /** 获取练习册数据 */
 export const getWorkbook = ({ state, rootState, commit }, params) => {
-  let subjectId = (rootState.route.name.indexOf('math') !== -1 ? 2 : 7)
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'workbook',
       params: {
         'token': rootState.common.user.token,
-        'subjectId': subjectId
+        'subjectId': params.subjectId
       }
     })
       .then((response) => {
-        commit(types.WORKBOOK, { 'subject': subject, 'data': response.data.data })
+        commit(types.WORKBOOK, { 'subject': params.subject, 'data': response.data.data })
         resolve(response)
       })
   })
@@ -24,14 +34,13 @@ export const getWorkbook = ({ state, rootState, commit }, params) => {
 
 /** 习题册列表 */
 export const getWorkbookAdd = ({ rootState, commit, state }, params) => {
-  let subjectId = (rootState.route.params.subject.indexOf('math') !== -1 ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'workbook/list',
       params: {
         token: rootState.common.user.token,
-        subjectId: subjectId,
+        subjectId: getSubjectId(rootState.route.params.subject),
         textbookId: rootState.route.query.id
       }
     })
@@ -84,14 +93,13 @@ export const workbookDel = ({ rootState, commit, state }, params) => {
 
 /** 搜索习题册列表 */
 export const getWorkbookSearch = ({ rootState, commit, state }, params) => {
-  let subjectId = (rootState.route.params.subject.indexOf('math') !== -1 ? 2 : 7)
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'workbook/list',
       params: {
         token: rootState.common.user.token,
-        subjectId: subjectId,
+        subjectId: getSubjectId(rootState.route.params.subject),
         workbookName: params.workbookName
       }
     })
@@ -119,9 +127,8 @@ export const workbookSearchClear = ({ commit }) => {
 }
 
 /** 练习册数据清空 */
-export const workbookClear = ({ rootState, commit }) => {
-  let subject = (rootState.route.name.indexOf('math') !== -1 ? 'math' : 'physics')
-  commit(types.WORKBOOK_CLEAR, { 'subject': subject })
+export const workbookClear = ({ rootState, commit }, payload) => {
+  commit(types.WORKBOOK_CLEAR, { 'subject': payload.subject })
 }
 
 /** 获取练习册章节数据 */
@@ -223,6 +230,16 @@ export const workbookExCameraDel = ({ commit }, id) => {
   commit(types.WORKBOOK_EXERCISE_ERROR_DEL, id)
 }
 
+/** 上传照片删除 */
+export const workbookUploadDel = ({ commit }, id) => {
+  commit(types.WORKBOOK_UPLOAD_DEL, id)
+}
+
+/** 上传照片增加 */
+export const workbookUploadAdd = ({ commit }, data) => {
+  commit(types.WORKBOOK_UPLOAD_ADD, data)
+}
+
 /** 提交章节错误练习题 */
 export const workbookExErrorUpload = ({ state, rootState, commit }, params) => {
   Vue.$vux.loading.show({ text: '请稍候' })
@@ -233,7 +250,7 @@ export const workbookExErrorUpload = ({ state, rootState, commit }, params) => {
       data: {
         'wbeid': rootState.route.params.wbeid,
         'img': state.exercise.cameraList,
-        'type': params.type,
+        'errorComment': params.errorComment,
         'chapterId': rootState.route.params.chapterId,
         'token': rootState.common.user.token
       }
@@ -256,14 +273,45 @@ export const setWorkbookExersciseScroll = ({ commit }, height) => {
   commit(types.WORKBOOK_EXERCISE_SCROLL, height)
 }
 
-/** 上传照片删除 */
-export const workbookUploadDel = ({ commit }, id) => {
-  commit(types.WORKBOOK_UPLOAD_DEL, id)
+/** 想要练习册照片删除 */
+export const workbookWantDel = ({ commit }, type) => {
+  commit(types.WORKBOOK_WANT_DEL, type)
 }
 
-/** 上传照片增加 */
-export const workbookUploadAdd = ({ commit }, data) => {
-  commit(types.WORKBOOK_UPLOAD_ADD, data)
+/** 提交想要练习册图片 */
+export const workbookWantAdd = ({ commit }, data) => {
+  commit(types.WORKBOOK_WANT_ADD, {type: data.type, data: data.data})
+}
+
+/** 想要练习册照片拍照 */
+export const workbookWantCamera = ({ commit }, data) => {
+  commit(types.WORKBOOK_WANT_CAMERA, data)
+}
+
+/** 想要练习册照片增加 */
+export const workbookWantUpload = ({ state, rootState, commit }) => {
+  Vue.$vux.loading.show({ text: '请稍候' })
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'workbook/want',
+      data: {
+        'index': state.workbook.want.index,
+        'version': state.workbook.want.version,
+        'token': rootState.common.user.token
+      }
+    })
+      .then((response) => {
+        Vue.$vux.loading.hide()
+        Vue.$vux.toast.show({ text: '提交成功', type: 'success', isShowMask: true, time: 1500 })
+        commit(types.WORKBOOK_WANT_UPLOAD)
+        resolve(response)
+      })
+      .catch((error) => {
+        Vue.$vux.loading.hide()
+        reject(error)
+      })
+  })
 }
 
 /** 作业照片增加 */
