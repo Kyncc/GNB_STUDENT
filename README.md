@@ -65,6 +65,7 @@
         ├── collect     # 收藏本模块
         ├── correct     # 纠错
         ├── myclass     # 我的班级
+        ├── download    # 下载中心
         ├── error       # 错题本
         ├── errorCamera # 拍照错题本
         ├── homework    # 我的作业
