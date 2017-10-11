@@ -11,11 +11,11 @@
         default-item-class="select-item"
         selected-item-class="select-item-selected"
         >
-          <checker-item :value="0">答案错误</checker-item>
-          <checker-item :value="1">解析不全</checker-item>
-          <checker-item :value="2">题目超纲</checker-item>
-          <checker-item :value="3">题型太老</checker-item>
-          <checker-item :value="4">其他</checker-item>
+          <checker-item value="答案错误">答案错误</checker-item>
+          <checker-item value="解析不全">解析不全</checker-item>
+          <checker-item value="题目超纲">题目超纲</checker-item>
+          <checker-item value="题型太老">题型太老</checker-item>
+          <checker-item value="其他">其他</checker-item>
       </checker>
     </group>
     <group title="纠错内容">

@@ -55,14 +55,14 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getDownloadCamera', 'clearDownloadCamera']),
+    ...mapActions(['getDownloadCamera', 'clearDownload']),
     _download (item) {
       this.share.href = item.url
       this.share.content = item.name
       this.showAction = true
     },
     _getData () {
-      this.clearDownloadCamera()
+      this.clearDownload({type: 'camera'})
       this.loading = true
       this.getDownloadCamera({subject: this.subject}).then(() => {
         this.error = false

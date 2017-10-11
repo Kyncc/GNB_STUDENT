@@ -55,14 +55,14 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getDownloadGood', 'clearDownloadGood']),
+    ...mapActions(['getDownloadGood', 'clearDownload']),
     _download (item) {
       this.share.href = item.url
       this.share.content = item.name
       this.showAction = true
     },
     _getData () {
-      this.clearDownloadGood()
+      this.clearDownload({type: 'good'})
       this.loading = true
       this.getDownloadGood({subject: this.subject}).then(() => {
         this.error = false

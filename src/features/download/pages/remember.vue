@@ -55,14 +55,14 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getDownloadRemember', 'clearDownloadRemember']),
+    ...mapActions(['getDownloadRemember', 'clearDownload']),
     _download (item) {
       this.share.href = item.url
       this.share.content = item.name
       this.showAction = true
     },
     _getData () {
-      this.clearDownloadRemember()
+      this.clearDownload({type: 'remember'})
       this.loading = true
       this.getDownloadRemember({subject: this.subject}).then(() => {
         this.error = false

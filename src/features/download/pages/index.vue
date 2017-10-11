@@ -18,11 +18,6 @@ export default {
   name: 'index',
   components: {
     XHeader, ViewBox, Group, Cell
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {})
-  },
-  beforeRouteLeave (to, from, next) {
   }
 }
 </script>

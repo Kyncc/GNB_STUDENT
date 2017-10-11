@@ -7,7 +7,7 @@
           <flexbox-item :span="2">难度: {{item.degree}}</flexbox-item>
         </flexbox>
       </div>
-      <div slot="content" @click="$router.push({name:'example', params: {subjectId: '2', id: item.exercises_id}})">
+      <div slot="content" @click="$router.push({name:'example', params: {subjectId: '2', id: item.exercises_id, from: item.from}})">
         <div v-html="item.stem"></div>
           <div v-for="(value, key) in item.opt_jo" :key='key' style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
       </div>

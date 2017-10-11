@@ -8,8 +8,8 @@
         </i>
       </div>
     </x-header>
-    <template v-for="detail in Example.detail">
-      <card>
+    <template v-for="(detail, index) in Example.detail">
+      <card :key='index'>
         <div slot="header" class="weui-panel__hd">
           <flexbox><flexbox-item :span="10" style="color:#4cc0be">{{detail.charpterName}}</flexbox-item></flexbox>
         </div>
@@ -17,12 +17,12 @@
           <div v-html="detail.stem"></div>
           <div v-if="detail.opt.hasOwnProperty('A')">
             <template v-for="(value, key) in detail.opt">
-              <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+              <div style="padding-top:5px;" :key='key'>{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
             </template>
           </div>
         </div>
       </card>
-      <card>
+      <card :key='index'>
         <div slot="header" class="weui-panel__hd" style="color:#4cc0be">解析</div>
         <div slot="content" v-html="detail.answer"></div>
       </card>
