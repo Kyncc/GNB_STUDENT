@@ -31,7 +31,7 @@ let router = new Router({
     download,
     ...error,
     errorCamera,
-    example,
+    ...example,
     login,
     ...index,
     ...induce,
