@@ -23,6 +23,12 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/rememberAssemble')), '/statistics/remember/assemble')
     },
     {
+      // 记错题筛选
+      path: 'remember/assemble/options',
+      name: 'statisticsRemember_assemble_options',
+      component: r => require.ensure([], () => r(require('./pages/rememberOptions')), '/statistics/remember/options')
+    },
+    {
       path: 'good',
       name: 'statisticsGood',
       component: r => require.ensure([], () => r(require('./pages/good')), '/statistics/good')
@@ -31,6 +37,12 @@ export default {
       path: 'good/assemble',
       name: 'statisticsGood_assemble',
       component: r => require.ensure([], () => r(require('./pages/goodAssemble')), '/statistics/good/assemble')
+    },
+    {
+      // 精选题筛选
+      path: 'good/assemble/options',
+      name: 'statisticsGood_assemble_options',
+      component: r => require.ensure([], () => r(require('./pages/goodOptions')), '/statistics/good/options')
     }
   ]
 }

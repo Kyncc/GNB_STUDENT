@@ -13,6 +13,9 @@ const state = {
 const mutations = {
   [types.STATISTICS] (state, payload) {
     state['index'][payload.subject] = payload.data
+  },
+  [types.STATISTICS_RESET] (state, payload) {
+    state['index'][payload.subject] = []
   }
 }
 

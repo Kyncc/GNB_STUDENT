@@ -1,5 +1,5 @@
 <template>
-  <view-box ref="statistics" body-padding-top="86px">
+  <view-box ref="statistics" body-padding-top="100px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: '错题归纳'}"></x-header>
       <tab>

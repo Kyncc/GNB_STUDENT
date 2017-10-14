@@ -1,16 +1,16 @@
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
-function getSubjectId (name) {
-  let subjectId = ''
+function getSubject (name) {
+  let subject = ''
   if (name.indexOf('math') >= 0) {
-    subjectId = '2'
+    subject = 'math'
   } else if (name.indexOf('physics') >= 0) {
-    subjectId = '7'
+    subject = 'physics'
   } else if (name.indexOf('chemistry') >= 0) {
-    subjectId = '8'
+    subject = 'chemistry'
   }
-  return subjectId
+  return subject
 }
 
 /** 获取统计数据 */
@@ -18,15 +18,24 @@ export const getStatistics = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'report',
+      url: 'statistics',
       params: {
         token: rootState.common.user.token,
-        subject_id: getSubjectId(rootState.route.name)
+        subject: getSubject(rootState.route.name),
+        textbookId: params.textbookId
       }
     })
       .then((response) => {
-        commit(types.STATISTICS, {'subject': subject, 'data': response.data.data})
+        commit(types.STATISTICS, {'subject': getSubject(rootState.route.name), 'data': response.data.data})
         resolve(response)
       })
+      .catch((e) => {
+        reject(e)
+      })
   })
+}
+
+/** 清空统计数据 */
+export const clearStatistics = ({ commit }) => {
+  commit(types.STATISTICS_RESET)
 }

@@ -19,6 +19,7 @@ import myclass from './features/myclass/router'
 import mybook from './features/mybook/router'
 import settings from './features/settings/router'
 import workbook from './features/workbook/router'
+import statistics from './features/statistics/router'
 
 Vue.use(Router)
 let router = new Router({
@@ -39,6 +40,7 @@ let router = new Router({
     myclass,
     homework,
     // ...report,
+    statistics,
     settings,
     ...mybook,
     ...workbook
