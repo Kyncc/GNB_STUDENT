@@ -3,7 +3,7 @@ export default {
   component: r => require.ensure([], () => r(require('./pages/layout')), '/statistics'),
   children: [
     {
-      path: 'camera',
+      path: 'camera/:subject/:id',
       name: 'statisticsCamera',
       component: r => require.ensure([], () => r(require('./pages/camera')), '/statistics/camera')
     },
@@ -13,7 +13,7 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/camera')), '/statistics/camera/assemble')
     },
     {
-      path: 'remember',
+      path: 'remember/:subject/:id',
       name: 'statisticsRemember',
       component: r => require.ensure([], () => r(require('./pages/remember')), '/statistics/remember')
     },
@@ -29,7 +29,7 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/rememberOptions')), '/statistics/remember/options')
     },
     {
-      path: 'good',
+      path: 'good/:subject/:id',
       name: 'statisticsGood',
       component: r => require.ensure([], () => r(require('./pages/good')), '/statistics/good')
     },
