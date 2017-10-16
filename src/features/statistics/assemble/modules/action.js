@@ -1,5 +1,6 @@
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
+import Vue from 'vue'
 
 /** 获取记错题列表 */
 export const getStatisticsRemember = ({ state, rootState, commit }, params) => {
@@ -54,7 +55,7 @@ export const setStatisticsRememberAssembleUpdate = ({ rootState, commit }, param
       }
     })
       .then((response) => {
-        commit(types.STATISTICS_REMEMBER_ASSEMBLE_UPDATE, {type: params.type})
+        commit(types.STATISTICS_REMEMBER_ASSEMBLE_UPDATE, {type: params.type, index: params.index})
         resolve(response)
       })
   })
@@ -63,11 +64,6 @@ export const setStatisticsRememberAssembleUpdate = ({ rootState, commit }, param
 /** 记错题难度筛选 */
 export const setStatisticsRememberOptions = ({ commit }, params) => {
   commit(types.STATISTICS_REMEMBER_OPTIONS, {degree: params.degree})
-}
-
-/** 记错题清空 */
-export const clearStatisticsRemember = ({ commit }) => {
-  commit(types.STATISTICS_REMEMBER_RESET)
 }
 
 /** 获取拍错题列表 */
@@ -122,15 +118,10 @@ export const setStatisticsCameraAssembleUpdate = ({ rootState, commit }, params)
       }
     })
       .then((response) => {
-        commit(types.STATISTICS_CAMERA_ASSEMBLE_UPDATE, {type: params.type})
+        commit(types.STATISTICS_CAMERA_ASSEMBLE_UPDATE, {type: params.type, index: params.index})
         resolve(response)
       })
   })
-}
-
-/** 拍错题清空 */
-export const clearStatisticsCamera = ({ commit }) => {
-  commit(types.STATISTICS_CAMERA_RESET)
 }
 
 /** 获取精选题列表 */
@@ -187,23 +178,73 @@ export const setStatisticsGoodAssembleUpdate = ({ rootState, commit }, params) =
       }
     })
       .then((response) => {
-        commit(types.STATISTICS_GOOD_ASSEMBLE_UPDATE, {type: params.type})
+        commit(types.STATISTICS_GOOD_ASSEMBLE_UPDATE, {type: params.type, index: params.index})
         resolve(response)
       })
   })
 }
 
-/**  精选题排序 */
-export const setStatisticsGoodAssembleOrder = ({ commit }, params) => {
-  commit(types.STATISTICS_GOOD_ASSEMBLE_ORDER, {type: params.type})
+/** 精选题题目排序 */
+export const setStatisticsGoodAssembleList = ({ rootState, state, commit }, params) => {
+  let ids = []
+  let array = state.good.index.list
+  for (let pindex = 0; pindex < array.length; pindex++) {
+    for (let index = 0; index < array[pindex].list.length; index++) {
+      ids.push({id: array[pindex]['list'][index].exercisesId, form: array[pindex]['list'][index].form})
+    }
+  }
+  Vue.$vux.loading.show({text: '请稍候'})
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'statistics/good/assemble/order',
+      data: {
+        token: rootState.common.user.token,
+        ids: ids
+      }
+    }).then((response) => {
+      Vue.$vux.loading.hide()
+      resolve(response)
+    }).catch((e) => {
+      Vue.$vux.loading.hide()
+      reject(e)
+    })
+  })
 }
 
-/** 拍错题清空 */
-export const clearStatisticsGood = ({ commit }) => {
-  commit(types.STATISTICS_GOOD_RESET)
+/**  精选题排序 */
+export const setStatisticsGoodAssembleOrder = ({ commit }, params) => {
+  commit(types.STATISTICS_GOOD_ASSEMBLE_ORDER, {type: params.type, index: params.index, pindex: params.pindex})
 }
 
 /** 列表高度保存 */
 export const setStatisticsScroll = ({ commit }, params) => {
   commit(types.STATISTICS_SCROLL, {type: params.type, height: params.height})
+}
+
+/** 清空列表 */
+export const clearStatistics = ({ commit }, params) => {
+  commit(types.STATISTICS_ASSEMBLE_RESET, {type: params.type})
+}
+
+/** 清空组卷列表 */
+export const clearStatisticsDownload = ({ commit }, params) => {
+  commit(types.STATISTICS_ASSEMBLE_DOWNLOAD_RESET, {type: params.type})
+}
+
+/** 组卷下载 */
+export const getStatisticsAssemblUrl = ({ rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'statistics/assemble/download',
+      params: {
+        token: rootState.common.user.token,
+        type: params.type
+      }
+    })
+      .then((response) => {
+        resolve(response)
+      })
+  })
 }
