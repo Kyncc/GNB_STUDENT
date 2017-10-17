@@ -1,6 +1,6 @@
 <template>
   <div>
-    <selectBook :list="textList" @on-change="_currentTextbook"></selectBook>
+    <selectBook :list="textList" @on-change="_currentTextbook" :value='textbookId'></selectBook>
     <div class='table vux-1px-t vux-1px-b' v-if='!loading && !error'>
       <flexbox :gutter='0' align='center' style='padding:0 0 10px'>
         <flexbox-item :span="2/9"></flexbox-item>
@@ -9,7 +9,7 @@
         <flexbox-item :span="2/9"><div class='table_font'>正确率</div></flexbox-item>
       </flexbox>
       <flexbox :gutter='0' align='center' v-for='row in StatisticsMath' :key='row.chapterId'
-        @click.native="$router.push({name: 'statisticsRemember', params: {subject: 'math', id: row.chapterId}})">
+        @click.native="$router.push({name: 'statisticsRemember', params: {subject: 'math', id: row.chapterId}})" style='padding:.25rem 0'>
         <flexbox-item :span="2/9"><div class='table_font'>{{row.chapterName}}</div></flexbox-item>
         <flexbox-item :span="2/9"><div class='table_number'>{{row.remCount}}</div></flexbox-item>
         <flexbox-item :span="2/9"><div class='table_number'>{{row.errorCount}}</div></flexbox-item>
@@ -88,7 +88,7 @@ export default {
   text-align: center;
 }
 .table_number{
-  font-size:.7rem;
+  font-size:.8rem;
   text-align: center;
   color:#ff9800;
 }
@@ -98,7 +98,7 @@ export default {
   -webkit-transform: rotate(45deg);
   height: 6px;
   width: 6px;
-  border-width: 3px 3px 0 0;
+  border-width: 2px 2px 0 0;
   border-color: #ccc;
   border-style: solid;
   margin-left: 5px;

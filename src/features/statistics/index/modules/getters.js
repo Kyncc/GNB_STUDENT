@@ -1,6 +1,6 @@
 /** 统计数学 */
-export const StatisticsMath = (state) => state.math
+export const StatisticsMath = (state) => state.index.math
 /** 统计物理 */
-export const StatisticsPhyscics = (state) => state.physics
+export const StatisticsPhysics = (state) => state.index.physics
 /** 统计化学 */
-export const StatisticsChemistry = (state) => state.chemistry
+export const StatisticsChemistry = (state) => state.index.chemistry

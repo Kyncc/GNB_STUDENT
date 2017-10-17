@@ -36,6 +36,6 @@ export const getStatistics = ({ rootState, commit }, params) => {
 }
 
 /** 清空统计数据 */
-export const clearStatistics = ({ commit }) => {
-  commit(types.STATISTICS_RESET)
+export const clearStatistics = ({ rootState, commit }) => {
+  commit(types.STATISTICS_RESET, {'subject': getSubject(rootState.route.name)})
 }

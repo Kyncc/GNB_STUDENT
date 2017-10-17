@@ -9,7 +9,7 @@
         <flexbox-item :span="2/9"><div class='table_font'>正确率</div></flexbox-item>
       </flexbox>
       <flexbox :gutter='0' align='center' v-for='row in StatisticsPhysics' :key='row.chapterId'
-        @click.native="$router.push({name: 'statisticsRemember', params: {subject: 'physics', id: row.chapterId}})">
+        @click.native="$router.push({name: 'statisticsRemember', params: {subject: 'physics', id: row.chapterId}})" style='padding:.25rem 0'>
         <flexbox-item :span="2/9"><div class='table_font'>{{row.chapterName}}</div></flexbox-item>
         <flexbox-item :span="2/9"><div class='table_number'>{{row.remCount}}</div></flexbox-item>
         <flexbox-item :span="2/9"><div class='table_number'>{{row.errorCount}}</div></flexbox-item>
