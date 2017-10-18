@@ -19,7 +19,7 @@
 <script>
 import {XHeader, ViewBox, Tab, TabItem} from 'vux'
 import {mapGetters} from 'vuex'
-import modules from '../modules/store'
+import modules from './modules/store'
 import store from '@/store'
 
 export default {

@@ -13,6 +13,7 @@
           <checker-item value="1">1</checker-item>
           <checker-item value="2">2</checker-item>
           <checker-item value="3">3</checker-item>
+        </checker>
       </div>
     </div>
   </view-box>

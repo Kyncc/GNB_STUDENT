@@ -9,10 +9,11 @@
       <div style='padding:10px;'>
         <span class='searchtitle'>难度：</span>
         <checker style='padding-left:.5rem;' v-model="degree" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-        <checker-item value="0">不限</checker-item>
-        <checker-item value="1">1</checker-item>
-        <checker-item value="2">2</checker-item>
-        <checker-item value="3">3</checker-item>
+          <checker-item value="0">不限</checker-item>
+          <checker-item value="1">1</checker-item>
+          <checker-item value="2">2</checker-item>
+          <checker-item value="3">3</checker-item>
+        </checker>
       </div>
       <div style='padding:10px;'>
         <span class='searchtitle'>题型：</span>
@@ -21,6 +22,7 @@
           <checker-item value="1">选择题</checker-item>
           <checker-item value="2">填空题</checker-item>
           <checker-item value="3">解答题</checker-item>
+        </checker>
       </div>
     </div>
   </view-box>

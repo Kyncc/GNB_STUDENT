@@ -35,9 +35,9 @@ export default {
     XHeader, Spinner, selectBook, Flexbox, FlexboxItem
   },
   computed: {
-    ...mapGetters(['StatisticsPhysics', 'User']),
+    ...mapGetters('statistics', ['StatisticsPhysics']),
     textList () {
-      return this.User.textbook.physics
+      return this.$store.getters.User.textbook.physics
     }
   },
   data () {
@@ -48,12 +48,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getStatistics', 'clearStatistics']),
+    ...mapActions('statistics', ['getStatistics', 'clearStatistics']),
     _getData () {
       this.loading = true
       this.error = false
       this.getStatistics({
-        textbookId: this.textbookId || this.User.textbook.physics[0].id
+        textbookId: this.textbookId || this.textList[0].id
       }).then(() => {
         this.loading = false
       }).catch(() => {

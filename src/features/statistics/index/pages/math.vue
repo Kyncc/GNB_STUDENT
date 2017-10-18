@@ -35,9 +35,9 @@ export default {
     XHeader, Spinner, selectBook, Flexbox, FlexboxItem
   },
   computed: {
-    ...mapGetters(['StatisticsMath', 'User']),
+    ...mapGetters('statistics', ['StatisticsMath']),
     textList () {
-      return this.User.textbook.math
+      return this.$store.getters.User.textbook.math
     }
   },
   data () {
@@ -48,12 +48,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getStatistics', 'clearStatistics']),
+    ...mapActions('statistics', ['getStatistics', 'clearStatistics']),
     _getData () {
       this.loading = true
       this.error = false
       this.getStatistics({
-        textbookId: this.textbookId || this.User.textbook.math[0].id
+        textbookId: this.textbookId || this.textList[0].id
       }).then(() => {
         this.loading = false
       }).catch(() => {

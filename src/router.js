@@ -40,7 +40,7 @@ let router = new Router({
     myclass,
     homework,
     // ...report,
-    statistics,
+    ...statistics,
     settings,
     ...mybook,
     ...workbook
