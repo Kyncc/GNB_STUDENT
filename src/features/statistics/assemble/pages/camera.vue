@@ -1,27 +1,30 @@
 <template>
   <div>
-    <card v-for='(error, index) in errorMath.list' :key='index'>
+    <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
+      <x-header :left-options="{backText: this.$route.params.name}">
+        <div slot="right">
+          <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0"
+            @click="$router.push({name:'statisticsGood_options'})">
+          </i>
+        </div>
+      </x-header>
+    </div>
+    <card v-for='(error, index) in AssembleCamera.index.list' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
-          <flexbox-item :span="8">来源：{{error.from}}</flexbox-item>
+          <!-- <flexbox-item :span="8">{{error.from}}</flexbox-item> -->
           <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
         </flexbox>
       </div>
-      <!--上传错题则显示题目，否则显示题干-->
       <div slot="content">
-        <div v-if='!error.isUploader' @click="show(error.exerciseImg)">
-          <img v-lazy="error.exerciseImg.src+'-errorList'"/>
-        </div>
-        <div v-else @click="show(error.errorImg[0])">
-          <img v-lazy="error.errorImg[0].src+'-errorList'"/>
+        <div @click="show(error.photo)">
+          <img v-lazy="error.photo.url+'-errorList'"/>
         </div>
       </div>
       <div slot="footer">
         <div class="weui-cell">
           <div class="weui-cell__bd" style="text-align:right">
             <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '错误类型'}}</x-button>
-            <!--<x-button mini plain type="primary">参考例题</x-button>-->
-            <x-button mini type="primary" plain @click.native="_showCommentPopup(error)" v-if='error.comment'>查看点评</x-button>
           </div>
         </div>
       </div>
@@ -60,16 +63,16 @@
 </template>
 
 <script>
-import {Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer, TransferDomDirective as TransferDom} from 'vux'
+import {XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: 'math',
+  name: 'camera',
   components: {
-    Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, Popup
+    XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, Popup
   },
   computed: {
-    ...mapGetters(['errorMath'])
+    ...mapGetters(['AssembleCamera'])
   },
   data () {
     return {
@@ -100,10 +103,10 @@ export default {
     TransferDom
   },
   methods: {
-    ...mapActions(['setErrorScroll', 'getError', 'clearError', 'setErrorType']),
+    ...mapActions(['getStatisticsCamera', 'setStatisticsCameraAssembleUpdate', 'setStatisticsScroll', 'clearStatistics']),
     _getData () {
       this.loading = true
-      this.getError({subject: 'math', id: '2'}).then((res) => {
+      this.getStatisticsCamera().then((res) => {
         if (!res.data.data.offset) {
           this.loadingNoData = true
         }
@@ -115,7 +118,7 @@ export default {
     show (img) {
       this.list[0].w = img.width
       this.list[0].h = img.height
-      this.list[0].src = img.src
+      this.list[0].src = img.url
       this.$nextTick(() => {
         this.$refs.previewer.show(0)
       })
@@ -128,10 +131,6 @@ export default {
       this.errorType.wbeid = error.wbeid
       this.errorType.chapterId = error.chapterId
     },
-    // 评论
-    _showCommentPopup (error) {
-      this.$router.push({name: 'error_comment', params: {wbeid: error.wbeid}})
-    },
     // 选择错误类型
     onItemClick (value) {
       this.showErrorPopup = false
@@ -141,7 +140,7 @@ export default {
         index: this.errorType.index,
         errorComment: value,
         wbeid: this.errorType.wbeid,
-        subject: 'math'
+        subject: this.$route.params.subject
       }).then(() => {
         this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 1500, position: 'bottom'})
       })
@@ -149,17 +148,12 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'index') {
-        vm.clearError()
-        if (vm.errorMath.isReset) {
-          vm._getData()
-        }
-      }
-      vm.$parent.$refs.viewBoxBody.scrollTop = vm.errorMath.scroll
+      vm._getData()
+      vm.$parent.$refs.viewBoxBody.scrollTop = vm.AssembleCamera.scroll
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setErrorScroll({subject: 'math', height: this.$parent.$refs.viewBoxBody.scrollTop})
+    this.setStatisticsScroll({type: 'camera', height: this.$parent.$refs.viewBoxBody.scrollTop})
     if (this.showErrorPopup) {
       this.showErrorPopup = false
       next(false)

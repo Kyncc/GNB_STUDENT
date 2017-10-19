@@ -4,14 +4,15 @@ import * as actions from './actions'
 import state from './state'
 
 const mutations = {
-  [types.STATISTICS_REMEMBER] (state, data) {
-    state.remember.index.list = state.remember.index.list ? state.remember.index.list.concat(data.list) : data.list
-    state.remember.index.offset = data.offset
-    state.remember.count = data.count
+  [types.STATISTICS_REMEMBER] (state, payload) {
+    if (payload.data.list.length === 0) return
+    state.remember.index.list = state.remember.index.list ? state.remember.index.list.concat(payload.data.list) : payload.data.list
+    state.remember.index.offset = payload.data.offset
+    state.remember.count = payload.data.count
   },
-  [types.STATISTICS_REMEMBER_OPTIONS] (state, data) {
+  [types.STATISTICS_REMEMBER_OPTIONS] (state, payload) {
     state.remember.index.options = {
-      degree: data.degree
+      degree: payload.degree
     }
   },
   [types.STATISTICS_REMEMBER_ASSEMBLE] (state, data) {
@@ -23,8 +24,9 @@ const mutations = {
     payload.data.isAssembly ? ++state.remember.count : --state.remember.count
   },
   [types.STATISTICS_CAMERA] (state, data) {
+    if (data.list.length === 0) return
     state.camera.index.list = state.camera.index.list ? state.camera.index.list.concat(data.list) : data.list
-    state.v.index.offset = data.offset
+    state.camera.index.offset = data.offset
     state.camera.count = data.count
   },
   [types.STATISTICS_CAMERA_ASSEMBLE] (state, data) {
@@ -36,6 +38,7 @@ const mutations = {
     payload.data.isAssembly ? ++state.camera.count : --state.camera.count
   },
   [types.STATISTICS_GOOD] (state, data) {
+    if (data.list.length === 0) return
     state.good.index.list = state.good.index.list ? state.good.index.list.concat(data.list) : data.list
     state.good.index.offset = data.offset
     state.good.count = data.count

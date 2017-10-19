@@ -5,19 +5,19 @@
         <router-view></router-view>
       </keep-alive>
       <tabbar slot="bottom" class="homepage" style="z-index:2;">
-        <tabbar-item :selected="router.name === 'statisticsRemember'"
-          :link="{name: 'statisticsRemember', params: {chapterId: router.params.chapterId, suject: router.params.suject}}">
-          <i slot="icon" :class="'icon iconfont '+(router.name  === 'statisticsRemember' ? 'icon-jinrulianxi' : 'icon-jinrulianxi1')"></i>
+        <tabbar-item :selected="$route.name === 'statisticsRemember'"
+          @click.native="this.$router.replace({name: 'statisticsRemember', params: {chapterId: $route.params.chapterId, suject: $route.params.suject}})">
+          <i slot="icon" :class="'icon iconfont icon-jinrulianxi '+($route.name  === 'statisticsRemember' ? 'icon-active' : '')"></i>
           <span slot="label">记错题</span>
         </tabbar-item>
-        <tabbar-item :selected="router.name === 'statisticsCamera'"
-          :link="{name: 'statisticsCamera', params: {chapterId: router.params.chapterId, suject: router.params.suject}}">
-          <i slot="icon" :class="'icon iconfont '+(router.name  === 'statisticsCamera' ? 'icon-camera' : 'icon-camera1')"></i>
+        <tabbar-item :selected="$route.name === 'statisticsCamera'"
+          @click.native="this.$router.replace({name: 'statisticsCamera', params: {chapterId: $route.params.chapterId, suject: $route.params.suject}})">
+          <i slot="icon" :class="'icon iconfont icon-camera '+($route.name  === 'statisticsCamera' ? 'icon-active' : '')"></i>
           <span slot="label">拍错题</span>
         </tabbar-item>
-        <tabbar-item :selected="router.name  === 'statisticsGood'"
-          :link="{name: 'statisticsGood', params: {chapterId: router.params.chapterId, suject: router.params.suject}}">
-          <i slot="icon" :class="'icon iconfont '+(router.name  === 'statisticsGood' ? 'icon-bag' : 'icon-bag1')"></i>
+        <tabbar-item :selected="$route.name  === 'statisticsGood'"
+          @click.native="this.$router.replace({name: 'statisticsGood', params: {chapterId: $route.params.chapterId, suject: $route.params.suject}})">
+          <i slot="icon" :class="'icon iconfont icon-bag '+($route.name  === 'statisticsGood' ? 'icon-active' : '')"></i>
           <span slot="label">精选练习</span>
         </tabbar-item>
       </tabbar>
@@ -31,17 +31,12 @@ import modules from './modules/store'
 import store from '@/store'
 
 export default {
-  name: 'router',
+  name: 'assemble',
   components: {
     Tabbar, TabbarItem, ViewBox
   },
-  computed: {
-    router () {
-      return this.$store.getters.Route
-    }
-  },
   beforeCreate () {
-    store.registerModule(['statistics', 'assemble'], {
+    store.registerModule('assemble', {
       ...modules
     })
   }
@@ -56,13 +51,7 @@ export default {
     left: 1px;
     top: -2px;
    }
-   .icon-bag1 {
-     color:#4cc0be;
-   }
-   .icon-user1 {
-     color:#4cc0be;
-   }
-  .icon-home1 {
+   .icon-active {
      color:#4cc0be;
    }
 }

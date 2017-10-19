@@ -15,6 +15,15 @@
           <checker-item value="3">3</checker-item>
         </checker>
       </div>
+      <div style='padding:10px;'>
+        <span class='searchtitle'>题型：</span>
+        <checker style='padding-left:.5rem;' v-model="type" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+          <checker-item value="0">不限</checker-item>
+          <checker-item value="1">选择题</checker-item>
+          <checker-item value="2">填空题</checker-item>
+          <checker-item value="3">解答题</checker-item>
+        </checker>
+      </div>
     </div>
   </view-box>
 </template>
@@ -28,24 +37,27 @@ export default {
     XButton, Checker, CheckerItem, XHeader, ViewBox
   },
   computed: {
-    ...mapGetters(['RememberOptions'])
+    ...mapGetters(['AssembleGood'])
   },
   data () {
     return {
-      degree: ''
+      degree: '',
+      type: ''
     }
   },
   methods: {
-    ...mapActions(['setRememberOptions']),
+    ...mapActions(['setStatisticsGoodOptions']),
     _finish () {
-      this.setRememberOptions({
-        degree: this.degree
+      this.setStatisticsGoodOptions({
+        degree: this.degree,
+        type: this.type
       })
       this.$router.go(-1)
     }
   },
   created () {
-    this.degree = this.User.degree
+    this.degree = this.AssembleGood.index.options.degree
+    this.type = this.AssembleGood.index.options.type
   }
 }
 </script>
@@ -62,6 +74,7 @@ export default {
   text-align: center;
   padding:7px 0;
   margin:.25rem;
+  min-width:29%;
   line-height: 18px;
   border-radius: 5px;
 }

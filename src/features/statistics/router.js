@@ -3,5 +3,5 @@ import index from './index/router'
 
 export default [
   index,
-  assemble
+  ...assemble
 ]

@@ -10,10 +10,10 @@ export const getStatisticsRemember = ({ state, rootState, commit }, params) => {
       url: 'statistics/remember/list',
       params: {
         token: rootState.common.user.token,
-        offset: state.remember.offset,
+        offset: state.remember.index.offset,
         options: {
           subject: rootState.route.params.subject,
-          chapterId: rootState.route.params.id,
+          chapterId: rootState.route.params.chapterId,
           degree: state.remember.index.options.degree
         }
       }
@@ -74,10 +74,10 @@ export const getStatisticsCamera = ({ state, rootState, commit }, params) => {
       url: 'statistics/camera/list',
       params: {
         token: rootState.common.user.token,
-        offset: state.camera.offset,
+        offset: state.camera.index.offset,
         options: {
           subject: rootState.route.params.subject,
-          chapterId: rootState.route.params.id
+          chapterId: rootState.route.params.chapterId
         }
       }
     })
@@ -135,7 +135,7 @@ export const getStatisticsGood = ({ state, rootState, commit }, params) => {
         offset: state.camera.offset,
         options: {
           subject: rootState.route.params.subject,
-          chapterId: rootState.route.params.id,
+          chapterId: rootState.route.params.chapterId,
           type: state.good.index.options.type,
           degree: state.good.index.options.degree
         }
@@ -163,6 +163,11 @@ export const getStatisticsGoodAssemble = ({ state, rootState, commit }, params) 
         resolve(response)
       })
   })
+}
+
+/** 精选题筛选 */
+export const setStatisticsGoodOptions = ({ commit }, params) => {
+  commit(types.STATISTICS_GOOD_OPTIONS, {type: params.type, degree: params.degree})
 }
 
 /** 精选题组卷编辑 */

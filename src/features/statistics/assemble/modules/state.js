@@ -5,19 +5,19 @@ let state = {
         degree: 0
       },
       scroll: 0,
-      list: [{}],
+      list: [],
       offset: ''
     },
-    download: [{}],
+    download: [],
     count: 0
   },
   camera: {
     index: {
-      list: [{}],
+      list: [],
       scroll: 0,
       offset: ''
     },
-    download: [{}],
+    download: [],
     count: 0
   },
   good: {
@@ -27,14 +27,14 @@ let state = {
         type: 0
       },
       scroll: 0,
-      list: [{}],
+      list: [],
       offset: ''
     },
     similarity: {
-      list: [{}],
+      list: [],
       offset: ''
     },
-    download: [{}],
+    download: [],
     count: 0
   }
 }
