@@ -19,7 +19,8 @@
 <script>
 import {XHeader, ViewBox, Tab, TabItem} from 'vux'
 import {mapGetters} from 'vuex'
-import modules from './modules/store'
+import statistics from './modules/store'
+import assemble from '../assemble/modules/store'
 import store from '@/store'
 
 export default {
@@ -32,7 +33,10 @@ export default {
   },
   beforeCreate () {
     store.registerModule('statistics', {
-      ...modules
+      ...statistics
+    })
+    store.registerModule('assemble', {
+      ...assemble
     })
   }
 }

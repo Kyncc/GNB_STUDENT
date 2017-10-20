@@ -21,7 +21,7 @@ import {Checker, CheckerItem, XHeader, ViewBox} from 'vux'
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
-  name: 'options',
+  name: 'rememberOptions',
   components: {
     Checker, CheckerItem, XHeader, ViewBox
   },
@@ -36,14 +36,17 @@ export default {
   methods: {
     ...mapActions(['setStatisticsRememberOptions']),
     _finish () {
-      this.setStatisticsRememberOptions({
-        degree: this.degree
-      })
+      this.setStatisticsRememberOptions({degree: this.degree})
       this.$router.go(-1)
     }
   },
-  created () {
-    this.degree = this.AssembleRemember.index.options.degree
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.degree = vm.AssembleRemember.index.options.degree.toString()
+    })
+  },
+  beforeRouteLeave (to, from, next) {
+    next()
   }
 }
 </script>

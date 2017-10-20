@@ -6,7 +6,8 @@ let state = {
       },
       scroll: 0,
       list: [],
-      offset: ''
+      offset: '',
+      reset: true
     },
     download: [],
     count: 0
@@ -15,7 +16,8 @@ let state = {
     index: {
       list: [],
       scroll: 0,
-      offset: ''
+      offset: '',
+      reset: true
     },
     download: [],
     count: 0
@@ -28,6 +30,7 @@ let state = {
       },
       scroll: 0,
       list: [],
+      reset: true,
       offset: ''
     },
     similarity: {

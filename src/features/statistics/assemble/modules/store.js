@@ -6,6 +6,7 @@ import state from './state'
 const mutations = {
   [types.STATISTICS_REMEMBER] (state, payload) {
     if (payload.data.list.length === 0) return
+    state.remember.index.reset = false
     state.remember.index.list = state.remember.index.list ? state.remember.index.list.concat(payload.data.list) : payload.data.list
     state.remember.index.offset = payload.data.offset
     state.remember.count = payload.data.count
@@ -14,6 +15,7 @@ const mutations = {
     state.remember.index.options = {
       degree: payload.degree
     }
+    state.remember.index.reset = true
   },
   [types.STATISTICS_REMEMBER_ASSEMBLE] (state, data) {
     state.remember.download = data.list
@@ -23,11 +25,12 @@ const mutations = {
     state['remember']['index']['list'][payload.index]['isAssembly'] = payload.data.isAssembly
     payload.data.isAssembly ? ++state.remember.count : --state.remember.count
   },
-  [types.STATISTICS_CAMERA] (state, data) {
-    if (data.list.length === 0) return
-    state.camera.index.list = state.camera.index.list ? state.camera.index.list.concat(data.list) : data.list
-    state.camera.index.offset = data.offset
-    state.camera.count = data.count
+  [types.STATISTICS_CAMERA] (state, payload) {
+    if (payload.data.list.length === 0) return
+    state.camera.index.reset = false
+    state.camera.index.list = state.camera.index.list ? state.camera.index.list.concat(payload.data.list) : payload.data.list
+    state.camera.index.offset = payload.data.offset
+    state.camera.count = payload.data.count
   },
   [types.STATISTICS_CAMERA_ASSEMBLE] (state, data) {
     state.camera.download = data.list
@@ -37,17 +40,19 @@ const mutations = {
     state['camera']['index']['list'][payload.index]['isAssembly'] = payload.data.isAssembly
     payload.data.isAssembly ? ++state.camera.count : --state.camera.count
   },
-  [types.STATISTICS_GOOD] (state, data) {
-    if (data.list.length === 0) return
-    state.good.index.list = state.good.index.list ? state.good.index.list.concat(data.list) : data.list
-    state.good.index.offset = data.offset
-    state.good.count = data.count
+  [types.STATISTICS_GOOD] (state, payload) {
+    if (payload.data.list.length === 0) return
+    state.good.index.list = state.good.index.list ? state.good.index.list.concat(payload.data.list) : payload.data.list
+    state.good.index.offset = payload.data.offset
+    state.good.index.reset = false
+    state.good.count = payload.data.count
   },
   [types.STATISTICS_GOOD_OPTIONS] (state, payload) {
     state.good.index.options = {
       degree: payload.degree,
       type: payload.type
     }
+    state.good.index.reset = false
   },
   [types.STATISTICS_GOOD_ASSEMBLE] (state, data) {
     state.good.download = data.list
@@ -66,21 +71,21 @@ const mutations = {
   },
   [types.STATISTICS_ASSEMBLE_DOWNLOAD_RESET] (state, payload) {
     switch (payload.type) {
-      case 'camera' : { state.camera.download = []; break }
-      case 'remember' : { state.camera.download = []; break }
-      case 'good' : { state.good.download = []; break }
+      case 'camera' : { state.camera.download = []; state.camera.index.reset = false; break }
+      case 'remember' : { state.remember.download = []; state.remember.index.reset = false; break }
+      case 'good' : { state.good.download = []; state.good.index.reset = false; break }
     }
   },
   [types.STATISTICS_ASSEMBLE_RESET] (state, payload) {
     switch (payload.type) {
       case 'camera' : {
-        state.camera = { index: { list: [], scroll: 0, offset: '' }, download: [], count: 0 }; break
+        state.camera = { index: { list: [], scroll: 0, offset: '', reset: true }, download: [], count: 0 }; break
       }
       case 'remember' : {
-        state.remember = { index: { options: { degree: 0 }, scroll: 0, list: [], offset: '' }, download: [], count: 0 }; break
+        state.remember = { index: { options: { degree: 0 }, scroll: 0, list: [], offset: '', reset: true }, download: [], count: 0 }; break
       }
       case 'good' : {
-        state.good = { index: { options: { type: 0, degree: 0 }, scroll: 0, list: [], offset: '' }, download: [], count: 0 }; break
+        state.good = { index: { options: { type: 0, degree: 0 }, scroll: 0, list: [], offset: '', reset: true }, download: [], count: 0 }; break
       }
     }
   }

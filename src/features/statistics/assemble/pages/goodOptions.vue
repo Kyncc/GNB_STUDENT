@@ -55,9 +55,11 @@ export default {
       this.$router.go(-1)
     }
   },
-  created () {
-    this.degree = this.AssembleGood.index.options.degree
-    this.type = this.AssembleGood.index.options.type
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.degree = vm.AssembleGood.index.options.degree.toString()
+      vm.type = vm.AssembleGood.index.options.type.toString()
+    })
   }
 }
 </script>

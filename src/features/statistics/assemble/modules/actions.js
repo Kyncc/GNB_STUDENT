@@ -44,6 +44,7 @@ export const getStatisticsRememberAssemble = ({ state, rootState, commit }, para
 
 /** 记错题组卷编辑 */
 export const setStatisticsRememberAssembleUpdate = ({ rootState, commit }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -51,18 +52,25 @@ export const setStatisticsRememberAssembleUpdate = ({ rootState, commit }, param
       params: {
         token: rootState.common.user.token,
         id: params.id,
-        type: params.type
+        subject: rootState.route.params.subject
       }
     })
       .then((response) => {
-        commit(types.STATISTICS_REMEMBER_ASSEMBLE_UPDATE, {type: params.type, index: params.index})
+        Vue.$vux.loading.hide()
+        Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
+        commit(types.STATISTICS_REMEMBER_ASSEMBLE_UPDATE, {index: params.index, data: response.data.data})
         resolve(response)
+      })
+      .catch((err) => {
+        Vue.$vux.loading.hide()
+        reject(err)
       })
   })
 }
 
 /** 记错题难度筛选 */
 export const setStatisticsRememberOptions = ({ commit }, params) => {
+  commit(types.STATISTICS_ASSEMBLE_RESET, {type: 'remember'})
   commit(types.STATISTICS_REMEMBER_OPTIONS, {degree: params.degree})
 }
 
@@ -107,6 +115,7 @@ export const getStatisticsCameraAssemble = ({ state, rootState, commit }, params
 
 /** 拍错题组卷编辑 */
 export const setStatisticsCameraAssembleUpdate = ({ rootState, commit }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -114,12 +123,18 @@ export const setStatisticsCameraAssembleUpdate = ({ rootState, commit }, params)
       params: {
         token: rootState.common.user.token,
         id: params.id,
-        type: params.type
+        subject: rootState.route.params.subject
       }
     })
       .then((response) => {
-        commit(types.STATISTICS_CAMERA_ASSEMBLE_UPDATE, {type: params.type, index: params.index})
+        Vue.$vux.loading.hide()
+        commit(types.STATISTICS_CAMERA_ASSEMBLE_UPDATE, {data: response.data.data, index: params.index})
+        Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
         resolve(response)
+      })
+      .catch((err) => {
+        Vue.$vux.loading.hide()
+        reject(err)
       })
   })
 }
@@ -167,23 +182,28 @@ export const getStatisticsGoodAssemble = ({ state, rootState, commit }, params) 
 
 /** 精选题筛选 */
 export const setStatisticsGoodOptions = ({ commit }, params) => {
+  commit(types.STATISTICS_ASSEMBLE_RESET, {type: 'good'})
   commit(types.STATISTICS_GOOD_OPTIONS, {type: params.type, degree: params.degree})
 }
 
 /** 精选题组卷编辑 */
 export const setStatisticsGoodAssembleUpdate = ({ rootState, commit }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
       url: 'statistics/good/assemble/update',
       params: {
         token: rootState.common.user.token,
+        subject: rootState.route.params.subject,
         id: params.id,
         type: params.type
       }
     })
       .then((response) => {
-        commit(types.STATISTICS_GOOD_ASSEMBLE_UPDATE, {type: params.type, index: params.index})
+        Vue.$vux.loading.hide()
+        commit(types.STATISTICS_GOOD_ASSEMBLE_UPDATE, {from: params.from, index: params.index, data: response.data.data})
+        Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
         resolve(response)
       })
   })
@@ -205,6 +225,7 @@ export const setStatisticsGoodAssembleList = ({ rootState, state, commit }, para
       url: 'statistics/good/assemble/order',
       data: {
         token: rootState.common.user.token,
+        subject: rootState.route.params.subject,
         ids: ids
       }
     }).then((response) => {
@@ -228,7 +249,7 @@ export const setStatisticsScroll = ({ commit }, params) => {
 }
 
 /** 清空列表 */
-export const clearStatistics = ({ commit }, params) => {
+export const clearStatisticsAssemble = ({ commit }, params) => {
   commit(types.STATISTICS_ASSEMBLE_RESET, {type: params.type})
 }
 
@@ -245,6 +266,7 @@ export const getStatisticsAssemblUrl = ({ rootState, commit }, params) => {
       url: 'statistics/assemble/download',
       params: {
         token: rootState.common.user.token,
+        subject: rootState.route.params.subject,
         type: params.type
       }
     })
