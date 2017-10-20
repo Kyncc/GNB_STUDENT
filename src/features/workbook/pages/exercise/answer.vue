@@ -1,5 +1,5 @@
 <template >
-  <div>
+  <div style='padding-bottom:10%;'>
     <div v-for="(item, pindex) in exercise" :key='pindex'>
       <!--2级别练习册-->
       <template v-if="item.b[0].type == '1'">
@@ -34,11 +34,11 @@
         </group>
       </template>
     </div>
-
-    <div style="margin:1rem" v-if="exercise">
-      <x-button v-if = "!isUsed" type="primary" @click.native="_post">提交结果</x-button>
+    <div style="padding:1rem;position:fixed;bottom:2%;left:0;width:100%;box-sizing:border-box;" v-if="exercise">
+      <x-button v-if="!isUsed" type="primary" @click.native="_post">提交结果</x-button>
       <x-button v-else type="primary" disabled>已提交</x-button>
     </div>
+
   </div>
 </template>
 

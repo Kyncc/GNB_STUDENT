@@ -32,7 +32,8 @@ export const getStatisticsRememberAssemble = ({ state, rootState, commit }, para
       method: 'get',
       url: 'statistics/remember/assemble',
       params: {
-        token: rootState.common.user.token
+        token: rootState.common.user.token,
+        subject: rootState.route.params.subject
       }
     })
       .then((response) => {
@@ -103,7 +104,8 @@ export const getStatisticsCameraAssemble = ({ state, rootState, commit }, params
       method: 'get',
       url: 'statistics/camera/assemble',
       params: {
-        token: rootState.common.user.token
+        token: rootState.common.user.token,
+        subject: rootState.route.params.subject
       }
     })
       .then((response) => {
@@ -170,7 +172,8 @@ export const getStatisticsGoodAssemble = ({ state, rootState, commit }, params) 
       method: 'get',
       url: 'statistics/good/assemble',
       params: {
-        token: rootState.common.user.token
+        token: rootState.common.user.token,
+        subject: rootState.route.params.subject
       }
     })
       .then((response) => {
@@ -239,8 +242,14 @@ export const setStatisticsGoodAssembleList = ({ rootState, state, commit }, para
 }
 
 /**  精选题排序 */
-export const setStatisticsGoodAssembleOrder = ({ commit }, params) => {
-  commit(types.STATISTICS_GOOD_ASSEMBLE_ORDER, {type: params.type, index: params.index, pindex: params.pindex})
+export const setStatisticsGoodAssembleOrder = ({ state, commit }, params) => {
+  if (params.index === 0 && params.type === 'up') {
+    Vue.$vux.toast.show({text: '不能再上移了', type: 'text', time: 1000, position: 'bottom'})
+  } else if ((params.index === (state.good.download[params.pindex].list - 1)) && params.type === 'down') {
+    Vue.$vux.toast.show({text: '不能再下移了', type: 'text', time: 1000, position: 'bottom'})
+  } else {
+    commit(types.STATISTICS_GOOD_ASSEMBLE_ORDER, {type: params.type, index: params.index, pindex: params.pindex})
+  }
 }
 
 /** 列表高度保存 */

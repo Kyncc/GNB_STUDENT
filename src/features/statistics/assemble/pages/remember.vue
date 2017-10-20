@@ -138,6 +138,7 @@ export default {
   font-size: .9rem;
   height: 3.5rem;
   width: 3.5rem;
+  box-shadow: 2px 2px 7px #4cc0be;
   box-sizing: border-box;
   padding:.5rem .75rem;
   border-radius: 50%;

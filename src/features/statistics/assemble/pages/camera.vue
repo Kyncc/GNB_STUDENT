@@ -135,6 +135,7 @@ export default {
   border-radius: 50%;
   bottom: 10%;
   right: 5%;
+  box-shadow: 2px 2px 7px #4cc0be;
   text-align: center;
 }
 </style>

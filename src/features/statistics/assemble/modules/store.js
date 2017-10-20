@@ -17,9 +17,9 @@ const mutations = {
     }
     state.remember.index.reset = true
   },
-  [types.STATISTICS_REMEMBER_ASSEMBLE] (state, data) {
-    state.remember.download = data.list
-    state.remember.count = data.count
+  [types.STATISTICS_REMEMBER_ASSEMBLE] (state, payload) {
+    state.remember.download = payload.data.list
+    state.remember.count = payload.data.count
   },
   [types.STATISTICS_REMEMBER_ASSEMBLE_UPDATE] (state, payload) {
     state['remember']['index']['list'][payload.index]['isAssembly'] = payload.data.isAssembly
@@ -32,9 +32,9 @@ const mutations = {
     state.camera.index.offset = payload.data.offset
     state.camera.count = payload.data.count
   },
-  [types.STATISTICS_CAMERA_ASSEMBLE] (state, data) {
-    state.camera.download = data.list
-    state.camera.count = data.count
+  [types.STATISTICS_CAMERA_ASSEMBLE] (state, payload) {
+    state.camera.download = payload.data.list
+    state.camera.count = payload.data.count
   },
   [types.STATISTICS_CAMERA_ASSEMBLE_UPDATE] (state, payload) {
     state['camera']['index']['list'][payload.index]['isAssembly'] = payload.data.isAssembly
@@ -54,17 +54,23 @@ const mutations = {
     }
     state.good.index.reset = false
   },
-  [types.STATISTICS_GOOD_ASSEMBLE] (state, data) {
-    state.good.download = data.list
-    state.good.count = data.count
+  [types.STATISTICS_GOOD_ASSEMBLE] (state, payload) {
+    state.good.download = payload.data.block
+    state.good.count = payload.data.count
   },
   [types.STATISTICS_GOOD_ASSEMBLE_UPDATE] (state, payload) {
     state['good']['index']['list'][payload.index]['isAssembly'] = payload.data.isAssembly
     payload.data.isAssembly ? ++state.good.count : --state.good.count
   },
   [types.STATISTICS_GOOD_ASSEMBLE_ORDER] (state, payload) {
-    let arr = state.good.index.download.block[payload.pindex].list
-    arr[payload.index] = (payload.type === 'up' ? arr.splice((payload.index - 1), 1, arr[payload.index])[0] : arr[payload.index] = arr.splice((payload.index + 1), 1, arr[payload.index])[0])
+    let arr = state.good.download[payload.pindex].list
+    if (payload.type === 'up') {
+      arr[payload.index] = arr.splice((payload.index - 1), 1, arr[payload.index])[0]
+    } else if (payload.type === 'down') {
+      arr[payload.index] = arr.splice((payload.index + 1), 1, arr[payload.index])[0]
+    } else {
+      arr[payload.index].splice(payload.index, 1)
+    }
   },
   [types.STATISTICS_SCROLL] (state, payload) {
     state[payload.type]['index']['scroll'] = payload.height

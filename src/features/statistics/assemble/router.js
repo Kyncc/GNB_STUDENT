@@ -38,6 +38,12 @@ export default [
     name: 'statisticsRemember_assemble',
     component: r => require.ensure([], () => r(require('./pages/rememberAssemble')), '/statistics/remember/assemble')
   },
+  // 精选题组卷
+  {
+    path: '/statistics/good/assemble/:subject',
+    name: 'statisticsGood_assemble',
+    component: r => require.ensure([], () => r(require('./pages/goodAssemble')), '/statistics/good/assemble')
+  },
   // 拍错题组卷
   {
     path: '/statistics/camera/assemble/:subject',

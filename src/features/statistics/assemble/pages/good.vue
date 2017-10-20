@@ -4,7 +4,7 @@
       <x-header :left-options="{backText: this.$route.params.name}">
         <div slot="right">
           <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0"
-            @click="$router.push({name:'statisticsGood_options'})">
+            @click="this.$router.push({name:'statisticsGood_options'})">
           </i>
         </div>
       </x-header>
@@ -36,7 +36,7 @@
     </card>
     <!--组卷个数 -->
     <div class='assembleCount'
-      @click="$router.push({name: 'statisticsCamera_assemble', params: {subject: $route.params.subject}})">
+      @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject}})">
       已选<br/>{{AssembleGood.count}}
     </div>
     <div style="text-align:center;padding:20px 0;">
@@ -114,6 +114,7 @@ export default {
   border-radius: 50%;
   bottom: 10%;
   right: 5%;
+  box-shadow: 2px 2px 7px #4cc0be;
   text-align: center;
 }
 </style>
