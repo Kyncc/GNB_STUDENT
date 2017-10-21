@@ -71,7 +71,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getStatisticsGood', 'setStatisticsGoodAssembleUpdate', 'setStatisticsScroll']),
+    ...mapActions(['getStatisticsGood', 'setStatisticsGoodAssembleUpdate', 'setStatisticsScroll', 'getStatisticsComment']),
     _getData () {
       this.loading = true
       this.getStatisticsGood().then((res) => {
@@ -116,5 +116,27 @@ export default {
   right: 5%;
   box-shadow: 2px 2px 7px #4cc0be;
   text-align: center;
+}
+.checker-popup{
+  background: #fff;
+}
+.check-item {
+  background-color: #ddd;
+  color: #222;
+  font-size: 14px;
+  padding: 8px 0;
+  width:32%;
+  margin-right: 0px;
+  line-height: 18px;
+  text-align:center;
+  margin-bottom: 10px;
+  border-radius: 15px;
+}
+.check-item-selected {
+  background-color: #4cc0be;
+  color: #fff;
+}
+.check-item-disabled {
+  color: #999;
 }
 </style>

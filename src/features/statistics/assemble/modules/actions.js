@@ -284,3 +284,24 @@ export const getStatisticsAssemblUrl = ({ rootState, commit }, params) => {
       })
   })
 }
+
+/** 评价提交 */
+export const getStatisticsComment = ({ rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'comment',
+      data: {
+        token: rootState.common.user.token,
+        chapterId: params.chapterId,
+        type: params.type,
+        errorComment: params.errorComment,
+        id: params.id
+      }
+    })
+      .then((response) => {
+        commit(types.STATISTICS_COMMENT, {type: params.type, errorComment: params.errorComment, index: params.index})
+        resolve(response)
+      })
+  })
+}

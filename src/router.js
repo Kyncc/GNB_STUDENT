@@ -10,8 +10,6 @@ import comment from './features/comment/router'
 import collect from './features/collect/router'
 import correct from './features/correct/router'
 import download from './features/download/router'
-// import error from './features/error/router'
-// import errorCamera from './features/errorCamera/router'
 import example from './features/example/router'
 import homework from './features/homework/router'
 import induce from './features/induce/router'
@@ -31,8 +29,6 @@ let router = new Router({
     camera,
     correct,
     download,
-    // ...error,
-    // errorCamera,
     ...example,
     login,
     ...index,

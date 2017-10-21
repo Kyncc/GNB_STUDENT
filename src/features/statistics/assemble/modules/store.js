@@ -75,6 +75,9 @@ const mutations = {
   [types.STATISTICS_SCROLL] (state, payload) {
     state[payload.type]['index']['scroll'] = payload.height
   },
+  [types.STATISTICS_COMMENT] (state, payload) {
+    state[payload.type]['index']['list'][payload.index]['errorComment'] = payload.errorComment
+  },
   [types.STATISTICS_ASSEMBLE_DOWNLOAD_RESET] (state, payload) {
     switch (payload.type) {
       case 'camera' : { state.camera.download = []; state.camera.index.reset = false; break }
