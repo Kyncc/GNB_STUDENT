@@ -1,6 +1,18 @@
 import * as types from './mutationTypes'
 import axios from '@/components/axios/'
 
+function getSubjectId (val) {
+  let subject = ''
+  if (val.toString() === '2') {
+    subject = 'math'
+  } else if (val.toString() === '7') {
+    subject = 'physics'
+  } else if (val.toString() === '8') {
+    subject = 'chemistry'
+  }
+  return subject
+}
+
 /** 获取拍错题下载列表 */
 export const getDownloadCamera = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
@@ -9,7 +21,7 @@ export const getDownloadCamera = ({ rootState, commit }, params) => {
       url: ' download/camera',
       params: {
         token: rootState.common.user.token,
-        subject: params.subject
+        subject: getSubjectId(params.subject)
       }
     }).then((response) => {
       commit(types.DOWNLOAD, {data: response.data.data, type: 'camera'})
@@ -47,7 +59,7 @@ export const getDownloadRemember = ({ rootState, commit }, params) => {
       url: ' download/remember',
       params: {
         token: rootState.common.user.token,
-        subject: params.subject
+        subject: getSubjectId(params.subject)
       }
     }).then((response) => {
       commit(types.DOWNLOAD, {data: response.data.data, type: 'remember'})
@@ -85,7 +97,7 @@ export const getDownloadGood = ({ rootState, commit }, params) => {
       url: ' download/good',
       params: {
         token: rootState.common.user.token,
-        subject: params.subject
+        subject: getSubjectId(params.subject)
       }
     }).then((response) => {
       commit(types.DOWNLOAD, {data: response.data.data, type: 'good'})

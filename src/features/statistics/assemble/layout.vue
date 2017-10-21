@@ -14,7 +14,7 @@
           <span slot="label">拍错题</span>
         </tabbar-item>
         <tabbar-item :selected="$route.name  === 'statisticsGood'" @click.native="_toPage('statisticsGood')">
-          <i slot="icon" :class="'icon iconfont icon-bag '+($route.name  === 'statisticsGood' ? 'icon-active' : '')"></i>
+          <i slot="icon" :class="'icon iconfont icon-bag1 '+($route.name  === 'statisticsGood' ? 'icon-active' : '')"></i>
           <span slot="label">精选练习</span>
         </tabbar-item>
       </tabbar>

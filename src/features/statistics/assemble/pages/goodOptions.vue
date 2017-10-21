@@ -60,6 +60,9 @@ export default {
       vm.degree = vm.AssembleGood.index.options.degree.toString()
       vm.type = vm.AssembleGood.index.options.type.toString()
     })
+  },
+  beforeRouteLeave (to, from, next) {
+    next()
   }
 }
 </script>

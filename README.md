@@ -62,8 +62,9 @@
         ├── camera      # 拍错题
         ├── workbook    # 查答案
         ├── example     # 例题
-        ├── collect     # 收藏本模块
+        ├── collect     # 收藏模块
         ├── correct     # 纠错
+        ├── comment     # 教师评价
         ├── myclass     # 我的班级
         ├── download    # 下载中心
         ├── error       # 错题本

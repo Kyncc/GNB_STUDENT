@@ -4,7 +4,7 @@
       <x-header :left-options="{backText: this.$route.params.name}">
         <div slot="right">
           <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0"
-            @click="this.$router.push({name:'statisticsGood_options'})">
+            @click="$router.push({name:'statisticsGood_options'})">
           </i>
         </div>
       </x-header>
@@ -22,10 +22,10 @@
       <div slot="footer">
         <div class="weui-cell weui-cell_link" style='padding:5px 15px'>
           <div class="weui-cell__bd">
-            <flexbox :gutter='0'>
+            <flexbox>
               <flexbox-item :span="3">难度: {{item.degree}}</flexbox-item>
-              <flexbox-item :span="7">更新: {{item.time | ymd}}</flexbox-item>
-              <flexbox-item :span="2" @click.native="setStatisticsGoodAssembleUpdate({from: item.from, id: item.exercisesId, index: index})" style='text-align:right'>
+              <flexbox-item :span="5">更新: {{item.time | ymd}}</flexbox-item>
+              <flexbox-item :span="4" @click.native="setStatisticsGoodAssembleUpdate({from: item.from, id: item.exercisesId, index: index})" style='text-align:right'>
                 <i v-if='item.isAssembly' class="icon iconfont icon-correct" style="color:#4cc0be;margin-right:1rem;"></i>
                 <i v-else class="icon iconfont icon-icon073102" style="color:#4cc0be;margin-right:1rem;" ></i>
               </flexbox-item>
@@ -75,7 +75,7 @@ export default {
     _getData () {
       this.loading = true
       this.getStatisticsGood().then((res) => {
-        if (!res.data.data.offset) {
+        if (res.data.data.offset.length === 0) {
           this.loadingNoData = true
         }
         this.loading = false

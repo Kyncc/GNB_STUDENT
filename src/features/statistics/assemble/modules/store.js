@@ -52,7 +52,7 @@ const mutations = {
       degree: payload.degree,
       type: payload.type
     }
-    state.good.index.reset = false
+    state.good.index.reset = true
   },
   [types.STATISTICS_GOOD_ASSEMBLE] (state, payload) {
     state.good.download = payload.data.block
@@ -69,7 +69,7 @@ const mutations = {
     } else if (payload.type === 'down') {
       arr[payload.index] = arr.splice((payload.index + 1), 1, arr[payload.index])[0]
     } else {
-      arr[payload.index].splice(payload.index, 1)
+      arr.splice(payload.index, 1)
     }
   },
   [types.STATISTICS_SCROLL] (state, payload) {

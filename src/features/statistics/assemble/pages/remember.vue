@@ -29,7 +29,7 @@
               </x-button>
             </flexbox-item>
             <flexbox-item :span="4">
-              <x-button mini type="primary" plain @click.native="$router.push({name: 'error_comment', params: {wbeid: error.id}})" v-if='error.comment'>查看点评</x-button>
+              <x-button mini type="primary" plain @click.native="$router.push({name: 'comment', params: {wbeid: error.id}})" v-if='error.comment'>查看点评</x-button>
             </flexbox-item>
             <flexbox-item :span="4" style='text-align:right;'
               @click.native="setStatisticsRememberAssembleUpdate({id: error.id, index: index})">
@@ -95,14 +95,15 @@ export default {
     ...mapActions(['getStatisticsRemember', 'setStatisticsRememberAssembleUpdate', 'setStatisticsScroll']),
     _getData () {
       this.loading = true
-      this.getStatisticsRemember().then((res) => {
-        if (!res.data.data.offset) {
-          this.loadingNoData = true
-        }
-        this.loading = false
-      }).catch(() => {
-        this.loading = false
-      })
+      this.getStatisticsRemember()
+        .then((res) => {
+          if (res.data.data.offset.length === 0) {
+            this.loadingNoData = true
+          }
+          console.log(res.data.data.offset)
+          console.log(res.data.data.offset.length)
+          this.loading = false
+        })
     },
     show (img) {
       this.list[0].w = img.width

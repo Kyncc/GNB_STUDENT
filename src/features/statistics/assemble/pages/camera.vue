@@ -6,7 +6,8 @@
     <card v-for='(error, index) in AssembleCamera.index.list' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
-          <flexbox-item :span="4" style="text-align:left;color:#4cc0be">{{error.time | ymd}}</flexbox-item>
+          <flexbox-item :span="8" style='color:#4cc0be'>{{error.chapterName}}</flexbox-item>
+          <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
         </flexbox>
       </div>
       <div slot="content">
@@ -88,7 +89,7 @@ export default {
     _getData () {
       this.loading = true
       this.getStatisticsCamera().then((res) => {
-        if (!res.data.data.offset) {
+        if (res.data.data.offset.length === 0) {
           this.loadingNoData = true
         }
         this.loading = false

@@ -213,11 +213,11 @@ export const setStatisticsGoodAssembleUpdate = ({ rootState, commit }, params) =
 }
 
 /** 精选题题目排序 */
-export const setStatisticsGoodAssembleList = ({ rootState, state, commit }, params) => {
+export const setStatisticsGoodAssembleList = ({ state, rootState, commit }, params) => {
   let ids = []
-  let array = state.good.index.list
+  let array = state.good.download
   for (let pindex = 0; pindex < array.length; pindex++) {
-    for (let index = 0; index < array[pindex].list.length; index++) {
+    for (let index = 0; index < array[pindex]['list'].length; index++) {
       ids.push({id: array[pindex]['list'][index].exercisesId, form: array[pindex]['list'][index].form})
     }
   }
@@ -245,7 +245,7 @@ export const setStatisticsGoodAssembleList = ({ rootState, state, commit }, para
 export const setStatisticsGoodAssembleOrder = ({ state, commit }, params) => {
   if (params.index === 0 && params.type === 'up') {
     Vue.$vux.toast.show({text: '不能再上移了', type: 'text', time: 1000, position: 'bottom'})
-  } else if ((params.index === (state.good.download[params.pindex].list - 1)) && params.type === 'down') {
+  } else if ((params.index === (state.good.download[params.pindex].list.length - 1)) && params.type === 'down') {
     Vue.$vux.toast.show({text: '不能再下移了', type: 'text', time: 1000, position: 'bottom'})
   } else {
     commit(types.STATISTICS_GOOD_ASSEMBLE_ORDER, {type: params.type, index: params.index, pindex: params.pindex})
