@@ -74,13 +74,9 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    next(vm => {})
-  },
-  beforeRouteLeave (to, from, next) {
-    next()
-  },
-  mounted () {
-    this._getData()
+    next(vm => {
+      vm._getData()
+    })
   }
 }
 </script>

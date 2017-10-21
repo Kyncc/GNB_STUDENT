@@ -18,15 +18,15 @@
       <div slot="footer">
         <div class="weui-cell">
           <flexbox class="weui-cell__bd">
-              <flexbox-item :span="4">
-                <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '请错误类型'}}</x-button>
-              </flexbox-item>
-              <flexbox-item :span="4"></flexbox-item>
-              <flexbox-item :span="4" style='text-align:right;' @click.native="setStatisticsCameraAssembleUpdate({id: error.id, index: index})">
-                <i v-if='error.isAssembly' class="icon iconfont icon-correct" style="color:#4cc0be;margin-right:1rem;"></i>
-                <i v-else class="icon iconfont icon-icon073102" style="color:#4cc0be;margin-right:1rem;" ></i>
-              </flexbox-item>
-            </flexbox>
+            <flexbox-item :span="4">
+              <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '错误类型'}}</x-button>
+            </flexbox-item>
+            <flexbox-item :span="4"></flexbox-item>
+            <flexbox-item :span="4" style='text-align:right;' @click.native="setStatisticsCameraAssembleUpdate({id: error.id, index: index})">
+              <i v-if='error.isAssembly' class="icon iconfont icon-correct" style="color:#4cc0be;margin-right:1rem;"></i>
+              <i v-else class="icon iconfont icon-icon073102" style="color:#4cc0be;margin-right:1rem;" ></i>
+            </flexbox-item>
+          </flexbox>
         </div>
       </div>
     </card>

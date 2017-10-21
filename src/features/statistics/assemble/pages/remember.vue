@@ -24,7 +24,7 @@
         <div class="weui-cell">
           <flexbox class="weui-cell__bd">
             <flexbox-item :span="4">
-              <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '请错误类型'}}</x-button>
+              <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '错误类型'}}</x-button>
             </flexbox-item>
             <flexbox-item :span="4">
               <x-button mini type="primary" plain @click.native="$router.push({name: 'comment', params: {wbeid: error.id}})" v-if='error.comment'>查看点评</x-button>

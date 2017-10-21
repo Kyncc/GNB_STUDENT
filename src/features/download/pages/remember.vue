@@ -47,6 +47,7 @@ export default {
       loading: true,
       error: false,
       showAction: false,
+      subject: '',
       share: {
         content: '',
         title: '我的记错题',

@@ -56,7 +56,7 @@ export const getDownloadRemember = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: ' download/remember',
+      url: 'download/remember',
       params: {
         token: rootState.common.user.token,
         subject: getSubjectId(params.subject)
@@ -94,7 +94,7 @@ export const getDownloadGood = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: ' download/good',
+      url: 'download/good',
       params: {
         token: rootState.common.user.token,
         subject: getSubjectId(params.subject)
