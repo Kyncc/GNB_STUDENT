@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
@@ -15,6 +16,7 @@ function getSubject (name) {
 
 /** 获取统计数据 */
 export const getStatistics = ({ rootState, commit }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -27,9 +29,11 @@ export const getStatistics = ({ rootState, commit }, params) => {
     })
       .then((response) => {
         commit(types.STATISTICS, {'subject': getSubject(rootState.route.name), 'data': response.data.data})
+        Vue.$vux.loading.hide()
         resolve(response)
       })
       .catch((e) => {
+        Vue.$vux.loading.hide()
         reject(e)
       })
   })

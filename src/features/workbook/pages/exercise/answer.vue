@@ -38,7 +38,6 @@
       <x-button v-if="!isUsed" type="primary" @click.native="_post">提交结果</x-button>
       <x-button v-else type="primary" disabled>已提交</x-button>
     </div>
-
   </div>
 </template>
 

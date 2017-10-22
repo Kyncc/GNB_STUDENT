@@ -1,7 +1,7 @@
 <template>
   <view-box body-padding-top="46px" body-padding-bottom="40px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-      <x-header :left-options="{backText: '精选题'}"></x-header>
+      <x-header :left-options="{backText: '精选练习'}"></x-header>
     </div>
     <div slot='default'>
       <div v-for="(list, pindex) in block" :key="pindex" v-show='!loading'>
