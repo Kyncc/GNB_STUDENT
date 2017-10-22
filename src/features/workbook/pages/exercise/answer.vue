@@ -1,5 +1,5 @@
-<template >
-  <div style='padding-bottom:10%;'>
+<template>
+  <div>
     <div v-for="(item, pindex) in exercise" :key='pindex'>
       <!--2级别练习册-->
       <template v-if="item.b[0].type == '1'">
@@ -34,21 +34,25 @@
         </group>
       </template>
     </div>
-    <div style="padding:1rem;position:fixed;bottom:2%;left:0;width:100%;box-sizing:border-box;" v-if="exercise">
-      <x-button v-if="!isUsed" type="primary" @click.native="_post">提交结果</x-button>
-      <x-button v-else type="primary" disabled>已提交</x-button>
-    </div>
+    <tabbar>
+      <tabbar-item style='line-height:42px;height:42px;'>
+        <div slot="label" style='line-height:42px;height:42px;'>
+          <x-button v-if="!isUsed" type="primary" @click.native="_post" style='border-radius:0;'>提交结果</x-button>
+          <x-button v-else type="primary" disabled style='border-radius:0;'>已提交</x-button>
+        </div>
+      </tabbar-item>
+    </tabbar>
   </div>
 </template>
 
 <script>
-import {Group, Cell, XButton} from 'vux'
+import {Tabbar, TabbarItem, Group, Cell, XButton} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'answer',
   components: {
-    Group, Cell, XButton
+    Tabbar, TabbarItem, Group, Cell, XButton
   },
   computed: {
     ...mapGetters(['workbookExercise', 'Route']),

@@ -1,6 +1,14 @@
 <template>
   <div style="height:100%">
     <view-box ref="viewBox" body-padding-top="46px" body-padding-bottom="50px">
+      <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
+        <x-header :left-options="{backText: this.$route.params.name}">
+          <div slot="right" v-if="$route.name  === 'statisticsGood'">
+            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'statisticsGood_options'})">
+            </i>
+          </div>
+        </x-header>
+      </div>
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
@@ -23,13 +31,13 @@
 </template>
 
 <script>
-import {Tabbar, TabbarItem, ViewBox} from 'vux'
+import {XHeader, Tabbar, TabbarItem, ViewBox} from 'vux'
 import {mapGetters} from 'vuex'
 
 export default {
   name: 'assemble',
   components: {
-    Tabbar, TabbarItem, ViewBox
+    XHeader, Tabbar, TabbarItem, ViewBox
   },
   computed: {
     ...mapGetters(['Route'])

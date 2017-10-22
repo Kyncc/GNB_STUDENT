@@ -149,7 +149,7 @@ export const getStatisticsGood = ({ state, rootState, commit }, params) => {
       url: 'statistics/good/list',
       params: {
         token: rootState.common.user.token,
-        offset: state.camera.offset,
+        offset: state.good.index.offset,
         options: {
           subject: rootState.route.params.subject,
           chapterId: rootState.route.params.chapterId,
@@ -287,6 +287,7 @@ export const getStatisticsAssemblUrl = ({ rootState, commit }, params) => {
 
 /** 评价提交 */
 export const getStatisticsComment = ({ rootState, commit }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -300,8 +301,13 @@ export const getStatisticsComment = ({ rootState, commit }, params) => {
       }
     })
       .then((response) => {
+        Vue.$vux.loading.hide()
         commit(types.STATISTICS_COMMENT, {type: params.type, errorComment: params.errorComment, index: params.index})
         resolve(response)
+      })
+      .catch((e) => {
+        Vue.$vux.loading.hide()
+        reject(e)
       })
   })
 }

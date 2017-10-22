@@ -1,13 +1,5 @@
 <template>
   <div>
-    <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-      <x-header :left-options="{backText: this.$route.params.name}">
-        <!-- <div slot="right">
-          <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'statisticsRemember_options'})">
-          </i>
-        </div> -->
-      </x-header>
-    </div>
     <card v-for='(error, index) in AssembleRemember.index.list' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
@@ -59,7 +51,7 @@
       <popup v-model="showErrorPopup" class="checker-popup">
         <group title='选择错误类型：'>
           <div style="padding:10px 10px 0 10px;">
-            <checker type="radio" :value="errorType.errorComment" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
+            <checker type="radio" v-model="errorType.errorComment" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
               <checker-item value="审题不清" @on-item-click="onItemClick">审题不清</checker-item>
               <checker-item value="概念模糊" @on-item-click="onItemClick">概念模糊</checker-item>
               <checker-item value="思路不清" @on-item-click="onItemClick">思路不清</checker-item>
@@ -155,7 +147,10 @@ export default {
         id: this.errorType.id,
         type: 'remember'
       }).then(() => {
+        this.errorType.errorComment = ''
         this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 1500, position: 'bottom'})
+      }).catch(() => {
+        this.errorType.errorComment = ''
       })
     }
   },

@@ -1,14 +1,5 @@
 <template>
   <div>
-    <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-      <x-header :left-options="{backText: this.$route.params.name}">
-        <div slot="right">
-          <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0"
-            @click="$router.push({name:'statisticsGood_options'})">
-          </i>
-        </div>
-      </x-header>
-    </div>
     <card v-for="(item, index) in AssembleGood.index.list" :key="index">
       <div class="weui-panel__hd" slot="header" style='color:#4cc0be'>
         {{item.chapterName}}
