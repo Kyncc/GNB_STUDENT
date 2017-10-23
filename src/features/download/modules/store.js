@@ -4,18 +4,18 @@ import * as actions from './actions'
 
 const state = {
   camera: {
-    list: [{}],
-    detail: [{}],
+    list: [],
+    detail: [],
     scroll: 0
   },
   good: {
-    list: [{}],
-    detail: [{}],
+    list: [],
+    detail: [],
     scroll: 0
   },
   remember: {
-    list: [{}],
-    detail: [{}],
+    list: [],
+    detail: [],
     scroll: 0
   }
 }

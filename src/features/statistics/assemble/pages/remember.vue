@@ -41,11 +41,11 @@
     <div v-transfer-dom>
       <previewer :list="list" ref="previewer" :options="options"></previewer>
     </div>
-    <!--组卷个数 -->
+    <!--组卷个数
     <div class='assembleCount'
       @click="$router.push({name: 'statisticsRemember_assemble', params: {subject: $route.params.subject}})">
       已选<br/>{{AssembleRemember.count}}
-    </div>
+    </div>-->
     <!--错误选择 -->
     <div v-transfer-dom>
       <popup v-model="showErrorPopup" class="checker-popup">

@@ -224,9 +224,9 @@ export const setStatisticsGoodAssembleList = ({ state, rootState, commit }, para
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
-      method: 'post',
+      method: 'get',
       url: 'statistics/good/assemble/order',
-      data: {
+      params: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject,
         ids: ids

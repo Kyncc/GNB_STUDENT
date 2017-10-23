@@ -27,6 +27,26 @@
         </tabbar-item>
       </tabbar>
     </view-box>
+    <!--组卷个数 -->
+    <template v-if="$route.name  === 'statisticsRemember'">
+      <div class='assembleCount'
+        @click="$router.push({name: 'statisticsRemember_assemble', params: {subject: $route.params.subject}})">
+        已选<br/>{{AssembleRemember.count}}
+      </div>
+    </template>
+     <template v-else-if="$route.name  === 'statisticsCamera'">
+      <div class='assembleCount'
+        @click="$router.push({name: 'statisticsCamera_assemble', params: {subject: $route.params.subject}})">
+        已选<br/>{{AssembleCamera.count}}
+      </div>
+    </template>
+    <template v-else-if="$route.name  === 'statisticsGood'">
+      <div class='assembleCount'
+        @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject}})">
+        已选<br/>{{AssembleGood.count}}
+      </div>
+    </template>
+
   </div>
 </template>
 
@@ -40,7 +60,7 @@ export default {
     XHeader, Tabbar, TabbarItem, ViewBox
   },
   computed: {
-    ...mapGetters(['Route'])
+    ...mapGetters(['Route', 'AssembleCamera', 'AssembleGood', 'AssembleRemember'])
   },
   methods: {
     _toPage (name) {
@@ -61,5 +81,20 @@ export default {
    .icon-active {
      color:#4cc0be;
    }
+}
+.assembleCount{
+  position: fixed;
+  background:#4cc0be;
+  color:#fff;
+  font-size: .9rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  box-sizing: border-box;
+  padding:.5rem .75rem;
+  border-radius: 50%;
+  bottom: 10%;
+  right: 5%;
+  box-shadow: 2px 2px 7px #4cc0be;
+  text-align: center;
 }
 </style>

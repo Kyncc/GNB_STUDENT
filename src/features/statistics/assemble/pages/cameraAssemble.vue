@@ -58,7 +58,7 @@ export default {
       showAction: false,
       share: {
         content: '试卷分享',
-        title: '我的记错题组卷',
+        title: '我的拍错题组卷',
         href: ''
       },
       list: [{

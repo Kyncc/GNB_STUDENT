@@ -25,11 +25,11 @@
         </div>
       </div>
     </card>
-    <!--组卷个数 -->
+    <!--组卷个数
     <div class='assembleCount'
       @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject}})">
       已选<br/>{{AssembleGood.count}}
-    </div>
+    </div> -->
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="lines"></spinner>
       <div>

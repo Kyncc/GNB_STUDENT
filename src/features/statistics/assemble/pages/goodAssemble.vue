@@ -78,7 +78,7 @@ export default {
       showAction: false,
       share: {
         content: '试卷分享',
-        title: '我的记错题组卷',
+        title: '我的精选题组卷',
         href: ''
       }
     }
@@ -107,12 +107,15 @@ export default {
       })
     },
     _download () {
-      this.setStatisticsGoodAssembleList()
-      // this.getStatisticsAssemblUrl({type: 'good'})
-      //   .then((res) => {
-      //     this.share.href = res.data.data.url
-      //     this.showAction = true
-      //   })
+      return (async () => {
+        try {
+          await this.setStatisticsGoodAssembleList()
+          await this.getStatisticsAssemblUrl({type: 'good'}).then((res) => {
+            this.share.href = res.data.data.url
+            this.showAction = true
+          })
+        } catch (err) {}
+      })()
     }
   },
   beforeRouteEnter (to, from, next) {
