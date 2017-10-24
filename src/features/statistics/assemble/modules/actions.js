@@ -280,6 +280,8 @@ export const getStatisticsAssemblUrl = ({ rootState, commit }, params) => {
       }
     })
       .then((response) => {
+        // 清空组卷列表
+        commit(types.STATISTICS_ASSEMBLE_RESET, {type: params.type})
         resolve(response)
       })
   })

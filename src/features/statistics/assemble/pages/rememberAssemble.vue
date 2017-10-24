@@ -78,7 +78,7 @@ export default {
     TransferDom
   },
   methods: {
-    ...mapActions(['getStatisticsRememberAssemble', 'clearStatisticsDownload', 'getStatisticsAssemblUrl']),
+    ...mapActions(['getStatisticsRememberAssemble', 'clearStatisticsDownload', 'getStatisticsAssemblUrl', 'clearStatisticsAssemble']),
     _getData () {
       this.clearStatisticsDownload({type: 'remember'})
       this.loading = true
@@ -106,6 +106,7 @@ export default {
         dialogTransition: '',
         onHide () {
           that._getData()
+          that.clearStatisticsAssemble({type: 'remember'})
         }
       })
     },

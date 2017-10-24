@@ -84,8 +84,8 @@ export default {
         href: this.href,
         title: this.title,
         content: this.content,
-        thumbs: ['http://img.guinaben.com/iconTeacher.png?imageView2/0/w/256/h/256/format/png/interlace/1/q/100|imageslim'],
-        pictures: ['http://img.guinaben.com/iconTeacher.png?imageView2/0/w/256/h/256/format/png/interlace/1/q/100|imageslim'],
+        thumbs: ['http://img.guinaben.com/iconS.png?imageView2/0/w/256/h/256/format/png/interlace/1/q/100|imageslim'],
+        pictures: ['http://img.guinaben.com/iconS.png?imageView2/0/w/256/h/256/format/png/interlace/1/q/100|imageslim'],
         extra: {
           scene: ex
         }

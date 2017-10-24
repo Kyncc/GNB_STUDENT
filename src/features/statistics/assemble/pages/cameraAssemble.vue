@@ -78,7 +78,7 @@ export default {
     TransferDom
   },
   methods: {
-    ...mapActions(['getStatisticsCameraAssemble', 'clearStatisticsDownload', 'getStatisticsAssemblUrl']),
+    ...mapActions(['getStatisticsCameraAssemble', 'clearStatisticsDownload', 'getStatisticsAssemblUrl', 'clearStatisticsAssemble']),
     _getData () {
       this.clearStatisticsDownload({type: 'camera'})
       this.loading = true
@@ -106,6 +106,7 @@ export default {
         dialogTransition: '',
         onHide () {
           that._getData()
+          that.clearStatisticsAssemble({type: 'camera'})
         }
       })
     },

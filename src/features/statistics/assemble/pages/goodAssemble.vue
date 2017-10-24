@@ -84,7 +84,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getStatisticsGoodAssemble', 'clearStatisticsDownload', 'getStatisticsAssemblUrl', 'setStatisticsGoodAssembleOrder', 'setStatisticsGoodAssembleList']),
+    ...mapActions(['getStatisticsGoodAssemble', 'clearStatisticsDownload', 'getStatisticsAssemblUrl', 'setStatisticsGoodAssembleOrder', 'setStatisticsGoodAssembleList', 'clearStatisticsAssemble']),
     _getData () {
       this.loading = true
       this.getStatisticsGoodAssemble().then(() => {
@@ -103,6 +103,7 @@ export default {
         dialogTransition: '',
         onHide () {
           that._getData()
+          that.clearStatisticsAssemble({type: 'good'})
         }
       })
     },
