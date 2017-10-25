@@ -5,11 +5,11 @@ import state from './state'
 
 const mutations = {
   [types.STATISTICS_REMEMBER] (state, payload) {
-    state.remember.index.offset = payload.data.offset
+    state.remember.count = payload.data.count
     if (payload.data.list.length === 0) return
     state.remember.index.reset = false
     state.remember.index.list = state.remember.index.list ? state.remember.index.list.concat(payload.data.list) : payload.data.list
-    state.remember.count = payload.data.count
+    state.remember.index.offset = payload.data.offset
   },
   [types.STATISTICS_REMEMBER_OPTIONS] (state, payload) {
     state.remember.index.options = {
