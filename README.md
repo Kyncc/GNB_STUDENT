@@ -62,11 +62,11 @@
         ├── camera      # 拍错题
         ├── workbook    # 查答案
         ├── example     # 例题
-        ├── collect     # 收藏本模块
+        ├── collect     # 收藏模块
         ├── correct     # 纠错
+        ├── comment     # 教师评价
         ├── myclass     # 我的班级
-        ├── error       # 错题本
-        ├── errorCamera # 拍照错题本
+        ├── download    # 下载中心
         ├── homework    # 我的作业
         ├── myBook      # 我的习题册
         ├── report      # 知识图谱

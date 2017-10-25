@@ -1,5 +1,5 @@
-<template >
-  <div>
+<template>
+  <div ref="wapper">
     <div v-for="(item, pindex) in exercise" :key='pindex'>
       <!--2级别练习册-->
       <template v-if="item.b[0].type == '1'">
@@ -34,22 +34,30 @@
         </group>
       </template>
     </div>
-
-    <div style="margin:1rem" v-if="exercise">
-      <x-button v-if = "!isUsed" type="primary" @click.native="_post">提交结果</x-button>
-      <x-button v-else type="primary" disabled>已提交</x-button>
+    <div v-transfer-dom>
+      <tabbar>
+        <tabbar-item style='line-height:42px;height:42px;' v-if="$route.name === 'workbook_exercise_answer'">
+          <div slot="label" style='line-height:42px;height:42px;'>
+            <x-button v-if="!isUsed" type="primary" @click.native="_post" style='border-radius:0;'>提交结果</x-button>
+            <x-button v-else type="primary" disabled style='border-radius:0;'>已提交</x-button>
+          </div>
+        </tabbar-item>
+      </tabbar>
     </div>
   </div>
 </template>
 
 <script>
-import {Group, Cell, XButton} from 'vux'
+import {Tabbar, TabbarItem, Group, Cell, XButton, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'answer',
   components: {
-    Group, Cell, XButton
+    Tabbar, TabbarItem, Group, Cell, XButton
+  },
+  directives: {
+    TransferDom
   },
   computed: {
     ...mapGetters(['workbookExercise', 'Route']),

@@ -11,12 +11,17 @@
     <flexbox style='height:6.3rem' :gutter='0'>
       <flexbox-item :span="4" @click.native="$router.push({ name: 'workbook'})" class='workbook'></flexbox-item>
       <flexbox-item :span="4" @click.native="$router.push({ name: 'camera'})" class='camera'></flexbox-item>
-      <flexbox-item :span="4" @click.native="$router.push({ name: 'error'})" class='error'></flexbox-item>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'homework'})" class='homework'></flexbox-item>
     </flexbox>
     <flexbox style='height:6.3rem' :gutter='0'>
       <flexbox-item :span="4" @click.native="$router.push({ name: 'induce'})" class='induce'></flexbox-item>
-      <flexbox-item :span="4" @click.native="$router.push({ name: 'homework'})" class='homework'></flexbox-item>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'statistics'})" class='statistics'></flexbox-item>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'download'})" class='download'></flexbox-item>
+    </flexbox>
+    <flexbox style='height:6.3rem' :gutter='0'>
       <flexbox-item :span="4" @click.native="$router.push({ name: 'class'})" class='class'></flexbox-item>
+      <flexbox-item :span="4" class='blank'></flexbox-item>
+      <flexbox-item :span="4" class='blank'></flexbox-item>
     </flexbox>
   </div>
 </template>

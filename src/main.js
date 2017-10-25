@@ -7,7 +7,7 @@ import VueLazyload from 'vue-lazyload'
 import { ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat, AlertPlugin } from 'vux'
 import App from './App'
 
-Vue.use(ToastPlugin) // 使用提醒
+Vue.use(ToastPlugin) // 使用轻提醒框
 Vue.use(AlertPlugin)
 Vue.use(VueLazyload, { attempt: 3 }) // 图片异步加载
 Vue.use(LoadingPlugin) // 使用Loading

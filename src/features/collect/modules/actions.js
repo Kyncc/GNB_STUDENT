@@ -10,7 +10,8 @@ export const getCollect = ({ rootState, commit, state }, params) => {
       params: {
         token: rootState.common.user.token,
         subject_id: params.id,
-        offset: state[params.subject]['offset']
+        offset: state[params.subject]['offset'],
+        from: params.from
       }
     })
       .then((response) => {

@@ -6,8 +6,8 @@
 	"id": "H55E5EFFB",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本-学生端",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "3.4.0",/*应用版本名称*/
-		"code": "340"
+		"name": "3.5.0",/*应用版本名称*/
+		"code": "350"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -116,9 +116,9 @@
 				"statics": {
 					"umeng": {
 						"appkey_ios": "584125476e27a40bc4000e49",
-						"channelid_ios": "3.4.0",
+						"channelid_ios": "3.5.0",
 						"appkey_android": "5833f42d8630f57e24001bc5",
-						"channelid_android": "3.4.0"
+						"channelid_android": "3.5.0"
 					}
 				},
 				"share": {

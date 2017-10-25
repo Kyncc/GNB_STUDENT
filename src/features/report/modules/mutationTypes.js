@@ -10,4 +10,3 @@ export const REPORT_SCROLL = 'REPORT_SCROLL'
 export const REPORT_DETAIL = 'REPORT_DETAIL'
 /** 清除详细成绩报告单数据 */
 export const REPORT_DETAIL_CLEAR = 'REPORT_DETAIL_CLEAR'
-
