@@ -50,7 +50,7 @@ export const setStatisticsRememberAssembleUpdate = ({ rootState, commit }, param
     axios({
       method: 'post',
       url: 'statistics/remember/assemble/update',
-      params: {
+      data: {
         token: rootState.common.user.token,
         id: params.id,
         subject: rootState.route.params.subject
@@ -122,7 +122,7 @@ export const setStatisticsCameraAssembleUpdate = ({ rootState, commit }, params)
     axios({
       method: 'post',
       url: 'statistics/camera/assemble/update',
-      params: {
+      data: {
         token: rootState.common.user.token,
         id: params.id,
         subject: rootState.route.params.subject
@@ -196,7 +196,7 @@ export const setStatisticsGoodAssembleUpdate = ({ rootState, commit }, params) =
     axios({
       method: 'post',
       url: 'statistics/good/assemble/update',
-      params: {
+      data: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject,
         id: params.id,
@@ -273,7 +273,7 @@ export const getStatisticsAssemblUrl = ({ rootState, commit }, params) => {
     axios({
       method: 'post',
       url: 'statistics/assemble/download',
-      params: {
+      data: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject,
         type: params.type
