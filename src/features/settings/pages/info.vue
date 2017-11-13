@@ -44,7 +44,10 @@ export default {
         case '7' : return '七年级'
         case '8' : return '八年级'
         case '9' : return '九年级'
-        case '10' : return '高中'
+        // case '10' : return '高中'
+        case '11' : return '高一'
+        case '12' : return '高二'
+        case '13' : return '高三'
       }
     }
   }

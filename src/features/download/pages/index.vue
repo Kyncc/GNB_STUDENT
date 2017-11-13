@@ -3,6 +3,9 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '下载中心'}">
     </x-header>
     <div>
+      <group :gutter='0'>
+        <cell title='试卷下载' :link="{name: 'downloadPaper'}"></cell>
+      </group>
       <group title='下载历史'>
         <cell title='记错题' :link="{name: 'downloadRemember'}"></cell>
         <cell title='拍错题' :link="{name: 'downloadCamera'}"></cell>

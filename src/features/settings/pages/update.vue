@@ -22,7 +22,7 @@
     <group>
       <selector v-if="math" v-model="math" title="数学" :options="mathList"></selector>
       <selector v-if="physics" v-model="physics" title="物理" :options="physicsList"></selector>
-      <selector v-if="chemistry" v-model="chemistry" title="化学" :options="chemistryList"></selector>
+      <!-- <selector v-if="chemistry" v-model="chemistry" title="化学" :options="chemistryList"></selector> -->
     </group>
     <group>
       <cell title="修改密码" :link="{name: 'settings_pwd'}" is-link></cell>
@@ -82,7 +82,7 @@ export default {
       math: '',
       physics: '',
       chemistry: '',
-      list: [{key: '7', value: '七年级'}, {key: '8', value: '八年级'}, {key: '9', value: '九年级'}, {key: '10', value: '高中'}],
+      list: [{key: '7', value: '七年级'}, {key: '8', value: '八年级'}, {key: '9', value: '九年级'}, {key: '11', value: '高一'}, {key: '12', value: '高二'}, {key: '13', value: '高三'}],
       show: false,
       menus: {
         menu1: '拍照',

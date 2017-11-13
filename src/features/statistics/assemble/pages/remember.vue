@@ -16,7 +16,7 @@
         <div class="weui-cell">
           <flexbox class="weui-cell__bd">
             <flexbox-item :span="4">
-              <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '错误类型'}}</x-button>
+              <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '错误原因'}}</x-button>
             </flexbox-item>
             <flexbox-item :span="4">
               <x-button mini type="primary" plain @click.native="$router.push({name: 'comment', params: {wbeid: error.id}})" v-if='error.comment'>查看点评</x-button>
@@ -49,7 +49,7 @@
     <!--错误选择 -->
     <div v-transfer-dom>
       <popup v-model="showErrorPopup" class="checker-popup">
-        <group title='选择错误类型：'>
+        <group title='选择错误原因：'>
           <div style="padding:10px 10px 0 10px;">
             <checker type="radio" v-model="errorType.errorComment" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
               <checker-item value="审题不清" @on-item-click="onItemClick">审题不清</checker-item>
@@ -137,7 +137,7 @@ export default {
       this.errorType.id = error.id
       this.errorType.chapterId = error.chapterId
     },
-    // 选择错误类型
+    // 选择错误原因
     onItemClick (value) {
       this.showErrorPopup = false
       this.getStatisticsComment({
@@ -148,7 +148,7 @@ export default {
         type: 'remember'
       }).then(() => {
         this.errorType.errorComment = ''
-        this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 1500, position: 'bottom'})
+        this.$vux.toast.show({text: '设置错误原因成功!', type: 'text', time: 1500, position: 'bottom'})
       }).catch(() => {
         this.errorType.errorComment = ''
       })
