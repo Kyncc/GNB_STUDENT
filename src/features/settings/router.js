@@ -8,11 +8,6 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/index')), '/settings/')
     },
     {
-      path: 'info',
-      name: 'settings_info',
-      component: r => require.ensure([], () => r(require('./pages/info')), '/settings/info')
-    },
-    {
       path: 'update',
       name: 'settings_update',
       component: r => require.ensure([], () => r(require('./pages/update')), '/settings/update')

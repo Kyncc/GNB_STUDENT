@@ -1,5 +1,5 @@
 <template>
-  <view-box ref="userinfoUpdate" body-padding-top="46px">
+  <view-box body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '修改资料'}">
       <p slot="right" @click="_finish">确定</p>
     </x-header>
@@ -16,7 +16,7 @@
       </cell>
     </group>
     <group>
-      <selector v-model="grade" title="年级" :options="list"></selector>
+      <selector v-model="year" title="年级" :options="list"></selector>
       <x-input title="学校" v-model="school" class="input_right"></x-input>
     </group>
     <group>
@@ -78,11 +78,11 @@ export default {
       name: '',
       sex: 0,
       school: '',
-      grade: '',
+      year: '',
       math: '',
       physics: '',
       chemistry: '',
-      list: [{key: '7', value: '七年级'}, {key: '8', value: '八年级'}, {key: '9', value: '九年级'}, {key: '11', value: '高一'}, {key: '12', value: '高二'}, {key: '13', value: '高三'}],
+      list: [{key: '7', value: '七年级'}, {key: '8', value: '八年级'}, {key: '9', value: '九年级'}, {key: '10', value: '高一'}, {key: '11', value: '高二'}, {key: '12', value: '高三'}],
       show: false,
       menus: {
         menu1: '拍照',
@@ -97,7 +97,7 @@ export default {
         name: this.name,
         sex: this.sex,
         school: this.school,
-        grade: this.grade,
+        year: this.year,
         subject: {
           math: this.math,
           physics: this.physics,
@@ -105,7 +105,7 @@ export default {
         }
       }).then(() => {
         // 更改年级需要重启应用,其他操作则重新获取数据
-        if (this.grade !== this.User.grade) {
+        if (this.year !== this.User.year) {
           try {
             plus.runtime.restart()
           } catch (e) {
@@ -144,7 +144,7 @@ export default {
     }
   },
   watch: {
-    grade (value) {
+    year (value) {
       this.getTextbookVersion({'grade': value}).then(() => {
         this.math = this.User.textbookAll.math[0].id
         this.physics = (this.User.textbookAll.subjectType.indexOf('physics') >= 0 ? this.User.textbookAll.physics[0].id : '')
@@ -156,9 +156,16 @@ export default {
     next(vm => {
       vm.name = vm.User.name
       vm.school = vm.User.school
-      vm.grade = vm.User.grade
+      vm.year = vm.User.year
       vm.sex = vm.User.sex
     })
+  },
+  beforeRouteLeave (to, from, next) {
+    if (to.name === 'user') {
+      next(false)
+      this._finish()
+    }
+    next()
   }
 }
 </script>
