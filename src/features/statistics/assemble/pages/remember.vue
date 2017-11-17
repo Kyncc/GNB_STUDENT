@@ -41,25 +41,15 @@
     <div v-transfer-dom>
       <previewer :list="list" ref="previewer" :options="options"></previewer>
     </div>
-    <!--组卷个数
-    <div class='assembleCount'
-      @click="$router.push({name: 'statisticsRemember_assemble', params: {subject: $route.params.subject}})">
-      已选<br/>{{AssembleRemember.count}}
-    </div>-->
     <!--错误选择 -->
     <div v-transfer-dom>
       <popup v-model="showErrorPopup" class="checker-popup">
         <group title='选择错误原因：'>
           <div style="padding:10px 10px 0 10px;">
             <checker type="radio" v-model="errorType.errorComment" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
-              <checker-item value="审题不清" @on-item-click="onItemClick">审题不清</checker-item>
               <checker-item value="概念模糊" @on-item-click="onItemClick">概念模糊</checker-item>
-              <checker-item value="思路不清" @on-item-click="onItemClick">思路不清</checker-item>
-              <checker-item value="运算错误" @on-item-click="onItemClick">运算错误</checker-item>
               <checker-item value="粗心大意" @on-item-click="onItemClick">粗心大意</checker-item>
-              <checker-item value="方法不对" @on-item-click="onItemClick">方法不对</checker-item>
-              <checker-item value="时间不够" @on-item-click="onItemClick">时间不够</checker-item>
-              <checker-item value="我不知道" @on-item-click="onItemClick">我不知道</checker-item>
+              <checker-item value="能力不够" @on-item-click="onItemClick">能力不够</checker-item>
             </checker>
           </div>
         </group>

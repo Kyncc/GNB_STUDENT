@@ -8,9 +8,11 @@
             :style=" _getColor(aitem)" @click.native="aitem.isLink.toString() === 'true' ? $router.push({name : 'workbook_exercise_result', params: {id: aitem.id, name: aitem.name}}) : ''">
           </cell>
           <template v-for="b in aitem.b" >
-            <cell :title="b.name"
-              :style=" _getColor(b)"
-              @click.native="b.isLink.toString() === 'true' ? $router.push({name : 'workbook_exercise_result', params: {id: b.id, name: b.name}}) : ''">
+            <cell :title="b.name" :key='b.id' :style=" _getColor(b)"
+                @click.native="b.isLink.toString() === 'true' ? $router.push({name : 'workbook_exercise_result', params: {id: b.id, name: b.name}}) : ''">
+               <div style='display: inline-block!important;'>
+                  <badge text="已批阅" v-if="b.isChecked"></badge>
+               </div>
             </cell>
           </template>
         </group>
@@ -22,13 +24,13 @@
   </view-box>
 </template>
 <script>
-import {XHeader, ViewBox, Group, Cell, Spinner} from 'vux'
+import {Badge, XHeader, ViewBox, Group, Cell, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'chapter',
   components: {
-    XHeader, ViewBox, Group, Cell, Spinner
+    Badge, XHeader, ViewBox, Group, Cell, Spinner
   },
   data () {
     return {

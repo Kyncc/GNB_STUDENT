@@ -1,8 +1,6 @@
 <template>
   <view-box body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '修改资料'}">
-      <p slot="right" @click="_finish">确定</p>
-    </x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '修改资料'}"></x-header>
     <group gutter="0">
       <cell title="头像" @click.native="show = !show">
         <img slot="default" v-lazy="User.headImg" width="60" height="60"/>
@@ -92,32 +90,6 @@ export default {
   },
   methods: {
     ...mapActions(['setHeadImg', 'setUserInfo', 'getTextbookVersion', 'getUserInfo']),
-    _finish () {
-      this.setUserInfo({
-        name: this.name,
-        sex: this.sex,
-        school: this.school,
-        year: this.year,
-        subject: {
-          math: this.math,
-          physics: this.physics,
-          chemistry: this.chemistry
-        }
-      }).then(() => {
-        // 更改年级需要重启应用,其他操作则重新获取数据
-        if (this.year !== this.User.year) {
-          try {
-            plus.runtime.restart()
-          } catch (e) {
-            this.$router.push('/login')
-          }
-        } else {
-          this.getUserInfo().then(() => {
-            history.go(-1)
-          })
-        }
-      })
-    },
     _getImage () {
       // 唤起本机相机
       let cmr = plus.camera.getCamera()
@@ -162,10 +134,20 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     if (to.name === 'user') {
-      next(false)
-      this._finish()
+      return (async () => {
+        // 保存用户信息
+        await this.setUserInfo({
+          name: this.name, sex: this.sex, school: this.school, year: this.year, subject: { math: this.math, physics: this.physics, chemistry: this.chemistry }
+        })
+        // 若更改年级需要重启APP
+        if (this.year !== this.User.year) plus.runtime.restart()
+        // 重新获取用户信息
+        await this.getUserInfo()
+        next()
+      })()
+    } else {
+      next()
     }
-    next()
   }
 }
 </script>

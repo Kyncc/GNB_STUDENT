@@ -4,8 +4,10 @@
       <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
         <x-header :left-options="{backText: this.$route.params.name}">
           <div slot="right" v-if="$route.name  === 'statisticsGood'">
-            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'statisticsGood_options'})">
-            </i>
+            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'statisticsGood_options'})"></i>
+          </div>
+          <div slot="right" v-if="$route.name  === 'statisticsRemember'">
+            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'statisticsRemember_options'})"></i>
           </div>
         </x-header>
       </div>

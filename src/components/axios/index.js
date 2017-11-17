@@ -5,7 +5,7 @@ import qs from 'qs'
 axios.defaults.timeout = 10000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 // axios.defaults.baseURL = 'https://www.guinaben.com/student/'
-axios.defaults.baseURL = 'http://www.guinaben.com:8070/test/student/'
+axios.defaults.baseURL = 'http://www.guinaben.com:8070/test/student/v2/'
 // POST传参序列化
 axios.interceptors.request.use((config) => {
   config.params = {
