@@ -36,6 +36,16 @@ export default {
       path: 'remember/:id',
       name: 'downloadRemember_detail',
       component: r => require.ensure([], () => r(require('./pages/rememberDetail')), '/download/remember/detail')
+    },
+    {
+      path: 'paper',
+      name: 'downloadPaper',
+      component: r => require.ensure([], () => r(require('./pages/paper')), '/download/paper')
+    },
+    {
+      path: 'paper/search',
+      name: 'downloadPaperSearch',
+      component: r => require.ensure([], () => r(require('./pages/paperSearch')), '/download/paper/search')
     }
   ]
 }

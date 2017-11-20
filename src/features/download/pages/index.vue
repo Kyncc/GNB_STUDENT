@@ -10,6 +10,7 @@
         <cell title='记错题' :link="{name: 'downloadRemember'}"></cell>
         <cell title='拍错题' :link="{name: 'downloadCamera'}"></cell>
         <cell title='精选练习' :link="{name: 'downloadGood'}"></cell>
+        <cell title='试卷' :link="{name: 'downloadPaperSearch'}"></cell>
       </group>
     </div>
   </view-box>

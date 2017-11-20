@@ -3,6 +3,11 @@ import * as getters from './getters'
 import * as actions from './actions'
 
 const state = {
+  paper: {
+    list: [],
+    search: [],
+    offset: ''
+  },
   camera: {
     list: [],
     detail: [],
@@ -23,6 +28,10 @@ const state = {
 const mutations = {
   [types.DOWNLOAD] (state, payload) {
     state[payload.type]['list'] = payload.data
+  },
+  [types.DOWNLOAD_SEARCH_PAPER] (state, payload) {
+    state.paper.search = payload.data
+    state.paper.offset = payload.data.offset
   },
   [types.DOWNLOAD_RESET] (state, payload) {
     state[payload.type]['list'] = []

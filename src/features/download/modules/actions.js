@@ -108,6 +108,62 @@ export const getDownloadGood = ({ rootState, commit }, params) => {
   })
 }
 
+/** 试卷下载列表 */
+export const getDownloadPaperHistory = ({ rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'paper',
+      params: {
+        token: rootState.common.user.token,
+        subject: getSubjectId(params.subject)
+      }
+    }).then((response) => {
+      commit(types.DOWNLOAD, {data: response.data.data, type: 'paper'})
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
+/** 试卷搜索下载 */
+export const getDownloadSearch = ({ rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'paper/search',
+      params: {
+        token: rootState.common.user.token,
+        subject: getSubjectId(params.subject)
+      }
+    }).then((response) => {
+      commit(types.DOWNLOAD_SEARCH_PAPER, {data: response.data.data})
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
+/** 试卷下载 */
+export const getDownloadPaper = ({ rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'paper/download',
+      params: {
+        token: rootState.common.user.token,
+        downloadId: params.id
+      }
+    }).then((response) => {
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
 /** 获取精选题试卷详情 */
 export const getDownloadGoodDetail = ({ rootState, commit }) => {
   return new Promise((resolve, reject) => {
