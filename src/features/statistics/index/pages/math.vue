@@ -4,7 +4,7 @@
     <div class='table vux-1px-t vux-1px-b' v-if='!loading && !error'>
       <flexbox :gutter='0' align='center' style='padding:0 0 10px'>
         <flexbox-item :span="2/9"></flexbox-item>
-        <flexbox-item :span="2/9"><div class='table_font'>记错题</div></flexbox-item>
+        <flexbox-item :span="2/9"><div class='table_font'>记错数</div></flexbox-item>
         <flexbox-item :span="2/9"><div class='table_font'>错题数</div></flexbox-item>
         <flexbox-item :span="2/9"><div class='table_font'>正确率</div></flexbox-item>
       </flexbox>
