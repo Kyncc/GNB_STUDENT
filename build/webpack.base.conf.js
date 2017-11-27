@@ -1,18 +1,18 @@
-var path = require('path')
-var utils = require('./utils')
-
-var projectRoot = path.resolve(__dirname, '../')
+'use strict'
+const path = require('path')
+const utils = require('./utils')
+const config = require('../config')
+const vueLoaderConfig = require('./vue-loader.conf')
+const webpack = require('webpack')
 const vuxLoader = require('vux-loader')
-
-var config = require('../config')
-var vueLoaderConfig = require('./vue-loader.conf')
-var webpack = require('webpack')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-let webpackConfig = {
+const webpackConfig = {
+  context: path.resolve(__dirname, '../'),
+  dependencies: ["vendor"],
   entry: {
     app: './src/main.js'
   },
@@ -23,6 +23,11 @@ let webpackConfig = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
+  plugins: [
+    new webpack.DllReferencePlugin({
+      manifest: require('./vendor-manifest.json')
+    })
+  ],
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
@@ -32,15 +37,16 @@ let webpackConfig = {
   },
   module: {
     rules: [
-      {
+      ...(config.dev.useEslint? [{
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
-        enforce: "pre",
+        enforce: 'pre',
         include: [resolve('src'), resolve('test')],
         options: {
-          formatter: require('eslint-friendly-formatter')
+          formatter: require('eslint-friendly-formatter'),
+          emitWarning: !config.dev.showEslintErrorsInOverlay
         }
-      },
+      }] : []),
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -49,23 +55,37 @@ let webpackConfig = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test'), resolve('./src'), resolve('./node_modules/vuetify')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-        query: {
+        options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
       {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('media/[name].[hash:7].[ext]')
+        }
+      },
+      {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
-        query: {
-          limit: 30000,
+        options: {
+          limit: 1000000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      }
+    ],
+    loaders: [
+      {
+        test: /\.styl$/,
+        loader: ['css-loader', 'stylus-loader'],
       }
     ]
   }

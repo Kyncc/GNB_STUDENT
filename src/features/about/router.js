@@ -1,22 +1,22 @@
 export default {
   path: '/about',
-  component: r => require.ensure([], () => r(require('./pages/layout')), '/about'),
+  component: r => require.ensure([], () => r(require('./pages/layout')), 'about/layout'),
   children: [
     {
       path: '/',
-      component: r => require.ensure([], () => r(require('./pages/index')), '/about/index')
+      component: r => require.ensure([], () => r(require('./pages/index')), 'about/index')
     },
     {
       path: 'my',
-      component: r => require.ensure([], () => r(require('./pages/my')), '/about/my')
+      component: r => require.ensure([], () => r(require('./pages/my')), 'about/my')
     },
     {
       path: 'advice',
-      component: r => require.ensure([], () => r(require('./pages/advice')), '/about/advice')
+      component: r => require.ensure([], () => r(require('./pages/advice')), 'about/advice')
     },
     {
       path: 'adviceHistory',
-      component: r => require.ensure([], () => r(require('./pages/adviceHistory')), '/about/adviceHistory')
+      component: r => require.ensure([], () => r(require('./pages/adviceHistory')), 'about/adviceHistory')
     }
   ]
 }

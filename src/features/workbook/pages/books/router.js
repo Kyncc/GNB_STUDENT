@@ -9,17 +9,17 @@ export default [
       {
         path: 'physics',
         name: 'workbook_physics',
-        component: r => require.ensure([], () => r(require('./physics')), '/workbook/physics')
+        component: r => require.ensure([], () => r(require('./physics')), 'workbook/physics')
       },
       {
         path: 'math',
         name: 'workbook_math',
-        component: r => require.ensure([], () => r(require('./math')), '/workbook/math')
+        component: r => require.ensure([], () => r(require('./math')), 'workbook/math')
       },
       {
         path: 'chemistry',
         name: 'workbook_chemistry',
-        component: r => require.ensure([], () => r(require('./chemistry')), '/workbook/chemistry')
+        component: r => require.ensure([], () => r(require('./chemistry')), 'workbook/chemistry')
       }
     ]
   },
@@ -27,12 +27,12 @@ export default [
   {
     path: '/workbook/:subject/add',
     name: 'workbook_add',
-    component: r => require.ensure([], () => r(require('./add')), '/workbook/add')
+    component: r => require.ensure([], () => r(require('./add')), 'workbook/add')
   },
   // 练习册搜索
   {
     path: '/workbook/:subject/search',
     name: 'workbook_search',
-    component: r => require.ensure([], () => r(require('./search')), '/workbook/search')
+    component: r => require.ensure([], () => r(require('./search')), 'workbook/search')
   }
 ]
