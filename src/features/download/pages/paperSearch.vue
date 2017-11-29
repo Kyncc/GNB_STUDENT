@@ -1,30 +1,39 @@
 <template>
-  <view-box body-padding-top="95px">
+ <view-box ref="sync" body-padding-top="96px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: '试卷搜索'}">
-        <gnbChangeSub :change.sync='subject'></gnbChangeSub>
+        <div slot="right" style="margin:0">
+          <gnbChangeSub :change.sync='subject'></gnbChangeSub>
+        </div>
       </x-header>
-      <search @on-submit="_getData" @on-change="_getData" v-model.lazy="name" :auto-fixed="false" placeholder="请输入试卷名称" style="position:fixed;z-index:1;"></search>
+      <search placeholder='请输入试卷名称' @on-change="getResult" :autoFixed="false" v-model="name" @on-submit="onSubmit" ref="search"></search>
     </div>
-    <div style="padding-top:46px;">
-      <group gutter="0" class="gnb_collapse" v-if="!loading">
-        <cell :title='item.name' v-for='(item, index) in DownloadPaper.search' :key='index'>
-          <div slot="value" style='color:#4cc0be'>
-            <span style='padding:0 5px;line-height:24px;' @click="_download(item)">
-              <i class="icon iconfont icon-download" style="font-size:16px;"></i>下载
-            </span>
-          </div>
-        </cell>
+    <div>
+      <group gutter="0">
+        <template v-for="(list, index) in DownloadPaperSearch.list">
+          <cell :title='list.name' :key='index'>
+            <div style='color:#4cc0be'>
+              <span style='padding:0 5px;line-height:24px;' @click="_download(list)">
+                <i class="icon iconfont icon-download" style="font-size:16px;"></i>下载
+              </span>
+            </div>
+          </cell>
+        </template>
       </group>
-      <div style="text-align:center">
-        <spinner v-if="loading" type="dots"></spinner>
+      <div style="text-align:center;padding:20px 0;">
+        <spinner v-if="loading" type="lines"></spinner>
+        <div v-else>
+          <p style="font-size:16px;color:#4cc0be" v-if="loadingNoData">暂无搜索结果~</p>
+          <p style="font-size:16px;color:#4cc0be" v-else-if="!loadingNoData" @click="_getData">点我加载更多</p>
+        </div>
       </div>
     </div>
     <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
   </view-box>
 </template>
+
 <script>
-import { XHeader, ViewBox, Cell, Group, Spinner, Search } from 'vux'
+import { XHeader, ViewBox, Cell, Group, Spinner, Search, PopupPicker } from 'vux'
 import { mapGetters, mapActions } from 'vuex'
 import gnbChangeSub from '@/components/gnb_changeSub'
 import Share from '@/components/share'
@@ -32,45 +41,82 @@ import Share from '@/components/share'
 export default {
   name: 'PaperSearch',
   components: {
-    XHeader, ViewBox, Cell, Group, Spinner, Search, Share, gnbChangeSub
+    XHeader, ViewBox, Cell, Group, Spinner, Search, PopupPicker, Share, gnbChangeSub
+  },
+  computed: {
+    ...mapGetters(['User', 'DownloadPaperSearch'])
   },
   data () {
     return {
       name: '',
-      loading: true,
+      loading: false,
+      loadingNoData: true,
       subject: '',
+      showAction: false,
       share: {
         content: '',
-        title: '我的试卷下载',
+        title: '我的试卷',
         href: ''
       }
     }
   },
-  computed: {
-    ...mapGetters(['User', 'DownloadPaper'])
+  watch: {
+    subject (val) {
+      if (val.toString().length) {
+        this._getData()
+      }
+    }
   },
   methods: {
-    ...mapActions(['getDownloadSearch', 'getDownloadPaper']),
+    ...mapActions(['getDownloadSearch', 'getDownloadPaper', 'clearDownloadPaperSearch']),
+    _download (item) {
+      this.getDownloadPaper({downloadId: item.downloadId}).then((res) => {
+        this.share.href = res.data.data.url
+        this.share.content = item.name
+        this.showAction = true
+      })
+    },
     _getData () {
       this.loading = true
-      this.getDownloadSearch({subject: this.subject, name: this.name}).then(() => {
-        this.error = false
+      this.getDownloadSearch({name: this.name, subject: this.subject}).then((res) => {
+        if (res.data.data.list.length < 10) {
+          this.loadingNoData = true
+        }
+        this.loadingNoData = false
         this.loading = false
-      }).catch((e) => {
-        this.error = true
+      }).catch(() => {
+        this.loadingNoData = true
         this.loading = false
       })
+    },
+    getResult (val) {
+      this.clearDownloadPaperSearch()
+      this._getData()
+    },
+    onSubmit () {
+      this.$refs.search.setBlur()
     }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.name = ''
+      vm.clearDownloadPaperSearch()
     })
   },
   beforeRouteLeave (to, from, next) {
-    next()
-  },
-  created () {
+    this.loadingNoData = true
+    this.loading = false
+    if (this.showAction) {
+      this.showAction = false
+      next(false)
+    } else {
+      next()
+    }
   }
 }
 </script>
+<style>
+.vux-header-title .vux-cell-box:before{
+  border-top:none !important;
+}
+</style>

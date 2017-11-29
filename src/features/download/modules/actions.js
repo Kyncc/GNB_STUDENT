@@ -135,10 +135,11 @@ export const getDownloadSearch = ({ rootState, commit }, params) => {
       url: 'paper/search',
       params: {
         token: rootState.common.user.token,
+        name: params.name,
         subject: getSubjectId(params.subject)
       }
     }).then((response) => {
-      commit(types.DOWNLOAD_SEARCH_PAPER, {data: response.data.data})
+      commit(types.DOWNLOAD_SEARCH_PAPER, response.data.data)
       resolve(response)
     }).catch((e) => {
       reject(e)
@@ -186,6 +187,11 @@ export const getDownloadGoodDetail = ({ rootState, commit }) => {
 /** 清空下载列表 */
 export const clearDownload = ({rootState, commit}, params) => {
   commit(types.DOWNLOAD_RESET, params)
+}
+
+/** 清空试卷下载列表 */
+export const clearDownloadPaperSearch = ({commit}) => {
+  commit(types.DOWNLOAD_SEARCH_RESET)
 }
 
 /** 试卷高度保存 */

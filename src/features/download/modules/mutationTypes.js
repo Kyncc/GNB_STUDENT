@@ -2,6 +2,8 @@
 export const DOWNLOAD = 'DOWNLOAD'
 /** 试卷搜索列表 */
 export const DOWNLOAD_SEARCH_PAPER = 'DOWNLOAD_SEARCH_PAPER'
+/** 试卷搜索清空 */
+export const DOWNLOAD_SEARCH_RESET = 'DOWNLOAD_SEARCH_RESET'
 /** 我的下载清空 */
 export const DOWNLOAD_RESET = 'DOWNLOAD_RESET'
 /** 试题 */

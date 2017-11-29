@@ -4,13 +4,13 @@
     </x-header>
     <div>
       <group :gutter='0'>
-        <cell title='试卷下载' :link="{name: 'downloadPaper'}"></cell>
+        <cell title='试卷下载' :link="{name: 'downloadPaperSearch'}"></cell>
       </group>
       <group title='下载历史'>
         <cell title='记错题' :link="{name: 'downloadRemember'}"></cell>
         <cell title='拍错题' :link="{name: 'downloadCamera'}"></cell>
         <cell title='精选练习' :link="{name: 'downloadGood'}"></cell>
-        <cell title='试卷' :link="{name: 'downloadPaperSearch'}"></cell>
+        <cell title='试卷' :link="{name: 'downloadPaper'}"></cell>
       </group>
     </div>
   </view-box>
