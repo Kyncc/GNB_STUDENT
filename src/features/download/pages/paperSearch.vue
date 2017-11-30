@@ -24,7 +24,7 @@
         <spinner v-if="loading" type="lines"></spinner>
         <div v-else>
           <p style="font-size:16px;color:#4cc0be" v-if="loadingNoData">暂无搜索结果~</p>
-          <p style="font-size:16px;color:#4cc0be" v-else-if="!loadingNoData" @click="_getData">点我加载更多</p>
+          <p style="font-size:16px;color:#4cc0be" v-else @click="_getData">点我加载更多</p>
         </div>
       </div>
     </div>
@@ -79,10 +79,7 @@ export default {
     _getData () {
       this.loading = true
       this.getDownloadSearch({name: this.name, subject: this.subject}).then((res) => {
-        if (res.data.data.list.length < 10) {
-          this.loadingNoData = true
-        }
-        this.loadingNoData = false
+        (res.data.data.list.length < 10 ? this.loadingNoData = true : this.loadingNoData = false)
         this.loading = false
       }).catch(() => {
         this.loadingNoData = true
