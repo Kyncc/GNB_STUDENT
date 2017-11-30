@@ -5,7 +5,7 @@ export default {
     {
       path: '/',
       name: 'class',
-      component: r => require.ensure([], () => r(require('./pages/index')), 'class/')
+      component: r => require.ensure([], () => r(require('./pages/index')), 'class/index')
     },
     {
       path: 'add',

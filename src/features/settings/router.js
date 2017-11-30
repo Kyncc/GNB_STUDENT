@@ -5,7 +5,7 @@ export default {
     {
       path: '/',
       name: 'settings',
-      component: r => require.ensure([], () => r(require('./pages/index')), 'settings/')
+      component: r => require.ensure([], () => r(require('./pages/index')), 'settings/index')
     },
     {
       path: 'update',

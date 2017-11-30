@@ -2,7 +2,7 @@ export default [
   // 练习册
   {
     path: '/workbook',
-    component: r => require.ensure([], () => r(require('./layout')), '/workbook'),
+    component: r => require.ensure([], () => r(require('./layout')), 'workbook/layout'),
     name: 'workbook',
     redirect: '/workbook/math',
     children: [
