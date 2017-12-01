@@ -155,7 +155,7 @@ export const getDownloadPaper = ({ rootState, commit }, params) => {
       url: 'paper/download',
       params: {
         token: rootState.common.user.token,
-        downloadId: params.id
+        downloadId: params.downloadId
       }
     }).then((response) => {
       resolve(response)

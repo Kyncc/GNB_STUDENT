@@ -63,6 +63,7 @@ export default {
   watch: {
     subject (val) {
       if (val.toString().length) {
+        this.clearDownloadPaperSearch()
         this._getData()
       }
     }
