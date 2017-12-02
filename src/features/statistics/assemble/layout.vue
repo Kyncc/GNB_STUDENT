@@ -32,19 +32,19 @@
     <!--组卷个数 -->
     <template v-if="$route.name  === 'statisticsRemember'">
       <div class='assembleCount'
-        @click="$router.push({name: 'statisticsRemember_assemble', params: {subject: $route.params.subject}})">
+        @click="$router.push({name: 'statisticsRemember_assemble', params: {subject: $route.params.subject, textbookId: $route.params.textbookId}})">
         已选<br/>{{AssembleRemember.count}}
       </div>
     </template>
      <template v-else-if="$route.name  === 'statisticsCamera'">
       <div class='assembleCount'
-        @click="$router.push({name: 'statisticsCamera_assemble', params: {subject: $route.params.subject}})">
+        @click="$router.push({name: 'statisticsCamera_assemble', params: {subject: $route.params.subject, textbookId: $route.params.textbookId}})">
         已选<br/>{{AssembleCamera.count}}
       </div>
     </template>
     <template v-else-if="$route.name  === 'statisticsGood'">
       <div class='assembleCount'
-        @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject}})">
+        @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject, textbookId: $route.params.textbookId}})">
         已选<br/>{{AssembleGood.count}}
       </div>
     </template>

@@ -4,17 +4,17 @@ export default [
     component: r => require.ensure([], () => r(require('./layout')), 'statistics/layout'),
     children: [
       {
-        path: 'camera/:subject/:chapterId/:name',
+        path: 'camera/:subject/:chapterId/:textbookId/:name',
         name: 'statisticsCamera',
         component: r => require.ensure([], () => r(require('./pages/camera')), 'statistics/camera')
       },
       {
-        path: 'remember/:subject/:chapterId/:name',
+        path: 'remember/:subject/:chapterId/:textbookId/:name',
         name: 'statisticsRemember',
         component: r => require.ensure([], () => r(require('./pages/remember')), 'statistics/remember')
       },
       {
-        path: 'good/:subject/:chapterId/:name',
+        path: 'good/:subject/:chapterId/:textbookId/:name',
         name: 'statisticsGood',
         component: r => require.ensure([], () => r(require('./pages/good')), 'statistics/good')
       }
@@ -34,19 +34,19 @@ export default [
   },
   // 记错题组卷
   {
-    path: '/statistics/remember/assemble/:subject',
+    path: '/statistics/remember/assemble/:textbookId/:subject',
     name: 'statisticsRemember_assemble',
     component: r => require.ensure([], () => r(require('./pages/rememberAssemble')), 'statistics/remember/assemble')
   },
   // 精选题组卷
   {
-    path: '/statistics/good/assemble/:subject',
+    path: '/statistics/good/assemble/:textbookId/:subject',
     name: 'statisticsGood_assemble',
     component: r => require.ensure([], () => r(require('./pages/goodAssemble')), 'statistics/good/assemble')
   },
   // 拍错题组卷
   {
-    path: '/statistics/camera/assemble/:subject',
+    path: '/statistics/camera/assemble/:textbookId/:subject',
     name: 'statisticsCamera_assemble',
     component: r => require.ensure([], () => r(require('./pages/cameraAssemble')), 'statistics/camera/assemble')
   }

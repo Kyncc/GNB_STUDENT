@@ -6,6 +6,9 @@
         <group v-for="(aitem, index) in a" :key="index" style="margin-bottom:.5rem" gutter="0">
           <cell :title="aitem.name"
             :style=" _getColor(aitem)" @click.native="aitem.isLink.toString() === 'true' ? $router.push({name : 'workbook_exercise_answer', params: {id: aitem.id, name: aitem.name}}) : ''">
+             <div style='display: inline-block!important;'>
+                <badge text="已批阅" v-if="aitem.isChecked"></badge>
+              </div>
           </cell>
           <template v-for="b in aitem.b" >
             <cell :title="b.name" :key='b.id' :style=" _getColor(b)"

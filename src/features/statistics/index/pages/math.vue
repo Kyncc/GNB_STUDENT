@@ -53,7 +53,7 @@ export default {
       this.clearStatisticsAssemble({type: 'remember'})
       this.clearStatisticsAssemble({type: 'camera'})
       this.clearStatisticsAssemble({type: 'good'})
-      this.$router.push({name: 'statisticsRemember', params: {subject: 'math', chapterId: row.chapterId, name: row.chapterName}})
+      this.$router.push({name: 'statisticsRemember', params: {subject: 'math', chapterId: row.chapterId, name: row.chapterName, textbookId: this.textbookId || this.textList[0].id}})
     },
     _getData () {
       this.loading = true

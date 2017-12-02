@@ -19,7 +19,7 @@
     </group>
     <group>
       <selector v-if="math" v-model="math" title="数学" :options="mathList"></selector>
-      <selector v-if="physics" v-model="physics" title="物理" :options="physicsList"></selector>
+      <!-- <selector v-if="physics" v-model="physics" title="物理" :options="physicsList"></selector> -->
       <!-- <selector v-if="chemistry" v-model="chemistry" title="化学" :options="chemistryList"></selector> -->
     </group>
     <group>
