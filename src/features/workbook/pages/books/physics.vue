@@ -14,6 +14,9 @@
               </p>
             </template>
           </div>
+          <div class="badge-value">
+            <badge v-if='workbookMath.list.isRead'></badge>
+          </div>
         </cell>
       </group>
     </div>
@@ -27,13 +30,13 @@
 </template>
 
 <script>
-import {Group, Cell, Spinner} from 'vux'
+import {Badge, Group, Cell, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'physics',
   components: {
-    Group, Cell, Spinner
+    Badge, Group, Cell, Spinner
   },
   computed: {
     ...mapGetters(['User', 'workbookPhysics'])

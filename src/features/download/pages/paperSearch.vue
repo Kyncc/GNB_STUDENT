@@ -98,7 +98,7 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.name = ''
-      vm.clearDownloadPaperSearch()
+      vm.getResult()
     })
   },
   beforeRouteLeave (to, from, next) {
