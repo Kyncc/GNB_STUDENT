@@ -128,7 +128,7 @@
 					},
 					"weixin": {
 						"appid": "wx1511fa0bd1c7f572",
-						"appsecret": "0854cf1d582cb6202ffe8958e7cbb8580854cf1d582cb6202ffe8958e7cbb858",
+						"appsecret": "b76b8b022d8cbcba13a9b672f205f741",
 						"description": "可选，微信分享"
 					}
 				}
