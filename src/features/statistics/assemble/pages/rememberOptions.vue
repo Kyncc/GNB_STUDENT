@@ -1,9 +1,7 @@
 <template>
   <view-box body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-      <x-header :left-options="{backText: '筛选'}">
-        <div slot="right" @click='_finish()'>确定</div>
-      </x-header>
+      <x-header :left-options="{backText: '筛选'}"></x-header>
     </div>
     <div style='padding:10px;'>
       <span class='searchtitle'>难度：</span>
@@ -34,11 +32,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setStatisticsRememberOptions']),
-    _finish () {
-      this.setStatisticsRememberOptions({degree: this.degree})
-      this.$router.go(-1)
-    }
+    ...mapActions(['setStatisticsRememberOptions'])
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
@@ -46,6 +40,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
+    this.setStatisticsRememberOptions({degree: this.degree})
     next()
   }
 }

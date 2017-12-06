@@ -13,8 +13,8 @@
             <cell-box :key='index' @click.native="$router.push({name: 'induce_exercise', params: {subject: 'physics', chapterId: chapter.chapter_id, chapterName: chapter.name}})">
               <div slot="default" style="width:100%;">
                 <flexbox>
-                  <flexbox-item :span="10">{{chapter.name}}</flexbox-item>
-                  <flexbox-item :span="2" style="text-align:right">{{chapter.handleCount}}/{{chapter.total}}</flexbox-item>
+                  <flexbox-item :span="9">{{chapter.name}}</flexbox-item>
+                  <flexbox-item :span="3" style="text-align:right">{{chapter.handleCount}}/{{chapter.total}}</flexbox-item>
                 </flexbox>
               </div>
             </cell-box>

@@ -82,7 +82,9 @@
   transform: scaleY(-1);
   filter: FlipV;
 }
-
+.special-style p{
+  overflow-y: scroll
+}
 div.quizPutTag {
   display: inline;
   padding: 3px 10px 1px 10px;

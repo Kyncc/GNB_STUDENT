@@ -1,24 +1,28 @@
-// http://eslint.org/docs/user-guide/configuring
+/* eslint-disable */
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  // parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 6,
-    sourceType: 'module'
+    "parser": "babel-eslint",
+    "ecmaVersion": 2017,
+    "sourceType": "module"
   },
-  globals: {'plus': true, 'window': true, 'document': true, 'alert': true},
+  globals: {'plus': true, 'window': true, 'document': true, 'alert': true, 'new': true},
   env: {
     browser: true,
   },
-  // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'standard',
+  // eslint-disable-next-line
+  extends: [
+    // 'plugin:vue/recommended',
+    'standard'
+  ],
   // required to lint *.vue files
   plugins: [
     'html'
   ],
   // add your custom rules here
-  rules: {
+  'rules': {
     // allow paren-less arrow functions
     'arrow-parens': 0,
     // allow async-await

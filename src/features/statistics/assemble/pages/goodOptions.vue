@@ -1,9 +1,7 @@
 <template>
   <view-box body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-      <x-header :left-options="{backText: '筛选'}">
-        <div slot="right" @click='_finish()'>确定</div>
-      </x-header>
+      <x-header :left-options="{backText: '筛选'}"></x-header>
     </div>
     <div>
       <div style='padding:10px;'>
@@ -46,14 +44,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setStatisticsGoodOptions']),
-    _finish () {
-      this.setStatisticsGoodOptions({
-        degree: this.degree,
-        type: this.type
-      })
-      this.$router.go(-1)
-    }
+    ...mapActions(['setStatisticsGoodOptions'])
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
@@ -62,6 +53,10 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
+    this.setStatisticsGoodOptions({
+      degree: this.degree,
+      type: this.type
+    })
     next()
   }
 }

@@ -14,8 +14,8 @@
             :style="chapter.used ? 'color:#FEAA85':''" :key='pindex'>
             <div slot="default" style="width:100%;">
               <flexbox>
-                <flexbox-item :span="10">{{chapter.name}}</flexbox-item>
-                <flexbox-item :span="2" style="text-align:right">{{chapter.handleCount}}/{{chapter.total}}</flexbox-item>
+                <flexbox-item :span="9">{{chapter.name}}</flexbox-item>
+                <flexbox-item :span="3" style="text-align:right">{{chapter.handleCount}}/{{chapter.total}}</flexbox-item>
               </flexbox>
             </div>
           </cell-box>

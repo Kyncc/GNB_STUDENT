@@ -4,3 +4,7 @@ export const DownloadCamera = (state) => state.camera
 export const DownloadRemember = (state) => state.remember
 /** 下载精选题 */
 export const DownloadGood = (state) => state.good
+/** 试卷 */
+export const DownloadPaper = (state) => state.paper
+/** 试卷搜索 */
+export const DownloadPaperSearch = (state) => state.paper.search

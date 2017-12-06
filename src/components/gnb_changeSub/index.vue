@@ -26,8 +26,8 @@ export default {
       selected: 2,
       path: this.$route.fullPath,
       subjectAllList: [
-        { id: 2, value: '数学', key: 'math' },
-        { id: 7, value: '物理', key: 'physics' }
+        { id: 2, value: '数学', key: 'math' }
+        // { id: 7, value: '物理', key: 'physics' }
       ]
     }
   },

@@ -1,6 +1,6 @@
 <template>
   <div style="height:100%">
-    <view-box body-padding-top="86px" body-padding-bottom="46px">
+    <view-box body-padding-top="86px">
       <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
         <x-header :left-options="{backText: '习题册管理'}">
           <div slot="right" @click="$router.push({name: 'workbook_search', param: {subject: Route.params.subject}})">
@@ -39,16 +39,21 @@
             </cell>
           </template>
         </group>
+        <div style='text-align:center;font-size:.8rem;padding:1rem 0;color:#feaa85'>
+          <p style='color:#4cc0be;width:100%;' @click="$router.push({name: 'workbook_want'})">没有我想要的习题册？
+            <b style='text-decoration:underline;font-weight:normal;'>点我提交</b>
+          </p>
+        </div>
         <div style="text-align:center;padding:20px 0;">
           <spinner v-if="loading" type="dots"></spinner>
           <p v-else-if="workbookAddList.length === 0" style="font-size:16px;color:#4cc0be;">没有更多的习题册了~</p>
         </div>
       </div>
-      <tabbar slot="bottom" style='text-align:center;font-size:.8rem;padding:.25rem 0;color:#feaa85'>
+      <!-- <tabbar slot="bottom" style='text-align:center;font-size:.8rem;padding:.25rem 0;color:#feaa85'>
         <p style='color:#4cc0be;width:100%;' @click="$router.push({name: 'workbook_want'})">没有我想要的习题册？
           <b style='text-decoration:underline;font-weight:normal;'>点我提交</b>
         </p>
-      </tabbar>
+      </tabbar> -->
     </view-box>
     <previewer :list="list" ref="wbpreviewer" :options="options"></previewer>
   </div>

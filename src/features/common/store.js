@@ -20,6 +20,7 @@ const state = {
     sex: '',
     mobile: '',
     grade: '',
+    year: '',
     textbook: [],
     subjectType: [],
     textbookAll: {
@@ -71,6 +72,7 @@ const mutations = {
     state.user.school = data.school
     state.user.sex = data.sex
     state.user.grade = data.grade
+    state.user.year = data.year
     state.user.version = data.version
     state.user.subject = data.subject
     state.user.subjectType = data.subjectType

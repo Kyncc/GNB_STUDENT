@@ -12,6 +12,7 @@ export const getStatisticsRemember = ({ state, rootState, commit }, params) => {
         token: rootState.common.user.token,
         offset: state.remember.index.offset,
         options: {
+          textbookId: rootState.route.params.textbookId,
           subject: rootState.route.params.subject,
           chapterId: rootState.route.params.chapterId,
           degree: state.remember.index.options.degree
@@ -33,6 +34,7 @@ export const getStatisticsRememberAssemble = ({ state, rootState, commit }, para
       url: 'statistics/remember/assemble',
       params: {
         token: rootState.common.user.token,
+        textbookId: rootState.route.params.textbookId,
         subject: rootState.route.params.subject
       }
     })
@@ -53,6 +55,7 @@ export const setStatisticsRememberAssembleUpdate = ({ rootState, commit }, param
       data: {
         token: rootState.common.user.token,
         id: params.id,
+        textbookId: rootState.route.params.textbookId,
         subject: rootState.route.params.subject
       }
     })
@@ -86,6 +89,7 @@ export const getStatisticsCamera = ({ state, rootState, commit }, params) => {
         offset: state.camera.index.offset,
         options: {
           subject: rootState.route.params.subject,
+          textbookId: rootState.route.params.textbookId,
           chapterId: rootState.route.params.chapterId
         }
       }
@@ -105,6 +109,7 @@ export const getStatisticsCameraAssemble = ({ state, rootState, commit }, params
       url: 'statistics/camera/assemble',
       params: {
         token: rootState.common.user.token,
+        textbookId: rootState.route.params.textbookId,
         subject: rootState.route.params.subject
       }
     })
@@ -125,6 +130,7 @@ export const setStatisticsCameraAssembleUpdate = ({ rootState, commit }, params)
       data: {
         token: rootState.common.user.token,
         id: params.id,
+        textbookId: rootState.route.params.textbookId,
         subject: rootState.route.params.subject
       }
     })
@@ -153,6 +159,7 @@ export const getStatisticsGood = ({ state, rootState, commit }, params) => {
         options: {
           subject: rootState.route.params.subject,
           chapterId: rootState.route.params.chapterId,
+          textbookId: rootState.route.params.textbookId,
           type: state.good.index.options.type,
           degree: state.good.index.options.degree
         }
@@ -173,7 +180,8 @@ export const getStatisticsGoodAssemble = ({ state, rootState, commit }, params) 
       url: 'statistics/good/assemble',
       params: {
         token: rootState.common.user.token,
-        subject: rootState.route.params.subject
+        subject: rootState.route.params.subject,
+        textbookId: rootState.route.params.textbookId
       }
     })
       .then((response) => {
@@ -199,6 +207,7 @@ export const setStatisticsGoodAssembleUpdate = ({ rootState, commit }, params) =
       data: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject,
+        textbookId: rootState.route.params.textbookId,
         id: params.id,
         type: params.type
       }
@@ -229,6 +238,7 @@ export const setStatisticsGoodAssembleList = ({ state, rootState, commit }, para
       params: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject,
+        textbookId: rootState.route.params.textbookId,
         ids: ids
       }
     }).then((response) => {
@@ -269,6 +279,7 @@ export const clearStatisticsDownload = ({ commit }, params) => {
 
 /** 组卷下载 */
 export const getStatisticsAssemblUrl = ({ rootState, commit }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -276,13 +287,19 @@ export const getStatisticsAssemblUrl = ({ rootState, commit }, params) => {
       data: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject,
+        textbookId: rootState.route.params.textbookId,
         type: params.type
       }
     })
       .then((response) => {
         // 清空组卷列表
+        Vue.$vux.loading.hide()
         commit(types.STATISTICS_ASSEMBLE_RESET, {type: params.type})
         resolve(response)
+      })
+      .catch((e) => {
+        Vue.$vux.loading.hide()
+        reject(e)
       })
   })
 }

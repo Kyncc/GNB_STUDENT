@@ -2,23 +2,23 @@ export default [
   // 练习册
   {
     path: '/myBook',
-    component: r => require.ensure([], () => r(require('./layout')), '/myBook'),
+    component: r => require.ensure([], () => r(require('./layout')), 'myBook/layout'),
     redirect: '/myBook/math',
     children: [
       {
         path: 'physics',
         name: 'myBook_physics',
-        component: r => require.ensure([], () => r(require('./physics')), '/myBook/physics')
+        component: r => require.ensure([], () => r(require('./physics')), 'myBook/physics')
       },
       {
         path: 'math',
         name: 'myBook_math',
-        component: r => require.ensure([], () => r(require('./math')), '/myBook/math')
+        component: r => require.ensure([], () => r(require('./math')), 'myBook/math')
       },
       {
         path: 'chemistry',
         name: 'myBook_chemistry',
-        component: r => require.ensure([], () => r(require('./chemistry')), '/myBook/chemistry')
+        component: r => require.ensure([], () => r(require('./chemistry')), 'myBook/chemistry')
       }
     ]
   },
@@ -26,12 +26,12 @@ export default [
   {
     path: '/myBook/:subject/add',
     name: 'myBook_add',
-    component: r => require.ensure([], () => r(require('./add')), '/myBook/add')
+    component: r => require.ensure([], () => r(require('./add')), 'myBook/add')
   },
   // 练习册搜索
   {
     path: '/myBook/:subject/search',
     name: 'myBook_search',
-    component: r => require.ensure([], () => r(require('./search')), '/myBook/search')
+    component: r => require.ensure([], () => r(require('./search')), 'myBook/search')
   }
 ]

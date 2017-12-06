@@ -7,7 +7,7 @@
       <div slot="content" @click="$router.push({name:'example', params: {subjectId: item.subject_id, id: item.exercisesId}})">
         <div v-html="item.stem"></div>
         <div v-if="item.opt.hasOwnProperty('A')">
-          <div v-for="(value, key) in item.opt" :key='value' style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+          <div v-for="(value, key) in item.opt" :key='key' style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
         </div>
       </div>
       <div slot="footer">
@@ -25,11 +25,6 @@
         </div>
       </div>
     </card>
-    <!--组卷个数
-    <div class='assembleCount'
-      @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject}})">
-      已选<br/>{{AssembleGood.count}}
-    </div> -->
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="lines"></spinner>
       <div>

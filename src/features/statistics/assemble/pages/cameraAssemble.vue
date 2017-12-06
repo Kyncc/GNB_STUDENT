@@ -99,16 +99,9 @@ export default {
       })
     },
     _shareSuccess () {
-      let that = this
-      this.$vux.alert.show({
-        title: '下载成功',
-        content: '请到我的下载查看',
-        dialogTransition: '',
-        onHide () {
-          that._getData()
-          that.clearStatisticsAssemble({type: 'camera'})
-        }
-      })
+      this._getData()
+      this.clearStatisticsAssemble({type: 'camera'})
+      this.$router.go(-1)
     },
     _download () {
       this.getStatisticsAssemblUrl({type: 'camera'})

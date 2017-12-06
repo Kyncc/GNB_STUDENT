@@ -4,7 +4,7 @@
     <div v-if="!loading" class="messageSection">
       <section v-for="(item, index) in messageSystemList" :key='index'>
         <h3>{{item.time | ymd}}</h3>
-        <article>{{item.content}}</article>
+        <article v-html='item.content'></article>
       </section>
     </div>
     <div style="text-align:center">

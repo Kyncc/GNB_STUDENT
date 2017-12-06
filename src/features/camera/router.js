@@ -4,7 +4,7 @@ import points from './pages/points/router'
 export default {
   path: '/camera',
   name: 'camera',
-  component: r => require.ensure([], () => r(require('./pages/layout')), '/camera'),
+  component: r => require.ensure([], () => r(require('./pages/layout')), 'camera/layout'),
   redirect: '/camera/chapter',
   children: [
     ...chapter,
@@ -12,12 +12,12 @@ export default {
     {
       path: 'photo',
       name: 'camera_photo',
-      component: r => require.ensure([], () => r(require('./pages/photo')), '/camera/photo')
+      component: r => require.ensure([], () => r(require('./pages/photo')), 'camera/photo')
     },
     {
       path: 'upload',
       name: 'camera_upload',
-      component: r => require.ensure([], () => r(require('./pages/upload')), '/camera/upload')
+      component: r => require.ensure([], () => r(require('./pages/upload')), 'camera/upload')
     }
   ]
 }

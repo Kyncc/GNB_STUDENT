@@ -28,14 +28,9 @@
           default-item-class="select-item"
           selected-item-class="select-item-selected"
           >
-            <checker-item value="审题不清">审题不清</checker-item>
             <checker-item value="概念模糊">概念模糊</checker-item>
-            <checker-item value="思路不清">思路不清</checker-item>
-            <checker-item value="运算错误">运算错误</checker-item>
             <checker-item value="粗心大意">粗心大意</checker-item>
-            <checker-item value="方法不对">方法不对</checker-item>
-            <checker-item value="时间不够">时间不够</checker-item>
-            <checker-item value="我不知道">我不知道</checker-item>
+            <checker-item value="能力不够">能力不够</checker-item>
         </checker>
       </group>
     </div>

@@ -14,6 +14,9 @@
               </p>
             </template>
           </div>
+          <div class="badge-value">
+            <badge v-if='workbookMath.list.isRead'></badge>
+          </div>
         </cell>
       </group>
     </div>
@@ -27,13 +30,13 @@
 </template>
 
 <script>
-import {Group, Cell, Spinner} from 'vux'
+import {Badge, Group, Cell, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'math',
   components: {
-    Group, Cell, Spinner
+    Badge, Group, Cell, Spinner
   },
   computed: {
     ...mapGetters(['User', 'workbookMath'])
@@ -72,3 +75,11 @@ export default {
   }
 }
 </script>
+<style lang="less">
+.badge-value {
+  display: inline-block!important;
+}
+.vertical-middle {
+  vertical-align: middle;
+}
+</style>

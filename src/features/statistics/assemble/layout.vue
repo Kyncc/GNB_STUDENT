@@ -4,8 +4,10 @@
       <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
         <x-header :left-options="{backText: this.$route.params.name}">
           <div slot="right" v-if="$route.name  === 'statisticsGood'">
-            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'statisticsGood_options'})">
-            </i>
+            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'statisticsGood_options'})"></i>
+          </div>
+          <div slot="right" v-if="$route.name  === 'statisticsRemember'">
+            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'statisticsRemember_options'})"></i>
           </div>
         </x-header>
       </div>
@@ -30,19 +32,19 @@
     <!--组卷个数 -->
     <template v-if="$route.name  === 'statisticsRemember'">
       <div class='assembleCount'
-        @click="$router.push({name: 'statisticsRemember_assemble', params: {subject: $route.params.subject}})">
+        @click="$router.push({name: 'statisticsRemember_assemble', params: {subject: $route.params.subject, textbookId: $route.params.textbookId}})">
         已选<br/>{{AssembleRemember.count}}
       </div>
     </template>
      <template v-else-if="$route.name  === 'statisticsCamera'">
       <div class='assembleCount'
-        @click="$router.push({name: 'statisticsCamera_assemble', params: {subject: $route.params.subject}})">
+        @click="$router.push({name: 'statisticsCamera_assemble', params: {subject: $route.params.subject, textbookId: $route.params.textbookId}})">
         已选<br/>{{AssembleCamera.count}}
       </div>
     </template>
     <template v-else-if="$route.name  === 'statisticsGood'">
       <div class='assembleCount'
-        @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject}})">
+        @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject, textbookId: $route.params.textbookId}})">
         已选<br/>{{AssembleGood.count}}
       </div>
     </template>

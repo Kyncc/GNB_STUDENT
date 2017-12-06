@@ -6,8 +6,8 @@
 	"id": "H55E5EFFB",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本-学生端",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "3.5.0",/*应用版本名称*/
-		"code": "350"
+		"name": "3.6.0",/*应用版本名称*/
+		"code": "360"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -116,9 +116,9 @@
 				"statics": {
 					"umeng": {
 						"appkey_ios": "584125476e27a40bc4000e49",
-						"channelid_ios": "3.5.0",
+						"channelid_ios": "3.6.0",
 						"appkey_android": "5833f42d8630f57e24001bc5",
-						"channelid_android": "3.5.0"
+						"channelid_android": "3.6.0"
 					}
 				},
 				"share": {
@@ -128,7 +128,7 @@
 					},
 					"weixin": {
 						"appid": "wx1511fa0bd1c7f572",
-						"appsecret": "0854cf1d582cb6202ffe8958e7cbb8580854cf1d582cb6202ffe8958e7cbb858",
+						"appsecret": "b76b8b022d8cbcba13a9b672f205f741",
 						"description": "可选，微信分享"
 					}
 				}
@@ -217,29 +217,140 @@
 		}
 	},
 	"dependencies": {
-		"pages": {
-			"index.html": {
-				"resources": [
-					"static/img/icon.jpg",
-					"static/js/app.js",
-					"static/js/manifest.js",
-					"static/js/vendor.js",
-					"static/css/app.css",
-					"static/js/app.01eb69d7344aa228e894.js",
-					"static/css/app.63e2d419283d96885f666409d2860ff4.css",
-					"static/js/manifest.05add1e3d8b527d7dabe.js",
-					"static/js/vendor.d4a2f131ede7ee5efff1.js",
-					"static/js/manifest.53109c8e3b3b21ec74e7.js",
-					"static/js/app.f88f00aefc7f564bc6ef.js",
-					"static/js/manifest.c1890b2d9c6e9d7536b9.js"
-				],
-				"refer": [],
-				"priority": 0
-			}
-		},
-		"idle": {
-			"resources": []
-		}
+	  "pages": {
+	    "index.html": {
+	      "resources": [],
+	      "refer": [],
+	      "priority": 0
+	    }
+	  },
+	  "idle": {
+	    "resources": [
+	      "static/js/statistics/camera/assemble.5d29a4c1deeb673ab575.js",
+	      "static/js/myBook/want.c4d44c16d27c26420545.js",
+	      "static/js/settings/resetPwd.3c8796b757625ebda2ec.js",
+	      "static/js/workbook/physics.487f614e279ebfccb095.js",
+	      "static/js/myBook/want/index.42f98e1ef68f744d5c46.js",
+	      "static/js/statistics/remember.2e8999a83e341b87750b.js",
+	      "static/js/camera/layout.d05a242d5a29c8c15476.js",
+	      "static/js/comment.ec2a2622813873f2af72.js",
+	      "static/js/message/system.ba7057aa809e0426faf8.js",
+	      "static/js/statistics/remember/assemble.32261ee86b1762117665.js",
+	      "static/js/login/resetPassword.191a45b20ab2c7b54600.js",
+	      "static/js/camera/points.6f0d8f573c9fb82adb48.js",
+	      "static/img/induce.7376e3c.jpg",
+	      "static/js/workbook/layout.4aaa452b2759a73d6e2c.js",
+	      "static/js/login/register.98f2e080ddf2ac692f70.js",
+	      "static/js/induce/chemistry.53bbd3a3f3bc3dacb5f2.js",
+	      "static/js/collect/physics.a746880df62b73677c0e.js",
+	      "static/js/camera/chapter/math.8160e9a797dd77a0189d.js",
+	      "static/js/statistics/layout.7a223757247d536efae1.js",
+	      "static/js/login/info.e2cf93d049a5fa8d71ef.js",
+	      "static/js/induce/physics.3968938921a2682c3ee5.js",
+	      "static/js/myBook/layout.273689b426b7e22cd92b.js",
+	      "static/js/myBook/want/photo.5a4b03df5ce77f3869e9.js",
+	      "static/js/example.c9d80c315cbd2255324a.js",
+	      "static/js/manifest.1721a11686e58d565454.js",
+	      "static/js/settings/index.ab398b1c460c834f1b03.js",
+	      "static/js/homework/index.53fa2fecd64d97d79e8f.js",
+	      "static/js/camera/chapter/chemistry.d61a4e500f25cbe2e2a2.js",
+	      "static/js/about/adviceHistory.403531de23fcee8770d4.js",
+	      "static/img/homework.056b527.jpg",
+	      "static/js/induce/exercise/pass.7d13bec75cffbd8f6738.js",
+	      "static/css/app.870d5aabeb839262cccc405cf346d9a5.css",
+	      "static/js/vendor.dll.js",
+	      "static/js/workbook/exercise/error.3e6ff0c7e8e8482ba0cf.js",
+	      "static/js/camera/photo.4eb6d196247494714659.js",
+	      "static/js/download/layout.bfe0b075aa251bc582bf.js",
+	      "static/js/login/index.e08a63ea6b92ec54c051.js",
+	      "static/img/bg.03a0b07.jpg",
+	      "static/js/camera/points/math.4389cf1d63024e454c66.js",
+	      "static/js/class/detail.2a0589a62d8354d44437.js",
+	      "static/js/camera/upload.407d30e96dfe65c7fff8.js",
+	      "static/js/user.0d7a024b7f0127e9b07c.js",
+	      "static/js/about/advice.54819638030235bd0ac1.js",
+	      "static/js/collect/chemistry.127a52e744b195791532.js",
+	      "static/js/settings/update.cedb5727af62a2758b68.js",
+	      "static/js/bag.d35bd5ce5f5a7b7b5d83.js",
+	      "static/js/download/index.1d8234f92514699d2a4b.js",
+	      "static/js/download/good.be34bc141f444b84dd5d.js",
+	      "static/js/download/camera.e54174800fba2af13e97.js",
+	      "static/js/collect/math.1dd7ecbc008133a2847d.js",
+	      "static/js/download/paper.c0fe588ade4d12b13995.js",
+	      "static/js/statistics/good/options.035d4d1c0e55febd75cc.js",
+	      "static/js/download/remember.d73ae280b763e1519d43.js",
+	      "static/img/statistics.6ae0e5f.jpg",
+	      "static/js/download/good/detail.5f8bec5167682075e3f8.js",
+	      "static/js/induce/exercise/practice.864b7c5823b75663f988.js",
+	      "static/js/myBook/add.ca84284b2853a8e75fe0.js",
+	      "static/js/workbook/want/index.d02c066f8ff90009b211.js",
+	      "static/js/index.c0dff34f4e57b83618b6.js",
+	      "static/js/induce/exercise/total.74ae0f0754b46e393993.js",
+	      "static/js/camera/chapter/physics.657b34dc45593fe576dd.js",
+	      "static/js/statistics/camera.8a1af74ca98ac8ba6f2f.js",
+	      "static/js/practise.a744cb4348aefdeb6e10.js",
+	      "static/js/login/setPassword.0f1c421cfe377c4fb45e.js",
+	      "static/js/induce/exercise.67412d4667ecdbc54d0b.js",
+	      "static/js/workbook/want.2400f78d8a0b85764575.js",
+	      "static/js/message/layout.9383ba5e8daaf51243ce.js",
+	      "static/js/vendor-async.9437cdf680c5c4a79cae.js",
+	      "static/js/message/index.8585e1b950a67de43c8e.js",
+	      "static/js/induce/layout.61d048155ca2994ad032.js",
+	      "static/js/workbook/exercise/photo.a102dfac89d35a91f3c4.js",
+	      "static/js/about/layout.42dba20e84fe2bf2f561.js",
+	      "static/js/induce/exercise/break.f1b1b47f8876a0cf8d91.js",
+	      "static/img/ewm.c582fb1.jpg",
+	      "static/js/statistics/good.15e2e3c452ac9ca66ca7.js",
+	      "static/js/settings/layout.86268f259bc904d4658f.js",
+	      "static/js/collect/layout.0486ad0e8b8e953417e0.js",
+	      "static/js/download/camera/detail.e5a7506e514ac30ebd2f.js",
+	      "static/js/workbook/exercise/result.9ea7ca773a3c91215b51.js",
+	      "static/js/workbook/want/photo.e904b1485e50beb6cbe2.js",
+	      "static/js/workbook/add.4f7dd59820f88b95c9c2.js",
+	      "static/js/myBook/physics.df4d929b78382623662b.js",
+	      "static/js/workbook/uploader.0d5c22b03620abb86b63.js",
+	      "static/js/myBook/math.234032b08147c190de93.js",
+	      "static/js/workbook/uploader/photo.b63eb28bd09a151518f8.js",
+	      "static/js/myBook/search.1f696aec0014f48afb58.js",
+	      "static/js/workbook/chemistry.f29fc7116948e413f0d4.js",
+	      "static/js/correct.7c68960a6e93db75c2d8.js",
+	      "static/js/myBook/chemistry.eca807f79ad6420eeec0.js",
+	      "static/js/download/paper/search.f07dede9406cb6c20e83.js",
+	      "static/img/class.a76b5e2.jpg",
+	      "static/js/camera/points/chemistry.7a7a3fdd3a03ff400ab4.js",
+	      "static/js/vendor.64f51a6c70248b47440c.js",
+	      "static/js/layout.8ae58f2301f0789cedc6.js",
+	      "static/js/workbook/search.714bea7a953f9db7223a.js",
+	      "static/js/login/layout.ce89bdd73df66730bab2.js",
+	      "static/js/statistics/good/assemble.d989d400d144ab70be78.js",
+	      "static/js/statistics/math.0f64e1201b0a2a9c16a1.js",
+	      "static/js/statistics/remember/options.c2ec69942f1c2ff1199e.js",
+	      "static/js/workbook/chapter.694c8a51c33400abde98.js",
+	      "static/img/icon.20f4179.png",
+	      "static/js/workbook/math.750012752ee3cdfeb3da.js",
+	      "static/js/message/class.c4c57a8e397f49affaae.js",
+	      "static/js/message/correct.3dd06acb0dc201912154.js",
+	      "static/js/download/remember/detail.fb0ce823004b1488d25a.js",
+	      "static/js/about/index.2287384ea9dc90335961.js",
+	      "static/js/class/add.b814b91ea4b248e80f02.js",
+	      "static/js/settings/photo.d39d74ba96359c00af49.js",
+	      "static/js/class/index.66ef8f55db22d33a826e.js",
+	      "static/js/login/forget.dcd2bba12fc79a3bd7cd.js",
+	      "static/js/app.ec243d636c46abc6bdfe.js",
+	      "static/js/about/my.1802cff751bfc3d79d7b.js",
+	      "static/js/workbook/exercise/upload.03248dee8c39e0438bf6.js",
+	      "static/js/homework/layout.c5422de0c67125307d76.js",
+	      "static/js/statistics/physics.f84942da77caac887457.js",
+	      "static/js/camera/chapter.f4ba23e1a2c43cfdbe22.js",
+	      "static/js/workbook/exercise/answer.83171495dd29cc79ad7d.js",
+	      "static/js/article.09adbf402f6f6d1e874e.js",
+	      "static/js/class/layout.54b34be5ec456465dafb.js",
+	      "static/img/camera.c5ad489.jpg",
+	      "static/js/induce/math.bd9591fb172ebb2de79d.js",
+	      "static/js/workbook/exercise.3237c8ebcb77958ae055.js",
+	      "static/js/camera/points/physics.4b76d908059bd85bca03.js"
+	    ]
+	  }
 	},
 	"fullscreen": false
 }

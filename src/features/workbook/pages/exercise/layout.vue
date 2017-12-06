@@ -5,10 +5,10 @@
         <i slot="right" class="icon iconfont icon-home" @click="$router.go(-2)"></i>
       </x-header>
       <tab style="position:fixed;top:46px;width:100%;z-index:1">
-        <tab-item :selected="Route.name === 'workbook_exercise_result'"
+        <!-- <tab-item :selected="Route.name === 'workbook_exercise_result'"
           @click.native="$router.replace({name:'workbook_exercise_result'})">
           查答案
-        </tab-item>
+        </tab-item> -->
         <tab-item :selected="Route.name === 'workbook_exercise_answer'"
           @click.native="$router.replace({name:'workbook_exercise_answer'})">
           记错题

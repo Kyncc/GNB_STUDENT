@@ -12,11 +12,23 @@ html,body{
   background:#F3F9F8;
   color:#555;
   user-select: none;
-  -webkit-user-select:none; 
+  -webkit-user-select:none;
   transform: translate3d(0,0,0);
   -webkit-transform: translate3d(0,0,0);
 }
 a,img { -webkit-touch-callout: none }
+ul{
+  list-style-type: none;
+}
+.edittable td {
+  border: 1px solid #ccc;
+}
+.table-bordered{
+  margin:10px 0;
+}
+.table-bordered td {
+  border: 1px solid #ccc;
+}
 #app{
   height:100%;
   position:relative;
@@ -83,7 +95,7 @@ img[lazy=loading] {
 }
 
 .vux-tap-active:active{
-  background:none; 
+  background:none;
 }
 /**
 *   group
@@ -100,6 +112,9 @@ img[lazy=loading] {
       background:none !important;
     }
   }
+}
+.vux-card-content{
+  overflow-y: scroll;
 }
 /**
 *   vux-spinner

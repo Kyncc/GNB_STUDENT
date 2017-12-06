@@ -1,7 +1,7 @@
 export default [
   {
     path: '/',
-    component: r => require.ensure([], () => r(require('./pages/layout')), '/'),
+    component: r => require.ensure([], () => r(require('./pages/layout')), 'layout'),
     redirect: to => {
       if (localStorage.getItem('token')) return 'index'
       return 'login'
@@ -10,22 +10,22 @@ export default [
       {
         path: 'index',
         name: 'index',
-        component: r => require.ensure([], () => r(require('./pages/index')), '/index')
+        component: r => require.ensure([], () => r(require('./pages/index')), 'index')
       },
       {
         path: 'bag',
         name: 'bag',
-        component: r => require.ensure([], () => r(require('./pages/bag')), '/bag')
+        component: r => require.ensure([], () => r(require('./pages/bag')), 'bag')
       },
       {
         path: 'user',
         name: 'user',
-        component: r => require.ensure([], () => r(require('./pages/user')), '/user')
+        component: r => require.ensure([], () => r(require('./pages/user')), 'user')
       }
     ]
   },
   {
     path: '/article/:id',
-    component: r => require.ensure([], () => r(require('./pages/article')), '/article')
+    component: r => require.ensure([], () => r(require('./pages/article')), 'article')
   }
 ]
