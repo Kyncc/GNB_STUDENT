@@ -121,6 +121,10 @@ export default {
           _this.WorkbookExercisePost({
             answerId: _this.answerListId,
             answer: _this.answerListAnswer
+          }).then(() => {
+            setTimeout(() => {
+              _this.$router.replace({name: 'workbook_exercise_error'})
+            }, 1000)
           })
         }
       })
