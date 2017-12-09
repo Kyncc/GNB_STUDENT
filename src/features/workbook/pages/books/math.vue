@@ -55,23 +55,17 @@ export default {
       })
     }
   },
-  activated () {
-    this.$parent.$refs.viewBoxBody.scrollTop = this.workbookMath.scroll
-  },
   beforeRouteEnter (to, from, next) {
     next(vm => {
       if (from.name === 'workbook_add') {
         vm.workbookClear({subject: 'math'})
-        vm._getData()
       }
+      vm._getData()
     })
   },
   beforeRouteLeave (to, from, next) {
     this.setWorkbookScroll({subject: 'math', height: this.$parent.$refs.viewBoxBody.scrollTop})
     next()
-  },
-  mounted () {
-    this._getData()
   }
 }
 </script>

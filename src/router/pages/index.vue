@@ -47,7 +47,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getUserInfo'])
+    ...mapActions(['getUserInfo', 'getUserNews'])
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.getUserNews()
+    })
   },
   created () {
     this.getUserInfo()

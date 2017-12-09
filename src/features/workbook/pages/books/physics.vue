@@ -3,7 +3,7 @@
     <div v-if="!loading">
       <group v-for="(textbook, pindex) in workbookPhysics.list.textbook" :title="textbook.textbookName" :key='pindex'>
         <cell v-for="(workbook, index) in textbook.list" :key="index" is-link
-          @click.native="$router.push({ name: 'workbook_chapter', params: {'id': workbook.workbookId ,'name': workbook.workbookName}})">
+          @click.native="$router.push({name: 'workbook_chapter', params: {'id': workbook.workbookId ,'name': workbook.workbookName}})">
           <img v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/120x160!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' slot="icon" width="60" height="80"/>
           <div slot="after-title" style="width:90%;">
             <p style="color:#4cc0be;font-size:14px;">&nbsp;&nbsp;&nbsp;{{workbook.year}}版</p>
@@ -55,23 +55,17 @@ export default {
       })
     }
   },
-  activated () {
-    this.$parent.$refs.viewBoxBody.scrollTop = this.workbookPhysics.scroll
-  },
   beforeRouteEnter (to, from, next) {
     next(vm => {
       if (from.name === 'workbook_add') {
         vm.workbookClear({subject: 'physics'})
-        vm._getData()
       }
+      vm._getData()
     })
   },
   beforeRouteLeave (to, from, next) {
     this.setWorkbookScroll({subject: 'physics', height: this.$parent.$refs.viewBoxBody.scrollTop})
     next()
-  },
-  mounted () {
-    this._getData()
   }
 }
 </script>
