@@ -1,7 +1,6 @@
 <template>
   <div class='user'>
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{showBack: false}">
-      <!--<i class="icon iconfont icon-share" slot="right"></i>-->
       个人中心
     </x-header>
     <group gutter="0" class='headInfo'>
@@ -29,21 +28,36 @@
         <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>
         <badge></badge>
       </cell>
+      <cell title="我要分享" is-link @click.native="showAction = true">
+        <i class="icon iconfont icon-share" style="color:#4cc0be" slot="icon"></i>
+      </cell>
     </group>
+    <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="share.href"></share>
   </div>
 </template>
 
 <script>
 import {XHeader, Cell, Group, ViewBox, Badge} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
+import Share from '@/components/share'
 
 export default {
   name: 'user',
   components: {
-    XHeader, Cell, Group, ViewBox, Badge
+    XHeader, Cell, Group, ViewBox, Badge, Share
   },
   computed: {
     ...mapGetters(['User', 'System', 'News'])
+  },
+  data () {
+    return {
+      showAction: false,
+      share: {
+        content: '好东西，自然与朋友共分享',
+        title: '替老师批改作业，帮学生归纳错题',
+        href: `http://share.guinaben.com/#/invite?code=`
+      }
+    }
   },
   methods: {
     ...mapActions(['getUserNews']),
@@ -55,6 +69,14 @@ export default {
     next(vm => {
       vm.getUserNews()
     })
+  },
+  beforeRouteLeave (to, from, next) {
+    if (this.showAction) {
+      this.showAction = false
+      next(false)
+    } else {
+      next()
+    }
   }
 }
 </script>
