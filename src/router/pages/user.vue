@@ -28,7 +28,7 @@
         <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>
         <badge></badge>
       </cell>
-      <cell title="我要分享" is-link @click.native="showAction = true">
+      <cell title="邀请好友" is-link @click.native="showAction = true">
         <i class="icon iconfont icon-share" style="color:#4cc0be" slot="icon"></i>
       </cell>
     </group>
@@ -38,7 +38,7 @@
 
 <script>
 import {XHeader, Cell, Group, ViewBox, Badge} from 'vux'
-import {mapActions, mapGetters} from 'vuex'
+import {mapGetters} from 'vuex'
 import Share from '@/components/share'
 
 export default {
@@ -60,15 +60,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getUserNews']),
     _openStore () {
       window.location.href = 'market://details?id=com.sanbao.guinaben.student'
     }
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.getUserNews()
-    })
   },
   beforeRouteLeave (to, from, next) {
     if (this.showAction) {
