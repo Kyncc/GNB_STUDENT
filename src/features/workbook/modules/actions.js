@@ -155,10 +155,10 @@ export const WorkbookExercisePost = ({ state, rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'workbook/submit',
+      url: 'workbook/submit/v2',
       data: {
         'answer': params.answer,
-        'answerId': params.answerId,
+        // 'answerId': params.answerId,
         'token': rootState.common.user.token,
         'chapterId': rootState.route.params.id
       }
@@ -193,7 +193,7 @@ export const getWorkbookExercise = ({ state, rootState, commit }, id) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'workbook/exercises',
+      url: 'workbook/exercises/v2',
       params: {
         'token': rootState.common.user.token,
         'chapterId': rootState.route.params.id || id

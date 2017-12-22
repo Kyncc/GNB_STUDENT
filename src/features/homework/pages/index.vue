@@ -2,9 +2,9 @@
   <view-box ref="homework" body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
       <x-header :left-options="{backText: '我的作业',showBack: true}">
-        <div slot="right" style="margin:0">
+        <!-- <div slot="right" style="margin:0">
           <gnbChangeSub :change.sync='selectedSub'></gnbChangeSub>
-        </div>
+        </div> -->
       </x-header>
     </div>
     <div>
