@@ -1,21 +1,27 @@
 <template >
   <div>
-    <group v-for="(item, pindex) in errorList" :title="item.name" :gutter="(pindex ? '10px' : '0px')" :key="pindex">
-      <card v-for="(img, index) in item.imgList" :key="index" >
+    <group v-for="(item, pindex) in errorList" :title="item.name" :gutter="(pindex ? '10px' : '0px')" :key="pindex" style='background:#F3F9F8'>
+      <card v-for="(img, index) in item.imgList" :key="index">
+        <div slot="header" class="weui-panel__hd">
+          <flexbox>
+            <flexbox-item :span="10" style="color:#4cc0be">{{img.chapterName}}</flexbox-item>
+          </flexbox>
+        </div>
         <div slot="content">
-          <div @click.native="show(pindex,index)">
+          <div @click="show(pindex,index)">
             <img v-lazy="img.url+'-errorList'">
           </div>
         </div>
         <div slot="footer">
           <div class="weui-cell">
-            <flexbox class="weui-cell__bd">
-              <!-- <flexbox-item :span="4">
-                <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '错误原因'}}</x-button>
+            <flexbox class="weui-cell__bd" style='color:#4cc0be'>
+              <flexbox-item :span="3" style='font-size:14px;'>
+                难度{{img.degree}}
               </flexbox-item>
+              <flexbox-item :span="5"></flexbox-item>
               <flexbox-item :span="4">
-                <x-button mini type="primary" plain @click.native="$router.push({name: 'comment', params: {wbeid: error.id}})" v-if='error.comment'>查看点评</x-button>
-              </flexbox-item> -->
+                <x-button mini type="primary" :plain="img.errorType.length > 0">{{img.errorType.length ? img.errorType : '错误原因'}}</x-button>
+              </flexbox-item>
             </flexbox>
           </div>
         </div>
@@ -33,7 +39,7 @@
       <popup v-model="showErrorPopup" class="checker-popup">
         <group title='选择错误原因：'>
           <div style="padding:10px 10px 0 10px;">
-            <checker type="radio" v-model="errorType.errorComment" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
+            <checker type="radio" v-model="errorType.errorType" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
               <checker-item value="概念模糊" @on-item-click="onItemClick">概念模糊</checker-item>
               <checker-item value="粗心大意" @on-item-click="onItemClick">粗心大意</checker-item>
               <checker-item value="能力不够" @on-item-click="onItemClick">能力不够</checker-item>
@@ -89,7 +95,7 @@ export default {
       errorType: {
         chapterId: '',
         id: '',
-        errorComment: '',
+        errorType: '',
         index: ''
       },
       showAction: false,

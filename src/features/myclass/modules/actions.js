@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
@@ -51,9 +52,9 @@ export const getMyClassSearchClass = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'class/search',
+      url: 'class/search/v2',
       params: {
-        classCode: params.classCode,
+        name: params.name,
         token: rootState.common.user.token
       }
     })
@@ -71,6 +72,7 @@ export const myClassSearchClear = ({ commit }) => {
 
 /** 加入班级 */
 export const postMyClassInto = ({ rootState, commit }, params) => {
+  Vue.$vux.loading.show({ text: '请稍候' })
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -81,8 +83,13 @@ export const postMyClassInto = ({ rootState, commit }, params) => {
       }
     })
       .then((response) => {
-        commit(types.CLASS_ADD, response.data.data)
+        Vue.$vux.loading.hide()
+        commit(types.CLASS_ADD, params.index)
         resolve(response)
+      })
+      .catch((error) => {
+        Vue.$vux.loading.hide()
+        reject(error)
       })
   })
 }

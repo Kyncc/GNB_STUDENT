@@ -26,17 +26,30 @@
        @click="$router.push({name: 'workbook_add', params: {subject: 'math'}, query: {id: User.textbook.math[0].id}})"
       >点我添加数学习题册</p>
     </div>
+    <!--下载错题 -->
+    <div v-transfer-dom>
+      <tabbar>
+        <tabbar-item style='line-height:42px;height:42px;' v-if="$route.name === 'workbook_math'">
+          <div slot="label" style='line-height:42px;height:42px;'>
+            <x-button @click.native="$router.push({name: 'camera_chapter_math'})" style='radius:0;'>拍错题</x-button>
+          </div>
+        </tabbar-item>
+      </tabbar>
+    </div>
   </div>
 </template>
 
 <script>
-import {Badge, Group, Cell, Spinner} from 'vux'
+import {XButton, Tabbar, TabbarItem, Badge, Group, Cell, Spinner, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'math',
   components: {
-    Badge, Group, Cell, Spinner
+    XButton, Tabbar, TabbarItem, Badge, Group, Cell, Spinner
+  },
+  directives: {
+    TransferDom
   },
   computed: {
     ...mapGetters(['User', 'workbookMath'])

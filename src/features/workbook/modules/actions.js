@@ -158,7 +158,7 @@ export const WorkbookExercisePost = ({ state, rootState, commit }, params) => {
       url: 'workbook/submit/v2',
       data: {
         'answer': params.answer,
-        // 'answerId': params.answerId,
+        'answerId': params.answerId,
         'token': rootState.common.user.token,
         'chapterId': rootState.route.params.id
       }

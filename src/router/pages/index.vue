@@ -11,7 +11,7 @@
     <div style='padding-bottom:55px'>
       <flexbox style='height:6.3rem' :gutter='0'>
         <flexbox-item :span="4" @click.native="$router.push({ name: 'workbook'})" :class="News.workbook ? 'workbookMsg' : 'workbook'"></flexbox-item>
-        <flexbox-item :span="4" @click.native="$router.push({ name: 'camera'})" class='camera'></flexbox-item>
+        <flexbox-item :span="4" @click.native="$router.push({ name: 'statistics'})" class='error'></flexbox-item>
         <flexbox-item :span="4" @click.native="$router.push({ name: 'homework'})" class='homework'></flexbox-item>
       </flexbox>
       <flexbox style='height:6.3rem' :gutter='0'>
