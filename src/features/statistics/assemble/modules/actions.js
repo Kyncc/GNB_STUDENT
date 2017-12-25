@@ -15,7 +15,9 @@ export const getStatisticsRemember = ({ state, rootState, commit }, params) => {
           textbookId: rootState.route.params.textbookId,
           subject: rootState.route.params.subject,
           chapterId: rootState.route.params.chapterId,
-          degree: state.remember.index.options.degree
+          degree: state.remember.index.options.degree,
+          errorComment: state.remember.index.options.errorComment,
+          qType: state.remember.index.options.qType
         }
       }
     })
@@ -75,7 +77,7 @@ export const setStatisticsRememberAssembleUpdate = ({ rootState, commit }, param
 /** 记错题难度筛选 */
 export const setStatisticsRememberOptions = ({ commit }, params) => {
   commit(types.STATISTICS_ASSEMBLE_RESET, {type: 'remember'})
-  commit(types.STATISTICS_REMEMBER_OPTIONS, {degree: params.degree})
+  commit(types.STATISTICS_REMEMBER_OPTIONS, {degree: params.degree, qType: params.qType, errorComment: params.errorComment})
 }
 
 /** 获取拍错题列表 */

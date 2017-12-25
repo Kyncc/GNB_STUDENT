@@ -13,7 +13,9 @@ const mutations = {
   },
   [types.STATISTICS_REMEMBER_OPTIONS] (state, payload) {
     state.remember.index.options = {
-      degree: payload.degree
+      degree: payload.degree,
+      errorComment: payload.errorComment,
+      qType: payload.qType
     }
     state.remember.index.reset = true
   },
@@ -91,7 +93,7 @@ const mutations = {
         state.camera = { index: { list: [], scroll: 0, offset: '', reset: true }, download: [], count: 0 }; break
       }
       case 'remember' : {
-        state.remember = { index: { options: { degree: 0 }, scroll: 0, list: [], offset: '', reset: true }, download: [], count: 0 }; break
+        state.remember = { index: { options: { degree: 0, qType: 0, errorComment: 0 }, scroll: 0, list: [], offset: '', reset: true }, download: [], count: 0 }; break
       }
       case 'good' : {
         state.good = { index: { options: { type: 0, degree: 0 }, scroll: 0, list: [], offset: '', reset: true }, download: [], count: 0 }; break
