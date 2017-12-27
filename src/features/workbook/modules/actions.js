@@ -256,7 +256,7 @@ export const workbookExErrorUpload = ({ state, rootState, commit }, params) => {
     })
       .then((response) => {
         Vue.$vux.loading.hide()
-        this.$vux.toast.show({text: '设置错误原因成功!', type: 'text', time: 1500, position: 'bottom'})
+        Vue.$vux.toast.show({text: '设置错误原因成功!', type: 'text', time: 1500, position: 'bottom'})
         resolve(response)
       })
       .catch((error) => {
