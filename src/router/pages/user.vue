@@ -55,7 +55,7 @@ export default {
       share: {
         content: '好东西，自然与朋友共分享',
         title: '替老师批改作业，帮学生归纳错题',
-        href: `http://share.guinaben.com/#/invite?code=`
+        href: `http://a.app.qq.com/o/simple.jsp?pkgname=com.sanbao.guinaben.teacher&channel=0002160650432d595942&fromcase=60001`
       }
     }
   },
