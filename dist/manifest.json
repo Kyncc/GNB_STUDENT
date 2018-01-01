@@ -195,7 +195,7 @@
 						"retina40": "E:/Workspace/GNB_TEACHER/distT/unpackage/res/start/640×1136.png",
 						"retina35": "E:/Workspace/GNB_TEACHER/distT/unpackage/res/start/640×960.png",
 						"retina55": "E:/Workspace/GNB_TEACHER/distT/unpackage/res/start/1242×2208.png",
-						"retina47": "E:/Workspace/GNB_TEACHER/distT/unpackage/res/start/750×1334.png"
+						"retina47": "E:/Workspace/GNB_TEACHER/distT/unpackage/res/start/750×1334.png","iphonex":"unpackage/res/start/1125x2436.png"
 					},
 					"ipad": {
 						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/

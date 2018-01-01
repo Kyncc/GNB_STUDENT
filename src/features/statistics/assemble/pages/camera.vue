@@ -16,7 +16,11 @@
         <div class="weui-cell">
           <flexbox class="weui-cell__bd">
             <flexbox-item :span="4">
-              <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '错误原因'}}</x-button>
+              <select v-model="error.errorComment" @change='_changeErrorComment(pindex, index, error, error.errorComment)' class='select-btn weui-btn weui-btn_primary'>
+                <option>概念模糊</option>
+                <option>粗心大意</option>
+                <option>能力不够</option>
+              </select>
             </flexbox-item>
             <flexbox-item :span="4"></flexbox-item>
             <flexbox-item :span="4" style='text-align:right;' @click.native="setStatisticsCameraAssembleUpdate({id: error.id, index: index})">
@@ -38,31 +42,17 @@
     <div v-transfer-dom>
       <previewer :list="list" ref="previewer" :options="options"></previewer>
     </div>
-    <!--错误选择 -->
-    <div v-transfer-dom>
-      <popup v-model="showErrorPopup" class="checker-popup">
-        <group title='选择错误原因：'>
-          <div style="padding:10px 10px 0 10px;">
-            <checker type="radio" v-model="errorType.errorComment" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
-              <checker-item value="概念模糊" @on-item-click="onItemClick">概念模糊</checker-item>
-              <checker-item value="粗心大意" @on-item-click="onItemClick">粗心大意</checker-item>
-              <checker-item value="能力不够" @on-item-click="onItemClick">能力不够</checker-item>
-            </checker>
-          </div>
-        </group>
-      </popup>
-    </div>
   </div>
 </template>
 
 <script>
-import {XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer, TransferDomDirective as TransferDom} from 'vux'
+import {Spinner, Tabbar, TabbarItem, Checker, CheckerItem, Group, Card, Cell, Previewer, Flexbox, XButton, FlexboxItem, PopupRadio, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'camera',
   components: {
-    XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer
+    Spinner, Tabbar, TabbarItem, Checker, CheckerItem, Group, Card, Cell, Previewer, Flexbox, XButton, FlexboxItem, PopupRadio
   },
   computed: {
     ...mapGetters(['AssembleCamera'])
@@ -71,13 +61,6 @@ export default {
     return {
       loading: false,
       loadingNoData: false,
-      showErrorPopup: false,
-      errorType: {
-        chapterId: '',
-        id: '',
-        errorComment: '',
-        index: ''
-      },
       list: [{
         w: 0,
         h: 0,
@@ -115,28 +98,11 @@ export default {
         this.$refs.previewer.show(0)
       })
     },
-    // 类型错误弹窗
-    _showErrorPopup (error, index) {
-      this.showErrorPopup = true
-      this.errorType.index = index
-      this.errorType.errorComment = error.errorComment
-      this.errorType.id = error.id
-      this.errorType.chapterId = error.chapterId
-    },
     // 选择错误原因
-    onItemClick (value) {
-      this.showErrorPopup = false
+    _changeErrorComment (pindex, index, error, val) {
       this.getStatisticsComment({
-        chapterId: this.errorType.chapterId,
-        index: this.errorType.index,
-        errorComment: value,
-        id: this.errorType.id,
-        type: 'camera'
-      }).then(() => {
-        this.errorType.errorComment = ''
-        this.$vux.toast.show({text: '设置错误原因成功!', type: 'text', time: 1500, position: 'bottom'})
-      }).catch(() => {
-        this.errorType.errorComment = ''
+        errorComment: val,
+        wbeid: error.wbeid
       })
     }
   },
@@ -150,54 +116,16 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     this.setStatisticsScroll({type: 'camera', height: this.$parent.$refs.viewBoxBody.scrollTop})
-    if (this.showErrorPopup) {
-      this.showErrorPopup = false
-      next(false)
-    } else {
-      next()
-    }
+    next()
   }
 }
 </script>
 <style scoped>
-.weui-btn + .weui-btn{
-  margin-top:0;
-}
-.assembleCount{
-  position: fixed;
-  background:#4cc0be;
-  color:#fff;
-  font-size: .9rem;
-  height: 3.5rem;
-  width: 3.5rem;
-  box-sizing: border-box;
-  padding:.5rem .75rem;
-  border-radius: 50%;
-  bottom: 10%;
-  right: 5%;
-  box-shadow: 2px 2px 7px #4cc0be;
-  text-align: center;
-}
-.checker-popup{
-  background: #fff;
-}
-.check-item {
-  background-color: #ddd;
-  color: #222;
-  font-size: 14px;
-  padding: 8px 0;
-  width:32%;
-  margin-right: 0px;
-  line-height: 18px;
-  text-align:center;
-  margin-bottom: 10px;
-  border-radius: 15px;
-}
-.check-item-selected {
-  background-color: #4cc0be;
-  color: #fff;
-}
-.check-item-disabled {
-  color: #999;
+.select-btn{
+  font-size: .7rem;
+  -webkit-appearance: none;
+  border: 0;
+  outline: 0;
+  margin: 0 !important;
 }
 </style>

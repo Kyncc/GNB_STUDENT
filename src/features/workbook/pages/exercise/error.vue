@@ -15,14 +15,14 @@
                   <option>概念模糊</option>
                   <option>粗心大意</option>
                   <option>能力不够</option>
-                  <option>未填写</option>
+                  <option>原因未知</option>
                 </select>
                 <!-- <x-button mini type="primary" :plain="img.errorType !== '未填写'" @click='_showErrorPopup(img, index)'>{{img.errorType === '未填写' ? '错误原因' : img.errorType}}</x-button> -->
               </flexbox-item>
               <flexbox-item :span="3">
                 难度{{img.degree}}
               </flexbox-item>
-              <flexbox-item :span="5">{{img.chapterName}}</flexbox-item>
+              <flexbox-item :span="4" class='ellipsis'>{{img.chapterName}}</flexbox-item>
             </flexbox>
           </div>
         </div>
@@ -72,7 +72,6 @@ export default {
   data () {
     return {
       list: [{}],
-      showErrorPopup: false,
       options: {
         preload: [1, 1],
         bgOpacity: 1,

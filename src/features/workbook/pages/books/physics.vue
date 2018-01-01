@@ -7,7 +7,7 @@
           <img v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/120x160!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' slot="icon" width="60" height="80"/>
           <div slot="after-title" style="width:90%;">
             <p style="color:#4cc0be;font-size:14px;">&nbsp;&nbsp;&nbsp;{{workbook.year}}版</p>
-            <p class="ellipsis" style="font-size:.9rem;padding:.2rem 0">&nbsp;&nbsp;{{workbook.workbookName}}</p>
+            <p class="ellipsis" style="font-size:.9rem;">&nbsp;&nbsp;{{workbook.workbookName}}</p>
             <template v-if='workbook.version'>
               <p v-for="(tag, index) in workbook.version.split(',')" :key='index' style="color:#aaa;font-size:14px;">
                 &nbsp;&nbsp;&nbsp;{{tag}}

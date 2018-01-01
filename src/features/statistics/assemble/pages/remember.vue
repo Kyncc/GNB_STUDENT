@@ -3,7 +3,7 @@
     <card v-for='(error, index) in AssembleRemember.index.list' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
-          <flexbox-item :span="8" style='color:#4cc0be'>{{error.workbookName}}</flexbox-item>
+          <flexbox-item :span="8" style='color:#4cc0be'>{{error.charpterName}}</flexbox-item>
           <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
         </flexbox>
       </div>
@@ -15,7 +15,7 @@
       <div slot="footer">
         <div class="weui-cell" style='font-size:.7rem;color:#4cc0be'>
           <flexbox class="weui-cell__bd">
-            <flexbox-item :span="3">难度{{error.dgree}}</flexbox-item>
+            <flexbox-item :span="3">难度{{error.degree}}</flexbox-item>
             <flexbox-item :span="3">{{error.kownledge}}</flexbox-item>
             <flexbox-item :span="3">{{error.errorComment}}</flexbox-item>
             <flexbox-item :span="3" style='text-align:right;'
@@ -48,7 +48,7 @@
   </div>
 </template>
 
-<script>
+<script>  
 import {XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 

@@ -24,7 +24,7 @@
         <checker-item value="概念模糊">概念模糊</checker-item>
         <checker-item value="粗心大意">粗心大意</checker-item>
         <checker-item value="能力不够">能力不够</checker-item>
-        <checker-item value="-1">未填写</checker-item>
+        <checker-item value="-1">原因未知</checker-item>
       </checker>
     </div>
   </view-box>

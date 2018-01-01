@@ -17,6 +17,9 @@
       <cell title="我的习题册" link="myBook">
         <i class="icon iconfont icon-my_exercisebook" style="color:#4cc0be" slot="icon"></i>
       </cell>
+      <cell title="邀请好友" is-link @click.native="showAction = true">
+        <i class="icon iconfont icon-share" style="color:#4cc0be" slot="icon"></i>
+      </cell>
       <cell title="设置" link="settings">
         <i class="icon iconfont icon-settingfull" style="color:#4cc0be" slot="icon"></i>
       </cell>
@@ -27,9 +30,6 @@
       <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.7.0'" is-link @click.native="_openStore">
         <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>
         <badge></badge>
-      </cell>
-      <cell title="邀请好友" is-link @click.native="showAction = true">
-        <i class="icon iconfont icon-share" style="color:#4cc0be" slot="icon"></i>
       </cell>
     </group>
     <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="share.href"></share>
@@ -55,7 +55,7 @@ export default {
       share: {
         content: '好东西，自然与朋友共分享',
         title: '替老师批改作业，帮学生归纳错题',
-        href: `http://a.app.qq.com/o/simple.jsp?pkgname=com.sanbao.guinaben.teacher&channel=0002160650432d595942&fromcase=60001`
+        href: `http://a.app.qq.com/o/simple.jsp?pkgname=com.sanbao.guinaben.student`
       }
     }
   },
