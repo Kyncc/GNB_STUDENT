@@ -47,8 +47,7 @@
     </div>
   </div>
 </template>
-
-<script>  
+<script>
 import {XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
