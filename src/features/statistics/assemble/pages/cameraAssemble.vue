@@ -32,8 +32,8 @@
     </share>
     <tabbar slot="bottom" style='background-color:#4cc0be;color:#fff' v-show='AssembleCamera.download && AssembleCamera.download.length'>
       <flexbox-item :span="12" style="font-size:.8rem;text-align:center;padding:.25rem 0" @click.native="_download()">
-        <i class="icon iconfont icon-download"></i>下载</flexbox-item>
-      </flexbox>
+        <i class="icon iconfont icon-download"></i>下载
+      </flexbox-item>
     </tabbar>
   </view-box>
 </template>

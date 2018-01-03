@@ -7,7 +7,7 @@
       <div v-for="(list, pindex) in block" :key="pindex" v-show='!loading'>
         <div class="weui-cells__title">{{list.name}}</div>
         <card v-for="(item, index) in list.list" :key="index">
-          <div class="weui-panel__hd" slot="header" style='color:#4cc0be'>
+          <div class="weui-panel__hd" slot="header" style='color:#999999'>
             {{item.chapterName}}
           </div>
           <div slot="content"

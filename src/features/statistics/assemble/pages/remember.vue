@@ -3,7 +3,7 @@
     <card v-for='(error, index) in AssembleRemember.index.list' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
-          <flexbox-item :span="8" style='color:#4cc0be'>{{error.charpterName}}</flexbox-item>
+          <flexbox-item :span="8" style='color:#999999'>{{error.charpterName}}</flexbox-item>
           <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
         </flexbox>
       </div>

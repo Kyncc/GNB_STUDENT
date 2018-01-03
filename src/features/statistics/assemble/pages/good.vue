@@ -1,7 +1,7 @@
 <template>
   <div>
     <card v-for="(item, index) in AssembleGood.index.list" :key="index">
-      <div class="weui-panel__hd" slot="header" style='color:#4cc0be'>
+      <div class="weui-panel__hd" slot="header" style='color:#999999'>
         {{item.chapterName}}
       </div>
       <div slot="content" @click="$router.push({name:'example', params: {subjectId: item.subject_id, id: item.exercisesId}})">

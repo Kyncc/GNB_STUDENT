@@ -31,7 +31,7 @@
       <tabbar>
         <tabbar-item style='line-height:42px;height:42px;' v-if="$route.name === 'workbook_math'">
           <div slot="label" style='line-height:42px;height:42px;'>
-            <x-button @click.native="$router.push({name: 'camera_chapter_math'})" style='radius:0;'>拍错题</x-button>
+            <x-button @click.native="$router.push({name: 'camera_chapter_math'})" style='border-radius:0;'>拍错题</x-button>
           </div>
         </tabbar-item>
       </tabbar>

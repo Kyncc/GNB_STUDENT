@@ -3,7 +3,7 @@
     <card v-for='(error, index) in AssembleCamera.index.list' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
-          <flexbox-item :span="8" style='color:#4cc0be'>{{error.chapterName}}</flexbox-item>
+          <flexbox-item :span="8" style='color:#999999'>{{error.chapterName}}</flexbox-item>
           <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
         </flexbox>
       </div>
@@ -14,12 +14,13 @@
       </div>
       <div slot="footer">
         <div class="weui-cell">
-          <flexbox class="weui-cell__bd">
+          <flexbox class="weui-cell__bd" style='color:#586C94;font-size:.7rem;'>
             <flexbox-item :span="4">
               <select v-model="error.errorComment" @change='_changeErrorComment(pindex, index, error, error.errorComment)' class='select-btn weui-btn weui-btn_primary'>
                 <option>概念模糊</option>
                 <option>粗心大意</option>
                 <option>能力不够</option>
+                <option>思路不清</option>
               </select>
             </flexbox-item>
             <flexbox-item :span="4"></flexbox-item>
