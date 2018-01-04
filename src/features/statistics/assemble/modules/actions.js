@@ -315,10 +315,10 @@ export const getStatisticsComment = ({ rootState, commit }, params) => {
       url: 'comment',
       data: {
         token: rootState.common.user.token,
-        chapterId: params.chapterId,
-        type: params.type,
+        chapterId: rootState.route.params.chapterId,
         errorComment: params.errorComment,
-        id: params.id
+        id: params.id,
+        type: 'camera'
       }
     })
       .then((response) => {

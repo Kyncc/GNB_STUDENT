@@ -16,11 +16,11 @@
         <div class="weui-cell">
           <flexbox class="weui-cell__bd" style='color:#586C94;font-size:.7rem;'>
             <flexbox-item :span="4">
-              <select v-model="error.errorComment" @change='_changeErrorComment(pindex, index, error, error.errorComment)' class='select-btn weui-btn weui-btn_primary'>
+              <select v-model="error.errorComment" @change='_changeErrorComment(index, error, error.errorComment)' class='select-btn weui-btn weui-btn_primary'>
                 <option>概念模糊</option>
                 <option>粗心大意</option>
                 <option>能力不够</option>
-                <option>思路不清</option>
+                <option>原因未知</option>
               </select>
             </flexbox-item>
             <flexbox-item :span="4"></flexbox-item>
@@ -100,10 +100,11 @@ export default {
       })
     },
     // 选择错误原因
-    _changeErrorComment (pindex, index, error, val) {
+    _changeErrorComment (index, error, val) {
       this.getStatisticsComment({
+        index: index,
         errorComment: val,
-        wbeid: error.wbeid
+        id: error.id
       })
     }
   },
@@ -128,5 +129,21 @@ export default {
   border: 0;
   outline: 0;
   margin: 0 !important;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 14px;
+  padding-right: 14px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  color: #FFFFFF !important;
+  line-height: 2.33333333;
+  border-radius: 5px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  background-color: #4cc0be;
 }
 </style>

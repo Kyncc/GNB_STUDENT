@@ -78,7 +78,7 @@ const mutations = {
     state[payload.type]['index']['scroll'] = payload.height
   },
   [types.STATISTICS_COMMENT] (state, payload) {
-    state[payload.type]['index']['list'][payload.index]['errorComment'] = payload.errorComment
+    // state[payload.type]['index']['list'][payload.index]['errorComment'] = payload.errorComment
   },
   [types.STATISTICS_ASSEMBLE_DOWNLOAD_RESET] (state, payload) {
     switch (payload.type) {
