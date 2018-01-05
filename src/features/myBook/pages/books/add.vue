@@ -26,7 +26,7 @@
               <img class="previewer-myBook-img" v-lazy='myBook.img.url+"?imageMogr2/auto-orient/thumbnail/120x160!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' @click="show(pindex,index)" slot="icon" width="60" height="80"/>
               <div slot="after-title" @click="show(pindex,index)" style="width:90%;">
                 <p style="color:#4cc0be;font-size:14px;">&nbsp;&nbsp;&nbsp;{{myBook.year}}版</p>
-                <p class="ellipsis" style="font-size:.9rem;padding:.2rem 0">&nbsp;&nbsp;{{myBook.workbookName}}</p>
+                <p class="ellipsis" style="font-size:.9rem;">&nbsp;&nbsp;{{myBook.workbookName}}</p>
                 <template v-if='myBook.version'>
                   <p v-for="(tag, index) in myBook.version.split(',')" :key='index' style="color:#aaa;font-size:14px;">
                     &nbsp;&nbsp;&nbsp;{{tag}}
@@ -136,8 +136,8 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.myBookAddClear()
-      vm.tabwidth = vm.textBookList.length * 105 + 'px' // tab的宽度
-      vm.$refs.tab.scrollLeft = Number((vm.textBookIndex - 1) * 105)
+      vm.tabwidth = vm.textBookList.length * 85 + 'px' // tab的宽度
+      vm.$refs.tab.scrollLeft = Number((vm.textBookIndex - 1) * 85)
       vm._getData()
     })
   }

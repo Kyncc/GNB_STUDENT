@@ -11,6 +11,21 @@
         <checker-item value="2">2</checker-item>
         <checker-item value="3">3</checker-item>
       </checker>
+      <span class='searchtitle'>题型：</span>
+      <checker style='padding-left:.5rem;' v-model="qType" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+        <checker-item value="0">不限</checker-item>
+        <checker-item value="1">选择题</checker-item>
+        <checker-item value="2">填空题</checker-item>
+        <checker-item value="3">解答题</checker-item>
+      </checker>
+      <span class='searchtitle'>错误原因：</span>
+      <checker style='padding-left:.5rem;' v-model="errorComment" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+        <checker-item value="0">不限</checker-item>
+        <checker-item value="概念模糊">概念模糊</checker-item>
+        <checker-item value="粗心大意">粗心大意</checker-item>
+        <checker-item value="能力不够">能力不够</checker-item>
+        <checker-item value="-1">原因未知</checker-item>
+      </checker>
     </div>
   </view-box>
 </template>
@@ -28,7 +43,9 @@ export default {
   },
   data () {
     return {
-      degree: ''
+      degree: '',
+      errorComment: '',
+      qType: ''
     }
   },
   methods: {
@@ -37,10 +54,12 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.degree = vm.AssembleRemember.index.options.degree.toString()
+      vm.qType = vm.AssembleRemember.index.options.qType.toString()
+      vm.errorComment = vm.AssembleRemember.index.options.errorComment.toString()
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setStatisticsRememberOptions({degree: this.degree})
+    this.setStatisticsRememberOptions({degree: this.degree, qType: this.qType, errorComment: this.errorComment})
     next()
   }
 }

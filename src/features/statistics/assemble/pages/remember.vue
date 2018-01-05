@@ -3,7 +3,7 @@
     <card v-for='(error, index) in AssembleRemember.index.list' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
-          <flexbox-item :span="8" style='color:#4cc0be'>{{error.workbookName}}</flexbox-item>
+          <flexbox-item :span="8" style='color:#999999'>{{error.charpterName}}</flexbox-item>
           <flexbox-item :span="4" style="text-align:right">{{error.time | ymd}}</flexbox-item>
         </flexbox>
       </div>
@@ -13,18 +13,22 @@
         </div>
       </div>
       <div slot="footer">
-        <div class="weui-cell">
+        <div class="weui-cell" style='font-size:.7rem;color:#4cc0be'>
           <flexbox class="weui-cell__bd">
-            <flexbox-item :span="4">
-              <x-button mini type="primary" :plain="error.errorComment.length > 0" @click.native="_showErrorPopup(error, index)">{{error.errorComment.length ? error.errorComment : '错误原因'}}</x-button>
-            </flexbox-item>
-            <flexbox-item :span="4">
-              <x-button mini type="primary" plain @click.native="$router.push({name: 'comment', params: {wbeid: error.id}})" v-if='error.comment'>查看点评</x-button>
-            </flexbox-item>
-            <flexbox-item :span="4" style='text-align:right;'
+            <flexbox-item :span="3">难度{{error.degree}}</flexbox-item>
+            <flexbox-item :span="3">{{error.kownledge}}</flexbox-item>
+            <flexbox-item :span="3">{{error.errorComment}}</flexbox-item>
+            <flexbox-item :span="3" style='text-align:right;'
               @click.native="setStatisticsRememberAssembleUpdate({id: error.id, index: index})">
               <i v-if='error.isAssembly' class="icon iconfont icon-correct" style="color:#4cc0be;margin-right:1rem;"></i>
               <i v-else class="icon iconfont icon-icon073102" style="color:#4cc0be;margin-right:1rem;" ></i>
+            </flexbox-item>
+          </flexbox>
+        </div>
+        <div class="weui-cell" style='font-size:.7rem;color:#4cc0be' v-if='error.comment'>
+          <flexbox class="weui-cell__bd">
+            <flexbox-item :span="4">
+              <x-button mini type="primary" plain @click.native="$router.push({name: 'comment', params: {wbeid: error.id}})" >查看点评</x-button>
             </flexbox-item>
           </flexbox>
         </div>
@@ -41,31 +45,16 @@
     <div v-transfer-dom>
       <previewer :list="list" ref="previewer" :options="options"></previewer>
     </div>
-    <!--错误选择 -->
-    <div v-transfer-dom>
-      <popup v-model="showErrorPopup" class="checker-popup">
-        <group title='选择错误原因：'>
-          <div style="padding:10px 10px 0 10px;">
-            <checker type="radio" v-model="errorType.errorComment" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
-              <checker-item value="概念模糊" @on-item-click="onItemClick">概念模糊</checker-item>
-              <checker-item value="粗心大意" @on-item-click="onItemClick">粗心大意</checker-item>
-              <checker-item value="能力不够" @on-item-click="onItemClick">能力不够</checker-item>
-            </checker>
-          </div>
-        </group>
-      </popup>
-    </div>
   </div>
 </template>
-
 <script>
-import {XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer, TransferDomDirective as TransferDom} from 'vux'
+import {XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'remember',
   components: {
-    XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer
+    XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer
   },
   computed: {
     ...mapGetters(['AssembleRemember'])
@@ -74,13 +63,6 @@ export default {
     return {
       loading: false,
       loadingNoData: false,
-      showErrorPopup: false,
-      errorType: {
-        chapterId: '',
-        id: '',
-        errorComment: '',
-        index: ''
-      },
       list: [{
         w: 0,
         h: 0,
@@ -106,8 +88,6 @@ export default {
           if (res.data.data.offset.length === 0) {
             this.loadingNoData = true
           }
-          console.log(res.data.data.offset)
-          console.log(res.data.data.offset.length)
           this.loading = false
         })
     },
@@ -117,30 +97,6 @@ export default {
       this.list[0].src = img.url
       this.$nextTick(() => {
         this.$refs.previewer.show(0)
-      })
-    },
-    // 类型错误弹窗
-    _showErrorPopup (error, index) {
-      this.showErrorPopup = true
-      this.errorType.index = index
-      this.errorType.errorComment = error.errorComment
-      this.errorType.id = error.id
-      this.errorType.chapterId = error.chapterId
-    },
-    // 选择错误原因
-    onItemClick (value) {
-      this.showErrorPopup = false
-      this.getStatisticsComment({
-        chapterId: this.errorType.chapterId,
-        index: this.errorType.index,
-        errorComment: value,
-        id: this.errorType.id,
-        type: 'remember'
-      }).then(() => {
-        this.errorType.errorComment = ''
-        this.$vux.toast.show({text: '设置错误原因成功!', type: 'text', time: 1500, position: 'bottom'})
-      }).catch(() => {
-        this.errorType.errorComment = ''
       })
     }
   },
@@ -154,12 +110,7 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     this.setStatisticsScroll({type: 'remember', height: this.$parent.$refs.viewBoxBody.scrollTop})
-    if (this.showErrorPopup) {
-      this.showErrorPopup = false
-      next(false)
-    } else {
-      next()
-    }
+    next()
   }
 }
 </script>

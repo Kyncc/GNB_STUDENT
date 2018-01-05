@@ -1,14 +1,14 @@
 <template>
-  <view-box ref="workbook" body-padding-top="90px">
+  <view-box ref="workbook" body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
       <x-header :left-options="{backText: Route.params.name}">
         <i slot="right" class="icon iconfont icon-home" @click="$router.go(-2)"></i>
       </x-header>
-      <tab style="position:fixed;top:46px;width:100%;z-index:1">
-        <!-- <tab-item :selected="Route.name === 'workbook_exercise_result'"
+      <!-- <tab style="position:fixed;top:46px;width:100%;z-index:1">
+        <tab-item :selected="Route.name === 'workbook_exercise_result'"
           @click.native="$router.replace({name:'workbook_exercise_result'})">
           查答案
-        </tab-item> -->
+        </tab-item>
         <tab-item :selected="Route.name === 'workbook_exercise_answer'"
           @click.native="$router.replace({name:'workbook_exercise_answer'})">
           记错题
@@ -17,7 +17,7 @@
           @click.native="$router.replace({name:'workbook_exercise_error'})">
           错题本
         </tab-item>
-      </tab>
+      </tab> -->
     </div>
     <keep-alive>
       <router-view></router-view>

@@ -1,5 +1,5 @@
 <template>
-  <view-box ref="myClass" body-padding-top="46px">
+  <view-box body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '我的班级'}">
       <div slot="right">
         <router-link :to="{name: 'class_add'}" style="margin:0">
@@ -11,6 +11,7 @@
       </div>
     </x-header>
     <div>
+      <!-- <search ref="myClass" cancel-text='' style='margin-bottom:.5rem;' @click.native="$router.push({name: 'class_add'})" :auto-fixed="false" placeholder="请输入老师的手机号码或班级码"></search> -->
       <group gutter="0" v-if="!loading">
         <template v-for="(item, index) in ClassMy">
           <cell :title="item.name" :link="'detail/'+item.classCode" :key='index'></cell>
@@ -25,13 +26,13 @@
 </template>
 
 <script>
-import {XHeader, Cell, Group, Spinner, ViewBox} from 'vux'
+import {XHeader, Cell, Group, Spinner, ViewBox, Search} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'index',
   components: {
-    XHeader, Cell, Group, ViewBox, Spinner
+    XHeader, Cell, Group, ViewBox, Spinner, Search
   },
   methods: {
     ...mapActions(['getMyClass', 'myClassClear']),

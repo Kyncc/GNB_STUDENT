@@ -22,10 +22,13 @@ const mutations = {
     state.classmate = []
   },
   [types.CLASS_SEARCH] (state, data) {
-    state.searchClass = data
+    state.searchClass = data.teacher
   },
   [types.CLASS_SEARCH_CLEAR] (state) {
     state.searchClass = []
+  },
+  [types.CLASS_ADD] (state, payload) {
+    state.searchClass.classes[payload].status = true
   }
 }
 

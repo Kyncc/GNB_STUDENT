@@ -59,7 +59,6 @@
           ├── chapter      # 章节考点
           ├── download     # 组卷编辑
         |── homework    # 布置作业
-        ├── workbook    # 查答案
         ├── correct     # 纠错
         ├── example     # 例题
         ├── error       # 查看错题

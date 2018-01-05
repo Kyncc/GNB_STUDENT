@@ -1,7 +1,6 @@
 <template>
   <div class='user'>
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{showBack: false}">
-      <!--<i class="icon iconfont icon-share" slot="right"></i>-->
       个人中心
     </x-header>
     <group gutter="0" class='headInfo'>
@@ -18,6 +17,9 @@
       <cell title="我的习题册" link="myBook">
         <i class="icon iconfont icon-my_exercisebook" style="color:#4cc0be" slot="icon"></i>
       </cell>
+      <cell title="邀请好友" is-link @click.native="showAction = true">
+        <i class="icon iconfont icon-share" style="color:#4cc0be" slot="icon"></i>
+      </cell>
       <cell title="设置" link="settings">
         <i class="icon iconfont icon-settingfull" style="color:#4cc0be" slot="icon"></i>
       </cell>
@@ -30,31 +32,45 @@
         <badge></badge>
       </cell>
     </group>
+    <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="share.href"></share>
   </div>
 </template>
 
 <script>
 import {XHeader, Cell, Group, ViewBox, Badge} from 'vux'
-import {mapActions, mapGetters} from 'vuex'
+import {mapGetters} from 'vuex'
+import Share from '@/components/share'
 
 export default {
   name: 'user',
   components: {
-    XHeader, Cell, Group, ViewBox, Badge
+    XHeader, Cell, Group, ViewBox, Badge, Share
   },
   computed: {
     ...mapGetters(['User', 'System', 'News'])
   },
+  data () {
+    return {
+      showAction: false,
+      share: {
+        content: '好东西，自然与朋友共分享',
+        title: '替老师批改作业，帮学生归纳错题',
+        href: `http://a.app.qq.com/o/simple.jsp?pkgname=com.sanbao.guinaben.student`
+      }
+    }
+  },
   methods: {
-    ...mapActions(['getUserNews']),
     _openStore () {
       window.location.href = 'market://details?id=com.sanbao.guinaben.student'
     }
   },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.getUserNews()
-    })
+  beforeRouteLeave (to, from, next) {
+    if (this.showAction) {
+      this.showAction = false
+      next(false)
+    } else {
+      next()
+    }
   }
 }
 </script>

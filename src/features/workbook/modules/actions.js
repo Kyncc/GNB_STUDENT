@@ -155,7 +155,7 @@ export const WorkbookExercisePost = ({ state, rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'workbook/submit',
+      url: 'workbook/submit/v2',
       data: {
         'answer': params.answer,
         'answerId': params.answerId,
@@ -193,7 +193,7 @@ export const getWorkbookExercise = ({ state, rootState, commit }, id) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'workbook/exercises',
+      url: 'workbook/exercises/v2',
       params: {
         'token': rootState.common.user.token,
         'chapterId': rootState.route.params.id || id
@@ -248,17 +248,15 @@ export const workbookExErrorUpload = ({ state, rootState, commit }, params) => {
       method: 'post',
       url: 'workbook/exercise/uploader',
       data: {
-        'wbeid': rootState.route.params.wbeid,
-        'img': state.exercise.cameraList,
+        'wbeid': params.wbeid,
         'errorComment': params.errorComment,
-        'chapterId': rootState.route.params.chapterId,
+        'chapterId': rootState.route.params.id,
         'token': rootState.common.user.token
       }
     })
       .then((response) => {
         Vue.$vux.loading.hide()
-        Vue.$vux.toast.show({ text: '提交成功', type: 'success', isShowMask: true, time: 1500 })
-        commit(types.WORKBOOK_EXERCISE_ERROR_UPLOAD, response.data.data)
+        Vue.$vux.toast.show({text: '设置错误原因成功!', type: 'text', time: 1500, position: 'bottom'})
         resolve(response)
       })
       .catch((error) => {

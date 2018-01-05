@@ -1,6 +1,6 @@
 {
   "name": "guinaben",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "description": "A H5+ hybird app",
   "author": "Hope <hopefullstack@gmail.com>",
   "private": true,
@@ -16,6 +16,7 @@
     "babel-polyfill": "^6.26.0",
     "cropperjs": "^1.1.3",
     "fastclick": "^1.0.6",
+    "fundebug-javascript": "^0.3.3",
     "howler": "^2.0.5",
     "mint-ui": "^2.2.10",
     "vue": "^2.5.2",

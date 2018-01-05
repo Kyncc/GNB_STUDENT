@@ -1,7 +1,7 @@
 <template>
   <view-box ref="statistics" body-padding-top="100px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-      <x-header :left-options="{backText: '错题归纳'}"></x-header>
+      <x-header :left-options="{backText: '错题本'}"></x-header>
       <tab>
         <tab-item v-if="User.subjectType.indexOf('math') >= 0" :selected="Route.name === 'statistics_math'" @click.native="$router.replace('math')">数学</tab-item>
         <tab-item v-if="User.subjectType.indexOf('physics') >= 0" :selected="Route.name === 'statistics_physics'" @click.native="$router.replace('physics')">物理</tab-item>

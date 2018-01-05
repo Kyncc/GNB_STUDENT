@@ -4,7 +4,12 @@
     <div v-if="!loading" class="messageSection">
       <section v-for="(item, index) in messageCorrectList" :key='index'>
         <h3>{{item.time | ymd}}</h3>
-        <article>{{item.content}}</article>
+        <article >
+          <p v-html="item.text"></p>
+          <x-button style='margin:.5rem 0'
+            @click.native="$router.push({name: 'example', params: {subjectId: item.subjectId, grade: item.grade, id: item.id}})" 
+            type="primary" mini>查看原题</x-button>
+        </article>
       </section>
     </div>
     <div style="text-align:center">
@@ -14,13 +19,13 @@
   </view-box>
 </template>
 <script>
-import {XHeader, ViewBox, Spinner} from 'vux'
+import {XButton, XHeader, ViewBox, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'correct',
   components: {
-    XHeader, ViewBox, Spinner
+    XButton, XHeader, ViewBox, Spinner
   },
   computed: {
     ...mapGetters(['messageCorrectList'])
